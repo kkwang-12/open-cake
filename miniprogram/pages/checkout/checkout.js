@@ -1,0 +1,10 @@
+const api = require('../../utils/api'); const view = require('../../utils/view');
+Page({
+  data: { product: null, size: '', flavor: '', totalYuan: '', depositYuan: '', balanceYuan: '', date: '', minDate: '', time: '14:00', openTime: '08:30', closeTime: '19:30', fulfillment: 'pickup', fulfillmentIndex: 0, fulfillmentLabels: ['到店自取', '免费配送（店员确认范围）'], contactName: '', phone: '', address: '', message: '', note: '', policy: '', error: '', busy: false },
+  onLoad(options) { this.options = options; this.load(); },
+  async load() { await api.run(this, async()=>{ await api.ready(); const [config, products] = await Promise.all([api.request('/config'), api.request('/products')]); const p = products.find(item=>item.id===this.options.id); const size = p && p.sizes[Number(this.options.size||0)]; const flavor = p && p.flavors[Number(this.options.flavor||0)]; if (!p || !size || !flavor) throw new Error('商品或规格已变化，请返回重新选择'); const deposit = Math.round(size.priceCents*.3); this.setData({ product: p, size: size.name, flavor, totalYuan: view.yuan(size.priceCents), depositYuan: view.yuan(deposit), balanceYuan: view.yuan(size.priceCents-deposit), date: view.tomorrow(config.serverTime), minDate: view.dateAt(config.serverTime), openTime: config.shop.openTime, closeTime: config.shop.closeTime, policy: config.shop.afterSalesPolicy }); }); },
+  input(e) { this.setData({ [e.currentTarget.dataset.field]: e.detail.value }); },
+  date(e) { this.setData({ date: e.detail.value }); }, time(e) { this.setData({ time: e.detail.value }); },
+  fulfillment(e) { const index = Number(e.detail.value); this.setData({ fulfillmentIndex: index, fulfillment: index===0?'pickup':'delivery' }); },
+  async submit() { await api.run(this, async()=>{ const d = this.data; const order = await api.request('/orders','POST',{ productId:d.product.id,size:d.size,flavor:d.flavor,contactName:d.contactName,phone:d.phone,address:d.address,message:d.message,note:d.note,date:d.date,time:d.time,fulfillment:d.fulfillment }); wx.redirectTo({url:'/pages/order/order?id='+order.id}); }); }
+});

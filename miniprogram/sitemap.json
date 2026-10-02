@@ -1,0 +1,1 @@
+{ "desc": "演示环境不开放搜索索引", "rules": [{ "action": "disallow", "page": "*" }] }

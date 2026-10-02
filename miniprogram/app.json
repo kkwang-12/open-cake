@@ -1,0 +1,8 @@
+{
+  "pages": ["pages/shop/shop", "pages/product/product", "pages/checkout/checkout", "pages/orders/orders", "pages/order/order", "pages/account/account", "pages/staff/staff"],
+  "window": { "navigationBarTitleText": "家家乐蛋糕店", "navigationBarBackgroundColor": "#fbf7f0", "navigationBarTextStyle": "black", "backgroundColor": "#fbf7f0" },
+  "tabBar": { "color": "#978473", "selectedColor": "#b5684c", "backgroundColor": "#fffdf9", "borderStyle": "white", "list": [{ "pagePath": "pages/shop/shop", "text": "挑选蛋糕" }, { "pagePath": "pages/orders/orders", "text": "我的订单" }, { "pagePath": "pages/account/account", "text": "门店与我的" }] },
+  "usingComponents": { "cake-art": "/components/cake-art/cake-art" },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
