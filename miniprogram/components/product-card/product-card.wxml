@@ -1,0 +1,7 @@
+<button class="card" bindtap="select" aria-label="查看{{product.name}}" hover-class="pressed">
+  <image wx:if="{{product.image && !imageFailed}}" class="image" src="{{product.image}}" mode="aspectFill" lazy-load="{{true}}" binderror="imageError" />
+  <view wx:else class="image fallback">图片暂未加载</view>
+  <text class="name">{{product.name}}</text>
+  <text class="description">{{product.description}}</text>
+  <text class="price">¥{{product.priceLabel}}</text>
+</button>

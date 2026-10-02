@@ -1,8 +1,71 @@
 {
-  "pages": ["pages/shop/shop", "pages/product/product", "pages/checkout/checkout", "pages/orders/orders", "pages/order/order", "pages/account/account", "pages/staff/staff"],
-  "window": { "navigationBarTitleText": "家家乐蛋糕店", "navigationBarBackgroundColor": "#fbf7f0", "navigationBarTextStyle": "black", "backgroundColor": "#fbf7f0" },
-  "tabBar": { "color": "#978473", "selectedColor": "#b5684c", "backgroundColor": "#fffdf9", "borderStyle": "white", "list": [{ "pagePath": "pages/shop/shop", "text": "挑选蛋糕" }, { "pagePath": "pages/orders/orders", "text": "我的订单" }, { "pagePath": "pages/account/account", "text": "门店与我的" }] },
-  "usingComponents": { "cake-art": "/components/cake-art/cake-art" },
+  "pages": [
+    "pages/home/home",
+    "pages/shop/shop",
+    "pages/orders/orders",
+    "pages/account/account",
+    "pages/product/product",
+    "pages/specification/specification",
+    "pages/bag/bag",
+    "pages/checkout/checkout",
+    "pages/order-success/order-success",
+    "pages/order-detail/order-detail",
+    "pages/addresses/addresses",
+    "pages/favorites/favorites",
+    "pages/admin/admin"
+  ],
+  "subPackages": [
+    {
+      "root": "legacy",
+      "name": "legacy-demo",
+      "pages": [
+        "pages/shop/shop",
+        "pages/product/product",
+        "pages/checkout/checkout",
+        "pages/orders/orders",
+        "pages/order/order",
+        "pages/account/account",
+        "pages/staff/staff"
+      ]
+    }
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "navigationBarTitleText": "家家乐蛋糕店",
+    "navigationBarBackgroundColor": "#FAF7F2",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#FAF7F2"
+  },
+  "tabBar": {
+    "color": "#AAAAAA",
+    "selectedColor": "#FFFFFF",
+    "backgroundColor": "#111111",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "text": "选购"
+      },
+      {
+        "pagePath": "pages/orders/orders",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/account/account",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {
+    "page-header": "/components/page-header/page-header",
+    "product-card": "/components/product-card/product-card",
+    "empty-state": "/components/empty-state/empty-state",
+    "cake-art": "/components/cake-art/cake-art"
+  },
   "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

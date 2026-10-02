@@ -1,9 +1,24 @@
-const api = require('../../utils/api');
-const view = require('../../utils/view');
+const routes = require('../../constants/routes');
+const preview = require('../../services/catalog-preview');
 Page({
-  data: { products: [], shop: {}, error: '', busy: false },
-  onShow() { this.load(); },
-  async load() { await api.run(this, async()=>{ await api.ready(); const [config, products] = await Promise.all([api.request('/config'), api.request('/products')]); this.setData({ shop: config.shop, products: products.map(view.product) }); }); },
-  select(e) { wx.navigateTo({ url: '/pages/product/product?id=' + e.currentTarget.dataset.id }); },
-  browse() { wx.pageScrollTo({ selector: '#cakes', duration: 300 }); }
+  data: { category: 'all', products: [], categories: [
+    { id: 'all', name: '全部', en: 'All' },
+    { id: 'cake', name: '蛋糕', en: 'Cake' },
+    { id: 'mini', name: '迷你蛋糕', en: 'Mini Cake' },
+    { id: 'bread', name: '面包', en: 'Bread' }
+  ] },
+  onShow() {
+    const category = getApp().globalData.pendingShopCategory;
+    if (this.data.categories.some(item => item.id === category)) this.setData({ category });
+    getApp().globalData.pendingShopCategory = '';
+    this.load();
+  },
+  load() { this.setData({ products: preview.products(this.data.category) }); },
+  chooseCategory(e) {
+    const category = e.currentTarget.dataset.id;
+    if (!this.data.categories.some(item => item.id === category)) return;
+    this.setData({ category });
+    this.load();
+  },
+  select(e) { routes.navigate('product', { id: e.detail.id }); }
 });

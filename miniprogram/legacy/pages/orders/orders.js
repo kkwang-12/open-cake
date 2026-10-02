@@ -1,0 +1,2 @@
+const api = require('../../utils/api'); const view = require('../../utils/view');
+Page({ data:{orders:[],error:'',busy:false},onShow(){this.load();},onPullDownRefresh(){this.load().finally(()=>wx.stopPullDownRefresh());},async load(){await api.run(this,async()=>{await api.ready();this.setData({orders:(await api.request('/orders')).map(view.order)});});},open(e){wx.navigateTo({url:'/legacy/pages/order/order?id='+e.currentTarget.dataset.id});},shop(){wx.redirectTo({url:'/legacy/pages/shop/shop'});} });

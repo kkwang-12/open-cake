@@ -1,1 +1,2 @@
-.detail-art{height:460rpx;background:#f4e7d9;border-radius:36rpx;display:flex;align-items:center;justify-content:center;margin-bottom:30rpx}.detail-art cake-art{transform:scale(1.32)}
+.gallery { width: 100%; height: 560rpx; border-radius: 24rpx; background: #EFEDE8; }
+.fallback { display: flex; align-items: center; justify-content: center; color: #666666; font-size: 24rpx; }

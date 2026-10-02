@@ -1,0 +1,6 @@
+.empty-state { text-align: center; padding: 64rpx 16rpx; }
+.title { display: block; color: #111111; font-size: 32rpx; font-weight: 600; line-height: 1.5; }
+.description { display: block; color: #666666; font-size: 24rpx; line-height: 1.8; margin-top: 16rpx; }
+.action { width: 100% !important; min-height: 44px; margin: 32rpx 0 0; padding: 24rpx 32rpx; border-radius: 999rpx; background: #111111; color: #FFFFFF; font-size: 28rpx; }
+.action::after { border: 0; }
+.pressed { opacity: .65; }

@@ -1,0 +1,8 @@
+.card { display: block; width: 100% !important; margin: 0; padding: 0; border-radius: 0; text-align: left; color: #111111; background: transparent; line-height: 1.5; }
+.card::after { border: 0; }
+.image { width: 100%; height: 304rpx; border-radius: 24rpx; background: #EFEDE8; }
+.fallback { display: flex; align-items: center; justify-content: center; color: #666666; font-size: 22rpx; }
+.name { display: block; font-size: 28rpx; font-weight: 600; margin-top: 16rpx; }
+.description { display: block; font-size: 24rpx; color: #666666; margin-top: 8rpx; min-height: 72rpx; }
+.price { display: block; font-size: 28rpx; font-weight: 600; margin-top: 16rpx; }
+.pressed { opacity: .7; }

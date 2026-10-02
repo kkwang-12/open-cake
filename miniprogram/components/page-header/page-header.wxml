@@ -1,0 +1,7 @@
+<view class="header" style="padding-top: {{topInset}}px;">
+  <view class="header-inner" style="min-height: {{navHeight}}px; padding-right: {{capsuleWidth}}px;">
+    <button wx:if="{{back}}" class="icon-button" bindtap="goBack" aria-label="返回" hover-class="pressed">‹</button>
+    <text class="header-title">{{title}}</text>
+    <button wx:if="{{bag}}" class="icon-button" bindtap="openBag" aria-label="购物袋" hover-class="pressed"><image src="/assets/home/bag.png" /></button>
+  </view>
+</view>

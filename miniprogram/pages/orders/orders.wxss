@@ -1,1 +1,1 @@
-.row:last-child{margin-bottom:0}
+/* 订单 UI Shell 使用公共样式，订单域在 O06 接入。 */

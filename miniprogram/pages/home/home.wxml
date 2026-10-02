@@ -1,0 +1,41 @@
+<view class="home-header" style="padding-top: {{topInset}}px;">
+  <view class="home-header-inner" style="min-height: {{navHeight}}px; padding-right: {{capsuleWidth}}px;">
+    <view class="home-brand">
+      <text class="home-brand-name">家家乐</text>
+      <text class="home-brand-descriptor">CAKE / BAKERY</text>
+    </view>
+    <button class="home-bag" bindtap="openBag" aria-label="购物袋" hover-class="pressed"><image src="/assets/home/bag.png" /></button>
+  </view>
+</view>
+<view class="page home">
+  <view class="home-first-screen">
+    <view class="home-hero">
+      <view class="home-hero-copy">
+        <text class="home-hero-eyebrow">FRESHLY MADE</text>
+        <view class="home-hero-title">Cakes for<view>every moment.</view></view>
+        <view class="home-hero-subtitle"><text>一份好蛋糕，让日常</text><text class="home-subtitle-line">值得庆祝。</text></view>
+        <button class="home-explore" bindtap="browse" hover-class="pressed">探索更多 <text class="home-cta-arrow">→</text></button>
+      </view>
+      <view class="home-hero-photography">
+        <image wx:if="{{!imageFailed}}" class="home-hero-image" src="/assets/home/strawberry-hero-r01a.png" mode="aspectFit" binderror="imageError" aria-label="草莓奶油蛋糕" />
+        <view wx:else class="home-hero-image-fallback">图片暂未加载</view>
+      </view>
+    </view>
+    <view class="home-category-card">
+      <button wx:for="{{categories}}" wx:key="id" class="home-category" data-id="{{item.id}}" bindtap="chooseCategory" hover-class="pressed">
+        <view class="home-category-thumbnail">
+          <image wx:if="{{!item.imageFailed}}" src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" binderror="categoryImageError" />
+          <text wx:else class="home-category-image-fallback">图片暂未加载</text>
+        </view>
+        <text class="home-category-name">{{item.name}}</text>
+        <text class="home-category-en">{{item.en}}</text>
+      </button>
+    </view>
+  </view>
+  <view class="section">
+    <view class="section-heading"><view><text class="eyebrow">TODAY'S FAVORITE</text><text class="section-title">今日推荐</text></view></view>
+    <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
+    <empty-state wx:else title="新鲜好物即将上架" description="期待与你分享每一份新鲜。" action="浏览选购" bind:action="browse" />
+  </view>
+  <text wx:if="{{products.length}}" class="footnote">示例商品与价格 · 图片为设计预览素材 · 暂未开放购买</text>
+</view>

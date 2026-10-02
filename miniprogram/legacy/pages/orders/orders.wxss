@@ -1,0 +1,2 @@
+@import "../../styles/demo.wxss";
+.row:last-child{margin-bottom:0}

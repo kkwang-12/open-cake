@@ -1,6 +1,7 @@
 {
-  "description": "家家乐蛋糕店 · 预订演示版",
+  "description": "家家乐蛋糕店 · 云开发 V1 迁移项目（当前运行演示版）",
   "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
   "compileType": "miniprogram",
   "appid": "wx7bb778ac05eee0c5",
   "projectname": "家家乐蛋糕店",
@@ -9,7 +10,7 @@
     "enhance": true,
     "postcss": true,
     "minified": true,
-    "urlCheck": false,
+    "urlCheck": true,
     "compileWorklet": false,
     "uglifyFileName": false,
     "uploadWithSourceMap": true,
@@ -27,10 +28,19 @@
       "outputPath": ""
     }
   },
-  "libVersion": "latest",
+  "libVersion": "3.17.2",
   "simulatorPluginLibVersion": {},
   "packOptions": {
-    "ignore": [],
+    "ignore": [
+      {
+        "type": "file",
+        "value": "config.local.js"
+      },
+      {
+        "type": "file",
+        "value": "config.local.example.js"
+      }
+    ],
     "include": []
   },
   "editorSetting": {}

@@ -1,0 +1,2 @@
+const api = require('../../utils/api');
+Page({ data:{shop:{},error:'',busy:false},onShow(){this.load();},async load(){await api.run(this,async()=>{await api.ready();this.setData({shop:(await api.request('/config')).shop});});},orders(){wx.redirectTo({url:'/legacy/pages/orders/orders'});},staff(){wx.navigateTo({url:'/legacy/pages/staff/staff'});},contact(){if(this.data.shop.phone)wx.makePhoneCall({phoneNumber:this.data.shop.phone});} });

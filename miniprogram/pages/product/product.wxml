@@ -1,1 +1,11 @@
-<view class="demo">示例蛋糕 · 图片为示意插画</view><view class="page"><view wx:if="{{error}}" class="error" bindtap="load">{{error}}</view><block wx:if="{{product}}"><view class="detail-art"><cake-art theme="{{product.theme}}"/></view><view class="title">{{product.name}}</view><view class="subtitle">{{product.description}}</view><view class="field"><text class="field-label">选择尺寸</text><view class="choices"><view wx:for="{{product.sizes}}" wx:key="name" class="choice {{index === sizeIndex ? 'selected' : ''}}" data-index="{{index}}" bindtap="size">{{item.name}}</view></view></view><view class="field"><text class="field-label">选择口味</text><view class="choices"><view wx:for="{{product.flavors}}" wx:key="*this" class="choice {{index === flavorIndex ? 'selected' : ''}}" data-index="{{index}}" bindtap="flavor">{{item}}</view></view></view><view class="row"><text class="muted">蛋糕金额</text><text class="price">¥{{priceYuan}}</text></view><view class="info">先提交预订，店员确认档期与交付安排后，再支付 30% 定金。配送暂不收费。</view><button bindtap="checkout">预订这款蛋糕</button></block></view>
+<page-header back="{{true}}" bag="{{true}}" />
+<view class="page">
+  <block wx:if="{{product}}">
+    <image wx:if="{{!imageFailed}}" class="gallery" src="{{product.image}}" mode="aspectFill" binderror="imageError" />
+    <view wx:else class="gallery fallback">图片暂未加载</view>
+    <view class="section"><text class="eyebrow">CAKE / BAKERY</text><view class="title">{{product.name}}</view><text class="subtitle">{{product.description}}</text><view class="title">¥{{product.priceLabel}}</view></view>
+    <button class="primary-action" disabled="{{true}}">暂未开放购买</button>
+    <text class="footnote">示例商品与价格 · 图片为设计预览素材</text>
+  </block>
+  <empty-state wx:else title="商品暂未开放" description="商品资料正在准备，欢迎浏览其他精选。" action="返回选购" bind:action="browse" />
+</view>

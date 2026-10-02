@@ -1,0 +1,14 @@
+page {
+  --color-bg: #FAF7F2;
+  --color-surface: #FFFFFF;
+  --color-text: #111111;
+  --color-body: #666666;
+  --color-muted: #8A8A8A;
+  --color-accent: #B5684C;
+  --color-line: #E5E2DD;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 28rpx;
+  line-height: 1.6;
+}

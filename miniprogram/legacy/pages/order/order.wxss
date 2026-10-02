@@ -1,0 +1,2 @@
+@import "../../styles/demo.wxss";
+.status-panel{background:#eee3d2;border-color:#e4d5c1}.status-panel .title{font-size:40rpx}.sheet-backdrop{position:fixed;inset:0;z-index:30;background:#3a241d70;display:flex;align-items:flex-end}.sheet{background:#fffdf9;border-radius:36rpx 36rpx 0 0;padding:36rpx 32rpx 60rpx;max-height:85vh;width:100%;box-sizing:border-box}.sheet .section-title{margin-bottom:0}

@@ -1,2 +1,12 @@
-<view class="demo">流程体验版 · 示例商品与模拟付款</view>
-<view class="page"><view wx:if="{{error}}" class="error" bindtap="load">{{error}} · 点击重试</view><view class="hero"><view class="eyebrow">A LITTLE SWEETNESS, EVERY DAY</view><view class="hero-title"><view>把心意做成蛋糕，</view><view>把今天过得甜一点。</view></view><view class="hero-text">为生日、相聚，和每一个想要庆祝的日子。</view><button class="hero-button" bindtap="browse">挑选一份甜蜜 →</button><view class="hero-art"><cake-art theme="berry"/></view></view><view class="services"><text>随心选配</text><text>确认后付定金</text><text>自取 · 免费配送</text></view><view id="cakes" class="row"><view><view class="section-title">为你准备的甜</view><view class="small muted">选一个款式，把祝福一起带走</view></view><text class="tag">{{products.length}} 款示例</text></view><view class="grid"><view wx:for="{{products}}" wx:key="id" class="card {{item.theme}}" data-id="{{item.id}}" bindtap="select"><view class="art"><text class="badge">{{item.badge}}</text><cake-art theme="{{item.theme}}"/></view><view class="content"><view class="name">{{item.name}}</view><view class="small muted">{{item.subtitle}}</view><view class="price-row"><text class="price">¥{{item.fromYuan}}<text class="from">起</text></text><view class="plus">＋</view></view></view></view></view><view wx:if="{{!products.length && !busy}}" class="empty">暂时没有上架的蛋糕</view><view class="footnote"><view>营业 {{shop.openTime}}–{{shop.closeTime}}</view><view>蛋糕插画、规格与价格均为演示资料</view></view></view>
+<page-header bag="{{true}}" />
+<view class="page">
+  <text class="eyebrow">SHOP</text>
+  <view class="display-title">What are you<view>looking for?</view></view>
+  <text class="subtitle">找到一份喜欢的甜。</text>
+  <scroll-view scroll-x="{{true}}" class="category-scroll" show-scrollbar="{{false}}">
+    <view class="categories"><button wx:for="{{categories}}" wx:key="id" class="category {{category === item.id ? 'selected' : ''}}" bindtap="chooseCategory" data-id="{{item.id}}" hover-class="pressed"><text>{{item.name}}</text><text class="category-en">{{item.en}}</text></button></view>
+  </scroll-view>
+  <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
+  <empty-state wx:else title="商品即将上架" description="本分类暂未开放选购，欢迎稍后再来。" />
+  <text wx:if="{{products.length}}" class="footnote">示例商品与价格 · 图片为设计预览素材 · 暂未开放购买</text>
+</view>

@@ -2,6 +2,9 @@ node_modules/
 data/
 .env
 *.log
-artifacts/
+artifacts/*
+!artifacts/design-ref/
+artifacts/design-ref/*
+!artifacts/design-ref/*.jpg
 miniprogram/config.local.js
 project.private.config.json

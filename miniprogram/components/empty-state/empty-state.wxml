@@ -1,0 +1,5 @@
+<view class="empty-state">
+  <text class="title">{{loading ? '正在加载' : title}}</text>
+  <text class="description">{{description}}</text>
+  <button wx:if="{{action && !loading}}" bindtap="activate" class="action" hover-class="pressed">{{action}}</button>
+</view>
