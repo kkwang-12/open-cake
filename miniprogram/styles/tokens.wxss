@@ -1,5 +1,5 @@
 page {
-  --color-bg: #FAF7F2;
+  --color-bg: #FAFAF8;
   --color-surface: #FFFFFF;
   --color-text: #111111;
   --color-body: #666666;

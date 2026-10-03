@@ -32,9 +32,9 @@
   "window": {
     "navigationStyle": "custom",
     "navigationBarTitleText": "家家乐蛋糕店",
-    "navigationBarBackgroundColor": "#FAF7F2",
+    "navigationBarBackgroundColor": "#FAFAF8",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#FAF7F2"
+    "backgroundColor": "#FAFAF8"
   },
   "tabBar": {
     "color": "#AAAAAA",

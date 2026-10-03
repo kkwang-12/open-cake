@@ -1,4 +1,4 @@
-.header { background: #FAF7F2; }
+.header { background: var(--color-bg); }
 .header-inner { display: flex; align-items: center; gap: 16rpx; padding-left: 32rpx; }
 .header-title { flex: 1; min-width: 0; font-size: 24rpx; font-weight: 600; color: #111111; line-height: 1.5; }
 .icon-button { flex: 0 0 44px; display: flex; align-items: center; justify-content: center; width: 44px !important; height: 44px; margin: 0; padding: 0; background: transparent; color: #111111; font-size: 40rpx; }
