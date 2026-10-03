@@ -9,10 +9,14 @@
 - 九个阶段与可验收 Task：[开发计划](docs/DEVELOPMENT-PLAN.md)
 - 本次初始化范围与验证记录：[初始化记录](docs/INITIALIZATION.md)
 - 阶段一实现、运行方法及待验收项：[阶段一执行记录](docs/PHASE-1-EXECUTION.md)
+- 本轮导航 / 真机结果：[真机检查记录](docs/NAVIGATION-DEVICE-CHECK.md)
+- 数据模型阶段进度：[阶段二执行记录](docs/PHASE-2-EXECUTION.md)；[商品 / 袋规则](docs/CATALOG-CART-RULES.md)；[事务设计](docs/TRANSACTIONS.md)；[履约规则](docs/FULFILLMENT-RULES.md)
+- 商品域本地进度：[阶段三执行记录](docs/PHASE-3-EXECUTION.md)；[临时目录与素材](docs/CATALOG-DRAFTS.md)；[商品列表与Shop](docs/CATALOG-READ.md)
+- 交易政策 / 状态模型：[交易规则](docs/TRANSACTION-RULES.md)、[字段约束](docs/DATA_MODEL.md)、[接口契约](docs/API_CONTRACT.md)
 - 账号、工具与经营资料：[外部条件登记](docs/EXTERNAL-DEPENDENCIES.md)
 - 云函数目录及配置约定：[cloudfunctions/README.md](cloudfunctions/README.md)
 
-当前分支为 `codex/phase-1-initialization`。已建立公共组件、三分类开发预览、13 个主页面路由、两个最小云函数与依赖锁、统一错误 / 环境边界和自动化检查。首页探索先备份后迁移；未自动提交或推送。云环境尚未创建；本轮已进行微信工具本地编译与截图，真实导航交互、真机和真实云验收待补。
+当前分支为 `main`。已建立公共组件、三分类开发预览、13 个主页面路由、两个最小云函数与依赖锁、统一错误 / 环境边界和自动化检查。用户确认本轮真机测试无问题，Hero 故障关闭。按用户继续指示完成阶段二 D01 离线交易模型及 D02 字段 / 关系 / 快照设计的本地验收，并推进 D03 本地 SKU / 购物袋模型和 D04 离线事务工具，并完成 D05 本地履约模型与 D06 本地身份 / 权限工具与 D07 本地 API / 分页 / 草稿种子规划，并完成阶段三 C01 本地目录 / 素材草稿及 C02 本地读模型 / 示例 Shop 及 C03 本地规格读取 / 合法组合验证，C04 详情及用户变更后的 C05 弹层三状态、本机草稿加购已验证，正式配置 / 云待补；云环境尚未创建，真实云 / 商户链路及跨设备验收继续待补。未自动提交或推送。
 
 ## 当前 V1 本地检查
 
@@ -128,3 +132,11 @@ node scripts/check.js
 | `PUT /api/settings` | 店员维护营业、联系方式、售后规则 |
 
 支付与退款的 `simulate` 接口仅供本机演示，不能当作真实支付回调接口。参考平台接入入口：[微信小程序文档](https://developers.weixin.qq.com/miniprogram/dev/framework/)、[微信支付商户文档](https://pay.weixin.qq.com/doc/v3/merchant/)。
+
+C03 模型、开发示例边界及验证见 [规格规则](docs/SPECIFICATION-RULES.md)。
+
+C04本地详情及待补页面验收见 [商品详情](docs/PRODUCT-DETAIL.md)。
+
+最新用户UI变更：商品详情、规格底部弹层与真实本机加购反馈已实现，三状态微信截图验证通过；详见 [商品详情重做](docs/PRODUCT-DETAIL-REDESIGN.md)。本机购物袋尚不可云端结算。
+
+2026-10-04：用户确认详情/规格弹层/加购反馈UI验收通过，并授权同步main；当天交付、验收图与待办见 [今日总结](docs/DAILY-SUMMARY-2026-10-04.md)。

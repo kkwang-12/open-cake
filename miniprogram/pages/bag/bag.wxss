@@ -1,1 +1,4 @@
-/* 页面路由骨架；业务在对应领域阶段接入。 */
+.bag-line { margin-bottom: 28rpx; padding-bottom: 24rpx; border-bottom: 1rpx solid #E5E2DD; }
+.bag-line-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 20rpx; }
+.bag-message { display: block; color: #666; font-size: 24rpx; margin-top: 10rpx; }
+.remove-line { width: auto !important; font-size: 24rpx; padding: 12rpx 20rpx; }

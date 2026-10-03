@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "policyVersion": "v1-access-2026-10-03",
+  "status": "DRAFT_NOT_DEPLOYED",
+  "clientAccess": "API_ONLY",
+  "collections": {
+    "users": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "categories": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "products": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "skus": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "favorites": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "carts": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "addresses": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "stores": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "store_config": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "checkout_quotes": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "orders": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "order_items": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "order_logs": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "cancellation_requests": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "payments": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "refunds": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "payment_events": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "reservations": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "slot_inventory": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "idempotency_records": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "admin_roles": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "audit_logs": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "inventory_resources": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "media_assets": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
+    "refund_attempts": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    }
+  }
+}

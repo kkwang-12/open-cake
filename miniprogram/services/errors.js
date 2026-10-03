@@ -5,6 +5,7 @@ const messages = {
   CLOUD_CALL_FAILED: '连接失败，请稍后重试',
   INVALID_RESPONSE: '服务返回异常，请稍后重试',
   INVALID_REQUEST: '请求无效，请重新操作',
+  PRODUCT_UNAVAILABLE: '商品不存在或暂未开放',
   AUTH_REQUIRED: '身份验证失败，请重新进入小程序',
   ENV_MISMATCH: '服务环境不匹配，请联系维护人员',
   APP_MISMATCH: '服务身份不匹配，请联系维护人员'

@@ -3,3 +3,6 @@
 .category { width: auto !important; min-height: 44px; flex-shrink: 0; padding: 16rpx 0 24rpx; border-bottom: 4rpx solid transparent; color: #666666; font-size: 28rpx; }
 .category-en { display: block; font-size: 22rpx; margin-top: 8rpx; }
 .selected { border-bottom-color: #111111; color: #111111; }
+
+.list-feedback { display: flex; flex-direction: column; align-items: center; gap: 24rpx; margin-top: 40rpx; color: #666666; font-size: 24rpx; }
+.list-feedback .secondary-action { min-width: 240rpx; }

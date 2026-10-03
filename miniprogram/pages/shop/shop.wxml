@@ -7,6 +7,16 @@
     <view class="categories"><button wx:for="{{categories}}" wx:key="id" class="category {{category === item.id ? 'selected' : ''}}" bindtap="chooseCategory" data-id="{{item.id}}" hover-class="pressed"><text>{{item.name}}</text><text class="category-en">{{item.en}}</text></button></view>
   </scroll-view>
   <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
-  <empty-state wx:else title="商品即将上架" description="本分类暂未开放选购，欢迎稍后再来。" />
-  <text wx:if="{{products.length}}" class="footnote">示例商品与价格 · 图片为设计预览素材 · 暂未开放购买</text>
+  <empty-state wx:if="{{loading && !products.length}}" loading="{{true}}" description="正在准备商品列表。" />
+  <empty-state wx:elif="{{!products.length && !error}}" title="商品即将上架" description="本分类暂未开放选购，欢迎稍后再来。" />
+  <view wx:if="{{error}}" class="list-feedback">
+    <text>{{error}}</text>
+    <button class="secondary-action" bindtap="retry" hover-class="pressed">重新加载</button>
+  </view>
+  <view wx:if="{{products.length && !error}}" class="list-feedback">
+    <text wx:if="{{loading}}">正在加载更多商品…</text>
+    <button wx:elif="{{hasMore}}" class="secondary-action" bindtap="loadMore" hover-class="pressed">加载更多</button>
+    <text wx:else>已展示全部商品</text>
+  </view>
+  <text wx:if="{{source === 'DEVELOPMENT_EXAMPLE'}}" class="footnote">临时开发示例与价格 · 商品图片待补充 · 暂未开放购买</text>
 </view>

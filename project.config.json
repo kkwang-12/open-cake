@@ -39,6 +39,14 @@
       {
         "type": "file",
         "value": "config.local.example.js"
+      },
+      {
+        "type": "file",
+        "value": "assets/home/pear.jpg"
+      },
+      {
+        "type": "file",
+        "value": "assets/home/latte.jpg"
       }
     ],
     "include": []

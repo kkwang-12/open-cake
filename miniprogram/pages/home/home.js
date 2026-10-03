@@ -10,7 +10,7 @@ Page({
   onLoad() { this.setData(measure()); },
   onShow() {
     const products = preview.products();
-    this.setData({ products });
+    this.setData({ products, imageFailed: false });
   },
   browse() { routes.navigate('shop'); },
   openBag() { routes.navigate('bag'); },

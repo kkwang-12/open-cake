@@ -14,8 +14,11 @@ function checkRequire(file) {
   for (const item of source.matchAll(/require\(['"]([^'"]+)['"]\)/g)) {
     if (!item[1].startsWith('.')) continue;
     const target = path.resolve(path.dirname(file), item[1]);
-    if (![target, target + '.js', target + '.json', path.join(target, 'index.js')].some(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile())) {
-      fail('缺少模块：' + relative(file) + ' → ' + item[1]);
+    const moduleFile = [target, target + '.js', target + '.json', path.join(target, 'index.js')]
+      .find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile());
+    if (!moduleFile) fail('缺少模块：' + relative(file) + ' → ' + item[1]);
+    if (file.startsWith(miniRoot + path.sep) && path.extname(moduleFile) !== '.js') {
+      fail('小程序 require 必须加载 JS 模块：' + relative(file) + ' → ' + item[1]);
     }
     if (file.startsWith(path.join(miniRoot, 'pages') + path.sep) && target.startsWith(path.join(miniRoot, 'legacy') + path.sep)) fail('主页面不能导入遗留演示');
   }
@@ -84,4 +87,42 @@ for (const name of ['user', 'store']) {
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'cloudfunctions', name, 'package.json'), 'utf8'));
   if (!/^\d+\.\d+\.\d+$/.test(manifest.dependencies['wx-server-sdk'])) fail('SDK 必须锁定稳定版本');
 }
+const project = JSON.parse(fs.readFileSync(path.join(root, 'project.config.json'), 'utf8'));
+const subpackageRoots = (app.subPackages || []).map(pack => pack.root.replace(/\\/g, '/').replace(/\/$/, '') + '/');
+const packageIgnores = (project.packOptions && project.packOptions.ignore) || [];
+function excludedFromPackage(name) {
+  return packageIgnores.some(rule => (rule.type === 'file' && rule.value === name) ||
+    (rule.type === 'folder' && (name === rule.value || name.startsWith(rule.value.replace(/\/$/, '') + '/'))));
+}
+function checkPackagedImages(directory) {
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    if (entry.name === 'node_modules') continue;
+    const file = path.join(directory, entry.name);
+    if (entry.isDirectory()) checkPackagedImages(file);
+    else if (/\.(js|json|wxml|wxss)$/.test(entry.name)) {
+      const source = fs.readFileSync(file, 'utf8');
+      for (const match of source.matchAll(/["'(](\/assets\/[\w/.-]+\.(?:png|jpe?g|webp|svg|gif))(?=["')])/g)) {
+        const asset = match[1].slice(1);
+        if (!fs.existsSync(path.join(miniRoot, asset))) fail('引用的本地图片不存在：' + relative(file) + ' → ' + asset);
+        if (excludedFromPackage(asset)) fail('引用的图片已被打包排除：' + relative(file) + ' → ' + asset);
+      }
+    }
+  }
+}
+checkPackagedImages(miniRoot);
+function mainPackageBytes(directory) {
+  let bytes = 0;
+  for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+    const file = path.join(directory, entry.name);
+    const name = path.relative(miniRoot, file).replace(/\\/g, '/');
+    if (subpackageRoots.some(prefix => name + '/' === prefix || name.startsWith(prefix))) continue;
+    if (excludedFromPackage(name)) continue;
+    bytes += entry.isDirectory() ? mainPackageBytes(file) : fs.statSync(file).size;
+  }
+  return bytes;
+}
+const packageBytes = mainPackageBytes(miniRoot);
+const mainPackageLimit = 2 * 1024 * 1024;
+if (packageBytes > mainPackageLimit) fail('主包源文件超过 2048 KiB：' + Math.ceil(packageBytes / 1024) + ' KiB；请压缩素材或调整打包排除，实际编译包仍需工具确认。');
 console.log('静态检查完成：' + count + ' 个 JS/JSON/WXML 文件；' + app.pages.length + ' 主页面 + ' + (pages.length - app.pages.length) + ' 演示子包页面；路由、组件、依赖、模板事件、样式导入与共用代码一致。');
+console.log('主包源文件估算：' + Math.ceil(packageBytes / 1024) + ' / 2048 KiB；已按子包与文件 / 目录排除规则计算，实际以微信编译打包为准。');
