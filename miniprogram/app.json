@@ -3,16 +3,7 @@
     "pages/home/home",
     "pages/shop/shop",
     "pages/orders/orders",
-    "pages/account/account",
-    "pages/product/product",
-    "pages/specification/specification",
-    "pages/bag/bag",
-    "pages/checkout/checkout",
-    "pages/order-success/order-success",
-    "pages/order-detail/order-detail",
-    "pages/addresses/addresses",
-    "pages/favorites/favorites",
-    "pages/admin/admin"
+    "pages/account/account"
   ],
   "subPackages": [
     {
@@ -27,6 +18,21 @@
         "pages/account/account",
         "pages/staff/staff"
       ]
+    },
+    {
+      "root": "features",
+      "name": "business",
+      "pages": [
+        "product/product",
+        "specification/specification",
+        "bag/bag",
+        "checkout/checkout",
+        "order-success/order-success",
+        "order-detail/order-detail",
+        "addresses/addresses",
+        "favorites/favorites",
+        "admin/admin"
+      ]
     }
   ],
   "window": {
@@ -37,6 +43,7 @@
     "backgroundColor": "#FAFAF8"
   },
   "tabBar": {
+    "custom": true,
     "color": "#AAAAAA",
     "selectedColor": "#FFFFFF",
     "backgroundColor": "#111111",

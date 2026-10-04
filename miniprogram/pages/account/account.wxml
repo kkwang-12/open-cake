@@ -1,3 +1,4 @@
+<view class="tab-content {{tabMotion}}">
 <page-header />
 <view class="page">
   <text class="eyebrow">ACCOUNT</text><view class="display-title">Hello.<view>欢迎来到家家乐。</view></view>
@@ -17,4 +18,6 @@
     <view wx:if="{{diagnostic}}" class="status-note">{{diagnostic}}<text class="error-reference">{{requestId}}</text></view>
     <button wx:if="{{legacyEnabled}}" class="list-row" bindtap="legacy"><text>旧预订演示 · 模拟定金与尾款</text><text>→</text></button>
   </view>
+</view>
+
 </view>

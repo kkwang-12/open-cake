@@ -9,6 +9,7 @@ function createSpecificationClient(settings,samples=fixtures){
     if(typeof productId!=='string'||!/^development-example-[a-z0-9-]+$/.test(productId))throw createError('INVALID_REQUEST');
     if(!samples||samples.purpose!=='TEMPORARY_DEVELOPMENT_EXAMPLE'||!Array.isArray(samples.items))throw createError('INVALID_RESPONSE');
     const matches=samples.items.filter(item=>item&&item.productId===productId);
+    if(matches.length===0)throw createError('PRODUCT_UNAVAILABLE');
     if(matches.length!==1)throw createError('INVALID_RESPONSE');
     try{
       const model=createSpecificationModel(matches[0]),configuration=model.configuration();

@@ -1,1 +1,1 @@
-{ "component": true }
+{ "component": true, "usingComponents": { "bag-count": "/components/bag-count/bag-count" } }

@@ -1,2 +1,5 @@
+<view class="tab-content {{tabMotion}}">
 <page-header />
 <view class="page"><text class="eyebrow">ORDERS</text><view class="display-title">你的甜蜜时刻</view><view class="section"><text class="eyebrow">CURRENT / PAST</text><empty-state title="订单服务即将开放" description="购买开放后，你可以在这里跟踪订单进度。" action="浏览商品" bind:action="shop" /></view></view>
+
+</view>

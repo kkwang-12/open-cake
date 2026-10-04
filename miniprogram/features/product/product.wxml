@@ -1,0 +1,76 @@
+<page-meta page-style="{{sheetOpen ? 'overflow: hidden;' : ''}}" />
+<view class="detail-screen {{sheetOpen ? 'sheet-visible' : ''}}" style="{{sheetOpen ? 'top:' + sheetPageTop + 'px;' : ''}}">
+  <view class="detail-nav" style="top:{{topInset}}px;height:{{navHeight}}px;right:{{capsuleWidth}}px;">
+    <button class="icon-button back-button" bindtap="back" aria-label="返回"><image class="nav-icon" src="/assets/icons/cake-ui/back.svg" /></button>
+  </view>
+  <view wx:if="{{loading}}" class="loading-state" style="padding-top:{{heroHeight}}px;">正在加载商品…</view>
+  <view wx:elif="{{error}}" class="error-state" style="padding-top:{{topInset + navHeight + 40}}px;">
+    <empty-state title="{{unavailable ? '商品暂未开放' : '暂时无法加载'}}" description="{{error}}" action="{{unavailable ? '返回选购' : '重试'}}" bind:action="errorAction" />
+  </view>
+  <block wx:elif="{{product}}">
+    <view class="hero" style="height:{{heroHeight}}px;">
+      <swiper wx:if="{{gallery.length}}" class="hero-swiper" current="{{galleryIndex}}" bindchange="galleryChange">
+        <swiper-item wx:for="{{gallery}}" wx:key="key">
+          <image wx:if="{{!item.failed}}" class="hero-image" src="{{item.src}}" mode="aspectFill" data-key="{{item.key}}" data-product-id="{{product.productId}}" binderror="imageError" />
+          <view wx:else class="hero-placeholder"><text>商品图片暂未加载</text></view>
+        </swiper-item>
+      </swiper>
+      <view wx:else class="hero-placeholder"><image class="placeholder-icon" src="/assets/icons/cake-ui/cake-slice.svg" /><text>商品照片正在准备</text></view>
+      <view wx:if="{{gallery.length > 1}}" class="gallery-meta"><view class="gallery-dots"><view wx:for="{{gallery}}" wx:key="key" class="dot {{index === galleryIndex ? 'active' : ''}}" /></view><text>{{galleryIndex + 1}}/{{gallery.length}}</text></view>
+    </view>
+    <view class="product-content">
+      <text class="product-category">{{product.categoryLabel}}</text>
+      <view class="product-heading">
+        <view class="product-name">{{product.name}}</view>
+        <button class="icon-button heart-button" bindtap="favorite" disabled="{{favoriteBusy}}" hover-class="none" aria-label="{{favorited ? '取消本机收藏' : '收藏到本机'}}">
+          <view class="favorite-heart {{favorited ? 'is-favorited' : ''}} {{heartAnimation}}">
+            <image class="favorite-icon favorite-outline" src="/assets/icons/cake-ui/heart-outline.svg" />
+            <image class="favorite-icon favorite-filled" src="/assets/icons/cake-ui/heart-filled.svg" />
+          </view>
+        </button>
+      </view>
+      <view class="product-price">¥ {{product.priceLabel}}</view>
+      <text class="product-description">{{product.description}}</text>
+      <view class="benefits"><view wx:for="{{benefits}}" wx:key="title" class="benefit"><image class="benefit-icon" src="{{item.icon}}" /><view><text class="benefit-title">{{item.title}}</text><text class="benefit-description">{{item.description}}</text></view></view></view>
+    </view>
+    <view class="bottom-area action-safe-footer">
+      <view wx:if="{{success}}" class="success-bar">
+        <view class="success-thumb"><image wx:if="{{success.thumbnail}}" src="{{success.thumbnail}}" mode="aspectFill" binderror="successImageError" /><image wx:else class="thumb-placeholder" src="/assets/icons/cake-ui/cake-slice.svg" /></view>
+        <view class="success-copy"><text class="success-title">已加入购物袋</text><text class="success-detail">{{success.name}} {{success.specLabel}} × {{success.quantity}}</text></view>
+        <button class="view-bag" bindtap="openBag">查看购物袋</button>
+      </view>
+      <button wx:else class="choose-button action-capsule" bindtap="configure">选择规格</button>
+    </view>
+  </block>
+</view>
+<view wx:if="{{sheetOpen}}" class="modal-layer sheet-{{sheetPhase}}">
+  <view class="sheet-mask" style="opacity:{{sheetMaskOpacity}};transition:opacity {{sheetDuration}}ms {{sheetEasing}};" bindtap="closeSheet" catchtouchmove="swallow" />
+  <view class="spec-sheet" style="max-height:{{sheetMaxHeight}}px;transform:translateY({{sheetOffset}});transition:transform {{sheetDuration}}ms {{sheetEasing}};" role="dialog" aria-modal="{{true}}" aria-label="选择规格" catchtap="swallow">
+    <view class="sheet-header" bindtouchstart="sheetDragStart" catchtouchmove="sheetDragMove" bindtouchend="sheetDragEnd" bindtouchcancel="sheetDragCancel">
+      <view class="sheet-grip-area"><view class="sheet-grip" /></view>
+      <view class="sheet-title">选择规格</view>
+    </view>
+    <scroll-view class="sheet-scroll" style="height:{{sheetBodyHeight}}px;" scroll-y="{{true}}" enhanced="{{true}}" bounces="{{false}}" show-scrollbar="{{false}}">
+      <view class="sheet-content">
+        <view wx:for="{{groups}}" wx:key="groupCode" wx:for-item="group" class="option-section">
+          <view class="option-heading">{{group.label}}</view>
+          <view class="options {{group.isSize ? 'size-options' : ''}}">
+            <button wx:for="{{group.options}}" wx:for-item="option" wx:key="optionCode" class="option-card {{group.isSize ? 'size-card' : ''}} {{option.selected ? 'selected' : ''}} {{!option.enabled ? 'option-disabled' : ''}}" disabled="{{!option.enabled || adding}}" data-group="{{group.groupCode}}" data-option="{{option.optionCode}}" bindtap="chooseOption">
+              <text class="option-label">{{option.label}}</text>
+              <text wx:if="{{group.isSize && option.servingsLabel}}" class="servings">{{option.servingsLabel}}</text>
+              <text wx:if="{{group.isSize && option.priceLabel}}" class="option-price">¥ {{option.priceLabel}}</text>
+              <view wx:if="{{option.selected}}" class="selection-mark"><image src="/assets/icons/cake-ui/check.svg" /></view>
+            </button>
+          </view>
+        </view>
+        <view wx:if="{{messageEnabled}}" class="message-section">
+          <view class="option-heading">蛋糕留言 <text class="optional">（可选）</text></view>
+          <view class="message-wrap"><input class="message-input" placeholder="例如：生日快乐！" value="{{cakeMessage}}" maxlength="{{messageMaxLength}}" disabled="{{adding}}" bindinput="messageInput" adjust-position="{{true}}" /><text class="message-count">{{messageCount}}{{messageMaxLength > 0 ? '/' + messageMaxLength : ''}}</text></view>
+        </view>
+        <view class="quantity-row"><text class="option-heading">购买数量</text><view class="quantity-controls"><button class="quantity-button" disabled="{{!canDecrease || adding}}" data-step="-1" bindtap="changeQuantity" aria-label="减少数量"><image src="/assets/icons/cake-ui/minus.svg" /></button><text class="quantity-value">{{quantity}}</text><button class="quantity-button" disabled="{{!canIncrease || adding}}" data-step="1" bindtap="changeQuantity" aria-label="增加数量"><image src="/assets/icons/cake-ui/plus.svg" /></button></view></view>
+        <text wx:if="{{selectionNotice}}" class="selection-notice" role="alert">{{selectionNotice}}</text>
+      </view>
+    </scroll-view>
+    <view class="sheet-footer" catchtouchmove="swallow"><text class="total-price">¥ {{totalLabel}}</text><button class="add-button" disabled="{{!hasSelection || adding}}" loading="{{adding}}" bindtap="addToBag">加入购物袋</button></view>
+  </view>
+</view>

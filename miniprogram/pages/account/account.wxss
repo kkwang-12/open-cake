@@ -1,1 +1,2 @@
 /* Account 使用公共行式布局；管理员入口在 A01 鉴权后提供。 */
+.page { padding-bottom: calc(124px + env(safe-area-inset-bottom)); }

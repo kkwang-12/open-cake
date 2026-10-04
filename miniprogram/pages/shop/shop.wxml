@@ -1,22 +1,31 @@
-<page-header bag="{{true}}" />
+<view class="tab-content {{tabMotion}}">
+<view class="shop-header" style="padding-top: {{topInset}}px;">
+  <view class="shop-header-inner" style="min-height: {{navHeight}}px; padding-right: {{capsuleWidth}}px;">
+    <text class="shop-brand">家家乐蛋糕</text>
+    <button class="shop-bag" bindtap="openBag" aria-label="购物袋" hover-class="pressed"><image src="/assets/home/bag.png" /><bag-count /></button>
+  </view>
+</view>
 <view class="page">
-  <text class="eyebrow">SHOP</text>
-  <view class="display-title">What are you<view>looking for?</view></view>
-  <text class="subtitle">找到一份喜欢的甜。</text>
-  <scroll-view scroll-x="{{true}}" class="category-scroll" show-scrollbar="{{false}}">
-    <view class="categories"><button wx:for="{{categories}}" wx:key="id" class="category {{category === item.id ? 'selected' : ''}}" bindtap="chooseCategory" data-id="{{item.id}}" hover-class="pressed"><text>{{item.name}}</text><text class="category-en">{{item.en}}</text></button></view>
-  </scroll-view>
-  <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
-  <empty-state wx:if="{{loading && !products.length}}" loading="{{true}}" description="正在准备商品列表。" />
-  <empty-state wx:elif="{{!products.length && !error}}" title="商品即将上架" description="本分类暂未开放选购，欢迎稍后再来。" />
+  <text class="shop-title">选购</text>
+  <view class="category-segments" role="tablist" aria-label="商品分类">
+    <view class="category-track">
+      <view class="category-slider" style="transform: translateX({{categoryIndex * 100}}%);" />
+      <button wx:for="{{categories}}" wx:key="id" class="category-segment {{category === item.id ? 'category-active' : ''}}" bindtap="chooseCategory" data-id="{{item.id}}" hover-class="none" role="tab" aria-selected="{{category === item.id}}" aria-label="{{item.name}}">{{item.name}}</button>
+    </view>
+  </view>
+  <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" typography="home" bind:select="select" /></view>
+  <empty-state wx:if="{{loading && !refreshing && !products.length}}" loading="{{true}}" description="正在准备商品列表。" />
+  <empty-state wx:elif="{{!loading && !products.length && !error}}" title="商品即将上架" description="本分类暂未开放选购，欢迎稍后再来。" />
   <view wx:if="{{error}}" class="list-feedback">
     <text>{{error}}</text>
     <button class="secondary-action" bindtap="retry" hover-class="pressed">重新加载</button>
   </view>
-  <view wx:if="{{products.length && !error}}" class="list-feedback">
+  <view wx:if="{{products.length && !error && !refreshing}}" class="list-feedback">
     <text wx:if="{{loading}}">正在加载更多商品…</text>
     <button wx:elif="{{hasMore}}" class="secondary-action" bindtap="loadMore" hover-class="pressed">加载更多</button>
     <text wx:else>已展示全部商品</text>
   </view>
   <text wx:if="{{source === 'DEVELOPMENT_EXAMPLE'}}" class="footnote">临时开发示例与价格 · 商品图片待补充 · 暂未开放购买</text>
+</view>
+
 </view>

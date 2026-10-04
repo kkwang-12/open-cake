@@ -1,0 +1,6 @@
+<view class="tab-bar" role="tablist" aria-label="主导航">
+  <button wx:for="{{items}}" wx:key="path" class="tab-item {{active === index ? 'selected' : ''}}" data-index="{{index}}" bindtap="switchTab" hover-class="none" role="tab" aria-label="{{item.text}}" aria-selected="{{selected === index}}">
+    <image class="tab-icon" src="{{item.outline}}" mode="aspectFit" />
+    <text class="tab-label">{{item.text}}</text>
+  </button>
+</view>

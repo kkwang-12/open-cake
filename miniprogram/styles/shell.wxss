@@ -1,4 +1,8 @@
 view, text, input, textarea, button { box-sizing: border-box; }
+.tab-content { opacity: 1; transform: translateY(0); }
+.tab-content.tab-prepared { opacity: 0; transform: translateY(8px); }
+.tab-content.tab-leaving { opacity: 0; transition: opacity 90ms ease-out, transform 90ms ease-out; }
+.tab-content.tab-entering { opacity: 1; transform: translateY(0); transition: opacity 220ms ease-out, transform 220ms ease-out; }
 button { margin: 0; padding: 0; color: inherit; font: inherit; line-height: inherit; background: transparent; }
 button::after { border: 0; }
 .page { padding: 32rpx 32rpx calc(48rpx + env(safe-area-inset-bottom)); }

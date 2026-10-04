@@ -1,0 +1,2 @@
+:host { position: absolute; top: 0; right: 0; pointer-events: none; }
+.bag-badge { display: block; min-width: 28rpx; padding: 2rpx 5rpx; border-radius: 24rpx; background: #111; color: #fff; font-size: 18rpx; line-height: 26rpx; text-align: center; }

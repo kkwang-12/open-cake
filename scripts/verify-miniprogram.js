@@ -15,10 +15,11 @@ if (config.mode !== 'shell' || config.stage !== 'development' || config.enableLe
   throw new Error('Run this preview verification only in development/shell with legacy disabled.');
 }
 const selected = process.argv.find(arg => arg.startsWith('--pages='));
-const names = selected ? selected.slice(8).split(',') : app.pages.map(page => page.split('/')[1]);
+const registeredPages=[...app.pages,...(app.subPackages||[]).filter(pack=>pack.root!=='legacy').flatMap(pack=>pack.pages.map(page=>pack.root+'/'+page))];
+const names = selected ? selected.slice(8).split(',') : registeredPages.map(page => page.split('/')[1]);
 const pages = names.map(name => {
-  const page = app.pages.find(value => value.split('/')[1] === name);
-  if (!page) throw new Error('Unknown main page: ' + name);
+  const page = registeredPages.find(value => value.split('/')[1] === name);
+  if (!page) throw new Error('Unknown business page: ' + name);
   return page;
 });
 fs.mkdirSync(output, { recursive: true });

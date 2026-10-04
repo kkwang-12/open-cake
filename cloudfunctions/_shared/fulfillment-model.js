@@ -145,4 +145,4 @@ function evaluateDeliveryRange(storeLocation,addressLocation,now){
     coordinateSystem:'WGS84',distanceAlgorithmVersion:DISTANCE_ALGORITHM_VERSION,windowNature:'ESTIMATED',operator:'STORE_SELF'});
 }
 module.exports={V1_FULFILLMENT_POLICY,DISTANCE_ALGORITHM_VERSION,FulfillmentModelError,localServiceDate,
-  maximumLeadTimeMinutes,buildSlotDefinitions,resolveAppointment,paymentDeadlineAt,evaluateDeliveryRange};
+  maximumLeadTimeMinutes,validateTimePolicy,buildSlotDefinitions,resolveAppointment,paymentDeadlineAt,validateLocation,evaluateDeliveryRange};

@@ -2,6 +2,12 @@
 
 日期：2026-10-03。当前范围：已有最小云接口、D01–D07 内部工具，以及 D07 目标网络契约。完整目标 action / DTO / 权限 / 幂等 / 错误 / 分页 / 时序见 [API_NETWORK.md](API_NETWORK.md)；只有 user.me/store.health 有最小函数逻辑，目标业务接口尚未开放。
 
+2026-10-04 B06 补充：本机 Checkout 输入仅用于 LOCAL_DRAFT_PREVIEW；内部 `resolveCheckoutSelection` 从可信 Cart 与目录重算选中行金额，不是正式 Quote 或部署 action。所选行版本及订单创建后精准移除 / 去重 / 补偿协议见 [B06-CHECKOUT-SELECTION.md](B06-CHECKOUT-SELECTION.md)。正式购买门禁保持关闭。
+
+X01 补充：本机地址按 AppID 保存 LOCAL_DEVICE 草稿；内部 address-model / address-service 验证可信本人、地址与用户版本、默认指针、原子软删除 / 回执及不可变地址快照。没有云 handler；address.list 签名分页与完整 Profile 读模型仍待接入。当前手工地址 location / 编码为 null，不能作为配送通过证明。详见 [X01-ADDRESSES.md](X01-ADDRESSES.md)。
+
+X02 补充：store-information 仅在 development / shell 展示 USER_CONFIRMED_REFERENCE、CONFIGURATION_PENDING 门店资料；LOCAL_DEVICE 履约 / 联系人草稿不是 Store / Quote DTO。内部 store-fulfillment 接受可信门店 / 已发布配置、当前版本、D06 principal 和配置后的 validatePhone，拒绝停业 / 禁用 / 客户端额外费用字段；自取无需地址且费用 0，配送仍待本人地址 / 位置 / 范围 / 时段核验。始终 checkoutAllowed=false，没有 store.get handler、SDK 或 allowlist 扩展。详见 [X02-STORE-FULFILLMENT.md](X02-STORE-FULFILLMENT.md)。
+
 ## 已实现的最小云接口
 
 | 云函数 / action | 输入 | 输出与限制 |
@@ -94,6 +100,8 @@ CartModelError：INVALID_CART / FORBIDDEN / VERSION_CONFLICT / LINE_NOT_FOUND / 
 当前本地 guard 的 actor / context 不是网络鉴权方案；后续 B01 / D06 handler 必须从可信身份及实时记录构造。未知客户端金额 / ownerId / role 等不进入 nextCart；删除下架行无需读取目录。新模块还未随独立函数部署，真正接入须打包全部依赖，不能从部署包外 require。
 
 ## D04 离线事务准备工具
+
+B01 / B02 已增加离线 `createCartService(...).execute(event, principal)`，复用 D07 cart 请求白名单、D06 principal 和 D03 规则。不是网络 handler，ACTION_CONTRACTS 的 cart 状态仍为 PLANNED。原子 session 接口、返回字段和回执协议见 [B01-B02-CART-SERVICE.md](B01-B02-CART-SERVICE.md)；正式 SDK 适配及部署仍未完成。
 
 详见 [TRANSACTIONS.md](TRANSACTIONS.md)。所有操作同步计算 / 抛错，没有 SDK、锁、事务或网络调用；不能直接对外开放 context/actorScope 等可信参数。
 

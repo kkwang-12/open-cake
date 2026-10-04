@@ -1,0 +1,39 @@
+<page-header back="{{true}}" />
+<view class="page checkout-page">
+  <view class="display-title">核对商品</view>
+  <view wx:if="{{loading}}" class="status-note">正在核验所选商品…</view>
+  <view wx:elif="{{error}}" class="error-note">{{error}}<view class="action-row"><button class="secondary-action" bindtap="load">重试</button><button class="primary-action" bindtap="goBag">返回购物袋</button></view></view>
+  <block wx:elif="{{lines.length}}">
+    <view class="checkout-caption">已选 {{quantity}} 件</view>
+    <view class="checkout-store"><text class="store-name">{{store.name}}</text><text class="store-address">{{store.address}}</text><text class="store-hours">{{store.openingHours}}</text><text class="store-phone">{{store.phone ? ('门店电话：' + store.phone) : '门店电话正在准备中'}}</text></view>
+    <view class="fulfillment-options">
+      <button wx:for="{{store.fulfillmentModes}}" wx:key="*this" class="fulfillment-option {{fulfillment === item ? 'is-active' : ''}}" data-mode="{{item}}" disabled="{{loading || preferenceBusy || store.status === 'CLOSED'}}" bindtap="switchFulfillment">{{item === 'PICKUP' ? '到店自取' : '商家配送'}}</button>
+    </view>
+    <view wx:if="{{!fulfillmentAllowed || configurationChanged}}" class="address-warning">履约资料已变化或此方式不可用，请重新选择。<button class="secondary-action" bindtap="load">重新核验</button></view>
+    <view wx:if="{{preferenceError}}" class="address-warning">{{preferenceError}}<button class="secondary-action" bindtap="load">重新核验</button></view>
+    <view wx:if="{{fulfillment === 'PICKUP' && fulfillmentAllowed && !configurationChanged}}" class="pickup-form">
+      <view class="address-heading">取货联系人</view>
+      <label class="pickup-label">姓名<input class="pickup-input" data-field="name" value="{{pickupContact.name}}" placeholder="取货联系人姓名" maxlength="2048" disabled="{{preferenceBusy}}" bindinput="contactInput" /></label>
+      <label class="pickup-label">手机号<input class="pickup-input" data-field="phone" value="{{pickupContact.phone}}" placeholder="11 位中国大陆手机号" type="number" maxlength="11" disabled="{{preferenceBusy}}" bindinput="contactInput" /></label>
+      <view class="contact-save-row"><text>{{contactSaved ? '联系人已保存在本机' : '保存联系人后可恢复输入'}}</text><button class="save-pickup-contact" disabled="{{preferenceBusy}}" bindtap="saveContact">保存联系人</button></view>
+      <text class="address-hint">到店自取不需要配送地址。预约为 30 分钟时间段，具体可约时段尚待核验。</text>
+    </view>
+    <view wx:elif="{{fulfillment === 'DELIVERY' && fulfillmentAllowed && !configurationChanged}}" class="checkout-address">
+      <view class="address-heading"><text>配送地址</text><button class="choose-delivery-address" bindtap="chooseAddress">{{address ? '更换' : '选择地址'}}</button></view>
+      <block wx:if="{{address}}"><text class="delivery-person">{{address.receiverName}} · {{address.phone}}</text><text class="delivery-detail">{{address.province}} {{address.city}} {{address.district}} {{address.detail}}</text></block>
+      <text wx:if="{{addressNotice}}" class="address-warning">{{addressNotice}}</text>
+      <view wx:if="{{deliveryStatus}}" class="delivery-range-status"><text class="delivery-range-label">{{deliveryStatus.label}}</text><text class="address-hint">{{deliveryStatus.notice}}</text></view>
+      <text class="address-hint">门店自行配送，门店中心半径 20 km（含边界）。配送时间为预计时间段，不承诺具体分钟送达；地址范围及可约时段由云端最终核验。</text>
+    </view>
+    <view wx:for="{{lines}}" wx:key="lineId" class="checkout-line">
+      <view class="checkout-line-heading"><text class="checkout-name">{{item.name}}</text><text class="checkout-total">¥ {{item.totalLabel}}</text></view>
+      <view class="checkout-detail">{{item.specLabel}} · ¥ {{item.priceLabel}} × {{item.quantity}}</view>
+      <text wx:if="{{item.cakeMessage}}" class="checkout-message">留言：{{item.cakeMessage}}</text>
+    </view>
+    <view class="checkout-subtotal"><text>商品小计</text><text>¥ {{subtotalLabel}}</text></view>
+    <view class="fulfillment-fee"><text>配送费</text><text>¥ 0</text></view>
+    <view class="checkout-notice">所选商品保存在本机，库存及履约信息尚待核验。此金额为商品小计，正式报价和下单暂未开放。</view>
+    <button class="secondary-action return-bag" bindtap="goBag">返回购物袋调整</button>
+  </block>
+</view>
+<view wx:if="{{lines.length}}" class="checkout-footer"><button class="primary-action" disabled="{{true}}">待核验后下单</button></view>

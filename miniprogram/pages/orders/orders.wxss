@@ -1,1 +1,2 @@
 /* 订单 UI Shell 使用公共样式，订单域在 O06 接入。 */
+.page { padding-bottom: calc(124px + env(safe-area-inset-bottom)); }

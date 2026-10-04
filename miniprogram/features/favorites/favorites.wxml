@@ -1,0 +1,12 @@
+<page-header back="{{true}}" />
+<view class="page"><text class="eyebrow">FAVORITES</text><view class="display-title">本机收藏</view>
+  <text class="subtitle">保存在当前设备，账号同步尚未接通。</text>
+  <empty-state wx:if="{{loading}}" loading="{{true}}" description="正在加载收藏。" />
+  <view wx:elif="{{items.length}}" class="product-grid"><view wx:for="{{items}}" wx:key="productId">
+    <product-card wx:if="{{item.available}}" product="{{item.card}}" bind:select="select" />
+    <view wx:else class="unavailable-card"><text class="name">{{item.name}}</text><text class="subtitle">商品已下架或暂不可用，不可购买</text></view>
+    <button class="remove-favorite" data-id="{{item.productId}}" bindtap="remove" disabled="{{!!removing}}">{{removing === item.productId ? '正在取消…' : '取消收藏'}}</button>
+  </view></view>
+  <empty-state wx:elif="{{!error}}" title="还没有收藏" description="在商品详情页点亮爱心，保存喜欢的商品。" action="浏览商品" bind:action="goShop" />
+  <view wx:if="{{error}}" class="section"><text class="error-note">{{error}}</text><button class="secondary-action" bindtap="retry">重新加载</button></view>
+</view>

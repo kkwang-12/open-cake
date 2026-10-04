@@ -34,6 +34,10 @@
     "ignore": [
       {
         "type": "file",
+        "value": "assets/home/strawberry-hero-r01a.png"
+      },
+      {
+        "type": "file",
         "value": "config.local.js"
       },
       {

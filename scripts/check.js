@@ -5,6 +5,12 @@ const { spawnSync } = require('node:child_process');
 const { validateExpressions } = require('./wxml-expressions');
 const root = path.resolve(__dirname, '..');
 const miniRoot = path.join(root, 'miniprogram');
+const app = JSON.parse(fs.readFileSync(path.join(miniRoot, 'app.json'), 'utf8'));
+const subpackageRoots = (app.subPackages || []).map(pack => pack.root.replace(/\\/g, '/').replace(/\/$/, '') + '/');
+function packageOf(file) {
+  const name=path.relative(miniRoot,file).replace(/\\/g,'/');
+  return subpackageRoots.find(prefix=>name.startsWith(prefix))||'main';
+}
 let count = 0;
 function fail(message) { throw new Error(message); }
 function relative(file) { return path.relative(root, file); }
@@ -17,6 +23,8 @@ function checkRequire(file) {
     const moduleFile = [target, target + '.js', target + '.json', path.join(target, 'index.js')]
       .find(candidate => fs.existsSync(candidate) && fs.statSync(candidate).isFile());
     if (!moduleFile) fail('缺少模块：' + relative(file) + ' → ' + item[1]);
+    if(file.startsWith(miniRoot+path.sep)&&packageOf(moduleFile)!=='main'&&packageOf(file)!==packageOf(moduleFile))
+      fail('普通分包不能跨包 require：'+relative(file)+' → '+item[1]);
     if (file.startsWith(miniRoot + path.sep) && path.extname(moduleFile) !== '.js') {
       fail('小程序 require 必须加载 JS 模块：' + relative(file) + ' → ' + item[1]);
     }
@@ -68,7 +76,6 @@ function visit(directory) {
   }
 }
 visit(root);
-const app = JSON.parse(fs.readFileSync(path.join(miniRoot, 'app.json'), 'utf8'));
 const pages = [...app.pages, ...(app.subPackages || []).flatMap(pack => pack.pages.map(page => pack.root + '/' + page))];
 if (new Set(pages).size !== pages.length) fail('页面注册重复');
 for (const page of pages) for (const suffix of ['.js', '.json', '.wxml', '.wxss']) {
@@ -80,7 +87,7 @@ for (const component of Object.values(app.usingComponents || {})) for (const suf
   if (!fs.existsSync(path.join(miniRoot, component + suffix))) fail('缺少组件文件：' + component + suffix);
 }
 const { pages: routes } = require('../miniprogram/constants/routes');
-for (const value of Object.values(routes)) if (!app.pages.includes(value.slice(1))) fail('路由未注册：' + value);
+for (const value of Object.values(routes)) if (!pages.includes(value.slice(1))) fail('路由未注册：' + value);
 const canonical = fs.readFileSync(path.join(root, 'cloudfunctions', '_shared', 'runtime.js'), 'utf8');
 for (const name of ['user', 'store']) {
   if (fs.readFileSync(path.join(root, 'cloudfunctions', name, 'shared', 'runtime.js'), 'utf8') !== canonical) fail('云函数共用代码未同步，请执行 prepare-cloud');
@@ -88,7 +95,6 @@ for (const name of ['user', 'store']) {
   if (!/^\d+\.\d+\.\d+$/.test(manifest.dependencies['wx-server-sdk'])) fail('SDK 必须锁定稳定版本');
 }
 const project = JSON.parse(fs.readFileSync(path.join(root, 'project.config.json'), 'utf8'));
-const subpackageRoots = (app.subPackages || []).map(pack => pack.root.replace(/\\/g, '/').replace(/\/$/, '') + '/');
 const packageIgnores = (project.packOptions && project.packOptions.ignore) || [];
 function excludedFromPackage(name) {
   return packageIgnores.some(rule => (rule.type === 'file' && rule.value === name) ||
@@ -124,5 +130,14 @@ function mainPackageBytes(directory) {
 const packageBytes = mainPackageBytes(miniRoot);
 const mainPackageLimit = 2 * 1024 * 1024;
 if (packageBytes > mainPackageLimit) fail('主包源文件超过 2048 KiB：' + Math.ceil(packageBytes / 1024) + ' KiB；请压缩素材或调整打包排除，实际编译包仍需工具确认。');
-console.log('静态检查完成：' + count + ' 个 JS/JSON/WXML 文件；' + app.pages.length + ' 主页面 + ' + (pages.length - app.pages.length) + ' 演示子包页面；路由、组件、依赖、模板事件、样式导入与共用代码一致。');
+console.log('静态检查完成：' + count + ' 个 JS/JSON/WXML 文件；' + app.pages.length + ' 主包页面 + ' + (pages.length - app.pages.length) + ' 分包页面；路由、组件、依赖、模板事件、样式导入与共用代码一致。');
 console.log('主包源文件估算：' + Math.ceil(packageBytes / 1024) + ' / 2048 KiB；已按子包与文件 / 目录排除规则计算，实际以微信编译打包为准。');
+for(const pack of app.subPackages||[]){
+  function size(directory){return fs.readdirSync(directory,{withFileTypes:true}).reduce((sum,entry)=>{
+    const file=path.join(directory,entry.name),name=path.relative(miniRoot,file).replace(/\\/g,'/');
+    return sum+(excludedFromPackage(name)?0:entry.isDirectory()?size(file):fs.statSync(file).size);
+  },0);}
+  const packageSize=size(path.join(miniRoot,pack.root));
+  if(packageSize>mainPackageLimit)fail('分包源文件超过2048KiB：'+pack.root);
+  console.log('分包 '+pack.root+' 源文件估算：'+Math.ceil(packageSize/1024)+' / 2048 KiB');
+}

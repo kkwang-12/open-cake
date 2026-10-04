@@ -1,41 +1,36 @@
-<view class="home-header" style="padding-top: {{topInset}}px;">
-  <view class="home-header-inner" style="min-height: {{navHeight}}px; padding-right: {{capsuleWidth}}px;">
-    <view class="home-brand">
-      <text class="home-brand-name">家家乐</text>
-      <text class="home-brand-descriptor">CAKE / BAKERY</text>
-    </view>
-    <button class="home-bag" bindtap="openBag" aria-label="购物袋" hover-class="pressed"><image src="/assets/home/bag.png" /></button>
-  </view>
-</view>
+<view class="tab-content {{tabMotion}}">
 <view class="page home">
   <view class="home-first-screen">
     <view class="home-hero">
-      <view class="home-hero-copy">
-        <text class="home-hero-eyebrow">FRESHLY MADE</text>
-        <view class="home-hero-title">Cakes for<view>every moment.</view></view>
-        <view class="home-hero-subtitle"><text>一份好蛋糕，让日常</text><text class="home-subtitle-line">值得庆祝。</text></view>
-        <button class="home-explore" bindtap="browse" hover-class="pressed">探索更多 <text class="home-cta-arrow">→</text></button>
-      </view>
-      <view class="home-hero-photography">
-        <image wx:if="{{!imageFailed}}" class="home-hero-image" src="/assets/home/strawberry-hero-r01a.png" mode="aspectFit" binderror="imageError" aria-label="草莓奶油蛋糕" />
-        <view wx:else class="home-hero-image-fallback">图片暂未加载</view>
-      </view>
+      <swiper class="home-hero-swiper" current="{{heroCurrent}}" autoplay="{{false}}" circular="{{false}}" indicator-dots="{{false}}" vertical="{{false}}" duration="{{300}}" easing-function="easeOutCubic" bindchange="heroChange" bindtouchstart="heroTouchStart" bindtouchmove="heroTouchMove" bindtouchend="heroTouchEnd" bindtouchcancel="heroTouchCancel" aria-label="蛋糕推荐轮播">
+        <swiper-item wx:for="{{heroSlides}}" wx:key="id">
+          <view class="home-hero-slide">
+            <view class="home-hero-photography">
+              <view wx:if="{{!item.imageReady || item.imageFailed}}" class="home-hero-image-fallback"><image src="/assets/icons/cake-ui/cake-slice.svg" /><text>{{item.imageFailed ? '商品照片正在准备' : '照片加载中'}}</text></view>
+              <image wx:if="{{!item.imageFailed && (item.imageReady || index >= heroCurrent - 1 && index <= heroCurrent + 1)}}" class="home-hero-image {{item.imageReady ? '' : 'home-hero-image-loading'}}" src="{{item.image}}" mode="aspectFill" lazy-load="{{false}}" data-index="{{index}}" bindload="heroImageLoad" binderror="heroImageError" aria-label="{{item.imageLabel}}" />
+            </view>
+            <view class="home-hero-copy">
+              <view class="home-hero-title"><text wx:for="{{item.titleLines}}" wx:for-item="line" wx:for-index="lineIndex" wx:key="*this">{{line}}</text></view>
+              <text class="home-hero-subtitle">{{item.subtitle}}</text>
+              <button class="home-explore" data-index="{{index}}" bindtap="heroAction" hover-class="pressed">{{item.buttonText}}<text class="home-cta-arrow">→</text></button>
+            </view>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="home-hero-gradient" />
+      <view wx:if="{{heroSlides.length > 1}}" class="home-hero-indicators" aria-label="第 {{heroCurrent + 1}} 张，共 {{heroSlides.length}} 张"><view wx:for="{{heroSlides}}" wx:key="id" class="home-hero-dot {{index === heroCurrent ? 'home-hero-dot-active' : ''}}" /></view>
     </view>
-    <view class="home-category-card">
-      <button wx:for="{{categories}}" wx:key="id" class="home-category" data-id="{{item.id}}" bindtap="chooseCategory" hover-class="pressed">
-        <view class="home-category-thumbnail">
-          <image wx:if="{{!item.imageFailed}}" src="{{item.image}}" mode="aspectFill" data-id="{{item.id}}" binderror="categoryImageError" />
-          <text wx:else class="home-category-image-fallback">图片暂未加载</text>
-        </view>
-        <text class="home-category-name">{{item.name}}</text>
-        <text class="home-category-en">{{item.en}}</text>
-      </button>
-    </view>
-  </view>
-  <view class="section">
-    <view class="section-heading"><view><text class="eyebrow">TODAY'S FAVORITE</text><text class="section-title">今日推荐</text></view></view>
-    <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
+  <view class="section home-recommendations">
+    <view class="section-heading"><text class="section-title">今日推荐</text><button class="home-view-all" bindtap="browse" hover-class="pressed">查看全部<text>→</text></button></view>
+    <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:if="{{index < 2}}" wx:key="id" product="{{item}}" typography="home" bind:select="select" /></view>
+    <empty-state wx:elif="{{loading}}" loading="{{true}}" description="正在准备商品。" />
+    <empty-state wx:elif="{{error}}" title="暂时无法加载" description="{{error}}" action="重新加载" bind:action="retry" />
     <empty-state wx:else title="新鲜好物即将上架" description="期待与你分享每一份新鲜。" action="浏览选购" bind:action="browse" />
   </view>
-  <text wx:if="{{products.length}}" class="footnote">示例商品与价格 · 图片为设计预览素材 · 暂未开放购买</text>
+  </view>
+  <view wx:if="{{products.length > 2}}" class="home-more-recommendations product-grid"><product-card wx:for="{{products}}" wx:if="{{index >= 2}}" wx:key="id" product="{{item}}" typography="home" bind:select="select" /></view>
+  <text wx:if="{{products.length && !recommendationConfigured}}" class="footnote">当前展示分类商品，门店推荐待配置。</text>
+  <text wx:if="{{source === 'DEVELOPMENT_EXAMPLE'}}" class="footnote">临时开发商品与价格 · 商品照片待补充 · 暂未开放购买</text>
+</view>
+
 </view>

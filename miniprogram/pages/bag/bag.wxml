@@ -1,9 +1,0 @@
-<page-header back="{{true}}" />
-<view class="page bag-page"><view class="display-title">购物袋</view>
-  <view wx:if="{{error}}" class="error-note">{{error}}<button class="secondary-action" bindtap="load">重试</button></view>
-  <block wx:elif="{{lines.length}}">
-    <view wx:for="{{lines}}" wx:key="lineId" class="bag-line"><view bindtap="openProduct" data-id="{{item.productId}}"><view class="title">{{item.name}}</view><text class="subtitle">{{item.specLabel}} × {{item.quantity}}</text><text wx:if="{{item.cakeMessage}}" class="bag-message">{{item.cakeMessage}}</text></view><view class="bag-line-bottom"><text>¥ {{item.totalLabel}}</text><button class="remove-line" data-id="{{item.lineId}}" bindtap="remove">移除</button></view></view>
-    <view class="status-note">已保存在本机。商品、库存及履约信息核验后才能结算。</view>
-  </block>
-  <empty-state wx:else title="购物袋为空" description="选一份心意，放进购物袋。" action="浏览商品" bind:action="goShop" />
-</view>

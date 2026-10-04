@@ -1,2 +1,0 @@
-<page-header back="{{true}}" />
-<view class="page"><text class="eyebrow">{{label}}</text><empty-state title="{{heading}}" description="{{description}}" action="浏览商品" bind:action="goShop" /></view>
