@@ -1,13 +1,15 @@
-<page-header title="" />
-<view class="page bag-page" style="padding-bottom: {{lines.length ? summaryHeight + 16 : 24}}px;"><view class="display-title">购物袋</view>
+<view class="bag-header" style="padding-top: {{topInset}}px;">
+  <view class="bag-header-inner" style="min-height: {{navHeight}}px; padding-right: {{capsuleWidth}}px;"><text class="bag-title">购物袋</text></view>
+</view>
+<view class="page bag-page" style="padding-bottom: {{lines.length ? summaryHeight + 16 : 24}}px;">
   <view class="bag-count">共 {{quantity}} 件商品</view>
   <view wx:if="{{error}}" class="error-note">{{error}}<button class="secondary-action" bindtap="load">重试</button></view>
   <view wx:if="{{loading}}" class="status-note">正在核验商品信息…</view>
   <block wx:if="{{lines.length}}">
     <view wx:for="{{lines}}" wx:key="lineId" class="bag-line">
       <view class="line-thumbnail" bindtap="openProduct" data-id="{{item.productId}}" aria-label="查看{{item.name}}">
-        <image wx:if="{{(item.image || thumbnails[item.productId]) && imageFailures[item.productId] !== (item.image || thumbnails[item.productId])}}" class="line-image" src="{{item.image || thumbnails[item.productId]}}" mode="aspectFill" data-id="{{item.productId}}" data-src="{{item.image || thumbnails[item.productId]}}" binderror="thumbnailError" />
-        <view wx:else class="line-image-placeholder"><image src="/assets/icons/cake-ui/cake-slice.svg" /><text>暂无图片</text></view>
+        <image wx:if="{{(item.image || thumbnails[item.productId]) && imageFailures[item.productId] !== (item.image || thumbnails[item.productId])}}" class="line-image" src="{{item.image || thumbnails[item.productId]}}" mode="aspectFit" data-id="{{item.productId}}" data-src="{{item.image || thumbnails[item.productId]}}" binderror="thumbnailError" />
+        <view wx:else class="line-image-placeholder"><image src="/assets/icons/product/cake-slice.svg" /><text>暂无图片</text></view>
       </view>
       <view class="line-content"><view bindtap="openProduct" data-id="{{item.productId}}">
         <view class="line-heading"><view class="line-name">{{item.name}}</view><view class="line-unit-price" aria-label="单价 {{item.priceLabel}} 元">¥ {{item.priceLabel}}</view></view>
@@ -17,9 +19,9 @@
         <button wx:if="{{item.reviewStatus === 'REVIEW_FAILED'}}" class="review-retry" disabled="{{busy || loading}}" bindtap="load">重新核验</button>
         <text wx:if="{{!item.canSelect}}" class="line-excluded">此商品暂不计入结算金额</text>
         <view class="bag-line-bottom"><view class="quantity-control">
-          <button class="quantity-minus" data-id="{{item.lineId}}" data-index="{{index}}" data-delta="-1" bindtap="changeQuantity" disabled="{{busy || loading || !item.canAdjust || item.quantity === 1}}" aria-label="减少数量"><image src="/assets/icons/cake-ui/bag-minus.svg" /></button><text>{{item.quantity}}</text>
-          <button class="quantity-plus" data-id="{{item.lineId}}" data-index="{{index}}" data-delta="1" bindtap="changeQuantity" disabled="{{busy || loading || !item.canAdjust}}" aria-label="增加数量"><image src="/assets/icons/cake-ui/bag-plus.svg" /></button>
-        </view><button class="remove-line" disabled="{{busy || loading}}" data-id="{{item.lineId}}" data-index="{{index}}" bindtap="remove" aria-label="移除{{item.name}}，{{item.specLabel}}"><image src="/assets/icons/cake-ui/trash.svg" mode="aspectFit" /></button></view>
+          <button class="quantity-minus" data-id="{{item.lineId}}" data-index="{{index}}" data-delta="-1" bindtap="changeQuantity" disabled="{{busy || loading || !item.canAdjust || item.quantity === 1}}" aria-label="减少数量"><image src="/assets/icons/commerce/bag-minus.svg" /></button><text>{{item.quantity}}</text>
+          <button class="quantity-plus" data-id="{{item.lineId}}" data-index="{{index}}" data-delta="1" bindtap="changeQuantity" disabled="{{busy || loading || !item.canAdjust}}" aria-label="增加数量"><image src="/assets/icons/commerce/bag-plus.svg" /></button>
+        </view><button class="remove-line" disabled="{{busy || loading}}" data-id="{{item.lineId}}" data-index="{{index}}" bindtap="remove" aria-label="移除{{item.name}}，{{item.specLabel}}"><image src="/assets/icons/commerce/trash.svg" mode="aspectFit" /></button></view>
       </view>
     </view>
     <view class="bag-storage-note">已保存在本机。商品、库存及履约信息核验后才能结算。</view>

@@ -7,7 +7,7 @@ const heroSlides = [
   { id: 'lemon', image: '/assets/home/hero-scene-lemon.jpg', imageLabel: '桌面上的柠檬蛋糕', titleLines: ['让相聚，', '多一点清新甜。'], subtitle: '一份清甜，留住轻盈的好心情。', buttonText: '去选购', target: { route: 'shop', category: 'cake' }, imageReady: false, imageFailed: false }
 ];
 Page({
-  data: { tabMotion: 'tab-prepared', products: [], loading:false,error:'',source:'',recommendationConfigured:false, heroSlides, heroCurrent: 0 },
+  data: { tabMotion: '', products: [], loading:false,error:'',source:'',recommendationConfigured:false, heroSlides, heroCurrent: 0 },
   onShow() {
     tabTransition.show(this, 0);
     this._visible=true;

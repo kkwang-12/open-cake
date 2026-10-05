@@ -5,7 +5,7 @@ const store = require('../../services/store');
 const storeInformation = require('../../services/store-information');
 const tabTransition = require('../../utils/tab-transition');
 Page({
-  data: { tabMotion: 'tab-prepared', showDevelopment: config.stage === 'development', legacyEnabled: false, busy: false, error: '', requestId: '', diagnostic: '' },
+  data: { tabMotion: '', showDevelopment: config.stage === 'development', legacyEnabled: false, busy: false, error: '', requestId: '', diagnostic: '' },
   onShow() {
     tabTransition.show(this, 3);
     this.setData({ legacyEnabled: config.stage === 'development' && config.mode === 'shell' && config.enableLegacyDemo === true });

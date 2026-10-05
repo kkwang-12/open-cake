@@ -55,6 +55,11 @@ function productPage(service=createProductDetailClient(settings),bag={add:async(
   vm.runInNewContext(fs.readFileSync(path.join(__dirname,'../miniprogram/features/product/product.js'),'utf8'),{
     Page:value=>{page=value;},wx:platform,
     require:name=>{
+      if(name==='./success-motion')return {
+        press:()=>Promise.resolve(true),
+        dispose:page=>{page._successTransition=false;page.setData({addPress:false,successParticles:[]});},
+        show:(page,success)=>{page._successTransition=false;page.setData({success,adding:false});}
+      };
       if(name.includes('/utils/bottom-sheet'))return sheetRuntime.sheet;
       if(name.includes('/services/product-detail'))return service;
       if(name.includes('/services/local-bag'))return bag;
@@ -134,7 +139,10 @@ test('Detail success follows verified Bag response; storage rejection never clos
   page.onLoad({id:fixtures.items[1].productId});await page.onShow();page.configure();
   page.chooseOption({currentTarget:{dataset:{group:'SIZE',option:'INCH_8'}}});await page.addToBag();
   assert.equal(input.unitPriceCents,25800);assert.equal(input.skuVersion,0);
-  assert.equal(page.data.sheetOpen,true);assert.equal(page.data.sheetPhase,'closing');advance(200);
+  assert.equal(page.data.sheetOpen,true);assert.equal(page.data.sheetPhase,'closing');
+  assert.equal(page.data.success,null);assert.equal(page.data.adding,true);
+  page.configure();assert.equal(page.data.sheetPhase,'closing');advance(279);
+  assert.equal(page.data.success,null);advance(1);
   assert.equal(page.data.sheetOpen,false);assert.equal(page.data.success.specLabel,'8寸');assert.equal(page.data.success.quantity,1);
   const broken=productPage().page;broken.onLoad({id:fixtures.items[1].productId});await broken.onShow();broken.configure();
   broken.chooseOption({currentTarget:{dataset:{group:'SIZE',option:'INCH_6'}}});await broken.addToBag();
@@ -146,11 +154,12 @@ test('B04 detail retains the operation key after uncertain failure; success then
   const inputs=[];let fail=true;
   const service={add:async value=>{inputs.push(clone(value));if(fail){fail=false;throw {code:'LOCAL_BAG_WRITE_FAILED'};}
     return {line:{name:'黑巧克力蛋糕',specLabel:'6寸',checkoutAllowed:false},addedQuantity:value.quantity};}};
-  const {page}=productPage(createProductDetailClient(settings),service);
+  const {page,advance}=productPage(createProductDetailClient(settings),service);
   page.onLoad({id:fixtures.items[1].productId});await page.onShow();page.configure();
   page.chooseOption({currentTarget:{dataset:{group:'SIZE',option:'INCH_6'}}});
   await page.addToBag();assert.equal(page.data.success,null);
   page.onHide();await page.onShow();page.configure();await page.addToBag();
+  advance(280);
   assert.equal(inputs[0].operationId,inputs[1].operationId);assert.equal(page.data.success.quantity,1);
   page.configure();await page.addToBag();assert.notEqual(inputs[1].operationId,inputs[2].operationId);
   assert(inputs.every(value=>/^[-_a-zA-Z0-9]{16,128}$/.test(value.operationId)));
@@ -167,14 +176,14 @@ test('B04 changing quantity after a failed add starts a distinct intent, without
 
 test('B04 hiding/loading while add is in flight cannot submit again; hidden completion keeps replay key',async()=>{
   const inputs=[];let finish;
-  const {page}=productPage(createProductDetailClient(settings),{add:value=>{
+  const {page,advance}=productPage(createProductDetailClient(settings),{add:value=>{
     inputs.push(clone(value));return new Promise(resolve=>{finish=()=>resolve({line:{name:'黑巧克力蛋糕',specLabel:'6寸',checkoutAllowed:false},addedQuantity:value.quantity});});}});
   page.onLoad({id:fixtures.items[1].productId});await page.onShow();page.configure();
   page.chooseOption({currentTarget:{dataset:{group:'SIZE',option:'INCH_6'}}});
   const pending=page.addToBag();page.onHide();await page.onShow();page.configure();await page.addToBag();
   assert.equal(inputs.length,1);page.onHide();finish();await pending;assert.equal(page.data.success,null);
   await page.onShow();page.configure();const retry=page.addToBag();assert.equal(inputs.length,2);
-  assert.equal(inputs[0].operationId,inputs[1].operationId);finish();await retry;assert.equal(page.data.success.quantity,1);
+  assert.equal(inputs[0].operationId,inputs[1].operationId);finish();await retry;advance(280);assert.equal(page.data.success.quantity,1);
 });
 
 test('C05 returning to detail and retry after a failed refresh retain valid SKU, quantity and message',async()=>{
@@ -212,7 +221,7 @@ test('C05 refresh removes obsolete choices while retaining message and requires 
 test('C05 changed price and quantity limit use latest values and require confirmation before any Bag write',async()=>{
   let current=clone(await createProductDetailClient(settings).get(fixtures.items[1].productId)),accept=false;
   const writes=[];
-  const {page,modals}=productPage({get:async()=>clone(current)},{add:async input=>{
+  const {page,modals,advance}=productPage({get:async()=>clone(current)},{add:async input=>{
     writes.push(clone(input));return {line:{name:current.name,specLabel:'8寸',checkoutAllowed:false},addedQuantity:input.quantity};
   }},()=>accept);
   page.onLoad({id:current.productId});await page.onShow();page.configure();
@@ -225,7 +234,7 @@ test('C05 changed price and quantity limit use latest values and require confirm
   await page.addToBag();assert.equal(writes.length,0);assert.equal(page.data.sheetOpen,true);assert.equal(page.data.adding,false);
   page.onHide();await page.onShow();page.configure();
   assert.equal(page._needsReconfirmation,true);
-  accept=true;await page.addToBag();
+  accept=true;await page.addToBag();advance(280);
   assert.equal(writes.length,1);assert.equal(writes[0].unitPriceCents,26000);assert.equal(writes[0].quantity,1);
   assert.equal(writes[0].skuVersion,sku.version);assert.equal(page.data.success.quantity,1);
   assert.equal(modals.length,2);assert.match(modals[1].content,/260/);

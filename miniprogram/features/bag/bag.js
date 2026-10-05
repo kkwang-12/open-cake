@@ -2,8 +2,10 @@ const bag=require('../../services/local-bag');
 const catalog=require('../../services/catalog');
 const routes=require('../../constants/routes');
 const selection=require('../checkout/selection');
+const {measure}=require('../../utils/safe-area');
 Page({
-  data:{lines:[],thumbnails:{},imageFailures:{},summaryHeight:240,excludedQuantity:0,error:'',loading:false,busy:false,revision:0,quantity:0,selectedQuantity:0,subtotalLabel:'0'},
+  data:{topInset:24,navHeight:44,capsuleWidth:104,lines:[],thumbnails:{},imageFailures:{},summaryHeight:240,excludedQuantity:0,error:'',loading:false,busy:false,revision:0,quantity:0,selectedQuantity:0,subtotalLabel:'0'},
+  onLoad(){this.setData(measure(wx));},
   onShow(){this._visible=true;this._unloaded=false;return this.load();},
   onHide(){this._visible=false;this._epoch=(this._epoch||0)+1;},
   onUnload(){this._unloaded=true;this.onHide();},

@@ -1,6 +1,8 @@
-<button class="card {{typography === 'home' ? 'card-home' : ''}}" bindtap="select" aria-label="查看{{product.name}}" hover-class="pressed">
+<button class="card" bindtap="select" aria-label="查看{{product.name}}" hover-class="pressed">
+  <view class="media">
   <image wx:if="{{product.image && !imageFailed}}" class="image" src="{{product.image}}" mode="aspectFill" lazy-load="{{true}}" binderror="imageError" />
   <view wx:else class="image fallback">图片暂未加载</view>
+  </view>
   <view class="info">
     <text class="name">{{product.name}}</text>
     <text class="description">{{product.description}}</text>

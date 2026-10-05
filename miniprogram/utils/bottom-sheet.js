@@ -53,16 +53,20 @@ function open(page) {
 function restore(page) {
   if (typeof wx.pageScrollTo === 'function') wx.pageScrollTo({ scrollTop: page._sheetSavedScroll || 0, duration: 0 });
 }
-function close(page, force = false) {
+function close(page, force = false, options = {}) {
   if (!page.data.sheetOpen || page.data.sheetPhase === 'closing' || (page.data.adding && !force)) return;
   const token = clear(page);
-  page.setData({ sheetPhase: 'closing', sheetOffset: '100%', sheetDuration: 200, sheetEasing: 'ease-in', sheetMaskOpacity: 0 });
+  const duration = options.duration || 200;
+  page.setData({ sheetPhase: 'closing', sheetOffset: '100%', sheetDuration: duration, sheetEasing: options.easing || 'ease-in', sheetMaskOpacity: 0 });
   page._sheetTimer = setTimeout(() => {
     if (token !== page._sheetToken) return;
     page.setData({ sheetOpen: false, sheetPhase: 'closed', sheetDuration: 0 }, () => {
-      if (token === page._sheetToken && !page.data.sheetOpen) restore(page);
+      if (token === page._sheetToken && !page.data.sheetOpen) {
+        restore(page);
+        if (options.onClosed) options.onClosed();
+      }
     });
-  }, 200);
+  }, duration);
 }
 function dispose(page, restoreScroll = false) {
   const wasOpen = page.data.sheetOpen;

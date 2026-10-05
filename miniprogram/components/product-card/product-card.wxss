@@ -1,17 +1,11 @@
-.card { display: block; width: 100% !important; margin: 0; padding: 0; border-radius: 0; text-align: left; color: #111111; background: transparent; line-height: 1.5; }
+.card { display: block; width: 100% !important; margin: 0; padding: 0; overflow: hidden; border-radius: 10px; text-align: left; color: #111111; background: #FFFFFF; line-height: 1.5; }
 .card::after { border: 0; }
-.image { width: 100%; height: 304rpx; border-radius: 24rpx; background: #EFEDE8; }
-.fallback { display: flex; align-items: center; justify-content: center; color: #666666; font-size: 22rpx; }
-.name { display: block; font-size: 28rpx; font-weight: 600; margin-top: 16rpx; }
-.description { display: block; font-size: 24rpx; color: #666666; margin-top: 8rpx; min-height: 72rpx; }
-.price { display: block; font-size: 28rpx; font-weight: 600; margin-top: 16rpx; }
+/* Percent padding follows the actual card width in every container. */
+.media { position: relative; width: 100%; height: 0; padding-top: 68%; background: #EFEDE8; }
+.image { position: absolute; left: 0; top: 0; display: block; width: 100%; height: 100%; border-radius: 0; background: #EFEDE8; }
+.fallback { display: flex; align-items: center; justify-content: center; color: #666666; font-size: 12px; font-weight: 400; }
+.info { padding: 6px 12px 8px; }
+.name { display: block; overflow: hidden; margin-top: 0; color: #111111; font-size: 14px; font-weight: 600; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis; }
+.description { display: block; overflow: hidden; margin-top: 2px; min-height: 0; color: #888888; font-size: 11px; font-weight: 400; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis; }
+.price { display: block; margin-top: 3px; color: #111111; font-size: 15px; font-weight: 600; line-height: 1.4; }
 .pressed { opacity: .7; }
-.card-home { overflow: hidden; border-radius: 10px; background: #FFFFFF; }
-/* Reference card: image above a compact, separate information panel. */
-.card-home .image { display: block; height: calc(41vw - 18.04px); border-radius: 0; }
-.card-home .fallback { display: flex; }
-.card-home .info { padding: 6px 12px 8px; }
-.card-home .name { overflow: hidden; margin-top: 0; color: #111111; font-size: 14px; font-weight: 600; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis; }
-.card-home .description { overflow: hidden; margin-top: 2px; min-height: 0; color: #888888; font-size: 11px; font-weight: 400; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis; }
-.card-home .price { margin-top: 3px; color: #111111; font-size: 15px; font-weight: 600; line-height: 1.4; }
-.card-home .fallback { font-size: 12px; font-weight: 400; }

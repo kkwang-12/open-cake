@@ -6,7 +6,7 @@
         <swiper-item wx:for="{{heroSlides}}" wx:key="id">
           <view class="home-hero-slide">
             <view class="home-hero-photography">
-              <view wx:if="{{!item.imageReady || item.imageFailed}}" class="home-hero-image-fallback"><image src="/assets/icons/cake-ui/cake-slice.svg" /><text>{{item.imageFailed ? '商品照片正在准备' : '照片加载中'}}</text></view>
+              <view wx:if="{{!item.imageReady || item.imageFailed}}" class="home-hero-image-fallback"><image src="/assets/icons/product/cake-slice.svg" /><text>{{item.imageFailed ? '商品照片正在准备' : '照片加载中'}}</text></view>
               <image wx:if="{{!item.imageFailed && (item.imageReady || index >= heroCurrent - 1 && index <= heroCurrent + 1)}}" class="home-hero-image {{item.imageReady ? '' : 'home-hero-image-loading'}}" src="{{item.image}}" mode="aspectFill" lazy-load="{{false}}" data-index="{{index}}" bindload="heroImageLoad" binderror="heroImageError" aria-label="{{item.imageLabel}}" />
             </view>
             <view class="home-hero-copy">
@@ -22,13 +22,13 @@
     </view>
   <view class="section home-recommendations">
     <view class="section-heading"><text class="section-title">今日推荐</text><button class="home-view-all" bindtap="browse" hover-class="pressed">查看全部<text>→</text></button></view>
-    <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:if="{{index < 2}}" wx:key="id" product="{{item}}" typography="home" bind:select="select" /></view>
+    <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:if="{{index < 2}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
     <empty-state wx:elif="{{loading}}" loading="{{true}}" description="正在准备商品。" />
     <empty-state wx:elif="{{error}}" title="暂时无法加载" description="{{error}}" action="重新加载" bind:action="retry" />
     <empty-state wx:else title="新鲜好物即将上架" description="期待与你分享每一份新鲜。" action="浏览选购" bind:action="browse" />
   </view>
   </view>
-  <view wx:if="{{products.length > 2}}" class="home-more-recommendations product-grid"><product-card wx:for="{{products}}" wx:if="{{index >= 2}}" wx:key="id" product="{{item}}" typography="home" bind:select="select" /></view>
+  <view wx:if="{{products.length > 2}}" class="home-more-recommendations product-grid"><product-card wx:for="{{products}}" wx:if="{{index >= 2}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
   <text wx:if="{{products.length && !recommendationConfigured}}" class="footnote">当前展示分类商品，门店推荐待配置。</text>
   <text wx:if="{{source === 'DEVELOPMENT_EXAMPLE'}}" class="footnote">临时开发商品与价格 · 商品照片待补充 · 暂未开放购买</text>
 </view>

@@ -13,7 +13,7 @@
       <button wx:for="{{categories}}" wx:key="id" class="category-segment {{category === item.id ? 'category-active' : ''}}" bindtap="chooseCategory" data-id="{{item.id}}" hover-class="none" role="tab" aria-selected="{{category === item.id}}" aria-label="{{item.name}}">{{item.name}}</button>
     </view>
   </view>
-  <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" typography="home" bind:select="select" /></view>
+  <view wx:if="{{products.length}}" class="product-grid"><product-card wx:for="{{products}}" wx:key="id" product="{{item}}" bind:select="select" /></view>
   <empty-state wx:if="{{loading && !refreshing && !products.length}}" loading="{{true}}" description="正在准备商品列表。" />
   <empty-state wx:elif="{{!loading && !products.length && !error}}" title="商品即将上架" description="本分类暂未开放选购，欢迎稍后再来。" />
   <view wx:if="{{error}}" class="list-feedback">

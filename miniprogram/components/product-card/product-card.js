@@ -1,5 +1,5 @@
 Component({
-  properties: { product: Object, typography: { type: String, value: '' } },
+  properties: { product: Object },
   data: { imageFailed: false },
   observers: { 'product.image': function () { this.setData({ imageFailed: false }); } },
   methods: {

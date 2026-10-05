@@ -74,80 +74,86 @@ test('Navigation highlights the visible route on initial attach and returning fr
   assert.equal(bar.data.selected, 1);
 });
 
-test('Rapid navigation keeps only the latest target and restores UI on failure', () => {
+test('Navigation dispatches immediately, rejects invalid taps and recovers selection after failure', () => {
   const { bar, calls, pages, advance } = setup();
-  bar.switchTab(tap(0));
-  bar.switchTab(tap('bad'));
-  bar.switchTab(tap(9));
+  bar.switchTab(tap(0));bar.switchTab(tap('bad'));bar.switchTab(tap(9));
   assert.equal(calls.length, 0);
   bar.switchTab(tap(2));
-  advance(40);
-  bar.switchTab(tap(1));
-  assert.equal(calls.length, 0);
-  assert.equal(pages[0].data.tabMotion, 'tab-leaving');
-  assert.equal(bar.data.active, 1);
-  advance(50);
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].url, '/pages/shop/shop');
-  assert.equal(bar.data.selected, 0);
-  calls[0].fail();
-  calls[0].complete({ errMsg: 'switchTab:fail' });
-  assert.equal(pages[0].data.tabMotion, '');
+  assert.equal(calls[0].url, '/pages/orders/orders');
+  assert.equal(bar.data.active, 2);
+  assert.notEqual(pages[0].data.tabMotion, 'tab-leaving');
+  calls[0].fail();calls[0].complete();
   assert.equal(bar.data.active, 0);
-  bar.switchTab(tap(1));
-  advance(90);
-  assert.equal(calls.length, 2);
-  pages[0].route = 'pages/shop/shop';
-  bar.syncSelection();
-  calls[1].complete({ errMsg: 'switchTab:ok' });
-  assert.equal(bar.data.selected, 1);
+  advance(1000);assert.equal(calls.length, 1);
 });
 
 test('Tab show reconciles the visible highlight after the native page stack updates', () => {
   const { bar, pages, definition, flushTicks } = setup();
   definition.pageLifetimes.show.call(bar);
-  pages[0].route = 'pages/account/account';
-  flushTicks();
-  assert.equal(bar.data.selected,3);assert.equal(bar.data.active,3);
-  pages[0].route = 'pages/shop/shop';
-  definition.pageLifetimes.show.call(bar);flushTicks();
-  assert.equal(bar.data.selected,1);assert.equal(bar.data.active,1);
+  pages[0].route = 'pages/account/account';flushTicks();
+  assert.equal(bar.data.selected, 3);assert.equal(bar.data.active, 3);
 });
 
-test('Content is prepared before reveal, preserves native scroll, and current-tab taps do not replay', () => {
-  const { bar, calls, pages, transition, advance, scrolls, flushTicks } = setup();
-  transition.scroll(pages[0], { scrollTop: 380 });
-  bar.switchTab(tap(1));advance(90);
-  pages[0].route = 'pages/shop/shop';
-  transition.show(pages[0], 1);
-  calls[0].complete();
-  assert.equal(pages[0].data.tabMotion, 'tab-prepared');
-  assert.equal(scrolls.length, 0);assert.equal(pages[0]._tabScrollTop,380);
-  flushTicks();assert.equal(pages[0].data.tabMotion, 'tab-entering');
+test('One content fade preserves cached state and repeated current-tab taps do not replay it', () => {
+  const { bar, calls, pages, transition, advance, scrolls } = setup();
+  const page = pages[0];
+  const products = [{ id: 'cake-1' }];
+  page.setData({ products, category: 'mini', heroCurrent: 2 });
+  transition.scroll(page, { scrollTop: 380 });
   bar.switchTab(tap(1));
-  assert.equal(calls.length, 1);assert.equal(pages[0].data.tabMotion, 'tab-entering');
-  advance(220);assert.equal(pages[0].data.tabMotion, '');
-  bar.switchTab(tap(2));advance(40);bar.switchTab(tap(1));advance(90);
-  assert.equal(calls.length, 1);assert.equal(pages[0].data.tabMotion, 'tab-entering');
-  advance(130);
-  assert.equal(calls.length, 1);assert.equal(pages[0].data.tabMotion, '');
+  page.route = 'pages/shop/shop';transition.show(page, 1);calls[0].complete();
+  assert.equal(page.data.tabMotion, 'tab-entering');
+  advance(80);bar.switchTab(tap(1));
+  assert.equal(calls.length, 1);
+  advance(80);assert.equal(page.data.tabMotion, '');
+  bar.switchTab(tap(1));assert.equal(page.data.tabMotion, '');
+  assert.equal(scrolls.length, 0);assert.equal(page._tabScrollTop, 380);
+  assert.equal(page.data.products, products);assert.equal(page.data.category, 'mini');
+  assert.equal(page.data.heroCurrent, 2);
 });
 
-test('A switch already dispatched retains one latest target, rather than queuing every tap', () => {
+test('Rapid taps retain only the latest target and never wait for the content animation', () => {
   const { bar, calls, pages, transition, advance } = setup();
-  bar.switchTab(tap(1));advance(90);
+  bar.switchTab(tap(1));
   bar.switchTab(tap(2));bar.switchTab(tap(3));
+  assert.equal(calls.length, 1);assert.equal(bar.data.active, 3);
   pages[0].route = 'pages/shop/shop';transition.show(pages[0], 1);
-  assert.equal(bar.data.active, 3);
   bar.syncSelection();assert.equal(bar.data.active, 3);
-  calls[0].complete();advance(90);
+  calls[0].complete();
   assert.equal(calls.length, 2);assert.equal(calls[1].url, '/pages/account/account');
+  assert.equal(pages[0].data.tabMotion, 'tab-entering');
+  transition.hide(pages[0]);pages[0].route = 'pages/account/account';
+  transition.show(pages[0], 3);calls[1].complete();advance(160);
+  assert.equal(pages[0].data.tabMotion, '');assert.equal(bar.data.active, 3);
+  assert.equal(calls.length, 2);
 });
 
-test('A delayed content reveal cannot restart animation after its page has hidden', () => {
-  const { bar, calls, pages, transition, advance, flushTicks } = setup();
-  bar.switchTab(tap(1));advance(90);pages[0].route='pages/shop/shop';
-  transition.show(pages[0],1);calls[0].complete();
-  transition.hide(pages[0]);flushTicks();advance(500);
-  assert.equal(pages[0].data.tabMotion,'tab-prepared');
+test('A tap back to the departing tab wins while a native operation is in flight', () => {
+  const { bar, calls, pages, transition } = setup();
+  bar.switchTab(tap(1));bar.switchTab(tap(2));bar.switchTab(tap(0));
+  pages[0].route = 'pages/shop/shop';transition.show(pages[0], 1);calls[0].complete();
+  assert.equal(calls.length, 2);assert.equal(calls[1].url, '/pages/home/home');
+});
+
+test('Latest target survives an earlier failure and duplicate destination taps do not dispatch again', () => {
+  const { bar, calls, pages, transition } = setup();
+  bar.switchTab(tap(1));bar.switchTab(tap(3));
+  calls[0].fail();assert.equal(bar.data.active, 3);calls[0].complete();
+  assert.equal(calls.length, 2);assert.equal(calls[1].url, '/pages/account/account');
+  bar.switchTab(tap(3));
+  pages[0].route = 'pages/account/account';transition.show(pages[0], 3);calls[1].complete();
+  assert.equal(calls.length, 2);assert.equal(bar.data.active, 3);
+});
+
+test('Hiding cancels the fade and native detail return does not replay it or reset scroll', () => {
+  const { bar, calls, pages, transition, advance, scrolls } = setup();
+  bar.switchTab(tap(1));pages[0].route = 'pages/shop/shop';
+  transition.show(pages[0], 1);calls[0].complete();
+  transition.scroll(pages[0], { scrollTop: 380 });
+  transition.hide(pages[0]);pages.push({ route: 'features/product/product' });
+  advance(500);assert.equal(pages[0].data.tabMotion, '');
+  pages.pop();transition.show(pages[0], 1);advance(500);
+  assert.equal(pages[0].data.tabMotion, '');
+  assert.equal(pages[0]._tabScrollTop, 380);assert.equal(scrolls.length, 0);
 });

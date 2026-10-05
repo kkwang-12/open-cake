@@ -82,10 +82,34 @@ page { background: var(--color-bg); }
 .total-price { flex: 1; min-width: 96px; font-size: 26px; font-weight: 650; line-height: 1.2; }
 .add-button { width: 60% !important; height: 56px; flex-shrink: 0; }
 .add-button[disabled] { opacity: .45; background: #111; color: #fff; }
+.add-button.add-press, .add-button.add-press[disabled] { opacity: 1; animation: add-press 180ms ease-in-out both; }
+@keyframes add-press { 0%, 100% { transform: scale(1); } 45% { transform: scale(.96); } }
 .success-bar { display: flex; align-items: center; gap: 12px; margin: -3px -2vw -6px; padding: 14px; border-radius: 20px; background: #111; color: #fff; }
+/* Keep the safe area inside the success card, with no external bottom gap. */
+.bottom-area.has-success { padding-bottom: 0; }
+.has-success .success-bar { margin-bottom: 0; padding-bottom: calc(14px + env(safe-area-inset-bottom)); }
 .success-thumb { display: flex; align-items: center; justify-content: center; width: 50px; height: 54px; border-radius: 9px; overflow: hidden; background: #F2F1ED; flex-shrink: 0; }
 .success-thumb image { width: 100%; height: 100%; }
 .success-thumb .thumb-placeholder { width: 26px; height: 26px; opacity: .45; }
+.success-bar { overflow: visible; animation: success-card-in 320ms cubic-bezier(0.22, 1, 0.36, 1) both; }
+.success-thumb-stage { position: relative; width: 50px; height: 54px; flex-shrink: 0; }
+.success-thumb { animation: success-thumb-in 220ms 100ms ease-out both; transform-origin: center; }
+.success-thumb.success-thumb-pop { animation: success-thumb-pop 220ms ease-out both; }
+/* Separate viewport layer avoids card clipping; it never captures taps. */
+.success-particles-overlay { position: fixed; inset: 0; z-index: 40; pointer-events: none; overflow: hidden; }
+.success-burst { position: absolute; width: 0; height: 0; overflow: visible; }
+.success-particle { position: absolute; left: 0; top: 0; animation: success-particle-x var(--burst-duration) var(--burst-delay) linear both; }
+.success-particle-flight { width: 100%; height: 100%; animation: success-particle-y var(--burst-duration) var(--burst-delay) linear both; }
+.success-candy { width: 100%; height: 100%; background: var(--particle-color); animation: success-candy-spin var(--burst-duration) var(--burst-delay) linear both; }
+.candy-dot { border-radius: 50%; }
+.candy-sprinkle { border-radius: 999px; }
+@keyframes success-card-in { from { transform: translateY(calc(100% + 24px + env(safe-area-inset-bottom))); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes success-thumb-in { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: scale(1); } }
+@keyframes success-thumb-pop { 0% { transform: scale(.92); } 36% { transform: scale(1.05); } 70% { transform: scale(.99); } 100% { transform: scale(1); } }
+/* First fifth (~100ms) releases 76% of travel, then settles into a gentle fall. */
+@keyframes success-particle-x { 0% { transform: translateX(var(--burst-x-start)); animation-timing-function: ease-out; } 20% { transform: translateX(var(--burst-x-fast)); animation-timing-function: ease-out; } 60% { transform: translateX(var(--burst-x-slow)); animation-timing-function: ease-out; } 100% { transform: translateX(var(--burst-x)); } }
+@keyframes success-particle-y { 0% { transform: translate(-50%, -50%) translateY(var(--burst-y-start)); animation-timing-function: ease-out; } 20% { transform: translate(-50%, -50%) translateY(var(--burst-y-fast)); } 60% { transform: translate(-50%, -50%) translateY(var(--burst-y-slow)); } 100% { transform: translate(-50%, -50%) translateY(var(--burst-y)); } }
+@keyframes success-candy-spin { 0% { transform: rotate(var(--particle-rotation)) scale(.65); opacity: 0; } 7% { opacity: .92; } 20% { transform: rotate(var(--particle-rotation)) scale(1); opacity: .92; } 60% { opacity: .55; } 100% { transform: rotate(var(--particle-spin)) scale(0); opacity: 0; } }
 .success-copy { flex: 1; min-width: 0; }
 .success-title { display: block; font-size: 13px; font-weight: 500; }
 .success-detail { display: block; font-size: 11px; color: #BBB; margin-top: 4px; line-height: 1.5; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }

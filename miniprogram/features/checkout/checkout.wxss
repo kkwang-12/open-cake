@@ -1,34 +1,79 @@
-.checkout-page { padding: 32rpx 44rpx calc(180rpx + env(safe-area-inset-bottom)); }
-.checkout-caption { color: #777; font-size: 24rpx; margin: 24rpx 0 32rpx; }
+@import "../../styles/action-capsule.wxss";
+/* Back geometry and safe-area positioning match features/product/product.*. */
+.checkout-header { position: relative; background: var(--color-bg); }
+.checkout-nav { position: absolute; left: 6vw; z-index: 5; display: flex; align-items: center; justify-content: space-between; }
+.checkout-back { flex-shrink: 0; display: flex; align-items: center; justify-content: center; width: 44px !important; height: 44px; padding: 10px; border-radius: 50%; margin: 0 !important; margin-left: -10px !important; }
+.checkout-back-icon { width: 24px; height: 24px; }
+.checkout-page { padding: 12px 16px 176px; }
+.checkout-page .display-title { margin: 0; font-size: 24px; font-weight: 600; line-height: 1.25; color: #111111; }
+.checkout-subtitle { display: block; margin-top: 4px; color: #888888; font-size: 13px; font-weight: 400; line-height: 1.4; }
 .checkout-line { padding: 28rpx 0; border-bottom: 1rpx solid #e5e2dd; }
 .checkout-line-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 24rpx; }
 .checkout-name { flex: 1; font-size: 30rpx; font-weight: 600; }
 .checkout-total { font-size: 30rpx; white-space: nowrap; }
 .checkout-detail, .checkout-message { display: block; font-size: 24rpx; color: #777; margin-top: 14rpx; line-height: 1.6; overflow-wrap: break-word; }
-.checkout-subtotal { display: flex; justify-content: space-between; font-size: 32rpx; font-weight: 600; margin-top: 40rpx; }
-.checkout-notice { color: #777; font-size: 24rpx; line-height: 1.8; margin: 32rpx 0; }
-.return-bag { width: 100% !important; }
-.checkout-footer { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; padding: 24rpx 44rpx calc(24rpx + env(safe-area-inset-bottom)); }
-.checkout-address { margin-bottom: 20rpx; padding: 24rpx 0; border-bottom: 1rpx solid #e5e2dd; }
-.address-heading { display: flex; justify-content: space-between; align-items: center; font-size: 28rpx; font-weight: 600; }
-.choose-delivery-address { margin: 0; width: auto !important; font-size: 24rpx; font-weight: 400; border: 1rpx solid #d5d2cd; border-radius: 30rpx; padding: 12rpx 24rpx; }
+.goods-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.goods-heading .form-section-title { margin: 0; }
+.checkout-notice { color: #777; font-size: 12px; font-weight: 400; line-height: 1.4; margin: 16px 0; }
+.checkout-footer { position: fixed; z-index: 20; bottom: 0; left: 0; right: 0; border-top: 1px solid #E5E2DD; }
+.checkout-footer .action-capsule { font-size: 16px; font-weight: 500; line-height: 1.4; }
+.footer-amount-row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.footer-amount-label { color: #666666; font-size: 13px; font-weight: 400; line-height: 1.4; }
+.footer-amount { color: #111111; font-size: 22px; font-weight: 600; line-height: 1.25; white-space: nowrap; }
+.checkout-footer .action-capsule[disabled] { opacity: .4; color: #FFFFFF; background: #111111; }
+.checkout-address { margin: 0; padding: 0; }
 .delivery-person, .delivery-detail, .address-hint, .address-warning { display: block; font-size: 24rpx; line-height: 1.7; margin-top: 12rpx; overflow-wrap: break-word; }
 .address-hint { color: #777; font-size: 22rpx; }
 .address-warning { color: #805b36; }
-.checkout-store { padding: 22rpx 0 30rpx; border-bottom: 1rpx solid #e5e2dd; }
-.store-name { font-size: 30rpx; font-weight: 600; }
-.store-address, .store-hours, .store-phone { display: block; font-size: 24rpx; line-height: 1.7; margin-top: 12rpx; }
+.checkout-store { padding: 0; margin: 0; }
+.checkout-store, .checkout-address { animation: fulfillment-content-in 150ms ease-out; }
+@keyframes fulfillment-content-in { from { opacity: 0; } to { opacity: 1; } }
+.location-card { display: flex; align-items: center; gap: 12px; width: 100% !important; min-width: 0; margin: 0 !important; padding: 12px; border: 1px solid #E5E2DD; border-radius: 12px; background: #F7F6F3; color: #111111; text-align: left; }
+.location-card[disabled] { background: #F7F6F3; color: #111111; opacity: 1; }
+.location-card-content { flex: 1; min-width: 0; overflow-wrap: anywhere; word-break: break-word; }
+.store-photo { flex: 0 0 60px; display: flex; align-items: center; justify-content: center; width: 60px; height: 60px; border-radius: 8px; overflow: hidden; background: #EFEDE8; }
+.store-photo image { display: block; width: 100%; height: 100%; }
+.store-photo text { padding: 6px; color: #888888; font-size: 10px; line-height: 1.5; text-align: center; }
+.card-arrow { flex-shrink: 0; width: 18px; height: 18px; transform: rotate(180deg); }
+.store-name { display: block; min-width: 0; font-size: 14px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.store-address, .store-hours, .store-phone { display: block; color: #777777; font-size: 12px; font-weight: 400; line-height: 1.4; margin-top: 4px; overflow-wrap: anywhere; word-break: break-word; }
+.address-card .delivery-person { margin: 0; color: #111111; font-size: 14px; font-weight: 400; line-height: 1.4; }
+.address-card .delivery-detail { margin-top: 4px; color: #777777; font-size: 12px; font-weight: 400; line-height: 1.4; }
+.address-empty { color: #666666; font-size: 14px; font-weight: 400; line-height: 1.4; }
 .store-hours, .store-phone { color: #777; }
-.fulfillment-options { display: flex; gap: 18rpx; margin: 30rpx 0; }
-.fulfillment-option { flex: 1; width: auto !important; margin: 0; border: 1rpx solid #d5d2cd; border-radius: 40rpx; padding: 22rpx 12rpx; font-size: 26rpx; }
-.fulfillment-option.is-active { color: #fff; background: #111; border-color: #111; }
+.store-map-error { display: block; margin-top: 6px; color: #805b36; font-size: 12px; line-height: 1.4; }
+.fulfillment-options { height: 44px; padding: 2px; margin: 12px 0 16px; border-radius: 999px; background: #EFEFED; }
+.fulfillment-track { position: relative; display: flex; width: 100%; height: 100%; }
+.fulfillment-slider { position: absolute; left: 0; top: 0; height: 100%; border-radius: 999px; background: #111111; pointer-events: none; transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+.fulfillment-option { position: relative; z-index: 1; flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 6px; width: auto !important; height: 40px; margin: 0 !important; border: 0; border-radius: 999px; padding: 0 8px; background: transparent; color: #666666; font-size: 14px; font-weight: 500; line-height: 1.4; white-space: nowrap; transition: color 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+.fulfillment-option.is-active { color: #fff; font-weight: 500; }
+.fulfillment-icon { position: relative; display: block; width: 18px; height: 18px; flex-shrink: 0; }
+.fulfillment-icon image { position: absolute; inset: 0; width: 18px; height: 18px; transition: opacity 350ms cubic-bezier(0.22, 1, 0.36, 1); }
+.icon-dark { opacity: 1; }
+.icon-light { opacity: 0; }
+.is-active .icon-dark { opacity: 0; }
+.is-active .icon-light { opacity: 1; }
 .fulfillment-option[disabled] { opacity: .4; }
-.pickup-form { padding: 12rpx 0 28rpx; border-bottom: 1rpx solid #e5e2dd; }
-.pickup-label { display: block; font-size: 24rpx; margin-top: 24rpx; }
-.pickup-input { display: block; width: 100%; height: 90rpx; font-size: 28rpx; background: #f1efec; border-radius: 16rpx; padding: 24rpx; margin-top: 12rpx; }
-.contact-save-row { display: flex; gap: 18rpx; align-items: center; justify-content: space-between; margin-top: 24rpx; }
-.contact-save-row text { color: #777; font-size: 22rpx; flex: 1; }
-.save-pickup-contact { width: auto !important; margin: 0; padding: 16rpx 24rpx; border-radius: 32rpx; background: #111; color: #fff; font-size: 24rpx; }
+.pickup-form { margin-top: 16px; }
+.form-section-title { display: block; margin-bottom: 8px; font-size: 14px; font-weight: 600; color: #111111; line-height: 1.4; }
+.form-panel { overflow: hidden; border: 1px solid #E5E2DD; border-radius: 12px; background: #F7F6F3; }
+.form-row { display: flex; align-items: center; gap: 10px; width: 100% !important; min-width: 0; min-height: 48px; margin: 0 !important; padding: 0 12px; background: transparent; color: #111111; font-size: 14px; font-weight: 400; line-height: 1.4; text-align: left; }
+.form-row + .form-row { border-top: 1px solid #E5E2DD; }
+.form-icon { flex-shrink: 0; width: 18px; height: 18px; }
+.appointment-value { flex: 1; min-width: 0; color: #888888; font-size: 14px; font-weight: 400; line-height: 1.4; }
+.appointment-row[disabled] { color: #888888; background: transparent; }
+.contact-label { flex: 0 0 42px; color: #666666; font-size: 14px; font-weight: 400; line-height: 1.4; }
+.pickup-input { display: block; flex: 1; min-width: 0; width: 0; height: 48px; margin: 0; padding: 0; color: #111111; font-size: 14px; font-weight: 400; line-height: 1.4; }
+.form-placeholder { color: #888888; font-size: 14px; font-weight: 400; line-height: 1.4; }
+.contact-save-row { display: flex; gap: 12px; align-items: center; justify-content: space-between; margin-top: 8px; }
+.contact-save-row text { color: #888888; font-size: 12px; font-weight: 400; line-height: 1.4; flex: 1; }
+.save-pickup-contact { flex-shrink: 0; width: auto !important; min-height: 44px; display: flex; align-items: center; margin: 0; padding: 0; border: 0; background: transparent; color: #666666; font-size: 12px; font-weight: 400; line-height: 1.4; }
+.save-pickup-contact[disabled] { opacity: .4; }
+.order-note-section { margin: 16px 0; }
+.unavailable-note { display: block; color: #888888; font-size: 12px; line-height: 1.4; }
 .fulfillment-fee { display: flex; justify-content: space-between; font-size: 26rpx; margin-top: 20rpx; color: #777; }
 .delivery-range-status { padding: 20rpx 24rpx; margin-top: 20rpx; background: #f1efec; border-radius: 16rpx; }
-.delivery-range-label { display: block; font-size: 24rpx; font-weight: 600; }
+.delivery-range-label { display: block; font-size: 12px; font-weight: 400; line-height: 1.4; }
+.appointment-status { margin-top: 16px; }
+.appointment-notice { display: block; margin-top: 6px; font-size: 12px; font-weight: 400; color: #888; line-height: 1.4; }
+.address-hint, .address-warning { margin-top: 6px; font-size: 12px; font-weight: 400; line-height: 1.4; }

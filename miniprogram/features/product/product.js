@@ -8,11 +8,12 @@ const {formatCents}=require('../../services/catalog');
 const {STORE_FACTS,presentGroups}=require('../../utils/product-presentation');
 const {createLocalOperationId}=require('../../utils/local-operation');
 const sheet=require('../../utils/bottom-sheet');
+const successMotion=require('./success-motion');
 Page({
   data:{product:null,loading:false,error:'',unavailable:false,gallery:[],galleryIndex:0,
     topInset:24,navHeight:44,capsuleWidth:104,heroHeight:460,sheetOpen:false,sheetPhase:'closed',sheetOffset:'100%',sheetDuration:0,sheetMaskOpacity:0,sheetBodyHeight:1,sheetMaxHeight:544,sheetPageTop:0,sheetEasing:'ease-out',groups:[],quantity:1,
     cakeMessage:'',messageCount:0,messageEnabled:false,messageMaxLength:-1,messageHint:'',
-    totalLabel:'—',selectionNotice:'',adding:false,success:null,favorited:false,favoriteBusy:false,heartAnimation:'',benefits:STORE_FACTS},
+    totalLabel:'—',selectionNotice:'',adding:false,addPress:false,success:null,successParticles:[],successBurst:false,successBurstStyle:'',favorited:false,favoriteBusy:false,heartAnimation:'',benefits:STORE_FACTS},
   onLoad(options={}){
     this._productId=typeof options.id==='string'?options.id:'';
     this._model=null;this._selection=null;this._needsReconfirmation=false;this._restoreNotice='';
@@ -25,10 +26,11 @@ Page({
     if(typeof wx.setEnableDebug==='function')wx.setEnableDebug({enableDebug:false});
   },
   onShow(){this._visible=true;return this.load();},
-  onHide(){this._visible=false;this._epoch=(this._epoch||0)+1;this.setData({heartAnimation:''});sheet.dispose(this);},
+  onHide(){this._visible=false;this._epoch=(this._epoch||0)+1;successMotion.dispose(this);this.setData({heartAnimation:''});sheet.dispose(this);},
   onPageScroll(e){if(!this.data.sheetOpen)this._pageScrollTop=e.scrollTop;},
   onUnload(){this.onHide();},
   async load(){
+    successMotion.dispose(this);
     sheet.dispose(this,true);
     const ticket=this._epoch=(this._epoch||0)+1;
     this.setData({product:null,gallery:[],galleryIndex:0,loading:true,error:'',unavailable:false,sheetOpen:false,success:null,heartAnimation:'',adding:!!this._addInFlight});
@@ -97,10 +99,10 @@ Page({
     if(Number.isSafeInteger(index)&&index>=0&&index<this.data.gallery.length)this.setData({galleryIndex:index});
   },
   configure(){
-    if(!this.data.product||this.data.loading)return;
+    if(!this.data.product||this.data.loading||this.data.adding||this._successTransition)return;
     if(this.data.sheetOpen&&this.data.sheetPhase!=='closing')return;
     if(!this._model){wx.showToast({title:'此商品的规格资料尚未接通',icon:'none'});return;}
-    this.setData({success:null});this.renderSelection();sheet.open(this);
+    successMotion.dispose(this);this.setData({success:null});this.renderSelection();sheet.open(this);
   },
   closeSheet(){sheet.close(this);},
   sheetDragStart(e){sheet.dragStart(this,e);},
@@ -145,6 +147,7 @@ Page({
       this.setData({selectionNotice:'留言超过当前长度限制，请修改后再加入。'});return;
     }
     this._addInFlight=true;this.setData({adding:true,selectionNotice:''});
+    const feedback=successMotion.press(this);
     try{
       if(this._needsReconfirmation){
         const confirmed=await new Promise(resolve=>wx.showModal({
@@ -154,7 +157,7 @@ Page({
           success:result=>resolve(result.confirm===true),fail:()=>resolve(false)
         }));
         if(!this._visible||ticket!==this._epoch)return;
-        if(!confirmed){this.renderSelection();return;}
+        if(!confirmed){successMotion.dispose(this);this.renderSelection();return;}
         this._needsReconfirmation=false;this._restoreNotice='';
       }
       const input={productId:this.data.product.productId,productVersion:this._selection.productVersion,
@@ -167,18 +170,27 @@ Page({
       const result=await bag.add(intent.input);
       if(!this._visible||ticket!==this._epoch)return;
       if(!result||!result.line||result.line.checkoutAllowed!==false||result.addedQuantity!==this.data.quantity)throw new Error();
+      if(!await feedback||!this._visible||ticket!==this._epoch)return;
       const first=this.data.gallery.find(image=>!image.failed);
-      this.setData({success:{name:result.line.name,specLabel:result.line.specLabel,
-        quantity:result.addedQuantity,thumbnail:first?first.src:''}});
-      sheet.close(this,true);
+      const success={name:result.line.name,specLabel:result.line.specLabel,
+        quantity:result.addedQuantity,thumbnail:first?first.src:''};
+      this._successTransition=true;
+      const showSuccess=()=>{
+        if(this._visible&&ticket===this._epoch)successMotion.show(this,success);
+      };
+      if(this.data.sheetOpen)sheet.close(this,true,{
+        duration:280,easing:'cubic-bezier(0.22, 1, 0.36, 1)',onClosed:showSuccess
+      });
+      else showSuccess();
       if(this._pendingAdd===intent)this._pendingAdd=null;
     }catch(error){
       if(!this._visible||ticket!==this._epoch)return;
+      successMotion.dispose(this);
       this.setData({selectionNotice:error.code==='LOCAL_SELECTION_CHANGED'?'商品规格或价格已变化，请重新加载。':
         error.code==='INVALID_QUANTITY'?'数量不符合当前规格要求。':
         error.code==='INVALID_MESSAGE'?'请检查留言内容和长度。':
         error.code==='LOCAL_OPERATION_REUSED'?'本次加购信息已变化，请重新选择。':'保存购物袋失败，请重试。'});
-    }finally{this._addInFlight=false;if(this._visible)this.setData({adding:false});}
+    }finally{this._addInFlight=false;if(this._visible&&!this._successTransition)this.setData({adding:false});}
   },
   successImageError(){if(this.data.success)this.setData({'success.thumbnail':''});},
   async favorite(){

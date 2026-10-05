@@ -1,0 +1,615 @@
+{
+  "sourceOfTruth": "SVG files and page source code",
+  "icons": [
+    {
+      "category": "navigation",
+      "purpose": "返回与方向",
+      "file": "back.svg",
+      "path": "/assets/icons/navigation/back.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/back.svg",
+      "sha256": "888ebdd851b7e61af93113c941942bf14897af2985836e2f03289564df5eccad"
+    },
+    {
+      "category": "controls",
+      "purpose": "通用操作",
+      "file": "minus.svg",
+      "path": "/assets/icons/controls/minus.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/minus.svg",
+      "sha256": "32b1d82dbc0b16ae6bf836837fda18f8a1ae0aec7d6543cb1cccd32848cf5a79"
+    },
+    {
+      "category": "controls",
+      "purpose": "通用操作",
+      "file": "more-vertical.svg",
+      "path": "/assets/icons/controls/more-vertical.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/more-vertical.svg",
+      "sha256": "91201a10dd1b5e4c3487687fcb19df01cfc127f12c54330e0d97a17271ba8abd"
+    },
+    {
+      "category": "controls",
+      "purpose": "通用操作",
+      "file": "plus.svg",
+      "path": "/assets/icons/controls/plus.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/plus.svg",
+      "sha256": "6dc2dc1b6317d9c694531704144fbda6462e968859276c7f0b1c033746aa41fc"
+    },
+    {
+      "category": "commerce",
+      "purpose": "购物袋操作",
+      "file": "bag-minus.svg",
+      "path": "/assets/icons/commerce/bag-minus.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.7
+      ],
+      "colors": [
+        "#000000"
+      ],
+      "source": "miniprogram/assets/icons/commerce/bag-minus.svg",
+      "sha256": "56c24fcbe87ba90ce08e61b3260d79750fd9028b60ca7ab57645fe658ff2f756"
+    },
+    {
+      "category": "commerce",
+      "purpose": "购物袋操作",
+      "file": "bag-plus.svg",
+      "path": "/assets/icons/commerce/bag-plus.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.7
+      ],
+      "colors": [
+        "#000000"
+      ],
+      "source": "miniprogram/assets/icons/commerce/bag-plus.svg",
+      "sha256": "3277debae38b65037646552eff5b2a495ffe807d6b3ea5e37a117c34b2c7f392"
+    },
+    {
+      "category": "commerce",
+      "purpose": "购物袋操作",
+      "file": "trash.svg",
+      "path": "/assets/icons/commerce/trash.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.6
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/commerce/trash.svg",
+      "sha256": "a4657e88fab73382003c0251b07f97c30593071f639b20555d4de5ef5196771c"
+    },
+    {
+      "category": "product",
+      "purpose": "商品与服务",
+      "file": "cake-slice.svg",
+      "path": "/assets/icons/product/cake-slice.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/cake-slice.svg",
+      "sha256": "48ea8ea4d6774553a07878a1efc2da540845277608b96d4f73a28cd0e6d17f76"
+    },
+    {
+      "category": "product",
+      "purpose": "商品与服务",
+      "file": "gift.svg",
+      "path": "/assets/icons/product/gift.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/gift.svg",
+      "sha256": "2398c936da8e84fcbd147baf84f9510ca0adfc42a1e02002b667e65468041d7e"
+    },
+    {
+      "category": "product",
+      "purpose": "商品与服务",
+      "file": "leaf.svg",
+      "path": "/assets/icons/product/leaf.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/leaf.svg",
+      "sha256": "dc8430080356077e8bac27da5070d900978199cc7084e62865d89d2f587da931"
+    },
+    {
+      "category": "feedback",
+      "purpose": "收藏与选中",
+      "file": "check.svg",
+      "path": "/assets/icons/feedback/check.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.1
+      ],
+      "colors": [
+        "#ffffff"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/check.svg",
+      "sha256": "a8eb1e5d32db31a4a7ae11ff1f3df071225950b4e09e2fa016e662e9d761ea63"
+    },
+    {
+      "category": "feedback",
+      "purpose": "收藏与选中",
+      "file": "heart-filled.svg",
+      "path": "/assets/icons/feedback/heart-filled.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.6
+      ],
+      "colors": [
+        "#E5484D"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/heart-filled.svg",
+      "sha256": "15a25ab6ed88c28884cca40d1321c256aea959ff61b2c373ca0ae1d6ba4a6afa"
+    },
+    {
+      "category": "feedback",
+      "purpose": "收藏与选中",
+      "file": "heart-outline.svg",
+      "path": "/assets/icons/feedback/heart-outline.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        2.6
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/heart-outline.svg",
+      "sha256": "b4564df9d306f3d9fda53fe61c29b6dae1969e9adcf7054b52e5bd17841165a3"
+    },
+    {
+      "category": "fulfillment",
+      "purpose": "配送方式",
+      "file": "delivery-truck-gray.svg",
+      "path": "/assets/icons/fulfillment/delivery-truck-gray.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#666666"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/delivery-truck.svg",
+      "sha256": "007a6ad33372f15cd80c94b7d886456d7f2b8b3de010119491a3433d62fa81e4"
+    },
+    {
+      "category": "fulfillment",
+      "purpose": "配送方式",
+      "file": "delivery-truck-white.svg",
+      "path": "/assets/icons/fulfillment/delivery-truck-white.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/delivery-truck.svg",
+      "sha256": "ac2fd7c6018fe88fdb4da70a6928cafa222da9a5f7652f01f346996ad794a738"
+    },
+    {
+      "category": "fulfillment",
+      "purpose": "配送方式",
+      "file": "delivery-truck.svg",
+      "path": "/assets/icons/fulfillment/delivery-truck.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/delivery-truck.svg",
+      "sha256": "d7ba19d66760e5bce65b5c7b1f80459644c017f0d997c75d575ab45da582ffa5"
+    },
+    {
+      "category": "fulfillment",
+      "purpose": "配送方式",
+      "file": "pickup-bag-gray.svg",
+      "path": "/assets/icons/fulfillment/pickup-bag-gray.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#666666"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/pickup-bag.svg",
+      "sha256": "b8b807d5b777206f399ec737654c4c6567945114710470d07ad8b656f4018d24"
+    },
+    {
+      "category": "fulfillment",
+      "purpose": "配送方式",
+      "file": "pickup-bag-white.svg",
+      "path": "/assets/icons/fulfillment/pickup-bag-white.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/pickup-bag.svg",
+      "sha256": "8143595fd5a4787cdb1e8fd9ae4e68eebbf09644a75d939ecbb2be7c3c72f878"
+    },
+    {
+      "category": "fulfillment",
+      "purpose": "配送方式",
+      "file": "pickup-bag.svg",
+      "path": "/assets/icons/fulfillment/pickup-bag.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/pickup-bag.svg",
+      "sha256": "5dd1607b8cdb6f8ea24c814dce65ac600f377f77a5c1bfd2946e830cb1ffb377"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "calendar-disabled.svg",
+      "path": "/assets/icons/forms/calendar-disabled.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#888888"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/calendar.svg",
+      "sha256": "343bb73335aec6264b9aa18ee84b5d03846ae81ce6b7dfcdaac54396681b60a8"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "calendar-gray.svg",
+      "path": "/assets/icons/forms/calendar-gray.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#666666"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/calendar.svg",
+      "sha256": "fa911d5fa22964318095cf4a6da27cf7626047696a1704aa8972c15df004b37a"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "calendar-white.svg",
+      "path": "/assets/icons/forms/calendar-white.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/calendar.svg",
+      "sha256": "009ce39d5a11eb59332b06c2df2937cb51111660a54b43647a1af2ffd9ba7564"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "calendar.svg",
+      "path": "/assets/icons/forms/calendar.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/calendar.svg",
+      "sha256": "eb9b09a01ab26ee726002563932ba72fdcdba2d8280ee99a5346af839b9d6a01"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "clock-disabled.svg",
+      "path": "/assets/icons/forms/clock-disabled.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#888888"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/clock.svg",
+      "sha256": "f4b931a9651c91fb10752ecc38e71b23662b02bfb96d9810fd6a941d736deb26"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "clock-gray.svg",
+      "path": "/assets/icons/forms/clock-gray.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#666666"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/clock.svg",
+      "sha256": "e3ade7acd8402fb16b4d49886dca102413bd7649218b93f11adbb15d66663c75"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "clock-white.svg",
+      "path": "/assets/icons/forms/clock-white.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/clock.svg",
+      "sha256": "6e6728da20102be6c17fef75f0b2dcf7599dd19ef9e22ddb0683ea8c01ee9b73"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "clock.svg",
+      "path": "/assets/icons/forms/clock.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/clock.svg",
+      "sha256": "f46c3eb54f1c492be4281259f322f4fe4cbc6a4e9f432cecb958084f9272be7d"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "contact-person-gray.svg",
+      "path": "/assets/icons/forms/contact-person-gray.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#666666"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/contact-person.svg",
+      "sha256": "2aa2bf62aefc07c4c5bc9548ccfa6541a821b27023c31f5f3736ae3dabe73874"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "contact-person-white.svg",
+      "path": "/assets/icons/forms/contact-person-white.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/contact-person.svg",
+      "sha256": "4b6ddfa17594be88f44381ef45cc0c55eae365e9e0190f03d3528bc2c49bfe0c"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "contact-person.svg",
+      "path": "/assets/icons/forms/contact-person.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/contact-person.svg",
+      "sha256": "3fe2bc32fd7184aac920c81a22136a58ed21c983eea083c0b42e751235bc7796"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "phone-gray.svg",
+      "path": "/assets/icons/forms/phone-gray.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#666666"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/phone.svg",
+      "sha256": "f3ce2b462fa287db8678cced7d62a89a3bd155cf993dc65b8e9f1152ca45f6dd"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "phone-white.svg",
+      "path": "/assets/icons/forms/phone-white.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/phone.svg",
+      "sha256": "6f0174e9b31b791db1bd3fa48e2a31fd8dc465fb8848b6f81ddb146a7592f494"
+    },
+    {
+      "category": "forms",
+      "purpose": "表单",
+      "file": "phone.svg",
+      "path": "/assets/icons/forms/phone.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "design-assets/cake-ui-icons-20261004/phone.svg",
+      "sha256": "725ddc941264eea81e25dfbd907a914f89ca7bf9811ea560086f3c2fc43ab07c"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "account-filled.svg",
+      "path": "/assets/icons/tab-bar/account-filled.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/account-filled.svg",
+      "sha256": "8bf7a257c205a3bee6f1601e0abee3dcd04d88feffe3bf6f9485d330e3a55ff6"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "account-outline.svg",
+      "path": "/assets/icons/tab-bar/account-outline.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [
+        1.6
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/account-outline.svg",
+      "sha256": "8c0f4651a9f15dd3decc25cf14de0b32373c59aba4cc9ed24ee682afcbee8b57"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "home-filled.svg",
+      "path": "/assets/icons/tab-bar/home-filled.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/home-filled.svg",
+      "sha256": "f91adc10ab928588c249c16876297cb86a57f61b9f8ccdddddc49ee5c95ab2ff"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "home-outline.svg",
+      "path": "/assets/icons/tab-bar/home-outline.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [
+        1.6
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/home-outline.svg",
+      "sha256": "9f24ce83f173addbc97aab661e5e4c4ed67eb4af30ce9ec567d653982b62d89d"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "orders-filled.svg",
+      "path": "/assets/icons/tab-bar/orders-filled.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [
+        1.6
+      ],
+      "colors": [
+        "#FFFFFF",
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/orders-filled.svg",
+      "sha256": "bd6536709855cfbc225091a2453ce13d202eb7faef96820cc5019ef04acd777d"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "orders-outline.svg",
+      "path": "/assets/icons/tab-bar/orders-outline.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [
+        1.6
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/orders-outline.svg",
+      "sha256": "15585258d278098d6e1bfe7fb227695910d15124d7a4c7a181ffaaed1cd0c344"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "shop-filled.svg",
+      "path": "/assets/icons/tab-bar/shop-filled.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/shop-filled.svg",
+      "sha256": "bf3b29076774ab49b8846006fae3afdd633fbfea32487f233a1d3d51237f868e"
+    },
+    {
+      "category": "tab-bar",
+      "purpose": "底部导航",
+      "file": "shop-outline.svg",
+      "path": "/assets/icons/tab-bar/shop-outline.svg",
+      "viewBox": "0 0 28 28",
+      "strokeWidths": [
+        1.6
+      ],
+      "colors": [
+        "#FFFFFF"
+      ],
+      "source": "miniprogram/assets/icons/tab-bar/shop-outline.svg",
+      "sha256": "bf396120d69c4c6ddcaaf2f68b5e6aeba5591b7ec315992c12e58ea517c63899"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 const routes = require('../../constants/routes');
 const tabTransition = require('../../utils/tab-transition');
 Page({
-  data: { tabMotion: 'tab-prepared' },
+  data: { tabMotion: '' },
   onShow() {
     tabTransition.show(this, 2);
   },

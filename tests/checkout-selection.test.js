@@ -76,7 +76,7 @@ function page(service){
   let instance;const navigations=[];
   vm.runInNewContext(fs.readFileSync('miniprogram/features/checkout/checkout.js','utf8'),{
     Page:value=>{instance=value;},getCurrentPages:()=>[{route:'features/bag/bag'},{route:'features/checkout/checkout'}],
-    wx:{navigateBack:value=>navigations.push(value)},require:name=>name==='./delivery-status'?require('../miniprogram/features/checkout/delivery-status'):name==='./selection'?service:name.includes('store-information')?
+    wx:{navigateBack:value=>navigations.push(value)},require:name=>name==='./edit-return-state'?require('../miniprogram/features/checkout/edit-return-state').createEditReturnState():name==='./confirmation-session'?require('../miniprogram/features/checkout/confirmation-session'):name==='./appointment-status'?require('../miniprogram/features/checkout/appointment-status'):name==='./delivery-status'?require('../miniprogram/features/checkout/delivery-status'):name==='./selection'?service:name.includes('store-information')?
       require('../miniprogram/services/store-information'):name==='./fulfillment-draft'?{get:()=>({fulfillment:'PICKUP',revision:0,pickupContact:{name:'',phone:''},contactValid:false,fulfillmentAllowed:true,configurationChanged:false})}:name.includes('local-addresses')?
       {selection:()=>({address:null,notice:''})}:{pages:{bag:'/features/bag/bag'},navigate:name=>navigations.push(name)}
   });

@@ -3,7 +3,7 @@ const catalog = require('../../services/catalog');
 const tabTransition = require('../../utils/tab-transition');
 const { measure } = require('../../utils/safe-area');
 Page({
-  data: { tabMotion: 'tab-prepared', topInset: 24, navHeight: 44, capsuleWidth: 104, category: 'cake', categoryIndex: 0, products: [], loading: false, refreshing: false, listReady: false, error: '', hasMore: false, nextCursor: null, source: '',
+  data: { tabMotion: '', topInset: 24, navHeight: 44, capsuleWidth: 104, category: 'cake', categoryIndex: 0, products: [], loading: false, refreshing: false, listReady: false, error: '', hasMore: false, nextCursor: null, source: '',
     categories: [
       { id: 'cake', code: 'CAKE', name: '蛋糕' },
       { id: 'mini', code: 'MINI_CAKE', name: '小蛋糕' },

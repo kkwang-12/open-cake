@@ -6,6 +6,11 @@ page {
   --color-muted: #8A8A8A;
   --color-accent: #B5684C;
   --color-line: #E5E2DD;
+  --tab-bar-inset: 24px;
+  --tab-bar-height: 58px;
+  --tab-bar-bottom-gap: 7px;
+  --tab-bar-occupied-height: calc(var(--tab-bar-height) + var(--tab-bar-bottom-gap) + env(safe-area-inset-bottom));
+  --tab-page-bottom-padding: calc(var(--tab-bar-occupied-height) + 12px);
   background: var(--color-bg);
   color: var(--color-text);
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;

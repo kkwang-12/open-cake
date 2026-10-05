@@ -4,17 +4,31 @@ const {createLocalBagClient}=require('../miniprogram/services/local-bag');
 const {createSpecificationClient}=require('../miniprogram/services/specification');
 const fixture=require('../miniprogram/fixtures/specification-development');
 const clone=value=>JSON.parse(JSON.stringify(value));
-function page(service,modal=options=>options.success({confirm:false}),selection={},catalog={list:async()=>({items:[],hasMore:false})}){
+function page(service,modal=options=>options.success({confirm:false}),selection={},catalog={list:async()=>({items:[],hasMore:false})},platform={}){
   service={...service,reviewAll:service.reviewAll||service.review};
   let instance;const navigations=[],modals=[];
   vm.runInNewContext(fs.readFileSync('miniprogram/features/bag/bag.js','utf8'),{
-    Page:value=>{instance=value;},wx:{showModal:options=>{modals.push(options);modal(options);}},
-    require:name=>name.includes('local-bag')?service:name.includes('selection')?selection:name.includes('services/catalog')?catalog:{navigate:(...args)=>navigations.push(args)}
+    Page:value=>{instance=value;},wx:{...platform,showModal:options=>{modals.push(options);modal(options);}},
+    require:name=>name.includes('safe-area')?require('../miniprogram/utils/safe-area'):name.includes('local-bag')?service:name.includes('selection')?selection:name.includes('services/catalog')?catalog:{navigate:(...args)=>navigations.push(args)}
   });
   instance.data=clone(instance.data);instance.setData=patch=>Object.assign(instance.data,clone(patch));
   return {instance,navigations,modals};
 }
 function event(id,delta){return {currentTarget:{dataset:{id,delta}}};}
+test('Bag title uses native capsule clearance at different widths and safe fallback without loading cart',()=>{
+  for(const width of [320,375,430]){
+    let reviews=0;
+    const {instance,navigations}=page({reviewAll:()=>{reviews++;}},undefined,{},undefined,{
+      getWindowInfo:()=>({windowWidth:width,statusBarHeight:44}),
+      getMenuButtonBoundingClientRect:()=>({left:width-98,top:48,height:32})
+    });
+    instance.onLoad();
+    assert.equal(instance.data.topInset,44);assert.equal(instance.data.navHeight,44);
+    assert.equal(instance.data.capsuleWidth,110);assert.equal(reviews,0);assert.equal(navigations.length,0);
+  }
+  const {instance}=page({});instance.onLoad();
+  assert.equal(instance.data.topInset,24);assert.equal(instance.data.navHeight,44);assert.equal(instance.data.capsuleWidth,104);
+});
 async function client(samples=fixture){
   const settings={stage:'development',mode:'shell',appId:'B03-OFFLINE'};let saved='';
   const platform={getStorageSync:()=>saved,setStorageSync:(_,value)=>{saved=clone(value);}};

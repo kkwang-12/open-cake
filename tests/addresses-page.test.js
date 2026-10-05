@@ -56,7 +56,7 @@ test('X01 Checkout uses the shared selection, reflects changed address versions 
   let instance;const navigations=[];
   vm.runInNewContext(fs.readFileSync('miniprogram/features/checkout/checkout.js','utf8'),{
     Page:value=>{instance=value;},require:name=>name==='./selection'?{get:async()=>({lines:[{lineId:'offline-line'}],quantity:1,subtotalLabel:'168',checkoutAllowed:false})}:
-      name==='./delivery-status'?require('../miniprogram/features/checkout/delivery-status'):name.includes('local-addresses')?addresses:name.includes('store-information')?require('../miniprogram/services/store-information'):
+      name==='./confirmation-session'?require('../miniprogram/features/checkout/confirmation-session'):name==='./appointment-status'?require('../miniprogram/features/checkout/appointment-status'):name==='./delivery-status'?require('../miniprogram/features/checkout/delivery-status'):name.includes('local-addresses')?addresses:name.includes('store-information')?require('../miniprogram/services/store-information'):
         name==='./fulfillment-draft'?{get:()=>({fulfillment:'DELIVERY',revision:0,pickupContact:{name:'',phone:''},contactValid:false,fulfillmentAllowed:true,configurationChanged:false})}:{navigate:(...args)=>navigations.push(args)}
   });
   instance.data=clone(instance.data);instance.setData=patch=>Object.assign(instance.data,clone(patch));await instance.onShow();

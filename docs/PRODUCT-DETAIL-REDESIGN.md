@@ -24,7 +24,7 @@
 
 ## 图标与截图验收
 
-已读取 design-assets/cake-ui-icons-20261004/README.md，并原样复制所需9个SVG到 miniprogram/assets/icons/cake-ui：back、heart-outline/filled、leaf、cake-slice、gift、check、minus、plus。黑色勾选圆底和按钮圆底由WXSS实现；不复制preview.svg或无功能more图标到页面。2.1描边保留。
+已读取 design-assets/cake-ui-icons-20261004/README.md，并原样复制所需9个SVG到 miniprogram/assets/icons：back、heart-outline/filled、leaf、cake-slice、gift、check、minus、plus。黑色勾选圆底和按钮圆底由WXSS实现；不复制preview.svg或无功能more图标到页面。2.1描边保留。
 
 实际微信截图中SVG返回、心形、三列线图标、加减及白色check均正常显示，不需要转换PNG。预览中vConsole关闭；保留微信胶囊/系统安全区，未实现参考图外壳、外部米色背景或假的状态栏。
 

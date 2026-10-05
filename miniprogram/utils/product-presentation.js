@@ -1,9 +1,9 @@
 const {formatCents}=require('../services/catalog');
 // User-confirmed store facts. These describe fulfilment, not unverified ingredients or stock.
 const STORE_FACTS=[
-  {icon:'/assets/icons/cake-ui/leaf.svg',title:'门店自取',description:'30 分钟预约'},
-  {icon:'/assets/icons/cake-ui/cake-slice.svg',title:'门店配送',description:'20 km 范围'},
-  {icon:'/assets/icons/cake-ui/gift.svg',title:'每日营业',description:'08:00–21:00'}
+  {icon:'/assets/icons/product/leaf.svg',title:'门店自取',description:'30 分钟预约'},
+  {icon:'/assets/icons/product/cake-slice.svg',title:'门店配送',description:'20 km 范围'},
+  {icon:'/assets/icons/product/gift.svg',title:'每日营业',description:'08:00–21:00'}
 ];
 function presentGroups(configuration,state){
   return state.groups.map(group=>({
