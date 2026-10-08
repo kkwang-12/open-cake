@@ -2,9 +2,9 @@
 module.exports = {
   "mode": "shell",
   "stage": "development",
-  "appId": "wx7bb778ac05eee0c5",
+  "appId": "wx154f791a17268ace",
   "cloudEnvironments": {
-    "development": "",
+    "development": "cloudbase-d8gwtxzm64150b7e0",
     "test": "",
     "production": ""
   },

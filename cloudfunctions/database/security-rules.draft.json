@@ -172,6 +172,13 @@
       "update": false,
       "delete": false
     },
+    "payment_test_budgets": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
+    },
     "refund_attempts": {
       "read": false,
       "write": false,

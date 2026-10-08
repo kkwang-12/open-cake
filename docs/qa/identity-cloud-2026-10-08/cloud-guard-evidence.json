@@ -1,0 +1,135 @@
+{
+  "scope": "DEVELOPMENT_ONLY_REAL_CLOUD",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "appId": "wx154f791a17268ace",
+  "warmSdkIssue": {
+    "before": {
+      "businessRequestId": "9578a6cf-05d1-43cd-ab16-68ba6dedcb80",
+      "ok": true,
+      "currentInvocationHasNativeIdentity": false
+    },
+    "after": {
+      "platformRequestId": "1b8574b9-b6c9-4e52-ad4a-4ae14255bdfd",
+      "ok": false,
+      "requestId": "e4b4c54e-4308-4e59-8e25-96149976895b",
+      "code": "AUTH_REQUIRED",
+      "invocationFlags": {
+        "parsedEnvironment": true,
+        "hasRequestId": true,
+        "sdkHasNativeOpenId": true,
+        "sdkHasNativeAppId": true,
+        "hasNativeOpenId": false,
+        "sameNativeOpenId": false,
+        "hasNativeAppId": false,
+        "sameNativeAppId": false,
+        "source": "OTHER_OR_MISSING"
+      },
+      "passed": true
+    }
+  },
+  "deployments": [
+    {
+      "functionName": "user",
+      "requestId": "92f6f044-599c-456c-88c4-4521c61a8d99"
+    },
+    {
+      "functionName": "store",
+      "requestId": "b493a63f-01fa-43e2-a0c6-2d5f0611585d"
+    },
+    {
+      "functionName": "jjl-d06-identity-20261008",
+      "requestId": "2c168030-f557-4511-aea3-67b692172775"
+    },
+    {
+      "functionName": "jjl-i03-rejection-20261008",
+      "requestId": "a717b80b-cc4a-4e7c-abcd-012346286216"
+    }
+  ],
+  "functions": [
+    {
+      "name": "user",
+      "status": "Active",
+      "available": "Available",
+      "runtime": "Nodejs20.19",
+      "codeResult": "success",
+      "requestId": "e82787b1-147e-46fe-b5cb-59d92e6189e2"
+    },
+    {
+      "name": "store",
+      "status": "Active",
+      "available": "Available",
+      "runtime": "Nodejs20.19",
+      "codeResult": "success",
+      "requestId": "0da6ecdc-8634-4ec9-8913-00f2cedfe83f"
+    },
+    {
+      "name": "jjl-d06-identity-20261008",
+      "status": "Active",
+      "available": "Available",
+      "runtime": "Nodejs20.19",
+      "codeResult": "success",
+      "requestId": "f150b344-61ae-4ea4-bc31-8b24f4fb6b41"
+    },
+    {
+      "name": "jjl-i03-rejection-20261008",
+      "status": "Active",
+      "available": "Available",
+      "runtime": "Nodejs20.19",
+      "codeResult": "success",
+      "requestId": "e96f85af-082d-430e-bea9-a54e65d4d3d7"
+    }
+  ],
+  "managementRefusals": [
+    {
+      "name": "user",
+      "platformRequestId": "4efd7433-c516-4870-b36b-a36a3213b3b3",
+      "ok": false,
+      "requestId": "8917c43c-c1c3-46e5-a0eb-adeceb38295c",
+      "code": "AUTH_REQUIRED",
+      "passed": true
+    },
+    {
+      "name": "store",
+      "platformRequestId": "26640488-6e23-4610-875f-d98289a49e5d",
+      "ok": false,
+      "requestId": "3cc8c237-b573-43dd-879a-47e371dcf364",
+      "code": "AUTH_REQUIRED",
+      "passed": true
+    },
+    {
+      "name": "jjl-d06-identity-20261008",
+      "platformRequestId": "09679b9e-fbff-40ff-a3de-3c5b64b73c39",
+      "ok": false,
+      "requestId": "b38af3d1-eea6-4601-9ebf-62e93af01626",
+      "code": "AUTH_REQUIRED",
+      "passed": true
+    },
+    {
+      "name": "jjl-i03-rejection-20261008",
+      "platformRequestId": "5c3e0e5b-7913-46ae-8c01-9772197a9513",
+      "ok": false,
+      "requestId": "efd2e3ee-998d-427a-8027-b7bdad1e806c",
+      "code": "AUTH_REQUIRED",
+      "passed": true
+    }
+  ],
+  "dataCounts": {
+    "users": 1,
+    "admin_roles": 0,
+    "audit_logs": 0,
+    "platformRequestId": "05ba4518-afa9-47a4-8bc7-a7c6016e7282"
+  },
+  "forgedEventUser": {
+    "count": 0,
+    "platformRequestId": "9f738a5f-f1bb-4b96-b277-76f4384ff3f0"
+  },
+  "notRun": [
+    "REAL_DEVICE",
+    "TWO_CUSTOMERS",
+    "CLIENT_WRITE_DENIAL",
+    "UNIQUE_CONFLICT",
+    "CONCURRENT_RESERVATIONS",
+    "TRANSACTION_FAILURE_ROLLBACK",
+    "ADMIN_REVOCATION"
+  ]
+}

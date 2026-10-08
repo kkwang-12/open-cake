@@ -18,8 +18,10 @@ function define(domain, action, access, fields, output, mutation = false, sortId
     sortId, status
   });
 }
-define('user','me','PLATFORM','','IdentitySummary',false,null,'LOCAL_IMPLEMENTED_NOT_CLOUD_VERIFIED');
-define('store','health','PLATFORM','','Health',false,null,'LOCAL_IMPLEMENTED_NOT_CLOUD_VERIFIED');
+// me has no business-command key: its first-user provisioning is keyed by the
+// trusted native tuple. `mutation` below denotes explicit keyed commands only.
+define('user','me','PLATFORM','','IdentitySummary',false,null,'DEVELOPMENT_SIMULATOR_VERIFIED_DEVICE_PENDING');
+define('store','health','PLATFORM','','Health',false,null,'DEVELOPMENT_SIMULATOR_VERIFIED_DEVICE_PENDING');
 define('user','bootstrap','PLATFORM','','Profile',true);
 define('user','profile.get','OWNER','','Profile');
 define('user','profile.update','OWNER','expectedVersion:counter displayName:text avatarAssetId?:nullableId','Profile',true);
@@ -44,7 +46,7 @@ define('store','slots.list','PLATFORM','storeId:id fulfillment:fulfillment servi
 define('checkout','quote.create','OWNER','cartId:id expectedCartVersion:counter lines:lines fulfillment:fulfillment contact:contact addressId?:nullableId slotId:id orderNote?:message','Quote',true);
 define('checkout','quote.get','OWNER','quoteId:id','Quote');
 define('order','create','OWNER','quoteId:id expectedQuoteVersion:counter','CommandResult',true);
-define('order','list','OWNER','status?:orderStatus','OrderPage',false,'CREATED_DESC');
+define('order','list','OWNER','status?:orderStatus view?:orderView','OrderPage',false,'CREATED_DESC');
 define('order','get','OWNER','orderId:id','Order');
 define('order','cancelUnpaid','OWNER','orderId:id expectedVersion:counter reason:text','CommandResult',true);
 define('order','cancellation.request','OWNER','orderId:id expectedVersion:counter reason:text','CommandResult',true);
@@ -57,6 +59,7 @@ define('admin','order.get','ORDER_OPERATE','orderId:id','MerchantOrder');
 define('admin','order.transition','CONDITIONAL_REFUND','orderId:id expectedVersion:counter command:storeCommand pickupCredential?:id reason?:text','CommandResult',true);
 define('admin','cancellation.review','CONDITIONAL_REFUND','orderId:id expectedVersion:counter reviewId:id decision:decision refundCents?:counter reason:text','CommandResult',true);
 define('admin','refund.approve','REFUND_APPROVE','orderId:id expectedVersion:counter refundCents:positive reason:text','CommandResult',true);
+define('admin','exceptions.list','REFUND_APPROVE','storeId:id','MerchantExceptionPage',false,'CREATED_DESC');
 define('admin','refund.retry','REFUND_APPROVE','refundId:id expectedVersion:counter reason:text','CommandResult',true);
 define('admin','products.list','CATALOG_WRITE','storeId:id status?:productStatus','MerchantProductPage',false,'CATALOG');
 define('admin','product.save','CATALOG_WRITE','storeId:id productId?:id expectedVersion?:counter draft:json','CommandResult',true);
@@ -115,6 +118,7 @@ function valid(value, type) {
     case 'productStatus': return ['DRAFT','ON_SALE','OFF_SALE','ARCHIVED'].includes(value);
     case 'resourceStatus': return ['OPEN','CLOSED'].includes(value);
     case 'orderStatus': return ['PENDING_PAYMENT','PAID','ACCEPTED','MAKING','READY','DELIVERING','COMPLETED','CANCELLED'].includes(value);
+    case 'orderView': return ['ALL','ACTIVE','CURRENT','PAST','COMPLETED','CANCELLED'].includes(value);
     case 'refundStatus': return ['PENDING','FAILED','SUCCEEDED'].includes(value);
     case 'decision': return ['APPROVE','REJECT'].includes(value);
     case 'storeCommand': return ['ACCEPT','START_MAKING','MARK_READY','START_DELIVERY','COMPLETE_PICKUP','COMPLETE_DELIVERY','REJECT_ORDER'].includes(value);

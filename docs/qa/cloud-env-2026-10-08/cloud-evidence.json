@@ -1,0 +1,104 @@
+{
+  "time": "2026-10-08T02:32:54.927Z",
+  "appId": "wx154f791a17268ace",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "deploymentTool": "CloudBase MCP; wxide lacks runtime/env flags",
+  "deployRequests": {
+    "user": "ff5a8fa3-4bcc-4f83-bc53-0b1a62acfc25",
+    "store": "1fb775ce-32f8-4416-98e6-f41584e63cbe"
+  },
+  "details": [
+    {
+      "name": "user",
+      "time": "2026-10-08T02:29:11.697Z",
+      "success": true,
+      "requestId": "1ee1363c-3428-441a-9e0b-f56879dfb966",
+      "namespace": "cloudbase-d8gwtxzm64150b7e0",
+      "status": "Active",
+      "available": "Available",
+      "type": "Event",
+      "runtime": "Nodejs20.19",
+      "handler": "index.main",
+      "codeResult": "success",
+      "codeSize": 7410237,
+      "codeError": "",
+      "environment": [
+        {
+          "Key": "JJL_APP_ID",
+          "Value": "wx154f791a17268ace"
+        },
+        {
+          "Key": "JJL_CLOUD_ENV",
+          "Value": "cloudbase-d8gwtxzm64150b7e0"
+        },
+        {
+          "Key": "JJL_STAGE",
+          "Value": "development"
+        }
+      ],
+      "triggerCount": 0
+    },
+    {
+      "name": "store",
+      "time": "2026-10-08T02:29:12.259Z",
+      "success": true,
+      "requestId": "12b8f392-822d-4510-8b3c-e16a97c169e9",
+      "namespace": "cloudbase-d8gwtxzm64150b7e0",
+      "status": "Active",
+      "available": "Available",
+      "type": "Event",
+      "runtime": "Nodejs20.19",
+      "handler": "index.main",
+      "codeResult": "success",
+      "codeSize": 7410269,
+      "codeError": "",
+      "environment": [
+        {
+          "Key": "JJL_APP_ID",
+          "Value": "wx154f791a17268ace"
+        },
+        {
+          "Key": "JJL_CLOUD_ENV",
+          "Value": "cloudbase-d8gwtxzm64150b7e0"
+        },
+        {
+          "Key": "JJL_STAGE",
+          "Value": "development"
+        }
+      ],
+      "triggerCount": 0
+    }
+  ],
+  "managementInvocations": [
+    {
+      "functionName": "user",
+      "scope": "MANAGEMENT_INVOKE_NO_NATIVE_IDENTITY",
+      "platformRequestId": "d98bd714-1f63-47b4-b80a-fb8f1d66dbf3",
+      "invokeResult": 0,
+      "result": {
+        "ok": false,
+        "requestId": "9172e3e0-8109-45cd-804c-3449a15f9f00",
+        "error": {
+          "code": "AUTH_REQUIRED",
+          "message": "身份验证失败"
+        }
+      }
+    },
+    {
+      "time": "2026-10-08T02:32:02.307Z",
+      "success": true,
+      "functionName": "store",
+      "scope": "MANAGEMENT_INVOKE_NO_NATIVE_IDENTITY",
+      "platformRequestId": "ab61fe92-73cc-484a-a63b-f3793cb52cf0",
+      "invokeResult": 0,
+      "result": {
+        "ok": false,
+        "requestId": "5f4ff3f1-0377-4a10-b523-c4009c0b4d8e",
+        "error": {
+          "code": "AUTH_REQUIRED",
+          "message": "身份验证失败"
+        }
+      }
+    }
+  ]
+}

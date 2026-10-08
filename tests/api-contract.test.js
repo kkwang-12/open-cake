@@ -7,7 +7,7 @@ function code(run) { assert.throws(run, error => error.code === 'INVALID_REQUEST
 function request(domain,action,payload={}) { return parseApiRequest(domain,{action,payload}); }
 
 test('D07 目标契约独立于现有部署，所有变更要求幂等键与声明身份边界',()=>{
-  assert.equal(Object.keys(ACTION_CONTRACTS).length,60);
+  assert.equal(Object.keys(ACTION_CONTRACTS).length,61);
   const existing = Object.values(ACTION_CONTRACTS).filter(value=>value.status!=='PLANNED');
   assert.deepEqual(existing.map(value=>value.domain+'.'+value.action).sort(),['store.health','user.me']);
   for(const contract of Object.values(ACTION_CONTRACTS)) {

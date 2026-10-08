@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: A07 every PLANNED action is blocked by the actual client before any stubbed cloud call
+ok 1 - A07 every PLANNED action is blocked by the actual client before any stubbed cloud call
+  ---
+  duration_ms: 153.5516
+  type: 'test'
+  ...
+# Subtest: A07 legacy staff, order and fake refund calls are denied in all eleven prohibited runtime combinations
+ok 2 - A07 legacy staff, order and fake refund calls are denied in all eleven prohibited runtime combinations
+  ---
+  duration_ms: 10.9681
+  type: 'test'
+  ...
+# Subtest: A07 explicit development shell demo reaches only the isolated stub, proving the closed-runtime probe tests the actual guard
+ok 3 - A07 explicit development shell demo reaches only the isolated stub, proving the closed-runtime probe tests the actual guard
+  ---
+  duration_ms: 1.3461
+  type: 'test'
+  ...
+# Subtest: A07 current nonlegacy JS dependencies and canonical routes contain no literal legacy import or local HTTP URL
+ok 4 - A07 current nonlegacy JS dependencies and canonical routes contain no literal legacy import or local HTTP URL
+  ---
+  duration_ms: 125.7562
+  type: 'test'
+  ...
+# Subtest: A07 actual user handler ignores staff/PIN identities and cannot turn me into an admin action
+ok 5 - A07 actual user handler ignores staff/PIN identities and cannot turn me into an admin action
+  ---
+  duration_ms: 2.5319
+  type: 'test'
+  ...
+# Subtest: A07 customer request, explicit rejection, pickup confirmation and lost-response replay preserve original resources and facts
+ok 6 - A07 customer request, explicit rejection, pickup confirmation and lost-response replay preserve original resources and facts
+  ---
+  duration_ms: 63.2692
+  type: 'test'
+  ...
+# Subtest: A07 manual delivery after cancellation rejection and later partial refund keeps fulfillment, slot, items and original delivery replay
+ok 7 - A07 manual delivery after cancellation rejection and later partial refund keeps fulfillment, slot, items and original delivery replay
+  ---
+  duration_ms: 47.446
+  type: 'test'
+  ...
+# Subtest: A07 paid cancellation approval precedes fulfillment and unknown refund queries the same number without double submission
+ok 8 - A07 paid cancellation approval precedes fulfillment and unknown refund queries the same number without double submission
+  ---
+  duration_ms: 28.0757
+  type: 'test'
+  ...
+# Subtest: A07 current revocation denies refund recovery and original receipt replay before related finance reads
+ok 9 - A07 current revocation denies refund recovery and original receipt replay before related finance reads
+  ---
+  duration_ms: 14.0117
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 628.3162

@@ -23,6 +23,7 @@ API 本地请求上限 64 KiB（UTF-8），是本项目技术上限，不声称�
 | storePatch | 非空对象，仅 name/address/phone/timeZone/status/mapSelectionToken；禁止 activeConfigId / 客户端已核验坐标；OPEN 必须校验正式资料与完整发布配置 |
 | json | 管理草稿对象；完整 Product/SKU/资源/图片/配置 schema 及发布校验沿用 D02–D05，不属于本模块已完成验证 |
 | category / fulfillment | CAKE/MINI_CAKE/BREAD；PICKUP/DELIVERY |
+| orderView（O06） | ALL / ACTIVE / CURRENT / PAST / COMPLETED / CANCELLED；ACTIVE=CURRENT，按履约轴分组，不按退款轴 |
 | date | YYYY-MM-DD 基础格式；真实日历 / 时区 / 窗口由 D05 验证 |
 | search | NFC + 首尾 trim，最多 64 Unicode 码点，空串等同不搜索；不改变内部文本 / 大小写；名称文字子串，服务器转义元字符，不接受客户端正则 |
 | pageSize / cursor | 20 默认 / 最大 50；cursor 可 null；完整签名及 scope 校验见分页章节 |
@@ -45,11 +46,11 @@ COND 表示条件能力：admin.order.transition 的 REJECT_ORDER 需同一当�
 
 ## 目标 action 清单
 
-下表由运行时目标 registry 核对，共 60 项；? 表示可选字段。输入省略重复的 pageSize/cursor 说明，KEY 即含必填 idempotencyKey。所有 action 通用错误为 INVALID_REQUEST、AUTH_REQUIRED、FORBIDDEN、INTERNAL_ERROR；KEY 另有 IDEMPOTENCY_KEY_REUSED / BUSY，PAGE 另有 CURSOR_INVALID / CURSOR_EXPIRED。各行列出额外常见业务错误，实际领域仍可能传播固定公开错误表中的适用代码。
+下表由运行时目标 registry 核对，共 61 项（A06 新增仅 PLANNED 的 admin.exceptions.list）；? 表示可选字段。输入省略重复的 pageSize/cursor 说明，KEY 即含必填 idempotencyKey。所有 action 通用错误为 INVALID_REQUEST、AUTH_REQUIRED、FORBIDDEN、INTERNAL_ERROR；KEY 另有 IDEMPOTENCY_KEY_REUSED / BUSY，PAGE 另有 CURSOR_INVALID / CURSOR_EXPIRED。各行列出额外常见业务错误，实际领域仍可能传播固定公开错误表中的适用代码。
 
 | domain.action | 身份 / 能力 | 输入 payload | 输出 DTO | 幂等 / 分页 | 额外业务错误 |
 |---|---|---|---|---|---|
-| user.me | PLATFORM | {} | IdentitySummary | READ | NOT_FOUND / VERSION_CONFLICT |
+| user.me | PLATFORM | {} | IdentitySummary | 原生元组 create-if-absent；无客户端业务 key | AUTH_REQUIRED / INTERNAL_ERROR |
 | store.health | PLATFORM | {} | Health | READ | NOT_FOUND / CONFIGURATION_REQUIRED / APPOINTMENT_UNAVAILABLE |
 | user.bootstrap | PLATFORM | idempotencyKey:key | Profile | KEY | VERSION_CONFLICT |
 | user.profile.get | OWNER | {} | Profile | READ | NOT_FOUND |
@@ -75,7 +76,7 @@ COND 表示条件能力：admin.order.transition 的 REJECT_ORDER 需同一当�
 | checkout.quote.create | OWNER | cartId:id, expectedCartVersion:counter, lines:lines, fulfillment:fulfillment, contact:contact, addressId?:nullableId, slotId:id, orderNote?:message, idempotencyKey:key | Quote | KEY | NOT_FOUND / QUOTE_EXPIRED / QUOTE_CHANGED / PRODUCT_UNAVAILABLE / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / CONFIGURATION_REQUIRED |
 | checkout.quote.get | OWNER | quoteId:id | Quote | READ | NOT_FOUND / QUOTE_EXPIRED / QUOTE_CHANGED / PRODUCT_UNAVAILABLE / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / CONFIGURATION_REQUIRED |
 | order.create | OWNER | quoteId:id, expectedQuoteVersion:counter, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / QUOTE_EXPIRED / QUOTE_CHANGED / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / PAYMENT_PENDING / REFUND_IN_PROGRESS / INVALID_TRANSITION |
-| order.list | OWNER | status?:orderStatus, pageSize?:pageSize, cursor?:cursor | OrderPage | READ + PAGE CREATED_DESC | NOT_FOUND / VERSION_CONFLICT / QUOTE_EXPIRED / QUOTE_CHANGED / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / PAYMENT_PENDING / REFUND_IN_PROGRESS / INVALID_TRANSITION |
+| order.list | OWNER | status?:orderStatus, view?:orderView, pageSize?:pageSize, cursor?:cursor | OrderPage | READ + PAGE CREATED_DESC | NOT_FOUND / VERSION_CONFLICT / QUOTE_EXPIRED / QUOTE_CHANGED / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / PAYMENT_PENDING / REFUND_IN_PROGRESS / INVALID_TRANSITION |
 | order.get | OWNER | orderId:id | Order | READ | NOT_FOUND / VERSION_CONFLICT / QUOTE_EXPIRED / QUOTE_CHANGED / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / PAYMENT_PENDING / REFUND_IN_PROGRESS / INVALID_TRANSITION |
 | order.cancelUnpaid | OWNER | orderId:id, expectedVersion:counter, reason:text, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / QUOTE_EXPIRED / QUOTE_CHANGED / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / PAYMENT_PENDING / REFUND_IN_PROGRESS / INVALID_TRANSITION |
 | order.cancellation.request | OWNER | orderId:id, expectedVersion:counter, reason:text, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / QUOTE_EXPIRED / QUOTE_CHANGED / RESOURCE_UNAVAILABLE / APPOINTMENT_UNAVAILABLE / LOCATION_REQUIRED / DELIVERY_OUT_OF_RANGE / PAYMENT_PENDING / REFUND_IN_PROGRESS / INVALID_TRANSITION |
@@ -89,6 +90,7 @@ COND 表示条件能力：admin.order.transition 的 REJECT_ORDER 需同一当�
 | admin.cancellation.review | COND | orderId:id, expectedVersion:counter, reviewId:id, decision:decision, refundCents?:counter, reason:text, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / INVALID_TRANSITION / INVALID_REQUEST / REFUND_IN_PROGRESS / PAYMENT_PENDING / CONFIGURATION_REQUIRED |
 | admin.refund.approve | REFUND_APPROVE | orderId:id, expectedVersion:counter, refundCents:positive, reason:text, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / INVALID_TRANSITION / INVALID_REQUEST / REFUND_IN_PROGRESS / PAYMENT_PENDING / CONFIGURATION_REQUIRED |
 | admin.refund.retry | REFUND_APPROVE | refundId:id, expectedVersion:counter, reason:text, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / INVALID_TRANSITION / INVALID_REQUEST / REFUND_IN_PROGRESS / PAYMENT_PENDING / CONFIGURATION_REQUIRED |
+| admin.exceptions.list | REFUND_APPROVE | storeId:id, pageSize?:pageSize, cursor?:cursor | MerchantExceptionPage | READ + PAGE CREATED_DESC | NOT_FOUND / VERSION_CONFLICT / INVALID_REQUEST / CONFIGURATION_REQUIRED |
 | admin.products.list | CATALOG_WRITE | storeId:id, status?:productStatus, pageSize?:pageSize, cursor?:cursor | MerchantProductPage | READ + PAGE CATALOG | NOT_FOUND / VERSION_CONFLICT / INVALID_TRANSITION / INVALID_REQUEST / REFUND_IN_PROGRESS / PAYMENT_PENDING / CONFIGURATION_REQUIRED |
 | admin.product.save | CATALOG_WRITE | storeId:id, productId?:id, expectedVersion?:counter, draft:json, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / INVALID_TRANSITION / INVALID_REQUEST / REFUND_IN_PROGRESS / PAYMENT_PENDING / CONFIGURATION_REQUIRED |
 | admin.product.status.set | CATALOG_WRITE | productId:id, expectedVersion:counter, status:productStatus, reason:text, idempotencyKey:key | CommandResult | KEY | NOT_FOUND / VERSION_CONFLICT / INVALID_TRANSITION / INVALID_REQUEST / REFUND_IN_PROGRESS / PAYMENT_PENDING / CONFIGURATION_REQUIRED |
@@ -142,6 +144,8 @@ COND 表示条件能力：admin.order.transition 的 REJECT_ORDER 需同一当�
 | RolePage | 同店 ROLE_MANAGE：roleId/version/subjectId/storeIds/capabilities/status/revokedAt；多店角色须有整份可管理范围，不借一店命中暴露其余范围；无 OpenID |
 | AuditPage | 同店 AUDIT_READ：auditId/action/脱敏 actor与target与change摘要/createdAt；无原始联系方式、地址、留言、平台身份或资金报文 |
 
+O06 补充：order.list 可选 view 与精确 status 取交集，查询 / 游标均绑定规范化 view 与 status。CURRENT 是待付至配送中，PAST 是完成 / 取消；退款摘要独立显示累计成功 / 未决金额和部分 / 全额完成程度。Order 增加 group / statusLabel / paymentLabel / availableActions 和公开 timeline；卡片仅产品名称 / 封面 / 数量、状态 / 金额 / 生命周期、预约和取消 / 退款摘要，不含本人联系方式 / 地址 / 留言。内部动作 enabled=false，不能作为命令鉴权。历史图片只能读原版本，未获准或缺失为空；公开日志不回传原文理由 / 内部身份与事件。当前仅 OFFLINE_ORDER_PAGE / DETAIL，尚无 handler / 页面实接，见 [O06-ORDER-READ.md](O06-ORDER-READ.md)。
+
 PublicMedia={assetId,storageRef,sourceKind,revision}，只输出合法公开引用，不用短期签名 URL 作永久快照。头像引用仍按本人授权校验；真实媒体上传、来源和生命周期在 C01/A04 落实，当前无新上传接口。
 StoreRef={storeId,name,address,phone,timeZone}；Appointment={serviceDate,timeZone,startAt,endAt,fulfillment,windowNature}，配送固定 ESTIMATED。
 PurchaseItem={lineId,productId,skuId,categoryCode,productName,skuDescription,selectedOptions,productImage或null,quantity,cakeMessage,unitPriceCents,lineTotalCents}。
@@ -193,8 +197,15 @@ api-contract.js 的 publicError 只返回固定 code/message；不复制 message
 2. 用户确认 Quote 后 order.create 提交 quoteId/expectedQuoteVersion/下单 key。云端复核归属 / 时效 / 未消费、现行事实 / 商品 / 地址版本 / 发布配置 / 范围 / 时段 / 库存；同一真实事务写订单头 / 行 / 日志 / reservations、更新全资源、消费报价、记录幂等。失败不留半单或局部占用。
 3. 一报价最多一个 consumedOrderId。同键返回原结果；不同键也不能再次消费；同本人已有 consumedOrderId 可受限返回原单引用。事实变化 QUOTE_CHANGED 须重新确认，不能自动涨价。
 4. 返回 PENDING_PAYMENT 与统一付款截止。payment.create 读取本人订单状态和金额，先持久化唯一未决意图 / 商户号，再事务外调选定适配器；无真实接入配置明确失败，不生成模拟唤起参数。
+
 5. 前端唤起支付后无论成功 / 取消 / 失败，只查询 payment.state.get；不写付款轴。可信通知 / 查单核对商户 / AppID / 意图 / 币种 / 全额分金额，按事件与交易号去重入账。未知展示确认中，重复请求沿用原意图。
 6. 可信付款才 PAID、资源 CONFIRMED。取消 / 过期先查单 / 关单，未知不释放；取消后迟到实付记账并计划全额退款，保持取消。退款持久化审批意图后事务外发起，重试同退款号，失败仍占预算。
+
+2026-10-05 P02 已在离线注入事务服务验证唯一意图、独立商户号、受控预算与跨 key 复用；claimDispatch 的一次发送占权 / token 是内部要求，不是公开 action。仅返回不可调用计划、payInvocation=null；发送后未知 / 响应丢失只要求查单，尚未执行外部调用、签发 READY 参数或实现 state.get handler / 关闭后重付。现有 PaymentSession 仍是目标协议，不将内部发送数据直接投影；真实传输格式继续待 E03/P01。见 [P02](P02-PAYMENT-INTENTS.md)。
+
+2026-10-05 P03 注入来源边界后的业务核验、通知 / 交易双去重、原子入账 / 资源确认及异常资金隔离离线通过；没有真实 callback 传输格式、原始字节验签 / 解密、平台转发认证或 HTTP 应答。处理结果不投影成 PaymentSession，也不开放客户端 SYSTEM action。未来应答必须晚于资金处理或可信恢复证据持久提交；无云时不能拿内部 sourceAccepted 冒充成功应答。下一项 P04 查单 / 关单与迟到款协调，见 [P03](P03-PAYMENT-NOTIFICATIONS.md)。
+
+P04 本地恢复请求先提交再输出内部查询 / 关闭要求，实际网络执行器尚未实现。经注入验证的结果按原请求绑定：查询 SUCCESS 共用资金去重；关闭空 ACK / 未知只要求查询，可信 CLOSED 才写摘要并允许 O05 重新取消。迟到款补偿意图与告警需求持久保存，退款 / 告警传输待接入；不新增用户 SYSTEM action 或真实网络协议字段。见 [P04](P04-PAYMENT-RECOVERY.md)。
 
 ```mermaid
 sequenceDiagram

@@ -1,0 +1,15 @@
+{
+  "results": [
+    {
+      "name": "../a07-escape",
+      "exit": 1,
+      "message": "INVALID_EVIDENCE_DIRECTORY"
+    },
+    {
+      "name": "a07-2026-10-06-final",
+      "exit": 1,
+      "message": "EEXIST"
+    }
+  ],
+  "evidenceUnchanged": true
+}

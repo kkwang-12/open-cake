@@ -1,5 +1,7 @@
 # 阶段二执行记录：数据模型
 
+2026-10-08补验收更新：R1已完成配置，user.me已部署并真实事务创建/读取默认顾客。SDK复用实例残留身份缺陷已修复并云端复验；三集合客户端读拒绝通过。实查users=1、admin_roles=0、audit_logs=0。全套971/971、静态354；真机、完整业务权限、唯一冲突/多文档/资源并发/逐写回滚仍待补，不据单用户事务宣称整阶段完成。详见[真实结果](PHASE-2-CLOUD-REVALIDATION-2026-10-08.md)、[下一项D04](D04-CLOUD-SDK-ACCEPTANCE-PLAN.md)与[67 Task台账](CLOUD-BACKFILL-TRACKER-2026-10-08.md)。
+
 日期：2026-10-03。当前工作分支：`codex/phase-1-initialization`，保留前一轮未提交的 Hero 修复；未自动 commit / push。
 
 ## 推进依据与边界

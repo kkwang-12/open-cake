@@ -7,15 +7,18 @@
 | 目录 | 文件／用途 | 画布与实际描边 |
 |---|---|---|
 | `navigation/` | `back.svg` 返回；右箭头复用同图形并在页面旋转 | 24×24、2.1、`#111111` |
+| `navigation/` | `account-orders.svg`、`account-location.svg`、`account-service.svg`、`account-store.svg`、`account-info.svg` 我的菜单 | 24×24、1.8、`#111111` |
 | `controls/` | `plus.svg`、`minus.svg`、`more-vertical.svg` 通用操作 | 24×24、2.1；更多为实心圆点 |
+| `controls/` | `settings.svg` 我的设置；`avatar-default.svg` 未登录头像 | 设置 24×24、1.8、`#111111`；头像 64×64、灰色填充 |
 | `commerce/` | `bag-plus.svg`、`bag-minus.svg` 购物袋数量；`trash.svg` 删除 | 24×24；数量 2.7、`#000000`；删除 1.6、`#111111` |
 | `product/` | `cake-slice.svg` 蛋糕／缺图；`leaf.svg`、`gift.svg` 商品服务信息 | 24×24、2.1、`#111111` |
+| `product/` | `custom-design.svg` 专属设计；`ingredient-check.svg` 优选食材，供我的首页横幅服务条使用 | 24×24、1.8、`#111111` |
 | `feedback/` | `heart-outline.svg`、`heart-filled.svg` 收藏；`check.svg` 选中 | 24×24、2.1；勾号白色，无内置黑色圆底 |
 | `fulfillment/` | `pickup-bag.svg` 到店自取；`delivery-truck.svg` 配送，各有灰、白版本 | 24×24、1.8、圆头圆角 |
 | `forms/` | `calendar.svg`、`clock.svg`、`contact-person.svg`、`phone.svg`，各有灰、白版本；日期与时间另有禁用版本 | 24×24、1.8、圆头圆角 |
 | `tab-bar/` | `home`、`shop`、`orders`、`account` 的 `-outline.svg`、`-filled.svg` | 28×28、1.6、白色；当前导航实际使用 outline，选中反馈由样式处理 |
 
-各目录内均保留独立 SVG。运行时文件共 41 个；索引见 [index.json](index.json)，每项列出完整引用路径、用途、画布、线宽和内置颜色。
+各目录内均保留独立 SVG。运行时文件共 50 个；索引见 [index.json](index.json)，每项列出完整引用路径、用途、画布、线宽和内置颜色。
 
 ```xml
 <image src="/assets/icons/navigation/back.svg" mode="aspectFit" />
@@ -23,7 +26,7 @@
 <image src="/assets/icons/forms/calendar-disabled.svg" mode="aspectFit" />
 ```
 
-引用路径从小程序根目录开始，以 `/assets/icons/` 开头。页面实际尺寸保持原值：返回图标 24px、点击区 44px；填写订单表单图标 18px；底部导航图标 21px。
+引用路径从小程序根目录开始，以 `/assets/icons/` 开头。页面实际尺寸：返回图标 24px、点击区 44px；填写订单表单图标 18px；底部导航图标 21px；我的菜单与设置图标 20px、默认头像 64px。我的收藏复用现有心形，右箭头复用返回图标旋转显示。
 
 ## 颜色与版本
 
@@ -35,6 +38,7 @@
 ## 设计原稿与归档
 
 原始设计稿保留在 `design-assets/cake-ui-icons-20261004/`，其 `preview.svg` 是素材预览，不是运行时图标。该目录 [README](../../../design-assets/cake-ui-icons-20261004/README.md) 列出两套线宽来源。
+我的首页新增 7 个 SVG 为按用户选定界面直接绘制的本地矢量素材，未复制参考截图的位图图标；记录见 [本页施工记录](../../../design-assets/account-flow-20261006/account-home-implementation.md)。
 
 已被用户六个新原稿替代的早期 `pickup-dark/light.svg`、`delivery-dark/light.svg` 移至 `design-assets/archive/checkout-icons-legacy/`，不进入小程序运行时素材库。
 

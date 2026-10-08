@@ -9,12 +9,28 @@ function page(service,modal=options=>options.success({confirm:false}),selection=
   let instance;const navigations=[],modals=[];
   vm.runInNewContext(fs.readFileSync('miniprogram/features/bag/bag.js','utf8'),{
     Page:value=>{instance=value;},wx:{...platform,showModal:options=>{modals.push(options);modal(options);}},
-    require:name=>name.includes('safe-area')?require('../miniprogram/utils/safe-area'):name.includes('local-bag')?service:name.includes('selection')?selection:name.includes('services/catalog')?catalog:{navigate:(...args)=>navigations.push(args)}
+    require:name=>name==='./removal-motion'?require('../miniprogram/features/bag/removal-motion'):name.includes('safe-area')?require('../miniprogram/utils/safe-area'):name.includes('local-bag')?service:name.includes('selection')?selection:name.includes('services/catalog')?catalog:{navigate:(...args)=>navigations.push(args)}
   });
-  instance.data=clone(instance.data);instance.setData=patch=>Object.assign(instance.data,clone(patch));
+  instance.data=clone(instance.data);instance.setData=(patch,ready)=>{Object.assign(instance.data,clone(patch));if(ready)ready();};
   return {instance,navigations,modals};
 }
 function event(id,delta){return {currentTarget:{dataset:{id,delta}}};}
+test('Bag full swipe emits one light haptic, suppresses tap and deletes on release without confirmation',async()=>{
+  const vibrations=[];
+  const service=await client(),{instance,navigations,modals}=page(service,undefined,{},undefined,{vibrateShort:options=>vibrations.push(options.type)});await instance.onShow();
+  const id=instance.data.lines[0].lineId;
+  instance.swipeStarted({id});assert.equal(instance._swipingId,id);
+  instance.swipeThreshold({id});instance.swipeThreshold({id});assert.deepEqual(vibrations,['light']);
+  await instance.swipeReleased({id,remove:false});assert.equal(service.list().quantity,1);
+  await instance.removeTapped(event(id));assert.equal(service.list().quantity,1);
+  instance.openProduct(event(instance.data.lines[0].productId));assert.equal(navigations.length,0);
+  instance.swipeStarted({id});instance.swipeThreshold({id});
+  await instance.swipeReleased({id,remove:true});
+  assert.equal(service.list().quantity,0);assert.equal(instance.data.quantity,0);
+  assert.equal(instance.data.subtotalLabel,'0');assert.equal(instance.data.lines.length,0);
+  assert.equal(instance.data.selectedQuantity,0);assert.equal(modals.length,0);assert.equal(instance.data.busy,false);
+  instance.onHide();assert.equal(instance.data.swipingId,'');
+});
 test('Bag title uses native capsule clearance at different widths and safe fallback without loading cart',()=>{
   for(const width of [320,375,430]){
     let reviews=0;
@@ -28,6 +44,53 @@ test('Bag title uses native capsule clearance at different widths and safe fallb
   }
   const {instance}=page({});instance.onLoad();
   assert.equal(instance.data.topInset,24);assert.equal(instance.data.navHeight,44);assert.equal(instance.data.capsuleWidth,104);
+});
+test('Full swipe commits after exit and collapse, then consecutive deletes keep stable IDs and correct totals',async()=>{
+  const real=await client(),item=fixture.items[1],sku=item.skus[0];
+  await real.add({productId:item.productId,productVersion:item.version,skuId:sku.skuId,skuVersion:sku.version,
+    selectedOptions:sku.selectedOptions,unitPriceCents:sku.unitPriceCents,quantity:2,cakeMessage:'第二件'});
+  const removed=[],service={...real,remove:(id,revision)=>{removed.push(id);return real.remove(id,revision);}};
+  const {instance,modals}=page(service);await instance.onShow();
+  const [first,second]=instance.data.lines.map(line=>line.lineId);
+  const secondNode=instance.data.lineNodeIds[second],resetBefore=instance.data.swipeReset;
+  instance.createSelectorQuery=()=>{const query={select(selector){assert.ok(Object.values(instance.data.lineNodeIds).some(id=>selector==='#'+id));return query;},boundingClientRect(fn){fn({height:140});return query;},exec(){}};return query;};
+  instance.swipeStarted({id:first});
+  const pending=instance.swipeReleased({id:first,remove:true});
+  assert.equal(instance.data.removingId,first);assert.equal(instance.data.removalCollapsing,false);
+  assert.equal(real.list().quantity,3);assert.deepEqual(removed,[]);
+  await instance.remove(event(second));assert.deepEqual(removed,[]);
+  await pending;
+  assert.deepEqual(removed,[first]);assert.equal(instance.data.lines[0].lineId,second);
+  assert.equal(instance.data.lineNodeIds[second],secondNode);assert.ok(instance.data.swipeReset>resetBefore);
+  assert.equal(instance.data.quantity,2);assert.equal(instance.data.selectedQuantity,2);assert.equal(instance.data.subtotalLabel,'376');
+  instance.swipeStarted({id:second});await instance.swipeReleased({id:second,remove:true});
+  assert.deepEqual(removed,[first,second]);assert.equal(real.list().quantity,0);
+  assert.equal(instance.data.lines.length,0);assert.equal(instance.data.quantity,0);assert.equal(instance.data.selectedQuantity,0);
+  assert.equal(instance.data.subtotalLabel,'0');assert.equal(modals.length,0);assert.equal(instance.data.removingId,'');
+});
+test('A failed full swipe write restores the persisted row and resets its deletion state',async()=>{
+  const real=await client(),{instance}=page({...real,remove:()=>{throw {code:'LOCAL_BAG_WRITE_FAILED'};}});
+  await instance.onShow();const id=instance.data.lines[0].lineId;
+  instance.swipeStarted({id});await instance.swipeReleased({id,remove:true});
+  assert.equal(instance.data.lines[0].lineId,id);assert.equal(instance.data.quantity,1);assert.equal(instance.data.subtotalLabel,'188');
+  assert.equal(real.list().quantity,1);assert.equal(instance.data.removingId,'');assert.equal(instance.data.busy,false);
+  assert.match(instance.data.error,/保存失败/);
+});
+test('Swipe width comes from the laid-out row, resize resets gestures and stale measurements are ignored',async()=>{
+  const {instance}=page(await client(),undefined,{},undefined,{nextTick:fn=>fn()});
+  await instance.onShow();let callback;
+  instance.createSelectorQuery=()=>({select:selector=>{assert.equal(selector,'.bag-line-content');return {boundingClientRect:fn=>{callback=fn;return {exec(){}};}};}});
+  instance.measureSwipeWidth();callback({width:343});assert.equal(instance.data.swipeWidth,343);
+  const id=instance.data.lines[0].lineId;instance.swipeStarted({id});instance.onResize();
+  assert.equal(instance.data.swipingId,'');callback({width:398});assert.equal(instance.data.swipeWidth,398);
+  instance.measureSwipeWidth();instance.onHide();callback({width:100});assert.equal(instance.data.swipeWidth,398);
+});
+test('Leaving during the deletion animation cancels the pending write and clears temporary layout',async()=>{
+  const service=await client(),{instance}=page(service);await instance.onShow();
+  instance.createSelectorQuery=()=>{const query={select(){return query;},boundingClientRect(fn){fn({height:140});return query;},exec(){}};return query;};
+  const pending=instance.remove(event(instance.data.lines[0].lineId));assert.equal(instance.data.removingHeight,140);
+  instance.onHide();await pending;
+  assert.equal(service.list().quantity,1);assert.equal(instance.data.removingId,'');assert.equal(instance.data.removingHeight,0);assert.equal(instance.data.busy,false);
 });
 async function client(samples=fixture){
   const settings={stage:'development',mode:'shell',appId:'B03-OFFLINE'};let saved='';
@@ -48,7 +111,7 @@ test('bag quantity/remove totals include previously unchecked products without i
   instance.onHide();await instance.onShow();assert.equal(instance.data.lines[0].selected,true);
   assert.equal(instance.data.selectedQuantity,2);
   assert.deepEqual(clone(instance.data.lines),(await service.reviewAll()).lines);
-  await instance.remove(event(id));assert.deepEqual(instance.data.lines,[]);assert.equal(instance.data.quantity,0);
+  await instance.removeTapped(event(id));assert.deepEqual(instance.data.lines,[]);assert.equal(instance.data.quantity,0);
   assert.deepEqual(navigations,[]);
 });
 
@@ -155,7 +218,7 @@ test('bag thumbnails support shared products, missing/error images and do not al
 test('bag measured bottom space matches wrapped summary and clears checkout when empty',async()=>{
   const service=await client(),{instance}=page(service);await instance.onShow();
   let callback;
-  instance.createSelectorQuery=()=>({select:()=>({boundingClientRect:fn=>{callback=fn;return {exec:()=>{}};}})});
+  instance.createSelectorQuery=()=>({select:selector=>({boundingClientRect:fn=>{if(selector==='.bag-summary')callback=fn;else fn({height:140});return {exec(){}};}})});
   // The runtime measurement includes wrapped notices and the safe-area padding.
   const source=fs.readFileSync('miniprogram/features/bag/bag.js','utf8');let measured;
   vm.runInNewContext(source,{Page:value=>{measured=value;},wx:{nextTick:fn=>fn()},require:()=>({})});

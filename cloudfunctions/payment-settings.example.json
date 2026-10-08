@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "profiles": {
+    "development": null,
+    "test": null,
+    "production": null
+  }
+}

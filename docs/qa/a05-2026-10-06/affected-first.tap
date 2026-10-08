@@ -1,0 +1,946 @@
+TAP version 13
+# Subtest: A01 controlled bootstrap writes one role, immutable scoped audit and receipt; all runtime gates remain closed
+ok 1 - A01 controlled bootstrap writes one role, immutable scoped audit and receipt; all runtime gates remain closed
+  ---
+  duration_ms: 12.4913
+  type: 'test'
+  ...
+# Subtest: A01 ordinary or cloned invocation and first visitor never become administrator
+ok 2 - A01 ordinary or cloned invocation and first visitor never become administrator
+  ---
+  duration_ms: 2.3161
+  type: 'test'
+  ...
+# Subtest: A01 initial arrangement is bound to app/environment, verified user, recognized stores, capability vocabulary and time window
+ok 3 - A01 initial arrangement is bound to app/environment, verified user, recognized stores, capability vocabulary and time window
+  ---
+  duration_ms: 6.5834
+  type: 'test'
+  ...
+# Subtest: A01 missing, disabled or forged user mapping cannot receive initial role
+ok 4 - A01 missing, disabled or forged user mapping cannot receive initial role
+  ---
+  duration_ms: 3.7852
+  type: 'test'
+  ...
+# Subtest: A01 bootstrap lost response replays original result and different authorization cannot initialize again
+ok 5 - A01 bootstrap lost response replays original result and different authorization cannot initialize again
+  ---
+  duration_ms: 4.0521
+  type: 'test'
+  ...
+# Subtest: A01 concurrent bootstrap attempts serialize to one initial role and one audit
+ok 6 - A01 concurrent bootstrap attempts serialize to one initial role and one audit
+  ---
+  duration_ms: 2.8722
+  type: 'test'
+  ...
+# Subtest: A01 grant creates immutable store/capability scope; revoke preserves evidence and denies the next sensitive check
+ok 7 - A01 grant creates immutable store/capability scope; revoke preserves evidence and denies the next sensitive check
+  ---
+  duration_ms: 12.1935
+  type: 'test'
+  ...
+# Subtest: A01 no client role, owner, status, capability or operator override; forged principal is rejected
+ok 8 - A01 no client role, owner, status, capability or operator override; forged principal is rejected
+  ---
+  duration_ms: 4.5931
+  type: 'test'
+  ...
+# Subtest: A01 principals from a different environment/app and stale or disabled callers are refused
+ok 9 - A01 principals from a different environment/app and stale or disabled callers are refused
+  ---
+  duration_ms: 4.0667
+  type: 'test'
+  ...
+# Subtest: A01 self grant and self revoke are forbidden even to a full administrator
+ok 10 - A01 self grant and self revoke are forbidden even to a full administrator
+  ---
+  duration_ms: 4.0383
+  type: 'test'
+  ...
+# Subtest: A01 delegation cannot exceed one current role in stores or capabilities; ROLE_MANAGE alone is not a wildcard
+ok 11 - A01 delegation cannot exceed one current role in stores or capabilities; ROLE_MANAGE alone is not a wildcard
+  ---
+  duration_ms: 4.6495
+  type: 'test'
+  ...
+# Subtest: A01 split capability grants cannot be combined to delegate a stronger role
+ok 12 - A01 split capability grants cannot be combined to delegate a stronger role
+  ---
+  duration_ms: 3.8621
+  type: 'test'
+  ...
+# Subtest: A01 multi-store delegation and revocation require complete scope in one role
+ok 13 - A01 multi-store delegation and revocation require complete scope in one role
+  ---
+  duration_ms: 4.5371
+  type: 'test'
+  ...
+# Subtest: A01 same key replays after service reconstruction, changed payload fails, duplicate scope under another key does not add roles
+ok 14 - A01 same key replays after service reconstruction, changed payload fails, duplicate scope under another key does not add roles
+  ---
+  duration_ms: 4.8639
+  type: 'test'
+  ...
+# Subtest: A01 replay of an old grant never reactivates a revoked role; regrant is a distinct immutable role
+ok 15 - A01 replay of an old grant never reactivates a revoked role; regrant is a distinct immutable role
+  ---
+  duration_ms: 11.9082
+  type: 'test'
+  ...
+# Subtest: A01 replay still requires current caller authority and an intact immutable audit/receipt chain
+ok 16 - A01 replay still requires current caller authority and an intact immutable audit/receipt chain
+  ---
+  duration_ms: 15.8509
+  type: 'test'
+  ...
+# Subtest: A01 disabled member can be revoked but cannot be granted or access merchant capability
+ok 17 - A01 disabled member can be revoked but cannot be granted or access merchant capability
+  ---
+  duration_ms: 4.1478
+  type: 'test'
+  ...
+# Subtest: A01 unknown target, stale revoke version and archived/missing stores cannot mutate roles
+ok 18 - A01 unknown target, stale revoke version and archived/missing stores cannot mutate roles
+  ---
+  duration_ms: 5.2226
+  type: 'test'
+  ...
+# Subtest: A01 incomplete, foreign, duplicate or malformed scoped reads are rejected without writes
+ok 19 - A01 incomplete, foreign, duplicate or malformed scoped reads are rejected without writes
+  ---
+  duration_ms: 19.6977
+  type: 'test'
+  ...
+# Subtest: A01 entry summary has no credentials, platform identity, capabilities or mutable authorization token
+ok 20 - A01 entry summary has no credentials, platform identity, capabilities or mutable authorization token
+  ---
+  duration_ms: 1.4167
+  type: 'test'
+  ...
+# Subtest: A01 raw request reason and platform identity never enter receipts, audit or returned result
+ok 21 - A01 raw request reason and platform identity never enter receipts, audit or returned result
+  ---
+  duration_ms: 2.6293
+  type: 'test'
+  ...
+# Subtest: A01 each bootstrap/grant/revoke write exception or zero-row result rolls back all staged effects
+ok 22 - A01 each bootstrap/grant/revoke write exception or zero-row result rolls back all staged effects
+  ---
+  duration_ms: 46.4396
+  type: 'test'
+  ...
+# Subtest: A01 complete-read fence and changes at commit prevent stale authority and bootstrap phantoms
+ok 23 - A01 complete-read fence and changes at commit prevent stale authority and bootstrap phantoms
+  ---
+  duration_ms: 9.4136
+  type: 'test'
+  ...
+# Subtest: A01 concurrent duplicate grants and stale revocations do not produce duplicate active scope or audit
+ok 24 - A01 concurrent duplicate grants and stale revocations do not produce duplicate active scope or audit
+  ---
+  duration_ms: 4.767
+  type: 'test'
+  ...
+# Subtest: A01 server clock rollback and bootstrap expiry before commit cannot authorize a partially saved role
+ok 25 - A01 server clock rollback and bootstrap expiry before commit cannot authorize a partially saved role
+  ---
+  duration_ms: 2.8628
+  type: 'test'
+  ...
+# Subtest: A01 no actual admin client action or cloud handler is opened by the offline service
+ok 26 - A01 no actual admin client action or cloud handler is opened by the offline service
+  ---
+  duration_ms: 4.6426
+  type: 'test'
+  ...
+# Subtest: A01 split store grants cannot be combined to delegate one multi-store role
+ok 27 - A01 split store grants cannot be combined to delegate one multi-store role
+  ---
+  duration_ms: 3.8907
+  type: 'test'
+  ...
+# Subtest: A01 archived store blocks operations and new grants but still permits authorized role revocation
+ok 28 - A01 archived store blocks operations and new grants but still permits authorized role revocation
+  ---
+  duration_ms: 3.3088
+  type: 'test'
+  ...
+# Subtest: A01 bootstrap remains one-off after root revocation; replay reports history and never restores access
+ok 29 - A01 bootstrap remains one-off after root revocation; replay reports history and never restores access
+  ---
+  duration_ms: 5.5614
+  type: 'test'
+  ...
+# Subtest: A01 replay rejects a changed role scope, receipt timestamp and revoked audit facts
+ok 30 - A01 replay rejects a changed role scope, receipt timestamp and revoked audit facts
+  ---
+  duration_ms: 8.0759
+  type: 'test'
+  ...
+# Subtest: A01 bootstrap final clock rollback and invalid trusted redaction/transaction adapter fail closed
+ok 31 - A01 bootstrap final clock rollback and invalid trusted redaction/transaction adapter fail closed
+  ---
+  duration_ms: 1.3556
+  type: 'test'
+  ...
+# Subtest: A01 adapter commit fence protects initial approval version and expiry as well as database reads
+ok 32 - A01 adapter commit fence protects initial approval version and expiry as well as database reads
+  ---
+  duration_ms: 1.3934
+  type: 'test'
+  ...
+# Subtest: X04 26 slots / final 20:30 window / local date range / no reservation and immutable public output
+ok 33 - X04 26 slots / final 20:30 window / local date range / no reservation and immutable public output
+  ---
+  duration_ms: 16.6028
+  type: 'test'
+  ...
+# Subtest: X04 held / confirmed / consumed count independently in each mode; full and closed cannot be selected
+ok 34 - X04 held / confirmed / consumed count independently in each mode; full and closed cannot be selected
+  ---
+  duration_ms: 20.7214
+  type: 'test'
+  ...
+# Subtest: X04 missing resources never imply free capacity; obsolete definition is disabled, corrupt or mixed scope reads reject
+ok 35 - X04 missing resources never imply free capacity; obsolete definition is disabled, corrupt or mixed scope reads reject
+  ---
+  duration_ms: 20.2832
+  type: 'test'
+  ...
+# Subtest: X04 cutoff / closed override / invalid calendar and max advance window use server time
+ok 36 - X04 cutoff / closed override / invalid calendar and max advance window use server time
+  ---
+  duration_ms: 13.5629
+  type: 'test'
+  ...
+# Subtest: X04 principal / cart / config versions and client lead, capacity or clock fields cannot bypass validation
+ok 37 - X04 principal / cart / config versions and client lead, capacity or clock fields cannot bypass validation
+  ---
+  duration_ms: 2.1213
+  type: 'test'
+  ...
+# Subtest: X04 unknown lead/advance, draft product/config and future publication fail closed
+ok 38 - X04 unknown lead/advance, draft product/config and future publication fail closed
+  ---
+  duration_ms: 7.9286
+  type: 'test'
+  ...
+# Subtest: X04 fingerprint changes with current catalog / policy / resource version or capacity and preserves inputs
+ok 39 - X04 fingerprint changes with current catalog / policy / resource version or capacity and preserves inputs
+  ---
+  duration_ms: 10.5629
+  type: 'test'
+  ...
+# Subtest: X04 mixed selected products take maximum lead; capacity refresh disables a previously available slot
+ok 40 - X04 mixed selected products take maximum lead; capacity refresh disables a previously available slot
+  ---
+  duration_ms: 11.1836
+  type: 'test'
+  ...
+# Subtest: X03 verified own address inside/on 20km boundary has zero fee; 1mm outside is rejected
+ok 41 - X03 verified own address inside/on 20km boundary has zero fee; 1mm outside is rejected
+  ---
+  duration_ms: 11.6689
+  type: 'test'
+  ...
+# Subtest: X03 entity/version/exact-point verification is required; source labels, client regions and coordinates cannot prove delivery
+ok 42 - X03 entity/version/exact-point verification is required; source labels, client regions and coordinates cannot prove delivery
+  ---
+  duration_ms: 4.5251
+  type: 'test'
+  ...
+# Subtest: X03 missing/unsupported/future locations and text-only edits cannot reuse old range evidence
+ok 43 - X03 missing/unsupported/future locations and text-only edits cannot reuse old range evidence
+  ---
+  duration_ms: 1.918
+  type: 'test'
+  ...
+# Subtest: X03 forged principal, foreign/deleted address, mismatched IDs and stale versions are rejected
+ok 44 - X03 forged principal, foreign/deleted address, mismatched IDs and stale versions are rejected
+  ---
+  duration_ms: 0.8519
+  type: 'test'
+  ...
+# Subtest: X03 only unambiguous published enabled V1 radius/free rules with the verified store center can be evaluated
+ok 45 - X03 only unambiguous published enabled V1 radius/free rules with the verified store center can be evaluated
+  ---
+  duration_ms: 5.3437
+  type: 'test'
+  ...
+# Subtest: X03 bindings change with address/rule/config/store versions and location; immutable snapshots do not leak extra fields
+ok 46 - X03 bindings change with address/rule/config/store versions and location; immutable snapshots do not leak extra fields
+  ---
+  duration_ms: 5.6211
+  type: 'test'
+  ...
+# Subtest: D05 用户确认政策固定：30 分钟、独立容量 3 / 1、20km 含边界、免费商家配送且预计时段
+ok 47 - D05 用户确认政策固定：30 分钟、独立容量 3 / 1、20km 含边界、免费商家配送且预计时段
+  ---
+  duration_ms: 2.9051
+  type: 'test'
+  ...
+# Subtest: D05 08:00–21:00 一天每模式 26 段，末段 20:30–21:00；模式 ID 独立，输入未改
+ok 48 - D05 08:00–21:00 一天每模式 26 段，末段 20:30–21:00；模式 ID 独立，输入未改
+  ---
+  duration_ms: 11.8362
+  type: 'test'
+  ...
+# Subtest: D05 中国当地日期与真实日历、未来窗口边界校验；不按 UTC 日期截断
+ok 49 - D05 中国当地日期与真实日历、未来窗口边界校验；不按 UTC 日期截断
+  ---
+  duration_ms: 2.5873
+  type: 'test'
+  ...
+# Subtest: D05 混合商品取最大提前量；到达预约 / 提前量截止的时段不可再接受订单
+ok 50 - D05 混合商品取最大提前量；到达预约 / 提前量截止的时段不可再接受订单
+  ---
+  duration_ms: 1.0543
+  type: 'test'
+  ...
+# Subtest: D05 休业 / 缩短营业覆盖按日期和模式独立，无窗口不默认开放
+ok 51 - D05 休业 / 缩短营业覆盖按日期和模式独立，无窗口不默认开放
+  ---
+  duration_ms: 1.6309
+  type: 'test'
+  ...
+# Subtest: D05 非 30 分钟网格、重叠 / 重复覆盖、超营业时间和跨午夜配置拒绝
+ok 52 - D05 非 30 分钟网格、重叠 / 重复覆盖、超营业时间和跨午夜配置拒绝
+  ---
+  duration_ms: 1.1564
+  type: 'test'
+  ...
+# Subtest: D05 缺提前量 / 窗口天数、闭店、错误时区 / 履约方式无法生成可买时段
+ok 53 - D05 缺提前量 / 窗口天数、闭店、错误时区 / 履约方式无法生成可买时段
+  ---
+  duration_ms: 0.5919
+  type: 'test'
+  ...
+# Subtest: D05 源时段必须匹配真实记录；缺记录、伪造容量 / 模式 / 时间和旧政策拒绝
+ok 54 - D05 源时段必须匹配真实记录；缺记录、伪造容量 / 模式 / 时间和旧政策拒绝
+  ---
+  duration_ms: 8.2278
+  type: 'test'
+  ...
+# Subtest: D05 自取三单 / 配送一单含 HELD、CONFIRMED、CONSUMED 占用，满额拒绝且彼此独立
+ok 55 - D05 自取三单 / 配送一单含 HELD、CONFIRMED、CONSUMED 占用，满额拒绝且彼此独立
+  ---
+  duration_ms: 4.8124
+  type: 'test'
+  ...
+# Subtest: D05 同时段变更政策不会换 ID 重新获得容量；资源计划衔接一个订单占一个名额
+ok 56 - D05 同时段变更政策不会换 ID 重新获得容量；资源计划衔接一个订单占一个名额
+  ---
+  duration_ms: 3.9786
+  type: 'test'
+  ...
+# Subtest: D05 支付保留截止不晚于最严格提前量边界，缺经营时长不补默认
+ok 57 - D05 支付保留截止不晚于最严格提前量边界，缺经营时长不补默认
+  ---
+  duration_ms: 0.3846
+  type: 'test'
+  ...
+# Subtest: D05 0 / 20km 内 / 精确边界免费，超过边界 1mm 拒绝，结果为预计商家配送
+ok 58 - D05 0 / 20km 内 / 精确边界免费，超过边界 1mm 拒绝，结果为预计商家配送
+  ---
+  duration_ms: 1.348
+  type: 'test'
+  ...
+# Subtest: D05 无定位 / 非法坐标 / 未来核验时间 / 未转换坐标体系拒绝，不能以客户端范围证明放行
+ok 59 - D05 无定位 / 非法坐标 / 未来核验时间 / 未转换坐标体系拒绝，不能以客户端范围证明放行
+  ---
+  duration_ms: 0.5359
+  type: 'test'
+  ...
+# Subtest: D05 非测试原点的精确边界不因浮点相减误判，近经度换日线也可正确计算
+ok 60 - D05 非测试原点的精确边界不因浮点相减误判，近经度换日线也可正确计算
+  ---
+  duration_ms: 0.3099
+  type: 'test'
+  ...
+# Subtest: A02 pickup/delivery paid order accepts, consumes confirmed stock once and becomes ready with immutable facts
+ok 61 - A02 pickup/delivery paid order accepts, consumes confirmed stock once and becomes ready with immutable facts
+  ---
+  duration_ms: 129.1882
+  type: 'test'
+  ...
+# Subtest: A02 complete pickup chain uses existing O07 credential/HMAC receipt and original key replay
+ok 62 - A02 complete pickup chain uses existing O07 credential/HMAC receipt and original key replay
+  ---
+  duration_ms: 48.7946
+  type: 'test'
+  ...
+# Subtest: A02 complete delivery chain reuses O08 and retains confirmed slot without a rider or new resource consumption
+ok 63 - A02 complete delivery chain reuses O08 and retains confirmed slot without a rider or new resource consumption
+  ---
+  duration_ms: 32.7893
+  type: 'test'
+  ...
+# Subtest: A02 merchant rejection cancels paid order, releases every confirmed resource and creates one pending full remaining refund
+ok 64 - A02 merchant rejection cancels paid order, releases every confirmed resource and creates one pending full remaining refund
+  ---
+  duration_ms: 39.362
+  type: 'test'
+  ...
+# Subtest: A02 rejection intent is accepted by P06 prepare/credible result and O06 owner history without reopening cancelled order
+ok 65 - A02 rejection intent is accepted by P06 prepare/credible result and O06 owner history without reopening cancelled order
+  ---
+  duration_ms: 21.1106
+  type: 'test'
+  ...
+# Subtest: A02 rejection after settled partial refund reserves only remaining amount; fully refunded order creates no further intent
+ok 66 - A02 rejection after settled partial refund reserves only remaining amount; fully refunded order creates no further intent
+  ---
+  duration_ms: 39.7415
+  type: 'test'
+  ...
+# Subtest: A02 no caller role, ownership, target status or arbitrary paid data can authorize a merchant command
+ok 67 - A02 no caller role, ownership, target status or arbitrary paid data can authorize a merchant command
+  ---
+  duration_ms: 11.8022
+  type: 'test'
+  ...
+# Subtest: A02 ordinary owner cannot use merchant list/detail and unauthorized detail does not fetch children
+ok 68 - A02 ordinary owner cannot use merchant list/detail and unauthorized detail does not fetch children
+  ---
+  duration_ms: 10.0441
+  type: 'test'
+  ...
+# Subtest: A02 A01 role revocation/disabled caller is applied to next read and next mutation, including replay
+ok 69 - A02 A01 role revocation/disabled caller is applied to next read and next mutation, including replay
+  ---
+  duration_ms: 13.0383
+  type: 'test'
+  ...
+# Subtest: A02 rejection needs one grant with ORDER_OPERATE and REFUND_APPROVE; independent grants cannot combine
+ok 70 - A02 rejection needs one grant with ORDER_OPERATE and REFUND_APPROVE; independent grants cannot combine
+  ---
+  duration_ms: 11.3035
+  type: 'test'
+  ...
+# Subtest: A02 no command skips a stage; rejection cannot be applied after acceptance or making
+ok 71 - A02 no command skips a stage; rejection cannot be applied after acceptance or making
+  ---
+  duration_ms: 19.4549
+  type: 'test'
+  ...
+# Subtest: A02 current versions and concurrent administrators allow exactly one valid acceptance or stock consumption
+ok 72 - A02 current versions and concurrent administrators allow exactly one valid acceptance or stock consumption
+  ---
+  duration_ms: 22.4258
+  type: 'test'
+  ...
+# Subtest: A02 making and rejection competition never both consumes and releases the same stock
+ok 73 - A02 making and rejection competition never both consumes and releases the same stock
+  ---
+  duration_ms: 12.4758
+  type: 'test'
+  ...
+# Subtest: A02 lost response can be replayed from a rebuilt service after later stages without duplicate log or stock use
+ok 74 - A02 lost response can be replayed from a rebuilt service after later stages without duplicate log or stock use
+  ---
+  duration_ms: 19.0798
+  type: 'test'
+  ...
+# Subtest: A02 missing/unknown original payment, pending second intent and wrong scope never create refund or advance fulfillment
+ok 75 - A02 missing/unknown original payment, pending second intent and wrong scope never create refund or advance fulfillment
+  ---
+  duration_ms: 48.4239
+  type: 'test'
+  ...
+# Subtest: A02 incomplete/mismatched quote, resources, order facts or history prevent all writes
+ok 76 - A02 incomplete/mismatched quote, resources, order facts or history prevent all writes
+  ---
+  duration_ms: 44.432
+  type: 'test'
+  ...
+# Subtest: A02 every ACCEPT/MAKE/READY/rejection write failure or zero-row result rolls back all resource/financial/history changes
+ok 77 - A02 every ACCEPT/MAKE/READY/rejection write failure or zero-row result rolls back all resource/financial/history changes
+  ---
+  duration_ms: 325.2261
+  type: 'test'
+  ...
+# Subtest: A02 role/user/store or resource changes before commit fail the atomic read fence
+ok 78 - A02 role/user/store or resource changes before commit fail the atomic read fence
+  ---
+  duration_ms: 35.5655
+  type: 'test'
+  ...
+# Subtest: A02 malformed/cross-app role and archived store reject current reads and commands
+ok 79 - A02 malformed/cross-app role and archived store reject current reads and commands
+  ---
+  duration_ms: 16.3196
+  type: 'test'
+  ...
+# Subtest: A02 list contains all same-store customers, filters status before paging, and keeps addresses/contact/private facts out
+ok 80 - A02 list contains all same-store customers, filters status before paging, and keeps addresses/contact/private facts out
+  ---
+  duration_ms: 9.1502
+  type: 'test'
+  ...
+# Subtest: A02 detail includes required contact/address and historical facts only after current store authorization
+ok 81 - A02 detail includes required contact/address and historical facts only after current store authorization
+  ---
+  duration_ms: 18.2872
+  type: 'test'
+  ...
+# Subtest: A02 HMAC pagination is stable on equal timestamps and bound to current actor/store/status/role
+ok 82 - A02 HMAC pagination is stable on equal timestamps and bound to current actor/store/status/role
+  ---
+  duration_ms: 28.6614
+  type: 'test'
+  ...
+# Subtest: A02 incorrect scoped/oversized/status-filtered child page is rejected rather than silently truncating or leaking
+ok 83 - A02 incorrect scoped/oversized/status-filtered child page is rejected rather than silently truncating or leaking
+  ---
+  duration_ms: 30.2997
+  type: 'test'
+  ...
+# Subtest: A02 read snapshot revocation/change or missing current user cannot deliver merchant private detail
+ok 84 - A02 read snapshot revocation/change or missing current user cannot deliver merchant private detail
+  ---
+  duration_ms: 11.7142
+  type: 'test'
+  ...
+# Subtest: A02 bad immutable receipt/log/approval facts cannot be used to replay a mutation
+ok 85 - A02 bad immutable receipt/log/approval facts cannot be used to replay a mutation
+  ---
+  duration_ms: 31.1383
+  type: 'test'
+  ...
+# Subtest: A02 missing original config or refund-number collision prevents cancellation and resource release
+ok 86 - A02 missing original config or refund-number collision prevents cancellation and resource release
+  ---
+  duration_ms: 14.3147
+  type: 'test'
+  ...
+# Subtest: A02 server clock rollback and missing pickup/delivery configuration produce no fake success
+ok 87 - A02 server clock rollback and missing pickup/delivery configuration produce no fake success
+  ---
+  duration_ms: 7.1658
+  type: 'test'
+  ...
+# Subtest: A02 routed O08 command must retain A01 app/environment/archived-store checks inside its transaction
+ok 88 - A02 routed O08 command must retain A01 app/environment/archived-store checks inside its transaction
+  ---
+  duration_ms: 13.8201
+  type: 'test'
+  ...
+# Subtest: A02 unauthorized mutation must stop before reading linked private or financial records
+ok 89 - A02 unauthorized mutation must stop before reading linked private or financial records
+  ---
+  duration_ms: 4.7304
+  type: 'test'
+  ...
+# Subtest: A02 routed O07 credential completion checks strict A01 scope and archived stores in the same transaction
+ok 90 - A02 routed O07 credential completion checks strict A01 scope and archived stores in the same transaction
+  ---
+  duration_ms: 27.3926
+  type: 'test'
+  ...
+# Subtest: A02 current role regrant invalidates a previous merchant page cursor even for the same subject/store
+ok 91 - A02 current role regrant invalidates a previous merchant page cursor even for the same subject/store
+  ---
+  duration_ms: 8.8877
+  type: 'test'
+  ...
+# Subtest: A02 merchant list separates cancellation progress and pending/settled refund axes from fulfillment state
+ok 92 - A02 merchant list separates cancellation progress and pending/settled refund axes from fulfillment state
+  ---
+  duration_ms: 14.7255
+  type: 'test'
+  ...
+# Subtest: A02 malformed consumed stock trace, unknown policy or overflowing version prevents readiness/acceptance
+ok 93 - A02 malformed consumed stock trace, unknown policy or overflowing version prevents readiness/acceptance
+  ---
+  duration_ms: 14.9986
+  type: 'test'
+  ...
+# Subtest: A02 existing pending cancellation needs explicit review rather than leaving an orphan after merchant rejection
+ok 94 - A02 existing pending cancellation needs explicit review rather than leaving an orphan after merchant rejection
+  ---
+  duration_ms: 7.1159
+  type: 'test'
+  ...
+# Subtest: A05 config creation is deterministic DRAFT, new sequence, immutable original, atomic audit/receipt, and replay
+ok 95 - A05 config creation is deterministic DRAFT, new sequence, immutable original, atomic audit/receipt, and replay
+  ---
+  duration_ms: 57.1111
+  type: 'test'
+  ...
+# Subtest: A05 draft saves preserve explicit incomplete policies without operational defaults; publication rejects missing fields
+ok 96 - A05 draft saves preserve explicit incomplete policies without operational defaults; publication rejects missing fields
+  ---
+  duration_ms: 18.9692
+  type: 'test'
+  ...
+# Subtest: A05 existing draft edits use CAS; published configuration cannot be edited
+ok 97 - A05 existing draft edits use CAS; published configuration cannot be edited
+  ---
+  duration_ms: 28.5463
+  type: 'test'
+  ...
+# Subtest: A05 publishing changes active pointer and future slot policy atomically, keeps all counters and original config
+ok 98 - A05 publishing changes active pointer and future slot policy atomically, keeps all counters and original config
+  ---
+  duration_ms: 36.5958
+  type: 'test'
+  ...
+# Subtest: A05 explicit banned date closes future occupied slots without reset; reopening remains explicit
+ok 99 - A05 explicit banned date closes future occupied slots without reset; reopening remains explicit
+  ---
+  duration_ms: 51.0082
+  type: 'test'
+  ...
+# Subtest: A05 changed time policy cannot reuse its version; older draft cannot supersede newer publication
+ok 100 - A05 changed time policy cannot reuse its version; older draft cannot supersede newer publication
+  ---
+  duration_ms: 39.2912
+  type: 'test'
+  ...
+# Subtest: A05 slot closure preserves held/confirmed/consumed and independent mode; fixed caps and occupation floor
+ok 101 - A05 slot closure preserves held/confirmed/consumed and independent mode; fixed caps and occupation floor
+  ---
+  duration_ms: 16.2259
+  type: 'test'
+  ...
+# Subtest: A05 store maintenance versions fields, retains private fields, sanitizes audits and replays
+ok 102 - A05 store maintenance versions fields, retains private fields, sanitizes audits and replays
+  ---
+  duration_ms: 16.6152
+  type: 'test'
+  ...
+# Subtest: A05 closing store keeps config and resources; reopening needs complete validated current policies
+ok 103 - A05 closing store keeps config and resources; reopening needs complete validated current policies
+  ---
+  duration_ms: 18.9826
+  type: 'test'
+  ...
+# Subtest: A05 map token resolves only through trusted scoped adapter; raw/client/GCJ02 and stale centers are rejected
+ok 104 - A05 map token resolves only through trusted scoped adapter; raw/client/GCJ02 and stale centers are rejected
+  ---
+  duration_ms: 13.7917
+  type: 'test'
+  ...
+# Subtest: A05 address changes invalidate old point and cannot stay OPEN until new configuration/location passes
+ok 105 - A05 address changes invalidate old point and cannot stay OPEN until new configuration/location passes
+  ---
+  duration_ms: 11.6951
+  type: 'test'
+  ...
+# Subtest: A05 complete shape alone cannot approve publication: location/policy/phone verification must succeed
+ok 106 - A05 complete shape alone cannot approve publication: location/policy/phone verification must succeed
+  ---
+  duration_ms: 34.6629
+  type: 'test'
+  ...
+# Subtest: A05 rejects altered V1 capacities, hours, radius/edge/fee/operator, coordinate system and policy extra fields
+ok 107 - A05 rejects altered V1 capacities, hours, radius/edge/fee/operator, coordinate system and policy extra fields
+  ---
+  duration_ms: 48.3257
+  type: 'test'
+  ...
+# Subtest: A05 rejects invalid time override overlap/date/alignment and negative/overflow policy numbers
+ok 108 - A05 rejects invalid time override overlap/date/alignment and negative/overflow policy numbers
+  ---
+  duration_ms: 28.5715
+  type: 'test'
+  ...
+# Subtest: A05 requires current actual A01 CONFIG_WRITE; forged principal, other shop and wrong capability reveal no state
+ok 109 - A05 requires current actual A01 CONFIG_WRITE; forged principal, other shop and wrong capability reveal no state
+  ---
+  duration_ms: 6.1845
+  type: 'test'
+  ...
+# Subtest: A05 disabled/version-changed user and incomplete/wrong-scope state are rejected
+ok 110 - A05 disabled/version-changed user and incomplete/wrong-scope state are rejected
+  ---
+  duration_ms: 18.6712
+  type: 'test'
+  ...
+# Subtest: A05 header/current snapshot mismatch and access-store version mismatch fail
+ok 111 - A05 header/current snapshot mismatch and access-store version mismatch fail
+  ---
+  duration_ms: 6.2387
+  type: 'test'
+  ...
+# Subtest: A05 read projections are scoped and paginated; cursors bind actor, grant, scope and content revision
+ok 112 - A05 read projections are scoped and paginated; cursors bind actor, grant, scope and content revision
+  ---
+  duration_ms: 29.3087
+  type: 'test'
+  ...
+# Subtest: A05 original key conflicts on changed content and replay cannot bypass current revoked authority
+ok 113 - A05 original key conflicts on changed content and replay cannot bypass current revoked authority
+  ---
+  duration_ms: 9.7936
+  type: 'test'
+  ...
+# Subtest: A05 replay rejects corrupted audit/receipt expected versions, target, scope, request and hashes
+ok 114 - A05 replay rejects corrupted audit/receipt expected versions, target, scope, request and hashes
+  ---
+  duration_ms: 46.3207
+  type: 'test'
+  ...
+# Subtest: A05 every publication write failure / zero affected row rolls back config, pointer, slots, audit and receipt
+ok 115 - A05 every publication write failure / zero affected row rolls back config, pointer, slots, audit and receipt
+  ---
+  duration_ms: 109.8797
+  type: 'test'
+  ...
+# Subtest: A05 all simple write failure positions roll back store, draft and slot transactions
+ok 116 - A05 all simple write failure positions roll back store, draft and slot transactions
+  ---
+  duration_ms: 89.2132
+  type: 'test'
+  ...
+# Subtest: A05 serial same-version edits produce one success and one conflict without overwriting
+ok 117 - A05 serial same-version edits produce one success and one conflict without overwriting
+  ---
+  duration_ms: 9.1122
+  type: 'test'
+  ...
+# Subtest: A05 full read fences cover roles, policy/slot predicates, negative reads and receipt/audit races at commit
+ok 118 - A05 full read fences cover roles, policy/slot predicates, negative reads and receipt/audit races at commit
+  ---
+  duration_ms: 39.4063
+  type: 'test'
+  ...
+# Subtest: A05 invalid or regressing clock cannot commit
+ok 119 - A05 invalid or regressing clock cannot commit
+  ---
+  duration_ms: 8.5793
+  type: 'test'
+  ...
+# Subtest: A05 actual O03 old quote is rejected after store edit, config switch or slot closure; historical orders stay identical
+ok 120 - A05 actual O03 old quote is rejected after store edit, config switch or slot closure; historical orders stay identical
+  ---
+  duration_ms: 51.4355
+  type: 'test'
+  ...
+# Subtest: A05 two drafts reserve distinct monotonic sequence numbers; competing publications cannot both switch pointer
+ok 121 - A05 two drafts reserve distinct monotonic sequence numbers; competing publications cannot both switch pointer
+  ---
+  duration_ms: 26.0427
+  type: 'test'
+  ...
+# Subtest: A05 past slots retain policy/counters on new publication; closed slots never automatically open
+ok 122 - A05 past slots retain policy/counters on new publication; closed slots never automatically open
+  ---
+  duration_ms: 12.934
+  type: 'test'
+  ...
+# Subtest: A05 archive is terminal and cannot mutate historical configs or occupied resources
+ok 123 - A05 archive is terminal and cannot mutate historical configs or occupied resources
+  ---
+  duration_ms: 4.4955
+  type: 'test'
+  ...
+# Subtest: A05 wrong capability cannot read state; missing trusted publication verifier cannot approve operation
+ok 124 - A05 wrong capability cannot read state; missing trusted publication verifier cannot approve operation
+  ---
+  duration_ms: 13.1454
+  type: 'test'
+  ...
+# Subtest: A05 actual merchant can still prepare a confirmed historical order after its slot is banned
+ok 125 - A05 actual merchant can still prepare a confirmed historical order after its slot is banned
+  ---
+  duration_ms: 25.0273
+  type: 'test'
+  ...
+# Subtest: O03 transaction commits head/lines/log/quote/receipt and all HELD records for both modes
+ok 126 - O03 transaction commits head/lines/log/quote/receipt and all HELD records for both modes
+  ---
+  duration_ms: 49.3726
+  type: 'test'
+  ...
+# Subtest: O03 concurrent final shared stock creates exactly one local order and one stock reservation
+ok 127 - O03 concurrent final shared stock creates exactly one local order and one stock reservation
+  ---
+  duration_ms: 12.4813
+  type: 'test'
+  ...
+# Subtest: O03 final pickup/delivery slot competition respects separate 3/1 capacity
+ok 128 - O03 final pickup/delivery slot competition respects separate 3/1 capacity
+  ---
+  duration_ms: 25.0693
+  type: 'test'
+  ...
+# Subtest: O03 full pickup slot does not block a delivery order using independent slot inventory
+ok 129 - O03 full pickup slot does not block a delivery order using independent slot inventory
+  ---
+  duration_ms: 8.8285
+  type: 'test'
+  ...
+# Subtest: O03 every one of nine staged writes rolls back entirely when a persistence failure is injected
+ok 130 - O03 every one of nine staged writes rolls back entirely when a persistence failure is injected
+  ---
+  duration_ms: 89.9751
+  type: 'test'
+  ...
+# Subtest: O03 zero-row resource/record/quote/receipt writes and missing read fence fail closed with rollback
+ok 131 - O03 zero-row resource/record/quote/receipt writes and missing read fence fail closed with rollback
+  ---
+  duration_ms: 44.3571
+  type: 'test'
+  ...
+# Subtest: O03 current user disable/version change and revocation during transaction prevent order commit
+ok 132 - O03 current user disable/version change and revocation during transaction prevent order commit
+  ---
+  duration_ms: 7.2346
+  type: 'test'
+  ...
+# Subtest: O03 quote expiry during writes or changed input refuses partial success
+ok 133 - O03 quote expiry during writes or changed input refuses partial success
+  ---
+  duration_ms: 21.6442
+  type: 'test'
+  ...
+# Subtest: O03 multiple stock resources either all reserve required units or none commit
+ok 134 - O03 multiple stock resources either all reserve required units or none commit
+  ---
+  duration_ms: 6.6427
+  type: 'test'
+  ...
+# Subtest: O03 concurrent same request commits one local transaction and returns the same order on replay
+ok 135 - O03 concurrent same request commits one local transaction and returns the same order on replay
+  ---
+  duration_ms: 7.6549
+  type: 'test'
+  ...
+# Subtest: O03 payment cutoff and aggregated stock units agree across head, reservations and resource counters
+ok 136 - O03 payment cutoff and aggregated stock units agree across head, reservations and resource counters
+  ---
+  duration_ms: 4.4826
+  type: 'test'
+  ...
+# Subtest: O03 duplicate same key replays without extra hold; different key cannot consume the same quote twice
+ok 137 - O03 duplicate same key replays without extra hold; different key cannot consume the same quote twice
+  ---
+  duration_ms: 7.6137
+  type: 'test'
+  ...
+# Subtest: O03 local duplicate ID/number checks reject overwrite without any resource mutation
+ok 138 - O03 local duplicate ID/number checks reject overwrite without any resource mutation
+  ---
+  duration_ms: 6.4794
+  type: 'test'
+  ...
+# Subtest: O03 no transaction adapter or forged identity cannot execute; results never unlock cloud purchase
+ok 139 - O03 no transaction adapter or forged identity cannot execute; results never unlock cloud purchase
+  ---
+  duration_ms: 2.0152
+  type: 'test'
+  ...
+# Subtest: X05 pickup recomputes integer cents, captures facts and proposes atomic persistence without reserving resources
+ok 140 - X05 pickup recomputes integer cents, captures facts and proposes atomic persistence without reserving resources
+  ---
+  duration_ms: 18.1077
+  type: 'test'
+  ...
+# Subtest: X05 delivery binds verified own address, rule and proposed trace to this quote; fee stays zero
+ok 141 - X05 delivery binds verified own address, rule and proposed trace to this quote; fee stays zero
+  ---
+  duration_ms: 11.3637
+  type: 'test'
+  ...
+# Subtest: X05 request whitelist and owner gate reject forged prices / roles / clock / scope and foreign cart
+ok 142 - X05 request whitelist and owner gate reject forged prices / roles / clock / scope and foreign cart
+  ---
+  duration_ms: 3.5207
+  type: 'test'
+  ...
+# Subtest: X05 missing TTL / trusted phone / order note / real image / published configuration never produces a quote
+ok 143 - X05 missing TTL / trusted phone / order note / real image / published configuration never produces a quote
+  ---
+  duration_ms: 11.9125
+  type: 'test'
+  ...
+# Subtest: X05 unavailable / stale cart, SKU, stock or appointment cannot be priced
+ok 144 - X05 unavailable / stale cart, SKU, stock or appointment cannot be priced
+  ---
+  duration_ms: 9.8347
+  type: 'test'
+  ...
+# Subtest: X05 delivery requires current owner / exact location verification and cannot accept missing / changed / out-of-range point
+ok 145 - X05 delivery requires current owner / exact location verification and cannot accept missing / changed / out-of-range point
+  ---
+  duration_ms: 8.8856
+  type: 'test'
+  ...
+# Subtest: X05 TTL equality is expired; lead cutoff caps TTL; time advancing invalidates appointment before long TTL
+ok 146 - X05 TTL equality is expired; lead cutoff caps TTL; time advancing invalidates appointment before long TTL
+  ---
+  duration_ms: 6.4068
+  type: 'test'
+  ...
+# Subtest: X05 repricing creates new current amounts; old quote rejects price / catalog / config / resource changes
+ok 147 - X05 repricing creates new current amounts; old quote rejects price / catalog / config / resource changes
+  ---
+  duration_ms: 18.1779
+  type: 'test'
+  ...
+# Subtest: X05 existing quote cannot be consumed twice or read by another owner; malformed or altered facts are rejected
+ok 148 - X05 existing quote cannot be consumed twice or read by another owner; malformed or altered facts are rejected
+  ---
+  duration_ms: 3.7378
+  type: 'test'
+  ...
+# Subtest: X05 idempotency decision replays only scoped same request, rejects changed payload and creates no duplicate proposal
+ok 149 - X05 idempotency decision replays only scoped same request, rejects changed payload and creates no duplicate proposal
+  ---
+  duration_ms: 2.8641
+  type: 'test'
+  ...
+# Subtest: X05 public offline preview projects only buyer facts, no resource versions / bag evidence / evaluation / fingerprints
+ok 150 - X05 public offline preview projects only buyer facts, no resource versions / bag evidence / evaluation / fingerprints
+  ---
+  duration_ms: 3.2356
+  type: 'test'
+  ...
+# Subtest: X05 shared stock demand aggregates selected products; unselected rows do not enter quote or amounts
+ok 151 - X05 shared stock demand aggregates selected products; unselected rows do not enter quote or amounts
+  ---
+  duration_ms: 3.0018
+  type: 'test'
+  ...
+# Subtest: X05 unsafe integer cents or deadline overflow and old address version cannot reuse quotation
+ok 152 - X05 unsafe integer cents or deadline overflow and old address version cannot reuse quotation
+  ---
+  duration_ms: 5.0839
+  type: 'test'
+  ...
+# Subtest: X02 trusted published store projection is a frozen whitelist, not resource counters or publication IDs
+ok 153 - X02 trusted published store projection is a frozen whitelist, not resource counters or publication IDs
+  ---
+  duration_ms: 2.7939
+  type: 'test'
+  ...
+# Subtest: X02 pickup needs no address and always zero delivery fee; delivery remains pending address/range/appointment validation
+ok 154 - X02 pickup needs no address and always zero delivery fee; delivery remains pending address/range/appointment validation
+  ---
+  duration_ms: 1.6143
+  type: 'test'
+  ...
+# Subtest: X02 closed/draft store, unpublished/wrong-store/incomplete config and disabled pickup cannot pass preflight
+ok 155 - X02 closed/draft store, unpublished/wrong-store/incomplete config and disabled pickup cannot pass preflight
+  ---
+  duration_ms: 2.9759
+  type: 'test'
+  ...
+# Subtest: X02 current store/config versions, trusted principal and server phone policy are required; fee/status spoofing is rejected
+ok 156 - X02 current store/config versions, trusted principal and server phone policy are required; fee/status spoofing is rejected
+  ---
+  duration_ms: 1.3352
+  type: 'test'
+  ...
+1..156
+# tests 156
+# suites 0
+# pass 156
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1487.0522

@@ -1,0 +1,19 @@
+{
+  "ok": false,
+  "errorType": "MCP_TOOL_ERROR",
+  "message": "Cannot read properties of undefined (reading '0')",
+  "source": "mcp_business",
+  "code": "APPID_ERROR",
+  "detail": {
+    "rawResult": {
+      "success": false,
+      "error": "Cannot read properties of undefined (reading '0')",
+      "code": "APPID_ERROR"
+    }
+  },
+  "reason": "APPID_ERROR",
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "suggestions": "查看该工具完整参数, wechatide -c Codex automation_evaluate -h"
+}
+

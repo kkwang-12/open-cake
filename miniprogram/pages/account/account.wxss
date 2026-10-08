@@ -1,2 +1,42 @@
-/* Account 使用公共行式布局；管理员入口在 A01 鉴权后提供。 */
-.page { padding-bottom: var(--tab-page-bottom-padding); }
+.account-page { padding: 12rpx 26rpx var(--tab-page-bottom-padding); }
+/* Geometry follows the selected 240px-wide screen inside the reference phone. */
+.account-profile { display: flex; align-items: flex-start; gap: 24rpx; min-height: 224rpx; margin: 0 14rpx; }
+.account-avatar { display: block; width: 200rpx; height: 200rpx; flex: 0 0 200rpx; border-radius: 50%; }
+.account-profile-copy { flex: 1; min-width: 0; padding-top: 24rpx; }
+.account-greeting { display: block; font-size: 40rpx; font-weight: 600; line-height: 1.3; overflow-wrap: break-word; }
+.greeting-phrase { display: inline-block; vertical-align: top; }
+.greeting-brand { margin-left: .25em; font-weight: 700; }
+.greeting-in-a .greeting-phrase { animation: greeting-phrase-in-a 240ms ease-out both; }
+.greeting-in-b .greeting-phrase { animation: greeting-phrase-in-b 240ms ease-out both; }
+.greeting-in-a .greeting-welcome, .greeting-in-b .greeting-welcome { animation-delay: 110ms; }
+.greeting-in-a .greeting-brand, .greeting-in-b .greeting-brand { animation-delay: 220ms; }
+@keyframes greeting-phrase-in-a { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes greeting-phrase-in-b { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: translateY(0); } }
+.account-subtitle { display: block; margin-top: 16rpx; color: #888888; font-size: 26rpx; font-weight: 400; line-height: 1.4; }
+.account-login { display: flex; align-items: center; justify-content: flex-start; width: 264rpx !important; min-height: 44px; margin: 10rpx 0 0 !important; padding: 0; text-align: left; }
+.account-login-pill { display: flex; align-items: center; justify-content: center; width: 264rpx; min-height: 80rpx; padding: 10rpx 20rpx; border-radius: 999px; background: #111111; color: #FFFFFF; font-size: 26rpx; font-weight: 500; line-height: 1.4; }
+.account-stats { display: flex; margin-top: 40rpx; overflow: hidden; border-radius: 28rpx; background: #FFFFFF; }
+.account-stat { position: relative; display: flex; flex: 1 1 0; flex-direction: column; align-items: center; justify-content: center; gap: 8rpx; width: auto !important; min-width: 0; min-height: 164rpx; margin: 0 !important; padding: 20rpx 8rpx; border-radius: 0; }
+.account-stat + .account-stat::before { position: absolute; left: 0; top: 50%; width: 1px; height: 84rpx; background: #F0EEEB; transform: translateY(-50%); content: ''; }
+.account-stat-value { color: #111111; font-size: 40rpx; font-weight: 500; line-height: 1.25; }
+.account-stat-label { color: #666666; font-size: 24rpx; font-weight: 400; line-height: 1.4; text-align: center; }
+.account-birthday-card { margin-top: 28rpx; overflow: hidden; border-radius: 24rpx; background: #FFF9F3; }
+.account-birthday { position: relative; display: flex; align-items: center; width: 100% !important; min-height: 288rpx; margin: 0 !important; padding: 32rpx 36rpx; overflow: hidden; border-radius: 0; background: #F2E8DD; text-align: left; }
+.account-birthday-image { position: absolute; top: 0; right: 0; width: 76%; height: 100%; }
+.account-birthday-shade { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #F2E8DD 0%, #F2E8DD 24%, rgba(242, 232, 221, .72) 36%, rgba(242, 232, 221, 0) 52%); pointer-events: none; }
+.account-birthday-copy { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; width: 62%; }
+.account-birthday-description { display: block; color: #666666; font-size: 28rpx; font-weight: 400; line-height: 1.4; }
+.account-birthday-description text { display: block; }
+.account-birthday-action { display: flex; align-items: center; justify-content: center; gap: 12rpx; width: 216rpx; min-height: 64rpx; margin-top: 24rpx; padding: 8rpx 16rpx; border-radius: 999px; background: #111111; color: #FFFFFF; font-size: 26rpx; font-weight: 500; line-height: 1.4; }
+.account-birthday-services { display: flex; align-items: center; min-height: 68rpx; padding: 12rpx 20rpx; border-top: 1px solid #F0E8DF; }
+.account-birthday-service { display: flex; flex: 1; align-items: center; justify-content: center; gap: 8rpx; min-width: 0; color: #666666; font-size: 24rpx; font-weight: 400; line-height: 1.4; white-space: nowrap; }
+.account-birthday-service + .account-birthday-service { border-left: 1px solid #DED8D1; }
+.account-birthday-service:last-child { flex: 1.4; }
+.account-birthday-service image { width: 28rpx; height: 28rpx; flex: 0 0 28rpx; }
+.account-menu { margin-top: 28rpx; padding: 0 40rpx; overflow: hidden; border-radius: 28rpx; background: #FFFFFF; }
+.account-menu-row { display: flex; align-items: center; gap: 36rpx; width: 100% !important; min-height: 90rpx; margin: 0 !important; padding: 20rpx 0; border-radius: 0; border-bottom: 1px solid #F0EEEB; text-align: left; }
+.account-menu-row:last-child { border-bottom: 0; }
+.account-menu-icon { display: block; width: 40rpx; height: 40rpx; flex: 0 0 40rpx; }
+.account-menu-label { flex: 1; min-width: 0; color: #111111; font-size: 32rpx; font-weight: 400; line-height: 1.4; overflow-wrap: break-word; }
+.account-menu-arrow { width: 28rpx; height: 28rpx; flex: 0 0 28rpx; opacity: .42; transform: rotate(180deg); }
+.account-pressed { opacity: .65; }

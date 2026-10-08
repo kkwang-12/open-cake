@@ -1,0 +1,49 @@
+{
+  "time": "2026-10-08T03:02:37.018Z",
+  "scope": "CONTROL_PLANE_READBACK",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "appId": "wx154f791a17268ace",
+  "backend": "nosql",
+  "region": "ap-shanghai",
+  "dbStatus": "RUNNING",
+  "functions": [
+    {
+      "name": "store",
+      "status": "Active",
+      "runtime": "Nodejs20.19",
+      "type": "Event"
+    },
+    {
+      "name": "user",
+      "status": "Active",
+      "runtime": "Nodejs20.19",
+      "type": "Event"
+    }
+  ],
+  "functionsRequestId": "b0433f7c-7662-4aa0-88fd-841816773495",
+  "collections": [],
+  "collectionsRequestId": "2e03197f-5166-451a-ab1c-4b4b13420e69",
+  "isolatedRejectionFunction": {
+    "name": "jjl-i03-rejection-20261008",
+    "status": "Active",
+    "available": "Available",
+    "runtime": "Nodejs20.19",
+    "type": "Event",
+    "codeResult": "success",
+    "codeInfoMatchesSource": true,
+    "requestId": "a141b2b2-4c75-481c-91c4-56f9a99b5996"
+  },
+  "nativeEvidence": "native-revalidation.json",
+  "managementRejection": {
+    "platformRequestId": "664ce461-dfd6-461f-8cfc-978844cff550",
+    "requestId": "e638cd88-d3cc-4a29-bcd9-0bba770f74da",
+    "code": "AUTH_REQUIRED"
+  },
+  "functionLogs": {
+    "status": "QUERY_API_UNAVAILABLE",
+    "message": "GetFunctionLogs deprecated; CLS service not provisioned in EnvInfo",
+    "notAHandlerFailure": true
+  },
+  "device": "NOT_RUN",
+  "testEnv": "NOT_PROVIDED"
+}

@@ -1,0 +1,148 @@
+TAP version 13
+# Subtest: A03 manual input reads authorized detail first and requires an explicit confirmation before any mutation plan
+ok 1 - A03 manual input reads authorized detail first and requires an explicit confirmation before any mutation plan
+  ---
+  duration_ms: 6.2527
+  type: 'test'
+  ...
+# Subtest: A03 view never contains the credential, idempotency key, raw scan, private phone or persistence evidence
+ok 2 - A03 view never contains the credential, idempotency key, raw scan, private phone or persistence evidence
+  ---
+  duration_ms: 0.5444
+  type: 'test'
+  ...
+# Subtest: A03 scan codec must be explicitly configured, locates only an order id and never auto-completes
+ok 3 - A03 scan codec must be explicitly configured, locates only an order id and never auto-completes
+  ---
+  duration_ms: 0.4654
+  type: 'test'
+  ...
+# Subtest: A03 malformed scan, URLs, numeric tokens, decoder exceptions and extra fields cannot locate or mutate orders
+ok 4 - A03 malformed scan, URLs, numeric tokens, decoder exceptions and extra fields cannot locate or mutate orders
+  ---
+  duration_ms: 0.9413
+  type: 'test'
+  ...
+# Subtest: A03 missing policy, unknown format and invalid account/store/session key providers fail closed
+ok 5 - A03 missing policy, unknown format and invalid account/store/session key providers fail closed
+  ---
+  duration_ms: 0.4656
+  type: 'test'
+  ...
+# Subtest: A03 newer input ignores late detail and scan cancellation/invalidation drops unsubmitted credentials
+ok 6 - A03 newer input ignores late detail and scan cancellation/invalidation drops unsubmitted credentials
+  ---
+  duration_ms: 0.2308
+  type: 'test'
+  ...
+# Subtest: A03 wrong store, delivery, malformed amounts, appointment or products cannot populate a confirmation
+ok 7 - A03 wrong store, delivery, malformed amounts, appointment or products cannot populate a confirmation
+  ---
+  duration_ms: 1.2263
+  type: 'test'
+  ...
+# Subtest: A03 offline and planner markers cannot be treated as connected order or command responses
+ok 8 - A03 offline and planner markers cannot be treated as connected order or command responses
+  ---
+  duration_ms: 0.4074
+  type: 'test'
+  ...
+# Subtest: A03 canceled, completed, not-ready, missing capability and refund/cancellation cases do not offer confirmation
+ok 9 - A03 canceled, completed, not-ready, missing capability and refund/cancellation cases do not offer confirmation
+  ---
+  duration_ms: 0.6109
+  type: 'test'
+  ...
+# Subtest: A03 lost mutation response retries the exact original key, version and credential; no new input while uncertain
+ok 10 - A03 lost mutation response retries the exact original key, version and credential; no new input while uncertain
+  ---
+  duration_ms: 0.4251
+  type: 'test'
+  ...
+# Subtest: A03 hiding during submit ignores the old response and retains private original request for recovery
+ok 11 - A03 hiding during submit ignores the old response and retains private original request for recovery
+  ---
+  duration_ms: 0.2618
+  type: 'test'
+  ...
+# Subtest: A03 reported command success still needs an authoritative follow-up read and does not open success feedback
+ok 12 - A03 reported command success still needs an authoritative follow-up read and does not open success feedback
+  ---
+  duration_ms: 0.4151
+  type: 'test'
+  ...
+# Subtest: A03 completed detail alone after a lost response cannot attribute success to this request or discard its key
+ok 13 - A03 completed detail alone after a lost response cannot attribute success to this request or discard its key
+  ---
+  duration_ms: 0.2723
+  type: 'test'
+  ...
+# Subtest: A03 new detail version never rewrites an uncertain mutation and invalid result payloads never release its key
+ok 14 - A03 new detail version never rewrites an uncertain mutation and invalid result payloads never release its key
+  ---
+  duration_ms: 0.5911
+  type: 'test'
+  ...
+# Subtest: A03 committed wrong-code and non-writing cooldown/lock responses clear raw input but never auto-retry or promise unlock times
+ok 15 - A03 committed wrong-code and non-writing cooldown/lock responses clear raw input but never auto-retry or promise unlock times
+  ---
+  duration_ms: 0.7023
+  type: 'test'
+  ...
+# Subtest: A03 reused generated key is rejected even after a definitive wrong-code result
+ok 16 - A03 reused generated key is rejected even after a definitive wrong-code result
+  ---
+  duration_ms: 0.1968
+  type: 'test'
+  ...
+# Subtest: A03 detail regression, altered historical facts and conflicting same-version observations block confirmation
+ok 17 - A03 detail regression, altered historical facts and conflicting same-version observations block confirmation
+  ---
+  duration_ms: 0.6184
+  type: 'test'
+  ...
+# Subtest: A03 read failures and duplicate results have no command side effects or stale confirmation
+ok 18 - A03 read failures and duplicate results have no command side effects or stale confirmation
+  ---
+  duration_ms: 0.1538
+  type: 'test'
+  ...
+# Subtest: A03 disposal erases volatile recovery and old operator responses cannot enter another account/store session
+ok 19 - A03 disposal erases volatile recovery and old operator responses cannot enter another account/store session
+  ---
+  duration_ms: 0.2939
+  type: 'test'
+  ...
+# Subtest: A03 all public rehearsal flags stay closed and the real cloud client rejects both planned admin actions without platform calls
+ok 20 - A03 all public rehearsal flags stay closed and the real cloud client rejects both planned admin actions without platform calls
+  ---
+  duration_ms: 0.6176
+  type: 'test'
+  ...
+# Subtest: A03 rehearsal integrates A01/A02/O07: confirmation, lost response, same-key replay and completed detail without double resource consumption
+ok 21 - A03 rehearsal integrates A01/A02/O07: confirmation, lost response, same-key replay and completed detail without double resource consumption
+  ---
+  duration_ms: 54.0821
+  type: 'test'
+  ...
+# Subtest: A03 rehearsal integrates wrong-code committed counter, refresh/version change and original failed receipt replay
+ok 22 - A03 rehearsal integrates wrong-code committed counter, refresh/version change and original failed receipt replay
+  ---
+  duration_ms: 30.3472
+  type: 'test'
+  ...
+# Subtest: A03 rehearsal server rejects revocation after confirmation; client failure cannot overwrite role or report success
+ok 23 - A03 rehearsal server rejects revocation after confirmation; client failure cannot overwrite role or report success
+  ---
+  duration_ms: 18.4617
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 266.5534

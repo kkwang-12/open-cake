@@ -1,0 +1,103 @@
+{
+  "state": "COMPLETED",
+  "time": "2026-10-08T03:28:23.238Z",
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "appId": "wx154f791a17268ace",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "functionResult": {
+    "ok": true,
+    "requestId": "7d19b41b-e48d-47ed-b44f-28cfd1daa259",
+    "data": {
+      "passed": true,
+      "firstCreated": false,
+      "assertions": [
+        {
+          "name": "stable-native-owner",
+          "passed": true
+        },
+        {
+          "name": "repeat-read-does-not-create",
+          "passed": true
+        },
+        {
+          "name": "persisted-native-tuple",
+          "passed": true
+        },
+        {
+          "name": "default-record-shape",
+          "passed": true
+        },
+        {
+          "name": "single-user-for-native-tuple",
+          "passed": true
+        }
+      ],
+      "sdkVersion": "4.0.2"
+    },
+    "invocationFlags": {
+      "parsedEnvironment": true,
+      "hasRequestId": true,
+      "hasNativeOpenId": true,
+      "sameNativeOpenId": true,
+      "hasNativeAppId": true,
+      "sameNativeAppId": true,
+      "source": "OTHER_OR_MISSING"
+    }
+  },
+  "platformRequestId": "74640cef-e73e-4026-83df-f66d0ae32851",
+  "clientReads": [
+    {
+      "collection": "users",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "admin_roles",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "audit_logs",
+      "denied": true,
+      "code": -502003
+    }
+  ],
+  "assertions": [
+    {
+      "name": "stable-native-owner",
+      "passed": true
+    },
+    {
+      "name": "repeat-read-does-not-create",
+      "passed": true
+    },
+    {
+      "name": "persisted-native-tuple",
+      "passed": true
+    },
+    {
+      "name": "default-record-shape",
+      "passed": true
+    },
+    {
+      "name": "single-user-for-native-tuple",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:users",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:admin_roles",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:audit_logs",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "device": "NOT_RUN",
+  "indexConflict": "NOT_RUN",
+  "concurrency": "NOT_RUN"
+}

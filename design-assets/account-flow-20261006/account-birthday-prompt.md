@@ -1,0 +1,8 @@
+# 生日横幅生成提示词
+
+日期：2026-10-06。执行方式：内置 image_gen 工具；背景不透明；新生成图片。
+
+```text
+Use case: product-mockup. Asset type: runtime birthday-cake banner photograph for LUNE boutique patisserie account page. Create one extremely clean photorealistic premium food product photograph, WIDE landscape aspect about 3:1, ideally 1536x512 or comparable. A beautiful fresh strawberry vanilla cream birthday cake, inspired by the user's ivory black minimalist LUNE UI: white whipped cream, red halved fresh strawberries, a few subtle tiny white blossoms, delicate cream swirls, refined small round cake. Ivory and warm beige tabletop backdrop #EEE8E0, soft diffuse daylight, tasteful natural shadows. Compose cake on FAR RIGHT, cake body occupies the rightmost 42 percent of the canvas, large and appetizing, slightly cropped at right and bottom edges while every top strawberry remains visible. The LEFT 52 percent must be completely clean, almost uniform warm ivory/beige NEGATIVE SPACE for real interface text placed separately. Clear the entire left half of cake, berries, props or shadows. No lettering of any kind, NO LUNE label, NO logo, NO candles, NO writing, NO text, no icons, no border, no rounded frame, NO mobile phone or UI screenshot. Only the cake and subtle background. Camera three-quarter angle slightly from above, long lens without distortion, polished appetizing editorial food photography. The photograph will be displayed at about343x128logical pixels, so left text area must remain empty and right cake should read well at small size. Not an image of an app; this is an independent clean source photography asset.
+```
+

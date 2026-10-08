@@ -1,0 +1,25 @@
+TAP version 13
+# Subtest: A04 replay version and deterministic created identity remain bound to the original request despite later changes
+not ok 1 - A04 replay version and deterministic created identity remain bound to the original request despite later changes
+  ---
+  duration_ms: 25.9597
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\merchant-catalog.test.js:214:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (D:\dinner cook\tests\merchant-catalog.test.js:230:5)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 0
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 192.0283

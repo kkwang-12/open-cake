@@ -7,7 +7,34 @@ const heroSlides = [
   { id: 'lemon', image: '/assets/home/hero-scene-lemon.jpg', imageLabel: '桌面上的柠檬蛋糕', titleLines: ['让相聚，', '多一点清新甜。'], subtitle: '一份清甜，留住轻盈的好心情。', buttonText: '去选购', target: { route: 'shop', category: 'cake' }, imageReady: false, imageFailed: false }
 ];
 Page({
-  data: { tabMotion: '', products: [], loading:false,error:'',source:'',recommendationConfigured:false, heroSlides, heroCurrent: 0 },
+  data: { tabMotion: '', products: [], loading:false,error:'',source:'',recommendationConfigured:false, heroSlides, heroCurrent: 0, heroHeight:317.2, heroImageWidth:375 },
+  onLoad(){this.updateHeroLayout();},
+  onReady(){this.measureHeroLayout();},
+  onResize(){this.updateHeroLayout();this.measureHeroLayout();},
+  updateHeroLayout(recommendationHeight){
+    let width=375,height=640,safeBottom=0;
+    try{
+      const info=wx.getWindowInfo?wx.getWindowInfo():wx.getSystemInfoSync();
+      width=info.windowWidth||width;height=info.windowHeight||height;
+      if(info.safeArea&&Number.isFinite(info.safeArea.bottom))safeBottom=Math.max(0,height-info.safeArea.bottom);
+    }catch(_){}
+    // Fallback matches the current two-card recommendation row; measure after render.
+    const recommendations=Number.isFinite(recommendationHeight)&&recommendationHeight>0?recommendationHeight:
+      14+28+10+75+(width-44)*.34;
+    const heroHeight=Math.round(Math.max(276,height-65-safeBottom-8-recommendations)*.9*10)/10;
+    // All three current source JPGs are 1122 x 1402. Enlarge equally on both axes
+    // when needed to cover tall viewports; widthFix preserves their actual ratio.
+    this.setData({heroHeight,heroImageWidth:Math.max(width,Math.ceil(heroHeight*1122/1402))});
+  },
+  measureHeroLayout(){
+    if(typeof wx==='undefined'||typeof wx.nextTick!=='function'||typeof this.createSelectorQuery!=='function')return;
+    const ticket=this._epoch,request=this._heroLayoutRequest=(this._heroLayoutRequest||0)+1;
+    wx.nextTick(()=>{if(!this._visible||ticket!==this._epoch||request!==this._heroLayoutRequest)return;
+      this.createSelectorQuery().select('.home-recommendations').boundingClientRect(rect=>{
+        if(this._visible&&ticket===this._epoch&&request===this._heroLayoutRequest&&rect)this.updateHeroLayout(rect.height);
+      }).exec();
+    });
+  },
   onShow() {
     tabTransition.show(this, 0);
     this._visible=true;
@@ -24,10 +51,10 @@ Page({
       const result=await catalog.get();
       if(!this._visible||ticket!==this._epoch)return;
       this._loaded=true;
-      this.setData({products:result.products,source:result.source,recommendationConfigured:result.recommendationConfigured,loading:false});
+      this.setData({products:result.products,source:result.source,recommendationConfigured:result.recommendationConfigured,loading:false},()=>this.measureHeroLayout());
     }catch(error){
       if(!this._visible||ticket!==this._epoch)return;
-      this.setData({loading:false,error:error.code==='CLOUD_NOT_CONFIGURED'?'商品服务暂未开通，欢迎稍后再来。':'商品加载失败，请重试。'});
+      this.setData({loading:false,error:error.code==='CLOUD_NOT_CONFIGURED'?'商品服务暂未开通，欢迎稍后再来。':'商品加载失败，请重试。'},()=>this.measureHeroLayout());
     }
   },
   retry(){if(!this.data.loading)return this.load();},

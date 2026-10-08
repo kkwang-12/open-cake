@@ -1,0 +1,63 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "evidence": [
+          {
+            "name": "client-user-me",
+            "ok": true,
+            "requestId": "dd7d70d4-bb8e-409f-8af7-af3352c86d4f",
+            "authenticated": true,
+            "role": "customer"
+          },
+          {
+            "name": "client-store-health",
+            "ok": true,
+            "data": {
+              "available": true,
+              "stage": "development",
+              "environment": "cloudbase-d8gwtxzm64150b7e0"
+            },
+            "requestId": "6abeba1f-5e5a-4110-8fb9-310b084b09d7"
+          },
+          {
+            "name": "forged-identity",
+            "ok": true,
+            "requestId": "676bcf5f-f03c-424e-a439-d3ce44e063c6",
+            "platformRequestId": "84a1cb39-0d6e-48fc-bc89-5e129c41807e",
+            "error": null,
+            "role": "customer",
+            "sameSubject": true
+          },
+          {
+            "name": "invalid-action",
+            "ok": false,
+            "requestId": "b58055bb-0540-40f0-ba02-2584f126e5d2",
+            "platformRequestId": "e0cc1b10-ef5d-4c9c-a7c0-f36c3a0490a4",
+            "error": {
+              "code": "INVALID_REQUEST",
+              "message": "请求无效"
+            },
+            "sameSubject": null
+          },
+          {
+            "name": "invalid-payload",
+            "ok": false,
+            "requestId": "58b879e5-01e7-414e-8e6a-5920730372ed",
+            "platformRequestId": "54687261-76d1-43ac-82a6-50ac6438c0d3",
+            "error": {
+              "code": "INVALID_REQUEST",
+              "message": "请求无效"
+            },
+            "sameSubject": null
+          }
+        ]
+      }
+    }
+  }
+}
+

@@ -5,13 +5,13 @@ const messages = {
   ENV_MISMATCH: '服务环境不匹配', APP_MISMATCH: '小程序身份不匹配',
   INVALID_REQUEST: '请求无效', INTERNAL_ERROR: '服务暂时不可用'
 };
-function createHandler({ action, handle, getContext, settings, logger = console }) {
-  return async function main(event = {}) {
+function createHandler({ action, handle, getContext, settings, logger = console, mapError = () => 'INTERNAL_ERROR' }) {
+  return async function main(event = {}, invocationContext) {
     const requestId = randomUUID();
     let code = '';
     try {
       if (!settings.appId || !settings.environment || !['development', 'test', 'production'].includes(settings.stage)) code = 'INVALID_CONFIGURATION';
-      const context = getContext() || {};
+      const context = getContext(invocationContext) || {};
       if (!code && (!context.OPENID || !context.APPID)) code = 'AUTH_REQUIRED';
       if (!code && context.APPID !== settings.appId) code = 'APP_MISMATCH';
       if (!code && context.ENV !== settings.environment) code = 'ENV_MISMATCH';
@@ -22,12 +22,20 @@ function createHandler({ action, handle, getContext, settings, logger = console 
       }
       // 只使用平台上下文，不读取 event.openid / role / payload 中的身份字段。
       const subjectHash = createHash('sha256').update(context.APPID + ':' + context.OPENID).digest('hex').slice(0, 16);
-      const data = await handle({ subjectHash, environment: settings.environment, stage: settings.stage });
+      // Keep native identifiers out of the public argument object, even for handlers
+      // that return that object. The second argument is an internal request snapshot.
+      const data = await handle({ subjectHash, environment: settings.environment, stage: settings.stage },
+        Object.freeze({ OPENID: context.OPENID, APPID: context.APPID, ENV: context.ENV }));
       logger.info({ code: 'OK', requestId, stage: settings.stage });
       return { ok: true, requestId, data };
-    } catch (_) {
-      logger.error({ code: 'INTERNAL_ERROR', requestId, stage: settings.stage });
-      return { ok: false, requestId, error: { code: 'INTERNAL_ERROR', message: messages.INTERNAL_ERROR } };
+    } catch (error) {
+      let publicCode = 'INTERNAL_ERROR';
+      try {
+        const mapped = mapError(error);
+        if (Object.prototype.hasOwnProperty.call(messages, mapped)) publicCode = mapped;
+      } catch (_) { publicCode = 'INTERNAL_ERROR'; }
+      logger.error({ code: publicCode, requestId, stage: settings.stage });
+      return { ok: false, requestId, error: { code: publicCode, message: messages[publicCode] } };
     }
   };
 }

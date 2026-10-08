@@ -225,6 +225,7 @@ D02 下文定义 users / categories / products / skus / favorites / carts / addr
 | quoteId: ID | 是 / 无 | checkout_quotes，反向 consumedOrderId 对应 | 固定 | 内部 |
 | orderNote: S | 是 / 空串 | 订单备注，与逐行留言独立；长度待配置 | 固定 | 履约 |
 | cartSelectionSnapshot: CartSelectionSnapshot | 是 / 无 | 创建时选中行证据 | 固定 | 内部 |
+| cartRemovalSnapshot: CartRemovalSnapshot | 是 / 无 | O04 创建时从可信 Cart 捕获的精确移除证据，仅订单持有 | 固定 | 内部 |
 | storeSnapshot: StoreSnapshot | 是 / 无 | 订单创建事实 | 固定 | 履约 |
 | contactSnapshot: ContactSnapshot | 是 / 无 | 自提 / 配送联系人 | 固定 | 履约 |
 | addressSnapshot: AddressSnapshot? | 是 / 无 | DELIVERY 对象；PICKUP null | 固定 | 履约 |
@@ -233,7 +234,7 @@ D02 下文定义 users / categories / products / skus / favorites / carts / addr
 | subtotalCents: C+ | 是 / 无 | 分，订单行之和 | 固定 | 履约 |
 | deliveryFeeCents: C | 是 / 无 | 分，与 deliverySnapshot.feeCents 一致 | 固定 | 履约 |
 | paymentDeadlineAt: T | 是 / 无 | 资源占用截止；不晚于预约允许边界 | 固定 | 履约 |
-| paidAt: T? | 是 / null | 可信平台成功时间 | 一次 | 履约 |
+| paidAt: T? | 是 / null | 经核验的成功时间下界；原平台时间 / 精度保留在事件，见 P03 | 一次 | 履约 |
 | cancelledAt: T? | 是 / null | 合法取消提交时间 | 一次 | 履约 |
 | completedAt: T? | 是 / null | 合法履约完成时间 | 一次 | 履约 |
 | cancellationReason: S? | 是 / null | 取消时填，不混审批 / 退款原因 | 一次 | 履约 |
@@ -256,7 +257,7 @@ D02 下文定义 users / categories / products / skus / favorites / carts / addr
 | orderId: ID | 是 / 无 | orders | 固定 | 履约 |
 | command: S | 是 / 无 | D01 命令或显式资金 / 资源领域动作 | 固定 | 内部 |
 | actor: ActorRef | 是 / 无 | 可信执行者，不接受前端 role | 固定 | 内部 |
-| before: TradeAxes | 是 / 无 | 提交前状态 / 金额 / version | 固定 | 内部 |
+| before: TradeAxes? | 是 / 无 | 提交前状态 / 金额 / version；仅首次 ORDER_CREATED 为 null（此前无订单），其他命令必须交易轴 | 固定 | 内部 |
 | after: TradeAxes | 是 / 无 | 提交后状态 / 金额 / version | 固定 | 内部 |
 | requestId: S | 是 / 无 | 脱敏关联追踪，不是幂等键 | 固定 | 内部 |
 | eventId: ID? | 是 / null | 资金动作关联 payment_events | 固定 | 内部 |
@@ -276,6 +277,8 @@ D02 下文定义 users / categories / products / skus / favorites / carts / addr
 | reviewReason: S? | 是 / null | 审批 / 拒绝理由 | 一次 | 履约 |
 | approvedRefundCents: C? | 是 / null | 分；APPROVED 必填可为 0；其他 null | 一次 | 履约 |
 | refundId: ID? | 是 / null | 正金额审批关联 refunds；零金额保持 null | 一次 | 内部 |
+| requestLogId: ID | A06 是 / 无 | 原 REQUEST_CANCELLATION order_logs，确定性 request ID 绑定此日志 / 环境 / app / 订单 | 固定 | 内部 |
+| reviewLogId: ID? | A06 是 / null | APPROVE_CANCELLATION / REJECT_CANCELLATION order_logs | 一次 | 内部 |
 
 申请不改变 orderStatus，商家审批须读当前订单；履约竞争可能使申请无法批准，显式拒绝并留记录，不静默撤销。
 
@@ -295,7 +298,7 @@ D02 下文定义 users / categories / products / skus / favorites / carts / addr
 | status: E | 是 / PENDING | PENDING / PAID / CLOSED / EXCEPTION；非订单 UNPAID | 可改按资金证据 | 履约投影 |
 | accountingState: E | 是 / UNAPPLIED | UNAPPLIED / APPLIED / QUARANTINED；APPLIED 须可信成功且只入账一次 | 可改受控 | 内部 |
 | expiresAt: T | 是 / 无 | <= 订单付款截止 | 固定 | 内部 |
-| confirmedAt: T? | 是 / null | 可信成功时间 | 一次 | 履约投影 |
+| confirmedAt: T? | 是 / null | 平台原成功时间；精度见事件，不伪造原始毫秒 | 一次 | 履约投影 |
 | closedAt: T? | 是 / null | 可信关闭时间，不是客户端退出 | 一次 | 内部 |
 | lastEventId: ID? | 是 / null | payment_events | 可改 | 内部 |
 
@@ -316,6 +319,7 @@ D02 下文定义 users / categories / products / skus / favorites / carts / addr
 | status: E | 是 / PENDING | PENDING / FAILED / SUCCEEDED；成功不可倒退 | 可改按资金证据 | 履约投影 |
 | budgetState: E | 是 / RESERVED | RESERVED / SETTLED / RELEASED；失败仍 RESERVED | 可改受控 | 内部 |
 | settledAt: T? | 是 / null | 可信成功时间 | 一次 | 履约投影 |
+| settledAtPrecisionMs: N? | 是 / null | P06 原成功时间精度 1 / 1000ms；成功必填，其他状态 null | 一次 | 内部 |
 | lastEventId: ID? | 是 / null | payment_events | 可改 | 内部 |
 | lastErrorCode: S? | 是 / null | 脱敏错误，无原始凭证 | 可改 | 内部 |
 
@@ -362,7 +366,7 @@ budgetState=RELEASED 仅供未来核实后受控处置，须审计与订单摘�
 | timeZone: S | 是 / 无 | 对应发布配置 | 固定 | 公开投影 |
 | startAt: T | 是 / 无 | UTC 毫秒 | 固定 | 公开投影 |
 | endAt: T | 是 / 无 | > startAt；半开区间 [startAt,endAt) | 固定 | 公开投影 |
-| policyVersion: S | 是 / 无 | TimePolicy.policyVersion | 固定 | 内部 |
+| policyVersion: S | 是 / 无 | 当前 TimePolicy.policyVersion；A05 可随新发布维护未来仍可约资源，版本 / 占用池 / 审计同事务；订单历史快照固定 | 受控发布维护；已开始资源不改 | 内部 |
 | capacityUnit: S | 是 / 无 | SlotPolicy.unit，经确认后才能发布 | 固定 | 内部 |
 | capacityTotal: N | 是 / 无 | 容量，允许 0 表示无可售名额 | 可改按资源事务 | 内部 |
 | heldUnits: N | 是 / 0 | HELD 预留之和 | 可改按资源事务 | 内部 |
@@ -388,19 +392,27 @@ budgetState=RELEASED 仅供未来核实后受控处置，须审计与订单摘�
 | 字段 / 类型 | 必填 / 默认 | 约束 / 单位 | 可变性 | 隐私 |
 |---|---|---|---|---|
 | subjectId: ID | 是 / 无 | users；初始身份 E12 待确认 | 固定 | 内部 |
-| storeIds: ID[] | 是 / 无 | 非空门店范围，不接受请求自报 | 可改并审计 | 内部 |
-| capabilities: S[] | 是 / [] | ORDER_OPERATE / REFUND_APPROVE / CATALOG_WRITE / CONFIG_WRITE / ROLE_MANAGE / AUDIT_READ；具体授权 D06 | 可改并审计 | 内部 |
+| environment / appId: S | A01 是 / 无 | 服务端绑定隔离环境 / 应用 | 固定 | 内部 |
+| storeIds: ID[] | 是 / 无 | 非空门店范围；A01 请求仅提出候选，服务端重验委派范围 / 门店 | A01 固定；重授权新记录 | 内部 |
+| capabilities: S[] | 是 / [] | 六项词表；A01 创建须非空并在授权者范围内 | A01 固定；重授权新记录 | 内部 |
 | status: E | 是 / ACTIVE | ACTIVE / REVOKED | 可改并审计 | 内部 |
 | grantedBy: ActorRef | 是 / 无 | 受控初始化或有角色管理权限者 | 固定 | 内部 |
+| grantSource: E | A01 是 / 无 | BOOTSTRAP / DELEGATED | 固定 | 内部 |
+| grantAuditId: ID | A01 是 / 无 | audit_logs；角色 _id 绑定 environment / appId / 此 ID | 固定 | 内部 |
 | revokedAt: T? | 是 / null | 撤销生效；每次敏感操作重查 | 一次 | 内部 |
+| revocationAuditId: ID? | A01 是 / null | 撤销审计；撤销与 version 0→1 同事务填入 | 一次 | 内部 |
+
+A01 当前只新建 ACTIVE / version 0 与一次撤销到 REVOKED / version 1，不原地编辑范围 / 能力。初始化 audit ID 为环境 / 应用永久唯一标记，不能 TTL 删除或删除角色后重置。D06 原基础 guard 及其他历史夹具未自动迁移；A01 严格角色 / 时间 / scope 约束与真实适配器要求见 [A01](A01-ADMIN-AUTHORIZATION.md)。未建库。
 
 ### audit_logs
 
 | 字段 / 类型 | 必填 / 默认 | 约束 / 单位 | 可变性 | 隐私 |
 |---|---|---|---|---|
 | actor: ActorRef | 是 / 无 | 真实服务端身份 | 固定 | 内部 |
+| environment / appId: S | A01 是 / 无 | 服务端绑定；不取用户输入 | 固定 | 内部 |
 | action: S | 是 / 无 | 角色 / 配置 / 目录 / 财务处置等动作 | 固定 | 内部 |
 | storeId: ID? | 是 / null | 全局初始化可 null | 固定 | 内部 |
+| storeIds: ID[] | A01 是 / 无 | 完整目标范围；多门店 storeId=null 不等于全局可读 | 固定 | 内部 |
 | target: AuditTarget | 是 / 无 | 目标实体与版本 | 固定 | 内部 |
 | changes: AuditChange[] | 是 / [] | 只保存允许审计的脱敏标量差异 | 固定 | 内部 |
 | reason: S | 是 / 无 | 操作依据 | 固定 | 内部 |
@@ -505,6 +517,21 @@ budgetState=RELEASED 仅供未来核实后受控处置，须审计与订单摘�
 | SelectedLine.lineVersion: N | 当前行版本 | 无 |
 | SelectedLine.quantity: P | 与对应 items 行数量相等 | 销售单位 |
 | SelectedLine.messageFingerprint: S | 服务端规范化留言摘要，包括 null / 空串区别；不能信客户端摘要 | 内部；摘要也不是匿名信息 |
+
+### CartRemovalSnapshot / CartRemovalLine（O04）
+
+只属于订单内部恢复元数据，不新增集合，不进入 Quote / OrderFacts 或客户端 DTO。摘要也属于内部敏感证据。
+
+| 字段 / 类型 | 约束 |
+|---|---|
+| cartId: ID | 与订单 cartSelectionSnapshot.cartId 一致 |
+| cartVersion: N | 与选中快照版本一致；允许当前袋版本更高 |
+| lines: CartRemovalLine[] | 非空且 lineId 唯一；顺序、ID / 版本与 selectedLines 对齐 |
+| CartRemovalLine.lineId: ID | 稳定 CartLine ID，删除后不可复用 |
+| CartRemovalLine.lineVersion: N | 创建时行版本，移除时必须匹配 |
+| CartRemovalLine.contentFingerprint: S | 服务端规范 JSON 的 SHA-256；覆盖 lineId / productId / skuId / quantity / cakeMessage / messageFingerprint / normalizationVersion / addedAt，64 位小写十六进制 |
+
+仅全部匹配的行可删除；新加 / 修改行保留。既有 idempotency_records 使用内部 order.cart.sync / orderId 检查点，与袋条件写同事务；不改订单状态 / 版本或资源计数。详情见 [O04-ORDER-RECOVERY.md](O04-ORDER-RECOVERY.md)。
 
 ### StoreSnapshot / ContactSnapshot
 
@@ -688,6 +715,12 @@ MediaRef 也用于商品 / 用户头像；用户头像继承本人隐私，不�
 | PickupCredential.expiresAt: T | 核销有效期，UTC 毫秒；真实策略待 E10 |
 | PickupCredential.usedAt: T? | 初值 null，核销一次填 |
 | PickupCredential.usedBy: ID? | 初值 null，核销商家身份 |
+| PickupCredential.issuedAt: T | O07 内部签发 UTC 毫秒；有效期与签发绑定，不因读取延长 |
+| PickupCredential.keyId: ID | 服务端凭证密钥 ID；不包含密钥，旧密钥须保留到有效凭证失效 |
+| PickupCredential.policyVersion: S | 显式注入的凭证政策版本；E10 正式政策仍待确认 |
+| PickupCredential.format: S | 当前内部候选 OPAQUE_TOKEN；不是已选定的正式展示形式 |
+| PickupCredential.failedAttempts: N | 初始 0；当前凭证跨操作人共享的持久错码数，达到显式上限锁定 |
+| PickupCredential.nextAttemptAt: T | 初值 issuedAt；实际错码后按显式冷却策略更新；重复读取 / 同键重放不重置 |
 | CommandResult.entityId: ID? | 无实体结果显式 null |
 | CommandResult.version: N? | 无版本结果显式 null |
 | CommandResult.errorCode: S? | 成功 null；失败固定公开错误码 |
@@ -708,7 +741,11 @@ MediaRef 也用于商品 / 用户头像；用户头像继承本人隐私，不�
 | MoneyEvidence.amountCents: C? | 解析金额，分；异常格式保存 errorCode 而非伪造 0 |
 | MoneyEvidence.resultCode: S? | 平台结果码，不直接作为订单状态 |
 | MoneyEvidence.occurredAt: T? | 可信平台业务时间；未知 null |
+| MoneyEvidence.occurredAtPrecisionMs: P? | P03 PAYMENT 内部显式 1 / 1000；秒级须整秒对齐；来源拒绝 null，实际适配器需明确精度 |
+| MoneyEvidence.payerIdentityDigest: S? | P03 PAYMENT 的 AppID / 付款者 OPENID 范围摘要；缺失 null，入账须匹配可信用户映射；仍是内部敏感证据 |
 | MoneyEvidence.payloadDigest: S | 原始消息摘要，只用于去重 / 审计，不代替验签 |
+
+O07 上述凭证字段仅内部，不进 order.get / list。仅本人 READY / PICKUP / PAID 的受控凭证接口可返回 orderId / expiresAt / format / value；明文值不入库。签发 / 续发及实际错码使订单版本 +1，与内部日志同事务；错码还须同事务保存 FAILED 幂等回执，提交后返回拒绝，不能因抛错回滚限速。PICKUP_CREDENTIAL_ISSUED / PICKUP_CREDENTIAL_REJECTED 只保持 READY 自提交易轴，O06 校验完整链后隐藏这两种公开时间线事件。正式 E10 与 SLOT 完成政策未选，测试参数不是发布配置，详见 [O07-PICKUP-CREDENTIAL.md](O07-PICKUP-CREDENTIAL.md)。
 
 MoneyEvidence 的 nullable 字段允许记录隔离证据；只有 VERIFIED 且全部必要归属 / 金额 / 平台结果通过时可入账。原始资金报文如需留存，必须由选定支付方案另定受限存储与保留规则，普通日志不输出报文。
 
@@ -864,3 +901,120 @@ principal / actor.grant 为内部运行时证据，不是新增集合类型或�
 用户整张参考海报只存在 catalog-assets/development，不进入 product.images / MediaRef / 小程序包；面包统一 1200 分来自用户补充，名称 / 单份规格为开发描述。素材注册只生成 DRAFT；其 mimeType 是签名初步识别，不是完整解码验收。PUBLISHED 必须另走受控来源 / 解码 / 权限 / 文件存在检验。
 
 同 assetId/revision 的 storageRef/sourceKind/contentHash/mimeType/byteLength 锁定；新图建新 revision。引用投影只有既有四字段。退役图片仍按原引用可读，不跳最新版本；引用未消失或保留期未批准均保持。纯保留工具即使零引用也只输出 RECHECK_BEFORE_DELETE，不执行物理删除或解决并发。
+
+## O02 离线订单创建补充（2026-10-05）
+
+order-creation-model 按本字典生成初始 PENDING_PAYMENT / UNPAID / NONE 订单头、独立有序 order_items、完整通用字段与历史事实；订单头不另存 items 或 id。深复制 / 深冻结与整数总额通过，数据库不可变性 / 唯一 orderNo / 实际事务仍未验收。报价消费、全资源预留、订单 / 明细 / 首日志 / 幂等必须同一原子边界，不能把 proposedOrder 当实际已创建。付款截止读取发布配置，不猜正式参数，详见 [O02-ORDER-CREATION.md](O02-ORDER-CREATION.md)。
+
+## O05 内部取消与预留解析补充（2026-10-05）
+
+沿用现有 orders.cancelledAt / cancellationReason、reservations.status / resolvedAt / resolutionLogId、order_logs 和 idempotency_records，不新增集合或付款事实字段。待付取消把整单 HELD→RELEASED，数量按消费报价的聚合需求而非销售件数，资源当前版本更新与订单 / 日志 / 回执同事务；已消费报价及订单明细保持历史事实。
+
+支付记录 CLOSED 只能由可信 Payment 处理器核实后保存，closedAt / lastEventId 是关联证据，不是客户端凭证。O05 校验归属 / AppID / 金额 / 截止 / 关闭记录及摘要一致性；实际事件签名和关单留 P04。未知支付无成功回执或新增持久取消作业。内部 order.expire 复用幂等集合，不是公开 action；定时触发未部署。
+
+已付申请 / 审批 / 退款只生成必需原子效果，未实际保存 cancellation_requests / refunds。制作后 CONSUMED 库存不恢复，SLOT 回补仍待可信政策，不能把测试 RELEASE_UNCONSUMED / RETAIN 写成已发布配置。详见 [O05-ORDER-CANCELLATION.md](O05-ORDER-CANCELLATION.md)。
+
+## O06 历史订单公开投影（2026-10-05）
+
+不新增集合或持久字段。Orders 的 group / statusLabel / paymentLabel、refundSummary、cancellationSummary、availableActions、公开 timeline 为派生投影，不写回订单。CURRENT / PAST 取履约轴，退款成功 / 未决金额保持资金摘要，不改变实际履约状态。详情从 order_items 依 position 聚合并核对历史金额，原媒体 revision 只读；不按当前产品 / 门店 / 地址覆盖快照。
+
+公开投影不含 ownerId、内部 cartSelectionSnapshot / cartRemovalSnapshot / deliverySnapshot、角色 / 资源 / 原始资金事件 / 追踪 / 日志理由 / 凭证 digest。本人源地址与商品 ID 可作为允许的引用，非匿名化保证；列表不含联系人、地址或留言。日志按提交版本链与最终交易轴校验，仅返回固定进度文案。目标 order.list 的 view 是请求筛选，未持久化；真实 SDK / 页面待补，见 [O06-ORDER-READ.md](O06-ORDER-READ.md)。
+
+## O08 配送完成 / 支持投影补充（2026-10-05）
+
+不新增集合或持久字段。START_DELIVERY 改 orderStatus / version / updatedAt 并追加日志；COMPLETE_DELIVERY 再一次性写 completedAt，最终可信操作人日志作为确认 / 履约证据，成功幂等回执只含 entityId / version / errorCode。当前明确测试 KEEP_CONFIRMED 分支不改已 CONSUMED STOCK 或 CONFIRMED SLOT，正式完成资源政策仍待补。
+
+详情派生 deliverySupport，自取 null；配送含 provider=STORE、windowNature=ESTIMATED、固定说明，以及 contact{action:CONTACT_STORE,label,phone,enabled:false,blockedReason}。电话取历史 storeSnapshot.phone，缺值为 null / CONFIGURATION_REQUIRED；已有值也因页面未接为 SERVICE_NOT_CONNECTED。该提示不持久化、不加入列表、不自动查出或猜电话，正式门店发布仍要求完整真实资料。履约 / 金额 / 退款轴继续独立，历史商品 / 地址 / 时段不变；不增加骑手、分钟承诺或失败配送枚举。见 [O08-ORDER-DELIVERY.md](O08-ORDER-DELIVERY.md)。
+
+## P01 支付配置描述（2026-10-05）
+
+没有新增集合 / 资金记录或更改 payments 持久字典。payment-settings.example.json 为三个阶段空值的服务端示例；密钥描述只有 environment / name / revision，候选 route 为内部配置值，未冻结成已实接 provider。controlledTest 是待可信登记来源的引用及窗口 / 预算，不是人工授权或已占用账本。P02 将另生成符合外部接口的唯一商户单号并关联内部订单 / 支付，不能截断现有 orderNo；本轮未实现。见 [P01](P01-PAYMENT-CONFIGURATION.md)。
+
+## P02 内部意图及受控测试预算补充（2026-10-05）
+
+payments 增加以下内部候选字段，均未实际落云：environment / stage / profileVersion 固定配置绑定；creationOrderVersion 记录首次意图对应订单版本；controlledTestRef / controlledBudgetId / authorizationFingerprint 为非生产原授权及预算证据，生产 null。dispatchState 为 PREPARED / REQUESTED / UNKNOWN，dispatchToken / dispatchStartedAt 在首次发送占权提交时写入，前者不是客户端支付凭证；两者在 PREPARED 为 null，其后不可回退清空再送。普通 version / updatedAt 随条件写更新。
+
+PENDING / UNAPPLIED 不是已付；PREPARED 到 REQUESTED 不改订单三轴、预算或资源，不保存模拟 prepay_id / 唤起参数。订单仍可能 UNPAID，取消必须核查实际意图集合。payInvocation 不是持久字段，本轮输出恒 null。merchant outTradeNo 独立随机生成 / 校验 / 持久复用，唯一性要求覆盖商户全部环境。正式 provider 格式、READY 会话、可信关闭后的重付及账本留真实接入与 P03 / P04。
+
+### payment_test_budgets
+
+P02 追加的受控测试支撑集合候选，使目标集合由 25 增至 **26**；全部仍未创建。通用 _id / schemaVersion / version / createdAt / updatedAt 沿用字典，_id 为 controlled-payment-budget(environment, appId, merchantId, reference) 的完整范围摘要。
+
+| 字段 / 类型 | 约束 | 可变性 / 隐私 |
+|---|---|---|
+| authorizationFingerprint: S | 完整 P01 受控登记 canonical 请求摘要；包含范围 / 配置版本 / 窗口 / 限额 | 初始化固定；服务端 |
+| reservedAmountCents: C | 未决意图占用金额，正向准备时整笔占用 | 受控事务；服务端 |
+| reservedTransactions: N | 未决意图占用次数 | 受控事务；服务端 |
+| usedAmountCents: C | 已核实执行的累计测试额 | 后续对账事务；服务端 |
+| usedTransactions: N | 已核实执行的累计次数 | 后续对账事务；服务端 |
+
+reserved + used 不超对应授权限额；未知不返还，回放 / 发送不再占用。正式初始化 / 消耗 / 关闭释放 / 撤销管理待补，不能自行创建新预算绕过限额或退款后自动重置。凭证与授权来源受控，不存原始密钥；所有客户端直接 CRUD 在未部署草案中关闭。见 [P02](P02-PAYMENT-INTENTS.md)。
+
+## P03 通知 / 交易守卫与预算消费（2026-10-05）
+
+复用 payment_events，不新增集合，目标仍 26 个且未建云。P03 内部记录补充 recordType（NOTIFICATION / TRANSACTION_GUARD / REJECTED_SOURCE / EVENT_CONFLICT）、environment、binding（来源拒绝 null，否则 environment / stage / appId / merchantId / provider / profileVersion）、semanticFingerprint。通用时间 / 版本字段与事实摘要、记录角色均须校验；所有记录是内部证据，不进入公开 DTO。
+
+通知 ID 按环境 / provider / 商户 / 通知号确定；交易守卫按 provider / 商户 / transactionId 确定且不含环境，providerEventId=null。实际商户跨环境全局注册 / 唯一性待 SDK，不以环境各自索引冒充全局证明。来源拒绝用独立原输入摘要 namespace；同事件事实冲突追加记录而不覆盖原事件。语义摘要排除 payloadDigest 与通知号，原报文不保存。
+
+payments 增加候选 budgetConsumedAt: T?，准备意图为 null；经原授权 / 预算核验消费后写一次，生产为 null。正常资金 PAID / APPLIED、reserved→used、订单与 HELD→CONFIRMED 同事务。符合原付款匹配但迟到 / 取消 / 已关闭 / 资源异常的资金 PAID / QUARANTINED，原预算可核验才消费，不改变订单入账 / 履约。未匹配或第二笔异常资金留事件与独立交易守卫，不能丢弃或使 paidCents 超总额。
+
+事件 occurredAt / payments.confirmedAt 保留原成功时间与显式精度；orders.paidAt 取平台时间及已核验订单 / 意图 / 发送创建时间的较大值，是成功时间下界。秒级区间与意图必须相容，未来 / 完全早于意图或跨截止的资金隔离。VERIFIED 只表示注入来源适配器认可，不替代业务核验或实际平台验收；当前来源是 OFFLINE_TEST_ONLY 夹具。真实重新核实 / 修复与退款补偿留 P04 / P06，见 [P03](P03-PAYMENT-NOTIFICATIONS.md)。
+
+## P04 恢复记录与迟到款意图（2026-10-05）
+
+仍复用 payment_events / payments / refunds，无新增集合，26 集合全部待真实云。payments.closeRequestedAt: T? 在关闭占权时写，阻止 PREPARED 继续发送；budgetReleasedAt: T? 在认证后 CLOSED 释放原测试 reserved 时写，与 closedAt 同时间，生产 null。closedAt 是服务端确认时间，不宣称平台提供关闭时间。已释放预算迟到款只加 used 不再扣 reserved；原额度不足保留资金 / 原预算进入核实。退款不重置 used。
+
+payment_events 增加以下内部候选记录，普通客户端仍不可 CRUD：
+
+- QUERY_RESULT：P03 白名单资金证据 source=QUERY，providerEventId 是服务器请求相关号，独立查询 namespace；通知 / 查询共用语义摘要和商户交易守卫。
+- RECOVERY_REQUEST：通用元数据、source=QUERY、kind、operation（QUERY / CLOSE）、purpose（VERIFY / CANCEL / EXPIRE）、basisEventId（关闭依据，否则 null）、environment / provider / binding、paymentId / orderId / outTradeNo / paymentVersion、requestState=REQUESTED。先保存再输出传输要求，不表示已实际发送。
+- RECOVERY_OBSERVATION：通用元数据、source=QUERY、kind、requestId、paymentId / paymentVersion、environment / provider / binding、outcome / disposition、verificationStatus=VERIFIED、facts / semanticFingerprint；facts 为 binding、operation、outcome、排除 payloadDigest 的 MoneyEvidence，不存报文。未知重放仍需协调，不当 CLOSED。
+- LATE_PAYMENT_COMPENSATION：通用元数据、source=RECONCILIATION、kind=REFUND、environment / provider、paymentId / refundId / transactionId / amountCents / guardId、requiresAlert=true、externalRefundExecuted=false。是原资金与补偿依据，不是已发送告警或已退款。
+
+交易守卫原证据 / binding / 语义摘要不可覆盖；明确迟到款全额补偿的事务可更新处理状态、version / 时间、errorCode 与 reconciliationEventId，支付同步 accountingState=APPLIED / reconciliationEventId。原异常事件保留，退款意图使用既有 refunds 字典，ID 由环境 / 支付 / 交易号确定，商户退款号独立生成；PENDING / RESERVED、平台号 / settledAt=null。订单取消、PAID 全额、退款预留 / 日志和资源释放同事务，退款执行及终态留 P06。见 [P04](P04-PAYMENT-RECOVERY.md)。
+
+## P06 退款尝试与结果记录补充（2026-10-06）
+
+复用 refunds / refund_attempts / payment_events / order_logs，没有新增集合或创建数据库。refund_attempts 按原意图连续 sequence；STARTED 占权后同请求仅重放，受理 / 未知不得视作资金确认。结果事件 REFUND_RESULT 保存通用字段、kind=REFUND、source=QUERY 或 RECONCILIATION、environment / provider / binding / providerEventId、refundId / paymentId、receivedAt / processedAt、verificationStatus、processingStatus、outcome、归一化 evidence 与 semanticFingerprint；不保存原始凭证。REFUND_GUARD 的 _id 为商户 / 平台退款号完整摘要，保存原 refundId / amountCents，保护平台号不跨意图复用。
+
+REFUND_CONFIRMED / REFUND_FAILED 日志只调整退款轴 / 订单版本，不改变履约和付款轴；成功 SETTLED、减少 refundReservedCents 并增加 refundedCents，失败仍 RESERVED。摘要按完整退款集合核对：有 RESERVED 意图为其 PENDING / FAILED，全部结清为 SUCCEEDED，无资金意图为 NONE。多个已结清部分退款可累计，同时只允许一个 RESERVED。RELEASED 受控处置未实现；真实查询保护 / 唯一索引、审批创建及实际退款仍待云。详见 [P06](P06-REFUND-RECOVERY.md)。
+
+2026-10-06 复审补充：退款证据必填 occurredAtPrecisionMs=1 / 1000；秒级值须整秒对齐，并以区间核验提交下界。settledAt 保留原时间、settledAtPrecisionMs 保留原精度；P04 补偿意图及其他未成功意图初始化后者 null。ACCEPTED / UNKNOWN 携带平台号时原子绑定 providerRefundId / lastEventId，不改变预算和订单资金轴。缺精度的旧离线夹具需重新生成，不默认补虚构精度；无已部署记录或线上迁移。
+
+## P07 内部维护记录（2026-10-06）
+
+复用 payment_events 的新 recordType，无新增集合或建库。MAINTENANCE_JOB：通用元数据、scope、kind / entityId / entityVersion、PENDING / RUNNING / DONE / REVIEW、attemptCount、nextRunAt、leaseToken / leaseUntil、lastOutcome。ID 绑定环境 / AppID / 商户 / provider / kind / 实体 / 版本；leaseToken 只内部存储，不进入运行日志或告警。MAINTENANCE_RUN：jobId / jobVersion、确定 requestId、kind / entityId / entityVersion、attempt、startedAt / leaseUntil / finishedAt、STARTED 或报告结果。旧租约 STARTED 不假称外部结果已失败。
+
+ALERT_REQUIREMENT：jobId 或 reportId、固定 reason、OPEN、requiresOperator=true / messageSent=false；同任务原因或报告去重，负责人 / 通道 / 送达 / 关闭待补。RECONCILIATION_REPORT：scope / 归一化窗口、semanticFingerprint、matched、脱敏 findings、requiresOperator 及不可执行标记；只比较已认证候选完整范围，不调整资金。SDK 须保护完整扫描与不存在条件、版本 / 租约和记录同事务，真实索引 / 调度 / 账单 / 对外消息仍待验收。详见 [P07](P07-MAINTENANCE-RECONCILIATION.md)。
+
+## A02 商家履约 / 读模型候选（2026-10-06）
+
+没有新增集合。A01 完整角色 / 门店 scope 记录校验由 admin-access-state 共用。商家订单页只投影同店订单必要摘要 / 历史金额 / 预约与独立取消 / 退款轴；联系人 / 电话 / 配送地址仅详情授权后返回，不返回 ownerId、平台身份 / 原资金报文、资源或原始日志。
+
+START_MAKING 将现有 STOCK reservations CONFIRMED→CONSUMED，confirmedUnits 减对应 quantity、consumedUnits 增同量，版本递增，resolvedAt / resolutionLogId 绑定同笔制作日志；SLOT 保持 CONFIRMED。REJECT_ORDER 只从 PAID 取消 / 释放 CONFIRMED 资源，以原 APPLIED 付款及已退累计校验剩余退款额；PENDING / RESERVED refunds 与审批日志 / 订单资金摘要 / 回执原子。若此前已经全退则不产生新 refunds。字段沿用 P04 / P06，包括未成功 settledAtPrecisionMs=null。
+
+历史商品 / 地址 / 门店 / 费率快照不因运营读取或当前配置改变而重写。幂等按当前操作者授权重验，并核对已提交日志 / 原退款关联；O07 HMAC 指纹保持。目标退款号全局唯一性及 SDK 索引 / 完整读集 / 并发仍待真实验收，不能用串行内存通过宣称建库。详见 [A02](A02-MERCHANT-ORDERS.md)。
+
+## A04 目录与库存维护数据约束（2026-10-06）
+
+复用 products / skus / inventory_resources / audit_logs / idempotency_records，不新增集合或重建资源。服务器生成商品 / SKU ID，版本和五个通用字段；完整 SKU 编辑保留不变项版本、变化项递增，已有分类 / 店 / SKU 组合固定；归档保留记录和旧组合，不能省略 SKU 达成硬删除。草稿明确 null / 空要求不补正式经营默认值。
+
+inventory_resources.totalUnits 不小于 heldUnits + confirmedUnits + consumedUnits；单位、归属、状态与占用保持。不操作 SLOT、订单 / 预留 / 退款 / Payment。product.images 只更换现行确切 MediaRef，media_assets 不覆盖 / 不删除；历史 OrderFacts 与原媒体版本不改。
+
+每次维护写 audit ActorRef / 环境 / AppID / 门店 / action / 脱敏 reason / requestId / 目标前后版本；changes 两项为 requestFingerprint 与 entityFingerprint 的标量摘要，不存完整 draft 或电话 / 图片元数据。当前同版本实体和回执 / 审计关联可核对，摘要不代替真实身份或防篡改审计权限。实际唯一索引 / SDK 完整查询 / 不存在条件保护待验收；详见 [A04](A04-MERCHANT-CATALOG.md)。
+
+## A05 版本化配置 / 实时时段补充（2026-10-06）
+
+内部离线维护只编辑 DRAFT store_config；新建 configVersion 按本店完整配置集合 max + 1 固定，发布序号与记录 version 明确区分。发布 CAS 草稿和 stores，同一事务切换 activeConfigId，并维护未来已建时段 / 审计 / 回执；PUBLISHED / RETIRED 内容不覆盖、旧配置不删除或退役，既有唯一序号索引仍需实际建立。
+
+slot_inventory.policyVersion 是当前资源运营规则版本：仅未来仍可约资源可随受控新发布更新，递增 version；关闭时段保留旧定义 / counters。已开始 / 过去资源不改；订单 appointmentSnapshot.policyVersion 永久固定。日期 / 模式 / 起止 / ID / capacityUnit 与独立容量池不变，不能按新政策复制资源规避已占用。capacityTotal 在本轮 V1 固定 3 / 1，禁约使用 CLOSED，原 held / confirmed / consumed 保留，开放需当前有效规则重验。
+
+本轮无新集合 / 正式种子 / SDK，未生成未知政策默认值。时段物化、政策与地图批准资料、完整读谓词 / 负读及规模预算待真实适配器，见 [A05](A05-MERCHANT-STORE.md)。
+
+## A06 请求 / 退款恢复 / 审计补充（2026-10-06）
+
+cancellation_requests 新增固定 requestLogId 与审批一次 reviewLogId（初始 null），ID 绑定 environment / app / order / 原申请 log 全元组。与唯一 PENDING 谓词、当前 order / user / grant、资金 / 占用 / 日志原子保存，旧缺字段离线记录不能从 UI 或缺省推断审批。批准正金额 refund.cancellationRequestId / approvalLogId 与 review.refundId 双向匹配；零金额无 refund。历史 request / review / refund / items 不删除。
+
+refund_attempts 继续 P06 形状；商家 retry 不另建 refund / outRefundNo / budget，仅原序号尝试与审计 / 回执原子。retry CommandResult.version 为当前 refund.version（本操作不递增），新额度批准为 order.version+1。A06 回执追加内部 effect（disposition、reviewId、refundIntentId、attemptId、operation），其摘要与原请求 / target axes / audit 一致，重放不再次发起外部发送。
+
+A06 审计显式 outcome=SUCCEEDED 与 STORE / CUSTOMER 来源，只有成功提交才存在；回滚 / 未受权尝试的固定网络 trace 日志还需真实 handler。旧 A01 / A04 / A05 缺 outcome 不填假成功。没有新集合 / 正式数据 / 建库或资金动作，完整限制见 [A06](A06-MERCHANT-RESOLUTION.md)。

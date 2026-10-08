@@ -3,13 +3,16 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(__dirname, '..', 'miniprogram');
 const localPath = path.join(root, 'config.local.js');
+const project = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'project.config.json'), 'utf8'));
+if (typeof project.appid !== 'string' || !/^wx[0-9a-f]{16}$/.test(project.appid)) throw new Error('项目 AppID 格式无效');
 const defaultConfig = {
-  mode: 'shell', stage: 'development', appId: 'wx7bb778ac05eee0c5',
+  mode: 'shell', stage: 'development', appId: project.appid,
   cloudEnvironments: { development: '', test: '', production: '' }, enableLegacyDemo: false
 };
 const local = fs.existsSync(localPath) ? require(localPath) : {};
 const allowed = Object.keys(defaultConfig);
 if (Object.keys(local).some(key => !allowed.includes(key))) throw new Error('本地配置含不支持字段；凭证不得写入小程序配置');
+if (local.appId !== undefined && local.appId !== project.appid) throw new Error('本地 AppID 与 project.config.json 不一致');
 const config = { ...defaultConfig, ...local, cloudEnvironments: { ...defaultConfig.cloudEnvironments, ...(local.cloudEnvironments || {}) } };
 if (!['shell', 'cloud'].includes(config.mode) || !['development', 'test', 'production'].includes(config.stage)) throw new Error('无效的 mode / stage');
 if (typeof config.enableLegacyDemo !== 'boolean') throw new Error('enableLegacyDemo 必须为布尔值');

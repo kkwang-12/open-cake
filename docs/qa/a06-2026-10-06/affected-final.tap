@@ -1,0 +1,1284 @@
+TAP version 13
+# Subtest: A01 controlled bootstrap writes one role, immutable scoped audit and receipt; all runtime gates remain closed
+ok 1 - A01 controlled bootstrap writes one role, immutable scoped audit and receipt; all runtime gates remain closed
+  ---
+  duration_ms: 10.7299
+  type: 'test'
+  ...
+# Subtest: A01 ordinary or cloned invocation and first visitor never become administrator
+ok 2 - A01 ordinary or cloned invocation and first visitor never become administrator
+  ---
+  duration_ms: 2.4685
+  type: 'test'
+  ...
+# Subtest: A01 initial arrangement is bound to app/environment, verified user, recognized stores, capability vocabulary and time window
+ok 3 - A01 initial arrangement is bound to app/environment, verified user, recognized stores, capability vocabulary and time window
+  ---
+  duration_ms: 5.7938
+  type: 'test'
+  ...
+# Subtest: A01 missing, disabled or forged user mapping cannot receive initial role
+ok 4 - A01 missing, disabled or forged user mapping cannot receive initial role
+  ---
+  duration_ms: 3.2747
+  type: 'test'
+  ...
+# Subtest: A01 bootstrap lost response replays original result and different authorization cannot initialize again
+ok 5 - A01 bootstrap lost response replays original result and different authorization cannot initialize again
+  ---
+  duration_ms: 3.8927
+  type: 'test'
+  ...
+# Subtest: A01 concurrent bootstrap attempts serialize to one initial role and one audit
+ok 6 - A01 concurrent bootstrap attempts serialize to one initial role and one audit
+  ---
+  duration_ms: 4.1561
+  type: 'test'
+  ...
+# Subtest: A01 grant creates immutable store/capability scope; revoke preserves evidence and denies the next sensitive check
+ok 7 - A01 grant creates immutable store/capability scope; revoke preserves evidence and denies the next sensitive check
+  ---
+  duration_ms: 18.373
+  type: 'test'
+  ...
+# Subtest: A01 no client role, owner, status, capability or operator override; forged principal is rejected
+ok 8 - A01 no client role, owner, status, capability or operator override; forged principal is rejected
+  ---
+  duration_ms: 3.2184
+  type: 'test'
+  ...
+# Subtest: A01 principals from a different environment/app and stale or disabled callers are refused
+ok 9 - A01 principals from a different environment/app and stale or disabled callers are refused
+  ---
+  duration_ms: 2.7052
+  type: 'test'
+  ...
+# Subtest: A01 self grant and self revoke are forbidden even to a full administrator
+ok 10 - A01 self grant and self revoke are forbidden even to a full administrator
+  ---
+  duration_ms: 3.2205
+  type: 'test'
+  ...
+# Subtest: A01 delegation cannot exceed one current role in stores or capabilities; ROLE_MANAGE alone is not a wildcard
+ok 11 - A01 delegation cannot exceed one current role in stores or capabilities; ROLE_MANAGE alone is not a wildcard
+  ---
+  duration_ms: 4.9967
+  type: 'test'
+  ...
+# Subtest: A01 split capability grants cannot be combined to delegate a stronger role
+ok 12 - A01 split capability grants cannot be combined to delegate a stronger role
+  ---
+  duration_ms: 7.6573
+  type: 'test'
+  ...
+# Subtest: A01 multi-store delegation and revocation require complete scope in one role
+ok 13 - A01 multi-store delegation and revocation require complete scope in one role
+  ---
+  duration_ms: 4.5554
+  type: 'test'
+  ...
+# Subtest: A01 same key replays after service reconstruction, changed payload fails, duplicate scope under another key does not add roles
+ok 14 - A01 same key replays after service reconstruction, changed payload fails, duplicate scope under another key does not add roles
+  ---
+  duration_ms: 5.2295
+  type: 'test'
+  ...
+# Subtest: A01 replay of an old grant never reactivates a revoked role; regrant is a distinct immutable role
+ok 15 - A01 replay of an old grant never reactivates a revoked role; regrant is a distinct immutable role
+  ---
+  duration_ms: 6.0811
+  type: 'test'
+  ...
+# Subtest: A01 replay still requires current caller authority and an intact immutable audit/receipt chain
+ok 16 - A01 replay still requires current caller authority and an intact immutable audit/receipt chain
+  ---
+  duration_ms: 16.8997
+  type: 'test'
+  ...
+# Subtest: A01 disabled member can be revoked but cannot be granted or access merchant capability
+ok 17 - A01 disabled member can be revoked but cannot be granted or access merchant capability
+  ---
+  duration_ms: 4.1451
+  type: 'test'
+  ...
+# Subtest: A01 unknown target, stale revoke version and archived/missing stores cannot mutate roles
+ok 18 - A01 unknown target, stale revoke version and archived/missing stores cannot mutate roles
+  ---
+  duration_ms: 5.0321
+  type: 'test'
+  ...
+# Subtest: A01 incomplete, foreign, duplicate or malformed scoped reads are rejected without writes
+ok 19 - A01 incomplete, foreign, duplicate or malformed scoped reads are rejected without writes
+  ---
+  duration_ms: 25.8841
+  type: 'test'
+  ...
+# Subtest: A01 entry summary has no credentials, platform identity, capabilities or mutable authorization token
+ok 20 - A01 entry summary has no credentials, platform identity, capabilities or mutable authorization token
+  ---
+  duration_ms: 3.1879
+  type: 'test'
+  ...
+# Subtest: A01 raw request reason and platform identity never enter receipts, audit or returned result
+ok 21 - A01 raw request reason and platform identity never enter receipts, audit or returned result
+  ---
+  duration_ms: 2.0745
+  type: 'test'
+  ...
+# Subtest: A01 each bootstrap/grant/revoke write exception or zero-row result rolls back all staged effects
+ok 22 - A01 each bootstrap/grant/revoke write exception or zero-row result rolls back all staged effects
+  ---
+  duration_ms: 35.5583
+  type: 'test'
+  ...
+# Subtest: A01 complete-read fence and changes at commit prevent stale authority and bootstrap phantoms
+ok 23 - A01 complete-read fence and changes at commit prevent stale authority and bootstrap phantoms
+  ---
+  duration_ms: 8.3972
+  type: 'test'
+  ...
+# Subtest: A01 concurrent duplicate grants and stale revocations do not produce duplicate active scope or audit
+ok 24 - A01 concurrent duplicate grants and stale revocations do not produce duplicate active scope or audit
+  ---
+  duration_ms: 5.3709
+  type: 'test'
+  ...
+# Subtest: A01 server clock rollback and bootstrap expiry before commit cannot authorize a partially saved role
+ok 25 - A01 server clock rollback and bootstrap expiry before commit cannot authorize a partially saved role
+  ---
+  duration_ms: 2.6801
+  type: 'test'
+  ...
+# Subtest: A01 no actual admin client action or cloud handler is opened by the offline service
+ok 26 - A01 no actual admin client action or cloud handler is opened by the offline service
+  ---
+  duration_ms: 6.3819
+  type: 'test'
+  ...
+# Subtest: A01 split store grants cannot be combined to delegate one multi-store role
+ok 27 - A01 split store grants cannot be combined to delegate one multi-store role
+  ---
+  duration_ms: 8.5894
+  type: 'test'
+  ...
+# Subtest: A01 archived store blocks operations and new grants but still permits authorized role revocation
+ok 28 - A01 archived store blocks operations and new grants but still permits authorized role revocation
+  ---
+  duration_ms: 3.6266
+  type: 'test'
+  ...
+# Subtest: A01 bootstrap remains one-off after root revocation; replay reports history and never restores access
+ok 29 - A01 bootstrap remains one-off after root revocation; replay reports history and never restores access
+  ---
+  duration_ms: 5.2555
+  type: 'test'
+  ...
+# Subtest: A01 replay rejects a changed role scope, receipt timestamp and revoked audit facts
+ok 30 - A01 replay rejects a changed role scope, receipt timestamp and revoked audit facts
+  ---
+  duration_ms: 9.4735
+  type: 'test'
+  ...
+# Subtest: A01 bootstrap final clock rollback and invalid trusted redaction/transaction adapter fail closed
+ok 31 - A01 bootstrap final clock rollback and invalid trusted redaction/transaction adapter fail closed
+  ---
+  duration_ms: 2.4316
+  type: 'test'
+  ...
+# Subtest: A01 adapter commit fence protects initial approval version and expiry as well as database reads
+ok 32 - A01 adapter commit fence protects initial approval version and expiry as well as database reads
+  ---
+  duration_ms: 3.5784
+  type: 'test'
+  ...
+# Subtest: D07 目标契约独立于现有部署，所有变更要求幂等键与声明身份边界
+ok 33 - D07 目标契约独立于现有部署，所有变更要求幂等键与声明身份边界
+  ---
+  duration_ms: 3.4097
+  type: 'test'
+  ...
+# Subtest: D07 请求仅接受定义 action / 字段，客户端身份、价格、状态与系统命令不能混入
+ok 34 - D07 请求仅接受定义 action / 字段，客户端身份、价格、状态与系统命令不能混入
+  ---
+  duration_ms: 4.7237
+  type: 'test'
+  ...
+# Subtest: D07 有副作用动作缺键 / 非法键拒绝，版本及整数分基础类型不能用字符串绕过
+ok 35 - D07 有副作用动作缺键 / 非法键拒绝，版本及整数分基础类型不能用字符串绕过
+  ---
+  duration_ms: 1.6271
+  type: 'test'
+  ...
+# Subtest: D07 选中行 / 规格 / 联系人地址做嵌套白名单，输入深复制并冻结
+ok 36 - D07 选中行 / 规格 / 联系人地址做嵌套白名单，输入深复制并冻结
+  ---
+  duration_ms: 1.1231
+  type: 'test'
+  ...
+# Subtest: D07 报价区分自取与配送地址，行版本与重复行校验，价格与容量仍由云端验证
+ok 37 - D07 报价区分自取与配送地址，行版本与重复行校验，价格与容量仍由云端验证
+  ---
+  duration_ms: 1.0474
+  type: 'test'
+  ...
+# Subtest: D07 管理员取消审批与草稿编辑的条件字段明确，不存在任意状态 / 任意系统命令
+ok 38 - D07 管理员取消审批与草稿编辑的条件字段明确，不存在任意状态 / 任意系统命令
+  ---
+  duration_ms: 0.7816
+  type: 'test'
+  ...
+# Subtest: D07 非 JSON、getter、稀疏数组、超请求上限拒绝；不执行输入 getter
+ok 39 - D07 非 JSON、getter、稀疏数组、超请求上限拒绝；不执行输入 getter
+  ---
+  duration_ms: 0.9839
+  type: 'test'
+  ...
+# Subtest: D07 公开错误仅固定白名单，隐藏错误栈 / 身份 / 支付原文与未知代码
+ok 40 - D07 公开错误仅固定白名单，隐藏错误栈 / 身份 / 支付原文与未知代码
+  ---
+  duration_ms: 0.3339
+  type: 'test'
+  ...
+# Subtest: A02 pickup/delivery paid order accepts, consumes confirmed stock once and becomes ready with immutable facts
+ok 41 - A02 pickup/delivery paid order accepts, consumes confirmed stock once and becomes ready with immutable facts
+  ---
+  duration_ms: 161.2641
+  type: 'test'
+  ...
+# Subtest: A02 complete pickup chain uses existing O07 credential/HMAC receipt and original key replay
+ok 42 - A02 complete pickup chain uses existing O07 credential/HMAC receipt and original key replay
+  ---
+  duration_ms: 47.4618
+  type: 'test'
+  ...
+# Subtest: A02 complete delivery chain reuses O08 and retains confirmed slot without a rider or new resource consumption
+ok 43 - A02 complete delivery chain reuses O08 and retains confirmed slot without a rider or new resource consumption
+  ---
+  duration_ms: 46.5228
+  type: 'test'
+  ...
+# Subtest: A02 merchant rejection cancels paid order, releases every confirmed resource and creates one pending full remaining refund
+ok 44 - A02 merchant rejection cancels paid order, releases every confirmed resource and creates one pending full remaining refund
+  ---
+  duration_ms: 51.4442
+  type: 'test'
+  ...
+# Subtest: A02 rejection intent is accepted by P06 prepare/credible result and O06 owner history without reopening cancelled order
+ok 45 - A02 rejection intent is accepted by P06 prepare/credible result and O06 owner history without reopening cancelled order
+  ---
+  duration_ms: 28.7589
+  type: 'test'
+  ...
+# Subtest: A02 rejection after settled partial refund reserves only remaining amount; fully refunded order creates no further intent
+ok 46 - A02 rejection after settled partial refund reserves only remaining amount; fully refunded order creates no further intent
+  ---
+  duration_ms: 47.3302
+  type: 'test'
+  ...
+# Subtest: A02 no caller role, ownership, target status or arbitrary paid data can authorize a merchant command
+ok 47 - A02 no caller role, ownership, target status or arbitrary paid data can authorize a merchant command
+  ---
+  duration_ms: 16.0031
+  type: 'test'
+  ...
+# Subtest: A02 ordinary owner cannot use merchant list/detail and unauthorized detail does not fetch children
+ok 48 - A02 ordinary owner cannot use merchant list/detail and unauthorized detail does not fetch children
+  ---
+  duration_ms: 19.7166
+  type: 'test'
+  ...
+# Subtest: A02 A01 role revocation/disabled caller is applied to next read and next mutation, including replay
+ok 49 - A02 A01 role revocation/disabled caller is applied to next read and next mutation, including replay
+  ---
+  duration_ms: 23.5745
+  type: 'test'
+  ...
+# Subtest: A02 rejection needs one grant with ORDER_OPERATE and REFUND_APPROVE; independent grants cannot combine
+ok 50 - A02 rejection needs one grant with ORDER_OPERATE and REFUND_APPROVE; independent grants cannot combine
+  ---
+  duration_ms: 20.2335
+  type: 'test'
+  ...
+# Subtest: A02 no command skips a stage; rejection cannot be applied after acceptance or making
+ok 51 - A02 no command skips a stage; rejection cannot be applied after acceptance or making
+  ---
+  duration_ms: 35.2061
+  type: 'test'
+  ...
+# Subtest: A02 current versions and concurrent administrators allow exactly one valid acceptance or stock consumption
+ok 52 - A02 current versions and concurrent administrators allow exactly one valid acceptance or stock consumption
+  ---
+  duration_ms: 42.7528
+  type: 'test'
+  ...
+# Subtest: A02 making and rejection competition never both consumes and releases the same stock
+ok 53 - A02 making and rejection competition never both consumes and releases the same stock
+  ---
+  duration_ms: 22.0752
+  type: 'test'
+  ...
+# Subtest: A02 lost response can be replayed from a rebuilt service after later stages without duplicate log or stock use
+ok 54 - A02 lost response can be replayed from a rebuilt service after later stages without duplicate log or stock use
+  ---
+  duration_ms: 31.947
+  type: 'test'
+  ...
+# Subtest: A02 missing/unknown original payment, pending second intent and wrong scope never create refund or advance fulfillment
+ok 55 - A02 missing/unknown original payment, pending second intent and wrong scope never create refund or advance fulfillment
+  ---
+  duration_ms: 80.4807
+  type: 'test'
+  ...
+# Subtest: A02 incomplete/mismatched quote, resources, order facts or history prevent all writes
+ok 56 - A02 incomplete/mismatched quote, resources, order facts or history prevent all writes
+  ---
+  duration_ms: 50.2263
+  type: 'test'
+  ...
+# Subtest: A02 every ACCEPT/MAKE/READY/rejection write failure or zero-row result rolls back all resource/financial/history changes
+ok 57 - A02 every ACCEPT/MAKE/READY/rejection write failure or zero-row result rolls back all resource/financial/history changes
+  ---
+  duration_ms: 380.1597
+  type: 'test'
+  ...
+# Subtest: A02 role/user/store or resource changes before commit fail the atomic read fence
+ok 58 - A02 role/user/store or resource changes before commit fail the atomic read fence
+  ---
+  duration_ms: 27.3333
+  type: 'test'
+  ...
+# Subtest: A02 malformed/cross-app role and archived store reject current reads and commands
+ok 59 - A02 malformed/cross-app role and archived store reject current reads and commands
+  ---
+  duration_ms: 12.8106
+  type: 'test'
+  ...
+# Subtest: A02 list contains all same-store customers, filters status before paging, and keeps addresses/contact/private facts out
+ok 60 - A02 list contains all same-store customers, filters status before paging, and keeps addresses/contact/private facts out
+  ---
+  duration_ms: 7.4546
+  type: 'test'
+  ...
+# Subtest: A02 detail includes required contact/address and historical facts only after current store authorization
+ok 61 - A02 detail includes required contact/address and historical facts only after current store authorization
+  ---
+  duration_ms: 13.6247
+  type: 'test'
+  ...
+# Subtest: A02 HMAC pagination is stable on equal timestamps and bound to current actor/store/status/role
+ok 62 - A02 HMAC pagination is stable on equal timestamps and bound to current actor/store/status/role
+  ---
+  duration_ms: 20.0753
+  type: 'test'
+  ...
+# Subtest: A02 incorrect scoped/oversized/status-filtered child page is rejected rather than silently truncating or leaking
+ok 63 - A02 incorrect scoped/oversized/status-filtered child page is rejected rather than silently truncating or leaking
+  ---
+  duration_ms: 23.8435
+  type: 'test'
+  ...
+# Subtest: A02 read snapshot revocation/change or missing current user cannot deliver merchant private detail
+ok 64 - A02 read snapshot revocation/change or missing current user cannot deliver merchant private detail
+  ---
+  duration_ms: 7.6233
+  type: 'test'
+  ...
+# Subtest: A02 bad immutable receipt/log/approval facts cannot be used to replay a mutation
+ok 65 - A02 bad immutable receipt/log/approval facts cannot be used to replay a mutation
+  ---
+  duration_ms: 36.0743
+  type: 'test'
+  ...
+# Subtest: A02 missing original config or refund-number collision prevents cancellation and resource release
+ok 66 - A02 missing original config or refund-number collision prevents cancellation and resource release
+  ---
+  duration_ms: 13.3853
+  type: 'test'
+  ...
+# Subtest: A02 server clock rollback and missing pickup/delivery configuration produce no fake success
+ok 67 - A02 server clock rollback and missing pickup/delivery configuration produce no fake success
+  ---
+  duration_ms: 7.96
+  type: 'test'
+  ...
+# Subtest: A02 routed O08 command must retain A01 app/environment/archived-store checks inside its transaction
+ok 68 - A02 routed O08 command must retain A01 app/environment/archived-store checks inside its transaction
+  ---
+  duration_ms: 16.1896
+  type: 'test'
+  ...
+# Subtest: A02 unauthorized mutation must stop before reading linked private or financial records
+ok 69 - A02 unauthorized mutation must stop before reading linked private or financial records
+  ---
+  duration_ms: 8.1233
+  type: 'test'
+  ...
+# Subtest: A02 routed O07 credential completion checks strict A01 scope and archived stores in the same transaction
+ok 70 - A02 routed O07 credential completion checks strict A01 scope and archived stores in the same transaction
+  ---
+  duration_ms: 31.0571
+  type: 'test'
+  ...
+# Subtest: A02 current role regrant invalidates a previous merchant page cursor even for the same subject/store
+ok 71 - A02 current role regrant invalidates a previous merchant page cursor even for the same subject/store
+  ---
+  duration_ms: 12.3225
+  type: 'test'
+  ...
+# Subtest: A02 merchant list separates cancellation progress and pending/settled refund axes from fulfillment state
+ok 72 - A02 merchant list separates cancellation progress and pending/settled refund axes from fulfillment state
+  ---
+  duration_ms: 23.3986
+  type: 'test'
+  ...
+# Subtest: A02 malformed consumed stock trace, unknown policy or overflowing version prevents readiness/acceptance
+ok 73 - A02 malformed consumed stock trace, unknown policy or overflowing version prevents readiness/acceptance
+  ---
+  duration_ms: 21.0107
+  type: 'test'
+  ...
+# Subtest: A02 existing pending cancellation needs explicit review rather than leaving an orphan after merchant rejection
+ok 74 - A02 existing pending cancellation needs explicit review rather than leaving an orphan after merchant rejection
+  ---
+  duration_ms: 9.853
+  type: 'test'
+  ...
+# Subtest: A06 persists an actual customer pending request, log, audit and receipt without cancellation or fund/resource changes
+ok 75 - A06 persists an actual customer pending request, log, audit and receipt without cancellation or fund/resource changes
+  ---
+  duration_ms: 88.6879
+  type: 'test'
+  ...
+# Subtest: A06 request key replays after service reconstruction and even later review; a second pending request is refused
+ok 76 - A06 request key replays after service reconstruction and even later review; a second pending request is refused
+  ---
+  duration_ms: 64.2611
+  type: 'test'
+  ...
+# Subtest: A06 rejects cancellation explicitly without releasing resources or reserving money, then permits a fresh request
+ok 77 - A06 rejects cancellation explicitly without releasing resources or reserving money, then permits a fresh request
+  ---
+  duration_ms: 34.2322
+  type: 'test'
+  ...
+# Subtest: A06 approved cancellation atomically releases confirmed resources, records review, reserves a partial refund and replays
+ok 78 - A06 approved cancellation atomically releases confirmed resources, records review, reserves a partial refund and replays
+  ---
+  duration_ms: 32.7553
+  type: 'test'
+  ...
+# Subtest: A06 zero-refund approval cancels without inventing a money action; full refund reserves exact remaining balance
+ok 79 - A06 zero-refund approval cancels without inventing a money action; full refund reserves exact remaining balance
+  ---
+  duration_ms: 41.5965
+  type: 'test'
+  ...
+# Subtest: A06 after-making cancellation cannot invent slot return policy; an injected test retention policy keeps consumed stock and slot
+ok 80 - A06 after-making cancellation cannot invent slot return policy; an injected test retention policy keeps consumed stock and slot
+  ---
+  duration_ms: 36.5174
+  type: 'test'
+  ...
+# Subtest: A06 refund-only approval retains fulfillment and historical items, creates exactly one authorized budget intent
+ok 81 - A06 refund-only approval retains fulfillment and historical items, creates exactly one authorized budget intent
+  ---
+  duration_ms: 15.3253
+  type: 'test'
+  ...
+# Subtest: A06 rejects over-refund, stale order/review, cross-order review and raw decision fields
+ok 82 - A06 rejects over-refund, stale order/review, cross-order review and raw decision fields
+  ---
+  duration_ms: 22.3571
+  type: 'test'
+  ...
+# Subtest: A06 request ownership and actual principal enforced before related reads; customers cannot operate admin actions
+ok 83 - A06 request ownership and actual principal enforced before related reads; customers cannot operate admin actions
+  ---
+  duration_ms: 14.1558
+  type: 'test'
+  ...
+# Subtest: A06 reject requires ORDER_OPERATE; approve requires both capabilities in one current grant; refund-only uses REFUND_APPROVE
+ok 84 - A06 reject requires ORDER_OPERATE; approve requires both capabilities in one current grant; refund-only uses REFUND_APPROVE
+  ---
+  duration_ms: 63.4747
+  type: 'test'
+  ...
+# Subtest: A06 serial competing reviews have one outcome and one refund; pending/reviewed record and logs cannot be forged
+ok 85 - A06 serial competing reviews have one outcome and one refund; pending/reviewed record and logs cannot be forged
+  ---
+  duration_ms: 38.4764
+  type: 'test'
+  ...
+# Subtest: A06 original retry first claims an attempt and replays without repeating transport or changing refund budget
+ok 86 - A06 original retry first claims an attempt and replays without repeating transport or changing refund budget
+  ---
+  duration_ms: 26.5759
+  type: 'test'
+  ...
+# Subtest: A06 unknown/in-flight retry uses QUERY and query timeout never creates a second SUBMIT or new number
+ok 87 - A06 unknown/in-flight retry uses QUERY and query timeout never creates a second SUBMIT or new number
+  ---
+  duration_ms: 41.7153
+  type: 'test'
+  ...
+# Subtest: A06 provider-confirmed failure retains reserved amount; authorized retry uses same number and P06 settles only once
+ok 88 - A06 provider-confirmed failure retains reserved amount; authorized retry uses same number and P06 settles only once
+  ---
+  duration_ms: 35.8001
+  type: 'test'
+  ...
+# Subtest: A06 prior approval/retry keys safely replay after settlement, while stale new request fails
+ok 89 - A06 prior approval/retry keys safely replay after settlement, while stale new request fails
+  ---
+  duration_ms: 37.0295
+  type: 'test'
+  ...
+# Subtest: A06 new approval after partial settlement reserves only remaining funds, preserving full ordered logs
+ok 90 - A06 new approval after partial settlement reserves only remaining funds, preserving full ordered logs
+  ---
+  duration_ms: 43.5884
+  type: 'test'
+  ...
+# Subtest: A06 finance reads omit contacts/address/payment credentials/full reasons; audit uses separate AUDIT_READ capability
+ok 91 - A06 finance reads omit contacts/address/payment credentials/full reasons; audit uses separate AUDIT_READ capability
+  ---
+  duration_ms: 24.7888
+  type: 'test'
+  ...
+# Subtest: A06 refunds and audit paginate by signed scoped cursor, tied to grant/actor/filter/content revision
+ok 92 - A06 refunds and audit paginate by signed scoped cursor, tied to grant/actor/filter/content revision
+  ---
+  duration_ms: 25.6483
+  type: 'test'
+  ...
+# Subtest: A06 P07 compensation exceptions map to current same-store entities, omit leases, and never claim recovery completion
+ok 93 - A06 P07 compensation exceptions map to current same-store entities, omit leases, and never claim recovery completion
+  ---
+  duration_ms: 11.2295
+  type: 'test'
+  ...
+# Subtest: A06 denied shop/header reads and current revoked/disabled user block sensitive fetches and replays
+ok 94 - A06 denied shop/header reads and current revoked/disabled user block sensitive fetches and replays
+  ---
+  duration_ms: 23.2071
+  type: 'test'
+  ...
+# Subtest: A06 rejects incomplete, foreign, missing-log, missing-payment/refund/attempt and changed budget snapshots
+ok 95 - A06 rejects incomplete, foreign, missing-log, missing-payment/refund/attempt and changed budget snapshots
+  ---
+  duration_ms: 74.4511
+  type: 'test'
+  ...
+# Subtest: A06 rejects finance/audit scope/duplicates and hides multi-store audit scopes/raw changes
+ok 96 - A06 rejects finance/audit scope/duplicates and hides multi-store audit scopes/raw changes
+  ---
+  duration_ms: 10.5547
+  type: 'test'
+  ...
+# Subtest: A06 receipt reuse/corruption cannot redirect reviews/refunds/attempts, alter original result or bypass current ledger
+ok 97 - A06 receipt reuse/corruption cannot redirect reviews/refunds/attempts, alter original result or bypass current ledger
+  ---
+  duration_ms: 56.09
+  type: 'test'
+  ...
+# Subtest: A06 every 10-write paid cancellation failure/zero row rolls back resources, review, intent, order, log, audit, receipt
+ok 98 - A06 every 10-write paid cancellation failure/zero row rolls back resources, review, intent, order, log, audit, receipt
+  ---
+  duration_ms: 235.1468
+  type: 'test'
+  ...
+# Subtest: A06 every 5-write request/refund approval and 3-write retry failure position rolls back
+ok 99 - A06 every 5-write request/refund approval and 3-write retry failure position rolls back
+  ---
+  duration_ms: 220.0223
+  type: 'test'
+  ...
+# Subtest: A06 complete read fences preserve role, order, pending-review, attempt/number uniqueness, logs and negative predicates until commit
+ok 100 - A06 complete read fences preserve role, order, pending-review, attempt/number uniqueness, logs and negative predicates until commit
+  ---
+  duration_ms: 70.258
+  type: 'test'
+  ...
+# Subtest: A06 clock regression, unknown redaction and duplicate platform refund number fail before any commit
+ok 101 - A06 clock regression, unknown redaction and duplicate platform refund number fail before any commit
+  ---
+  duration_ms: 26.0975
+  type: 'test'
+  ...
+# Subtest: A06 PLANNED retry/exception contracts cannot accept client operation/funds/status and do not open callable actions
+ok 102 - A06 PLANNED retry/exception contracts cannot accept client operation/funds/status and do not open callable actions
+  ---
+  duration_ms: 0.3127
+  type: 'test'
+  ...
+# Subtest: A06 refund-only replay cannot be redirected to a fabricated review even if stored effect digest is replaced
+ok 103 - A06 refund-only replay cannot be redirected to a fabricated review even if stored effect digest is replaced
+  ---
+  duration_ms: 8.3573
+  type: 'test'
+  ...
+# Subtest: A06 replay verifies original transition rather than only a self-consistent changed log and digest
+ok 104 - A06 replay verifies original transition rather than only a self-consistent changed log and digest
+  ---
+  duration_ms: 8.0453
+  type: 'test'
+  ...
+# Subtest: A06 completed-fulfillment race cannot approve cancellation but explicit rejection resolves pending request
+not ok 105 - A06 completed-fulfillment race cannot approve cancellation but explicit rejection resolves pending request
+  ---
+  duration_ms: 11.1208
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\merchant-resolution.test.js:216:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    Error: INVALID_TRADE_MODEL
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (D:\dinner cook\tests\merchant-resolution.test.js:218:25)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: A06 rejected review key replays without reversing a later approved review; wrong approval disposition is rejected
+ok 106 - A06 rejected review key replays without reversing a later approved review; wrong approval disposition is rejected
+  ---
+  duration_ms: 21.2084
+  type: 'test'
+  ...
+# Subtest: A06 continued historical refund handling permits CLOSED/ARCHIVED store under current role; wrong archived payment profile blocks retry
+ok 107 - A06 continued historical refund handling permits CLOSED/ARCHIVED store under current role; wrong archived payment profile blocks retry
+  ---
+  duration_ms: 9.2174
+  type: 'test'
+  ...
+# Subtest: A06 finance validates job scope/entity and complete attempt sequence; customer cannot view compensation entries
+ok 108 - A06 finance validates job scope/entity and complete attempt sequence; customer cannot view compensation entries
+  ---
+  duration_ms: 13.7554
+  type: 'test'
+  ...
+# Subtest: A06 concurrent retry keys reserve one SUBMIT only; remaining callers can query the same refund identity
+ok 109 - A06 concurrent retry keys reserve one SUBMIT only; remaining callers can query the same refund identity
+  ---
+  duration_ms: 12.7772
+  type: 'test'
+  ...
+# Subtest: O05 unpaid pickup/delivery cancellation releases only owned stock/slot, seals log and receipt atomically
+ok 110 - O05 unpaid pickup/delivery cancellation releases only owned stock/slot, seals log and receipt atomically
+  ---
+  duration_ms: 58.088
+  type: 'test'
+  ...
+# Subtest: O05 same request and lost committed response replay original cancellation without repeated release
+ok 111 - O05 same request and lost committed response replay original cancellation without repeated release
+  ---
+  duration_ms: 15.4639
+  type: 'test'
+  ...
+# Subtest: O05 all seven write failures and zero-row results roll back cancellation/resources/log/receipt
+ok 112 - O05 all seven write failures and zero-row results roll back cancellation/resources/log/receipt
+  ---
+  duration_ms: 148.261
+  type: 'test'
+  ...
+# Subtest: O05 unresolved/intended payments never cancel, release or mark idempotency as complete
+ok 113 - O05 unresolved/intended payments never cancel, release or mark idempotency as complete
+  ---
+  duration_ms: 52.6175
+  type: 'test'
+  ...
+# Subtest: O05 pending cancellation resumes only after trustworthy close reconciliation and current version confirmation
+ok 114 - O05 pending cancellation resumes only after trustworthy close reconciliation and current version confirmation
+  ---
+  duration_ms: 8.5016
+  type: 'test'
+  ...
+# Subtest: O05 closed summary without evidence, malformed/foreign/amount/app payment records fail closed
+ok 115 - O05 closed summary without evidence, malformed/foreign/amount/app payment records fail closed
+  ---
+  duration_ms: 49.1086
+  type: 'test'
+  ...
+# Subtest: O05 expiry requires trusted invocation and exact due boundary; duplicate job releases only once
+ok 116 - O05 expiry requires trusted invocation and exact due boundary; duplicate job releases only once
+  ---
+  duration_ms: 7.5985
+  type: 'test'
+  ...
+# Subtest: O05 expired unknown payments retain reservations; paid/fulfilled orders are skipped by expiry
+ok 117 - O05 expired unknown payments retain reservations; paid/fulfilled orders are skipped by expiry
+  ---
+  duration_ms: 28.5226
+  type: 'test'
+  ...
+# Subtest: O05 simultaneous customer cancellation and expiry release one set with one final log
+ok 118 - O05 simultaneous customer cancellation and expiry release one set with one final log
+  ---
+  duration_ms: 8.7378
+  type: 'test'
+  ...
+# Subtest: O05 shared stock/slot release preserves other orders and works after resource sale is closed
+ok 119 - O05 shared stock/slot release preserves other orders and works after resource sale is closed
+  ---
+  duration_ms: 12.8319
+  type: 'test'
+  ...
+# Subtest: O05 multiple stock units release as one transaction and any of nine write failures preserves all holds
+ok 120 - O05 multiple stock units release as one transaction and any of nine write failures preserves all holds
+  ---
+  duration_ms: 75.3908
+  type: 'test'
+  ...
+# Subtest: O05 missing/foreign/resolved reservations, wrong slot, underflow and overflow cannot partly release
+ok 121 - O05 missing/foreign/resolved reservations, wrong slot, underflow and overflow cannot partly release
+  ---
+  duration_ms: 48.2913
+  type: 'test'
+  ...
+# Subtest: O05 forged identity/other owner/stale version/extra funds fields and user expiry actions are rejected
+ok 122 - O05 forged identity/other owner/stale version/extra funds fields and user expiry actions are rejected
+  ---
+  duration_ms: 9.0416
+  type: 'test'
+  ...
+# Subtest: O05 payment creation/accounting or user revocation during commit rolls back release for later reconciliation
+ok 123 - O05 payment creation/accounting or user revocation during commit rolls back release for later reconciliation
+  ---
+  duration_ms: 14.7113
+  type: 'test'
+  ...
+# Subtest: O05 read fence and unsupported historical policy fail without mutation
+ok 124 - O05 read fence and unsupported historical policy fail without mutation
+  ---
+  duration_ms: 12.9643
+  type: 'test'
+  ...
+# Subtest: O05 payment confirmation winning commit race keeps paid order and confirmed reservations
+ok 125 - O05 payment confirmation winning commit race keeps paid order and confirmed reservations
+  ---
+  duration_ms: 7.7228
+  type: 'test'
+  ...
+# Subtest: O05 paid customer request retains fulfillment/resources; merchant rejection proposes remaining full refund
+ok 126 - O05 paid customer request retains fulfillment/resources; merchant rejection proposes remaining full refund
+  ---
+  duration_ms: 7.2955
+  type: 'test'
+  ...
+# Subtest: O05 after-making approval never restores consumed stock; slot release requires explicit policy
+ok 127 - O05 after-making approval never restores consumed stock; slot release requires explicit policy
+  ---
+  duration_ms: 9.1989
+  type: 'test'
+  ...
+# Subtest: O05 zero refund approval creates no refund intent; denied request leaves all resources intact
+ok 128 - O05 zero refund approval creates no refund intent; denied request leaves all resources intact
+  ---
+  duration_ms: 5.9305
+  type: 'test'
+  ...
+# Subtest: O05 pure resource resolution is immutable and already released cancellation never decrements again
+ok 129 - O05 pure resource resolution is immutable and already released cancellation never decrements again
+  ---
+  duration_ms: 7.3387
+  type: 'test'
+  ...
+# Subtest: O01 parameterized frozen transition table: every V1 state / mode / store command
+ok 130 - O01 parameterized frozen transition table: every V1 state / mode / store command
+  ---
+  duration_ms: 36.2442
+  type: 'test'
+  ...
+# Subtest: O01 plain buyers cannot use merchant endpoint, including their own delivery completion
+ok 131 - O01 plain buyers cannot use merchant endpoint, including their own delivery completion
+  ---
+  duration_ms: 1.3069
+  type: 'test'
+  ...
+# Subtest: O01 only server-issued identity and current matching store grant authorize commands
+ok 132 - O01 only server-issued identity and current matching store grant authorize commands
+  ---
+  duration_ms: 2.4969
+  type: 'test'
+  ...
+# Subtest: O01 rejects arbitrary status, payment evidence, actor or refund input through API whitelist
+ok 133 - O01 rejects arbitrary status, payment evidence, actor or refund input through API whitelist
+  ---
+  duration_ms: 1.5471
+  type: 'test'
+  ...
+# Subtest: O01 mandatory current version and server clock; retry metadata does not pretend to write
+ok 134 - O01 mandatory current version and server clock; retry metadata does not pretend to write
+  ---
+  duration_ms: 2.3531
+  type: 'test'
+  ...
+# Subtest: O01 unpaid cancel requires settled payment; paid request leaves status/resources unchanged
+ok 135 - O01 unpaid cancel requires settled payment; paid request leaves status/resources unchanged
+  ---
+  duration_ms: 1.1178
+  type: 'test'
+  ...
+# Subtest: O01 cancellation approval uses loaded pending review and combined current refund permission
+ok 136 - O01 cancellation approval uses loaded pending review and combined current refund permission
+  ---
+  duration_ms: 1.8253
+  type: 'test'
+  ...
+# Subtest: O01 merchant rejection refunds full remaining paid amount; separate refund keeps fulfillment axis
+ok 137 - O01 merchant rejection refunds full remaining paid amount; separate refund keeps fulfillment axis
+  ---
+  duration_ms: 0.9737
+  type: 'test'
+  ...
+# Subtest: O01 logs contain whitelisted actor and sanitized reason, no final money state or credential
+ok 138 - O01 logs contain whitelisted actor and sanitized reason, no final money state or credential
+  ---
+  duration_ms: 4.6054
+  type: 'test'
+  ...
+# Subtest: O01 illegal jumps produce no plan/log/effects and do not mutate loaded records
+ok 139 - O01 illegal jumps produce no plan/log/effects and do not mutate loaded records
+  ---
+  duration_ms: 1.0567
+  type: 'test'
+  ...
+# Subtest: O06 all eight states classify CURRENT/PAST and exact state views without mixing refund lifecycle
+ok 140 - O06 all eight states classify CURRENT/PAST and exact state views without mixing refund lifecycle
+  ---
+  duration_ms: 114.1424
+  type: 'test'
+  ...
+# Subtest: O06 paid is awaiting acceptance, accepted is not making, and refund summaries preserve actual fulfillment
+ok 141 - O06 paid is awaiting acceptance, accepted is not making, and refund summaries preserve actual fulfillment
+  ---
+  duration_ms: 31.2475
+  type: 'test'
+  ...
+# Subtest: O06 stable descending pagination has no duplicates/missing equal timestamps and cursor anchors visible last row
+ok 142 - O06 stable descending pagination has no duplicates/missing equal timestamps and cursor anchors visible last row
+  ---
+  duration_ms: 23.9211
+  type: 'test'
+  ...
+# Subtest: O06 cursor rejects changed owner/environment/query/tampering/expiry; ACTIVE and CURRENT normalize consistently
+ok 143 - O06 cursor rejects changed owner/environment/query/tampering/expiry; ACTIVE and CURRENT normalize consistently
+  ---
+  duration_ms: 24.7171
+  type: 'test'
+  ...
+# Subtest: O06 fresh snapshots allow newer orders only on refresh and explain mutable state filters without claiming snapshot isolation
+ok 144 - O06 fresh snapshots allow newer orders only on refresh and explain mutable state filters without claiming snapshot isolation
+  ---
+  duration_ms: 18.6809
+  type: 'test'
+  ...
+# Subtest: O06 unknown and another owner order share NOT_FOUND; foreign children and forged principal never leak
+ok 145 - O06 unknown and another owner order share NOT_FOUND; foreign children and forged principal never leak
+  ---
+  duration_ms: 16.2088
+  type: 'test'
+  ...
+# Subtest: O06 detail keeps historical product/price/options/message/store/address after current data changes
+ok 146 - O06 detail keeps historical product/price/options/message/store/address after current data changes
+  ---
+  duration_ms: 13.1742
+  type: 'test'
+  ...
+# Subtest: O06 public list/detail project whitelists and never expose internal identity/resources/evidence/credentials or raw logs
+ok 147 - O06 public list/detail project whitelists and never expose internal identity/resources/evidence/credentials or raw logs
+  ---
+  duration_ms: 15.0549
+  type: 'test'
+  ...
+# Subtest: O06 historical media reads exact retired revision; missing/changed/unapproved assets preserve layout data with null image
+ok 148 - O06 historical media reads exact retired revision; missing/changed/unapproved assets preserve layout data with null image
+  ---
+  duration_ms: 15.5424
+  type: 'test'
+  ...
+# Subtest: O06 customer actions are status/mode/time aware, all remain disabled until real services connect
+ok 149 - O06 customer actions are status/mode/time aware, all remain disabled until real services connect
+  ---
+  duration_ms: 29.0621
+  type: 'test'
+  ...
+# Subtest: O06 unresolved payment and pending cancellation block matching actions without claiming success
+ok 150 - O06 unresolved payment and pending cancellation block matching actions without claiming success
+  ---
+  duration_ms: 14.5148
+  type: 'test'
+  ...
+# Subtest: O06 unsupported historical policy remains readable but offers no mutation actions
+ok 151 - O06 unsupported historical policy remains readable but offers no mutation actions
+  ---
+  duration_ms: 14.426
+  type: 'test'
+  ...
+# Subtest: O06 timelines follow committed version even at equal times, validate complete chain/final axes and expose fixed messages
+ok 152 - O06 timelines follow committed version even at equal times, validate complete chain/final axes and expose fixed messages
+  ---
+  duration_ms: 18.5798
+  type: 'test'
+  ...
+# Subtest: O06 malformed log chain/command/time/last state never returns a misleading progress timeline
+ok 153 - O06 malformed log chain/command/time/last state never returns a misleading progress timeline
+  ---
+  duration_ms: 58.1735
+  type: 'test'
+  ...
+# Subtest: O06 incomplete/out-of-order historical items, inconsistent amounts/lifecycle and duplicate pending reviews fail closed
+ok 154 - O06 incomplete/out-of-order historical items, inconsistent amounts/lifecycle and duplicate pending reviews fail closed
+  ---
+  duration_ms: 93.9227
+  type: 'test'
+  ...
+# Subtest: O06 strict API inputs reject forged owner/skip/sort/invalid group and enforce default20/max50
+ok 155 - O06 strict API inputs reject forged owner/skip/sort/invalid group and enforce default20/max50
+  ---
+  duration_ms: 138.7883
+  type: 'test'
+  ...
+# Subtest: O06 read service applies whole owner AND seek/state query and reads detail with owner from trusted identity
+ok 156 - O06 read service applies whole owner AND seek/state query and reads detail with owner from trusted identity
+  ---
+  duration_ms: 16.9958
+  type: 'test'
+  ...
+# Subtest: O06 every page rechecks current user and read fence prevents revocation/mid-read mixed state exposure
+ok 157 - O06 every page rechecks current user and read fence prevents revocation/mid-read mixed state exposure
+  ---
+  duration_ms: 21.3147
+  type: 'test'
+  ...
+# Subtest: O06 read adapter returning foreign or excess page records fails closed
+ok 158 - O06 read adapter returning foreign or excess page records fails closed
+  ---
+  duration_ms: 16.979
+  type: 'test'
+  ...
+# Subtest: O06 captured signing key and snapshot cannot be changed by callers; outputs are immutable without any writes
+ok 159 - O06 captured signing key and snapshot cannot be changed by callers; outputs are immutable without any writes
+  ---
+  duration_ms: 10.2582
+  type: 'test'
+  ...
+# Subtest: O06 actual O03 creation and O05 cancellation records produce consistent immutable detail timelines
+ok 160 - O06 actual O03 creation and O05 cancellation records produce consistent immutable detail timelines
+  ---
+  duration_ms: 11.0608
+  type: 'test'
+  ...
+# Subtest: O06 records created during a read use the refreshed server clock; clock rollback is rejected
+ok 161 - O06 records created during a read use the refreshed server clock; clock rollback is rejected
+  ---
+  duration_ms: 10.6706
+  type: 'test'
+  ...
+# Subtest: P07 trusted complete scan selects queries/reviews without generating payment or refund submits
+ok 162 - P07 trusted complete scan selects queries/reviews without generating payment or refund submits
+  ---
+  duration_ms: 3.9575
+  type: 'test'
+  ...
+# Subtest: P07 invalid/incomplete/cross-environment scan or stale entity cannot create a job
+ok 163 - P07 invalid/incomplete/cross-environment scan or stale entity cannot create a job
+  ---
+  duration_ms: 2.7726
+  type: 'test'
+  ...
+# Subtest: P07 duplicate discovery and service restart preserve a single job
+ok 164 - P07 duplicate discovery and service restart preserve a single job
+  ---
+  duration_ms: 2.5805
+  type: 'test'
+  ...
+# Subtest: P07 parallel workers only acquire one active lease
+ok 165 - P07 parallel workers only acquire one active lease
+  ---
+  duration_ms: 2.0774
+  type: 'test'
+  ...
+# Subtest: P07 expired lease can be reclaimed and old worker cannot acknowledge new work
+ok 166 - P07 expired lease can be reclaimed and old worker cannot acknowledge new work
+  ---
+  duration_ms: 2.455
+  type: 'test'
+  ...
+# Subtest: P07 retry delay is honored without releasing payment/refund resources
+ok 167 - P07 retry delay is honored without releasing payment/refund resources
+  ---
+  duration_ms: 1.7307
+  type: 'test'
+  ...
+# Subtest: P07 exhausted retries require an operator; replay never sends duplicate alerts
+ok 168 - P07 exhausted retries require an operator; replay never sends duplicate alerts
+  ---
+  duration_ms: 2.8189
+  type: 'test'
+  ...
+# Subtest: P07 old unresolved jobs generate one long-unresolved requirement with no personal data
+ok 169 - P07 old unresolved jobs generate one long-unresolved requirement with no personal data
+  ---
+  duration_ms: 1.748
+  type: 'test'
+  ...
+# Subtest: P07 response lost after claim has one lease and cannot dispatch another worker immediately
+ok 170 - P07 response lost after claim has one lease and cannot dispatch another worker immediately
+  ---
+  duration_ms: 1.1989
+  type: 'test'
+  ...
+# Subtest: P07 response lost after resolution is recoverable by inspecting the terminal job
+ok 171 - P07 response lost after resolution is recoverable by inspecting the terminal job
+  ---
+  duration_ms: 1.5409
+  type: 'test'
+  ...
+# Subtest: P07 job/alert transaction failures or zero writes roll back together
+ok 172 - P07 job/alert transaction failures or zero writes roll back together
+  ---
+  duration_ms: 4.9944
+  type: 'test'
+  ...
+# Subtest: P07 scheduler authority, result identity and read-set conflicts cannot be forged
+ok 173 - P07 scheduler authority, result identity and read-set conflicts cannot be forged
+  ---
+  duration_ms: 1.5571
+  type: 'test'
+  ...
+# Subtest: P07 matching complete statements persist one report even across replays or row order changes
+ok 174 - P07 matching complete statements persist one report even across replays or row order changes
+  ---
+  duration_ms: 1.9104
+  type: 'test'
+  ...
+# Subtest: P07 discrepancies persist hashed findings and an unsent operator requirement
+ok 175 - P07 discrepancies persist hashed findings and an unsent operator requirement
+  ---
+  duration_ms: 1.2027
+  type: 'test'
+  ...
+# Subtest: P07 missing local/provider rows and status mismatches are distinguished
+ok 176 - P07 missing local/provider rows and status mismatches are distinguished
+  ---
+  duration_ms: 0.7532
+  type: 'test'
+  ...
+# Subtest: P07 incomplete ranges, unauthenticated or cross-scope statements cannot claim a matched ledger
+ok 177 - P07 incomplete ranges, unauthenticated or cross-scope statements cannot claim a matched ledger
+  ---
+  duration_ms: 1.1425
+  type: 'test'
+  ...
+# Subtest: P07 a missing or mismatched local scope cannot claim matching ledger contents
+ok 178 - P07 a missing or mismatched local scope cannot claim matching ledger contents
+  ---
+  duration_ms: 1.3482
+  type: 'test'
+  ...
+# Subtest: P07 duplicate or invalid money rows are rejected without suppressing discrepancies
+ok 179 - P07 duplicate or invalid money rows are rejected without suppressing discrepancies
+  ---
+  duration_ms: 1.0791
+  type: 'test'
+  ...
+# Subtest: P07 mismatch report and alert each fail atomically, without touching a financial ledger
+ok 180 - P07 mismatch report and alert each fail atomically, without touching a financial ledger
+  ---
+  duration_ms: 2.2476
+  type: 'test'
+  ...
+# Subtest: P07 policy is explicit and expired/equal-boundary leases cannot acknowledge results
+ok 181 - P07 policy is explicit and expired/equal-boundary leases cannot acknowledge results
+  ---
+  duration_ms: 0.7021
+  type: 'test'
+  ...
+# Subtest: P07 mismatched provider identity and duplicated successful transaction cannot appear matched
+ok 182 - P07 mismatched provider identity and duplicated successful transaction cannot appear matched
+  ---
+  duration_ms: 0.858
+  type: 'test'
+  ...
+# Subtest: P07 reordered normalized rows yield the same deterministic report across local/provider order
+ok 183 - P07 reordered normalized rows yield the same deterministic report across local/provider order
+  ---
+  duration_ms: 0.5043
+  type: 'test'
+  ...
+# Subtest: P07 lease expiry during transaction writes rolls back acknowledgement and claim
+ok 184 - P07 lease expiry during transaction writes rolls back acknowledgement and claim
+  ---
+  duration_ms: 2.5602
+  type: 'test'
+  ...
+# Subtest: P07 run history and terminal job are atomic and carry a safe stable request reference
+ok 185 - P07 run history and terminal job are atomic and carry a safe stable request reference
+  ---
+  duration_ms: 3.7814
+  type: 'test'
+  ...
+# Subtest: P06 partial/full success settles only reserved amount, preserving order/payment/fulfillment facts
+ok 186 - P06 partial/full success settles only reserved amount, preserving order/payment/fulfillment facts
+  ---
+  duration_ms: 20.3924
+  type: 'test'
+  ...
+# Subtest: P06 same request/parallel submit/new key only claims one sending attempt
+ok 187 - P06 same request/parallel submit/new key only claims one sending attempt
+  ---
+  duration_ms: 3.0007
+  type: 'test'
+  ...
+# Subtest: P06 accepted/unknown results are not refunded; unresolved requests require query
+ok 188 - P06 accepted/unknown results are not refunded; unresolved requests require query
+  ---
+  duration_ms: 6.9425
+  type: 'test'
+  ...
+# Subtest: P06 query can settle an earlier success whose actual time precedes the query
+ok 189 - P06 query can settle an earlier success whose actual time precedes the query
+  ---
+  duration_ms: 2.9576
+  type: 'test'
+  ...
+# Subtest: P06 a lost query can be queried again at the configured timeout without resubmitting funds
+ok 190 - P06 a lost query can be queried again at the configured timeout without resubmitting funds
+  ---
+  duration_ms: 5.5192
+  type: 'test'
+  ...
+# Subtest: P06 timeout query recovery grants one read attempt to competing workers
+ok 191 - P06 timeout query recovery grants one read attempt to competing workers
+  ---
+  duration_ms: 2.0921
+  type: 'test'
+  ...
+# Subtest: P06 accepted provider refund identity cannot change during later query results
+ok 192 - P06 accepted provider refund identity cannot change during later query results
+  ---
+  duration_ms: 3.5613
+  type: 'test'
+  ...
+# Subtest: P06 acceptance event, identity guard, attempt and refund identity roll back together
+ok 193 - P06 acceptance event, identity guard, attempt and refund identity roll back together
+  ---
+  duration_ms: 19.6958
+  type: 'test'
+  ...
+# Subtest: P06 second-resolution success overlaps submit without inventing milliseconds
+ok 194 - P06 second-resolution success overlaps submit without inventing milliseconds
+  ---
+  duration_ms: 2.5062
+  type: 'test'
+  ...
+# Subtest: P06 stale or unaligned second-resolution success is rejected without changing funds
+ok 195 - P06 stale or unaligned second-resolution success is rejected without changing funds
+  ---
+  duration_ms: 2.7615
+  type: 'test'
+  ...
+# Subtest: P06 failure keeps the same reserved budget and authorized retry keeps the original refund number
+ok 196 - P06 failure keeps the same reserved budget and authorized retry keeps the original refund number
+  ---
+  duration_ms: 2.6614
+  type: 'test'
+  ...
+# Subtest: P06 repeat/response loss/service restart do not refund or write logs twice
+ok 197 - P06 repeat/response loss/service restart do not refund or write logs twice
+  ---
+  duration_ms: 4.2585
+  type: 'test'
+  ...
+# Subtest: P06 lost submission response recovers the attempt without minting another send right
+ok 198 - P06 lost submission response recovers the attempt without minting another send right
+  ---
+  duration_ms: 1.3341
+  type: 'test'
+  ...
+# Subtest: P06 failure arriving after success does not undo settled funds
+ok 199 - P06 failure arriving after success does not undo settled funds
+  ---
+  duration_ms: 1.9327
+  type: 'test'
+  ...
+# Subtest: P06 stale negative observation cannot override a newer attempt
+ok 200 - P06 stale negative observation cannot override a newer attempt
+  ---
+  duration_ms: 2.5873
+  type: 'test'
+  ...
+# Subtest: P06 each success write exception/zero result rolls the entire transaction back
+ok 201 - P06 each success write exception/zero result rolls the entire transaction back
+  ---
+  duration_ms: 33.0197
+  type: 'test'
+  ...
+# Subtest: P06 submit write failure/zero and read conflict never return a sending plan
+ok 202 - P06 submit write failure/zero and read conflict never return a sending plan
+  ---
+  duration_ms: 1.8567
+  type: 'test'
+  ...
+# Subtest: P06 authentication cannot be faked by flags, JSON copies or ordinary customers
+ok 203 - P06 authentication cannot be faked by flags, JSON copies or ordinary customers
+  ---
+  duration_ms: 1.0803
+  type: 'test'
+  ...
+# Subtest: P06 wrong number/amount/currency/original transaction/time/provider binding leaves funds unchanged
+ok 204 - P06 wrong number/amount/currency/original transaction/time/provider binding leaves funds unchanged
+  ---
+  duration_ms: 11.3561
+  type: 'test'
+  ...
+# Subtest: P06 unresolved paid ledger, mismatched budget and missing approval refuse dispatch
+ok 205 - P06 unresolved paid ledger, mismatched budget and missing approval refuse dispatch
+  ---
+  duration_ms: 1.9252
+  type: 'test'
+  ...
+# Subtest: P06 multiple partial refunds accumulate within the original payment without releasing failed budget
+ok 206 - P06 multiple partial refunds accumulate within the original payment without releasing failed budget
+  ---
+  duration_ms: 5.2933
+  type: 'test'
+  ...
+# Subtest: P06 provider ID and event conflicts refuse inconsistent evidence without changing refunds
+ok 207 - P06 provider ID and event conflicts refuse inconsistent evidence without changing refunds
+  ---
+  duration_ms: 3.5507
+  type: 'test'
+  ...
+# Subtest: P06 failed-result writes also roll back together without freeing any refund budget
+ok 208 - P06 failed-result writes also roll back together without freeing any refund budget
+  ---
+  duration_ms: 15.88
+  type: 'test'
+  ...
+# Subtest: P06 both provider authentication candidates stay offline and settle the same way
+ok 209 - P06 both provider authentication candidates stay offline and settle the same way
+  ---
+  duration_ms: 3.372
+  type: 'test'
+  ...
+# Subtest: P06 P04 late compensation intent settles while preserving cancelled order and released resources
+ok 210 - P06 P04 late compensation intent settles while preserving cancelled order and released resources
+  ---
+  duration_ms: 127.7971
+  type: 'test'
+  ...
+1..210
+# tests 210
+# suites 0
+# pass 209
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1864.2735

@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "evidence": [
+          {
+            "name": "call-failure",
+            "ok": false,
+            "code": "CLOUD_CALL_FAILED",
+            "requestId": "client-muyxc25a-6avax4xp"
+          }
+        ]
+      }
+    }
+  }
+}
+

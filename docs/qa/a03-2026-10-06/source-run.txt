@@ -1,0 +1,5 @@
+before=e59a661052fea2cf97d57e5bc3dbfa9bd81e56960e299feab4e13b92fa0766aa
+after=e59a661052fea2cf97d57e5bc3dbfa9bd81e56960e299feab4e13b92fa0766aa
+unchanged=true
+node=v24.19.0
+platform=win32

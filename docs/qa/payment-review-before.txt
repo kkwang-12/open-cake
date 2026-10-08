@@ -1,0 +1,230 @@
+✔ P02 trusted order creates one frozen offline intent; no invocation, money or order/resource changes (16.0336ms)
+✔ P02 independent random merchant number meets external length and never truncates internal order digest (2.1268ms)
+✔ P02 request whitelist rejects amount, owner, number, provider and arbitrary action injection without writes (4.8308ms)
+✔ P02 other owner, forged principal and current user revocation are rejected (1.9498ms)
+✔ P02 cancelled and paid orders cannot create or replay usable payment parameters (7.0429ms)
+✔ P02 expected version and reused key with different parameters reject; replay can recover after order version changes (8.7226ms)
+✔ P02 same-key and different-key parallel clicks reuse one pending intent and charge budget once (3.636ms)
+✔ P02 prepare response loss and service reconstruction recover same durable intent (2.4429ms)
+✔ P02 all three preparation writes throw/zero roll back intent, budget and receipt (14.9149ms)
+✔ P02 one-time durable dispatch claim; parallel claim and later retries only require query (5.078ms)
+✔ P02 dispatch response loss, restart and unknown result never authorize a second send or new number (2.4986ms)
+✔ P02 dispatch write failure/zero rolls back claim, permitting safe first claim only (4.9171ms)
+✔ P02 exact deadline and minimum window plus explicit dispatch margin never extend resources (2.147ms)
+✔ P02 time consumed before dispatch commit rolls claim back and keeps original deadline (1.591ms)
+✔ P02 existing requested payment remains queryable past deadline and controlled authorization expiry (2.4955ms)
+✔ P02 absent cloud/config, expired real-test grant and changed original configuration never dispatch (3.5162ms)
+✔ P02 real-test budget rejects amount/count exhaustion and corrupt grant binding without writes (3.225ms)
+✔ P02 dispatch requires this intent original budget reservation and grant fingerprint (3.6483ms)
+✔ P02 invalid/colliding merchant numbers fail without orphan budget or second intent (1.8066ms)
+✔ P02 corrupt/duplicate pending facts and missing/mismatched HELD evidence reject (8.9696ms)
+✔ P02 read-set fences protect revocation, order/cancellation, resource and configuration races (5.234ms)
+✔ P02 unresolved intent prevents O05 no-payment cancellation and resource release (1.4737ms)
+✔ P02 production preparation retains release/actual-provider gates, without test-budget defaults (1.6391ms)
+✔ P02 authorization expiry at prepare commit rolls all reservation writes back (0.8139ms)
+✔ P02 unknown external state remains pending even if a caller supplies client success data (1.8462ms)
+✔ P02 different orders compete for one durable real-test budget transaction (1.5927ms)
+✔ P02 prepared intent past its deadline only requests query and never creates another intent (1.9739ms)
+✔ P02 closed/exception summaries require P04 coordination before any replacement intent (2.8216ms)
+✔ P02 external 15-day limit floors expiry without changing the longer original order deadline (0.8528ms)
+✔ P02 corrupt over-limit current budget blocks dispatch without modifying prior reservation (1.507ms)
+✖ P02 dispatch validates every payment row, including malformed closed history (1.9609ms)
+✔ P07 trusted complete scan selects queries/reviews without generating payment or refund submits (2.7271ms)
+✔ P07 invalid/incomplete/cross-environment scan or stale entity cannot create a job (2.7238ms)
+✔ P07 duplicate discovery and service restart preserve a single job (2.8288ms)
+✔ P07 parallel workers only acquire one active lease (1.677ms)
+✔ P07 expired lease can be reclaimed and old worker cannot acknowledge new work (1.7611ms)
+✔ P07 retry delay is honored without releasing payment/refund resources (1.5603ms)
+✔ P07 exhausted retries require an operator; replay never sends duplicate alerts (2.7574ms)
+✔ P07 old unresolved jobs generate one long-unresolved requirement with no personal data (1.3575ms)
+✔ P07 response lost after claim has one lease and cannot dispatch another worker immediately (0.7816ms)
+✔ P07 response lost after resolution is recoverable by inspecting the terminal job (0.8755ms)
+✔ P07 job/alert transaction failures or zero writes roll back together (4.0213ms)
+✔ P07 scheduler authority, result identity and read-set conflicts cannot be forged (0.9616ms)
+✔ P07 matching complete statements persist one report even across replays or row order changes (1.8192ms)
+✔ P07 discrepancies persist hashed findings and an unsent operator requirement (1.1015ms)
+✔ P07 missing local/provider rows and status mismatches are distinguished (0.6435ms)
+✔ P07 incomplete ranges, unauthenticated or cross-scope statements cannot claim a matched ledger (0.7466ms)
+✖ P07 a missing or mismatched local scope cannot claim matching ledger contents (0.8487ms)
+✔ P07 duplicate or invalid money rows are rejected without suppressing discrepancies (0.7783ms)
+✔ P07 mismatch report and alert each fail atomically, without touching a financial ledger (1.2127ms)
+✔ P07 policy is explicit and expired/equal-boundary leases cannot acknowledge results (0.5367ms)
+✔ P07 mismatched provider identity and duplicated successful transaction cannot appear matched (0.8833ms)
+✔ P07 reordered normalized rows yield the same deterministic report across local/provider order (0.595ms)
+✔ P07 lease expiry during transaction writes rolls back acknowledgement and claim (1.5151ms)
+✔ P07 run history and terminal job are atomic and carry a safe stable request reference (4.935ms)
+✔ P05 runtime gate stays closed, even after a contract-shaped PAID response (5.3138ms)
+✔ P05 requires state read first and sends only order/version/key through planned contracts (1.2326ms)
+✔ P05 lost create response never causes an immediate new payment; verified retry reuses the same key (0.5671ms)
+✔ P05 changed order version uses a new key and rejects a key generator collision (0.5609ms)
+✔ P05 prepay completion only creates state.get, ignores payment parameters and duplicate completion (0.3878ms)
+✔ P05 client success/cancel/failure callbacks all require reconciliation and cannot mark paid (0.7097ms)
+✔ P05 PENDING, EXCEPTION or active unknown payment always block another charge (0.533ms)
+✔ P05 closed intent is not a new unpaid payment opportunity (0.3991ms)
+✔ P05 cancellation and paid/refund recovery never show ordinary purchase success or offer repayment (0.607ms)
+✔ P05 out-of-order queries and lifecycle invalidation ignore old callbacks while preserving retry identity (0.5215ms)
+✔ P05 state version rollback or conflicting same-version response cannot restore an unpaid button (0.5651ms)
+✔ P05 malformed, wrong-order, offline, private-field or inconsistent amounts never authorize payment (1.1895ms)
+✔ P05 query failure and repeated failed callbacks keep a recoverable unknown result (0.2586ms)
+✔ P05 exact deadline blocks create but does not locally cancel or release funds/resources (0.2921ms)
+✔ P05 passive time refresh closes an expired button and state projection is immutable (0.2127ms)
+✔ P05 invalid session/key/time inputs fail without silently generating a new identity (0.4579ms)
+✔ P05 intent observation can change at the same order version without accepting conflicting order facts (0.3435ms)
+✔ P05 higher order version cannot rewrite fixed amount/deadline or roll back paid/closed funds (0.6209ms)
+✔ P05 reaching the deadline is latched within a session even if the client clock moves backwards (0.3055ms)
+✖ P05 cancelled/completed orders and observed closed intents cannot regress at higher versions (1.6131ms)
+✖ P05 cumulative refunded funds cannot decrease at a higher order version (0.4134ms)
+✔ P06 partial/full success settles only reserved amount, preserving order/payment/fulfillment facts (21.832ms)
+✔ P06 same request/parallel submit/new key only claims one sending attempt (2.88ms)
+✔ P06 accepted/unknown results are not refunded; unresolved requests require query (5.4922ms)
+✔ P06 query can settle an earlier success whose actual time precedes the query (3.3121ms)
+✖ P06 a lost query can be queried again at the configured timeout without resubmitting funds (3.6049ms)
+✖ P06 accepted provider refund identity cannot change during later query results (2.2066ms)
+✖ P06 second-resolution success overlaps submit without inventing milliseconds (1.4615ms)
+✔ P06 stale or unaligned second-resolution success is rejected without changing funds (2.7773ms)
+✔ P06 failure keeps the same reserved budget and authorized retry keeps the original refund number (1.9986ms)
+✔ P06 repeat/response loss/service restart do not refund or write logs twice (3.3856ms)
+✔ P06 lost submission response recovers the attempt without minting another send right (1.154ms)
+✔ P06 failure arriving after success does not undo settled funds (1.2191ms)
+✔ P06 stale negative observation cannot override a newer attempt (1.6493ms)
+✔ P06 each success write exception/zero result rolls the entire transaction back (15.6022ms)
+✔ P06 submit write failure/zero and read conflict never return a sending plan (0.9852ms)
+✔ P06 authentication cannot be faked by flags, JSON copies or ordinary customers (0.5542ms)
+✔ P06 wrong number/amount/currency/original transaction/time/provider binding leaves funds unchanged (5.9179ms)
+✔ P06 unresolved paid ledger, mismatched budget and missing approval refuse dispatch (1.3728ms)
+✔ P06 multiple partial refunds accumulate within the original payment without releasing failed budget (2.7233ms)
+✔ P06 provider ID and event conflicts refuse inconsistent evidence without changing refunds (2.2104ms)
+✔ P06 failed-result writes also roll back together without freeing any refund budget (7.5993ms)
+✔ P06 both provider authentication candidates stay offline and settle the same way (2.2586ms)
+✔ P06 P04 late compensation intent settles while preserving cancelled order and released resources (78.1178ms)
+ℹ tests 99
+ℹ suites 0
+ℹ pass 92
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 364.7063
+
+✖ failing tests:
+
+test at tests\payment-intent.test.js:237:1
+✖ P02 dispatch validates every payment row, including malformed closed history (1.9609ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (D:\dinner cook\tests\payment-intent.test.js:241:30)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\payment-maintenance.test.js:128:1
+✖ P07 a missing or mismatched local scope cannot claim matching ledger contents (0.8487ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (D:\dinner cook\tests\payment-maintenance.test.js:131:5)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests\payment-session.test.js:139:1
+✖ P05 cancelled/completed orders and observed closed intents cannot regress at higher versions (1.6131ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'READY_TO_REQUEST'
+  - 'CONFIRMING'
+  
+      at TestContext.<anonymous> (D:\dinner cook\tests\payment-session.test.js:144:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'READY_TO_REQUEST',
+    expected: 'CONFIRMING',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\payment-session.test.js:149:1
+✖ P05 cumulative refunded funds cannot decrease at a higher order version (0.4134ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'PAID_REPORTED'
+  - 'CONFIRMING'
+  
+      at TestContext.<anonymous> (D:\dinner cook\tests\payment-session.test.js:152:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'PAID_REPORTED',
+    expected: 'CONFIRMING',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\refund.test.js:44:1
+✖ P06 a lost query can be queried again at the configured timeout without resubmitting funds (3.6049ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'QUERY_IN_FLIGHT'
+  - 'TRANSPORT_REQUIRED'
+  
+      at TestContext.<anonymous> (D:\dinner cook\tests\refund.test.js:49:57)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'QUERY_IN_FLIGHT',
+    expected: 'TRANSPORT_REQUIRED',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\refund.test.js:57:1
+✖ P06 accepted provider refund identity cannot change during later query results (2.2066ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + null
+  - 'OFFLINE_PROVIDER_refund-intent'
+  
+      at TestContext.<anonymous> (D:\dinner cook\tests\refund.test.js:59:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: null,
+    expected: 'OFFLINE_PROVIDER_refund-intent',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests\refund.test.js:65:1
+✖ P06 second-resolution success overlaps submit without inventing milliseconds (1.4615ms)
+  Error: REFUND_EVIDENCE_MISMATCH
+      at fail (D:\dinner cook\cloudfunctions\_shared\refund-model.js:13:41)
+      at validateEvidence (D:\dinner cook\cloudfunctions\_shared\refund-model.js:95:103)
+      at planResult (D:\dinner cook\cloudfunctions\_shared\refund-model.js:101:3)
+      at D:\dinner cook\cloudfunctions\_shared\refund-service.js:52:20
+      at async D:\dinner cook\tests\fixtures\refund.js:44:20 {
+    code: 'REFUND_EVIDENCE_MISMATCH'
+  }

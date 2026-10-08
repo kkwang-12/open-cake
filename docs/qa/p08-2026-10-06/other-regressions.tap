@@ -1,0 +1,3142 @@
+TAP version 13
+# Subtest: X01 server CRUD projects only private-owner fields and immutable snapshots survive edits/deletion
+ok 1 - X01 server CRUD projects only private-owner fields and immutable snapshots survive edits/deletion
+  ---
+  duration_ms: 9.0568
+  type: 'test'
+  ...
+# Subtest: X01 server rejects forged principal and cross-owner get/update/remove/default/snapshot
+ok 2 - X01 server rejects forged principal and cross-owner get/update/remove/default/snapshot
+  ---
+  duration_ms: 2.5716
+  type: 'test'
+  ...
+# Subtest: X01 two competing defaults serialize through the user version; default removal clears pointer without promotion
+ok 3 - X01 two competing defaults serialize through the user version; default removal clears pointer without promotion
+  ---
+  duration_ms: 2.782
+  type: 'test'
+  ...
+# Subtest: X01 transaction failures roll back address/default/receipt atomically; retry does not duplicate create
+ok 4 - X01 transaction failures roll back address/default/receipt atomically; retry does not duplicate create
+  ---
+  duration_ms: 2.1773
+  type: 'test'
+  ...
+# Subtest: X01 command receipt replays original response; same key changed input conflicts and deleted address is not resurrected
+ok 5 - X01 command receipt replays original response; same key changed input conflicts and deleted address is not resurrected
+  ---
+  duration_ms: 3.1296
+  type: 'test'
+  ...
+# Subtest: X01 current phone policy is required; forged owner/location and unverified map token/region codes fail closed
+ok 6 - X01 current phone policy is required; forged owner/location and unverified map token/region codes fail closed
+  ---
+  duration_ms: 2.4836
+  type: 'test'
+  ...
+# Subtest: X01 stale address versions cannot update/select a snapshot, and unsigned list pagination is not offered
+ok 7 - X01 stale address versions cannot update/select a snapshot, and unsigned list pagination is not offered
+  ---
+  duration_ms: 2.9095
+  type: 'test'
+  ...
+# Subtest: X01 trusted address records reject unnormalized coordinates and a default change cannot move the user timestamp backwards
+ok 8 - X01 trusted address records reject unnormalized coordinates and a default change cannot move the user timestamp backwards
+  ---
+  duration_ms: 1.2753
+  type: 'test'
+  ...
+# Subtest: X01 address page keeps invalid input visible, persists real edits/defaults and routes only after choosing
+ok 9 - X01 address page keeps invalid input visible, persists real edits/defaults and routes only after choosing
+  ---
+  duration_ms: 9.4389
+  type: 'test'
+  ...
+# Subtest: X01 address editor retains input on stale revision; read failure is truthful and does not show old rows
+ok 10 - X01 address editor retains input on stale revision; read failure is truthful and does not show old rows
+  ---
+  duration_ms: 4.1595
+  type: 'test'
+  ...
+# Subtest: X01 native-delete callback cancels or hides without writing; stale confirmed deletion is rejected
+ok 11 - X01 native-delete callback cancels or hides without writing; stale confirmed deletion is rejected
+  ---
+  duration_ms: 6.3948
+  type: 'test'
+  ...
+# Subtest: X01 failed selection does not navigate or report success; repeated deletion taps share one pending confirmation
+ok 12 - X01 failed selection does not navigate or report success; repeated deletion taps share one pending confirmation
+  ---
+  duration_ms: 4.8719
+  type: 'test'
+  ...
+# Subtest: X01 Checkout uses the shared selection, reflects changed address versions and keeps order creation closed
+ok 13 - X01 Checkout uses the shared selection, reflects changed address versions and keeps order creation closed
+  ---
+  duration_ms: 11.6131
+  type: 'test'
+  ...
+# Subtest: D07 目标契约独立于现有部署，所有变更要求幂等键与声明身份边界
+ok 14 - D07 目标契约独立于现有部署，所有变更要求幂等键与声明身份边界
+  ---
+  duration_ms: 3.7215
+  type: 'test'
+  ...
+# Subtest: D07 请求仅接受定义 action / 字段，客户端身份、价格、状态与系统命令不能混入
+ok 15 - D07 请求仅接受定义 action / 字段，客户端身份、价格、状态与系统命令不能混入
+  ---
+  duration_ms: 5.2163
+  type: 'test'
+  ...
+# Subtest: D07 有副作用动作缺键 / 非法键拒绝，版本及整数分基础类型不能用字符串绕过
+ok 16 - D07 有副作用动作缺键 / 非法键拒绝，版本及整数分基础类型不能用字符串绕过
+  ---
+  duration_ms: 1.2769
+  type: 'test'
+  ...
+# Subtest: D07 选中行 / 规格 / 联系人地址做嵌套白名单，输入深复制并冻结
+ok 17 - D07 选中行 / 规格 / 联系人地址做嵌套白名单，输入深复制并冻结
+  ---
+  duration_ms: 1.1386
+  type: 'test'
+  ...
+# Subtest: D07 报价区分自取与配送地址，行版本与重复行校验，价格与容量仍由云端验证
+ok 18 - D07 报价区分自取与配送地址，行版本与重复行校验，价格与容量仍由云端验证
+  ---
+  duration_ms: 1.1013
+  type: 'test'
+  ...
+# Subtest: D07 管理员取消审批与草稿编辑的条件字段明确，不存在任意状态 / 任意系统命令
+ok 19 - D07 管理员取消审批与草稿编辑的条件字段明确，不存在任意状态 / 任意系统命令
+  ---
+  duration_ms: 1.3469
+  type: 'test'
+  ...
+# Subtest: D07 非 JSON、getter、稀疏数组、超请求上限拒绝；不执行输入 getter
+ok 20 - D07 非 JSON、getter、稀疏数组、超请求上限拒绝；不执行输入 getter
+  ---
+  duration_ms: 1.4895
+  type: 'test'
+  ...
+# Subtest: D07 公开错误仅固定白名单，隐藏错误栈 / 身份 / 支付原文与未知代码
+ok 21 - D07 公开错误仅固定白名单，隐藏错误栈 / 身份 / 支付原文与未知代码
+  ---
+  duration_ms: 0.4912
+  type: 'test'
+  ...
+# Subtest: X04 26 slots / final 20:30 window / local date range / no reservation and immutable public output
+ok 22 - X04 26 slots / final 20:30 window / local date range / no reservation and immutable public output
+  ---
+  duration_ms: 16.6514
+  type: 'test'
+  ...
+# Subtest: X04 held / confirmed / consumed count independently in each mode; full and closed cannot be selected
+ok 23 - X04 held / confirmed / consumed count independently in each mode; full and closed cannot be selected
+  ---
+  duration_ms: 28.1363
+  type: 'test'
+  ...
+# Subtest: X04 missing resources never imply free capacity; obsolete definition is disabled, corrupt or mixed scope reads reject
+ok 24 - X04 missing resources never imply free capacity; obsolete definition is disabled, corrupt or mixed scope reads reject
+  ---
+  duration_ms: 23.6325
+  type: 'test'
+  ...
+# Subtest: X04 cutoff / closed override / invalid calendar and max advance window use server time
+ok 25 - X04 cutoff / closed override / invalid calendar and max advance window use server time
+  ---
+  duration_ms: 21.4829
+  type: 'test'
+  ...
+# Subtest: X04 principal / cart / config versions and client lead, capacity or clock fields cannot bypass validation
+ok 26 - X04 principal / cart / config versions and client lead, capacity or clock fields cannot bypass validation
+  ---
+  duration_ms: 2.515
+  type: 'test'
+  ...
+# Subtest: X04 unknown lead/advance, draft product/config and future publication fail closed
+ok 27 - X04 unknown lead/advance, draft product/config and future publication fail closed
+  ---
+  duration_ms: 12.96
+  type: 'test'
+  ...
+# Subtest: X04 fingerprint changes with current catalog / policy / resource version or capacity and preserves inputs
+ok 28 - X04 fingerprint changes with current catalog / policy / resource version or capacity and preserves inputs
+  ---
+  duration_ms: 16.1519
+  type: 'test'
+  ...
+# Subtest: X04 mixed selected products take maximum lead; capacity refresh disables a previously available slot
+ok 29 - X04 mixed selected products take maximum lead; capacity refresh disables a previously available slot
+  ---
+  duration_ms: 7.2878
+  type: 'test'
+  ...
+# Subtest: D06 可信平台元组完整哈希；同人稳定，环境 / AppID / OPENID 隔离且分帧无歧义
+ok 30 - D06 可信平台元组完整哈希；同人稳定，环境 / AppID / OPENID 隔离且分帧无歧义
+  ---
+  duration_ms: 5.6852
+  type: 'test'
+  ...
+# Subtest: D06 缺平台身份 / 错应用 / 错环境 / 错配置均关闭访问，报错不含隐私
+ok 31 - D06 缺平台身份 / 错应用 / 错环境 / 错配置均关闭访问，报错不含隐私
+  ---
+  duration_ms: 1.3474
+  type: 'test'
+  ...
+# Subtest: D06 已持久化的用户必须匹配平台元组与稳定主键，缺用户不伪造登录成功
+ok 32 - D06 已持久化的用户必须匹配平台元组与稳定主键，缺用户不伪造登录成功
+  ---
+  duration_ms: 1.1282
+  type: 'test'
+  ...
+# Subtest: D06 principal 白名单不含平台键或客户端权限，复制 / 自造 / SYSTEM 对象不能当凭证
+ok 33 - D06 principal 白名单不含平台键或客户端权限，复制 / 自造 / SYSTEM 对象不能当凭证
+  ---
+  duration_ms: 0.8875
+  type: 'test'
+  ...
+# Subtest: D06 本人地址 / 袋 / 收藏 / 报价 / 订单以 ownerId 隔离，他人 ID 不授权
+ok 34 - D06 本人地址 / 袋 / 收藏 / 报价 / 订单以 ownerId 隔离，他人 ID 不授权
+  ---
+  duration_ms: 0.7614
+  type: 'test'
+  ...
+# Subtest: D06 门店角色须同时命中 subject / 门店 / 能力，返回仅该操作的最小范围
+ok 35 - D06 门店角色须同时命中 subject / 门店 / 能力，返回仅该操作的最小范围
+  ---
+  duration_ms: 1.1418
+  type: 'test'
+  ...
+# Subtest: D06 跨门店与拆分授权不合并能力；要求同一当前授权记录满足全部权限
+ok 36 - D06 跨门店与拆分授权不合并能力；要求同一当前授权记录满足全部权限
+  ---
+  duration_ms: 0.5788
+  type: 'test'
+  ...
+# Subtest: D06 每次传入最新授权，撤销 / 缩小门店 / 移除能力后拒绝下一次敏感操作
+ok 37 - D06 每次传入最新授权，撤销 / 缩小门店 / 移除能力后拒绝下一次敏感操作
+  ---
+  duration_ms: 0.673
+  type: 'test'
+  ...
+# Subtest: D06 非法授权 / 空或未知权限拒绝，不用 wildcard 或空列表放行
+ok 38 - D06 非法授权 / 空或未知权限拒绝，不用 wildcard 或空列表放行
+  ---
+  duration_ms: 1.0015
+  type: 'test'
+  ...
+# Subtest: D06 用户入口不能伪造系统付款 / 过期权限，角色或请求参数不能自提权
+ok 39 - D06 用户入口不能伪造系统付款 / 过期权限，角色或请求参数不能自提权
+  ---
+  duration_ms: 1.0337
+  type: 'test'
+  ...
+# Subtest: D06 订单履约操作复用 D01；目录 / 配置 / 角色 / 审计能力不能操作订单
+ok 40 - D06 订单履约操作复用 D01；目录 / 配置 / 角色 / 审计能力不能操作订单
+  ---
+  duration_ms: 1.4463
+  type: 'test'
+  ...
+# Subtest: D06 取消批准 / 商家拒单要求履约加退款能力，零退款也不绕过审批权限
+ok 41 - D06 取消批准 / 商家拒单要求履约加退款能力，零退款也不绕过审批权限
+  ---
+  duration_ms: 0.7278
+  type: 'test'
+  ...
+# Subtest: D06 顾客只能申请本人取消 / 确认本人配送；不能完成自提核销
+ok 42 - D06 顾客只能申请本人取消 / 确认本人配送；不能完成自提核销
+  ---
+  duration_ms: 0.5729
+  type: 'test'
+  ...
+# Subtest: D06 可信 owner actor 可接 D03；他人袋被拦截，参数伪造 owner 无效
+ok 43 - D06 可信 owner actor 可接 D03；他人袋被拦截，参数伪造 owner 无效
+  ---
+  duration_ms: 2.8459
+  type: 'test'
+  ...
+# Subtest: D06 权限检查不修改用户 / 授权 / 订单，冻结输出不暴露原始 grant
+ok 44 - D06 权限检查不修改用户 / 授权 / 订单，冻结输出不暴露原始 grant
+  ---
+  duration_ms: 0.5283
+  type: 'test'
+  ...
+# Subtest: D06/P02 数据库规则草案覆盖字典 26 集合，普通客户端所有直接 CRUD 关闭
+ok 45 - D06/P02 数据库规则草案覆盖字典 26 集合，普通客户端所有直接 CRUD 关闭
+  ---
+  duration_ms: 2.8167
+  type: 'test'
+  ...
+# Subtest: Bag title uses native capsule clearance at different widths and safe fallback without loading cart
+ok 46 - Bag title uses native capsule clearance at different widths and safe fallback without loading cart
+  ---
+  duration_ms: 10.8581
+  type: 'test'
+  ...
+# Subtest: bag quantity/remove totals include previously unchecked products without initiating checkout
+ok 47 - bag quantity/remove totals include previously unchecked products without initiating checkout
+  ---
+  duration_ms: 16.7496
+  type: 'test'
+  ...
+# Subtest: B06 bag persists selection before routing, prevents repeated taps and does not route after hide
+ok 48 - B06 bag persists selection before routing, prevents repeated taps and does not route after hide
+  ---
+  duration_ms: 6.3454
+  type: 'test'
+  ...
+# Subtest: B06 bag reports failed preview persistence without pretending navigation or successful refresh
+ok 49 - B06 bag reports failed preview persistence without pretending navigation or successful refresh
+  ---
+  duration_ms: 5.8984
+  type: 'test'
+  ...
+# Subtest: B03 page prevents duplicate taps; failures retain persisted rows and show fixed messages
+ok 50 - B03 page prevents duplicate taps; failures retain persisted rows and show fixed messages
+  ---
+  duration_ms: 15.6639
+  type: 'test'
+  ...
+# Subtest: B03 late page quantity result stays hidden; failed reads never expose stale subtotal
+ok 51 - B03 late page quantity result stays hidden; failed reads never expose stale subtotal
+  ---
+  duration_ms: 6.7343
+  type: 'test'
+  ...
+# Subtest: B03 Home/Shop badge refreshes from the same bag count and clears on failure
+ok 52 - B03 Home/Shop badge refreshes from the same bag count and clears on failure
+  ---
+  duration_ms: 1.9598
+  type: 'test'
+  ...
+# Subtest: B04 conflicts refresh the current snapshot, without retrying a delta against newer data
+ok 53 - B04 conflicts refresh the current snapshot, without retrying a delta against newer data
+  ---
+  duration_ms: 5.1851
+  type: 'test'
+  ...
+# Subtest: B04 failed refresh keeps a truthful read error rather than claiming the conflict was refreshed
+ok 54 - B04 failed refresh keeps a truthful read error rather than claiming the conflict was refreshed
+  ---
+  duration_ms: 2.2043
+  type: 'test'
+  ...
+# Subtest: B05 page confirmation cancel leaves snapshot unchanged; explicit accept applies current price and retains message
+ok 55 - B05 page confirmation cancel leaves snapshot unchanged; explicit accept applies current price and retains message
+  ---
+  duration_ms: 8.1409
+  type: 'test'
+  ...
+# Subtest: B05 hiding during confirmation prevents a write; late review responses do not restore old rows
+ok 56 - B05 hiding during confirmation prevents a write; late review responses do not restore old rows
+  ---
+  duration_ms: 6.0579
+  type: 'test'
+  ...
+# Subtest: bag thumbnails support shared products, missing/error images and do not alter reviewed money
+ok 57 - bag thumbnails support shared products, missing/error images and do not alter reviewed money
+  ---
+  duration_ms: 5.2892
+  type: 'test'
+  ...
+# Subtest: bag measured bottom space matches wrapped summary and clears checkout when empty
+ok 58 - bag measured bottom space matches wrapped summary and clears checkout when empty
+  ---
+  duration_ms: 5.0236
+  type: 'test'
+  ...
+# Subtest: B05 current local review is read-only, explicitly unknown stock and never checkout authority
+ok 59 - B05 current local review is read-only, explicitly unknown stock and never checkout authority
+  ---
+  duration_ms: 8.3903
+  type: 'test'
+  ...
+# Subtest: B05 price change excludes a checked row until explicit fresh-token confirmation, preserving message/ID
+ok 60 - B05 price change excludes a checked row until explicit fresh-token confirmation, preserving message/ID
+  ---
+  duration_ms: 7.0757
+  type: 'test'
+  ...
+# Subtest: B05 unavailable and transient failures retain removable rows with distinct notices, not guessed sale status
+ok 61 - B05 unavailable and transient failures retain removable rows with distinct notices, not guessed sale status
+  ---
+  duration_ms: 2.8847
+  type: 'test'
+  ...
+# Subtest: B05 obsolete SKU, changed quantity policy and invalid historical message cannot be selected or silently rewritten
+ok 62 - B05 obsolete SKU, changed quantity policy and invalid historical message cannot be selected or silently rewritten
+  ---
+  duration_ms: 6.3321
+  type: 'test'
+  ...
+# Subtest: B05 changing display/version requires confirmation even when price stays unchanged
+ok 63 - B05 changing display/version requires confirmation even when price stays unchanged
+  ---
+  duration_ms: 2.1798
+  type: 'test'
+  ...
+# Subtest: B05 newer prices and newer bag revisions invalidate an old confirmation token
+ok 64 - B05 newer prices and newer bag revisions invalidate an old confirmation token
+  ---
+  duration_ms: 2.6979
+  type: 'test'
+  ...
+# Subtest: B05 full selection skips blocked rows; late reviews cannot describe a newer/deleted bag
+ok 65 - B05 full selection skips blocked rows; late reviews cannot describe a newer/deleted bag
+  ---
+  duration_ms: 3.4505
+  type: 'test'
+  ...
+# Subtest: B05 missing development configuration is unavailable; malformed duplicates still fail as configuration errors
+ok 66 - B05 missing development configuration is unavailable; malformed duplicates still fail as configuration errors
+  ---
+  duration_ms: 8.5664
+  type: 'test'
+  ...
+# Subtest: Sheet mounts below the viewport, opens with its mask, then unmounts only after closing
+ok 67 - Sheet mounts below the viewport, opens with its mask, then unmounts only after closing
+  ---
+  duration_ms: 6.7493
+  type: 'test'
+  ...
+# Subtest: Short content uses natural height; long content is capped with fixed header and footer
+ok 68 - Short content uses natural height; long content is capped with fixed header and footer
+  ---
+  duration_ms: 4.5505
+  type: 'test'
+  ...
+# Subtest: Repeated open and close/reopen cancel stale timers and leave one mounted sheet
+ok 69 - Repeated open and close/reopen cancel stale timers and leave one mounted sheet
+  ---
+  duration_ms: 2.2931
+  type: 'test'
+  ...
+# Subtest: Header drags follow the finger, cancel or snap back, and dismiss by distance or downward velocity
+ok 70 - Header drags follow the finger, cancel or snap back, and dismiss by distance or downward velocity
+  ---
+  duration_ms: 2.6177
+  type: 'test'
+  ...
+# Subtest: Adding blocks dismissal and upward/horizontal gestures do not start a sheet drag
+ok 71 - Adding blocks dismissal and upward/horizontal gestures do not start a sheet drag
+  ---
+  duration_ms: 2.0403
+  type: 'test'
+  ...
+# Subtest: Delayed measurement from an interrupted open cannot override a reopened sheet
+ok 72 - Delayed measurement from an interrupted open cannot override a reopened sheet
+  ---
+  duration_ms: 2.2261
+  type: 'test'
+  ...
+# Subtest: Rapid content changes ignore stale height measurements within the same open sheet
+ok 73 - Rapid content changes ignore stale height measurements within the same open sheet
+  ---
+  duration_ms: 2.6611
+  type: 'test'
+  ...
+# Subtest: A second finger cancels a header drag without leaving the sheet offset or mask stuck
+ok 74 - A second finger cancels a header drag without leaving the sheet offset or mask stuck
+  ---
+  duration_ms: 2.2518
+  type: 'test'
+  ...
+# Subtest: D03 同 SKU 不同留言共存，同规范化留言合并并保留原 lineId / addedAt
+ok 75 - D03 同 SKU 不同留言共存，同规范化留言合并并保留原 lineId / addedAt
+  ---
+  duration_ms: 18.0265
+  type: 'test'
+  ...
+# Subtest: D03 本人 / 门店范围及袋 / 行旧版本拒绝，禁止覆盖竞争写入
+ok 76 - D03 本人 / 门店范围及袋 / 行旧版本拒绝，禁止覆盖竞争写入
+  ---
+  duration_ms: 1.4534
+  type: 'test'
+  ...
+# Subtest: D03 满袋可合并现行行但不能加不同留言；合并不能绕过最终数量上限
+ok 77 - D03 满袋可合并现行行但不能加不同留言；合并不能绕过最终数量上限
+  ---
+  duration_ms: 17.842
+  type: 'test'
+  ...
+# Subtest: D03 修改数量 / 留言保留身份，原值更新不增版本；修改到已有行需显式处理
+ok 78 - D03 修改数量 / 留言保留身份，原值更新不增版本；修改到已有行需显式处理
+  ---
+  duration_ms: 1.3303
+  type: 'test'
+  ...
+# Subtest: D03 下架 / 缺限制仍可移除，不复活已删除行；移除也校验行版本
+ok 79 - D03 下架 / 缺限制仍可移除，不复活已删除行；移除也校验行版本
+  ---
+  duration_ms: 0.7761
+  type: 'test'
+  ...
+# Subtest: D03 购物袋不保存客户端价格 / 状态 / 私有字段，面包不出现留言步骤
+ok 80 - D03 购物袋不保存客户端价格 / 状态 / 私有字段，面包不出现留言步骤
+  ---
+  duration_ms: 0.4947
+  type: 'test'
+  ...
+# Subtest: D03 摘要篡改、重复行 / 合并身份、版本递增溢出和不合法时间拒绝且输入不变
+ok 81 - D03 摘要篡改、重复行 / 合并身份、版本递增溢出和不合法时间拒绝且输入不变
+  ---
+  duration_ms: 2.0956
+  type: 'test'
+  ...
+# Subtest: D03 解析后的袋行可直接形成 D02 事实白名单，留言 / 规格 / 金额 / 版本名称一致
+ok 82 - D03 解析后的袋行可直接形成 D02 事实白名单，留言 / 规格 / 金额 / 版本名称一致
+  ---
+  duration_ms: 6.6566
+  type: 'test'
+  ...
+# Subtest: B01 CRUD preserves stable IDs and versions; GET is a private-field whitelist
+ok 83 - B01 CRUD preserves stable IDs and versions; GET is a private-field whitelist
+  ---
+  duration_ms: 16.5502
+  type: 'test'
+  ...
+# Subtest: B01 D06 principal required; B cannot read/change A; forged owner fields rejected
+ok 84 - B01 D06 principal required; B cannot read/change A; forged owner fields rejected
+  ---
+  duration_ms: 7.1154
+  type: 'test'
+  ...
+# Subtest: B01 rejects illegal SKU, quantities, missing configs and line limits without partial writes
+ok 85 - B01 rejects illegal SKU, quantities, missing configs and line limits without partial writes
+  ---
+  duration_ms: 13.2461
+  type: 'test'
+  ...
+# Subtest: B01 two concurrent writes from same version cannot overwrite each other
+ok 86 - B01 two concurrent writes from same version cannot overwrite each other
+  ---
+  duration_ms: 5.7004
+  type: 'test'
+  ...
+# Subtest: B01 receipt retry returns original result; changed payload with same key fails
+ok 87 - B01 receipt retry returns original result; changed payload with same key fails
+  ---
+  duration_ms: 4.7145
+  type: 'test'
+  ...
+# Subtest: B01 cart and receipt roll back together on storage failure
+ok 88 - B01 cart and receipt roll back together on storage failure
+  ---
+  duration_ms: 1.6398
+  type: 'test'
+  ...
+# Subtest: B01 unavailable product remains removable even without catalog/config; add holds no stock
+ok 89 - B01 unavailable product remains removable even without catalog/config; add holds no stock
+  ---
+  duration_ms: 2.0437
+  type: 'test'
+  ...
+# Subtest: B01 unchanged UPDATE does not advance cart/line version but still records retry receipt
+ok 90 - B01 unchanged UPDATE does not advance cart/line version but still records retry receipt
+  ---
+  duration_ms: 2.0405
+  type: 'test'
+  ...
+# Subtest: B02 NFC/trim equivalent messages merge; different messages keep separate stable lines
+ok 91 - B02 NFC/trim equivalent messages merge; different messages keep separate stable lines
+  ---
+  duration_ms: 3.4809
+  type: 'test'
+  ...
+# Subtest: B02 equal prices on distinct SKUs do not merge, and store scope cannot be forged
+ok 92 - B02 equal prices on distinct SKUs do not merge, and store scope cannot be forged
+  ---
+  duration_ms: 2.6825
+  type: 'test'
+  ...
+# Subtest: C08 CAKE same-source list → detail → SKU → persistent local bag/favorite chain
+ok 93 - C08 CAKE same-source list → detail → SKU → persistent local bag/favorite chain
+  ---
+  duration_ms: 10.6914
+  type: 'test'
+  ...
+# Subtest: C08 MINI_CAKE same-source list → detail → SKU → persistent local bag/favorite chain
+ok 94 - C08 MINI_CAKE same-source list → detail → SKU → persistent local bag/favorite chain
+  ---
+  duration_ms: 3.9999
+  type: 'test'
+  ...
+# Subtest: C08 BREAD same-source list → detail → SKU → persistent local bag/favorite chain
+ok 95 - C08 BREAD same-source list → detail → SKU → persistent local bag/favorite chain
+  ---
+  duration_ms: 1.8915
+  type: 'test'
+  ...
+# Subtest: C08 tampered SKU/version/price/quantity/combination cannot enter local bag, cloud purchase remains unavailable
+ok 96 - C08 tampered SKU/version/price/quantity/combination cannot enter local bag, cloud purchase remains unavailable
+  ---
+  duration_ms: 5.985
+  type: 'test'
+  ...
+# Subtest: C08 business subpackage routes preserve every public entry and all tabs stay in main package
+ok 97 - C08 business subpackage routes preserve every public entry and all tabs stay in main package
+  ---
+  duration_ms: 20.3904
+  type: 'test'
+  ...
+# Subtest: C01 user example creates 3 categories / 9 draft products / 15 explicit SKUs with exact prices
+ok 98 - C01 user example creates 3 categories / 9 draft products / 15 explicit SKUs with exact prices
+  ---
+  duration_ms: 20.3108
+  type: 'test'
+  ...
+# Subtest: C01 environment / namespace gate rejects test, production and mismatched environments
+ok 99 - C01 environment / namespace gate rejects test, production and mismatched environments
+  ---
+  duration_ms: 9.6529
+  type: 'test'
+  ...
+# Subtest: C01 duplicate key / selection, unknown category and invalid option combinations fail closed
+ok 100 - C01 duplicate key / selection, unknown category and invalid option combinations fail closed
+  ---
+  duration_ms: 16.9164
+  type: 'test'
+  ...
+# Subtest: C01 prices are positive safe integer cents or explicit unknown, never inferred
+ok 101 - C01 prices are positive safe integer cents or explicit unknown, never inferred
+  ---
+  duration_ms: 20.8899
+  type: 'test'
+  ...
+# Subtest: C01 reference / product inputs reject extra fields, unsafe paths, sparse arrays and getters
+ok 102 - C01 reference / product inputs reject extra fields, unsafe paths, sparse arrays and getters
+  ---
+  duration_ms: 4.8756
+  type: 'test'
+  ...
+# Subtest: C01 output is deeply frozen and detached from caller data
+ok 103 - C01 output is deeply frozen and detached from caller data
+  ---
+  duration_ms: 2.0682
+  type: 'test'
+  ...
+# Subtest: C01 repeat import skips existing data, preserves edited parents and never fills new SKUs under them
+ok 104 - C01 repeat import skips existing data, preserves edited parents and never fills new SKUs under them
+  ---
+  duration_ms: 9.4042
+  type: 'test'
+  ...
+# Subtest: C01 cross-store, orphan and changed selection collisions do not create partial parent plans
+ok 105 - C01 cross-store, orphan and changed selection collisions do not create partial parent plans
+  ---
+  duration_ms: 5.7194
+  type: 'test'
+  ...
+# Subtest: C01 poster bytes match source digest and stay outside mini program images
+ok 106 - C01 poster bytes match source digest and stay outside mini program images
+  ---
+  duration_ms: 19.1795
+  type: 'test'
+  ...
+# Subtest: C01 CLI writes exclusive local plan, rejects overwrite / outside output / production without leaking input
+ok 107 - C01 CLI writes exclusive local plan, rejects overwrite / outside output / production without leaking input
+  ---
+  duration_ms: 678.7666
+  type: 'test'
+  ...
+# Subtest: D03 三分类明确 SKU 可解析；面包无蛋糕规格 / 留言，价格只取可信配置
+ok 108 - D03 三分类明确 SKU 可解析；面包无蛋糕规格 / 留言，价格只取可信配置
+  ---
+  duration_ms: 6.6433
+  type: 'test'
+  ...
+# Subtest: D03 未配置组合、缺必选 / 重复 / 非法组选项均拒绝；不能保留切尺寸后的旧 SKU
+ok 109 - D03 未配置组合、缺必选 / 重复 / 非法组选项均拒绝；不能保留切尺寸后的旧 SKU
+  ---
+  duration_ms: 2.166
+  type: 'test'
+  ...
+# Subtest: D03 重复 SKU 组合 / ID、跨店 SKU、错误币种与倒置数量配置不会选第一条放行
+ok 110 - D03 重复 SKU 组合 / ID、跨店 SKU、错误币种与倒置数量配置不会选第一条放行
+  ---
+  duration_ms: 0.9113
+  type: 'test'
+  ...
+# Subtest: D03 草稿、下架和缺经营值均不可买；不会为正式价格 / 数量 / 资源 / 留言填默认
+ok 111 - D03 草稿、下架和缺经营值均不可买；不会为正式价格 / 数量 / 资源 / 留言填默认
+  ---
+  duration_ms: 2.0336
+  type: 'test'
+  ...
+# Subtest: D03 可选规格只接受真实 SKU，客户端顺序 / 文案不影响权威选项
+ok 112 - D03 可选规格只接受真实 SKU，客户端顺序 / 文案不影响权威选项
+  ---
+  duration_ms: 0.7791
+  type: 'test'
+  ...
+# Subtest: D03 留言按 NFC / 首尾空白 / Unicode 码点规范化；null、空串、大小写与内部空白保持区别
+ok 113 - D03 留言按 NFC / 首尾空白 / Unicode 码点规范化；null、空串、大小写与内部空白保持区别
+  ---
+  duration_ms: 0.7185
+  type: 'test'
+  ...
+# Subtest: D03 SKU 与门店数量上限同时生效，拒绝非整数 / 负数 / 溢出并明确最低数量
+ok 114 - D03 SKU 与门店数量上限同时生效，拒绝非整数 / 负数 / 溢出并明确最低数量
+  ---
+  duration_ms: 0.5539
+  type: 'test'
+  ...
+# Subtest: D03 独立 / 共享资源按整袋聚合；重复需求、跨店和乘法 / 求和溢出拒绝，不占资源
+ok 115 - D03 独立 / 共享资源按整袋聚合；重复需求、跨店和乘法 / 求和溢出拒绝，不占资源
+  ---
+  duration_ms: 1.0724
+  type: 'test'
+  ...
+# Subtest: D03 稀疏或非 JSON 资源需求 / 选项拒绝为领域错误，无法跳过配置校验
+ok 116 - D03 稀疏或非 JSON 资源需求 / 选项拒绝为领域错误，无法跳过配置校验
+  ---
+  duration_ms: 0.4683
+  type: 'test'
+  ...
+# Subtest: C02 formal projections contain only categories and public card whitelist, not private inventory/material data
+ok 117 - C02 formal projections contain only categories and public card whitelist, not private inventory/material data
+  ---
+  duration_ms: 26.1209
+  type: 'test'
+  ...
+# Subtest: C02 All excludes other stores/categories, drafts/off-sale/archive, no valid SKU and hidden categories
+ok 118 - C02 All excludes other stores/categories, drafts/off-sale/archive, no valid SKU and hidden categories
+  ---
+  duration_ms: 158.9958
+  type: 'test'
+  ...
+# Subtest: C02 price starts at lowest valid ON_SALE SKU, not cheaper drafts or incomplete configurations
+ok 119 - C02 price starts at lowest valid ON_SALE SKU, not cheaper drafts or incomplete configurations
+  ---
+  duration_ms: 16.0286
+  type: 'test'
+  ...
+# Subtest: C02 formal cover requires exact registered PUBLISHED real-photo version in configured cloud storage
+ok 120 - C02 formal cover requires exact registered PUBLISHED real-photo version in configured cloud storage
+  ---
+  duration_ms: 82.573
+  type: 'test'
+  ...
+# Subtest: C02 seek pagination across ties gives every item once; page-size changes preserve the anchor
+ok 121 - C02 seek pagination across ties gives every item once; page-size changes preserve the anchor
+  ---
+  duration_ms: 13.8704
+  type: 'test'
+  ...
+# Subtest: C02 category/name normalization, empty list and request schema do not introduce filters or unsafe regex
+ok 122 - C02 category/name normalization, empty list and request schema do not introduce filters or unsafe regex
+  ---
+  duration_ms: 12.7946
+  type: 'test'
+  ...
+# Subtest: C02 signed cursor binds store/environment/query/current public snapshot and rejects tampering/expiration
+ok 123 - C02 signed cursor binds store/environment/query/current public snapshot and rejects tampering/expiration
+  ---
+  duration_ms: 17.9193
+  type: 'test'
+  ...
+# Subtest: C02 record/key snapshots are isolated and results frozen; duplicate IDs/material versions/configuration fail closed
+ok 124 - C02 record/key snapshots are isolated and results frozen; duplicate IDs/material versions/configuration fail closed
+  ---
+  duration_ms: 68.8954
+  type: 'test'
+  ...
+# Subtest: C02 C01 development drafts never enter formal public products or categories
+ok 125 - C02 C01 development drafts never enter formal public products or categories
+  ---
+  duration_ms: 11.3936
+  type: 'test'
+  ...
+# Subtest: C03 product detail whitelists configured groups, policy and SKU fields without inventory/admin facts
+ok 126 - C03 product detail whitelists configured groups, policy and SKU fields without inventory/admin facts
+  ---
+  duration_ms: 11.1143
+  type: 'test'
+  ...
+# Subtest: C03 hidden, cross-store, incomplete and unknown details share unavailable; malformed requests reject
+ok 127 - C03 hidden, cross-store, incomplete and unknown details share unavailable; malformed requests reject
+  ---
+  duration_ms: 173.8587
+  type: 'test'
+  ...
+# Subtest: C03 gallery keeps exact published real-photo revisions once in configured order
+ok 128 - C03 gallery keeps exact published real-photo revisions once in configured order
+  ---
+  duration_ms: 22.2365
+  type: 'test'
+  ...
+# Subtest: C03 only complete on-sale SKUs set detail price and quantity; labels come from current configuration
+ok 129 - C03 only complete on-sale SKUs set detail price and quantity; labels come from current configuration
+  ---
+  duration_ms: 17.3276
+  type: 'test'
+  ...
+# Subtest: C03 frozen isolated formal detail round-trips client combinations to D03 authoritative SKU facts
+ok 130 - C03 frozen isolated formal detail round-trips client combinations to D03 authoritative SKU facts
+  ---
+  duration_ms: 15.3699
+  type: 'test'
+  ...
+# Subtest: Editing goods pops to the existing bag; a new checkout restores unsaved input and reads fresh amounts
+ok 131 - Editing goods pops to the existing bag; a new checkout restores unsaved input and reads fresh amounts
+  ---
+  duration_ms: 26.4936
+  type: 'test'
+  ...
+# Subtest: Return input does not restore against a changed store reference
+ok 132 - Return input does not restore against a changed store reference
+  ---
+  duration_ms: 5.4315
+  type: 'test'
+  ...
+# Subtest: Checkout reuses detail safe-area geometry and returns without resetting the previous page
+ok 133 - Checkout reuses detail safe-area geometry and returns without resetting the previous page
+  ---
+  duration_ms: 8.2493
+  type: 'test'
+  ...
+# Subtest: Repeated rapid fulfillment changes leave the visible form and persisted mode consistent
+ok 134 - Repeated rapid fulfillment changes leave the visible form and persisted mode consistent
+  ---
+  duration_ms: 3.4066
+  type: 'test'
+  ...
+# Subtest: Store photo uses only a real-photo reference; failures leave checkout and map intact
+ok 135 - Store photo uses only a real-photo reference; failures leave checkout and map intact
+  ---
+  duration_ms: 3.4743
+  type: 'test'
+  ...
+# Subtest: Checkout footer measures wrapped content including safe area and ignores stale or hidden measurements
+ok 136 - Checkout footer measures wrapped content including safe area and ignores stale or hidden measurements
+  ---
+  duration_ms: 2.5076
+  type: 'test'
+  ...
+# Subtest: Keyboard editing preserves contact and restores footer even when keyboard closes without blur
+ok 137 - Keyboard editing preserves contact and restores footer even when keyboard closes without blur
+  ---
+  duration_ms: 2.548
+  type: 'test'
+  ...
+# Subtest: Switching modes with a long address keeps current amounts and unavailable appointment restrictions
+ok 138 - Switching modes with a long address keeps current amounts and unavailable appointment restrictions
+  ---
+  duration_ms: 3.6076
+  type: 'test'
+  ...
+# Subtest: Pickup map opens the confirmed GCJ-02 store point, reports failures and leaves checkout restricted
+ok 139 - Pickup map opens the confirmed GCJ-02 store point, reports failures and leaves checkout restricted
+  ---
+  duration_ms: 3.1866
+  type: 'test'
+  ...
+# Subtest: Map entrance is unavailable without API or when confirmed store identity/address changes
+ok 140 - Map entrance is unavailable without API or when confirmed store identity/address changes
+  ---
+  duration_ms: 7.935
+  type: 'test'
+  ...
+# Subtest: X04 pending appointment uses confirmed 3/1 policy, exposes no fictional slots and clears on config/read failure
+ok 141 - X04 pending appointment uses confirmed 3/1 policy, exposes no fictional slots and clears on config/read failure
+  ---
+  duration_ms: 3.5777
+  type: 'test'
+  ...
+# Subtest: X02 pickup never reads an address; switch to delivery shares address module and switch back hides inapplicable details
+ok 142 - X02 pickup never reads an address; switch to delivery shares address module and switch back hides inapplicable details
+  ---
+  duration_ms: 2.5613
+  type: 'test'
+  ...
+# Subtest: X02 invalid contact remains editable; successful save is backed by real storage and survives returning
+ok 143 - X02 invalid contact remains editable; successful save is backed by real storage and survives returning
+  ---
+  duration_ms: 5.0108
+  type: 'test'
+  ...
+# Subtest: X02 stale mode writes and read failures show fixed errors without fake saved contact or stale store data
+ok 144 - X02 stale mode writes and read failures show fixed errors without fake saved contact or stale store data
+  ---
+  duration_ms: 4.1442
+  type: 'test'
+  ...
+# Subtest: X02 hidden late store reads and hidden save events cannot expose or persist old inputs
+ok 145 - X02 hidden late store reads and hidden save events cannot expose or persist old inputs
+  ---
+  duration_ms: 1.5405
+  type: 'test'
+  ...
+# Subtest: X03 delivery remains pending for selected addresses; changed/deleted/read-failed addresses clear old range state
+ok 146 - X03 delivery remains pending for selected addresses; changed/deleted/read-failed addresses clear old range state
+  ---
+  duration_ms: 4.7964
+  type: 'test'
+  ...
+# Subtest: X03 changed store reference prevents reading or showing a former delivery range state
+ok 147 - X03 changed store reference prevents reading or showing a former delivery range state
+  ---
+  duration_ms: 2.7965
+  type: 'test'
+  ...
+# Subtest: X06 unsaved pickup input survives switching and return; persisted contact remains unchanged until explicit save
+ok 148 - X06 unsaved pickup input survives switching and return; persisted contact remains unchanged until explicit save
+  ---
+  duration_ms: 2.9394
+  type: 'test'
+  ...
+# Subtest: X06 stale or uncertain mode write removes old derived branch state while preserving editable input
+ok 149 - X06 stale or uncertain mode write removes old derived branch state while preserving editable input
+  ---
+  duration_ms: 2.6153
+  type: 'test'
+  ...
+# Subtest: X06 out-of-order visible reloads apply only current goods/store while keeping unsaved contact
+ok 150 - X06 out-of-order visible reloads apply only current goods/store while keeping unsaved contact
+  ---
+  duration_ms: 3.0297
+  type: 'test'
+  ...
+# Subtest: X06 contact edit, branch change, address refresh and hide invalidate confirmation tickets
+ok 151 - X06 contact edit, branch change, address refresh and hide invalidate confirmation tickets
+  ---
+  duration_ms: 2.2001
+  type: 'test'
+  ...
+# Subtest: B06 three SKU/message rows persist; preview survives a new client and includes previously unselected rows
+ok 152 - B06 three SKU/message rows persist; preview survives a new client and includes previously unselected rows
+  ---
+  duration_ms: 21.9877
+  type: 'test'
+  ...
+# Subtest: B06 rejects empty, stale revision, changed catalog and tampered or duplicate selected IDs
+ok 153 - B06 rejects empty, stale revision, changed catalog and tampered or duplicate selected IDs
+  ---
+  duration_ms: 19.5245
+  type: 'test'
+  ...
+# Subtest: B06 unavailable checked rows never enter preview; storage failure and production gate fail closed
+ok 154 - B06 unavailable checked rows never enter preview; storage failure and production gate fail closed
+  ---
+  duration_ms: 5.663
+  type: 'test'
+  ...
+# Subtest: all-item bag amount and preview update together after quantity/remove with mixed eligibility
+ok 155 - all-item bag amount and preview update together after quantity/remove with mixed eligibility
+  ---
+  duration_ms: 16.2899
+  type: 'test'
+  ...
+# Subtest: B06 quantity/message changes and a mutation during review invalidate old preview
+ok 156 - B06 quantity/message changes and a mutation during review invalidate old preview
+  ---
+  duration_ms: 6.2861
+  type: 'test'
+  ...
+# Subtest: B06 checkout revalidates on return, clears stale totals and never offers an order method
+ok 157 - B06 checkout revalidates on return, clears stale totals and never offers an order method
+  ---
+  duration_ms: 15.811
+  type: 'test'
+  ...
+# Subtest: B06 hidden checkout ignores late read and read failure clears all displayed amounts
+ok 158 - B06 hidden checkout ignores late read and read failure clears all displayed amounts
+  ---
+  duration_ms: 4.1473
+  type: 'test'
+  ...
+# Subtest: B06 server planner resolves only selected trusted lines and recalculates catalog amounts without mutating cart
+ok 159 - B06 server planner resolves only selected trusted lines and recalculates catalog amounts without mutating cart
+  ---
+  duration_ms: 9.946
+  type: 'test'
+  ...
+# Subtest: B06 server planner rejects forged principals, cross-owner, client price fields and missing/duplicate/old lines
+ok 160 - B06 server planner rejects forged principals, cross-owner, client price fields and missing/duplicate/old lines
+  ---
+  duration_ms: 5.1341
+  type: 'test'
+  ...
+# Subtest: B06 server planner rechecks sale, quantity and historical message under current configuration
+ok 161 - B06 server planner rechecks sale, quantity and historical message under current configuration
+  ---
+  duration_ms: 2.5968
+  type: 'test'
+  ...
+# Subtest: X07 exact order request uses quote ID/version and stable key; client amount/contact/slot are never forwarded
+ok 162 - X07 exact order request uses quote ID/version and stable key; client amount/contact/slot are never forwarded
+  ---
+  duration_ms: 4.1486
+  type: 'test'
+  ...
+# Subtest: X07 missing/error/expired/consumed/offline confirmations cannot produce a submission request
+ok 163 - X07 missing/error/expired/consumed/offline confirmations cannot produce a submission request
+  ---
+  duration_ms: 0.9223
+  type: 'test'
+  ...
+# Subtest: X07 retry preserves the same key for the same confirmed quote; changed versions require server revalidation
+ok 164 - X07 retry preserves the same key for the same confirmed quote; changed versions require server revalidation
+  ---
+  duration_ms: 0.2668
+  type: 'test'
+  ...
+# Subtest: X07 unconnected runtime remains closed; payment handoff is only after persisted order and state.get reconciles uncertain outcomes
+ok 165 - X07 unconnected runtime remains closed; payment handoff is only after persisted order and state.get reconciles uncertain outcomes
+  ---
+  duration_ms: 0.4233
+  type: 'test'
+  ...
+# Subtest: X07 stage evidence has offline pickup/delivery quote paths; amount/address/lead/config changes block old quote
+ok 166 - X07 stage evidence has offline pickup/delivery quote paths; amount/address/lead/config changes block old quote
+  ---
+  duration_ms: 74.2158
+  type: 'test'
+  ...
+# Subtest: X07 server request whitelist still rejects client amounts or payment fields in order.create
+ok 167 - X07 server request whitelist still rejects client amounts or payment fields in order.create
+  ---
+  duration_ms: 1.4793
+  type: 'test'
+  ...
+# Subtest: 云身份：请求伪造 OPENID/role 无效，仅可信上下文决定身份
+ok 168 - 云身份：请求伪造 OPENID/role 无效，仅可信上下文决定身份
+  ---
+  duration_ms: 3.5688
+  type: 'test'
+  ...
+# Subtest: 云身份：无身份、应用或环境不符、配置缺失均关闭访问
+ok 169 - 云身份：无身份、应用或环境不符、配置缺失均关闭访问
+  ---
+  duration_ms: 0.5086
+  type: 'test'
+  ...
+# Subtest: 云函数：未知动作 / 非对象 payload 拒绝，异常日志不泄露敏感内容
+ok 170 - 云函数：未知动作 / 非对象 payload 拒绝，异常日志不泄露敏感内容
+  ---
+  duration_ms: 0.9727
+  type: 'test'
+  ...
+# Subtest: 云客户端：未配置 / shell / 开发复用生产环境不发请求
+ok 171 - 云客户端：未配置 / shell / 开发复用生产环境不发请求
+  ---
+  duration_ms: 1.7482
+  type: 'test'
+  ...
+# Subtest: 云客户端：显式选环境、初始化一次、不透传上游错误或隐私日志
+ok 172 - 云客户端：显式选环境、初始化一次、不透传上游错误或隐私日志
+  ---
+  duration_ms: 1.2425
+  type: 'test'
+  ...
+# Subtest: 云客户端：无效响应和服务端错误保留脱敏关联 ID
+ok 173 - 云客户端：无效响应和服务端错误保留脱敏关联 ID
+  ---
+  duration_ms: 2.244
+  type: 'test'
+  ...
+# Subtest: 安全区：有效胶囊、无胶囊、API 错误均有可用尺寸
+ok 174 - 安全区：有效胶囊、无胶囊、API 错误均有可用尺寸
+  ---
+  duration_ms: 0.5947
+  type: 'test'
+  ...
+# Subtest: X06 confirmation input copies and freezes; opening a new request drops old quote without mutating input
+ok 175 - X06 confirmation input copies and freezes; opening a new request drops old quote without mutating input
+  ---
+  duration_ms: 26.519
+  type: 'test'
+  ...
+# Subtest: X06 switching mode invalidates inapplicable response; only latest ticket can populate confirmation
+ok 176 - X06 switching mode invalidates inapplicable response; only latest ticket can populate confirmation
+  ---
+  duration_ms: 21.4898
+  type: 'test'
+  ...
+# Subtest: X06 failed / hidden / invalidated requests never resurrect a prior quote or payment success
+ok 177 - X06 failed / hidden / invalidated requests never resurrect a prior quote or payment success
+  ---
+  duration_ms: 5.8914
+  type: 'test'
+  ...
+# Subtest: X06 exact expiry clears displayed amounts and expired incoming response is rejected
+ok 178 - X06 exact expiry clears displayed amounts and expired incoming response is rejected
+  ---
+  duration_ms: 13.9629
+  type: 'test'
+  ...
+# Subtest: X06 malformed amount, wrong branch/store/contact, consumed quote and offline planner results cannot become confirmation
+ok 179 - X06 malformed amount, wrong branch/store/contact, consumed quote and offline planner results cannot become confirmation
+  ---
+  duration_ms: 6.5633
+  type: 'test'
+  ...
+# Subtest: X06 client summary retains separate per-line cake messages, zero fees and validated sums; nested evidence is omitted
+ok 180 - X06 client summary retains separate per-line cake messages, zero fees and validated sums; nested evidence is omitted
+  ---
+  duration_ms: 5.8865
+  type: 'test'
+  ...
+# Subtest: X06 invalid begin removes old result; missing address and pickup address are never silently reused
+ok 181 - X06 invalid begin removes old result; missing address and pickup address are never silently reused
+  ---
+  duration_ms: 5.5908
+  type: 'test'
+  ...
+# Subtest: X06 wrong appointment length or impossible arithmetic cannot replace totals
+ok 182 - X06 wrong appointment length or impossible arithmetic cannot replace totals
+  ---
+  duration_ms: 5.1443
+  type: 'test'
+  ...
+# Subtest: Custom navigation has four registered routes and eight packaged SVG states
+ok 183 - Custom navigation has four registered routes and eight packaged SVG states
+  ---
+  duration_ms: 12.5192
+  type: 'test'
+  ...
+# Subtest: Navigation highlights the visible route on initial attach and returning from detail
+ok 184 - Navigation highlights the visible route on initial attach and returning from detail
+  ---
+  duration_ms: 4.1743
+  type: 'test'
+  ...
+# Subtest: Navigation dispatches immediately, rejects invalid taps and recovers selection after failure
+ok 185 - Navigation dispatches immediately, rejects invalid taps and recovers selection after failure
+  ---
+  duration_ms: 3.7972
+  type: 'test'
+  ...
+# Subtest: Tab show reconciles the visible highlight after the native page stack updates
+ok 186 - Tab show reconciles the visible highlight after the native page stack updates
+  ---
+  duration_ms: 2.2058
+  type: 'test'
+  ...
+# Subtest: One content fade preserves cached state and repeated current-tab taps do not replay it
+ok 187 - One content fade preserves cached state and repeated current-tab taps do not replay it
+  ---
+  duration_ms: 4.3218
+  type: 'test'
+  ...
+# Subtest: Rapid taps retain only the latest target and never wait for the content animation
+ok 188 - Rapid taps retain only the latest target and never wait for the content animation
+  ---
+  duration_ms: 3.042
+  type: 'test'
+  ...
+# Subtest: A tap back to the departing tab wins while a native operation is in flight
+ok 189 - A tap back to the departing tab wins while a native operation is in flight
+  ---
+  duration_ms: 2.2526
+  type: 'test'
+  ...
+# Subtest: Latest target survives an earlier failure and duplicate destination taps do not dispatch again
+ok 190 - Latest target survives an earlier failure and duplicate destination taps do not dispatch again
+  ---
+  duration_ms: 2.5603
+  type: 'test'
+  ...
+# Subtest: Hiding cancels the fade and native detail return does not replay it or reset scroll
+ok 191 - Hiding cancels the fade and native detail return does not replay it or reset scroll
+  ---
+  duration_ms: 2.4745
+  type: 'test'
+  ...
+# Subtest: X03 verified own address inside/on 20km boundary has zero fee; 1mm outside is rejected
+ok 192 - X03 verified own address inside/on 20km boundary has zero fee; 1mm outside is rejected
+  ---
+  duration_ms: 13.8176
+  type: 'test'
+  ...
+# Subtest: X03 entity/version/exact-point verification is required; source labels, client regions and coordinates cannot prove delivery
+ok 193 - X03 entity/version/exact-point verification is required; source labels, client regions and coordinates cannot prove delivery
+  ---
+  duration_ms: 3.9419
+  type: 'test'
+  ...
+# Subtest: X03 missing/unsupported/future locations and text-only edits cannot reuse old range evidence
+ok 194 - X03 missing/unsupported/future locations and text-only edits cannot reuse old range evidence
+  ---
+  duration_ms: 2.167
+  type: 'test'
+  ...
+# Subtest: X03 forged principal, foreign/deleted address, mismatched IDs and stale versions are rejected
+ok 195 - X03 forged principal, foreign/deleted address, mismatched IDs and stale versions are rejected
+  ---
+  duration_ms: 1.0926
+  type: 'test'
+  ...
+# Subtest: X03 only unambiguous published enabled V1 radius/free rules with the verified store center can be evaluated
+ok 196 - X03 only unambiguous published enabled V1 radius/free rules with the verified store center can be evaluated
+  ---
+  duration_ms: 5.506
+  type: 'test'
+  ...
+# Subtest: X03 bindings change with address/rule/config/store versions and location; immutable snapshots do not leak extra fields
+ok 197 - X03 bindings change with address/rule/config/store versions and location; immutable snapshots do not leak extra fields
+  ---
+  duration_ms: 10.2806
+  type: 'test'
+  ...
+# Subtest: X03 local status distinguishes no address, changed address and pending verification without any local success branch
+ok 198 - X03 local status distinguishes no address, changed address and pending verification without any local success branch
+  ---
+  duration_ms: 1.3694
+  type: 'test'
+  ...
+# Subtest: D07 开发种子仅五个草稿记录，无商品价格 / 库存 / 用户 / 管理员 / 支付数据
+ok 199 - D07 开发种子仅五个草稿记录，无商品价格 / 库存 / 用户 / 管理员 / 支付数据
+  ---
+  duration_ms: 7.5301
+  type: 'test'
+  ...
+# Subtest: D07 高德原始点与每天营业只在已确认参考资料中，未当 WGS84 或不完整发布日历
+ok 200 - D07 高德原始点与每天营业只在已确认参考资料中，未当 WGS84 或不完整发布日历
+  ---
+  duration_ms: 1.2929
+  type: 'test'
+  ...
+# Subtest: D07 非开发 / 环境错配 / 命中生产 / 无明确名单 / 非开发命名空间全部拒绝
+ok 201 - D07 非开发 / 环境错配 / 命中生产 / 无明确名单 / 非开发命名空间全部拒绝
+  ---
+  duration_ms: 0.9578
+  type: 'test'
+  ...
+# Subtest: D07 重复执行只跳过已有记录，即使其已被编辑或发布也不重置版本 / 内容
+ok 202 - D07 重复执行只跳过已有记录，即使其已被编辑或发布也不重置版本 / 内容
+  ---
+  duration_ms: 2.9731
+  type: 'test'
+  ...
+# Subtest: D07 分类已有不同 ID 时按唯一 code 跳过，不另建重复分类；环境 / 命名空间 ID 隔离
+ok 203 - D07 分类已有不同 ID 时按唯一 code 跳过，不另建重复分类；环境 / 命名空间 ID 隔离
+  ---
+  duration_ms: 1.7141
+  type: 'test'
+  ...
+# Subtest: D07 冲突 / 重复唯一键 / 非 JSON / 非许可集合失败，不生成覆盖或删除计划
+ok 204 - D07 冲突 / 重复唯一键 / 非 JSON / 非许可集合失败，不生成覆盖或删除计划
+  ---
+  duration_ms: 1.1725
+  type: 'test'
+  ...
+# Subtest: D07 本地 CLI 只写计划，已有输出拒绝覆盖，生产配置失败不打印敏感输入
+ok 205 - D07 本地 CLI 只写计划，已有输出拒绝覆盖，生产配置失败不打印敏感输入
+  ---
+  duration_ms: 457.2746
+  type: 'test'
+  ...
+# Subtest: X02 confirmed store reference matches frozen policy but supplies neither OPEN status nor phone/location evidence
+ok 206 - X02 confirmed store reference matches frozen policy but supplies neither OPEN status nor phone/location evidence
+  ---
+  duration_ms: 3.7611
+  type: 'test'
+  ...
+# Subtest: X02 pickup contact and modes persist across new clients; other AppIDs do not inherit inputs
+ok 207 - X02 pickup contact and modes persist across new clients; other AppIDs do not inherit inputs
+  ---
+  duration_ms: 3.329
+  type: 'test'
+  ...
+# Subtest: X02 invalid contacts, stale versions, closed store and disabled pickup fail without saving
+ok 208 - X02 invalid contacts, stale versions, closed store and disabled pickup fail without saving
+  ---
+  duration_ms: 3.4019
+  type: 'test'
+  ...
+# Subtest: X02 reference changes require explicit refresh/reselection rather than silent authorization
+ok 209 - X02 reference changes require explicit refresh/reselection rather than silent authorization
+  ---
+  duration_ms: 1.3177
+  type: 'test'
+  ...
+# Subtest: X02 storage failures and corrupt data fail truthfully; reads do not write and uncertain save rejects old revision retry
+ok 210 - X02 storage failures and corrupt data fail truthfully; reads do not write and uncertain save rejects old revision retry
+  ---
+  duration_ms: 0.9581
+  type: 'test'
+  ...
+# Subtest: D05 用户确认政策固定：30 分钟、独立容量 3 / 1、20km 含边界、免费商家配送且预计时段
+ok 211 - D05 用户确认政策固定：30 分钟、独立容量 3 / 1、20km 含边界、免费商家配送且预计时段
+  ---
+  duration_ms: 3.5928
+  type: 'test'
+  ...
+# Subtest: D05 08:00–21:00 一天每模式 26 段，末段 20:30–21:00；模式 ID 独立，输入未改
+ok 212 - D05 08:00–21:00 一天每模式 26 段，末段 20:30–21:00；模式 ID 独立，输入未改
+  ---
+  duration_ms: 9.54
+  type: 'test'
+  ...
+# Subtest: D05 中国当地日期与真实日历、未来窗口边界校验；不按 UTC 日期截断
+ok 213 - D05 中国当地日期与真实日历、未来窗口边界校验；不按 UTC 日期截断
+  ---
+  duration_ms: 1.9272
+  type: 'test'
+  ...
+# Subtest: D05 混合商品取最大提前量；到达预约 / 提前量截止的时段不可再接受订单
+ok 214 - D05 混合商品取最大提前量；到达预约 / 提前量截止的时段不可再接受订单
+  ---
+  duration_ms: 0.7419
+  type: 'test'
+  ...
+# Subtest: D05 休业 / 缩短营业覆盖按日期和模式独立，无窗口不默认开放
+ok 215 - D05 休业 / 缩短营业覆盖按日期和模式独立，无窗口不默认开放
+  ---
+  duration_ms: 1.0748
+  type: 'test'
+  ...
+# Subtest: D05 非 30 分钟网格、重叠 / 重复覆盖、超营业时间和跨午夜配置拒绝
+ok 216 - D05 非 30 分钟网格、重叠 / 重复覆盖、超营业时间和跨午夜配置拒绝
+  ---
+  duration_ms: 0.7233
+  type: 'test'
+  ...
+# Subtest: D05 缺提前量 / 窗口天数、闭店、错误时区 / 履约方式无法生成可买时段
+ok 217 - D05 缺提前量 / 窗口天数、闭店、错误时区 / 履约方式无法生成可买时段
+  ---
+  duration_ms: 0.3603
+  type: 'test'
+  ...
+# Subtest: D05 源时段必须匹配真实记录；缺记录、伪造容量 / 模式 / 时间和旧政策拒绝
+ok 218 - D05 源时段必须匹配真实记录；缺记录、伪造容量 / 模式 / 时间和旧政策拒绝
+  ---
+  duration_ms: 7.8
+  type: 'test'
+  ...
+# Subtest: D05 自取三单 / 配送一单含 HELD、CONFIRMED、CONSUMED 占用，满额拒绝且彼此独立
+ok 219 - D05 自取三单 / 配送一单含 HELD、CONFIRMED、CONSUMED 占用，满额拒绝且彼此独立
+  ---
+  duration_ms: 4.5006
+  type: 'test'
+  ...
+# Subtest: D05 同时段变更政策不会换 ID 重新获得容量；资源计划衔接一个订单占一个名额
+ok 220 - D05 同时段变更政策不会换 ID 重新获得容量；资源计划衔接一个订单占一个名额
+  ---
+  duration_ms: 8.7244
+  type: 'test'
+  ...
+# Subtest: D05 支付保留截止不晚于最严格提前量边界，缺经营时长不补默认
+ok 221 - D05 支付保留截止不晚于最严格提前量边界，缺经营时长不补默认
+  ---
+  duration_ms: 0.4207
+  type: 'test'
+  ...
+# Subtest: D05 0 / 20km 内 / 精确边界免费，超过边界 1mm 拒绝，结果为预计商家配送
+ok 222 - D05 0 / 20km 内 / 精确边界免费，超过边界 1mm 拒绝，结果为预计商家配送
+  ---
+  duration_ms: 0.7418
+  type: 'test'
+  ...
+# Subtest: D05 无定位 / 非法坐标 / 未来核验时间 / 未转换坐标体系拒绝，不能以客户端范围证明放行
+ok 223 - D05 无定位 / 非法坐标 / 未来核验时间 / 未转换坐标体系拒绝，不能以客户端范围证明放行
+  ---
+  duration_ms: 0.5477
+  type: 'test'
+  ...
+# Subtest: D05 非测试原点的精确边界不因浮点相减误判，近经度换日线也可正确计算
+ok 224 - D05 非测试原点的精确边界不因浮点相减误判，近经度换日线也可正确计算
+  ---
+  duration_ms: 0.3089
+  type: 'test'
+  ...
+# Subtest: C06 Home sections and category fallback resolve current catalog IDs, names and prices through every page
+ok 225 - C06 Home sections and category fallback resolve current catalog IDs, names and prices through every page
+  ---
+  duration_ms: 8.7782
+  type: 'test'
+  ...
+# Subtest: C06 Home never falls back to legacy previews on cloud/production or empty catalog, and rejects broken pagination
+ok 226 - C06 Home never falls back to legacy previews on cloud/production or empty catalog, and rejects broken pagination
+  ---
+  duration_ms: 1.5628
+  type: 'test'
+  ...
+# Subtest: Home cards open same-source detail and Hero/recommendation actions route to Shop
+ok 227 - Home cards open same-source detail and Hero/recommendation actions route to Shop
+  ---
+  duration_ms: 3.5492
+  type: 'test'
+  ...
+# Subtest: C06 Home hides late responses, reports fixed failure copy and can retry without old preview data
+ok 228 - C06 Home hides late responses, reports fixed failure copy and can retry without old preview data
+  ---
+  duration_ms: 3.9104
+  type: 'test'
+  ...
+# Subtest: Hero slide image failures are isolated, loaded neighbours stay ready and recommendations remain intact
+ok 229 - Hero slide image failures are isolated, loaded neighbours stay ready and recommendations remain intact
+  ---
+  duration_ms: 16.76
+  type: 'test'
+  ...
+# Subtest: Hero ignores invalid indices and only the settled visible slide can navigate to its configured target
+ok 230 - Hero ignores invalid indices and only the settled visible slide can navigate to its configured target
+  ---
+  duration_ms: 2.1207
+  type: 'test'
+  ...
+# Subtest: Horizontal drags, vertical scroll gestures and cancelled touches suppress accidental button taps
+ok 231 - Horizontal drags, vertical scroll gestures and cancelled touches suppress accidental button taps
+  ---
+  duration_ms: 5.341
+  type: 'test'
+  ...
+# Subtest: Release displacement without a move event is still guarded and hiding clears an unfinished gesture
+ok 232 - Release displacement without a move event is still guarded and hiding clears an unfinished gesture
+  ---
+  duration_ms: 2.0995
+  type: 'test'
+  ...
+# Subtest: D04 JSON 键顺序不改请求摘要，数组顺序与 null / 空串区别保留
+ok 233 - D04 JSON 键顺序不改请求摘要，数组顺序与 null / 空串区别保留
+  ---
+  duration_ms: 2.8595
+  type: 'test'
+  ...
+# Subtest: D04 非 JSON、稀疏 / 附加属性数组、循环、符号与 getter 不生成请求指纹
+ok 234 - D04 非 JSON、稀疏 / 附加属性数组、循环、符号与 getter 不生成请求指纹
+  ---
+  duration_ms: 1.9418
+  type: 'test'
+  ...
+# Subtest: D04 确定性 ID 绑定环境 / 身份 / 命令 / 键；JSON 分帧避免分隔符碰撞
+ok 235 - D04 确定性 ID 绑定环境 / 身份 / 命令 / 键；JSON 分帧避免分隔符碰撞
+  ---
+  duration_ms: 3.2899
+  type: 'test'
+  ...
+# Subtest: D04 首次 CREATE、成功 / 失败终态重放、处理中 BUSY；过期租约也不盲目重新调用资金
+ok 236 - D04 首次 CREATE、成功 / 失败终态重放、处理中 BUSY；过期租约也不盲目重新调用资金
+  ---
+  duration_ms: 2.7896
+  type: 'test'
+  ...
+# Subtest: D04 同键异参拒绝，错误范围记录 / 缺终态结果拒绝，输入不被修改
+ok 237 - D04 同键异参拒绝，错误范围记录 / 缺终态结果拒绝，输入不被修改
+  ---
+  duration_ms: 0.8184
+  type: 'test'
+  ...
+# Subtest: D04 缺身份范围与非字符串指纹返回领域错误，不调用输入对象转换方法
+ok 238 - D04 缺身份范围与非字符串指纹返回领域错误，不调用输入对象转换方法
+  ---
+  duration_ms: 2.9013
+  type: 'test'
+  ...
+# Subtest: X01 local CRUD normalizes fields, survives a new client, isolates AppIDs and leaves detached snapshots intact
+ok 239 - X01 local CRUD normalizes fields, survives a new client, isolates AppIDs and leaves detached snapshots intact
+  ---
+  duration_ms: 3.6142
+  type: 'test'
+  ...
+# Subtest: X01 single default pointer rejects competing old revisions; deleting default clears it without promoting another
+ok 240 - X01 single default pointer rejects competing old revisions; deleting default clears it without promoting another
+  ---
+  duration_ms: 3.5534
+  type: 'test'
+  ...
+# Subtest: X01 explicit selection uses ID/version, invalidates after edit/delete and never silently falls back
+ok 241 - X01 explicit selection uses ID/version, invalidates after edit/delete and never silently falls back
+  ---
+  duration_ms: 4.5473
+  type: 'test'
+  ...
+# Subtest: X01 invalid phone/incomplete input/forged coordinates and owner fields cannot be saved
+ok 242 - X01 invalid phone/incomplete input/forged coordinates and owner fields cannot be saved
+  ---
+  duration_ms: 0.8764
+  type: 'test'
+  ...
+# Subtest: X01 writes fail truthfully; uncertain committed create cannot be duplicated by retrying the old revision
+ok 243 - X01 writes fail truthfully; uncertain committed create cannot be duplicated by retrying the old revision
+  ---
+  duration_ms: 0.9119
+  type: 'test'
+  ...
+# Subtest: X01 corrupt reads and production access fail closed without overwriting existing address data
+ok 244 - X01 corrupt reads and production access fail closed without overwriting existing address data
+  ---
+  duration_ms: 14.9851
+  type: 'test'
+  ...
+# Subtest: Local Bag really persists and reopens, merges only identical SKU/normalized message and never permits checkout
+ok 245 - Local Bag really persists and reopens, merges only identical SKU/normalized message and never permits checkout
+  ---
+  duration_ms: 9.8346
+  type: 'test'
+  ...
+# Subtest: Local Bag never acknowledges storage exception or failed readback
+ok 246 - Local Bag never acknowledges storage exception or failed readback
+  ---
+  duration_ms: 2.3453
+  type: 'test'
+  ...
+# Subtest: Local Bag rechecks current SKU/version/price, rejects tampering and prevents merge above configured quantities
+ok 247 - Local Bag rechecks current SKU/version/price, rejects tampering and prevents merge above configured quantities
+  ---
+  duration_ms: 5.2523
+  type: 'test'
+  ...
+# Subtest: Local Bag validates messages, category restrictions and integer quantities; no preview storage access outside development shell
+ok 248 - Local Bag validates messages, category restrictions and integer quantities; no preview storage access outside development shell
+  ---
+  duration_ms: 3.2017
+  type: 'test'
+  ...
+# Subtest: B03 older draft rows read without storage migration; selection and counts persist across reopening
+ok 249 - B03 older draft rows read without storage migration; selection and counts persist across reopening
+  ---
+  duration_ms: 3.9618
+  type: 'test'
+  ...
+# Subtest: B03 quantity updates recheck SKU/price/limits and preserve selection/message/identity
+ok 250 - B03 quantity updates recheck SKU/price/limits and preserve selection/message/identity
+  ---
+  duration_ms: 2.6218
+  type: 'test'
+  ...
+# Subtest: B03 asynchronous quantity change cannot restore a deleted row or overwrite a newer selection
+ok 251 - B03 asynchronous quantity change cannot restore a deleted row or overwrite a newer selection
+  ---
+  duration_ms: 3.7615
+  type: 'test'
+  ...
+# Subtest: B03 selection/quantity failures do not return a success and summaries reject overflow
+ok 252 - B03 selection/quantity failures do not return a success and summaries reject overflow
+  ---
+  duration_ms: 2.161
+  type: 'test'
+  ...
+# Subtest: B04 uncertain readback retries with persisted receipt once, even after client recreation
+ok 253 - B04 uncertain readback retries with persisted receipt once, even after client recreation
+  ---
+  duration_ms: 1.7527
+  type: 'test'
+  ...
+# Subtest: B04 concurrent duplicate add shares one result; distinct keys remain deliberate additions
+ok 254 - B04 concurrent duplicate add shares one result; distinct keys remain deliberate additions
+  ---
+  duration_ms: 3.1306
+  type: 'test'
+  ...
+# Subtest: B04 read-only refresh never repeats a failed absolute quantity write or restores deleted lines
+ok 255 - B04 read-only refresh never repeats a failed absolute quantity write or restores deleted lines
+  ---
+  duration_ms: 1.6538
+  type: 'test'
+  ...
+# Subtest: C07 local favorites persist across new clients, are idempotent, app-scoped and use latest catalog prices
+ok 256 - C07 local favorites persist across new clients, are idempotent, app-scoped and use latest catalog prices
+  ---
+  duration_ms: 6.9986
+  type: 'test'
+  ...
+# Subtest: C07 removed catalog products remain visible as unavailable and removable without a catalog read
+ok 257 - C07 removed catalog products remain visible as unavailable and removable without a catalog read
+  ---
+  duration_ms: 1.2545
+  type: 'test'
+  ...
+# Subtest: C07 storage errors/readback mismatch/corruption and cloud modes never acknowledge a fake favorite
+ok 258 - C07 storage errors/readback mismatch/corruption and cloud modes never acknowledge a fake favorite
+  ---
+  duration_ms: 1.4338
+  type: 'test'
+  ...
+# Subtest: C07 Favorites opens only available products, retains failed removal and ignores responses after hiding
+ok 259 - C07 Favorites opens only available products, retains failed removal and ignores responses after hiding
+  ---
+  duration_ms: 4.935
+  type: 'test'
+  ...
+# Subtest: C07 Account permits registered public entries and shows confirmed store facts plus truthful pending contact
+ok 260 - C07 Account permits registered public entries and shows confirmed store facts plus truthful pending contact
+  ---
+  duration_ms: 5.0279
+  type: 'test'
+  ...
+# Subtest: media metadata measures actual bytes; drafts are detached and do not publish
+ok 261 - media metadata measures actual bytes; drafts are detached and do not publish
+  ---
+  duration_ms: 24.4187
+  type: 'test'
+  ...
+# Subtest: media signature / declared MIME / bounded size gates reject mismatches without decoding claims
+ok 262 - media signature / declared MIME / bounded size gates reject mismatches without decoding claims
+  ---
+  duration_ms: 1.0716
+  type: 'test'
+  ...
+# Subtest: media rejects external URLs, traversal, URL tokens and unapproved cloud storage
+ok 263 - media rejects external URLs, traversal, URL tokens and unapproved cloud storage
+  ---
+  duration_ms: 11.3376
+  type: 'test'
+  ...
+# Subtest: media public projections strip internal metadata and reject development previews
+ok 264 - media public projections strip internal metadata and reject development previews
+  ---
+  duration_ms: 11.3617
+  type: 'test'
+  ...
+# Subtest: media malformed asset IDs produce media errors and getter inputs are never executed
+ok 265 - media malformed asset IDs produce media errors and getter inputs are never executed
+  ---
+  duration_ms: 8.7285
+  type: 'test'
+  ...
+# Subtest: media duplicate registration preserves existing versions and rejects same-revision byte / storage / source changes
+ok 266 - media duplicate registration preserves existing versions and rejects same-revision byte / storage / source changes
+  ---
+  duration_ms: 71.9424
+  type: 'test'
+  ...
+# Subtest: historical image resolution keeps exact retired revision without following latest version
+ok 267 - historical image resolution keeps exact retired revision without following latest version
+  ---
+  duration_ms: 18.6207
+  type: 'test'
+  ...
+# Subtest: retention requires approved expiry and complete reference scan; even zero refs only proposes recheck
+ok 268 - retention requires approved expiry and complete reference scan; even zero refs only proposes recheck
+  ---
+  duration_ms: 15.0639
+  type: 'test'
+  ...
+# Subtest: 四 Tab 真实路由；非 Tab 参数编码正确
+ok 269 - 四 Tab 真实路由；非 Tab 参数编码正确
+  ---
+  duration_ms: 5.8031
+  type: 'test'
+  ...
+# Subtest: 主包默认不调用演示网络；可关闭的旧子包深链也不发请求
+ok 270 - 主包默认不调用演示网络；可关闭的旧子包深链也不发请求
+  ---
+  duration_ms: 11.2075
+  type: 'test'
+  ...
+# Subtest: 主包无模拟支付/口令/HTTP 调用，旧页面仅在子包登记
+ok 271 - 主包无模拟支付/口令/HTTP 调用，旧页面仅在子包登记
+  ---
+  duration_ms: 7.3854
+  type: 'test'
+  ...
+# Subtest: O05 unpaid pickup/delivery cancellation releases only owned stock/slot, seals log and receipt atomically
+ok 272 - O05 unpaid pickup/delivery cancellation releases only owned stock/slot, seals log and receipt atomically
+  ---
+  duration_ms: 73.3662
+  type: 'test'
+  ...
+# Subtest: O05 same request and lost committed response replay original cancellation without repeated release
+ok 273 - O05 same request and lost committed response replay original cancellation without repeated release
+  ---
+  duration_ms: 18.4545
+  type: 'test'
+  ...
+# Subtest: O05 all seven write failures and zero-row results roll back cancellation/resources/log/receipt
+ok 274 - O05 all seven write failures and zero-row results roll back cancellation/resources/log/receipt
+  ---
+  duration_ms: 169.7425
+  type: 'test'
+  ...
+# Subtest: O05 unresolved/intended payments never cancel, release or mark idempotency as complete
+ok 275 - O05 unresolved/intended payments never cancel, release or mark idempotency as complete
+  ---
+  duration_ms: 55.0438
+  type: 'test'
+  ...
+# Subtest: O05 pending cancellation resumes only after trustworthy close reconciliation and current version confirmation
+ok 276 - O05 pending cancellation resumes only after trustworthy close reconciliation and current version confirmation
+  ---
+  duration_ms: 9.271
+  type: 'test'
+  ...
+# Subtest: O05 closed summary without evidence, malformed/foreign/amount/app payment records fail closed
+ok 277 - O05 closed summary without evidence, malformed/foreign/amount/app payment records fail closed
+  ---
+  duration_ms: 75.3461
+  type: 'test'
+  ...
+# Subtest: O05 expiry requires trusted invocation and exact due boundary; duplicate job releases only once
+ok 278 - O05 expiry requires trusted invocation and exact due boundary; duplicate job releases only once
+  ---
+  duration_ms: 19.4518
+  type: 'test'
+  ...
+# Subtest: O05 expired unknown payments retain reservations; paid/fulfilled orders are skipped by expiry
+ok 279 - O05 expired unknown payments retain reservations; paid/fulfilled orders are skipped by expiry
+  ---
+  duration_ms: 34.1109
+  type: 'test'
+  ...
+# Subtest: O05 simultaneous customer cancellation and expiry release one set with one final log
+ok 280 - O05 simultaneous customer cancellation and expiry release one set with one final log
+  ---
+  duration_ms: 7.1957
+  type: 'test'
+  ...
+# Subtest: O05 shared stock/slot release preserves other orders and works after resource sale is closed
+ok 281 - O05 shared stock/slot release preserves other orders and works after resource sale is closed
+  ---
+  duration_ms: 29.0091
+  type: 'test'
+  ...
+# Subtest: O05 multiple stock units release as one transaction and any of nine write failures preserves all holds
+ok 282 - O05 multiple stock units release as one transaction and any of nine write failures preserves all holds
+  ---
+  duration_ms: 80.8189
+  type: 'test'
+  ...
+# Subtest: O05 missing/foreign/resolved reservations, wrong slot, underflow and overflow cannot partly release
+ok 283 - O05 missing/foreign/resolved reservations, wrong slot, underflow and overflow cannot partly release
+  ---
+  duration_ms: 51.6596
+  type: 'test'
+  ...
+# Subtest: O05 forged identity/other owner/stale version/extra funds fields and user expiry actions are rejected
+ok 284 - O05 forged identity/other owner/stale version/extra funds fields and user expiry actions are rejected
+  ---
+  duration_ms: 12.6297
+  type: 'test'
+  ...
+# Subtest: O05 payment creation/accounting or user revocation during commit rolls back release for later reconciliation
+ok 285 - O05 payment creation/accounting or user revocation during commit rolls back release for later reconciliation
+  ---
+  duration_ms: 15.3004
+  type: 'test'
+  ...
+# Subtest: O05 read fence and unsupported historical policy fail without mutation
+ok 286 - O05 read fence and unsupported historical policy fail without mutation
+  ---
+  duration_ms: 12.355
+  type: 'test'
+  ...
+# Subtest: O05 payment confirmation winning commit race keeps paid order and confirmed reservations
+ok 287 - O05 payment confirmation winning commit race keeps paid order and confirmed reservations
+  ---
+  duration_ms: 8.4719
+  type: 'test'
+  ...
+# Subtest: O05 paid customer request retains fulfillment/resources; merchant rejection proposes remaining full refund
+ok 288 - O05 paid customer request retains fulfillment/resources; merchant rejection proposes remaining full refund
+  ---
+  duration_ms: 8.5815
+  type: 'test'
+  ...
+# Subtest: O05 after-making approval never restores consumed stock; slot release requires explicit policy
+ok 289 - O05 after-making approval never restores consumed stock; slot release requires explicit policy
+  ---
+  duration_ms: 8.6167
+  type: 'test'
+  ...
+# Subtest: O05 zero refund approval creates no refund intent; denied request leaves all resources intact
+ok 290 - O05 zero refund approval creates no refund intent; denied request leaves all resources intact
+  ---
+  duration_ms: 5.6697
+  type: 'test'
+  ...
+# Subtest: O05 pure resource resolution is immutable and already released cancellation never decrements again
+ok 291 - O05 pure resource resolution is immutable and already released cancellation never decrements again
+  ---
+  duration_ms: 6.7271
+  type: 'test'
+  ...
+# Subtest: O01 parameterized frozen transition table: every V1 state / mode / store command
+ok 292 - O01 parameterized frozen transition table: every V1 state / mode / store command
+  ---
+  duration_ms: 23.5312
+  type: 'test'
+  ...
+# Subtest: O01 plain buyers cannot use merchant endpoint, including their own delivery completion
+ok 293 - O01 plain buyers cannot use merchant endpoint, including their own delivery completion
+  ---
+  duration_ms: 2.4687
+  type: 'test'
+  ...
+# Subtest: O01 only server-issued identity and current matching store grant authorize commands
+ok 294 - O01 only server-issued identity and current matching store grant authorize commands
+  ---
+  duration_ms: 2.063
+  type: 'test'
+  ...
+# Subtest: O01 rejects arbitrary status, payment evidence, actor or refund input through API whitelist
+ok 295 - O01 rejects arbitrary status, payment evidence, actor or refund input through API whitelist
+  ---
+  duration_ms: 1.57
+  type: 'test'
+  ...
+# Subtest: O01 mandatory current version and server clock; retry metadata does not pretend to write
+ok 296 - O01 mandatory current version and server clock; retry metadata does not pretend to write
+  ---
+  duration_ms: 2.0694
+  type: 'test'
+  ...
+# Subtest: O01 unpaid cancel requires settled payment; paid request leaves status/resources unchanged
+ok 297 - O01 unpaid cancel requires settled payment; paid request leaves status/resources unchanged
+  ---
+  duration_ms: 1.055
+  type: 'test'
+  ...
+# Subtest: O01 cancellation approval uses loaded pending review and combined current refund permission
+ok 298 - O01 cancellation approval uses loaded pending review and combined current refund permission
+  ---
+  duration_ms: 2.4381
+  type: 'test'
+  ...
+# Subtest: O01 merchant rejection refunds full remaining paid amount; separate refund keeps fulfillment axis
+ok 299 - O01 merchant rejection refunds full remaining paid amount; separate refund keeps fulfillment axis
+  ---
+  duration_ms: 1.5869
+  type: 'test'
+  ...
+# Subtest: O01 logs contain whitelisted actor and sanitized reason, no final money state or credential
+ok 300 - O01 logs contain whitelisted actor and sanitized reason, no final money state or credential
+  ---
+  duration_ms: 1.3137
+  type: 'test'
+  ...
+# Subtest: O01 illegal jumps produce no plan/log/effects and do not mutate loaded records
+ok 301 - O01 illegal jumps produce no plan/log/effects and do not mutate loaded records
+  ---
+  duration_ms: 0.8822
+  type: 'test'
+  ...
+# Subtest: O02 pickup/delivery propose valid unpaid orders with separated immutable lines and all historical facts
+ok 302 - O02 pickup/delivery propose valid unpaid orders with separated immutable lines and all historical facts
+  ---
+  duration_ms: 47.0804
+  type: 'test'
+  ...
+# Subtest: O02 snapshot stays fixed after current product, photo, prices, store and address edits
+ok 303 - O02 snapshot stays fixed after current product, photo, prices, store and address edits
+  ---
+  duration_ms: 13.34
+  type: 'test'
+  ...
+# Subtest: O02 multi-line snapshots preserve selection order, shared demand, messages and exclude unselected lines
+ok 304 - O02 multi-line snapshots preserve selection order, shared demand, messages and exclude unselected lines
+  ---
+  duration_ms: 7.6179
+  type: 'test'
+  ...
+# Subtest: O02 exact server-owned create request rejects prices, roles, slot/address and fake principal
+ok 305 - O02 exact server-owned create request rejects prices, roles, slot/address and fake principal
+  ---
+  duration_ms: 10.2513
+  type: 'test'
+  ...
+# Subtest: O02 expired, consumed, foreign ID, stale version and malformed quote never creates an order
+ok 306 - O02 expired, consumed, foreign ID, stale version and malformed quote never creates an order
+  ---
+  duration_ms: 29.9135
+  type: 'test'
+  ...
+# Subtest: O02 reprices against current catalog and maps changed bag/SKU/store/config/address to confirmation conflict
+ok 307 - O02 reprices against current catalog and maps changed bag/SKU/store/config/address to confirmation conflict
+  ---
+  duration_ms: 39.7595
+  type: 'test'
+  ...
+# Subtest: O02 requires real configured hold duration; deadline uses appointment lead boundary, not quote TTL
+ok 308 - O02 requires real configured hold duration; deadline uses appointment lead boundary, not quote TTL
+  ---
+  duration_ms: 30.9883
+  type: 'test'
+  ...
+# Subtest: O02 deterministic full order IDs/numbers isolate actors and keys; uniqueness still requires atomic index
+ok 309 - O02 deterministic full order IDs/numbers isolate actors and keys; uniqueness still requires atomic index
+  ---
+  duration_ms: 15.1003
+  type: 'test'
+  ...
+# Subtest: O02 receipt decisions are scoped; replay needs owned order read and does not re-create expired quote
+ok 310 - O02 receipt decisions are scoped; replay needs owned order read and does not re-create expired quote
+  ---
+  duration_ms: 4.3271
+  type: 'test'
+  ...
+# Subtest: O02 unavailable resources and unverified range produce no partial order, resource hold or fake success
+ok 311 - O02 unavailable resources and unverified range produce no partial order, resource hold or fake success
+  ---
+  duration_ms: 18.8152
+  type: 'test'
+  ...
+# Subtest: O08 merchant starts delivery and owner confirms once with immutable facts/resources/payment axes
+ok 312 - O08 merchant starts delivery and owner confirms once with immutable facts/resources/payment axes
+  ---
+  duration_ms: 57.0737
+  type: 'test'
+  ...
+# Subtest: O08 current same-store merchant may confirm delivery under frozen D01 rules
+ok 313 - O08 current same-store merchant may confirm delivery under frozen D01 rules
+  ---
+  duration_ms: 18.6042
+  type: 'test'
+  ...
+# Subtest: O08 customer cannot start delivery; non-owner and unrelated merchant cannot confirm
+ok 314 - O08 customer cannot start delivery; non-owner and unrelated merchant cannot confirm
+  ---
+  duration_ms: 16.7203
+  type: 'test'
+  ...
+# Subtest: O08 ownership never bypasses current merchant role on the admin entry
+ok 315 - O08 ownership never bypasses current merchant role on the admin entry
+  ---
+  duration_ms: 53.6341
+  type: 'test'
+  ...
+# Subtest: O08 cross-store, revoked and insufficient grants reject both store commands
+ok 316 - O08 cross-store, revoked and insufficient grants reject both store commands
+  ---
+  duration_ms: 91.5696
+  type: 'test'
+  ...
+# Subtest: O08 invalid state/fulfillment matrix never writes or consumes resources
+ok 317 - O08 invalid state/fulfillment matrix never writes or consumes resources
+  ---
+  duration_ms: 149.5426
+  type: 'test'
+  ...
+# Subtest: O08 no client fields/identity/PAID event can change trusted facts or execute unrelated effects
+ok 318 - O08 no client fields/identity/PAID event can change trusted facts or execute unrelated effects
+  ---
+  duration_ms: 31.9582
+  type: 'test'
+  ...
+# Subtest: O08 completion requires explicit resource policy, while start does not guess it
+ok 319 - O08 completion requires explicit resource policy, while start does not guess it
+  ---
+  duration_ms: 23.2642
+  type: 'test'
+  ...
+# Subtest: O08 lost start and confirm responses recover persisted receipts across service restart
+ok 320 - O08 lost start and confirm responses recover persisted receipts across service restart
+  ---
+  duration_ms: 15.4753
+  type: 'test'
+  ...
+# Subtest: O08 same-key different input conflicts and distinct key on completed order cannot repeat completion
+ok 321 - O08 same-key different input conflicts and distinct key on completed order cannot repeat completion
+  ---
+  duration_ms: 11.0291
+  type: 'test'
+  ...
+# Subtest: O08 simultaneous identical requests replay, distinct actors compete for one completion
+ok 322 - O08 simultaneous identical requests replay, distinct actors compete for one completion
+  ---
+  duration_ms: 12.9833
+  type: 'test'
+  ...
+# Subtest: O08 stale user/order versions and cross-environment principals fail closed
+ok 323 - O08 stale user/order versions and cross-environment principals fail closed
+  ---
+  duration_ms: 8.9639
+  type: 'test'
+  ...
+# Subtest: O08 replay rechecks current owner/store authority and disabled users
+ok 324 - O08 replay rechecks current owner/store authority and disabled users
+  ---
+  duration_ms: 11.3073
+  type: 'test'
+  ...
+# Subtest: O08 replay requires the committed actor/transition/version/time log evidence
+ok 325 - O08 replay requires the committed actor/transition/version/time log evidence
+  ---
+  duration_ms: 81.8292
+  type: 'test'
+  ...
+# Subtest: O08 each delivery and confirmation write exception or zero-row mutation rolls back
+ok 326 - O08 each delivery and confirmation write exception or zero-row mutation rolls back
+  ---
+  duration_ms: 119.4604
+  type: 'test'
+  ...
+# Subtest: O08 revoked permissions/user or changed resources racing commit cannot partially write
+ok 327 - O08 revoked permissions/user or changed resources racing commit cannot partially write
+  ---
+  duration_ms: 43.5094
+  type: 'test'
+  ...
+# Subtest: O08 inconsistent resource proof blocks start and finish; pickup and delivery share validation
+ok 328 - O08 inconsistent resource proof blocks start and finish; pickup and delivery share validation
+  ---
+  duration_ms: 167.3692
+  type: 'test'
+  ...
+# Subtest: O08 final server clock cannot move backwards or precede the persisted record
+ok 329 - O08 final server clock cannot move backwards or precede the persisted record
+  ---
+  duration_ms: 8.9036
+  type: 'test'
+  ...
+# Subtest: O08 cancelled orders and stale cancellation races cannot start or finish delivery
+ok 330 - O08 cancelled orders and stale cancellation races cannot start or finish delivery
+  ---
+  duration_ms: 26.7535
+  type: 'test'
+  ...
+# Subtest: O08 paid cancellation remains a coordination intent; it does not silently complete delivery
+ok 331 - O08 paid cancellation remains a coordination intent; it does not silently complete delivery
+  ---
+  duration_ms: 10.7178
+  type: 'test'
+  ...
+# Subtest: O08 cancellation committed during delivery work rejects the stale transaction, historical start replay stays read-only
+ok 332 - O08 cancellation committed during delivery work rejects the stale transaction, historical start replay stays read-only
+  ---
+  duration_ms: 10.882
+  type: 'test'
+  ...
+# Subtest: O08 refund progress remains independent of delivery completion and does not alter held refund budget
+ok 333 - O08 refund progress remains independent of delivery completion and does not alter held refund budget
+  ---
+  duration_ms: 18.4584
+  type: 'test'
+  ...
+# Subtest: O08 inconsistent payment timestamp, completion timestamp or pickup credential is rejected before writing
+ok 334 - O08 inconsistent payment timestamp, completion timestamp or pickup credential is rejected before writing
+  ---
+  duration_ms: 21.6998
+  type: 'test'
+  ...
+# Subtest: O08 delivery detail uses history, estimated window and real snapshot contact hint without promising minutes
+ok 335 - O08 delivery detail uses history, estimated window and real snapshot contact hint without promising minutes
+  ---
+  duration_ms: 15.5095
+  type: 'test'
+  ...
+# Subtest: O08 missing contact remains unavailable, no fake phone or invented failed-delivery state
+ok 336 - O08 missing contact remains unavailable, no fake phone or invented failed-delivery state
+  ---
+  duration_ms: 0.2561
+  type: 'test'
+  ...
+# Subtest: O08 transition logs and receipts exclude personal reason and have no unsealed draft effects
+ok 337 - O08 transition logs and receipts exclude personal reason and have no unsealed draft effects
+  ---
+  duration_ms: 6.92
+  type: 'test'
+  ...
+# Subtest: O08 both fulfillment chains integrate O03 history/O06 details without enabling production
+ok 338 - O08 both fulfillment chains integrate O03 history/O06 details without enabling production
+  ---
+  duration_ms: 32.1195
+  type: 'test'
+  ...
+# Subtest: 整数分计算多行小计与运费；自提只能为零运费
+ok 339 - 整数分计算多行小计与运费；自提只能为零运费
+  ---
+  duration_ms: 3.7777
+  type: 'test'
+  ...
+# Subtest: 乘法、跨行求和和运费相加溢出均拒绝，不生成失真金额
+ok 340 - 乘法、跨行求和和运费相加溢出均拒绝，不生成失真金额
+  ---
+  duration_ms: 0.5145
+  type: 'test'
+  ...
+# Subtest: 订单小计 / 总额必须与不可变订单行相等，同时维持 D01 退款预算
+ok 341 - 订单小计 / 总额必须与不可变订单行相等，同时维持 D01 退款预算
+  ---
+  duration_ms: 1.8245
+  type: 'test'
+  ...
+# Subtest: 商品、图片、地址、门店、预约、费用规则与逐行留言完全脱离源对象
+ok 342 - 商品、图片、地址、门店、预约、费用规则与逐行留言完全脱离源对象
+  ---
+  duration_ms: 2.2903
+  type: 'test'
+  ...
+# Subtest: 快照按字段白名单保存；自提不保存配送地址或范围评估，备注与留言分别保留
+ok 343 - 快照按字段白名单保存；自提不保存配送地址或范围评估，备注与留言分别保留
+  ---
+  duration_ms: 0.5882
+  type: 'test'
+  ...
+# Subtest: 跨门店时段、错行数量、重复行、缺地址与无效 JSON 输入不能成为订单事实
+ok 344 - 跨门店时段、错行数量、重复行、缺地址与无效 JSON 输入不能成为订单事实
+  ---
+  duration_ms: 1.5422
+  type: 'test'
+  ...
+# Subtest: O07 requires explicit E10 policy and strong server keys; no production defaults
+ok 345 - O07 requires explicit E10 policy and strong server keys; no production defaults
+  ---
+  duration_ms: 48.1883
+  type: 'test'
+  ...
+# Subtest: O07 only owned READY paid pickup orders issue credentials
+ok 346 - O07 only owned READY paid pickup orders issue credentials
+  ---
+  duration_ms: 95.3188
+  type: 'test'
+  ...
+# Subtest: O07 repeated owner reads and concurrent reads reuse one committed credential
+ok 347 - O07 repeated owner reads and concurrent reads reuse one committed credential
+  ---
+  duration_ms: 15.0323
+  type: 'test'
+  ...
+# Subtest: O07 value binds secret/environment/app/order/owner/store and cannot be public order number
+ok 348 - O07 value binds secret/environment/app/order/owner/store and cannot be public order number
+  ---
+  duration_ms: 13.869
+  type: 'test'
+  ...
+# Subtest: O07 completion atomically marks credential used/order complete/log/receipt without resource restoration
+ok 349 - O07 completion atomically marks credential used/order complete/log/receipt without resource restoration
+  ---
+  duration_ms: 17.3987
+  type: 'test'
+  ...
+# Subtest: O07 same-key replay and response-loss restart complete only once, even after expiry
+ok 350 - O07 same-key replay and response-loss restart complete only once, even after expiry
+  ---
+  duration_ms: 17.4674
+  type: 'test'
+  ...
+# Subtest: O07 concurrent same-key verification produces one completion and one replay
+ok 351 - O07 concurrent same-key verification produces one completion and one replay
+  ---
+  duration_ms: 18.4471
+  type: 'test'
+  ...
+# Subtest: O07 competing distinct keys cannot complete twice, and lost issuance response recovers the same value
+ok 352 - O07 competing distinct keys cannot complete twice, and lost issuance response recovers the same value
+  ---
+  duration_ms: 11.8897
+  type: 'test'
+  ...
+# Subtest: O07 same-key different credential cannot replay previous success
+ok 353 - O07 same-key different credential cannot replay previous success
+  ---
+  duration_ms: 14.5244
+  type: 'test'
+  ...
+# Subtest: O07 inconsistent completed receipt and order evidence cannot produce a success replay
+ok 354 - O07 inconsistent completed receipt and order evidence cannot produce a success replay
+  ---
+  duration_ms: 11.8058
+  type: 'test'
+  ...
+# Subtest: O07 customers and cross-store/revoked/insufficient roles cannot verify or guess
+ok 355 - O07 customers and cross-store/revoked/insufficient roles cannot verify or guess
+  ---
+  duration_ms: 67.0647
+  type: 'test'
+  ...
+# Subtest: O07 replay still requires current user and role authority
+ok 356 - O07 replay still requires current user and role authority
+  ---
+  duration_ms: 11.3936
+  type: 'test'
+  ...
+# Subtest: O07 stale version and malformed/missing input do not count as code attempts
+ok 357 - O07 stale version and malformed/missing input do not count as code attempts
+  ---
+  duration_ms: 9.9599
+  type: 'test'
+  ...
+# Subtest: O07 wrong attempt persists before rejection; same-key failure replay never increments again
+ok 358 - O07 wrong attempt persists before rejection; same-key failure replay never increments again
+  ---
+  duration_ms: 11.7173
+  type: 'test'
+  ...
+# Subtest: O07 persisted cooldown and cumulative limit survive restart and new idempotency keys
+ok 359 - O07 persisted cooldown and cumulative limit survive restart and new idempotency keys
+  ---
+  duration_ms: 20.04
+  type: 'test'
+  ...
+# Subtest: O07 owner read does not reset failures, while correct verification after cooldown succeeds
+ok 360 - O07 owner read does not reset failures, while correct verification after cooldown succeeds
+  ---
+  duration_ms: 12.9852
+  type: 'test'
+  ...
+# Subtest: O07 expiry is inclusive, owner renews atomically, and old values never verify new issuance
+ok 361 - O07 expiry is inclusive, owner renews atomically, and old values never verify new issuance
+  ---
+  duration_ms: 13.2069
+  type: 'test'
+  ...
+# Subtest: O07 issuance and verification reaching expiry before commit roll back
+ok 362 - O07 issuance and verification reaching expiry before commit roll back
+  ---
+  duration_ms: 11.6501
+  type: 'test'
+  ...
+# Subtest: O07 every issuance/completion/failure write exception or zero-row write rolls back
+ok 363 - O07 every issuance/completion/failure write exception or zero-row write rolls back
+  ---
+  duration_ms: 164.9921
+  type: 'test'
+  ...
+# Subtest: O07 role/user revocation racing commit and read-fence rejection cannot partly complete
+ok 364 - O07 role/user revocation racing commit and read-fence rejection cannot partly complete
+  ---
+  duration_ms: 26.7629
+  type: 'test'
+  ...
+# Subtest: O07 issuance revocation and resource mutations racing commit roll back all dependent writes
+ok 365 - O07 issuance revocation and resource mutations racing commit roll back all dependent writes
+  ---
+  duration_ms: 22.5878
+  type: 'test'
+  ...
+# Subtest: O07 changing merchant operators does not bypass shared per-credential cooldown
+ok 366 - O07 changing merchant operators does not bypass shared per-credential cooldown
+  ---
+  duration_ms: 9.9047
+  type: 'test'
+  ...
+# Subtest: O07 malformed or missing fulfillment resource evidence blocks completion without used credential
+ok 367 - O07 malformed or missing fulfillment resource evidence blocks completion without used credential
+  ---
+  duration_ms: 78.4588
+  type: 'test'
+  ...
+# Subtest: O07 stored credential tampering/missing key/policy mismatch fails closed
+ok 368 - O07 stored credential tampering/missing key/policy mismatch fails closed
+  ---
+  duration_ms: 47.9603
+  type: 'test'
+  ...
+# Subtest: O07 value-key rotation retains existing tokens and stable HMAC receipt replay
+ok 369 - O07 value-key rotation retains existing tokens and stable HMAC receipt replay
+  ---
+  duration_ms: 16.1027
+  type: 'test'
+  ...
+# Subtest: O07 credential values/secrets never enter orders/logs/receipts; fingerprints are keyed
+ok 370 - O07 credential values/secrets never enter orders/logs/receipts; fingerprints are keyed
+  ---
+  duration_ms: 8.9254
+  type: 'test'
+  ...
+# Subtest: O07 full private event chain remains readable without exposing issuance or guessing attempts
+ok 371 - O07 full private event chain remains readable without exposing issuance or guessing attempts
+  ---
+  duration_ms: 16.9097
+  type: 'test'
+  ...
+# Subtest: O06 all eight states classify CURRENT/PAST and exact state views without mixing refund lifecycle
+ok 372 - O06 all eight states classify CURRENT/PAST and exact state views without mixing refund lifecycle
+  ---
+  duration_ms: 128.8627
+  type: 'test'
+  ...
+# Subtest: O06 paid is awaiting acceptance, accepted is not making, and refund summaries preserve actual fulfillment
+ok 373 - O06 paid is awaiting acceptance, accepted is not making, and refund summaries preserve actual fulfillment
+  ---
+  duration_ms: 30.5775
+  type: 'test'
+  ...
+# Subtest: O06 stable descending pagination has no duplicates/missing equal timestamps and cursor anchors visible last row
+ok 374 - O06 stable descending pagination has no duplicates/missing equal timestamps and cursor anchors visible last row
+  ---
+  duration_ms: 43.1357
+  type: 'test'
+  ...
+# Subtest: O06 cursor rejects changed owner/environment/query/tampering/expiry; ACTIVE and CURRENT normalize consistently
+ok 375 - O06 cursor rejects changed owner/environment/query/tampering/expiry; ACTIVE and CURRENT normalize consistently
+  ---
+  duration_ms: 26.692
+  type: 'test'
+  ...
+# Subtest: O06 fresh snapshots allow newer orders only on refresh and explain mutable state filters without claiming snapshot isolation
+ok 376 - O06 fresh snapshots allow newer orders only on refresh and explain mutable state filters without claiming snapshot isolation
+  ---
+  duration_ms: 18.7711
+  type: 'test'
+  ...
+# Subtest: O06 unknown and another owner order share NOT_FOUND; foreign children and forged principal never leak
+ok 377 - O06 unknown and another owner order share NOT_FOUND; foreign children and forged principal never leak
+  ---
+  duration_ms: 27.1922
+  type: 'test'
+  ...
+# Subtest: O06 detail keeps historical product/price/options/message/store/address after current data changes
+ok 378 - O06 detail keeps historical product/price/options/message/store/address after current data changes
+  ---
+  duration_ms: 20.5219
+  type: 'test'
+  ...
+# Subtest: O06 public list/detail project whitelists and never expose internal identity/resources/evidence/credentials or raw logs
+ok 379 - O06 public list/detail project whitelists and never expose internal identity/resources/evidence/credentials or raw logs
+  ---
+  duration_ms: 15.2768
+  type: 'test'
+  ...
+# Subtest: O06 historical media reads exact retired revision; missing/changed/unapproved assets preserve layout data with null image
+ok 380 - O06 historical media reads exact retired revision; missing/changed/unapproved assets preserve layout data with null image
+  ---
+  duration_ms: 17.2616
+  type: 'test'
+  ...
+# Subtest: O06 customer actions are status/mode/time aware, all remain disabled until real services connect
+ok 381 - O06 customer actions are status/mode/time aware, all remain disabled until real services connect
+  ---
+  duration_ms: 48.0384
+  type: 'test'
+  ...
+# Subtest: O06 unresolved payment and pending cancellation block matching actions without claiming success
+ok 382 - O06 unresolved payment and pending cancellation block matching actions without claiming success
+  ---
+  duration_ms: 18.6334
+  type: 'test'
+  ...
+# Subtest: O06 unsupported historical policy remains readable but offers no mutation actions
+ok 383 - O06 unsupported historical policy remains readable but offers no mutation actions
+  ---
+  duration_ms: 13.381
+  type: 'test'
+  ...
+# Subtest: O06 timelines follow committed version even at equal times, validate complete chain/final axes and expose fixed messages
+ok 384 - O06 timelines follow committed version even at equal times, validate complete chain/final axes and expose fixed messages
+  ---
+  duration_ms: 20.278
+  type: 'test'
+  ...
+# Subtest: O06 malformed log chain/command/time/last state never returns a misleading progress timeline
+ok 385 - O06 malformed log chain/command/time/last state never returns a misleading progress timeline
+  ---
+  duration_ms: 70.6921
+  type: 'test'
+  ...
+# Subtest: O06 incomplete/out-of-order historical items, inconsistent amounts/lifecycle and duplicate pending reviews fail closed
+ok 386 - O06 incomplete/out-of-order historical items, inconsistent amounts/lifecycle and duplicate pending reviews fail closed
+  ---
+  duration_ms: 103.7059
+  type: 'test'
+  ...
+# Subtest: O06 strict API inputs reject forged owner/skip/sort/invalid group and enforce default20/max50
+ok 387 - O06 strict API inputs reject forged owner/skip/sort/invalid group and enforce default20/max50
+  ---
+  duration_ms: 173.3566
+  type: 'test'
+  ...
+# Subtest: O06 read service applies whole owner AND seek/state query and reads detail with owner from trusted identity
+ok 388 - O06 read service applies whole owner AND seek/state query and reads detail with owner from trusted identity
+  ---
+  duration_ms: 30.3983
+  type: 'test'
+  ...
+# Subtest: O06 every page rechecks current user and read fence prevents revocation/mid-read mixed state exposure
+ok 389 - O06 every page rechecks current user and read fence prevents revocation/mid-read mixed state exposure
+  ---
+  duration_ms: 30.1024
+  type: 'test'
+  ...
+# Subtest: O06 read adapter returning foreign or excess page records fails closed
+ok 390 - O06 read adapter returning foreign or excess page records fails closed
+  ---
+  duration_ms: 21.0065
+  type: 'test'
+  ...
+# Subtest: O06 captured signing key and snapshot cannot be changed by callers; outputs are immutable without any writes
+ok 391 - O06 captured signing key and snapshot cannot be changed by callers; outputs are immutable without any writes
+  ---
+  duration_ms: 12.5589
+  type: 'test'
+  ...
+# Subtest: O06 actual O03 creation and O05 cancellation records produce consistent immutable detail timelines
+ok 392 - O06 actual O03 creation and O05 cancellation records produce consistent immutable detail timelines
+  ---
+  duration_ms: 18.3492
+  type: 'test'
+  ...
+# Subtest: O06 records created during a read use the refreshed server clock; clock rollback is rejected
+ok 393 - O06 records created during a read use the refreshed server clock; clock rollback is rejected
+  ---
+  duration_ms: 15.0934
+  type: 'test'
+  ...
+# Subtest: O04 exact selected rows are removed once; unselected/new rows and independent cart changes survive
+ok 394 - O04 exact selected rows are removed once; unselected/new rows and independent cart changes survive
+  ---
+  duration_ms: 49.0457
+  type: 'test'
+  ...
+# Subtest: O04 modified quantity/message or merged additions retain the complete selected row
+ok 395 - O04 modified quantity/message or merged additions retain the complete selected row
+  ---
+  duration_ms: 26.9157
+  type: 'test'
+  ...
+# Subtest: O04 multi-item order removes matching row while retaining another edited row and new additions
+ok 396 - O04 multi-item order removes matching row while retaining another edited row and new additions
+  ---
+  duration_ms: 10.2001
+  type: 'test'
+  ...
+# Subtest: O04 concurrent bag edit at commit prevents removal/checkpoint and retry preserves the edited row
+ok 397 - O04 concurrent bag edit at commit prevents removal/checkpoint and retry preserves the edited row
+  ---
+  duration_ms: 14.6296
+  type: 'test'
+  ...
+# Subtest: O04 defensive content fingerprint catches same-version SKU/quantity/message/re-added line changes
+ok 398 - O04 defensive content fingerprint catches same-version SKU/quantity/message/re-added line changes
+  ---
+  duration_ms: 52.1701
+  type: 'test'
+  ...
+# Subtest: O04 deleted/re-added new IDs survive and successful checkpoint never removes later additions
+ok 399 - O04 deleted/re-added new IDs survive and successful checkpoint never removes later additions
+  ---
+  duration_ms: 8.6166
+  type: 'test'
+  ...
+# Subtest: O04 each cart/checkpoint write failure or zero-row result rolls back both with safe retry
+ok 400 - O04 each cart/checkpoint write failure or zero-row result rolls back both with safe retry
+  ---
+  duration_ms: 37.224
+  type: 'test'
+  ...
+# Subtest: O04 cart sync failure returns pending while order/holds remain committed; retry compensates same order
+ok 401 - O04 cart sync failure returns pending while order/holds remain committed; retry compensates same order
+  ---
+  duration_ms: 22.8309
+  type: 'test'
+  ...
+# Subtest: O04 committed creation response loss recovers through same key, without a second order/hold
+ok 402 - O04 committed creation response loss recovers through same key, without a second order/hold
+  ---
+  duration_ms: 8.8245
+  type: 'test'
+  ...
+# Subtest: O04 synchronization response loss and reconstructed service replay the committed checkpoint
+ok 403 - O04 synchronization response loss and reconstructed service replay the committed checkpoint
+  ---
+  duration_ms: 7.6518
+  type: 'test'
+  ...
+# Subtest: O04 same-key changed payload/foreign owner/forged identity cannot recover or delete rows
+ok 404 - O04 same-key changed payload/foreign owner/forged identity cannot recover or delete rows
+  ---
+  duration_ms: 9.0585
+  type: 'test'
+  ...
+# Subtest: O04 cart missing or all original rows absent finishes checkpoint without creating or clearing a new cart
+ok 405 - O04 cart missing or all original rows absent finishes checkpoint without creating or clearing a new cart
+  ---
+  duration_ms: 9.9235
+  type: 'test'
+  ...
+# Subtest: O04 read fence / cart version regression / malformed immutable evidence reject whole synchronization
+ok 406 - O04 read fence / cart version regression / malformed immutable evidence reject whole synchronization
+  ---
+  duration_ms: 31.3
+  type: 'test'
+  ...
+# Subtest: O04 concurrent same-order compensation records one checkpoint and does not modify order history
+ok 407 - O04 concurrent same-order compensation records one checkpoint and does not modify order history
+  ---
+  duration_ms: 15.1401
+  type: 'test'
+  ...
+# Subtest: O04 standalone removal plan is immutable, rejects unknown orders and never reads current catalog
+ok 408 - O04 standalone removal plan is immutable, rejects unknown orders and never reads current catalog
+  ---
+  duration_ms: 7.5595
+  type: 'test'
+  ...
+# Subtest: O03 transaction commits head/lines/log/quote/receipt and all HELD records for both modes
+ok 409 - O03 transaction commits head/lines/log/quote/receipt and all HELD records for both modes
+  ---
+  duration_ms: 75.4106
+  type: 'test'
+  ...
+# Subtest: O03 concurrent final shared stock creates exactly one local order and one stock reservation
+ok 410 - O03 concurrent final shared stock creates exactly one local order and one stock reservation
+  ---
+  duration_ms: 33.4656
+  type: 'test'
+  ...
+# Subtest: O03 final pickup/delivery slot competition respects separate 3/1 capacity
+ok 411 - O03 final pickup/delivery slot competition respects separate 3/1 capacity
+  ---
+  duration_ms: 26.5881
+  type: 'test'
+  ...
+# Subtest: O03 full pickup slot does not block a delivery order using independent slot inventory
+ok 412 - O03 full pickup slot does not block a delivery order using independent slot inventory
+  ---
+  duration_ms: 8.3575
+  type: 'test'
+  ...
+# Subtest: O03 every one of nine staged writes rolls back entirely when a persistence failure is injected
+ok 413 - O03 every one of nine staged writes rolls back entirely when a persistence failure is injected
+  ---
+  duration_ms: 95.0993
+  type: 'test'
+  ...
+# Subtest: O03 zero-row resource/record/quote/receipt writes and missing read fence fail closed with rollback
+ok 414 - O03 zero-row resource/record/quote/receipt writes and missing read fence fail closed with rollback
+  ---
+  duration_ms: 75.8704
+  type: 'test'
+  ...
+# Subtest: O03 current user disable/version change and revocation during transaction prevent order commit
+ok 415 - O03 current user disable/version change and revocation during transaction prevent order commit
+  ---
+  duration_ms: 12.2568
+  type: 'test'
+  ...
+# Subtest: O03 quote expiry during writes or changed input refuses partial success
+ok 416 - O03 quote expiry during writes or changed input refuses partial success
+  ---
+  duration_ms: 30.1606
+  type: 'test'
+  ...
+# Subtest: O03 multiple stock resources either all reserve required units or none commit
+ok 417 - O03 multiple stock resources either all reserve required units or none commit
+  ---
+  duration_ms: 13.4643
+  type: 'test'
+  ...
+# Subtest: O03 concurrent same request commits one local transaction and returns the same order on replay
+ok 418 - O03 concurrent same request commits one local transaction and returns the same order on replay
+  ---
+  duration_ms: 8.8369
+  type: 'test'
+  ...
+# Subtest: O03 payment cutoff and aggregated stock units agree across head, reservations and resource counters
+ok 419 - O03 payment cutoff and aggregated stock units agree across head, reservations and resource counters
+  ---
+  duration_ms: 14.18
+  type: 'test'
+  ...
+# Subtest: O03 duplicate same key replays without extra hold; different key cannot consume the same quote twice
+ok 420 - O03 duplicate same key replays without extra hold; different key cannot consume the same quote twice
+  ---
+  duration_ms: 12.4727
+  type: 'test'
+  ...
+# Subtest: O03 local duplicate ID/number checks reject overwrite without any resource mutation
+ok 421 - O03 local duplicate ID/number checks reject overwrite without any resource mutation
+  ---
+  duration_ms: 8.0586
+  type: 'test'
+  ...
+# Subtest: O03 no transaction adapter or forged identity cannot execute; results never unlock cloud purchase
+ok 422 - O03 no transaction adapter or forged identity cannot execute; results never unlock cloud purchase
+  ---
+  duration_ms: 3.3772
+  type: 'test'
+  ...
+# Subtest: D07 分页技术上限默认20最大50，不接受 skip / 自报 owner / 任意排序
+ok 423 - D07 分页技术上限默认20最大50，不接受 skip / 自报 owner / 任意排序
+  ---
+  duration_ms: 4.7392
+  type: 'test'
+  ...
+# Subtest: D07 游标绑定环境、可信主体、action、排序和规范查询；同查询键顺序兼容
+ok 424 - D07 游标绑定环境、可信主体、action、排序和规范查询；同查询键顺序兼容
+  ---
+  duration_ms: 4.5931
+  type: 'test'
+  ...
+# Subtest: D07 游标签名拒绝正文 / MAC 篡改、错误密钥和非规范编码
+ok 425 - D07 游标签名拒绝正文 / MAC 篡改、错误密钥和非规范编码
+  ---
+  duration_ms: 2.6343
+  type: 'test'
+  ...
+# Subtest: D07 游标到期边界拒绝，不能未来签发；重发不能让旧 cursor 改时效
+ok 426 - D07 游标到期边界拒绝，不能未来签发；重发不能让旧 cursor 改时效
+  ---
+  duration_ms: 1.2406
+  type: 'test'
+  ...
+# Subtest: D07 游标不携带原始查询隐私；服务端必须提供强密钥与合法 anchor
+ok 427 - D07 游标不携带原始查询隐私；服务端必须提供强密钥与合法 anchor
+  ---
+  duration_ms: 1.3937
+  type: 'test'
+  ...
+# Subtest: D07 keyset 以 _id 打破同时间边界，降序页无重复且不遗漏同时间后续行
+ok 428 - D07 keyset 以 _id 打破同时间边界，降序页无重复且不遗漏同时间后续行
+  ---
+  duration_ms: 0.7266
+  type: 'test'
+  ...
+# Subtest: D07 目录升序与地址降序使用固定字段，不接受客户端自定义排序表达式
+ok 429 - D07 目录升序与地址降序使用固定字段，不接受客户端自定义排序表达式
+  ---
+  duration_ms: 5.1233
+  type: 'test'
+  ...
+# Subtest: P08 test evidence cannot pass on a nonzero process exit despite a green TAP summary
+ok 430 - P08 test evidence cannot pass on a nonzero process exit despite a green TAP summary
+  ---
+  duration_ms: 3.2483
+  type: 'test'
+  ...
+# Subtest: P08 skipped, pending, cancelled and zero-count evidence cannot replace executed acceptance
+ok 431 - P08 skipped, pending, cancelled and zero-count evidence cannot replace executed acceptance
+  ---
+  duration_ms: 0.762
+  type: 'test'
+  ...
+# Subtest: P08 missing, contradictory or duplicate TAP summaries cannot create passing evidence
+ok 432 - P08 missing, contradictory or duplicate TAP summaries cannot create passing evidence
+  ---
+  duration_ms: 0.739
+  type: 'test'
+  ...
+# Subtest: P08 current client rejects payment before touching cloud, even with an environment configured
+ok 433 - P08 current client rejects payment before touching cloud, even with an environment configured
+  ---
+  duration_ms: 7.8841
+  type: 'test'
+  ...
+# Subtest: C04 all current examples read same-source details, exact size prices and 12 yuan bread with no purchase
+ok 434 - C04 all current examples read same-source details, exact size prices and 12 yuan bread with no purchase
+  ---
+  duration_ms: 15.6848
+  type: 'test'
+  ...
+# Subtest: C04 legacy Home previews stay explicitly separated and never fabricate new SKU or configuration navigation
+ok 435 - C04 legacy Home previews stay explicitly separated and never fabricate new SKU or configuration navigation
+  ---
+  duration_ms: 0.6435
+  type: 'test'
+  ...
+# Subtest: C04 detail unavailable IDs and all cloud/production gates fail with no preview fallback
+ok 436 - C04 detail unavailable IDs and all cloud/production gates fail with no preview fallback
+  ---
+  duration_ms: 1.7614
+  type: 'test'
+  ...
+# Subtest: C04 inconsistent card/SKU price or source cannot produce a detail; missing card is unavailable
+ok 437 - C04 inconsistent card/SKU price or source cannot produce a detail; missing card is unavailable
+  ---
+  duration_ms: 2.3513
+  type: 'test'
+  ...
+# Subtest: Detail selection opens the current-page sheet; a failed favorite write never claims saved
+ok 438 - Detail selection opens the current-page sheet; a failed favorite write never claims saved
+  ---
+  duration_ms: 13.5108
+  type: 'test'
+  ...
+# Subtest: C04 unavailable versus transient errors use fixed copy and permit appropriate recovery
+ok 439 - C04 unavailable versus transient errors use fixed copy and permit appropriate recovery
+  ---
+  duration_ms: 16.643
+  type: 'test'
+  ...
+# Subtest: C04 late detail responses after hiding and retry do not restore stale products
+ok 440 - C04 late detail responses after hiding and retry do not restore stale products
+  ---
+  duration_ms: 5.205
+  type: 'test'
+  ...
+# Subtest: C04 gallery failure is isolated by image/product and swiping stays within bounds
+ok 441 - C04 gallery failure is isolated by image/product and swiping stays within bounds
+  ---
+  duration_ms: 5.5737
+  type: 'test'
+  ...
+# Subtest: Detail SKU changes update prices and quantity; closing/reopening keeps valid selections without fabricating fields
+ok 442 - Detail SKU changes update prices and quantity; closing/reopening keeps valid selections without fabricating fields
+  ---
+  duration_ms: 9.129
+  type: 'test'
+  ...
+# Subtest: Detail success follows verified Bag response; storage rejection never closes sheet or shows success
+ok 443 - Detail success follows verified Bag response; storage rejection never closes sheet or shows success
+  ---
+  duration_ms: 10.6062
+  type: 'test'
+  ...
+# Subtest: B04 detail retains the operation key after uncertain failure; success then new add gets a fresh key
+ok 444 - B04 detail retains the operation key after uncertain failure; success then new add gets a fresh key
+  ---
+  duration_ms: 6.9848
+  type: 'test'
+  ...
+# Subtest: B04 changing quantity after a failed add starts a distinct intent, without automatic mutation retry
+ok 445 - B04 changing quantity after a failed add starts a distinct intent, without automatic mutation retry
+  ---
+  duration_ms: 5.7599
+  type: 'test'
+  ...
+# Subtest: B04 hiding/loading while add is in flight cannot submit again; hidden completion keeps replay key
+ok 446 - B04 hiding/loading while add is in flight cannot submit again; hidden completion keeps replay key
+  ---
+  duration_ms: 8.767
+  type: 'test'
+  ...
+# Subtest: C05 returning to detail and retry after a failed refresh retain valid SKU, quantity and message
+ok 447 - C05 returning to detail and retry after a failed refresh retain valid SKU, quantity and message
+  ---
+  duration_ms: 9.312
+  type: 'test'
+  ...
+# Subtest: C05 refresh removes obsolete choices while retaining message and requires selecting a current SKU
+ok 448 - C05 refresh removes obsolete choices while retaining message and requires selecting a current SKU
+  ---
+  duration_ms: 6.2199
+  type: 'test'
+  ...
+# Subtest: C05 changed price and quantity limit use latest values and require confirmation before any Bag write
+ok 449 - C05 changed price and quantity limit use latest values and require confirmation before any Bag write
+  ---
+  duration_ms: 7.7161
+  type: 'test'
+  ...
+# Subtest: C05 changed message limits preserve text for editing, block oversized Unicode messages and enforce quantity bounds
+ok 450 - C05 changed message limits preserve text for editing, block oversized Unicode messages and enforce quantity bounds
+  ---
+  duration_ms: 7.035
+  type: 'test'
+  ...
+# Subtest: C05 newly disabled message is cleared with notice; hiding during reconfirmation cannot add to Bag
+ok 451 - C05 newly disabled message is cleared with notice; hiding during reconfirmation cannot add to Bag
+  ---
+  duration_ms: 12.242
+  type: 'test'
+  ...
+# Subtest: C07 detail favorite state changes only after actual service success, restores on returning and ignores hidden responses
+ok 452 - C07 detail favorite state changes only after actual service success, restores on returning and ignores hidden responses
+  ---
+  duration_ms: 12.9634
+  type: 'test'
+  ...
+# Subtest: Favorite feedback follows confirmed state, ignores duplicate pending taps, and replaces animations without queuing
+ok 453 - Favorite feedback follows confirmed state, ignores duplicate pending taps, and replaces animations without queuing
+  ---
+  duration_ms: 5.3109
+  type: 'test'
+  ...
+# Subtest: Press finishes before success; disposal resolves pending feedback and removes all timers
+ok 454 - Press finishes before success; disposal resolves pending feedback and removes all timers
+  ---
+  duration_ms: 4.2274
+  type: 'test'
+  ...
+# Subtest: Success close mounts card only after 280ms; hiding cancels the close callback
+ok 455 - Success close mounts card only after 280ms; hiding cancels the close callback
+  ---
+  duration_ms: 4.7317
+  type: 'test'
+  ...
+# Subtest: Fine burst has 56 particles, small varied sizes and a complete radial launch near screen edges
+ok 456 - Fine burst has 56 particles, small varied sizes and a complete radial launch near screen edges
+  ---
+  duration_ms: 13.3378
+  type: 'test'
+  ...
+# Subtest: Burst uses measured thumbnail center and ignores selector callbacks after disposal
+ok 457 - Burst uses measured thumbnail center and ignores selector callbacks after disposal
+  ---
+  duration_ms: 3.8716
+  type: 'test'
+  ...
+# Subtest: X05 pickup recomputes integer cents, captures facts and proposes atomic persistence without reserving resources
+ok 458 - X05 pickup recomputes integer cents, captures facts and proposes atomic persistence without reserving resources
+  ---
+  duration_ms: 23.9956
+  type: 'test'
+  ...
+# Subtest: X05 delivery binds verified own address, rule and proposed trace to this quote; fee stays zero
+ok 459 - X05 delivery binds verified own address, rule and proposed trace to this quote; fee stays zero
+  ---
+  duration_ms: 16.3436
+  type: 'test'
+  ...
+# Subtest: X05 request whitelist and owner gate reject forged prices / roles / clock / scope and foreign cart
+ok 460 - X05 request whitelist and owner gate reject forged prices / roles / clock / scope and foreign cart
+  ---
+  duration_ms: 4.1107
+  type: 'test'
+  ...
+# Subtest: X05 missing TTL / trusted phone / order note / real image / published configuration never produces a quote
+ok 461 - X05 missing TTL / trusted phone / order note / real image / published configuration never produces a quote
+  ---
+  duration_ms: 23.4583
+  type: 'test'
+  ...
+# Subtest: X05 unavailable / stale cart, SKU, stock or appointment cannot be priced
+ok 462 - X05 unavailable / stale cart, SKU, stock or appointment cannot be priced
+  ---
+  duration_ms: 13.9041
+  type: 'test'
+  ...
+# Subtest: X05 delivery requires current owner / exact location verification and cannot accept missing / changed / out-of-range point
+ok 463 - X05 delivery requires current owner / exact location verification and cannot accept missing / changed / out-of-range point
+  ---
+  duration_ms: 13.6034
+  type: 'test'
+  ...
+# Subtest: X05 TTL equality is expired; lead cutoff caps TTL; time advancing invalidates appointment before long TTL
+ok 464 - X05 TTL equality is expired; lead cutoff caps TTL; time advancing invalidates appointment before long TTL
+  ---
+  duration_ms: 22.585
+  type: 'test'
+  ...
+# Subtest: X05 repricing creates new current amounts; old quote rejects price / catalog / config / resource changes
+ok 465 - X05 repricing creates new current amounts; old quote rejects price / catalog / config / resource changes
+  ---
+  duration_ms: 35.7986
+  type: 'test'
+  ...
+# Subtest: X05 existing quote cannot be consumed twice or read by another owner; malformed or altered facts are rejected
+ok 466 - X05 existing quote cannot be consumed twice or read by another owner; malformed or altered facts are rejected
+  ---
+  duration_ms: 4.7775
+  type: 'test'
+  ...
+# Subtest: X05 idempotency decision replays only scoped same request, rejects changed payload and creates no duplicate proposal
+ok 467 - X05 idempotency decision replays only scoped same request, rejects changed payload and creates no duplicate proposal
+  ---
+  duration_ms: 2.9621
+  type: 'test'
+  ...
+# Subtest: X05 public offline preview projects only buyer facts, no resource versions / bag evidence / evaluation / fingerprints
+ok 468 - X05 public offline preview projects only buyer facts, no resource versions / bag evidence / evaluation / fingerprints
+  ---
+  duration_ms: 5.7591
+  type: 'test'
+  ...
+# Subtest: X05 shared stock demand aggregates selected products; unselected rows do not enter quote or amounts
+ok 469 - X05 shared stock demand aggregates selected products; unselected rows do not enter quote or amounts
+  ---
+  duration_ms: 4.0856
+  type: 'test'
+  ...
+# Subtest: X05 unsafe integer cents or deadline overflow and old address version cannot reuse quotation
+ok 470 - X05 unsafe integer cents or deadline overflow and old address version cannot reuse quotation
+  ---
+  duration_ms: 7.7811
+  type: 'test'
+  ...
+# Subtest: D04 整单库存 / 时段预留计划具有版本条件、确定性预留 ID、统一付款截止且不改输入
+ok 471 - D04 整单库存 / 时段预留计划具有版本条件、确定性预留 ID、统一付款截止且不改输入
+  ---
+  duration_ms: 4.6373
+  type: 'test'
+  ...
+# Subtest: D04 最后一个库存或名额已占用时整单计划拒绝，无局部修改
+ok 472 - D04 最后一个库存或名额已占用时整单计划拒绝，无局部修改
+  ---
+  duration_ms: 2.9819
+  type: 'test'
+  ...
+# Subtest: D04 旧版本 / 跨店 / 关闭资源不生成预留，全部查询必须匹配
+ok 473 - D04 旧版本 / 跨店 / 关闭资源不生成预留，全部查询必须匹配
+  ---
+  duration_ms: 0.7246
+  type: 'test'
+  ...
+# Subtest: D04 重复需求、未聚合 SKU 资源、无唯一时段与过期截止拒绝
+ok 474 - D04 重复需求、未聚合 SKU 资源、无唯一时段与过期截止拒绝
+  ---
+  duration_ms: 0.8348
+  type: 'test'
+  ...
+# Subtest: D04 占用不超总量，制作已消耗仍占资源；计数求和 / 版本溢出拒绝
+ok 475 - D04 占用不超总量，制作已消耗仍占资源；计数求和 / 版本溢出拒绝
+  ---
+  duration_ms: 0.5152
+  type: 'test'
+  ...
+# Subtest: D04 共享需求聚合结果可接预留计划；两个旧快照都可计划，必须在真实提交时裁决
+ok 476 - D04 共享需求聚合结果可接预留计划；两个旧快照都可计划，必须在真实提交时裁决
+  ---
+  duration_ms: 3.5405
+  type: 'test'
+  ...
+# Subtest: Shop example is generated from C01 input and reads all 9 entries / categories / 12 yuan breads
+ok 477 - Shop example is generated from C01 input and reads all 9 entries / categories / 12 yuan breads
+  ---
+  duration_ms: 16.3485
+  type: 'test'
+  ...
+# Subtest: Shop preview never appears in cloud, test or production, including unavailable environments
+ok 478 - Shop preview never appears in cloud, test or production, including unavailable environments
+  ---
+  duration_ms: 1.7427
+  type: 'test'
+  ...
+# Subtest: Shop local pagination binds revision/category/search and rejects foreign / malformed markers
+ok 479 - Shop local pagination binds revision/category/search and rejects foreign / malformed markers
+  ---
+  duration_ms: 1.6308
+  type: 'test'
+  ...
+# Subtest: Shop cards omit source/private fields, detach caller mutations and format integer cents
+ok 480 - Shop cards omit source/private fields, detach caller mutations and format integer cents
+  ---
+  duration_ms: 0.8786
+  type: 'test'
+  ...
+# Subtest: Shop defaults to Cake, accepts Home category and opens filtered details without buying
+ok 481 - Shop defaults to Cake, accepts Home category and opens filtered details without buying
+  ---
+  duration_ms: 3.8483
+  type: 'test'
+  ...
+# Subtest: Shop ignores stale success/failure after rapid category changes and hiding/reopening
+ok 482 - Shop ignores stale success/failure after rapid category changes and hiding/reopening
+  ---
+  duration_ms: 4.8461
+  type: 'test'
+  ...
+# Subtest: Category changes retain cards while pending and replace them only with the latest result
+ok 483 - Category changes retain cards while pending and replace them only with the latest result
+  ---
+  duration_ms: 5.7138
+  type: 'test'
+  ...
+# Subtest: Shop retains loaded products and cursor on append error, retries same page and blocks duplicate append
+ok 484 - Shop retains loaded products and cursor on append error, retries same page and blocks duplicate append
+  ---
+  duration_ms: 2.7617
+  type: 'test'
+  ...
+# Subtest: Returning to Shop retains category, loaded cards and pagination without a new request
+ok 485 - Returning to Shop retains category, loaded cards and pagination without a new request
+  ---
+  duration_ms: 2.1851
+  type: 'test'
+  ...
+# Subtest: Shop recovers empty/first request failures and rejects non-advancing pagination responses
+ok 486 - Shop recovers empty/first request failures and rejects non-advancing pagination responses
+  ---
+  duration_ms: 9.7011
+  type: 'test'
+  ...
+# Subtest: Shop service can load with a WeChat-style JS-only module resolver
+ok 487 - Shop service can load with a WeChat-style JS-only module resolver
+  ---
+  duration_ms: 2.9269
+  type: 'test'
+  ...
+# Subtest: Shared catalog still supports name search and category filtering after Shop removes its search UI
+ok 488 - Shared catalog still supports name search and category filtering after Shop removes its search UI
+  ---
+  duration_ms: 0.7472
+  type: 'test'
+  ...
+# Subtest: Shop resets category pagination and discards errors from an earlier append request
+ok 489 - Shop resets category pagination and discards errors from an earlier append request
+  ---
+  duration_ms: 2.7212
+  type: 'test'
+  ...
+# Subtest: Shop measures its brand header, keeps bag navigation and accepts Home category entry
+ok 490 - Shop measures its brand header, keeps bag navigation and accepts Home category entry
+  ---
+  duration_ms: 1.913
+  type: 'test'
+  ...
+# Subtest: C03 group choices/labels/prices/quantity are data driven; incomplete and nonexistent combinations never pick a SKU
+ok 491 - C03 group choices/labels/prices/quantity are data driven; incomplete and nonexistent combinations never pick a SKU
+  ---
+  duration_ms: 11.7016
+  type: 'test'
+  ...
+# Subtest: C03 size switch retains compatible flavor, clears incompatible filling and prompts without auto-choosing a replacement
+ok 492 - C03 size switch retains compatible flavor, clears incompatible filling and prompts without auto-choosing a replacement
+  ---
+  duration_ms: 1.917
+  type: 'test'
+  ...
+# Subtest: C03 upstream reset clears dependent options while compatible downstream selections survive
+ok 493 - C03 upstream reset clears dependent options while compatible downstream selections survive
+  ---
+  duration_ms: 4.4702
+  type: 'test'
+  ...
+# Subtest: C03 optional omission resolves only the explicitly configured empty choice; optional selection is never implicit
+ok 494 - C03 optional omission resolves only the explicitly configured empty choice; optional selection is never implicit
+  ---
+  duration_ms: 1.9998
+  type: 'test'
+  ...
+# Subtest: C03 duplicate combos/IDs, missing required choices and malformed prices/quantity policies reject configuration
+ok 495 - C03 duplicate combos/IDs, missing required choices and malformed prices/quantity policies reject configuration
+  ---
+  duration_ms: 9.3143
+  type: 'test'
+  ...
+# Subtest: C03 selection/schema/getter/non-JSON/sparse inputs fail without executing hooks or trusting supplied labels
+ok 496 - C03 selection/schema/getter/non-JSON/sparse inputs fail without executing hooks or trusting supplied labels
+  ---
+  duration_ms: 2.2843
+  type: 'test'
+  ...
+# Subtest: C03 product revision reconciliation clears removed selections and requires explicit reconfirmation
+ok 497 - C03 product revision reconciliation clears removed selections and requires explicit reconfirmation
+  ---
+  duration_ms: 1.8649
+  type: 'test'
+  ...
+# Subtest: C03 SKU revision/price/quantity changes require reconfirmation even when product version is unchanged
+ok 498 - C03 SKU revision/price/quantity changes require reconfirmation even when product version is unchanged
+  ---
+  duration_ms: 1.476
+  type: 'test'
+  ...
+# Subtest: C03 client match agrees with authoritative D03 for every explicit offline SKU and never exposes resources
+ok 499 - C03 client match agrees with authoritative D03 for every explicit offline SKU and never exposes resources
+  ---
+  duration_ms: 5.94
+  type: 'test'
+  ...
+# Subtest: C03 model configuration and state are detached, deeply frozen public whitelists
+ok 500 - C03 model configuration and state are detached, deeply frozen public whitelists
+  ---
+  duration_ms: 1.3657
+  type: 'test'
+  ...
+# Subtest: C03 generated user preview retains 9 products/15 explicit variants and never guesses missing operating limits
+ok 501 - C03 generated user preview retains 9 products/15 explicit variants and never guesses missing operating limits
+  ---
+  duration_ms: 13.9689
+  type: 'test'
+  ...
+# Subtest: C03 preview service rejects other stages/cloud mode/invalid IDs/duplicates and cannot upgrade preview to formal
+ok 502 - C03 preview service rejects other stages/cloud mode/invalid IDs/duplicates and cannot upgrade preview to formal
+  ---
+  duration_ms: 1.6977
+  type: 'test'
+  ...
+# Subtest: C03 services/utils load using JS-only module resolution without Node built-ins
+ok 503 - C03 services/utils load using JS-only module resolution without Node built-ins
+  ---
+  duration_ms: 2.8895
+  type: 'test'
+  ...
+# Subtest: B05 offline stock check aggregates shared resources and subtracts holds/confirmed/consumed, without mutation
+ok 504 - B05 offline stock check aggregates shared resources and subtracts holds/confirmed/consumed, without mutation
+  ---
+  duration_ms: 4.9601
+  type: 'test'
+  ...
+# Subtest: B05 missing stock stays unknown, invalid/cross-store/duplicate snapshots reject; never authorizes checkout
+ok 505 - B05 missing stock stays unknown, invalid/cross-store/duplicate snapshots reject; never authorizes checkout
+  ---
+  duration_ms: 0.9656
+  type: 'test'
+  ...
+# Subtest: X02 trusted published store projection is a frozen whitelist, not resource counters or publication IDs
+ok 506 - X02 trusted published store projection is a frozen whitelist, not resource counters or publication IDs
+  ---
+  duration_ms: 4.2098
+  type: 'test'
+  ...
+# Subtest: X02 pickup needs no address and always zero delivery fee; delivery remains pending address/range/appointment validation
+ok 507 - X02 pickup needs no address and always zero delivery fee; delivery remains pending address/range/appointment validation
+  ---
+  duration_ms: 1.4941
+  type: 'test'
+  ...
+# Subtest: X02 closed/draft store, unpublished/wrong-store/incomplete config and disabled pickup cannot pass preflight
+ok 508 - X02 closed/draft store, unpublished/wrong-store/incomplete config and disabled pickup cannot pass preflight
+  ---
+  duration_ms: 3.1167
+  type: 'test'
+  ...
+# Subtest: X02 current store/config versions, trusted principal and server phone policy are required; fee/status spoofing is rejected
+ok 509 - X02 current store/config versions, trusted principal and server phone policy are required; fee/status spoofing is rejected
+  ---
+  duration_ms: 1.0687
+  type: 'test'
+  ...
+# Subtest: 全额支付后依次接单 / 制作 / 就绪，自提与配送分别合法完成
+ok 510 - 全额支付后依次接单 / 制作 / 就绪，自提与配送分别合法完成
+  ---
+  duration_ms: 2.3786
+  type: 'test'
+  ...
+# Subtest: 顾客、跨门店角色和无支付证据权限的内部任务不能越权
+ok 511 - 顾客、跨门店角色和无支付证据权限的内部任务不能越权
+  ---
+  duration_ms: 0.722
+  type: 'test'
+  ...
+# Subtest: 本人只能确认自己的配送中订单，不能核销自提或越权确认他人收货
+ok 512 - 本人只能确认自己的配送中订单，不能核销自提或越权确认他人收货
+  ---
+  duration_ms: 0.3932
+  type: 'test'
+  ...
+# Subtest: 不能跳过制作、混用履约、复活取消或回退已完成订单
+ok 513 - 不能跳过制作、混用履约、复活取消或回退已完成订单
+  ---
+  duration_ms: 0.5132
+  type: 'test'
+  ...
+# Subtest: 付款后取消只创建申请；商家批准前不终止订单或发起退款
+ok 514 - 付款后取消只创建申请；商家批准前不终止订单或发起退款
+  ---
+  duration_ms: 0.8629
+  type: 'test'
+  ...
+# Subtest: 制作后的取消仍由商家审批；金额可为零、部分或全额；拒绝不改履约
+ok 515 - 制作后的取消仍由商家审批；金额可为零、部分或全额；拒绝不改履约
+  ---
+  duration_ms: 0.38
+  type: 'test'
+  ...
+# Subtest: 商家未接单时拒单退足全部实付，已有部分退款只补剩余金额
+ok 516 - 商家未接单时拒单退足全部实付，已有部分退款只补剩余金额
+  ---
+  duration_ms: 0.2108
+  type: 'test'
+  ...
+# Subtest: 未付取消必须确认无支付意图或关单；未知付款不得提前释放资源
+ok 517 - 未付取消必须确认无支付意图或关单；未知付款不得提前释放资源
+  ---
+  duration_ms: 0.2536
+  type: 'test'
+  ...
+# Subtest: 取消后可信迟到付款仍保持取消，必须记实际资金并补全额退款
+ok 518 - 取消后可信迟到付款仍保持取消，必须记实际资金并补全额退款
+  ---
+  duration_ms: 0.2652
+  type: 'test'
+  ...
+# Subtest: 退款预算包括失败和进行中意图；新退款不得重复占用或超实付
+ok 519 - 退款预算包括失败和进行中意图；新退款不得重复占用或超实付
+  ---
+  duration_ms: 0.3437
+  type: 'test'
+  ...
+# Subtest: 资金与退款轴不由客户端成功或失败回调直接回退；退款失败不等于成功
+ok 520 - 资金与退款轴不由客户端成功或失败回调直接回退；退款失败不等于成功
+  ---
+  duration_ms: 0.3121
+  type: 'test'
+  ...
+# Subtest: 金额必须为安全整数分；全额收款与预算关系不可绕过
+ok 521 - 金额必须为安全整数分；全额收款与预算关系不可绕过
+  ---
+  duration_ms: 0.3237
+  type: 'test'
+  ...
+# Subtest: 过期版本和未知政策版本拒绝；纯模型不会写数据库或改原快照
+ok 522 - 过期版本和未知政策版本拒绝；纯模型不会写数据库或改原快照
+  ---
+  duration_ms: 0.2216
+  type: 'test'
+  ...
+1..522
+# tests 522
+# suites 0
+# pass 522
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2901.9879

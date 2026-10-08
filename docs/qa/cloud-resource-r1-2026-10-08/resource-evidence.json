@@ -1,0 +1,653 @@
+{
+  "time": "2026-10-08T02:52:25.458Z",
+  "environment": {
+    "envId": "cloudbase-d8gwtxzm64150b7e0",
+    "appId": "wx154f791a17268ace",
+    "region": "ap-shanghai",
+    "runtimeMode": "nosql",
+    "backends": {
+      "postgresql": false,
+      "nosql": true,
+      "mysql": false
+    },
+    "requestId": "0dafed86-e876-4798-a0cf-eb1315f32af8"
+  },
+  "preflight": {
+    "collections": [],
+    "total": 0,
+    "managerRequestId": "d8506415-f328-4922-a76a-9090380a711b",
+    "wechatRequestId": "104eafd6-347f-4a13-b465-139e960c18b2"
+  },
+  "operations": {
+    "userCreate": {
+      "success": true,
+      "requestId": "35600c8c-de5e-4fc1-a7ae-c5998c08409a",
+      "action": "createCollection",
+      "message": "云开发数据库集合创建成功",
+      "collection": "users",
+      "collectionName": "users"
+    },
+    "userRule": {
+      "success": true,
+      "data": {
+        "action": "updateResourcePermission",
+        "envId": "cloudbase-d8gwtxzm64150b7e0",
+        "resourceType": "noSqlDatabase",
+        "resourceId": "users",
+        "permission": "CUSTOM",
+        "hints": [],
+        "verificationHint": "对于 users 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+        "propagationHint": "刚更新完 users 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+        "raw": {
+          "RequestId": "27876aa6-1744-4d65-871a-ea2596af5760",
+          "Data": {
+            "Success": true
+          }
+        }
+      },
+      "message": "资源权限更新成功"
+    },
+    "userIndex": {
+      "success": true,
+      "requestId": "96aca127-6e44-4ecc-aa3c-97343fa33707",
+      "action": "updateCollection",
+      "message": "云开发数据库集合更新成功",
+      "collection": "users",
+      "collectionName": "users"
+    },
+    "adminCreate": {
+      "success": true,
+      "requestId": "a30fe39e-85ea-472a-8b21-ce3b2b94a8b5",
+      "action": "createCollection",
+      "message": "云开发数据库集合创建成功",
+      "collection": "admin_roles",
+      "collectionName": "admin_roles"
+    },
+    "adminRule": {
+      "success": true,
+      "data": {
+        "action": "updateResourcePermission",
+        "envId": "cloudbase-d8gwtxzm64150b7e0",
+        "resourceType": "noSqlDatabase",
+        "resourceId": "admin_roles",
+        "permission": "CUSTOM",
+        "hints": [],
+        "verificationHint": "对于 admin_roles 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+        "propagationHint": "刚更新完 admin_roles 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+        "raw": {
+          "RequestId": "e35acb00-6023-4a35-97a2-e606eca6ee2e",
+          "Data": {
+            "Success": true
+          }
+        }
+      },
+      "message": "资源权限更新成功"
+    },
+    "adminIndex": {
+      "success": true,
+      "requestId": "e486c4e8-f43e-4084-ae8d-702bd2c55883",
+      "action": "updateCollection",
+      "message": "云开发数据库集合更新成功",
+      "collection": "admin_roles",
+      "collectionName": "admin_roles"
+    },
+    "auditCreate": {
+      "success": true,
+      "requestId": "6445d2af-fade-4cd4-8631-6c00d1b5e32a",
+      "action": "createCollection",
+      "message": "云开发数据库集合创建成功",
+      "collection": "audit_logs",
+      "collectionName": "audit_logs"
+    },
+    "auditRule": {
+      "success": true,
+      "data": {
+        "action": "updateResourcePermission",
+        "envId": "cloudbase-d8gwtxzm64150b7e0",
+        "resourceType": "noSqlDatabase",
+        "resourceId": "audit_logs",
+        "permission": "CUSTOM",
+        "hints": [],
+        "verificationHint": "对于 audit_logs 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+        "propagationHint": "刚更新完 audit_logs 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+        "raw": {
+          "RequestId": "b10525a0-4021-489d-8afc-01741740df97",
+          "Data": {
+            "Success": true
+          }
+        }
+      },
+      "message": "资源权限更新成功"
+    }
+  },
+  "readbacks": [
+    {
+      "name": "users",
+      "previouslyExisted": false,
+      "structure": {
+        "success": true,
+        "requestId": "577e3e95-163a-4851-a41a-97e69295cfb0",
+        "indexNum": 3,
+        "indexes": [
+          {
+            "Name": "uq_user_identity",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:19.892+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "environment",
+                "Direction": "1"
+              },
+              {
+                "Name": "appId",
+                "Direction": "1"
+              },
+              {
+                "Name": "openId",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": true,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:05.07+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 12288,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:05.063+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取云开发数据库集合信息成功",
+        "collection": "users",
+        "collectionName": "users"
+      },
+      "indexes": {
+        "success": true,
+        "requestId": "4f278ea9-d4a1-4297-9130-f53b061ba451",
+        "indexNum": 3,
+        "indexes": [
+          {
+            "Name": "uq_user_identity",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:19.892+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "environment",
+                "Direction": "1"
+              },
+              {
+                "Name": "appId",
+                "Direction": "1"
+              },
+              {
+                "Name": "openId",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": true,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:05.07+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 12288,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:05.063+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取索引列表成功",
+        "collection": "users",
+        "collectionName": "users"
+      },
+      "permissions": {
+        "success": true,
+        "data": {
+          "action": "getResourcePermission",
+          "envId": "cloudbase-d8gwtxzm64150b7e0",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "users",
+          "aclTag": "CUSTOM",
+          "permissions": [
+            {
+              "Resource": "users",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\":false,\"write\":false}"
+            }
+          ],
+          "hints": [],
+          "raw": {
+            "RequestId": "05c29b43-9aa5-44dc-b639-7d8e3c87a6d8",
+            "Data": {
+              "TotalCount": 1,
+              "PermissionList": [
+                {
+                  "Resource": "users",
+                  "Permission": "CUSTOM",
+                  "ResourceType": "collection",
+                  "SecurityRule": "{\"read\":false,\"write\":false}"
+                }
+              ]
+            }
+          }
+        },
+        "message": "资源权限查询成功"
+      }
+    },
+    {
+      "name": "admin_roles",
+      "previouslyExisted": false,
+      "structure": {
+        "success": true,
+        "requestId": "2d0f9a31-eb9e-4639-834d-e1f79a9495d5",
+        "indexNum": 3,
+        "indexes": [
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:23.012+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "ix_role_subject_status",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:34.519+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "subjectId",
+                "Direction": "1"
+              },
+              {
+                "Name": "status",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:23.018+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 12288,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取云开发数据库集合信息成功",
+        "collection": "admin_roles",
+        "collectionName": "admin_roles"
+      },
+      "indexes": {
+        "success": true,
+        "requestId": "5df95c10-3252-47b3-946e-b11ba52175e2",
+        "indexNum": 3,
+        "indexes": [
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:23.018+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 12288,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "ix_role_subject_status",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:34.519+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "subjectId",
+                "Direction": "1"
+              },
+              {
+                "Name": "status",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:23.012+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取索引列表成功",
+        "collection": "admin_roles",
+        "collectionName": "admin_roles"
+      },
+      "permissions": {
+        "success": true,
+        "data": {
+          "action": "getResourcePermission",
+          "envId": "cloudbase-d8gwtxzm64150b7e0",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "admin_roles",
+          "aclTag": "CUSTOM",
+          "permissions": [
+            {
+              "Resource": "admin_roles",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\":false,\"write\":false}"
+            }
+          ],
+          "hints": [],
+          "raw": {
+            "RequestId": "e5ec79eb-2a8a-4b3d-9ff1-adca7989b10e",
+            "Data": {
+              "TotalCount": 1,
+              "PermissionList": [
+                {
+                  "Resource": "admin_roles",
+                  "Permission": "CUSTOM",
+                  "ResourceType": "collection",
+                  "SecurityRule": "{\"read\":false,\"write\":false}"
+                }
+              ]
+            }
+          }
+        },
+        "message": "资源权限查询成功"
+      }
+    },
+    {
+      "name": "audit_logs",
+      "previouslyExisted": false,
+      "structure": {
+        "success": true,
+        "requestId": "134f6c1d-29da-47dd-b556-5535d08c1005",
+        "indexNum": 2,
+        "indexes": [
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:29.626+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 12288,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:29.619+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取云开发数据库集合信息成功",
+        "collection": "audit_logs",
+        "collectionName": "audit_logs"
+      },
+      "indexes": {
+        "success": true,
+        "requestId": "fa5f62c0-ca27-4e29-a447-30fa0b94c835",
+        "indexNum": 2,
+        "indexes": [
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:29.619+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T10:51:29.626+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 12288,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取索引列表成功",
+        "collection": "audit_logs",
+        "collectionName": "audit_logs"
+      },
+      "permissions": {
+        "success": true,
+        "data": {
+          "action": "getResourcePermission",
+          "envId": "cloudbase-d8gwtxzm64150b7e0",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "audit_logs",
+          "aclTag": "CUSTOM",
+          "permissions": [
+            {
+              "Resource": "audit_logs",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\":false,\"write\":false}"
+            }
+          ],
+          "hints": [],
+          "raw": {
+            "RequestId": "eaece1d3-001b-4691-b420-4cc5845f7d8f",
+            "Data": {
+              "TotalCount": 1,
+              "PermissionList": [
+                {
+                  "Resource": "audit_logs",
+                  "Permission": "CUSTOM",
+                  "ResourceType": "collection",
+                  "SecurityRule": "{\"read\":false,\"write\":false}"
+                }
+              ]
+            }
+          }
+        },
+        "message": "资源权限查询成功"
+      }
+    }
+  ],
+  "finalCollections": {
+    "success": true,
+    "requestId": "50b7abd6-33c7-47af-80af-202617bb1af9",
+    "collections": [
+      {
+        "TableName": "admin_roles",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 3,
+        "IndexSize": 28672
+      },
+      {
+        "TableName": "audit_logs",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 2,
+        "IndexSize": 20480
+      },
+      {
+        "TableName": "users",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 3,
+        "IndexSize": 28672
+      }
+    ],
+    "pager": {
+      "Offset": 0,
+      "Limit": 100,
+      "Total": 3
+    },
+    "message": "获取 NoSQL 数据库集合列表成功"
+  },
+  "actualDocumentWrites": 0,
+  "businessImport": "NOT_RUN",
+  "administratorGrant": "NOT_RUN",
+  "indexBuildStatus": "NOT_EXPOSED_BY_TOOL",
+  "uniqueConstraintWriteTest": "NOT_RUN",
+  "SDKTransactions": "NOT_RUN",
+  "clientNegativeReads": {
+    "status": "NOT_RUN",
+    "reason": "tool APPID_ERROR before native database execution",
+    "error": "Cannot read properties of undefined (reading '0')",
+    "evidence": "client-read-denial.txt",
+    "compileRetry": "same APPID_ERROR"
+  },
+  "R2toR5": "NOT_RUN",
+  "verification": {
+    "logicalRulesMatch": true,
+    "requestedIndexFieldsOrderDirectionsAndUniqueMatch": true,
+    "allCollectionsEmptyAtReadback": true,
+    "explicitBuildStatus": "NOT_EXPOSED_BY_TOOL",
+    "defaultIndexesRetained": [
+      "_id_",
+      "_openid_1"
+    ],
+    "idUniqueness": "NOT_RUN; tool reports default _id_ Unique=false, do not infer SDK semantics"
+  }
+}

@@ -1,0 +1,112 @@
+var gesture = null;
+var pendingReset = null;
+function parts(owner, instance) {
+  var state = instance.getState(), data = instance.getDataset();
+  if (!state.layer) {
+    state.layer = owner.selectComponent('#' + data.deleteId);
+    state.iconPosition = owner.selectComponent('#' + data.iconPositionId);
+    state.icon = owner.selectComponent('#' + data.iconId);
+  }
+  return state;
+}
+function paint(owner, instance, distance, armed, duration) {
+  var state = parts(owner, instance);
+  var style = { transform: distance > 0 ? 'translate3d(' + (state.width - distance) + 'px,0,0)' : 'translate3d(100%,0,0)' };
+  var positionStyle = { transform: 'translate3d(' + (-distance / 2) + 'px,0,0)' };
+  if (state.duration !== duration) {
+    var easing = 'ms cubic-bezier(0.22, 1, 0.36, 1)';
+    style.transition = duration ? 'transform ' + duration + easing + ', background-color 140ms ease-out' : 'background-color 140ms ease-out';
+    positionStyle.transition = duration ? 'transform ' + duration + easing + ', opacity 150ms ease-out' : 'none';
+    state.duration = duration;
+  }
+  var visible = distance > 0;
+  if (state.visible !== visible) { positionStyle.opacity = visible ? 1 : 0; state.visible = visible; }
+  if (state.armed !== armed) {
+    style['background-color'] = armed ? '#D9685E' : '#E8B4AE';
+    state.icon.setStyle({ transform: armed ? 'scale(1.15)' : 'scale(1)', transition: 'transform 140ms ease-out' });
+    state.armed = armed;
+  }
+  state.layer.setStyle(style);
+  state.iconPosition.setStyle(positionStyle);
+}
+function reset(owner, instance) {
+  instance.getState().offset = 0;
+  instance.setStyle({ transform: 'translate3d(0,0,0)', opacity: 1, transition: 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1), opacity 150ms ease-out' });
+  paint(owner, instance, 0, false, 250);
+}
+function exit(owner, instance) {
+  instance.setStyle({ transform: 'translate3d(-100%,0,0)', opacity: 0, transition: 'transform 200ms ease-out, opacity 200ms ease-out' });
+  paint(owner, instance, instance.getState().width || 0, true, 200);
+}
+function stateChanged(value, previous, owner, instance) {
+  if (value === previous) return;
+  if (value.split(':')[1] === 'deleting') {
+    exit(owner, instance);
+  } else {
+    if (gesture && gesture.id === instance.getDataset().id) gesture = null;
+    reset(owner, instance);
+  }
+}
+function start(event, owner) {
+  if (!event.touches || event.touches.length !== 1) return cancel(event, owner);
+  var data = event.currentTarget.dataset;
+  if (data.disabled || (pendingReset !== null && pendingReset === data.reset)) return;
+  pendingReset = null;
+  if (gesture) reset(owner, gesture.instance);
+  gesture = null;
+  var instance = owner.selectComponent('#' + event.currentTarget.id);
+  var width = event.currentTarget.dataset.width;
+  if (!(width > 0)) return;
+  var point = event.touches[0];
+  instance.getState().width = width;
+  gesture = { instance: instance, id: data.id, reset: data.reset, width: width, x: point.clientX, y: point.clientY, horizontal: false, vertical: false, buzzed: false, armed: false };
+}
+function drag(event, owner, final) {
+  if (!gesture) return;
+  if (event.currentTarget.dataset.disabled || (!final && (!event.touches || event.touches.length !== 1))) return cancel(event, owner);
+  var points = final ? event.changedTouches : event.touches;
+  if (!points || !points.length) return;
+  var dx = points[0].clientX - gesture.x;
+  var dy = points[0].clientY - gesture.y;
+  var ax = dx < 0 ? -dx : dx, ay = dy < 0 ? -dy : dy;
+  if (gesture.vertical) return;
+  if (!gesture.horizontal) {
+    if (ax < 10 && ay < 10) return;
+    if (dx >= 0 || ax <= ay * 1.2) { gesture.vertical = true; return; }
+    gesture.horizontal = true;
+    owner.callMethod('swipeStarted', { id: gesture.id });
+  }
+  var offset = dx < -gesture.width ? -gesture.width : dx > 0 ? 0 : dx;
+  if (!final && gesture.painted && gesture.instance.getState().offset === offset) return false;
+  gesture.instance.getState().offset = offset;
+  // Prevent decimal rounding from rejecting an exact 30% release.
+  gesture.armed = -offset + 0.001 >= gesture.width * 0.3;
+  var contentStyle = { transform: 'translate3d(' + offset + 'px,0,0)' };
+  if (!gesture.painted) { contentStyle.opacity = 1; contentStyle.transition = 'none'; gesture.painted = true; }
+  gesture.instance.setStyle(contentStyle);
+  paint(owner, gesture.instance, -offset, gesture.armed, 0);
+  if (gesture.armed && !gesture.buzzed) {
+    gesture.buzzed = true;
+    owner.callMethod('swipeThreshold', { id: gesture.id });
+  }
+  return false;
+}
+function move(event, owner) { return drag(event, owner, false); }
+function finish(owner, cancelled) {
+  if (!gesture) return;
+  var active = gesture;
+  gesture = null;
+  if (!active.horizontal) return;
+  var remove = !cancelled && active.armed;
+  if (!remove) reset(owner, active.instance);
+  else { pendingReset = active.reset; exit(owner, active.instance); }
+  owner.callMethod('swipeReleased', { id: active.id, remove: remove });
+  return false;
+}
+function end(event, owner) {
+  if (event.touches && event.touches.length) return cancel(event, owner);
+  drag(event, owner, true);
+  return finish(owner, false);
+}
+function cancel(event, owner) { return finish(owner, true); }
+module.exports = { start: start, move: move, end: end, cancel: cancel, stateChanged: stateChanged };

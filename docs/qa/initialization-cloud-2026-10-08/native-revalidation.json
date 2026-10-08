@@ -1,0 +1,114 @@
+{
+  "state": "COMPLETED",
+  "time": "2026-10-08T02:56:54.751Z",
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "appId": "wx154f791a17268ace",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "native": [
+    {
+      "name": "client-user-me",
+      "ok": true,
+      "requestId": "fcaec5a6-8d90-4a2d-ad65-fd28737e196f",
+      "authenticated": true,
+      "role": "customer"
+    },
+    {
+      "name": "client-store-health",
+      "ok": true,
+      "data": {
+        "available": true,
+        "stage": "development",
+        "environment": "cloudbase-d8gwtxzm64150b7e0"
+      },
+      "requestId": "a6c372a1-53b2-47eb-938b-f93649310188"
+    },
+    {
+      "name": "forged-identity",
+      "ok": true,
+      "requestId": "2aa7be61-8b22-49e4-bbb1-a4680ce3908e",
+      "platformRequestId": "82028c9c-318f-4764-be49-37ee0a1a1dfb",
+      "error": null,
+      "role": "customer",
+      "sameSubject": true
+    },
+    {
+      "name": "invalid-action",
+      "ok": false,
+      "requestId": "d4bd4866-3f10-49f9-9bfb-c5f7bc0cebf8",
+      "platformRequestId": "31eba640-21b1-4da4-a92b-d7d6229c917b",
+      "error": {
+        "code": "INVALID_REQUEST",
+        "message": "请求无效"
+      },
+      "sameSubject": null
+    },
+    {
+      "name": "invalid-payload",
+      "ok": false,
+      "requestId": "298a776a-c9dc-453c-860c-427097bb9ca7",
+      "platformRequestId": "65baa9b1-5f1d-4e66-b8b4-5750df7fe05a",
+      "error": {
+        "code": "INVALID_REQUEST",
+        "message": "请求无效"
+      },
+      "sameSubject": null
+    }
+  ],
+  "rejection": {
+    "ok": true,
+    "baselineRequestId": "081c9989-4982-42c9-9d84-9952a58f8433",
+    "results": [
+      {
+        "name": "missing-config",
+        "expected": "INVALID_CONFIGURATION",
+        "code": "INVALID_CONFIGURATION",
+        "passed": true,
+        "requestId": "72f3224f-f67c-488d-8b60-baffed723916"
+      },
+      {
+        "name": "app-mismatch",
+        "expected": "APP_MISMATCH",
+        "code": "APP_MISMATCH",
+        "passed": true,
+        "requestId": "669b1db0-7433-4048-9e9b-aaf4dd392ca1"
+      },
+      {
+        "name": "env-mismatch",
+        "expected": "ENV_MISMATCH",
+        "code": "ENV_MISMATCH",
+        "passed": true,
+        "requestId": "cff3b539-a3ca-4ef2-b4ea-04d05514c210"
+      }
+    ]
+  },
+  "platformRequestId": "0ae91a4e-791a-47b5-bc49-738046bd4ee0",
+  "assertions": [
+    {
+      "name": "client-user-me",
+      "passed": true
+    },
+    {
+      "name": "client-store-health",
+      "passed": true
+    },
+    {
+      "name": "forged-identity",
+      "passed": true
+    },
+    {
+      "name": "invalid-action",
+      "passed": true
+    },
+    {
+      "name": "invalid-payload",
+      "passed": true
+    },
+    {
+      "name": "isolated-rejection-cases",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "device": "NOT_RUN",
+  "standaloneTestEnvironment": "NOT_PROVIDED"
+}

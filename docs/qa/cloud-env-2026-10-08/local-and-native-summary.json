@@ -1,0 +1,103 @@
+{
+  "time": "2026-10-08T02:34:55.935Z",
+  "localTests": {
+    "command": "node --test tests/cloud.test.js",
+    "passed": 7,
+    "failed": 0,
+    "scope": "LOCAL_ONLY"
+  },
+  "configurationVerification": {
+    "passed": 7,
+    "failed": 0,
+    "artifact": "config-verification.json"
+  },
+  "staticCheck": {
+    "command": "node scripts/check.js",
+    "exitCode": 0,
+    "files": 321,
+    "mainKiB": 1392,
+    "featuresKiB": 153,
+    "legacyKiB": 45,
+    "scope": "CURRENT_WORKSPACE_STATIC_ONLY"
+  },
+  "diffCheck": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "functions": [
+    {
+      "name": "user",
+      "installation": {
+        "command": "npm@10.9.4 ci --ignore-scripts --no-audit --no-fund",
+        "exitCode": 0,
+        "packagesAdded": 102
+      },
+      "sdk": "4.0.2",
+      "packageHash": "b1ca404b1f848e6e2e02c79363f73c2388d7418abd750ecd9d413699198d22e9",
+      "lockHash": "03ac9ed2c56e903b42f3472b470b1c60e181194f80d212eabf19cc07d84c93db",
+      "sharedHash": "a693a25bc3b705b00e0fa179704eba2cf35265e80036b5d9d30c739b1325cbe0"
+    },
+    {
+      "name": "store",
+      "installation": {
+        "command": "npm@10.9.4 ci --ignore-scripts --no-audit --no-fund",
+        "exitCode": 0,
+        "packagesAdded": 102
+      },
+      "sdk": "4.0.2",
+      "packageHash": "5e07dc5ae34146191902f2af2a9df2bc6b5f046d8ded755163a90bb36d42c422",
+      "lockHash": "1d2a0d3bf5d3a4bf359f9bdf374028088e8e6146fc4439acab1ab6e74b0e382a",
+      "sharedHash": "a693a25bc3b705b00e0fa179704eba2cf35265e80036b5d9d30c739b1325cbe0"
+    }
+  ],
+  "sharedConfig": {
+    "mode": "shell",
+    "stage": "development",
+    "appId": "wx154f791a17268ace",
+    "cloudEnvironments": {
+      "development": "cloudbase-d8gwtxzm64150b7e0",
+      "test": "",
+      "production": ""
+    },
+    "enableLegacyDemo": false
+  },
+  "native": {
+    "userMe": "PASS",
+    "storeHealth": "PASS",
+    "forgedIdentityWithTrustedContext": "PASS",
+    "trustedAppMismatch": "NOT_RUN",
+    "trustedEnvMismatch": "NOT_RUN",
+    "device": "NOT_RUN",
+    "networkType": "wifi",
+    "weakNet": false,
+    "automationFirstAttempt": "timeout waiting for automator response",
+    "configurationChanged": false,
+    "afterUserNetworkChange": {
+      "networkType": "none",
+      "weakNet": true,
+      "userMe": "FAIL",
+      "clientRequestId": "client-muyxc25a-6avax4xp",
+      "source": "native-after-network-change.txt",
+      "exactTime": "not captured; see tool records"
+    },
+    "firstClientRequestId": "client-muyx59p7-w6qkbnht",
+    "latestRetry": {
+      "time": "2026-10-08T02:42:17.156Z",
+      "passed": true,
+      "evidence": "native-verified-summary.json"
+    },
+    "invalidAction": "PASS: INVALID_REQUEST",
+    "invalidPayload": "PASS: INVALID_REQUEST",
+    "errorsHistorical": [
+      "cloud init error: network offline",
+      "webapi_getwxaasyncsecinfo:fail network offline"
+    ]
+  },
+  "review": {
+    "SEC001": "PASS: no event/context/env echo; logs contain only code/requestId/stage",
+    "AUTH001": "Web session guidance not applicable: native wx.cloud + getWXContext",
+    "businessCollections": "NOT_RUN: out of scope",
+    "httpGateway": "NOT_CREATED",
+    "anonymousLogin": "NOT_MODIFIED"
+  }
+}

@@ -222,7 +222,7 @@ test('D06 权限检查不修改用户 / 授权 / 订单，冻结输出不暴露�
   assert.throws(() => actor.capabilities.push('REFUND_APPROVE'), TypeError);
 });
 
-test('D06 数据库规则草案覆盖字典 25 集合，普通客户端所有直接 CRUD 关闭', () => {
+test('D06/P02 数据库规则草案覆盖字典 26 集合，普通客户端所有直接 CRUD 关闭', () => {
   const fs = require('node:fs');
   const path = require('node:path');
   const manifest = require('../cloudfunctions/database/security-rules.draft.json');
@@ -230,7 +230,7 @@ test('D06 数据库规则草案覆盖字典 25 集合，普通客户端所有直
   const collections = [...dictionary.matchAll(/^### ([a-z][a-z_]+)$/gm)]
     .map(match => match[1]).filter(name => name !== 'items');
   assert.equal(manifest.status, 'DRAFT_NOT_DEPLOYED');
-  assert.equal(Object.keys(manifest.collections).length, 25);
+  assert.equal(Object.keys(manifest.collections).length, 26);
   assert.deepEqual(Object.keys(manifest.collections).sort(), collections.sort());
   for (const rule of Object.values(manifest.collections)) {
     assert.deepEqual(rule, { read: false, write: false, create: false, update: false, delete: false });

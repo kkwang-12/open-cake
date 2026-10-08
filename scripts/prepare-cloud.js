@@ -5,6 +5,10 @@ const root = path.resolve(__dirname, '..', 'cloudfunctions');
 for (const name of ['user', 'store']) {
   const directory = path.join(root, name, 'shared');
   fs.mkdirSync(directory, { recursive: true });
-  fs.copyFileSync(path.join(root, '_shared', 'runtime.js'), path.join(directory, 'runtime.js'));
+  const modules = name === 'user'
+    ? ['runtime', 'native-context', 'cloud-identity-repository', 'authorization-model', 'idempotency-model', 'trade-model']
+    : ['runtime', 'native-context'];
+  for (const moduleName of modules)
+    fs.copyFileSync(path.join(root, '_shared', moduleName + '.js'), path.join(directory, moduleName + '.js'));
 }
-console.log('Prepared self-contained user/store shared runtime; no cloud resources were changed.');
+console.log('Prepared self-contained user identity dependencies and store runtime; no cloud resources were changed.');

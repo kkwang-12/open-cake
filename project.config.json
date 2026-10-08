@@ -3,7 +3,7 @@
   "miniprogramRoot": "miniprogram/",
   "cloudfunctionRoot": "cloudfunctions/",
   "compileType": "miniprogram",
-  "appid": "wx7bb778ac05eee0c5",
+  "appid": "wx154f791a17268ace",
   "projectname": "家家乐蛋糕店",
   "setting": {
     "es6": true,
@@ -55,5 +55,6 @@
     ],
     "include": []
   },
-  "editorSetting": {}
+  "editorSetting": {},
+  "isGameTourist": false
 }

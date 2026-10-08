@@ -1,12 +1,16 @@
+<wxs module="bagSwipe" src="./swipe.wxs" />
+<view bindtap="closeSwipes">
 <view class="bag-header" style="padding-top: {{topInset}}px;">
   <view class="bag-header-inner" style="min-height: {{navHeight}}px; padding-right: {{capsuleWidth}}px;"><text class="bag-title">购物袋</text></view>
 </view>
-<view class="page bag-page" style="padding-bottom: {{lines.length ? summaryHeight + 16 : 24}}px;">
+<view class="page bag-page" style="padding-bottom: {{lines.length ? summaryHeight + 16 : 24}}px; --bag-collapse-offset: {{removingHeight + 8}}px;">
   <view class="bag-count">共 {{quantity}} 件商品</view>
   <view wx:if="{{error}}" class="error-note">{{error}}<button class="secondary-action" bindtap="load">重试</button></view>
   <view wx:if="{{loading}}" class="status-note">正在核验商品信息…</view>
   <block wx:if="{{lines.length}}">
-    <view wx:for="{{lines}}" wx:key="lineId" class="bag-line">
+    <view wx:for="{{lines}}" wx:key="lineId" id="{{lineNodeIds[item.lineId]}}" class="bag-line {{removingId === item.lineId ? 'line-exiting' : ''}} {{removingId === item.lineId && removalCollapsing ? 'line-collapsing' : ''}} {{removalCollapsing && index > removingIndex ? 'line-shifting' : ''}}" style="{{removingId === item.lineId ? 'height:' + (removalCollapsing ? 0 : removingHeight) + 'px;' : ''}}">
+      <view class="swipe-delete-clip" aria-hidden="true"><view id="{{lineNodeIds[item.lineId] + '-delete'}}" class="swipe-delete" /><view id="{{lineNodeIds[item.lineId] + '-icon-position'}}" class="swipe-icon-position"><image id="{{lineNodeIds[item.lineId] + '-trash'}}" src="./trash-white.svg" mode="aspectFit" /></view></view>
+      <view id="{{lineNodeIds[item.lineId] + '-content'}}" class="bag-line-content" data-id="{{item.lineId}}" data-reset="{{swipeReset}}" data-width="{{swipeWidth}}" data-delete-id="{{lineNodeIds[item.lineId] + '-delete'}}" data-icon-position-id="{{lineNodeIds[item.lineId] + '-icon-position'}}" data-icon-id="{{lineNodeIds[item.lineId] + '-trash'}}" data-disabled="{{busy || loading}}" swipe-state="{{swipeReset + ':' + (removingId === item.lineId ? 'deleting' : 'rest')}}" change:swipe-state="{{bagSwipe.stateChanged}}" bindtouchstart="{{bagSwipe.start}}" bindtouchmove="{{bagSwipe.move}}" bindtouchend="{{bagSwipe.end}}" bindtouchcancel="{{bagSwipe.cancel}}" catchtap="lineTap">
       <view class="line-thumbnail" bindtap="openProduct" data-id="{{item.productId}}" aria-label="查看{{item.name}}">
         <image wx:if="{{(item.image || thumbnails[item.productId]) && imageFailures[item.productId] !== (item.image || thumbnails[item.productId])}}" class="line-image" src="{{item.image || thumbnails[item.productId]}}" mode="aspectFit" data-id="{{item.productId}}" data-src="{{item.image || thumbnails[item.productId]}}" binderror="thumbnailError" />
         <view wx:else class="line-image-placeholder"><image src="/assets/icons/product/cake-slice.svg" /><text>暂无图片</text></view>
@@ -21,14 +25,17 @@
         <view class="bag-line-bottom"><view class="quantity-control">
           <button class="quantity-minus" data-id="{{item.lineId}}" data-index="{{index}}" data-delta="-1" bindtap="changeQuantity" disabled="{{busy || loading || !item.canAdjust || item.quantity === 1}}" aria-label="减少数量"><image src="/assets/icons/commerce/bag-minus.svg" /></button><text>{{item.quantity}}</text>
           <button class="quantity-plus" data-id="{{item.lineId}}" data-index="{{index}}" data-delta="1" bindtap="changeQuantity" disabled="{{busy || loading || !item.canAdjust}}" aria-label="增加数量"><image src="/assets/icons/commerce/bag-plus.svg" /></button>
-        </view><button class="remove-line" disabled="{{busy || loading}}" data-id="{{item.lineId}}" data-index="{{index}}" bindtap="remove" aria-label="移除{{item.name}}，{{item.specLabel}}"><image src="/assets/icons/commerce/trash.svg" mode="aspectFit" /></button></view>
+        </view><button class="remove-line" disabled="{{busy || loading}}" data-id="{{item.lineId}}" catchtap="removeTapped" aria-label="移除{{item.name}}，{{item.specLabel}}"><image src="/assets/icons/commerce/trash.svg" mode="aspectFit" /></button></view>
+      </view>
       </view>
     </view>
-    <view class="bag-storage-note">已保存在本机。商品、库存及履约信息核验后才能结算。</view>
+    <view class="bag-storage-note {{removalCollapsing ? 'line-shifting' : ''}}">已保存在本机。商品、库存及履约信息核验后才能结算。</view>
+    <view wx:if="{{removalCollapsing}}" class="removal-scroll-spacer" aria-hidden="true" />
   </block>
   <empty-state wx:elif="{{!error && !loading}}" title="购物袋为空" description="选一份心意，放进购物袋。" action="浏览商品" bind:action="goShop" />
 </view>
-<view wx:if="{{lines.length}}" class="bag-summary action-safe-footer">
+</view>
+<view wx:if="{{lines.length}}" class="bag-summary action-safe-footer" bindtap="closeSwipes">
   <view class="summary-row"><text>商品金额</text><text>¥ {{subtotalLabel}}</text></view>
   <view class="summary-row"><text>预计配送费</text><text>待确认</text></view>
   <text class="summary-note">配送费将在确认履约信息后核验，暂未计入合计。</text>

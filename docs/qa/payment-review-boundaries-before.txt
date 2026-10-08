@@ -1,0 +1,356 @@
+TAP version 13
+# Subtest: P03 authenticated matching evidence atomically confirms both fulfillment modes and all resources
+ok 1 - P03 authenticated matching evidence atomically confirms both fulfillment modes and all resources
+  ---
+  duration_ms: 22.5287
+  type: 'test'
+  ...
+# Subtest: P03 both candidate source methods are explicit and cannot substitute each other
+ok 2 - P03 both candidate source methods are explicit and cannot substitute each other
+  ---
+  duration_ms: 8.5027
+  type: 'test'
+  ...
+# Subtest: P03 fake source and verified flags are rejected durably without poisoning genuine event IDs
+ok 3 - P03 fake source and verified flags are rejected durably without poisoning genuine event IDs
+  ---
+  duration_ms: 4.3984
+  type: 'test'
+  ...
+# Subtest: P03 model proof tokens cannot be forged, JSON copied, or transferred to another boundary
+ok 4 - P03 model proof tokens cannot be forged, JSON copied, or transferred to another boundary
+  ---
+  duration_ms: 0.5805
+  type: 'test'
+  ...
+# Subtest: P03 verifier unavailability gives fixed retryable error and writes no rejection/money
+ok 5 - P03 verifier unavailability gives fixed retryable error and writes no rejection/money
+  ---
+  duration_ms: 1.972
+  type: 'test'
+  ...
+# Subtest: P03 unsafe input/getters and over-limit notification fail before authentication or money writes
+ok 6 - P03 unsafe input/getters and over-limit notification fail before authentication or money writes
+  ---
+  duration_ms: 1.6109
+  type: 'test'
+  ...
+# Subtest: P03 mismatched merchant/app/environment/amount/currency/payer/out-number are quarantined with no order or resource credit
+ok 7 - P03 mismatched merchant/app/environment/amount/currency/payer/out-number are quarantined with no order or resource credit
+  ---
+  duration_ms: 13.8614
+  type: 'test'
+  ...
+# Subtest: P03 missing critical fields/non-success/future and pre-intent times cannot become paid
+ok 8 - P03 missing critical fields/non-success/future and pre-intent times cannot become paid
+  ---
+  duration_ms: 11.4033
+  type: 'test'
+  ...
+# Subtest: P03 exact event replay and different event IDs for one transaction cannot double-credit
+ok 9 - P03 exact event replay and different event IDs for one transaction cannot double-credit
+  ---
+  duration_ms: 4.9549
+  type: 'test'
+  ...
+# Subtest: P03 same event ID with conflicting facts appends immutable conflict once, preserving first payment
+ok 10 - P03 same event ID with conflicting facts appends immutable conflict once, preserving first payment
+  ---
+  duration_ms: 4.0262
+  type: 'test'
+  ...
+# Subtest: P03 wrong financial facts for one transaction cannot later be silently replaced by another event
+ok 11 - P03 wrong financial facts for one transaction cannot later be silently replaced by another event
+  ---
+  duration_ms: 2.656
+  type: 'test'
+  ...
+# Subtest: P03 parallel same/different event IDs and response loss converge to one credit after service restart
+ok 12 - P03 parallel same/different event IDs and response loss converge to one credit after service restart
+  ---
+  duration_ms: 6.5038
+  type: 'test'
+  ...
+# Subtest: P03 every normal write failure or zero-row result rolls event, transaction, money, order, budget and resources back
+ok 13 - P03 every normal write failure or zero-row result rolls event, transaction, money, order, budget and resources back
+  ---
+  duration_ms: 57.9687
+  type: 'test'
+  ...
+# Subtest: P03 disabled current customer and expired new-payment grant do not lose already-paid financial evidence
+ok 14 - P03 disabled current customer and expired new-payment grant do not lose already-paid financial evidence
+  ---
+  duration_ms: 2.0529
+  type: 'test'
+  ...
+# Subtest: P03 receipt after deadline can confirm an on-time payment while HELD resources still exist
+ok 15 - P03 receipt after deadline can confirm an on-time payment while HELD resources still exist
+  ---
+  duration_ms: 2.0358
+  type: 'test'
+  ...
+# Subtest: P03 cancelled/late/closed payments preserve money and quarantine without reviving order or touching released resources
+ok 16 - P03 cancelled/late/closed payments preserve money and quarantine without reviving order or touching released resources
+  ---
+  duration_ms: 6.1406
+  type: 'test'
+  ...
+# Subtest: P03 damaged resource or order log records money separately and requires reconciliation, without partial confirmation
+ok 17 - P03 damaged resource or order log records money separately and requires reconciliation, without partial confirmation
+  ---
+  duration_ms: 6.4824
+  type: 'test'
+  ...
+# Subtest: P03 damaged original budget preserves valid money but never silently resets counters or applies order
+ok 18 - P03 damaged original budget preserves valid money but never silently resets counters or applies order
+  ---
+  duration_ms: 1.7057
+  type: 'test'
+  ...
+# Subtest: P03 configuration version, owner identity and stale read races cannot bypass bindings or atomicity
+ok 19 - P03 configuration version, owner identity and stale read races cannot bypass bindings or atomicity
+  ---
+  duration_ms: 12.2215
+  type: 'test'
+  ...
+# Subtest: P03 quarantined money duplicates remain quarantined and do not repeatedly consume test budget
+ok 20 - P03 quarantined money duplicates remain quarantined and do not repeatedly consume test budget
+  ---
+  duration_ms: 2.5939
+  type: 'test'
+  ...
+# Subtest: P03 persisted evidence and public result contain no raw body, OpenID, signature, token, contact or key
+ok 21 - P03 persisted evidence and public result contain no raw body, OpenID, signature, token, contact or key
+  ---
+  duration_ms: 1.8865
+  type: 'test'
+  ...
+# Subtest: P03 one external transaction cannot credit two orders; a second transaction on one paid order requires coordination
+ok 22 - P03 one external transaction cannot credit two orders; a second transaction on one paid order requires coordination
+  ---
+  duration_ms: 5.2667
+  type: 'test'
+  ...
+# Subtest: P03 transaction ledger tampering and wrong event roles are rejected rather than trusted on replay
+ok 23 - P03 transaction ledger tampering and wrong event roles are rejected rather than trusted on replay
+  ---
+  duration_ms: 9.2818
+  type: 'test'
+  ...
+# Subtest: P03 second-resolution success time can overlap intent creation in the same second without invented evidence milliseconds
+ok 24 - P03 second-resolution success time can overlap intent creation in the same second without invented evidence milliseconds
+  ---
+  duration_ms: 2.0477
+  type: 'test'
+  ...
+# Subtest: P03 source precision is explicit; stale whole-second and inconsistent precision are not silently coerced
+ok 25 - P03 source precision is explicit; stale whole-second and inconsistent precision are not silently coerced
+  ---
+  duration_ms: 2.6135
+  type: 'test'
+  ...
+# Subtest: P03 every late-money quarantine write failure/zero rolls back financial claim and budget together
+ok 26 - P03 every late-money quarantine write failure/zero rolls back financial claim and budget together
+  ---
+  duration_ms: 20.6105
+  type: 'test'
+  ...
+# Subtest: P03 production notification retains offline boundary with no synthetic test-budget record
+ok 27 - P03 production notification retains offline boundary with no synthetic test-budget record
+  ---
+  duration_ms: 1.6896
+  type: 'test'
+  ...
+# Subtest: P03 selected intent must exactly belong to the complete payment read
+not ok 28 - P03 selected intent must exactly belong to the complete payment read
+  ---
+  duration_ms: 2.8147
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\payment-notification.test.js:233:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'APPLIED'
+    - 'QUARANTINED'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'QUARANTINED'
+  actual: 'APPLIED'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (D:\dinner cook\tests\payment-notification.test.js:239:12)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: P03 payment log and immutable O03 snapshots remain compatible with O06 historical detail
+ok 29 - P03 payment log and immutable O03 snapshots remain compatible with O06 historical detail
+  ---
+  duration_ms: 27.2153
+  type: 'test'
+  ...
+# Subtest: P05 runtime gate stays closed, even after a contract-shaped PAID response
+ok 30 - P05 runtime gate stays closed, even after a contract-shaped PAID response
+  ---
+  duration_ms: 3.0017
+  type: 'test'
+  ...
+# Subtest: P05 requires state read first and sends only order/version/key through planned contracts
+ok 31 - P05 requires state read first and sends only order/version/key through planned contracts
+  ---
+  duration_ms: 1.0042
+  type: 'test'
+  ...
+# Subtest: P05 lost create response never causes an immediate new payment; verified retry reuses the same key
+ok 32 - P05 lost create response never causes an immediate new payment; verified retry reuses the same key
+  ---
+  duration_ms: 0.3794
+  type: 'test'
+  ...
+# Subtest: P05 changed order version uses a new key and rejects a key generator collision
+ok 33 - P05 changed order version uses a new key and rejects a key generator collision
+  ---
+  duration_ms: 0.3544
+  type: 'test'
+  ...
+# Subtest: P05 prepay completion only creates state.get, ignores payment parameters and duplicate completion
+ok 34 - P05 prepay completion only creates state.get, ignores payment parameters and duplicate completion
+  ---
+  duration_ms: 0.2471
+  type: 'test'
+  ...
+# Subtest: P05 client success/cancel/failure callbacks all require reconciliation and cannot mark paid
+ok 35 - P05 client success/cancel/failure callbacks all require reconciliation and cannot mark paid
+  ---
+  duration_ms: 0.3634
+  type: 'test'
+  ...
+# Subtest: P05 PENDING, EXCEPTION or active unknown payment always block another charge
+ok 36 - P05 PENDING, EXCEPTION or active unknown payment always block another charge
+  ---
+  duration_ms: 0.3624
+  type: 'test'
+  ...
+# Subtest: P05 closed intent is not a new unpaid payment opportunity
+ok 37 - P05 closed intent is not a new unpaid payment opportunity
+  ---
+  duration_ms: 0.2476
+  type: 'test'
+  ...
+# Subtest: P05 cancellation and paid/refund recovery never show ordinary purchase success or offer repayment
+ok 38 - P05 cancellation and paid/refund recovery never show ordinary purchase success or offer repayment
+  ---
+  duration_ms: 0.4389
+  type: 'test'
+  ...
+# Subtest: P05 out-of-order queries and lifecycle invalidation ignore old callbacks while preserving retry identity
+ok 39 - P05 out-of-order queries and lifecycle invalidation ignore old callbacks while preserving retry identity
+  ---
+  duration_ms: 0.3698
+  type: 'test'
+  ...
+# Subtest: P05 state version rollback or conflicting same-version response cannot restore an unpaid button
+ok 40 - P05 state version rollback or conflicting same-version response cannot restore an unpaid button
+  ---
+  duration_ms: 0.3322
+  type: 'test'
+  ...
+# Subtest: P05 malformed, wrong-order, offline, private-field or inconsistent amounts never authorize payment
+ok 41 - P05 malformed, wrong-order, offline, private-field or inconsistent amounts never authorize payment
+  ---
+  duration_ms: 0.7508
+  type: 'test'
+  ...
+# Subtest: P05 query failure and repeated failed callbacks keep a recoverable unknown result
+ok 42 - P05 query failure and repeated failed callbacks keep a recoverable unknown result
+  ---
+  duration_ms: 0.174
+  type: 'test'
+  ...
+# Subtest: P05 exact deadline blocks create but does not locally cancel or release funds/resources
+ok 43 - P05 exact deadline blocks create but does not locally cancel or release funds/resources
+  ---
+  duration_ms: 0.1754
+  type: 'test'
+  ...
+# Subtest: P05 passive time refresh closes an expired button and state projection is immutable
+ok 44 - P05 passive time refresh closes an expired button and state projection is immutable
+  ---
+  duration_ms: 0.1443
+  type: 'test'
+  ...
+# Subtest: P05 invalid session/key/time inputs fail without silently generating a new identity
+ok 45 - P05 invalid session/key/time inputs fail without silently generating a new identity
+  ---
+  duration_ms: 0.2827
+  type: 'test'
+  ...
+# Subtest: P05 intent observation can change at the same order version without accepting conflicting order facts
+ok 46 - P05 intent observation can change at the same order version without accepting conflicting order facts
+  ---
+  duration_ms: 0.192
+  type: 'test'
+  ...
+# Subtest: P05 higher order version cannot rewrite fixed amount/deadline or roll back paid/closed funds
+ok 47 - P05 higher order version cannot rewrite fixed amount/deadline or roll back paid/closed funds
+  ---
+  duration_ms: 0.4817
+  type: 'test'
+  ...
+# Subtest: P05 reaching the deadline is latched within a session even if the client clock moves backwards
+ok 48 - P05 reaching the deadline is latched within a session even if the client clock moves backwards
+  ---
+  duration_ms: 0.22
+  type: 'test'
+  ...
+# Subtest: P05 cancelled/completed orders and observed closed intents cannot regress at higher versions
+ok 49 - P05 cancelled/completed orders and observed closed intents cannot regress at higher versions
+  ---
+  duration_ms: 0.317
+  type: 'test'
+  ...
+# Subtest: P05 cumulative refunded funds cannot decrease at a higher order version
+ok 50 - P05 cumulative refunded funds cannot decrease at a higher order version
+  ---
+  duration_ms: 0.1588
+  type: 'test'
+  ...
+# Subtest: P05 closed intent remains observed across intermediate unknown reads and lifecycle invalidation
+not ok 51 - P05 closed intent remains observed across intermediate unknown reads and lifecycle invalidation
+  ---
+  duration_ms: 1.0361
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\payment-session.test.js:155:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'READY_TO_REQUEST'
+    - 'CONFIRMING'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'CONFIRMING'
+  actual: 'READY_TO_REQUEST'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (D:\dinner cook\tests\payment-session.test.js:158:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..51
+# tests 51
+# suites 0
+# pass 49
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 400.1821

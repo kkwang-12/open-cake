@@ -1,0 +1,13 @@
+{
+  "time": "2026-10-08T02:32:53.929Z",
+  "function": "store",
+  "archiveBytes": 7410269,
+  "codeSha256": "d3d782c647639e9f4deef9af9db06459c7563cb676c0089f2c1a102546248ef2",
+  "sdk": [
+    {
+      "version": "4.0.2",
+      "engines": null
+    }
+  ],
+  "runtimeMatches": true
+}

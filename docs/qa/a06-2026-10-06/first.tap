@@ -1,0 +1,194 @@
+TAP version 13
+# Subtest: A06 persists an actual customer pending request, log, audit and receipt without cancellation or fund/resource changes
+ok 1 - A06 persists an actual customer pending request, log, audit and receipt without cancellation or fund/resource changes
+  ---
+  duration_ms: 39.7998
+  type: 'test'
+  ...
+# Subtest: A06 request key replays after service reconstruction and even later review; a second pending request is refused
+ok 2 - A06 request key replays after service reconstruction and even later review; a second pending request is refused
+  ---
+  duration_ms: 20.6868
+  type: 'test'
+  ...
+# Subtest: A06 rejects cancellation explicitly without releasing resources or reserving money, then permits a fresh request
+ok 3 - A06 rejects cancellation explicitly without releasing resources or reserving money, then permits a fresh request
+  ---
+  duration_ms: 14.6257
+  type: 'test'
+  ...
+# Subtest: A06 approved cancellation atomically releases confirmed resources, records review, reserves a partial refund and replays
+ok 4 - A06 approved cancellation atomically releases confirmed resources, records review, reserves a partial refund and replays
+  ---
+  duration_ms: 17.4123
+  type: 'test'
+  ...
+# Subtest: A06 zero-refund approval cancels without inventing a money action; full refund reserves exact remaining balance
+ok 5 - A06 zero-refund approval cancels without inventing a money action; full refund reserves exact remaining balance
+  ---
+  duration_ms: 25.1449
+  type: 'test'
+  ...
+# Subtest: A06 after-making cancellation cannot invent slot return policy; an injected test retention policy keeps consumed stock and slot
+ok 6 - A06 after-making cancellation cannot invent slot return policy; an injected test retention policy keeps consumed stock and slot
+  ---
+  duration_ms: 20.1169
+  type: 'test'
+  ...
+# Subtest: A06 refund-only approval retains fulfillment and historical items, creates exactly one authorized budget intent
+ok 7 - A06 refund-only approval retains fulfillment and historical items, creates exactly one authorized budget intent
+  ---
+  duration_ms: 10.0145
+  type: 'test'
+  ...
+# Subtest: A06 rejects over-refund, stale order/review, cross-order review and raw decision fields
+ok 8 - A06 rejects over-refund, stale order/review, cross-order review and raw decision fields
+  ---
+  duration_ms: 11.2585
+  type: 'test'
+  ...
+# Subtest: A06 request ownership and actual principal enforced before related reads; customers cannot operate admin actions
+ok 9 - A06 request ownership and actual principal enforced before related reads; customers cannot operate admin actions
+  ---
+  duration_ms: 7.4447
+  type: 'test'
+  ...
+# Subtest: A06 reject requires ORDER_OPERATE; approve requires both capabilities in one current grant; refund-only uses REFUND_APPROVE
+ok 10 - A06 reject requires ORDER_OPERATE; approve requires both capabilities in one current grant; refund-only uses REFUND_APPROVE
+  ---
+  duration_ms: 28.1995
+  type: 'test'
+  ...
+# Subtest: A06 serial competing reviews have one outcome and one refund; pending/reviewed record and logs cannot be forged
+ok 11 - A06 serial competing reviews have one outcome and one refund; pending/reviewed record and logs cannot be forged
+  ---
+  duration_ms: 21.2603
+  type: 'test'
+  ...
+# Subtest: A06 original retry first claims an attempt and replays without repeating transport or changing refund budget
+ok 12 - A06 original retry first claims an attempt and replays without repeating transport or changing refund budget
+  ---
+  duration_ms: 15.1139
+  type: 'test'
+  ...
+# Subtest: A06 unknown/in-flight retry uses QUERY and query timeout never creates a second SUBMIT or new number
+ok 13 - A06 unknown/in-flight retry uses QUERY and query timeout never creates a second SUBMIT or new number
+  ---
+  duration_ms: 20.0276
+  type: 'test'
+  ...
+# Subtest: A06 provider-confirmed failure retains reserved amount; authorized retry uses same number and P06 settles only once
+ok 14 - A06 provider-confirmed failure retains reserved amount; authorized retry uses same number and P06 settles only once
+  ---
+  duration_ms: 20.2175
+  type: 'test'
+  ...
+# Subtest: A06 prior approval/retry keys safely replay after settlement, while stale new request fails
+ok 15 - A06 prior approval/retry keys safely replay after settlement, while stale new request fails
+  ---
+  duration_ms: 17.6434
+  type: 'test'
+  ...
+# Subtest: A06 new approval after partial settlement reserves only remaining funds, preserving full ordered logs
+ok 16 - A06 new approval after partial settlement reserves only remaining funds, preserving full ordered logs
+  ---
+  duration_ms: 17.7449
+  type: 'test'
+  ...
+# Subtest: A06 finance reads omit contacts/address/payment credentials/full reasons; audit uses separate AUDIT_READ capability
+ok 17 - A06 finance reads omit contacts/address/payment credentials/full reasons; audit uses separate AUDIT_READ capability
+  ---
+  duration_ms: 16.8607
+  type: 'test'
+  ...
+# Subtest: A06 refunds and audit paginate by signed scoped cursor, tied to grant/actor/filter/content revision
+ok 18 - A06 refunds and audit paginate by signed scoped cursor, tied to grant/actor/filter/content revision
+  ---
+  duration_ms: 19.2772
+  type: 'test'
+  ...
+# Subtest: A06 P07 compensation exceptions map to current same-store entities, omit leases, and never claim recovery completion
+ok 19 - A06 P07 compensation exceptions map to current same-store entities, omit leases, and never claim recovery completion
+  ---
+  duration_ms: 9.3244
+  type: 'test'
+  ...
+# Subtest: A06 denied shop/header reads and current revoked/disabled user block sensitive fetches and replays
+ok 20 - A06 denied shop/header reads and current revoked/disabled user block sensitive fetches and replays
+  ---
+  duration_ms: 16.0647
+  type: 'test'
+  ...
+# Subtest: A06 rejects incomplete, foreign, missing-log, missing-payment/refund/attempt and changed budget snapshots
+ok 21 - A06 rejects incomplete, foreign, missing-log, missing-payment/refund/attempt and changed budget snapshots
+  ---
+  duration_ms: 61.0782
+  type: 'test'
+  ...
+# Subtest: A06 rejects finance/audit scope/duplicates and hides multi-store audit scopes/raw changes
+ok 22 - A06 rejects finance/audit scope/duplicates and hides multi-store audit scopes/raw changes
+  ---
+  duration_ms: 10.9338
+  type: 'test'
+  ...
+# Subtest: A06 receipt reuse/corruption cannot redirect reviews/refunds/attempts, alter original result or bypass current ledger
+ok 23 - A06 receipt reuse/corruption cannot redirect reviews/refunds/attempts, alter original result or bypass current ledger
+  ---
+  duration_ms: 52.4172
+  type: 'test'
+  ...
+# Subtest: A06 every 10-write paid cancellation failure/zero row rolls back resources, review, intent, order, log, audit, receipt
+ok 24 - A06 every 10-write paid cancellation failure/zero row rolls back resources, review, intent, order, log, audit, receipt
+  ---
+  duration_ms: 205.1952
+  type: 'test'
+  ...
+# Subtest: A06 every 5-write request/refund approval and 3-write retry failure position rolls back
+ok 25 - A06 every 5-write request/refund approval and 3-write retry failure position rolls back
+  ---
+  duration_ms: 211.1314
+  type: 'test'
+  ...
+# Subtest: A06 complete read fences preserve role, order, pending-review, attempt/number uniqueness, logs and negative predicates until commit
+not ok 26 - A06 complete read fences preserve role, order, pending-review, attempt/number uniqueness, logs and negative predicates until commit
+  ---
+  duration_ms: 17.0133
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\merchant-resolution.test.js:180:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    2 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 2
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (D:\dinner cook\tests\merchant-resolution.test.js:184:78)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: A06 clock regression, unknown redaction and duplicate platform refund number fail before any commit
+ok 27 - A06 clock regression, unknown redaction and duplicate platform refund number fail before any commit
+  ---
+  duration_ms: 21.8638
+  type: 'test'
+  ...
+# Subtest: A06 PLANNED retry/exception contracts cannot accept client operation/funds/status and do not open callable actions
+ok 28 - A06 PLANNED retry/exception contracts cannot accept client operation/funds/status and do not open callable actions
+  ---
+  duration_ms: 0.3266
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 27
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1131.6572

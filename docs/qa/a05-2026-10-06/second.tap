@@ -1,0 +1,180 @@
+TAP version 13
+# Subtest: A05 config creation is deterministic DRAFT, new sequence, immutable original, atomic audit/receipt, and replay
+ok 1 - A05 config creation is deterministic DRAFT, new sequence, immutable original, atomic audit/receipt, and replay
+  ---
+  duration_ms: 28.1658
+  type: 'test'
+  ...
+# Subtest: A05 draft saves preserve explicit incomplete policies without operational defaults; publication rejects missing fields
+ok 2 - A05 draft saves preserve explicit incomplete policies without operational defaults; publication rejects missing fields
+  ---
+  duration_ms: 9.5253
+  type: 'test'
+  ...
+# Subtest: A05 existing draft edits use CAS; published configuration cannot be edited
+ok 3 - A05 existing draft edits use CAS; published configuration cannot be edited
+  ---
+  duration_ms: 17.2751
+  type: 'test'
+  ...
+# Subtest: A05 publishing changes active pointer and future slot policy atomically, keeps all counters and original config
+ok 4 - A05 publishing changes active pointer and future slot policy atomically, keeps all counters and original config
+  ---
+  duration_ms: 18.4335
+  type: 'test'
+  ...
+# Subtest: A05 explicit banned date closes future occupied slots without reset; reopening remains explicit
+ok 5 - A05 explicit banned date closes future occupied slots without reset; reopening remains explicit
+  ---
+  duration_ms: 31.7944
+  type: 'test'
+  ...
+# Subtest: A05 changed time policy cannot reuse its version; older draft cannot supersede newer publication
+ok 6 - A05 changed time policy cannot reuse its version; older draft cannot supersede newer publication
+  ---
+  duration_ms: 25.8782
+  type: 'test'
+  ...
+# Subtest: A05 slot closure preserves held/confirmed/consumed and independent mode; fixed caps and occupation floor
+ok 7 - A05 slot closure preserves held/confirmed/consumed and independent mode; fixed caps and occupation floor
+  ---
+  duration_ms: 12.2111
+  type: 'test'
+  ...
+# Subtest: A05 store maintenance versions fields, retains private fields, sanitizes audits and replays
+ok 8 - A05 store maintenance versions fields, retains private fields, sanitizes audits and replays
+  ---
+  duration_ms: 11.457
+  type: 'test'
+  ...
+# Subtest: A05 closing store keeps config and resources; reopening needs complete validated current policies
+ok 9 - A05 closing store keeps config and resources; reopening needs complete validated current policies
+  ---
+  duration_ms: 12.7784
+  type: 'test'
+  ...
+# Subtest: A05 map token resolves only through trusted scoped adapter; raw/client/GCJ02 and stale centers are rejected
+ok 10 - A05 map token resolves only through trusted scoped adapter; raw/client/GCJ02 and stale centers are rejected
+  ---
+  duration_ms: 9.5995
+  type: 'test'
+  ...
+# Subtest: A05 address changes invalidate old point and cannot stay OPEN until new configuration/location passes
+ok 11 - A05 address changes invalidate old point and cannot stay OPEN until new configuration/location passes
+  ---
+  duration_ms: 7.4283
+  type: 'test'
+  ...
+# Subtest: A05 complete shape alone cannot approve publication: location/policy/phone verification must succeed
+ok 12 - A05 complete shape alone cannot approve publication: location/policy/phone verification must succeed
+  ---
+  duration_ms: 28.4593
+  type: 'test'
+  ...
+# Subtest: A05 rejects altered V1 capacities, hours, radius/edge/fee/operator, coordinate system and policy extra fields
+ok 13 - A05 rejects altered V1 capacities, hours, radius/edge/fee/operator, coordinate system and policy extra fields
+  ---
+  duration_ms: 40.5428
+  type: 'test'
+  ...
+# Subtest: A05 rejects invalid time override overlap/date/alignment and negative/overflow policy numbers
+ok 14 - A05 rejects invalid time override overlap/date/alignment and negative/overflow policy numbers
+  ---
+  duration_ms: 27.6319
+  type: 'test'
+  ...
+# Subtest: A05 requires current actual A01 CONFIG_WRITE; forged principal, other shop and wrong capability reveal no state
+ok 15 - A05 requires current actual A01 CONFIG_WRITE; forged principal, other shop and wrong capability reveal no state
+  ---
+  duration_ms: 3.7264
+  type: 'test'
+  ...
+# Subtest: A05 disabled/version-changed user and incomplete/wrong-scope state are rejected
+ok 16 - A05 disabled/version-changed user and incomplete/wrong-scope state are rejected
+  ---
+  duration_ms: 13.6155
+  type: 'test'
+  ...
+# Subtest: A05 header/current snapshot mismatch and access-store version mismatch fail
+ok 17 - A05 header/current snapshot mismatch and access-store version mismatch fail
+  ---
+  duration_ms: 7.1567
+  type: 'test'
+  ...
+# Subtest: A05 read projections are scoped and paginated; cursors bind actor, grant, scope and content revision
+ok 18 - A05 read projections are scoped and paginated; cursors bind actor, grant, scope and content revision
+  ---
+  duration_ms: 25.5038
+  type: 'test'
+  ...
+# Subtest: A05 original key conflicts on changed content and replay cannot bypass current revoked authority
+ok 19 - A05 original key conflicts on changed content and replay cannot bypass current revoked authority
+  ---
+  duration_ms: 6.867
+  type: 'test'
+  ...
+# Subtest: A05 replay rejects corrupted audit/receipt expected versions, target, scope, request and hashes
+ok 20 - A05 replay rejects corrupted audit/receipt expected versions, target, scope, request and hashes
+  ---
+  duration_ms: 36.6455
+  type: 'test'
+  ...
+# Subtest: A05 every publication write failure / zero affected row rolls back config, pointer, slots, audit and receipt
+ok 21 - A05 every publication write failure / zero affected row rolls back config, pointer, slots, audit and receipt
+  ---
+  duration_ms: 108.1802
+  type: 'test'
+  ...
+# Subtest: A05 all simple write failure positions roll back store, draft and slot transactions
+ok 22 - A05 all simple write failure positions roll back store, draft and slot transactions
+  ---
+  duration_ms: 81.7651
+  type: 'test'
+  ...
+# Subtest: A05 serial same-version edits produce one success and one conflict without overwriting
+ok 23 - A05 serial same-version edits produce one success and one conflict without overwriting
+  ---
+  duration_ms: 6.506
+  type: 'test'
+  ...
+# Subtest: A05 full read fences cover roles, policy/slot predicates, negative reads and receipt/audit races at commit
+ok 24 - A05 full read fences cover roles, policy/slot predicates, negative reads and receipt/audit races at commit
+  ---
+  duration_ms: 35.1386
+  type: 'test'
+  ...
+# Subtest: A05 invalid or regressing clock cannot commit
+ok 25 - A05 invalid or regressing clock cannot commit
+  ---
+  duration_ms: 8.79
+  type: 'test'
+  ...
+# Subtest: A05 actual O03 old quote is rejected after store edit, config switch or slot closure; historical orders stay identical
+not ok 26 - A05 actual O03 old quote is rejected after store edit, config switch or slot closure; historical orders stay identical
+  ---
+  duration_ms: 46.3756
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\merchant-store.test.js:189:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    The validation function is expected to return "true". Received false
+    
+    Caught error:
+    
+    FulfillmentModelError: SLOT_FULL_OR_CLOSED
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (D:\dinner cook\tests\merchant-store.test.js:200:58)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..26
+# tests 26
+# suites 0
+# pass 25
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 840.5561

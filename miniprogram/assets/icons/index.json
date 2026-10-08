@@ -4,6 +4,81 @@
     {
       "category": "navigation",
       "purpose": "返回与方向",
+      "file": "account-info.svg",
+      "path": "/assets/icons/navigation/account-info.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/navigation/account-info.svg",
+      "sha256": "76481cdeec675889e01d5ad655d5067ded2d7c85b775348644f96e7884bfde95"
+    },
+    {
+      "category": "navigation",
+      "purpose": "返回与方向",
+      "file": "account-location.svg",
+      "path": "/assets/icons/navigation/account-location.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/navigation/account-location.svg",
+      "sha256": "21ea0ce4b6822cf186562137d8517f4085acbfea4b3fde1280ef622f2e61f43b"
+    },
+    {
+      "category": "navigation",
+      "purpose": "返回与方向",
+      "file": "account-orders.svg",
+      "path": "/assets/icons/navigation/account-orders.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/navigation/account-orders.svg",
+      "sha256": "91033e6e83cd813209cdfe67c277a0a9fd5e8ecb42f5a16397870f64973d8f56"
+    },
+    {
+      "category": "navigation",
+      "purpose": "返回与方向",
+      "file": "account-service.svg",
+      "path": "/assets/icons/navigation/account-service.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/navigation/account-service.svg",
+      "sha256": "d48be9fc18d936b35e6a97a136718cd84f9853ad094dbdcd0b7381607486c2bf"
+    },
+    {
+      "category": "navigation",
+      "purpose": "返回与方向",
+      "file": "account-store.svg",
+      "path": "/assets/icons/navigation/account-store.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/navigation/account-store.svg",
+      "sha256": "a76888d9cc3fc0242549b0bcb7ab1ac408f816dbc40bbdd871223c55783a727d"
+    },
+    {
+      "category": "navigation",
+      "purpose": "返回与方向",
       "file": "back.svg",
       "path": "/assets/icons/navigation/back.svg",
       "viewBox": "0 0 24 24",
@@ -15,6 +90,20 @@
       ],
       "source": "design-assets/cake-ui-icons-20261004/back.svg",
       "sha256": "888ebdd851b7e61af93113c941942bf14897af2985836e2f03289564df5eccad"
+    },
+    {
+      "category": "controls",
+      "purpose": "通用操作",
+      "file": "avatar-default.svg",
+      "path": "/assets/icons/controls/avatar-default.svg",
+      "viewBox": "0 0 64 64",
+      "strokeWidths": [],
+      "colors": [
+        "#E7E7E7",
+        "#C6C6C6"
+      ],
+      "source": "miniprogram/assets/icons/controls/avatar-default.svg",
+      "sha256": "e7d2792125e4d6d9b8c28f171ef0a01c2ec647cdd491677251de931b891b0318"
     },
     {
       "category": "controls",
@@ -60,6 +149,21 @@
       ],
       "source": "design-assets/cake-ui-icons-20261004/plus.svg",
       "sha256": "6dc2dc1b6317d9c694531704144fbda6462e968859276c7f0b1c033746aa41fc"
+    },
+    {
+      "category": "controls",
+      "purpose": "通用操作",
+      "file": "settings.svg",
+      "path": "/assets/icons/controls/settings.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/controls/settings.svg",
+      "sha256": "a01643fd0973a6b0e775cb198aa930cc1681294fd67543dffe86469026639f2f"
     },
     {
       "category": "commerce",
@@ -124,6 +228,21 @@
     {
       "category": "product",
       "purpose": "商品与服务",
+      "file": "custom-design.svg",
+      "path": "/assets/icons/product/custom-design.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/product/custom-design.svg",
+      "sha256": "8d81fa1a83637ba1994195fcf60361055d2a11f35b638de755f7db69ca7cf56c"
+    },
+    {
+      "category": "product",
+      "purpose": "商品与服务",
       "file": "gift.svg",
       "path": "/assets/icons/product/gift.svg",
       "viewBox": "0 0 24 24",
@@ -135,6 +254,21 @@
       ],
       "source": "design-assets/cake-ui-icons-20261004/gift.svg",
       "sha256": "2398c936da8e84fcbd147baf84f9510ca0adfc42a1e02002b667e65468041d7e"
+    },
+    {
+      "category": "product",
+      "purpose": "商品与服务",
+      "file": "ingredient-check.svg",
+      "path": "/assets/icons/product/ingredient-check.svg",
+      "viewBox": "0 0 24 24",
+      "strokeWidths": [
+        1.8
+      ],
+      "colors": [
+        "#111111"
+      ],
+      "source": "miniprogram/assets/icons/product/ingredient-check.svg",
+      "sha256": "c152a41bb2f00c98d9db39c43f0057e5ff2f2a933f341ce2cdb6f5bdb70f25f5"
     },
     {
       "category": "product",

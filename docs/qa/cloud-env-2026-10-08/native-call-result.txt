@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "tool": "get_simulator_console",
+  "clientName": "Codex",
+  "result": [
+    "[info]",
+    "JJL_CLOUD_EVIDENCE [{\"name\":\"call-failure\",\"ok\":false,\"code\":\"CLOUD_CALL_FAILED\",\"requestId\":\"client-muyxa4ar-cr2droej\"}]"
+  ]
+}
+

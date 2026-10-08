@@ -1,23 +1,48 @@
 <view class="tab-content {{tabMotion}}">
-<page-header />
-<view class="page">
-  <text class="eyebrow">ACCOUNT</text><view class="display-title">Hello.<view>欢迎来到家家乐。</view></view>
-  <button class="list-row" data-target="orders" bindtap="navigate"><text>ORDERS · 我的订单</text><text>→</text></button>
-  <button class="list-row" data-target="favorites" bindtap="navigate"><text>FAVORITES · 我的收藏</text><text>→</text></button>
-  <button class="list-row" data-target="addresses" bindtap="navigate"><text>ADDRESSES · 配送地址</text><text>→</text></button>
-  <view class="section">
-    <button class="list-row" data-target="service" bindtap="information"><text>CUSTOMER SERVICE · 联系客服</text><text>→</text></button>
-    <button class="list-row" data-target="store" bindtap="information"><text>STORE · 门店信息</text><text>→</text></button>
-    <button class="list-row" data-target="about" bindtap="information"><text>ABOUT · 关于品牌</text><text>→</text></button>
+  <view style="height: calc({{topInset}}px + {{navHeight}}px);" aria-hidden="true" />
+  <view class="page account-page">
+    <view class="account-profile">
+      <image class="account-avatar" src="/assets/icons/controls/avatar-default.svg" mode="aspectFit" aria-label="默认头像" />
+      <view class="account-profile-copy">
+        <view class="account-greeting {{greetingMotion}}" aria-label="你好，欢迎来到 LUNE"><text class="greeting-phrase greeting-hello">你好，</text><text class="greeting-phrase greeting-welcome">欢迎来到</text><text class="greeting-phrase greeting-brand">LUNE</text></view>
+        <text class="account-subtitle">登录后查看订单与收藏</text>
+        <button class="account-login" bindtap="login" hover-class="account-pressed" aria-label="登录或注册">
+          <text class="account-login-pill">登录 / 注册</text>
+        </button>
+      </view>
+    </view>
+    <view class="account-stats">
+      <button class="account-stat" data-target="orders" bindtap="navigate" hover-class="account-pressed" aria-label="我的订单">
+        <text class="account-stat-value">—</text><text class="account-stat-label">我的订单</text>
+      </button>
+      <button class="account-stat" data-target="favorites" bindtap="navigate" hover-class="account-pressed" aria-label="我的收藏">
+        <text class="account-stat-value">—</text><text class="account-stat-label">我的收藏</text>
+      </button>
+      <button class="account-stat" data-target="addresses" bindtap="navigate" hover-class="account-pressed" aria-label="收货地址">
+        <text class="account-stat-value">{{addressCount}}</text><text class="account-stat-label">收货地址</text>
+      </button>
+    </view>
+    <view class="account-birthday-card">
+    <button class="account-birthday" bindtap="birthday" hover-class="account-pressed" aria-label="预约定制生日蛋糕，去选购">
+      <image wx:if="{{!bannerFailed}}" class="account-birthday-image" src="/assets/account/birthday-reference.jpg" mode="aspectFill" binderror="bannerError" />
+      <view wx:if="{{!bannerFailed}}" class="account-birthday-shade" aria-hidden="true" />
+      <view class="account-birthday-copy">
+        <view class="account-birthday-description"><text>专属定制 · 新鲜现做</text><text>让每个重要的日子更甜蜜</text></view>
+        <view class="account-birthday-action"><text>预约定制</text><text aria-hidden="true">→</text></view>
+      </view>
+    </button>
+    <view class="account-birthday-services">
+      <view class="account-birthday-service"><image src="/assets/icons/product/custom-design.svg" mode="aspectFit" /><text>专属设计</text></view>
+      <view class="account-birthday-service"><image src="/assets/icons/product/ingredient-check.svg" mode="aspectFit" /><text>优选食材</text></view>
+      <view class="account-birthday-service"><image src="/assets/icons/fulfillment/delivery-truck.svg" mode="aspectFit" /><text>门店自提/配送</text></view>
+    </view>
+    </view>
+    <view class="account-menu">
+      <button wx:for="{{menus}}" wx:key="target" class="account-menu-row" data-target="{{item.target}}" bindtap="menuAction" hover-class="account-pressed" aria-label="{{item.label}}">
+        <image class="account-menu-icon" src="{{item.icon}}" mode="aspectFit" />
+        <text class="account-menu-label">{{item.label}}</text>
+        <image class="account-menu-arrow" src="/assets/icons/navigation/back.svg" mode="aspectFit" />
+      </button>
+    </view>
   </view>
-  <button class="list-row" data-target="privacy" bindtap="information"><text>隐私与服务说明</text><text>→</text></button>
-  <view wx:if="{{showDevelopment}}" class="section">
-    <text class="eyebrow">开发验证</text>
-    <button class="secondary-action" bindtap="checkCloud" loading="{{busy}}" disabled="{{busy}}">检查身份与服务连通</button>
-    <view wx:if="{{error}}" class="error-note">{{error}}<text class="error-reference">{{requestId}}</text></view>
-    <view wx:if="{{diagnostic}}" class="status-note">{{diagnostic}}<text class="error-reference">{{requestId}}</text></view>
-    <button wx:if="{{legacyEnabled}}" class="list-row" bindtap="legacy"><text>旧预订演示 · 模拟定金与尾款</text><text>→</text></button>
-  </view>
-</view>
-
 </view>

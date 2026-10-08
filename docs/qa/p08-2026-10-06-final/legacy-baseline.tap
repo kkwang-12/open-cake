@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: 200元蛋糕：确认后付60元定金，交付时付140元尾款，完整自取流程
+ok 1 - 200元蛋糕：确认后付60元定金，交付时付140元尾款，完整自取流程
+  ---
+  duration_ms: 37.7126
+  type: 'test'
+  ...
+# Subtest: 免费配送完整流程及线下尾款
+ok 2 - 免费配送完整流程及线下尾款
+  ---
+  duration_ms: 2.9318
+  type: 'test'
+  ...
+# Subtest: 支付失败可重试；相同或不同回调事件均不重复记账
+ok 3 - 支付失败可重试；相同或不同回调事件均不重复记账
+  ---
+  duration_ms: 2.1477
+  type: 'test'
+  ...
+# Subtest: 线下先登记会关闭待付线上尾款；线上先支付阻止线下重复登记
+ok 4 - 线下先登记会关闭待付线上尾款；线上先支付阻止线下重复登记
+  ---
+  duration_ms: 3.5832
+  type: 'test'
+  ...
+# Subtest: 客户不能访问其他客户订单，不能执行任何店员管理操作
+ok 5 - 客户不能访问其他客户订单，不能执行任何店员管理操作
+  ---
+  duration_ms: 1.6106
+  type: 'test'
+  ...
+# Subtest: 禁止越过定金直接制作，拒单需说明且不可付款
+ok 6 - 禁止越过定金直接制作，拒单需说明且不可付款
+  ---
+  duration_ms: 0.8578
+  type: 'test'
+  ...
+# Subtest: 交付日期与营业时段以香港时区校验，拒绝过期和非法日期
+ok 7 - 交付日期与营业时段以香港时区校验，拒绝过期和非法日期
+  ---
+  duration_ms: 2.3849
+  type: 'test'
+  ...
+# Subtest: 配送地址、电话、规格和祝福语校验
+ok 8 - 配送地址、电话、规格和祝福语校验
+  ---
+  duration_ms: 1.4144
+  type: 'test'
+  ...
+# Subtest: 取消申请不自动取消；退款经审核、可失败重试、不可重复退款
+ok 9 - 取消申请不自动取消；退款经审核、可失败重试、不可重复退款
+  ---
+  duration_ms: 2.5524
+  type: 'test'
+  ...
+# Subtest: 取消可不退款；改期只有批准后生效；拒绝申请保留原档期
+ok 10 - 取消可不退款；改期只有批准后生效；拒绝申请保留原档期
+  ---
+  duration_ms: 4.1058
+  type: 'test'
+  ...
+# Subtest: 商品调价与下架不影响既有订单快照；营业设置即时生效
+ok 11 - 商品调价与下架不影响既有订单快照；营业设置即时生效
+  ---
+  duration_ms: 1.6183
+  type: 'test'
+  ...
+# Subtest: 持久化失败时事务回滚，不保留半条订单或收款
+ok 12 - 持久化失败时事务回滚，不保留半条订单或收款
+  ---
+  duration_ms: 0.5022
+  type: 'test'
+  ...
+# Subtest: HTTP：伪造角色无效；客户、其他客户与店员权限隔离
+ok 13 - HTTP：伪造角色无效；客户、其他客户与店员权限隔离
+  ---
+  duration_ms: 215.6628
+  type: 'test'
+  ...
+# Subtest: HTTP：线上付款和线下登记并发，尾款只能记账一次
+ok 14 - HTTP：线上付款和线下登记并发，尾款只能记账一次
+  ---
+  duration_ms: 110.1778
+  type: 'test'
+  ...
+# Subtest: HTTP：错误JSON、跨站请求与重复错误口令被拒绝
+ok 15 - HTTP：错误JSON、跨站请求与重复错误口令被拒绝
+  ---
+  duration_ms: 94.0566
+  type: 'test'
+  ...
+# Subtest: HTTP：演示付款回调不能由其他客户执行，注销后令牌失效
+ok 16 - HTTP：演示付款回调不能由其他客户执行，注销后令牌失效
+  ---
+  duration_ms: 92.894
+  type: 'test'
+  ...
+# Subtest: 保存后重建服务：订单、金额及未过期的演示会话保持
+ok 17 - 保存后重建服务：订单、金额及未过期的演示会话保持
+  ---
+  duration_ms: 143.4135
+  type: 'test'
+  ...
+# Subtest: WXML 回归：微信报错的 HTML 实体运算符必须被检查发现
+ok 18 - WXML 回归：微信报错的 HTML 实体运算符必须被检查发现
+  ---
+  duration_ms: 1.71
+  type: 'test'
+  ...
+# Subtest: WXML 回归：原生逻辑运算符有效，普通文本实体不当作表达式
+ok 19 - WXML 回归：原生逻辑运算符有效，普通文本实体不当作表达式
+  ---
+  duration_ms: 0.2521
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 670.847

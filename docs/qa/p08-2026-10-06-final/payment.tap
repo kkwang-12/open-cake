@@ -1,0 +1,1162 @@
+TAP version 13
+# Subtest: P01 committed example leaves all stages disabled/unselected with no secrets or account claims
+ok 1 - P01 committed example leaves all stages disabled/unselected with no secrets or account claims
+  ---
+  duration_ms: 4.8088
+  type: 'test'
+  ...
+# Subtest: P01 configured shape never claims cloud/account/payment readiness or returns credentials
+ok 2 - P01 configured shape never claims cloud/account/payment readiness or returns credentials
+  ---
+  duration_ms: 3.2002
+  type: 'test'
+  ...
+# Subtest: P01 runtime stage/environment/app binding cannot be redirected or inferred
+ok 3 - P01 runtime stage/environment/app binding cannot be redirected or inferred
+  ---
+  duration_ms: 1.8358
+  type: 'test'
+  ...
+# Subtest: P01 environment IDs cannot be reused between stages including disabled profiles
+ok 4 - P01 environment IDs cannot be reused between stages including disabled profiles
+  ---
+  duration_ms: 0.6451
+  type: 'test'
+  ...
+# Subtest: P01 one payment route per manifest; unknown, multiple, mock and legacy routes are rejected
+ok 5 - P01 one payment route per manifest; unknown, multiple, mock and legacy routes are rejected
+  ---
+  duration_ms: 1.642
+  type: 'test'
+  ...
+# Subtest: P01 no simulate modes or flag can activate production configuration
+ok 6 - P01 no simulate modes or flag can activate production configuration
+  ---
+  duration_ms: 1.4452
+  type: 'test'
+  ...
+# Subtest: P01 DISABLED is explicit and cannot retain active provider/merchant fields
+ok 7 - P01 DISABLED is explicit and cannot retain active provider/merchant fields
+  ---
+  duration_ms: 0.7375
+  type: 'test'
+  ...
+# Subtest: P01 non-production REAL requires a scoped time-bound controlled payment arrangement
+ok 8 - P01 non-production REAL requires a scoped time-bound controlled payment arrangement
+  ---
+  duration_ms: 1.3827
+  type: 'test'
+  ...
+# Subtest: P01 controlled budget/reference requires positive explicit limits, not default pennies or free payments
+ok 9 - P01 controlled budget/reference requires positive explicit limits, not default pennies or free payments
+  ---
+  duration_ms: 1.9555
+  type: 'test'
+  ...
+# Subtest: P01 controlled authorization notBefore inclusive/expiresAt exclusive, no inferred sandbox
+ok 10 - P01 controlled authorization notBefore inclusive/expiresAt exclusive, no inferred sandbox
+  ---
+  duration_ms: 0.9813
+  type: 'test'
+  ...
+# Subtest: P01 production uses release gate and cannot inherit a non-production test authorization
+ok 11 - P01 production uses release gate and cannot inherit a non-production test authorization
+  ---
+  duration_ms: 0.7126
+  type: 'test'
+  ...
+# Subtest: P01 reused configuration requires fresh explicit server time and cannot outlive its real-test arrangement
+ok 12 - P01 reused configuration requires fresh explicit server time and cannot outlive its real-test arrangement
+  ---
+  duration_ms: 0.6192
+  type: 'test'
+  ...
+# Subtest: P01 expired or absent new-charge grants never stop existing-payment reconciliation plans
+ok 13 - P01 expired or absent new-charge grants never stop existing-payment reconciliation plans
+  ---
+  duration_ms: 0.836
+  type: 'test'
+  ...
+# Subtest: P01 secret references bind environment and revision; raw keys/PEM do not fit the schema
+ok 14 - P01 secret references bind environment and revision; raw keys/PEM do not fit the schema
+  ---
+  duration_ms: 0.9894
+  type: 'test'
+  ...
+# Subtest: P01 direct verification separates merchant signature key from WeChat response/notification key
+ok 15 - P01 direct verification separates merchant signature key from WeChat response/notification key
+  ---
+  duration_ms: 0.8271
+  type: 'test'
+  ...
+# Subtest: P01 platform forwarding requires its own authenticated boundary, not event verified flags
+ok 16 - P01 platform forwarding requires its own authenticated boundary, not event verified flags
+  ---
+  duration_ms: 1.1994
+  type: 'test'
+  ...
+# Subtest: P01 callbacks use explicit canonical HTTPS URLs without credentials/query/local endpoints
+ok 17 - P01 callbacks use explicit canonical HTTPS URLs without credentials/query/local endpoints
+  ---
+  duration_ms: 2.1203
+  type: 'test'
+  ...
+# Subtest: P01 platform callback domain/path must match its candidate transport; no guessed raw webhook fallback
+ok 18 - P01 platform callback domain/path must match its candidate transport; no guessed raw webhook fallback
+  ---
+  duration_ms: 0.4802
+  type: 'test'
+  ...
+# Subtest: P01 no test/production callback or integration reuse silently crosses environments
+ok 19 - P01 no test/production callback or integration reuse silently crosses environments
+  ---
+  duration_ms: 0.9907
+  type: 'test'
+  ...
+# Subtest: P01 complete separated profiles can share merchant only with explicit scoped real-test arrangement
+ok 20 - P01 complete separated profiles can share merchant only with explicit scoped real-test arrangement
+  ---
+  duration_ms: 0.5846
+  type: 'test'
+  ...
+# Subtest: P01 operation plans keep number/deadline requirements and never return keys/params or call adapters
+ok 21 - P01 operation plans keep number/deadline requirements and never return keys/params or call adapters
+  ---
+  duration_ms: 1.6216
+  type: 'test'
+  ...
+# Subtest: P01 configuration snapshots immutable; getters/symbols/unknown roots cannot carry unsafe secret values
+ok 22 - P01 configuration snapshots immutable; getters/symbols/unknown roots cannot carry unsafe secret values
+  ---
+  duration_ms: 0.7345
+  type: 'test'
+  ...
+# Subtest: P01 fixed configuration errors contain no merchant material, raw URLs, PEM or nested input
+ok 23 - P01 fixed configuration errors contain no merchant material, raw URLs, PEM or nested input
+  ---
+  duration_ms: 0.37
+  type: 'test'
+  ...
+# Subtest: P01 current app remains shell/unconfigured with payment routes outside client allowlist and deployment
+ok 24 - P01 current app remains shell/unconfigured with payment routes outside client allowlist and deployment
+  ---
+  duration_ms: 10.1919
+  type: 'test'
+  ...
+# Subtest: P02 trusted order creates one frozen offline intent; no invocation, money or order/resource changes
+ok 25 - P02 trusted order creates one frozen offline intent; no invocation, money or order/resource changes
+  ---
+  duration_ms: 23.7174
+  type: 'test'
+  ...
+# Subtest: P02 independent random merchant number meets external length and never truncates internal order digest
+ok 26 - P02 independent random merchant number meets external length and never truncates internal order digest
+  ---
+  duration_ms: 4.5525
+  type: 'test'
+  ...
+# Subtest: P02 request whitelist rejects amount, owner, number, provider and arbitrary action injection without writes
+ok 27 - P02 request whitelist rejects amount, owner, number, provider and arbitrary action injection without writes
+  ---
+  duration_ms: 5.521
+  type: 'test'
+  ...
+# Subtest: P02 other owner, forged principal and current user revocation are rejected
+ok 28 - P02 other owner, forged principal and current user revocation are rejected
+  ---
+  duration_ms: 1.9544
+  type: 'test'
+  ...
+# Subtest: P02 cancelled and paid orders cannot create or replay usable payment parameters
+ok 29 - P02 cancelled and paid orders cannot create or replay usable payment parameters
+  ---
+  duration_ms: 7.4635
+  type: 'test'
+  ...
+# Subtest: P02 expected version and reused key with different parameters reject; replay can recover after order version changes
+ok 30 - P02 expected version and reused key with different parameters reject; replay can recover after order version changes
+  ---
+  duration_ms: 13.1357
+  type: 'test'
+  ...
+# Subtest: P02 same-key and different-key parallel clicks reuse one pending intent and charge budget once
+ok 31 - P02 same-key and different-key parallel clicks reuse one pending intent and charge budget once
+  ---
+  duration_ms: 4.0149
+  type: 'test'
+  ...
+# Subtest: P02 prepare response loss and service reconstruction recover same durable intent
+ok 32 - P02 prepare response loss and service reconstruction recover same durable intent
+  ---
+  duration_ms: 3.6003
+  type: 'test'
+  ...
+# Subtest: P02 all three preparation writes throw/zero roll back intent, budget and receipt
+ok 33 - P02 all three preparation writes throw/zero roll back intent, budget and receipt
+  ---
+  duration_ms: 16.0914
+  type: 'test'
+  ...
+# Subtest: P02 one-time durable dispatch claim; parallel claim and later retries only require query
+ok 34 - P02 one-time durable dispatch claim; parallel claim and later retries only require query
+  ---
+  duration_ms: 6.8961
+  type: 'test'
+  ...
+# Subtest: P02 dispatch response loss, restart and unknown result never authorize a second send or new number
+ok 35 - P02 dispatch response loss, restart and unknown result never authorize a second send or new number
+  ---
+  duration_ms: 3.9521
+  type: 'test'
+  ...
+# Subtest: P02 dispatch write failure/zero rolls back claim, permitting safe first claim only
+ok 36 - P02 dispatch write failure/zero rolls back claim, permitting safe first claim only
+  ---
+  duration_ms: 6.6008
+  type: 'test'
+  ...
+# Subtest: P02 exact deadline and minimum window plus explicit dispatch margin never extend resources
+ok 37 - P02 exact deadline and minimum window plus explicit dispatch margin never extend resources
+  ---
+  duration_ms: 2.9618
+  type: 'test'
+  ...
+# Subtest: P02 time consumed before dispatch commit rolls claim back and keeps original deadline
+ok 38 - P02 time consumed before dispatch commit rolls claim back and keeps original deadline
+  ---
+  duration_ms: 2.1908
+  type: 'test'
+  ...
+# Subtest: P02 existing requested payment remains queryable past deadline and controlled authorization expiry
+ok 39 - P02 existing requested payment remains queryable past deadline and controlled authorization expiry
+  ---
+  duration_ms: 3.7827
+  type: 'test'
+  ...
+# Subtest: P02 absent cloud/config, expired real-test grant and changed original configuration never dispatch
+ok 40 - P02 absent cloud/config, expired real-test grant and changed original configuration never dispatch
+  ---
+  duration_ms: 6.8743
+  type: 'test'
+  ...
+# Subtest: P02 real-test budget rejects amount/count exhaustion and corrupt grant binding without writes
+ok 41 - P02 real-test budget rejects amount/count exhaustion and corrupt grant binding without writes
+  ---
+  duration_ms: 3.9037
+  type: 'test'
+  ...
+# Subtest: P02 dispatch requires this intent original budget reservation and grant fingerprint
+ok 42 - P02 dispatch requires this intent original budget reservation and grant fingerprint
+  ---
+  duration_ms: 3.9294
+  type: 'test'
+  ...
+# Subtest: P02 invalid/colliding merchant numbers fail without orphan budget or second intent
+ok 43 - P02 invalid/colliding merchant numbers fail without orphan budget or second intent
+  ---
+  duration_ms: 1.9786
+  type: 'test'
+  ...
+# Subtest: P02 corrupt/duplicate pending facts and missing/mismatched HELD evidence reject
+ok 44 - P02 corrupt/duplicate pending facts and missing/mismatched HELD evidence reject
+  ---
+  duration_ms: 9.5204
+  type: 'test'
+  ...
+# Subtest: P02 read-set fences protect revocation, order/cancellation, resource and configuration races
+ok 45 - P02 read-set fences protect revocation, order/cancellation, resource and configuration races
+  ---
+  duration_ms: 3.8026
+  type: 'test'
+  ...
+# Subtest: P02 unresolved intent prevents O05 no-payment cancellation and resource release
+ok 46 - P02 unresolved intent prevents O05 no-payment cancellation and resource release
+  ---
+  duration_ms: 0.9181
+  type: 'test'
+  ...
+# Subtest: P02 production preparation retains release/actual-provider gates, without test-budget defaults
+ok 47 - P02 production preparation retains release/actual-provider gates, without test-budget defaults
+  ---
+  duration_ms: 1.5783
+  type: 'test'
+  ...
+# Subtest: P02 authorization expiry at prepare commit rolls all reservation writes back
+ok 48 - P02 authorization expiry at prepare commit rolls all reservation writes back
+  ---
+  duration_ms: 0.889
+  type: 'test'
+  ...
+# Subtest: P02 unknown external state remains pending even if a caller supplies client success data
+ok 49 - P02 unknown external state remains pending even if a caller supplies client success data
+  ---
+  duration_ms: 1.8801
+  type: 'test'
+  ...
+# Subtest: P02 different orders compete for one durable real-test budget transaction
+ok 50 - P02 different orders compete for one durable real-test budget transaction
+  ---
+  duration_ms: 1.7047
+  type: 'test'
+  ...
+# Subtest: P02 prepared intent past its deadline only requests query and never creates another intent
+ok 51 - P02 prepared intent past its deadline only requests query and never creates another intent
+  ---
+  duration_ms: 1.9488
+  type: 'test'
+  ...
+# Subtest: P02 closed/exception summaries require P04 coordination before any replacement intent
+ok 52 - P02 closed/exception summaries require P04 coordination before any replacement intent
+  ---
+  duration_ms: 3.4952
+  type: 'test'
+  ...
+# Subtest: P02 external 15-day limit floors expiry without changing the longer original order deadline
+ok 53 - P02 external 15-day limit floors expiry without changing the longer original order deadline
+  ---
+  duration_ms: 0.9312
+  type: 'test'
+  ...
+# Subtest: P02 corrupt over-limit current budget blocks dispatch without modifying prior reservation
+ok 54 - P02 corrupt over-limit current budget blocks dispatch without modifying prior reservation
+  ---
+  duration_ms: 2.1505
+  type: 'test'
+  ...
+# Subtest: P02 dispatch validates every payment row, including malformed closed history
+ok 55 - P02 dispatch validates every payment row, including malformed closed history
+  ---
+  duration_ms: 1.7827
+  type: 'test'
+  ...
+# Subtest: P07 trusted complete scan selects queries/reviews without generating payment or refund submits
+ok 56 - P07 trusted complete scan selects queries/reviews without generating payment or refund submits
+  ---
+  duration_ms: 4.238
+  type: 'test'
+  ...
+# Subtest: P07 invalid/incomplete/cross-environment scan or stale entity cannot create a job
+ok 57 - P07 invalid/incomplete/cross-environment scan or stale entity cannot create a job
+  ---
+  duration_ms: 2.7448
+  type: 'test'
+  ...
+# Subtest: P07 duplicate discovery and service restart preserve a single job
+ok 58 - P07 duplicate discovery and service restart preserve a single job
+  ---
+  duration_ms: 3.2159
+  type: 'test'
+  ...
+# Subtest: P07 parallel workers only acquire one active lease
+ok 59 - P07 parallel workers only acquire one active lease
+  ---
+  duration_ms: 2.2631
+  type: 'test'
+  ...
+# Subtest: P07 expired lease can be reclaimed and old worker cannot acknowledge new work
+ok 60 - P07 expired lease can be reclaimed and old worker cannot acknowledge new work
+  ---
+  duration_ms: 3.5749
+  type: 'test'
+  ...
+# Subtest: P07 retry delay is honored without releasing payment/refund resources
+ok 61 - P07 retry delay is honored without releasing payment/refund resources
+  ---
+  duration_ms: 2.2262
+  type: 'test'
+  ...
+# Subtest: P07 exhausted retries require an operator; replay never sends duplicate alerts
+ok 62 - P07 exhausted retries require an operator; replay never sends duplicate alerts
+  ---
+  duration_ms: 6.3747
+  type: 'test'
+  ...
+# Subtest: P07 old unresolved jobs generate one long-unresolved requirement with no personal data
+ok 63 - P07 old unresolved jobs generate one long-unresolved requirement with no personal data
+  ---
+  duration_ms: 6.6499
+  type: 'test'
+  ...
+# Subtest: P07 response lost after claim has one lease and cannot dispatch another worker immediately
+ok 64 - P07 response lost after claim has one lease and cannot dispatch another worker immediately
+  ---
+  duration_ms: 2.7996
+  type: 'test'
+  ...
+# Subtest: P07 response lost after resolution is recoverable by inspecting the terminal job
+ok 65 - P07 response lost after resolution is recoverable by inspecting the terminal job
+  ---
+  duration_ms: 1.3582
+  type: 'test'
+  ...
+# Subtest: P07 job/alert transaction failures or zero writes roll back together
+ok 66 - P07 job/alert transaction failures or zero writes roll back together
+  ---
+  duration_ms: 7.6747
+  type: 'test'
+  ...
+# Subtest: P07 scheduler authority, result identity and read-set conflicts cannot be forged
+ok 67 - P07 scheduler authority, result identity and read-set conflicts cannot be forged
+  ---
+  duration_ms: 1.0392
+  type: 'test'
+  ...
+# Subtest: P07 matching complete statements persist one report even across replays or row order changes
+ok 68 - P07 matching complete statements persist one report even across replays or row order changes
+  ---
+  duration_ms: 1.8345
+  type: 'test'
+  ...
+# Subtest: P07 discrepancies persist hashed findings and an unsent operator requirement
+ok 69 - P07 discrepancies persist hashed findings and an unsent operator requirement
+  ---
+  duration_ms: 1.0708
+  type: 'test'
+  ...
+# Subtest: P07 missing local/provider rows and status mismatches are distinguished
+ok 70 - P07 missing local/provider rows and status mismatches are distinguished
+  ---
+  duration_ms: 1.154
+  type: 'test'
+  ...
+# Subtest: P07 incomplete ranges, unauthenticated or cross-scope statements cannot claim a matched ledger
+ok 71 - P07 incomplete ranges, unauthenticated or cross-scope statements cannot claim a matched ledger
+  ---
+  duration_ms: 1.3146
+  type: 'test'
+  ...
+# Subtest: P07 a missing or mismatched local scope cannot claim matching ledger contents
+ok 72 - P07 a missing or mismatched local scope cannot claim matching ledger contents
+  ---
+  duration_ms: 2.6942
+  type: 'test'
+  ...
+# Subtest: P07 duplicate or invalid money rows are rejected without suppressing discrepancies
+ok 73 - P07 duplicate or invalid money rows are rejected without suppressing discrepancies
+  ---
+  duration_ms: 2.5586
+  type: 'test'
+  ...
+# Subtest: P07 mismatch report and alert each fail atomically, without touching a financial ledger
+ok 74 - P07 mismatch report and alert each fail atomically, without touching a financial ledger
+  ---
+  duration_ms: 6.8618
+  type: 'test'
+  ...
+# Subtest: P07 policy is explicit and expired/equal-boundary leases cannot acknowledge results
+ok 75 - P07 policy is explicit and expired/equal-boundary leases cannot acknowledge results
+  ---
+  duration_ms: 1.028
+  type: 'test'
+  ...
+# Subtest: P07 mismatched provider identity and duplicated successful transaction cannot appear matched
+ok 76 - P07 mismatched provider identity and duplicated successful transaction cannot appear matched
+  ---
+  duration_ms: 0.9089
+  type: 'test'
+  ...
+# Subtest: P07 reordered normalized rows yield the same deterministic report across local/provider order
+ok 77 - P07 reordered normalized rows yield the same deterministic report across local/provider order
+  ---
+  duration_ms: 0.5202
+  type: 'test'
+  ...
+# Subtest: P07 lease expiry during transaction writes rolls back acknowledgement and claim
+ok 78 - P07 lease expiry during transaction writes rolls back acknowledgement and claim
+  ---
+  duration_ms: 3.3498
+  type: 'test'
+  ...
+# Subtest: P07 run history and terminal job are atomic and carry a safe stable request reference
+ok 79 - P07 run history and terminal job are atomic and carry a safe stable request reference
+  ---
+  duration_ms: 4.0299
+  type: 'test'
+  ...
+# Subtest: P03 authenticated matching evidence atomically confirms both fulfillment modes and all resources
+ok 80 - P03 authenticated matching evidence atomically confirms both fulfillment modes and all resources
+  ---
+  duration_ms: 43.8217
+  type: 'test'
+  ...
+# Subtest: P03 both candidate source methods are explicit and cannot substitute each other
+ok 81 - P03 both candidate source methods are explicit and cannot substitute each other
+  ---
+  duration_ms: 9.6274
+  type: 'test'
+  ...
+# Subtest: P03 fake source and verified flags are rejected durably without poisoning genuine event IDs
+ok 82 - P03 fake source and verified flags are rejected durably without poisoning genuine event IDs
+  ---
+  duration_ms: 8.7768
+  type: 'test'
+  ...
+# Subtest: P03 model proof tokens cannot be forged, JSON copied, or transferred to another boundary
+ok 83 - P03 model proof tokens cannot be forged, JSON copied, or transferred to another boundary
+  ---
+  duration_ms: 0.918
+  type: 'test'
+  ...
+# Subtest: P03 verifier unavailability gives fixed retryable error and writes no rejection/money
+ok 84 - P03 verifier unavailability gives fixed retryable error and writes no rejection/money
+  ---
+  duration_ms: 3.5811
+  type: 'test'
+  ...
+# Subtest: P03 unsafe input/getters and over-limit notification fail before authentication or money writes
+ok 85 - P03 unsafe input/getters and over-limit notification fail before authentication or money writes
+  ---
+  duration_ms: 2.6766
+  type: 'test'
+  ...
+# Subtest: P03 mismatched merchant/app/environment/amount/currency/payer/out-number are quarantined with no order or resource credit
+ok 86 - P03 mismatched merchant/app/environment/amount/currency/payer/out-number are quarantined with no order or resource credit
+  ---
+  duration_ms: 20.9229
+  type: 'test'
+  ...
+# Subtest: P03 missing critical fields/non-success/future and pre-intent times cannot become paid
+ok 87 - P03 missing critical fields/non-success/future and pre-intent times cannot become paid
+  ---
+  duration_ms: 14.8254
+  type: 'test'
+  ...
+# Subtest: P03 exact event replay and different event IDs for one transaction cannot double-credit
+ok 88 - P03 exact event replay and different event IDs for one transaction cannot double-credit
+  ---
+  duration_ms: 7.8156
+  type: 'test'
+  ...
+# Subtest: P03 same event ID with conflicting facts appends immutable conflict once, preserving first payment
+ok 89 - P03 same event ID with conflicting facts appends immutable conflict once, preserving first payment
+  ---
+  duration_ms: 6.5989
+  type: 'test'
+  ...
+# Subtest: P03 wrong financial facts for one transaction cannot later be silently replaced by another event
+ok 90 - P03 wrong financial facts for one transaction cannot later be silently replaced by another event
+  ---
+  duration_ms: 3.9473
+  type: 'test'
+  ...
+# Subtest: P03 parallel same/different event IDs and response loss converge to one credit after service restart
+ok 91 - P03 parallel same/different event IDs and response loss converge to one credit after service restart
+  ---
+  duration_ms: 8.3902
+  type: 'test'
+  ...
+# Subtest: P03 every normal write failure or zero-row result rolls event, transaction, money, order, budget and resources back
+ok 92 - P03 every normal write failure or zero-row result rolls event, transaction, money, order, budget and resources back
+  ---
+  duration_ms: 79.996
+  type: 'test'
+  ...
+# Subtest: P03 disabled current customer and expired new-payment grant do not lose already-paid financial evidence
+ok 93 - P03 disabled current customer and expired new-payment grant do not lose already-paid financial evidence
+  ---
+  duration_ms: 3.3426
+  type: 'test'
+  ...
+# Subtest: P03 receipt after deadline can confirm an on-time payment while HELD resources still exist
+ok 94 - P03 receipt after deadline can confirm an on-time payment while HELD resources still exist
+  ---
+  duration_ms: 2.7499
+  type: 'test'
+  ...
+# Subtest: P03 cancelled/late/closed payments preserve money and quarantine without reviving order or touching released resources
+ok 95 - P03 cancelled/late/closed payments preserve money and quarantine without reviving order or touching released resources
+  ---
+  duration_ms: 7.8502
+  type: 'test'
+  ...
+# Subtest: P03 damaged resource or order log records money separately and requires reconciliation, without partial confirmation
+ok 96 - P03 damaged resource or order log records money separately and requires reconciliation, without partial confirmation
+  ---
+  duration_ms: 8.2896
+  type: 'test'
+  ...
+# Subtest: P03 damaged original budget preserves valid money but never silently resets counters or applies order
+ok 97 - P03 damaged original budget preserves valid money but never silently resets counters or applies order
+  ---
+  duration_ms: 3.408
+  type: 'test'
+  ...
+# Subtest: P03 configuration version, owner identity and stale read races cannot bypass bindings or atomicity
+ok 98 - P03 configuration version, owner identity and stale read races cannot bypass bindings or atomicity
+  ---
+  duration_ms: 17.7102
+  type: 'test'
+  ...
+# Subtest: P03 quarantined money duplicates remain quarantined and do not repeatedly consume test budget
+ok 99 - P03 quarantined money duplicates remain quarantined and do not repeatedly consume test budget
+  ---
+  duration_ms: 4.1174
+  type: 'test'
+  ...
+# Subtest: P03 persisted evidence and public result contain no raw body, OpenID, signature, token, contact or key
+ok 100 - P03 persisted evidence and public result contain no raw body, OpenID, signature, token, contact or key
+  ---
+  duration_ms: 3.3272
+  type: 'test'
+  ...
+# Subtest: P03 one external transaction cannot credit two orders; a second transaction on one paid order requires coordination
+ok 101 - P03 one external transaction cannot credit two orders; a second transaction on one paid order requires coordination
+  ---
+  duration_ms: 6.1721
+  type: 'test'
+  ...
+# Subtest: P03 transaction ledger tampering and wrong event roles are rejected rather than trusted on replay
+ok 102 - P03 transaction ledger tampering and wrong event roles are rejected rather than trusted on replay
+  ---
+  duration_ms: 10.904
+  type: 'test'
+  ...
+# Subtest: P03 second-resolution success time can overlap intent creation in the same second without invented evidence milliseconds
+ok 103 - P03 second-resolution success time can overlap intent creation in the same second without invented evidence milliseconds
+  ---
+  duration_ms: 2.3614
+  type: 'test'
+  ...
+# Subtest: P03 source precision is explicit; stale whole-second and inconsistent precision are not silently coerced
+ok 104 - P03 source precision is explicit; stale whole-second and inconsistent precision are not silently coerced
+  ---
+  duration_ms: 3.1501
+  type: 'test'
+  ...
+# Subtest: P03 every late-money quarantine write failure/zero rolls back financial claim and budget together
+ok 105 - P03 every late-money quarantine write failure/zero rolls back financial claim and budget together
+  ---
+  duration_ms: 21.5685
+  type: 'test'
+  ...
+# Subtest: P03 production notification retains offline boundary with no synthetic test-budget record
+ok 106 - P03 production notification retains offline boundary with no synthetic test-budget record
+  ---
+  duration_ms: 1.9921
+  type: 'test'
+  ...
+# Subtest: P03 selected intent must exactly belong to the complete payment read
+ok 107 - P03 selected intent must exactly belong to the complete payment read
+  ---
+  duration_ms: 4.7326
+  type: 'test'
+  ...
+# Subtest: P03 payment log and immutable O03 snapshots remain compatible with O06 historical detail
+ok 108 - P03 payment log and immutable O03 snapshots remain compatible with O06 historical detail
+  ---
+  duration_ms: 27.5605
+  type: 'test'
+  ...
+# Subtest: P04 query success recovers a missing notification atomically in both fulfillment modes
+ok 109 - P04 query success recovers a missing notification atomically in both fulfillment modes
+  ---
+  duration_ms: 44.285
+  type: 'test'
+  ...
+# Subtest: P04 query/notification in either order share the merchant transaction guard and credit once
+ok 110 - P04 query/notification in either order share the merchant transaction guard and credit once
+  ---
+  duration_ms: 16.4435
+  type: 'test'
+  ...
+# Subtest: P04 query repeat/parallel delivery/response loss and new service do not repeat money writes
+ok 111 - P04 query repeat/parallel delivery/response loss and new service do not repeat money writes
+  ---
+  duration_ms: 11.6994
+  type: 'test'
+  ...
+# Subtest: P04 callers cannot mint recovery authority or provider evidence with flags or JSON copies
+ok 112 - P04 callers cannot mint recovery authority or provider evidence with flags or JSON copies
+  ---
+  duration_ms: 3.9718
+  type: 'test'
+  ...
+# Subtest: P04 source size/getter guards fail before invoking verification
+ok 113 - P04 source size/getter guards fail before invoking verification
+  ---
+  duration_ms: 3.722
+  type: 'test'
+  ...
+# Subtest: P04 request binding/operation/provider method/merchant/number/config mismatches cannot apply money
+ok 114 - P04 request binding/operation/provider method/merchant/number/config mismatches cannot apply money
+  ---
+  duration_ms: 22.4074
+  type: 'test'
+  ...
+# Subtest: P04 wrong amount/payer/currency query preserves quarantine evidence without order credit
+ok 115 - P04 wrong amount/payer/currency query preserves quarantine evidence without order credit
+  ---
+  duration_ms: 13.6984
+  type: 'test'
+  ...
+# Subtest: P04 same correlated query cannot replace its immutable response with conflicting facts
+ok 116 - P04 same correlated query cannot replace its immutable response with conflicting facts
+  ---
+  duration_ms: 4.1459
+  type: 'test'
+  ...
+# Subtest: P04 NOTPAY and unknown results preserve holds/budget and cannot authorize cancellation
+ok 117 - P04 NOTPAY and unknown results preserve holds/budget and cannot authorize cancellation
+  ---
+  duration_ms: 7.5055
+  type: 'test'
+  ...
+# Subtest: P04 close requires fresh unpaid evidence and explicit cancellation/expiry basis
+ok 118 - P04 close requires fresh unpaid evidence and explicit cancellation/expiry basis
+  ---
+  duration_ms: 6.0677
+  type: 'test'
+  ...
+# Subtest: P04 same close basis is dispatched at most once, including preparation response loss
+ok 119 - P04 same close basis is dispatched at most once, including preparation response loss
+  ---
+  duration_ms: 3.7392
+  type: 'test'
+  ...
+# Subtest: P04 close ACK/already-paid/unknown never claims closure, refund or released resources
+ok 120 - P04 close ACK/already-paid/unknown never claims closure, refund or released resources
+  ---
+  duration_ms: 11.946
+  type: 'test'
+  ...
+# Subtest: P04 authoritative closed query updates payment/summary/log/budget then O05 releases once
+ok 121 - P04 authoritative closed query updates payment/summary/log/budget then O05 releases once
+  ---
+  duration_ms: 9.8216
+  type: 'test'
+  ...
+# Subtest: P04 timeout expiry uses a trusted closed query and exact deadline before O05 release
+ok 122 - P04 timeout expiry uses a trusted closed query and exact deadline before O05 release
+  ---
+  duration_ms: 6.5731
+  type: 'test'
+  ...
+# Subtest: P04 malformed CLOSED/NOTPAY totals/result/transaction are never closure authority
+ok 123 - P04 malformed CLOSED/NOTPAY totals/result/transaction are never closure authority
+  ---
+  duration_ms: 14.6412
+  type: 'test'
+  ...
+# Subtest: P04 pending queries cannot downgrade a concurrent notification success or reuse stale close basis
+ok 124 - P04 pending queries cannot downgrade a concurrent notification success or reuse stale close basis
+  ---
+  duration_ms: 8.8088
+  type: 'test'
+  ...
+# Subtest: P04 all 11 query-success write positions abort wholly on exception or zero-row
+ok 125 - P04 all 11 query-success write positions abort wholly on exception or zero-row
+  ---
+  duration_ms: 76.8308
+  type: 'test'
+  ...
+# Subtest: P04 close preparation and all five authoritative-closure writes are atomic
+ok 126 - P04 close preparation and all five authoritative-closure writes are atomic
+  ---
+  duration_ms: 32.7881
+  type: 'test'
+  ...
+# Subtest: P04 close budgets cannot be reset or released without the original trusted authorization
+ok 127 - P04 close budgets cannot be reset or released without the original trusted authorization
+  ---
+  duration_ms: 2.3709
+  type: 'test'
+  ...
+# Subtest: P04 late query funds release held resources and reserve one full refund without executing it
+ok 128 - P04 late query funds release held resources and reserve one full refund without executing it
+  ---
+  duration_ms: 7.9624
+  type: 'test'
+  ...
+# Subtest: P04 payment after trusted closure/cancellation keeps cancellation and refunds released-budget funds once
+ok 129 - P04 payment after trusted closure/cancellation keeps cancellation and refunds released-budget funds once
+  ---
+  duration_ms: 5.084
+  type: 'test'
+  ...
+# Subtest: P04 repeated/parallel/restarted compensation and lost response reserve only one refund
+ok 130 - P04 repeated/parallel/restarted compensation and lost response reserve only one refund
+  ---
+  duration_ms: 6.824
+  type: 'test'
+  ...
+# Subtest: P04 all 10 late-pending compensation writes roll back on exception/zero-row
+ok 131 - P04 all 10 late-pending compensation writes roll back on exception/zero-row
+  ---
+  duration_ms: 77.7647
+  type: 'test'
+  ...
+# Subtest: P04 funds with amount/resource/log/budget anomalies cannot auto-authorize a refund
+ok 132 - P04 funds with amount/resource/log/budget anomalies cannot auto-authorize a refund
+  ---
+  duration_ms: 12.3209
+  type: 'test'
+  ...
+# Subtest: P04 cancelled compensation cannot reserve more than the original funds or another refund intent
+ok 133 - P04 cancelled compensation cannot reserve more than the original funds or another refund intent
+  ---
+  duration_ms: 4.6878
+  type: 'test'
+  ...
+# Subtest: P04 read fences reject order/payment/budget/role/config changes before commit
+ok 134 - P04 read fences reject order/payment/budget/role/config changes before commit
+  ---
+  duration_ms: 12.6637
+  type: 'test'
+  ...
+# Subtest: P04 existing funds recover after user disable and new-test authorization expiry
+ok 135 - P04 existing funds recover after user disable and new-test authorization expiry
+  ---
+  duration_ms: 2.6005
+  type: 'test'
+  ...
+# Subtest: P04 production omits test budgets and both provider candidates keep false execution flags
+ok 136 - P04 production omits test budgets and both provider candidates keep false execution flags
+  ---
+  duration_ms: 5.4973
+  type: 'test'
+  ...
+# Subtest: P04 recovery records/output omit raw messages/payer OPENID/credentials and no SDK executor is present
+ok 137 - P04 recovery records/output omit raw messages/payer OPENID/credentials and no SDK executor is present
+  ---
+  duration_ms: 2.9724
+  type: 'test'
+  ...
+# Subtest: P04 closing a PREPARED intent blocks its first prepay dispatch until recovery
+ok 138 - P04 closing a PREPARED intent blocks its first prepay dispatch until recovery
+  ---
+  duration_ms: 3.5069
+  type: 'test'
+  ...
+# Subtest: P04 released test budget exhausted by later intents preserves new late funds for review without overspending
+ok 139 - P04 released test budget exhausted by later intents preserves new late funds for review without overspending
+  ---
+  duration_ms: 4.7198
+  type: 'test'
+  ...
+# Subtest: P04 concurrent close query and payment notification converge to funds, with compensation when closed won
+ok 140 - P04 concurrent close query and payment notification converge to funds, with compensation when closed won
+  ---
+  duration_ms: 9.2735
+  type: 'test'
+  ...
+# Subtest: P04 a new verified unpaid query after uncertain close can prepare a new close, without resending old request
+ok 141 - P04 a new verified unpaid query after uncertain close can prepare a new close, without resending old request
+  ---
+  duration_ms: 3.8928
+  type: 'test'
+  ...
+# Subtest: P04 corruption of request/observation/guard/compensation/refund cannot make replay bypass validation
+ok 142 - P04 corruption of request/observation/guard/compensation/refund cannot make replay bypass validation
+  ---
+  duration_ms: 14.2609
+  type: 'test'
+  ...
+# Subtest: P04 cancelled-order compensation has six writes and every failure/zero rolls back entirely
+ok 143 - P04 cancelled-order compensation has six writes and every failure/zero rolls back entirely
+  ---
+  duration_ms: 51.921
+  type: 'test'
+  ...
+# Subtest: P04 two unpaid intents require both authoritative closed results before the order can release
+ok 144 - P04 two unpaid intents require both authoritative closed results before the order can release
+  ---
+  duration_ms: 3.1576
+  type: 'test'
+  ...
+# Subtest: P04 historical O03 details read closed/late-refund logs without exposing private financial identifiers
+ok 145 - P04 historical O03 details read closed/late-refund logs without exposing private financial identifiers
+  ---
+  duration_ms: 36.7202
+  type: 'test'
+  ...
+# Subtest: P05 runtime gate stays closed, even after a contract-shaped PAID response
+ok 146 - P05 runtime gate stays closed, even after a contract-shaped PAID response
+  ---
+  duration_ms: 4.8351
+  type: 'test'
+  ...
+# Subtest: P05 requires state read first and sends only order/version/key through planned contracts
+ok 147 - P05 requires state read first and sends only order/version/key through planned contracts
+  ---
+  duration_ms: 2.85
+  type: 'test'
+  ...
+# Subtest: P05 lost create response never causes an immediate new payment; verified retry reuses the same key
+ok 148 - P05 lost create response never causes an immediate new payment; verified retry reuses the same key
+  ---
+  duration_ms: 0.729
+  type: 'test'
+  ...
+# Subtest: P05 changed order version uses a new key and rejects a key generator collision
+ok 149 - P05 changed order version uses a new key and rejects a key generator collision
+  ---
+  duration_ms: 1.3614
+  type: 'test'
+  ...
+# Subtest: P05 prepay completion only creates state.get, ignores payment parameters and duplicate completion
+ok 150 - P05 prepay completion only creates state.get, ignores payment parameters and duplicate completion
+  ---
+  duration_ms: 0.5112
+  type: 'test'
+  ...
+# Subtest: P05 client success/cancel/failure callbacks all require reconciliation and cannot mark paid
+ok 151 - P05 client success/cancel/failure callbacks all require reconciliation and cannot mark paid
+  ---
+  duration_ms: 3.5125
+  type: 'test'
+  ...
+# Subtest: P05 PENDING, EXCEPTION or active unknown payment always block another charge
+ok 152 - P05 PENDING, EXCEPTION or active unknown payment always block another charge
+  ---
+  duration_ms: 0.5777
+  type: 'test'
+  ...
+# Subtest: P05 closed intent is not a new unpaid payment opportunity
+ok 153 - P05 closed intent is not a new unpaid payment opportunity
+  ---
+  duration_ms: 0.4206
+  type: 'test'
+  ...
+# Subtest: P05 cancellation and paid/refund recovery never show ordinary purchase success or offer repayment
+ok 154 - P05 cancellation and paid/refund recovery never show ordinary purchase success or offer repayment
+  ---
+  duration_ms: 0.9502
+  type: 'test'
+  ...
+# Subtest: P05 out-of-order queries and lifecycle invalidation ignore old callbacks while preserving retry identity
+ok 155 - P05 out-of-order queries and lifecycle invalidation ignore old callbacks while preserving retry identity
+  ---
+  duration_ms: 0.7278
+  type: 'test'
+  ...
+# Subtest: P05 state version rollback or conflicting same-version response cannot restore an unpaid button
+ok 156 - P05 state version rollback or conflicting same-version response cannot restore an unpaid button
+  ---
+  duration_ms: 0.804
+  type: 'test'
+  ...
+# Subtest: P05 malformed, wrong-order, offline, private-field or inconsistent amounts never authorize payment
+ok 157 - P05 malformed, wrong-order, offline, private-field or inconsistent amounts never authorize payment
+  ---
+  duration_ms: 1.2958
+  type: 'test'
+  ...
+# Subtest: P05 query failure and repeated failed callbacks keep a recoverable unknown result
+ok 158 - P05 query failure and repeated failed callbacks keep a recoverable unknown result
+  ---
+  duration_ms: 0.3055
+  type: 'test'
+  ...
+# Subtest: P05 exact deadline blocks create but does not locally cancel or release funds/resources
+ok 159 - P05 exact deadline blocks create but does not locally cancel or release funds/resources
+  ---
+  duration_ms: 0.3545
+  type: 'test'
+  ...
+# Subtest: P05 passive time refresh closes an expired button and state projection is immutable
+ok 160 - P05 passive time refresh closes an expired button and state projection is immutable
+  ---
+  duration_ms: 0.2349
+  type: 'test'
+  ...
+# Subtest: P05 invalid session/key/time inputs fail without silently generating a new identity
+ok 161 - P05 invalid session/key/time inputs fail without silently generating a new identity
+  ---
+  duration_ms: 0.524
+  type: 'test'
+  ...
+# Subtest: P05 intent observation can change at the same order version without accepting conflicting order facts
+ok 162 - P05 intent observation can change at the same order version without accepting conflicting order facts
+  ---
+  duration_ms: 0.331
+  type: 'test'
+  ...
+# Subtest: P05 higher order version cannot rewrite fixed amount/deadline or roll back paid/closed funds
+ok 163 - P05 higher order version cannot rewrite fixed amount/deadline or roll back paid/closed funds
+  ---
+  duration_ms: 0.6937
+  type: 'test'
+  ...
+# Subtest: P05 reaching the deadline is latched within a session even if the client clock moves backwards
+ok 164 - P05 reaching the deadline is latched within a session even if the client clock moves backwards
+  ---
+  duration_ms: 0.3572
+  type: 'test'
+  ...
+# Subtest: P05 cancelled/completed orders and observed closed intents cannot regress at higher versions
+ok 165 - P05 cancelled/completed orders and observed closed intents cannot regress at higher versions
+  ---
+  duration_ms: 0.5812
+  type: 'test'
+  ...
+# Subtest: P05 cumulative refunded funds cannot decrease at a higher order version
+ok 166 - P05 cumulative refunded funds cannot decrease at a higher order version
+  ---
+  duration_ms: 0.2814
+  type: 'test'
+  ...
+# Subtest: P05 closed intent remains observed across intermediate unknown reads and lifecycle invalidation
+ok 167 - P05 closed intent remains observed across intermediate unknown reads and lifecycle invalidation
+  ---
+  duration_ms: 0.3757
+  type: 'test'
+  ...
+# Subtest: P06 partial/full success settles only reserved amount, preserving order/payment/fulfillment facts
+ok 168 - P06 partial/full success settles only reserved amount, preserving order/payment/fulfillment facts
+  ---
+  duration_ms: 19.6144
+  type: 'test'
+  ...
+# Subtest: P06 same request/parallel submit/new key only claims one sending attempt
+ok 169 - P06 same request/parallel submit/new key only claims one sending attempt
+  ---
+  duration_ms: 3.3287
+  type: 'test'
+  ...
+# Subtest: P06 accepted/unknown results are not refunded; unresolved requests require query
+ok 170 - P06 accepted/unknown results are not refunded; unresolved requests require query
+  ---
+  duration_ms: 7.1366
+  type: 'test'
+  ...
+# Subtest: P06 query can settle an earlier success whose actual time precedes the query
+ok 171 - P06 query can settle an earlier success whose actual time precedes the query
+  ---
+  duration_ms: 2.9214
+  type: 'test'
+  ...
+# Subtest: P06 a lost query can be queried again at the configured timeout without resubmitting funds
+ok 172 - P06 a lost query can be queried again at the configured timeout without resubmitting funds
+  ---
+  duration_ms: 4.8249
+  type: 'test'
+  ...
+# Subtest: P06 timeout query recovery grants one read attempt to competing workers
+ok 173 - P06 timeout query recovery grants one read attempt to competing workers
+  ---
+  duration_ms: 1.9121
+  type: 'test'
+  ...
+# Subtest: P06 accepted provider refund identity cannot change during later query results
+ok 174 - P06 accepted provider refund identity cannot change during later query results
+  ---
+  duration_ms: 3.5521
+  type: 'test'
+  ...
+# Subtest: P06 acceptance event, identity guard, attempt and refund identity roll back together
+ok 175 - P06 acceptance event, identity guard, attempt and refund identity roll back together
+  ---
+  duration_ms: 16.5721
+  type: 'test'
+  ...
+# Subtest: P06 second-resolution success overlaps submit without inventing milliseconds
+ok 176 - P06 second-resolution success overlaps submit without inventing milliseconds
+  ---
+  duration_ms: 1.3048
+  type: 'test'
+  ...
+# Subtest: P06 stale or unaligned second-resolution success is rejected without changing funds
+ok 177 - P06 stale or unaligned second-resolution success is rejected without changing funds
+  ---
+  duration_ms: 2.0324
+  type: 'test'
+  ...
+# Subtest: P06 failure keeps the same reserved budget and authorized retry keeps the original refund number
+ok 178 - P06 failure keeps the same reserved budget and authorized retry keeps the original refund number
+  ---
+  duration_ms: 1.7834
+  type: 'test'
+  ...
+# Subtest: P06 repeat/response loss/service restart do not refund or write logs twice
+ok 179 - P06 repeat/response loss/service restart do not refund or write logs twice
+  ---
+  duration_ms: 3.6422
+  type: 'test'
+  ...
+# Subtest: P06 lost submission response recovers the attempt without minting another send right
+ok 180 - P06 lost submission response recovers the attempt without minting another send right
+  ---
+  duration_ms: 1.2602
+  type: 'test'
+  ...
+# Subtest: P06 failure arriving after success does not undo settled funds
+ok 181 - P06 failure arriving after success does not undo settled funds
+  ---
+  duration_ms: 1.9861
+  type: 'test'
+  ...
+# Subtest: P06 stale negative observation cannot override a newer attempt
+ok 182 - P06 stale negative observation cannot override a newer attempt
+  ---
+  duration_ms: 2.1692
+  type: 'test'
+  ...
+# Subtest: P06 each success write exception/zero result rolls the entire transaction back
+ok 183 - P06 each success write exception/zero result rolls the entire transaction back
+  ---
+  duration_ms: 22.218
+  type: 'test'
+  ...
+# Subtest: P06 submit write failure/zero and read conflict never return a sending plan
+ok 184 - P06 submit write failure/zero and read conflict never return a sending plan
+  ---
+  duration_ms: 1.3525
+  type: 'test'
+  ...
+# Subtest: P06 authentication cannot be faked by flags, JSON copies or ordinary customers
+ok 185 - P06 authentication cannot be faked by flags, JSON copies or ordinary customers
+  ---
+  duration_ms: 1.227
+  type: 'test'
+  ...
+# Subtest: P06 wrong number/amount/currency/original transaction/time/provider binding leaves funds unchanged
+ok 186 - P06 wrong number/amount/currency/original transaction/time/provider binding leaves funds unchanged
+  ---
+  duration_ms: 10.1368
+  type: 'test'
+  ...
+# Subtest: P06 unresolved paid ledger, mismatched budget and missing approval refuse dispatch
+ok 187 - P06 unresolved paid ledger, mismatched budget and missing approval refuse dispatch
+  ---
+  duration_ms: 1.2349
+  type: 'test'
+  ...
+# Subtest: P06 multiple partial refunds accumulate within the original payment without releasing failed budget
+ok 188 - P06 multiple partial refunds accumulate within the original payment without releasing failed budget
+  ---
+  duration_ms: 2.828
+  type: 'test'
+  ...
+# Subtest: P06 provider ID and event conflicts refuse inconsistent evidence without changing refunds
+ok 189 - P06 provider ID and event conflicts refuse inconsistent evidence without changing refunds
+  ---
+  duration_ms: 2.5567
+  type: 'test'
+  ...
+# Subtest: P06 failed-result writes also roll back together without freeing any refund budget
+ok 190 - P06 failed-result writes also roll back together without freeing any refund budget
+  ---
+  duration_ms: 12.1269
+  type: 'test'
+  ...
+# Subtest: P06 both provider authentication candidates stay offline and settle the same way
+ok 191 - P06 both provider authentication candidates stay offline and settle the same way
+  ---
+  duration_ms: 3.138
+  type: 'test'
+  ...
+# Subtest: P06 P04 late compensation intent settles while preserving cancelled order and released resources
+ok 192 - P06 P04 late compensation intent settles while preserving cancelled order and released resources
+  ---
+  duration_ms: 83.8739
+  type: 'test'
+  ...
+1..192
+# tests 192
+# suites 0
+# pass 192
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 847.4111

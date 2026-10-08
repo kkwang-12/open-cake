@@ -1,0 +1,60 @@
+{
+  "time": "2026-10-08T02:26:03.779Z",
+  "scope": "LOCAL_ONLY",
+  "cases": [
+    {
+      "name": "project-default",
+      "expectedSuccess": true,
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "name": "development-shell",
+      "expectedSuccess": true,
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "name": "old-appid",
+      "expectedSuccess": false,
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "name": "unknown-secret-field",
+      "expectedSuccess": false,
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "name": "reuse-environment",
+      "expectedSuccess": false,
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "name": "missing-cloud-env",
+      "expectedSuccess": false,
+      "exitCode": 1,
+      "passed": true
+    },
+    {
+      "name": "invalid-appid",
+      "expectedSuccess": false,
+      "exitCode": 1,
+      "passed": true
+    }
+  ],
+  "sharedConfig": {
+    "mode": "shell",
+    "stage": "development",
+    "appId": "wx154f791a17268ace",
+    "cloudEnvironments": {
+      "development": "cloudbase-d8gwtxzm64150b7e0",
+      "test": "",
+      "production": ""
+    },
+    "enableLegacyDemo": false
+  },
+  "runtimeCopiesMatch": true
+}

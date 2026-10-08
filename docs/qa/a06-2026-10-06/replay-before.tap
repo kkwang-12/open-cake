@@ -1,0 +1,40 @@
+TAP version 13
+# Subtest: A06 refund-only replay cannot be redirected to a fabricated review even if stored effect digest is replaced
+not ok 1 - A06 refund-only replay cannot be redirected to a fabricated review even if stored effect digest is replaced
+  ---
+  duration_ms: 39.0201
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\merchant-resolution.test.js:202:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (D:\dinner cook\tests\merchant-resolution.test.js:206:3)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: A06 replay verifies original transition rather than only a self-consistent changed log and digest
+not ok 2 - A06 replay verifies original transition rather than only a self-consistent changed log and digest
+  ---
+  duration_ms: 12.952
+  type: 'test'
+  location: 'D:\\dinner cook\\tests\\merchant-resolution.test.js:208:1'
+  failureType: 'testCodeFailure'
+  error: 'Missing expected rejection.'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  stack: |-
+    async TestContext.<anonymous> (D:\dinner cook\tests\merchant-resolution.test.js:213:3)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 0
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 223.4937

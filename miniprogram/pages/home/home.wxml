@@ -1,13 +1,13 @@
 <view class="tab-content {{tabMotion}}">
 <view class="page home">
   <view class="home-first-screen">
-    <view class="home-hero">
+    <view class="home-hero" style="height:{{heroHeight}}px;">
       <swiper class="home-hero-swiper" current="{{heroCurrent}}" autoplay="{{false}}" circular="{{false}}" indicator-dots="{{false}}" vertical="{{false}}" duration="{{300}}" easing-function="easeOutCubic" bindchange="heroChange" bindtouchstart="heroTouchStart" bindtouchmove="heroTouchMove" bindtouchend="heroTouchEnd" bindtouchcancel="heroTouchCancel" aria-label="蛋糕推荐轮播">
         <swiper-item wx:for="{{heroSlides}}" wx:key="id">
           <view class="home-hero-slide">
             <view class="home-hero-photography">
               <view wx:if="{{!item.imageReady || item.imageFailed}}" class="home-hero-image-fallback"><image src="/assets/icons/product/cake-slice.svg" /><text>{{item.imageFailed ? '商品照片正在准备' : '照片加载中'}}</text></view>
-              <image wx:if="{{!item.imageFailed && (item.imageReady || index >= heroCurrent - 1 && index <= heroCurrent + 1)}}" class="home-hero-image {{item.imageReady ? '' : 'home-hero-image-loading'}}" src="{{item.image}}" mode="aspectFill" lazy-load="{{false}}" data-index="{{index}}" bindload="heroImageLoad" binderror="heroImageError" aria-label="{{item.imageLabel}}" />
+              <image wx:if="{{!item.imageFailed && (item.imageReady || index >= heroCurrent - 1 && index <= heroCurrent + 1)}}" class="home-hero-image {{item.imageReady ? '' : 'home-hero-image-loading'}}" style="width:{{heroImageWidth}}px;" src="{{item.image}}" mode="widthFix" lazy-load="{{false}}" data-index="{{index}}" bindload="heroImageLoad" binderror="heroImageError" aria-label="{{item.imageLabel}}" />
             </view>
             <view class="home-hero-copy">
               <view class="home-hero-title"><text wx:for="{{item.titleLines}}" wx:for-item="line" wx:for-index="lineIndex" wx:key="*this">{{line}}</text></view>

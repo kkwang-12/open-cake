@@ -8,11 +8,11 @@ const { createRequire } = require('node:module');
 const file = path.join(__dirname, '../miniprogram/pages/home/home.js');
 const localRequire = createRequire(file);
 
-function home() {
+function home(platform) {
   let page, now = 1000;
   const app = { globalData: {} }, navigations = [];
   vm.runInNewContext(fs.readFileSync(file, 'utf8'), {
-    Page(value) { page = value; }, getApp: () => app, Date: { now: () => now },
+    Page(value) { page = value; }, getApp: () => app, Date: { now: () => now }, wx: platform,
     require(name) {
       if (name.includes('/constants/routes')) return { navigate: (...args) => navigations.push(args) };
       if (name.includes('/utils/tab-transition')) return { hide() {}, show() {}, scroll() {} };
@@ -27,6 +27,20 @@ const point = (x, y) => ({ clientX: x, clientY: y });
 const touch = (x, y) => ({ touches: [point(x, y)] });
 const end = (x, y) => ({ changedTouches: [point(x, y)] });
 const tap = index => ({ currentTarget: { dataset: { index } } });
+
+test('Hero container shrinks the original available height by 10% and proportional images cover it across viewports',()=>{
+  for(const [width,height,safeBottom] of [[320,568,0],[375,812,34],[430,932,34],[320,1000,0]]){
+    const {page}=home({getWindowInfo:()=>({windowWidth:width,windowHeight:height,safeArea:{bottom:height-safeBottom}})});
+    page.updateHeroLayout(242);
+    const original=Math.max(276,height-65-safeBottom-8-242);
+    assert.equal(page.data.heroHeight,Math.round(original*.9*10)/10);
+    assert.ok(page.data.heroImageWidth>=width);
+    assert.ok(page.data.heroImageWidth*1402/1122>=page.data.heroHeight);
+    assert.ok(page.data.heroHeight>=248.4);
+    const stable=page.data.heroHeight;page.heroChange({detail:{current:1}});
+    assert.equal(page.data.heroHeight,stable);
+  }
+});
 
 test('Hero slide image failures are isolated, loaded neighbours stay ready and recommendations remain intact', () => {
   const { page } = home();
