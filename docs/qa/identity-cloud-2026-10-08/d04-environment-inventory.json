@@ -1,0 +1,31 @@
+{
+  "appId": "wx154f791a17268ace",
+  "confirmedTestEnvironment": null,
+  "regions": [
+    {
+      "region": "ap-shanghai",
+      "available": true,
+      "environments": [
+        {
+          "EnvId": "cloudbase-d8gwtxzm64150b7e0",
+          "Alias": "cloudbase",
+          "Status": "NORMAL",
+          "Region": "ap-shanghai"
+        }
+      ],
+      "code": null
+    },
+    {
+      "region": "ap-guangzhou",
+      "available": true,
+      "environments": [],
+      "code": null
+    },
+    {
+      "region": "ap-singapore",
+      "available": false,
+      "environments": null,
+      "code": "AUTH_REQUIRED"
+    }
+  ]
+}

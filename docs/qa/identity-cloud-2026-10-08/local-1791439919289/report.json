@@ -1,0 +1,71 @@
+{
+  "scope": "LOCAL_REGRESSION_ONLY",
+  "time": "2026-10-08T06:12:25.237Z",
+  "nodeVersion": "v24.19.0",
+  "results": [
+    {
+      "name": "tests",
+      "exitCode": 0,
+      "passed": true
+    },
+    {
+      "name": "static",
+      "exitCode": 0,
+      "passed": true
+    }
+  ],
+  "sources": [
+    {
+      "source": "cloudfunctions/_shared/runtime.js",
+      "sha256": "3c9c462f71efd64de42544839c8a820276aae89bcb9b95b9ec03a8a57d779820"
+    },
+    {
+      "source": "cloudfunctions/_shared/native-context.js",
+      "sha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49"
+    },
+    {
+      "source": "cloudfunctions/_shared/cloud-identity-repository.js",
+      "sha256": "46dd4257208c0a74797eb0b65824ca868746b6d00a83464cde4e0be9880f2fec"
+    },
+    {
+      "source": "cloudfunctions/_shared/cloud-document-transaction.js",
+      "sha256": "ef333aa3ad04234d26b6436e6934d656031892aa8eff8268b35c5104a1ebd67a"
+    },
+    {
+      "source": "cloudfunctions/_shared/cloud-transaction-probe.js",
+      "sha256": "e8948d7c6d691812caabb434c625df2e9c9f1aa3b51331de6f674cb11765b84a"
+    },
+    {
+      "source": "scripts/cloud-checks/transaction-probe.js",
+      "sha256": "6f405259e3108e5f4242f9b72d6f5f882b0eb5a9ee75a52d940b59b908e4d09b"
+    },
+    {
+      "source": "scripts/cloud-checks/transaction-scenarios.js",
+      "sha256": "50c443c8e6d62031ce040802a12b3a824af40a972a95b5187f3e72ad2e3cb63f"
+    },
+    {
+      "source": "scripts/verify-transaction-native.js",
+      "sha256": "2ae32fb357b989b5335eaaba4b626ee9eb6fd8f7dba40d931a1ef6d51b63394e"
+    },
+    {
+      "source": "cloudfunctions/_shared/api-contract.js",
+      "sha256": "09d6b3bb26889831a68cc1f872a2e02125818dd156a1bb6c32613daaa94adcc8"
+    },
+    {
+      "source": "cloudfunctions/user/index.js",
+      "sha256": "525c3f84065268e7c42b766964f587c3268484cc711bd8ca49e18e406c9336e8"
+    },
+    {
+      "source": "cloudfunctions/store/index.js",
+      "sha256": "24bfa230f336fb07d04661799489568d06e4c7b943f3f6fa514313333ac4d982"
+    },
+    {
+      "source": "scripts/cloud-checks/identity-persistence.js",
+      "sha256": "123b6bf3aa0134d9620887d966a01382ad86b4d417505626154b5002d0ad6d7e"
+    },
+    {
+      "source": "scripts/cloud-checks/initialization-rejection.js",
+      "sha256": "598436c70c66cc2b1cff1017a4fc694e75db91bb7e7ef8c567592f6bd89ba4fc"
+    }
+  ]
+}

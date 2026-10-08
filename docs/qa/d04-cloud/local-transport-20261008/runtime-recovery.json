@@ -1,0 +1,12 @@
+{
+  "errorType": "MCP_TOOL_ERROR",
+  "tool": "automation_evaluate",
+  "message": "cant find runtimeid by projectpath D:\\dinner cook\\artifacts\\d04-identify-validation-20261008",
+  "source": "mcp_business",
+  "recoveredBy": "open_project_window and simulator_open_page",
+  "window": "s0",
+  "page": "pages/identify/index",
+  "wxCloudReady": true,
+  "sharedProjectChanged": false,
+  "cloudWritesDuringRecovery": false
+}

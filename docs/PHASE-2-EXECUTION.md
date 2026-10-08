@@ -1,5 +1,9 @@
 # 阶段二执行记录：数据模型
 
+最新D04推进：已准备隔离验收服务、真实入口、打包和16项原生断言执行器；新增20项本地回归，全套1000/1000、静态366，[本轮证据](qa/identity-cloud-2026-10-08/local-1791439919289/report.json)。独立test未确认，未部署或执行云故障/资源竞争。环境窗口已可按[精确任务单](D04-PROBE-ENVIRONMENT-HANDOFF.md)准备三个空probe集合及唯一索引；正式订单保存/完整读集与谓词/预算/真实断网仍待。未改UI、共享运行配置或已部署user/store。
+
+后续D04准备：新增cloud-document-transaction.js文档事务基础层，不创建handler、不接入user/store、不改云数据。9项本地契约通过，全套980/980、静态357；真实唯一冲突/完整读取保护/资源竞争/故障回滚仍NOT_RUN。见[D04实际安排与记录](D04-CLOUD-SDK-ACCEPTANCE-PLAN.md)。
+
 2026-10-08补验收更新：R1已完成配置，user.me已部署并真实事务创建/读取默认顾客。SDK复用实例残留身份缺陷已修复并云端复验；三集合客户端读拒绝通过。实查users=1、admin_roles=0、audit_logs=0。全套971/971、静态354；真机、完整业务权限、唯一冲突/多文档/资源并发/逐写回滚仍待补，不据单用户事务宣称整阶段完成。详见[真实结果](PHASE-2-CLOUD-REVALIDATION-2026-10-08.md)、[下一项D04](D04-CLOUD-SDK-ACCEPTANCE-PLAN.md)与[67 Task台账](CLOUD-BACKFILL-TRACKER-2026-10-08.md)。
 
 日期：2026-10-03。当前工作分支：`codex/phase-1-initialization`，保留前一轮未提交的 Hero 修复；未自动 commit / push。

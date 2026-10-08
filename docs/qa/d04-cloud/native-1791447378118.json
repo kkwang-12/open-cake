@@ -1,0 +1,2484 @@
+{
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "time": "2026-10-08T08:16:18.119Z",
+  "appId": "wx154f791a17268ace",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "runId": "d04-retry-1791446934387",
+  "evidence": [
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "88ecece9-0352-4a0a-9129-286ab751f5b4",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "7241cc3a3f411ec9528535a8b6f9a547fe21b89c8a592ac2fcc8c515d123a6bb",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "18377de52ac6dd638b5137e9823987f3d4695515fd6a3ca14bedf8384f51f88b",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "b16190dd7b884c24e6c69fb0759166f3ae3ef4141adcb448b452dcb0b74b0b36",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "44f571b529276b93dab1a6d2a416647dcc12fb17d27184a26ddf046e794e1695",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "1fd8306f672380282112744648a5918d7b9b3e8f7ba795432c08533b3a7974e2",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c419f5290c4b2dbc4d0c11b8af304d32e07640eeb9337df48c0cb7bf452d7b99",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "d43a3189634244d4d264fb0094172a944a4c59f9a69983d7b0c8055dea2985f0",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "1d6e8d38e445e9c83de46e8a25dbe564210338109f23e796dae111e142503d8c",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "0eb7ba50-4082-4938-b641-c18fcadc4ebc"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "2d7eddf6-49a3-4be2-88f9-c1e8eae0a17b",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "5607c264-9073-40e8-b5f4-a764aab8291e"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "c036668f-b730-4bb5-b150-4e10208d9b4f",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "542a6954-85ea-476b-913e-025954bd03df"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "bb6b6bf1-356d-4e6c-87df-2d895f2d2c47",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "7241cc3a3f411ec9528535a8b6f9a547fe21b89c8a592ac2fcc8c515d123a6bb",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "18377de52ac6dd638b5137e9823987f3d4695515fd6a3ca14bedf8384f51f88b",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "b16190dd7b884c24e6c69fb0759166f3ae3ef4141adcb448b452dcb0b74b0b36",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "44f571b529276b93dab1a6d2a416647dcc12fb17d27184a26ddf046e794e1695",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "1fd8306f672380282112744648a5918d7b9b3e8f7ba795432c08533b3a7974e2",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c419f5290c4b2dbc4d0c11b8af304d32e07640eeb9337df48c0cb7bf452d7b99",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "d43a3189634244d4d264fb0094172a944a4c59f9a69983d7b0c8055dea2985f0",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "1d6e8d38e445e9c83de46e8a25dbe564210338109f23e796dae111e142503d8c",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "06414828-bf5d-4a03-b6e9-37f59b19c787"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "168048c9-f20a-432b-9d07-5be4038d81c9",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 0
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "7b5c4c39-664a-4ef1-890a-c8364cdd908e"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "93b48e47-39ad-436c-96f9-9de568fa9aea",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "7241cc3a3f411ec9528535a8b6f9a547fe21b89c8a592ac2fcc8c515d123a6bb",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "18377de52ac6dd638b5137e9823987f3d4695515fd6a3ca14bedf8384f51f88b",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "b16190dd7b884c24e6c69fb0759166f3ae3ef4141adcb448b452dcb0b74b0b36",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "44f571b529276b93dab1a6d2a416647dcc12fb17d27184a26ddf046e794e1695",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "1fd8306f672380282112744648a5918d7b9b3e8f7ba795432c08533b3a7974e2",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c419f5290c4b2dbc4d0c11b8af304d32e07640eeb9337df48c0cb7bf452d7b99",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "d43a3189634244d4d264fb0094172a944a4c59f9a69983d7b0c8055dea2985f0",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "1d6e8d38e445e9c83de46e8a25dbe564210338109f23e796dae111e142503d8c",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "9848ebae-7eb3-4b64-84a1-1875c0d167be"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-1",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "9635eece-4f43-43d0-9578-858c878254bc",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-1",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "6821a33b-8a7a-48cc-9788-7c092c85a699"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-1",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "6c44ab0d-9e3d-4f21-a5a7-9ac79979709a",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "43d38755-be69-404b-bc7c-e81753b05a51"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-1",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "326c71b3-8bbe-407c-98ba-45c5217e985f",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-1",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "02172ff1df82f001cb9303423e0832317d17d901053345530398addd6c561127",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "8cab9b635a366ea841c8970887fa1b9a3a1bd330964e773f1cf03d40c64f7f26",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "3e03a586c9ae187472e4137be6bd3a042eccfb268300f4fbcd4d3ad0701e2fab",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "192b63efbd98e72ef34e87d008df449e7a77cc01e774826403122cc16ded0c0c",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "e467a2b494797666f3b8a9e257b993fc3520d2dce50c42ad51897ba713a94508",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c6bcb568c61296387db32d749244b170acefbec6076d9a0201d21d67cb1561d9",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c43d84f3cab90ab58d3c386c0a2cb04439a3442690176181f57feace9f43cf2b",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "75959189022ddbdfefacf202bf02951f4c6f065f91feda80d581a5da29e35138",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "c0ff0cd0-2529-4adf-bde6-a49c9628c9e8"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-2",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "ebcdd894-efdf-45a4-8f48-cc455694b869",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-2",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "db9a1e81-2ab0-4b9b-b94b-4a0a99902710"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-2",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "776aac16-120d-435f-91b1-3d64645f5d57",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "b7f95927-d1ba-4860-b448-5ace7b4660f6"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-2",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "b1c76c16-e750-40ed-a6b0-d76e6934d60b",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-2",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "447fb8bd9a446bed11ffcd6b353c186d7a15826fa23c5b1139edf5b4e818878e",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "21b1ff54b5da7cb477a4929c788185cbe46ffec72afff44e6682e5f7f499d376",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "35be6262e65787375b2d5dc3c618301519c6eecad521d3222ad496c5ea8f38fd",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "6ccc3a602136b038e6b41cb225ee5850361066e019802458fccfcf6e332bfc8e",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "1b39a8da67bf7e087798e2b8db8c8874c96c19b008054632d1ebb128e4d53e62",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "93d0b554c3f7cf9f0b76d170caf213e7a0f28b90f72aaed4b102550ba9a557f0",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "e46e1e4a566262d92256c1a27377e20da5eaaea8ff61a74b368666bcba519a2f",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "8b91385936b3e3d05aff2fd04d37b381c67baae872a6547f6e1bc4166646d8e8",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "ba025993-f4dd-4d35-a338-6a3d10aa098f"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-3",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "f4b3462e-b680-44d8-b0c4-8d14456a3947",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-3",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "29387a26-c19d-4ce9-8b25-91680285d077"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-3",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "621f5f39-edf7-40f0-b0b9-55d518a5bd2a",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "f54cffcc-3a37-49d8-b471-4e99193b9b18"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-3",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "b334813d-8cb3-4419-823f-76dace45643d",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-3",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "34b10cd63d3af361a07bf0acabff1a481c2cc73f0bbc333f89a32398d6935262",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "4da76ec4f11b492ac3a476e7da1876de62df00b966465e4c98942e82562c08b0",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "5c1399e4463417c4fe961d3a44056c1b59103953ca61e83bb046eacd76eea429",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "6a33e1da03cac5bc2fafed9bc417ff634bc6549eb5b7c055525c53431fe37981",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "12b3bf4147b67ad9c792ac7454faa760f72ea2894a81fc57547f5fdf7cebad5b",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c25876f5a84fc15cc02b68bc9bc1f7dc526815cf0e0b0b8dacbcb0affb716c60",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "061f663517c3c9013ee3add6df3631a8523e03387a363c1d7a80e8ef2a2cede7",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "43503a7a9f3cea340fd61e534dbc4988daf212f09f5fc086454a2a1eb28c565d",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "cd89d2a0-2652-49bf-a64c-72cf80e3e3a5"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-4",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "8fe9d9f0-6a36-4f57-a409-f24daee49edd",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-4",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "2df9e44f-c790-4e17-832d-e10983278976"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-4",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "7f583a0a-5ff8-4b21-9442-a129167ad4c5",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "4260106a-00f2-4cae-af5d-79e987e3292f"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-4",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "83364985-5565-4fef-973d-294eed7c0c80",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-4",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "41aacb33406e9908450c1d1f8c8a5c5153db9f64b7fd23dd216b2fa7cd306c41",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "b96d2aec32900b940b4f0cfbe1130bd942791ad668909b628c0f2007853c0d83",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "a4c21e7c5200bc8adb33a626b2a0e385cb6e9592de0b5b8099a82432a0a6f18a",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "be3b701ab791dba65015be84b1a94fbecf1d42e6b2636a72eda2022ef6828390",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "9bb7e60df1ba0f3dbc97e7f533641ca8bb04f61bffac40d7a533fa934942ae2c",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c34e600ba3989487b6d883eec2be97c5f9b84349d50b8157aa5652fe6d6497bd",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "3d3b638d3fbea6d4829f0ecc30551f47cdb38f1ff9136c14dcf5e4a04342deaa",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "0ef8316c928cda2fd991326787a97c91842bd5c67db510a20a44ccb614f5e2d9",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "71143318-6cef-4504-8b89-9bbcb01157a1"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-5",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "5d2d4c2b-3d90-4c56-803e-6b4e634f60b6",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-5",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "f525fa3c-b8f0-404d-8767-e53f2d2a45f8"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-5",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "8a0bded8-aff0-4409-8dd4-8cfdaf73dc23",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "e698c59d-7d92-467c-894f-613b36d69aaf"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-5",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "3e17c865-511e-4b0d-a149-aa6411251bc2",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-5",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1f115c155a7d60b0ae44c5309d42f2403de2676e42daf6e95db76e7df203c60e",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "b009a80f0a666fc1ca70101e925549b17bb0b741a2b5abdcd4bfb3d678e28255",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "6b881759c23e59aeef9f50338bc98c371fb8b041837adeeb6a763bd886dc3575",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "ddbf733b9e4f8debee18f36a861856a4cd5c917e1d6fdeefdb2b5c8824e6d196",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "6b5c37e53a0d31adc430dbcba6486948135481a9867c68c5c3e4e1bab9766472",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "b10f8ed045dd62dc224a1267503cbf358c89585a12d4e46cdb0ffa3d457878b8",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "99d0d2229051a8d1323da78d4e23e84f69bce7112048abf647ab6184a6cc7746",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "25914ea8f16e3c1455139030cca24b6f14b07aeb7bb7152b9cd62797ae61b497",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "c6a17a3d-85bb-471a-aed6-a402c560ce51"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-6",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "546b9390-b1f3-4f4c-ad94-4546e72d701e",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-6",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "620a2c7b-afb5-42a3-a578-75c96dcc5958"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-6",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "386e9262-c37b-444b-aaaf-469597178c49",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "a79c0b48-7293-4419-8be2-32c798351e9a"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-6",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "56ecb123-e250-4b9b-9052-c230985c3322",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-6",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "8fa447fee05a67908369a00f358902173a836ea617716c540392f11aec9570fd",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "9acfab459ce77306a8605389a9d10978f9664678083d2497694e2db227b7cd50",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "c915aaeae2f3b68e3806849b1b4692f311f1ad2871290e41d60d4ee0d9b44caa",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "a94f374921de1d2947e16f14d1a66e1928a6a6bab9011ef58153b74270f1c119",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "3f446820ac4428faebc173697a10fa32c47915c887ba01780ce403fc0e6d6254",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "0886ba92e61362b5740e9cf5f6d22a93b35e54d28127dc4d3b80756050c8b38e",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "99afec685d0b8d83e236e570e83ef6d673fe145316f323795bc86c9a5ac51fbb",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "68c70c671f78ead771411de39cf760a0b3ac8b6539719a95ea4190dc55395542",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "7697d2d8-92be-4ac8-90da-8d046f010378"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "fault-7",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "10c9ae37-3ad5-4b54-9ac2-ef4d5ba4cb51",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-7",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "2ba8a92c-fd3d-4acc-b93a-49e6235bef49"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "fault-7",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "0f459647-6469-4223-83ed-a196671dfd7d",
+        "error": {
+          "code": "PROBE_INJECTED_FAILURE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "a899e30f-a90b-45ce-bab8-f39f41f28afe"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "fault-7",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "eef93263-a3f2-4129-b687-109e49a5da3d",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "fault-7",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "8ce5c6f5bcb2e1911511363079da84c23568086de94a41105a438fbb7359eb24",
+              "exists": true,
+              "version": 0,
+              "type": "STOCK",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "059172313b5fc5204b1263b1b2588267ada185eab313aa67262bd624f286b2a1",
+              "exists": true,
+              "version": 0,
+              "type": "PICKUP",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "db59a348036baf3132ef5f6c4f94ee7ace1fe1bac9dfd065f34cefad966d510b",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "eee072a1d9b4e7476fb4040ffb9b18d19ee018d07d7a8fc6be3ff1cef45e6726",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "43137688564e069ebbf19d7b9e136aad3ff08cd1f7d9028d3f711cbc594ed4a5",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "8819a2412d5f487f73afec288922825f09674a31817a4a0f2d514cc0c3ac8fc4",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "54fd108fee55a672c0f56e783a46d90dca2a1e03d8bee800f42a1bbf55671d16",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "321cfd793e74d795c1d5626ffc0f68a7b2060934f6b35cb906958fbe9a342b93",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "01c2d4a3-0f6c-46d9-9724-dfa899bec05f"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "same-key",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "0b536b8a-3364-42c6-833b-16eeb1f04aa8",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "same-key",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "321f37c6-9cb2-47bb-a224-83b3ec40a41e"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "same-key",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "61f17cb7-8a20-4251-a03d-8280cb6e167e",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "same-key",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "4f07862e-141a-4f5d-895a-c0ece94a4cf6"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "same-key",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "23d74e16-0090-4f7c-b8ef-ddeb713d8ad3",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "same-key",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "REPLAY"
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "c190e631-541f-4b94-8740-c255f86d3234"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "same-key",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "97941c00-502d-430a-b87e-b74db9740aa8",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "same-key",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "00bc8f5cf881cdf641d34357130a28dce0284c71fb82633ab22c3ec9bc605bb2",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "55d3f5e0c8725003ffe872261a519930528795f8c67e07d234cbefdae757cbe2",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "64b845a4884f832e7ccb99f7aef035bfb9d497249119dc75ee1c4ba4315b6bc6",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "cfaacf09adb3fbcfad88753ef03926b139282a722bad3306ec2dccf31f2bd1a4",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "fe5e35c661c9a25e84f23a2d1b92ec41e102fcbf75eb05ede79db1106ecb7b83",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "9e97d0e2ba2403406b9f33e44013e910cd6199b14ea415c3711648326d257a97",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "41c3ca37d89c9c6fbb1288a2e596a5f9dccd0b1c2fdf28f7e3866cf20b82db46",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "e91477fabafc2d6c08e82ad159d0af888845c4760e1f4e5c5f1e210ec393fda5",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "91cb48b0-1387-4874-842b-5b516a25a2ca"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "same-key",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "865f9bf9-4973-4289-b435-83a8d4249b2c",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "same-key",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "REPLAY"
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "9c6354f3-908a-4ee3-afbf-b97c117ea2c3"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "same-key",
+        "command": 0,
+        "mode": "DELIVERY"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "a2f97c25-26a6-4bc3-8179-15e308dc982c",
+        "error": {
+          "code": "IDEMPOTENCY_KEY_REUSED",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "1e2fe839-5930-4bc7-a112-f25f6534f412"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "stock-last",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "760a13cc-0793-48c4-afe7-d2ef242f6737",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "stock-last",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "70af52f0-9d8a-49a5-aa50-d0004fa2eb27"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "stock-last",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "8f656f3c-6375-45dc-907c-0fcc2877d5a5",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "stock-last",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "cb1ab3cd-c82f-4d86-bb2b-af3279c5d04f"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "stock-last",
+        "command": 1,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "9aae8284-3adf-416b-aa5c-c12646f68be5",
+        "error": {
+          "code": "RESOURCE_UNAVAILABLE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "5a9c580b-3d8d-4645-9003-64ce1ec11479"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "stock-last",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "9c68e850-fbfb-4c4a-9776-22d357b128e2",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "stock-last",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "e9b822224f6b1e3f10c308b6150e1bb7a645110bbdfb0cc5509d1cef40668d82",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "75dbfbc63b45ebfcad202172b3d4a8e0bc05e1f2de3d7eb55827baa0da1760e5",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "668bcf89c15cf9b78d3ec94bb7fcd6040faf630533cc73dd7432df18484a846f",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "f03cc6b8ba8fdffa860028d4b4dc99548adb0c4f68b836b783da77d9d174a41c",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "395fac1cf02150552da41e5519c2c1f8dd98c27aa298deaff674275b8d48ae49",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "7b57e3b39ffae56fb6c951be82bfd838096c3303e4b5a9afcee7330d55d0ede0",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "20067c31c7f9651600892f6031a0ca614caa4e61a46c174609d614ec84633156",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "da174a669bf189614494d0c3719a01909e0783fd559cdbd40a98f8516c896ff7",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "0efcf228-a4d6-4580-b16b-145f2b3b10b8"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "stock-last",
+        "command": 1,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "77ff8337-d78b-433d-a441-d784fd902d01",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "stock-last",
+          "command": 1,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "e9b822224f6b1e3f10c308b6150e1bb7a645110bbdfb0cc5509d1cef40668d82",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "75dbfbc63b45ebfcad202172b3d4a8e0bc05e1f2de3d7eb55827baa0da1760e5",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "668bcf89c15cf9b78d3ec94bb7fcd6040faf630533cc73dd7432df18484a846f",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "23d651e9afee0b6b7be1315c8f387cdcd681ba36c8c736387ca22a3de32ca96e",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "485f7fc0216c3c624c598575a3c33caf9c13817e97db40d701190d4e064fcfab",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "a5931c8a6094b3425f6c6b98bd73e4377c7cef0878721cc56e7a7dc9e1fae762",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "525f3a6b8a46e3a5b90a2420a1162956cc1b193f41525adcebe4c0f2044392de",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "20957699c37ebb691a7de69a6383136a4e41551a43b6bbec045eda9b3f4f3b95",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "f465fb2e-cf6a-4c60-b9f3-c4e2ce7caed5"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "slot-last",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "1ee59319-fbee-466b-9a4f-debca628ac72",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "slot-last",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "64d1a388-f74b-48f6-94fa-9731d3249e50"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "slot-last",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "ae6e1c6d-3645-4e81-a215-95d5aaba6729",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "slot-last",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "a71554f0-5c77-443d-a284-50c88465aff8"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "slot-last",
+        "command": 1,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "a07dae10-50ff-4c16-b1f8-e80638a08acb",
+        "error": {
+          "code": "RESOURCE_UNAVAILABLE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "3b74fcb2-f665-4051-b234-84f0a1d42717"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "slot-last",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "71b0eee1-8e9c-46bf-a45b-48e0fe4d1a9e",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "slot-last",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "3282832a6d830c7a22b35385260732fad3d42b58b6fffc279fc82bec4a761442",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "185a9daf54dfd59dff1dc601d770f1c10e1d5732a77b564de0f8750c015fdf7e",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "7aaa560e7f0964bab1245e5cdfd7f9a579550838a62116692b705bd61843cf60",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "0e5a918f0e684091d1bd6dd3f785ca2fb9eede78da27483c1b16bdd751ad49ca",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "ff0130cf0b4e7e4795cf2ffc7c511e72b68b00439919d699a4735ef5fc92ed00",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "10fa798dbd082ac60d903d9db1d4498f452df4dbb431787a19735e7ee08fda3e",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "0be49e57493adbd238408fb1068bdba30b3458d1685bd5c80813fc8aaba1b95b",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "3550257b5708dd7aa590f57ef3dea370913faac26a14e9bac517cff0f5112ca3",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "6b896e3d-d7f6-42c1-a9fc-f45e12d47efe"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "slot-last",
+        "command": 1,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "1e8c8f5a-7182-49b0-b888-eb67032da739",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "slot-last",
+          "command": 1,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "3282832a6d830c7a22b35385260732fad3d42b58b6fffc279fc82bec4a761442",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "185a9daf54dfd59dff1dc601d770f1c10e1d5732a77b564de0f8750c015fdf7e",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "7aaa560e7f0964bab1245e5cdfd7f9a579550838a62116692b705bd61843cf60",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "ce8e86a58812013e779c96706c4f490fafd0dd03503ffaccad21cd366e57c983",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "80e5ed424825678f13638ab613d63d719c0a63ea7d93ab30675bd713cefb4a5e",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "1e3df7cf97fa46b9f0cc0fd6f361c8ac9d19122c24e59e604fcfb9acc7904191",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "8c91e568d89ac1441fe8633dcebb6b6d3230640b9eb56328137e8d389e58668a",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "1291129469c8fa1c6a0bb4d388e4b3236119a1126c0d804133ae6d8f9688e231",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "57ddf4a5-47dd-419e-b7ec-7f9aab3252e2"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "mode-independent",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "57cb2d60-71d6-41c9-b98d-41d8175ed415",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "mode-independent",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "ac660f9d-1073-4f04-92cb-72a2f7416bfb"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "mode-independent",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "625bcc23-3b3f-45e9-a5d8-0717468e38eb",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "mode-independent",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "32ba1ef6-47cd-4fa6-bedc-d6538950089d"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "mode-independent",
+        "command": 1,
+        "mode": "DELIVERY"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "538d27d5-c026-4e56-b857-d749df9df04d",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "mode-independent",
+          "command": 1,
+          "mode": "DELIVERY",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "1660f9a2-f35b-4ec1-a201-389a3431b01b"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "mode-independent",
+        "command": 2,
+        "mode": "DELIVERY"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "7098eb7b-4323-4c4e-9a0e-3f35e052fe19",
+        "error": {
+          "code": "RESOURCE_UNAVAILABLE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "d25b93cc-7947-4b5f-a088-544a340d15e0"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "mode-independent",
+        "command": 3,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "748b99c9-f15e-4a8d-a596-d6a353b09e41",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "mode-independent",
+          "command": 3,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "b4b901f1-20cc-4ac1-9cbc-d87a1e024f67"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "mode-independent",
+        "command": 4,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "0e02622d-a5c5-4974-bff5-aee819889d5b",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "mode-independent",
+          "command": 4,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "3b623f59-d392-4ff7-ac0f-1655e66c75c7"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "mode-independent",
+        "command": 5,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "a2d20555-998b-46e5-ac76-2e285fb240f0",
+        "error": {
+          "code": "RESOURCE_UNAVAILABLE",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "a134f4ea-45b3-4c9a-87e0-75b05c903b19"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "mode-independent",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "9beb7695-c8b9-4c63-b352-c6beb6abf1d9",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "mode-independent",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "ba28cb354c2f06a61178bc86427c75382622831a50a7a6f088592f2b4a911015",
+              "exists": true,
+              "version": 4,
+              "type": "STOCK",
+              "heldUnits": 4
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1e1519c72f2b54b1f116c33262087607cc941c55b782ef83fc27f5705ff7ac25",
+              "exists": true,
+              "version": 3,
+              "type": "PICKUP",
+              "heldUnits": 3
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "4286c91439d3b5a37823d4db0e31aff4ebde5a1c013b2c9621edba8d74e82709",
+              "exists": true,
+              "version": 1,
+              "type": "DELIVERY",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "c70b17bd763fa4e403e414b30041b45bebf30b02bd76f4db72969b6ee2484bc3",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "88d21acb3cdbced170f88469db8b9bb97d66a1f5be86fe6f51a1cd52b54bf05c",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "13346e668a19ac17d5efc6b991b7e0dc965c63fea0dd963fe641f2831ae29a24",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "cf324ec56dc2eda0ddeb6627dfbce40680a27a15e70bd4de61c7287b209363a6",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "70a16b0280f9982bc2f691cf75b74caa36eb8e752d7ffd93e8624f1f440f7bac",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "312dc251-d7bd-4e01-9856-b2379c88f905"
+      }
+    },
+    {
+      "input": {
+        "operation": "unique",
+        "caseId": "unique",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "a5c9bd31-5339-4ce1-b045-d2adc462d412",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "unique",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "INSERTED_UNIQUE_PROBE"
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "df022474-80ce-4895-bdb0-0acb6681d476"
+      }
+    },
+    {
+      "input": {
+        "operation": "unique",
+        "caseId": "unique",
+        "command": 1,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "269b7d12-965e-4bc8-89ed-99494b7ff9db",
+        "error": {
+          "code": "CLOUD_DOCUMENT_OPERATION_FAILED",
+          "message": "隔离验收未完成",
+          "diagnostic": {
+            "providerCode": "DATABASE_REQUEST_FAILED",
+            "numericErrCode": -502001,
+            "operation": "add",
+            "attempt": 1
+          }
+        },
+        "platformRequestId": "3f7aab46-f256-4cb1-84d3-7e9eca03fba9"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "unique",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "77bd3d43-6f5f-47b2-8ace-38137e8e0bb8",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "unique",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "07439ebe349f2983caf56dce3365ac451fdff8752ab17730c81ac068da683086",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1e7adc22b5ba67d359f78fd02d2b96797d0769c07a36e86ee6565303b55b40f3",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "5193322157f68ef3ff8a58d6f8f2a86179775629370aee25188faef26d3c344a",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "bf6df0649a3bc9bd34ee6c8e62473f6f2cb681766b019af914f7d7fc6f92ab36",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "4bb72626ae0b98bc999ac8f32dc1ca730da4a354fd593fbc2e754a31c7deb8bf",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "4ce160c15024974670e61e2483aedbe43c34473b335f5bb4beae37ec08c5c028",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "f61181b1c211fb533b291ccd94fa45d871d56eae1d26b7b9e79e80a12e0c306c",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "b6746f11b2ef619ca8fc5a61a5973ca959df9644c899232dad19b7c6865d6113",
+              "exists": true,
+              "version": 0,
+              "type": "UNIQUE_PROBE",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "ac521ef5-fb1d-472c-a3ea-59c632da642c"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "unique",
+        "command": 1,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "965d73e0-0cf4-4e84-8a84-bcbf0fe0e714",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446934387",
+          "caseId": "unique",
+          "command": 1,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "07439ebe349f2983caf56dce3365ac451fdff8752ab17730c81ac068da683086",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1e7adc22b5ba67d359f78fd02d2b96797d0769c07a36e86ee6565303b55b40f3",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "5193322157f68ef3ff8a58d6f8f2a86179775629370aee25188faef26d3c344a",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "72f1717e0ad0976e5e1089471788585cfa8d738d0e1a9f9c08608db0cf5bf86b",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "d069f6ed34359759f80a3f756457517770c0d471b89365a64174d7ee78ada385",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "80e7019af8fa4a3dbce30276c2b02d7077d489604126f26dc146fe65345141e4",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "efb64fd390b69b58219544b662dcf4d322b85371a8438d41881831a695672ed6",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "05f6f4108d30963dbb18d61c7401f232d2d82557cfcad63204ee9f522d85ecb0",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "33fc019f-3ed1-4168-beb1-86c3e1adccc8"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "name": "atomic-seven-writes",
+      "passed": true
+    },
+    {
+      "name": "prepare-preserves-occupied-resources",
+      "passed": true
+    },
+    {
+      "name": "fault-1-rollback",
+      "passed": true
+    },
+    {
+      "name": "fault-2-rollback",
+      "passed": true
+    },
+    {
+      "name": "fault-3-rollback",
+      "passed": true
+    },
+    {
+      "name": "fault-4-rollback",
+      "passed": true
+    },
+    {
+      "name": "fault-5-rollback",
+      "passed": true
+    },
+    {
+      "name": "fault-6-rollback",
+      "passed": true
+    },
+    {
+      "name": "fault-7-rollback",
+      "passed": true
+    },
+    {
+      "name": "same-key-concurrent-single-hold",
+      "passed": true
+    },
+    {
+      "name": "original-key-replay",
+      "passed": true
+    },
+    {
+      "name": "same-key-changed-input-rejected",
+      "passed": true
+    },
+    {
+      "name": "stock-last-race",
+      "passed": true
+    },
+    {
+      "name": "slot-last-race",
+      "passed": true
+    },
+    {
+      "name": "independent-pickup-delivery-capacity",
+      "passed": true
+    },
+    {
+      "name": "compound-unique-conflict",
+      "passed": false
+    }
+  ],
+  "passed": false,
+  "businessOrderPersistence": "NOT_RUN",
+  "predicateFencing": "NOT_RUN",
+  "transactionBudget": "NOT_RUN",
+  "lostResponseTransport": "NOT_RUN",
+  "errorCode": null,
+  "device": "NOT_RUN"
+}

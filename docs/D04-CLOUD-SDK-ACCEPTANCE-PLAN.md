@@ -1,8 +1,24 @@
 # D04 真实 SDK 验收安排
 
+**最新状态：SDK_CAPABILITY_PASS / D04_PARTIAL。独立test及验收入口已准备，主流程真实16/16通过，本地1009/1009；见[D04复验](D04-CLOUD-REPAIR-2026-10-08.md)。本文下方PREPARED/NOT_RUN、缺test等为历史准备记录；正式订单持久化/查询谓词/预算/真实丢响应及真机仍未通过。**
+
 日期：2026-10-08。依据 DEVELOPMENT-PLAN D04、TRANSACTIONS 与 ORDER-CLOUD-ACCEPTANCE。本轮用户映射只证明真实读取/首次事务提交，不等于订单保存或资源并发通过。当前状态 **PREPARED / NOT_RUN**。
 
 ## 交环境窗口的前置任务
+
+后续实现已落地：cloud-transaction-probe.js、隔离Event入口、prepare-transaction-cloud.js和verify-transaction-native.js；16项断言覆盖多文档/7写点故障/同键重放/资源竞争/模式独立/唯一冲突。已生成独立本地包，**没有部署或云写入**。本地新增20项，全套1000/1000、静态366，见[报告](qa/identity-cloud-2026-10-08/local-1791439919289/report.json)。仍为PREPARED/NOT_RUN，代码存在不代表云通过。
+
+原生执行器会在微信运行时发出并行调用，local fixture明确为串行内存；唯一实验只有显式重复标记才可通过，通用错误不冒充唯一冲突。失败保留部分证据，已有run拒绝复用，不清零。实验使用三个probe集合内的简化OPERATION/LOG/RESERVATION，不等于正式业务订单保存；后者及完整读集/谓词/预算/断网场景继续待补。
+
+**环境窗口现在已有精确清单**：[D04测试资源与配置交接](D04-PROBE-ENVIRONMENT-HANDOFF.md)。test环境确认后，按该任务单准备三个空probe集合/规则、一个唯一索引与单个Event函数；不按下面历史R3候选列表创建正式集合，不写数据。当前缺test条件，不在development执行实验。
+
+主流程后续已准备 [cloud-document-transaction.js](../cloudfunctions/_shared/cloud-document-transaction.js) 作为SDK文档事务基础层：固定集合/可变字段名单、缺记录null读取、add插入且不覆盖、version更新与stats.updated=1回执检查、每次SDK重试独立缓存、存储错误脱敏。没有删除/upsert/任意查询，没有领域鉴权/订单处理器，不复制进现有user/store，不部署。本地SDK形状夹具验证不能证明真实提交保护/唯一性/回滚。订单域的完整读取集和查询谓词保护仍须单独适配和实测。
+
+本地补充9项契约测试通过，覆盖多集合读写形状、受控字段名单/名单快照、重复ID/旧版本/零回执、传输/提交错误、夹具内回滚及读取副本隔离。全套 **980/980**、静态 **357**、git diff --check通过；源包估算main/features/legacy 1392/153/45 KiB。[本地报告](qa/identity-cloud-2026-10-08/local-1791438666703/report.json)、[测试日志](qa/identity-cloud-2026-10-08/local-1791438666703/tests.txt)。这9项是SDK形状夹具测试，不是云端并发或实际回滚证据。该基础层仅支持受控JSON文档/文档ID与固定变更字段；领域完整schema/授权/查询防幻读不由它提供。
+
+2026-10-08实际环境查验：账号级ap-shanghai列表仅development；ap-guangzhou列表为空；ap-singapore查询AUTH_REQUIRED，不能推断该地域不存在环境。独立test仍未确认，不把未知地域状态写作全局“只有一个环境”。
+
+[环境查验脱敏记录](qa/identity-cloud-2026-10-08/d04-environment-inventory.json)。未启动新的登录/建环境/建集合操作，环境配置交既定窗口处理。
 
 提供同一小程序下已创建并关联的独立 **test EnvId**；AppID 使用 wx154f791a17268ace。独立环境有自己的数据库/函数/存储，不是代码里给 development 再起一个名字。最小 development 链路已通过，暂无必要重做。不要提供密码/私钥。
 

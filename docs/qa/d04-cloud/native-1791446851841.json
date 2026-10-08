@@ -1,0 +1,262 @@
+{
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "time": "2026-10-08T08:07:31.841Z",
+  "appId": "wx154f791a17268ace",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "runId": "d04-retry-1791446735980",
+  "evidence": [
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "c81138cc-b87a-4de7-883d-39c3b0c37d35",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446735980",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "3b3dcede44a8307080587017b9f26a5854412bcca97586d53890c8892a4e26d7",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1004f61142d54fc7cd87366dc7bc1b4a3c4c0a805809c0c87aad61bd9fbf926d",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1c236e3d5b7059e0714faa53e5c15f0e3a98ccf8f12df60a887e64e3dd004de4",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "f0706eb111cd9aa5d6d477f63da11595aebdf44bf9b8f52b179955dd1a6a24a2",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "023b398953369773f95c5a93f2343119239ce0464847e5cd4390827d89dd8866",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "66ac7cb3cecf9f2fb233de0fd7d4cc4f412b0749359bb49a562ec48556a11552",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "b3f3845c69cbd6aaa1f42ade218691777b74d328bd0e184497d4334bf75795f3",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "0b87824d581bacae74dff78e2a896d5d5d4047d58d5f2d3b9cefedf08c973bc5",
+              "exists": false,
+              "version": null,
+              "type": null,
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "a825840c-c2f4-4141-86ee-159d21a51344"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "744c4d23-76dd-48f3-af0b-3ce6c2959b3b",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446735980",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 3
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "d6e44393-2de3-4dc8-9931-69e2250f4ea0"
+      }
+    },
+    {
+      "input": {
+        "operation": "hold",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "d8c02acb-aee4-4a92-aef7-522dbc64fe83",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446735980",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "HELD",
+          "writes": 7
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "e69d4a26-a14d-44ac-b782-d2125d0b059b"
+      }
+    },
+    {
+      "input": {
+        "operation": "read",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "11c720cf-748c-44f1-8588-6b160ffbd998",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446735980",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "READ",
+          "documents": [
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "3b3dcede44a8307080587017b9f26a5854412bcca97586d53890c8892a4e26d7",
+              "exists": true,
+              "version": 1,
+              "type": "STOCK",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1004f61142d54fc7cd87366dc7bc1b4a3c4c0a805809c0c87aad61bd9fbf926d",
+              "exists": true,
+              "version": 1,
+              "type": "PICKUP",
+              "heldUnits": 1
+            },
+            {
+              "collection": "jjl_d04_probe_resources",
+              "_id": "1c236e3d5b7059e0714faa53e5c15f0e3a98ccf8f12df60a887e64e3dd004de4",
+              "exists": true,
+              "version": 0,
+              "type": "DELIVERY",
+              "heldUnits": 0
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "f0706eb111cd9aa5d6d477f63da11595aebdf44bf9b8f52b179955dd1a6a24a2",
+              "exists": true,
+              "version": 0,
+              "type": "OPERATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "023b398953369773f95c5a93f2343119239ce0464847e5cd4390827d89dd8866",
+              "exists": true,
+              "version": 0,
+              "type": "LOG",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "66ac7cb3cecf9f2fb233de0fd7d4cc4f412b0749359bb49a562ec48556a11552",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_records",
+              "_id": "b3f3845c69cbd6aaa1f42ade218691777b74d328bd0e184497d4334bf75795f3",
+              "exists": true,
+              "version": 0,
+              "type": "RESERVATION",
+              "heldUnits": null
+            },
+            {
+              "collection": "jjl_d04_probe_receipts",
+              "_id": "0b87824d581bacae74dff78e2a896d5d5d4047d58d5f2d3b9cefedf08c973bc5",
+              "exists": true,
+              "version": 0,
+              "type": "RECEIPT",
+              "heldUnits": null
+            }
+          ]
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "3c9f8300-6b17-459a-b377-ca608620ab17"
+      }
+    },
+    {
+      "input": {
+        "operation": "prepare",
+        "caseId": "atomic",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "3848b601-9733-4cf1-b484-092fb048a7f3",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-retry-1791446735980",
+          "caseId": "atomic",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "PREPARED",
+          "created": 0
+        },
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "411ff5a2-665c-4160-b514-9d0abcc57876"
+      }
+    }
+  ],
+  "errorCode": "WECHAT_EVALUATION_REJECTED",
+  "passed": false,
+  "device": "NOT_RUN"
+}

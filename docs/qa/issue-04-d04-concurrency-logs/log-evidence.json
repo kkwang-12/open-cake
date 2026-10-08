@@ -1,0 +1,160 @@
+{
+  "recordedAt": "2026-10-08T07:24:22.802Z",
+  "status": "BLOCKED",
+  "envId": "dinner-cook-test-d5e320u981ec341",
+  "functionName": "jjl-d04-probe",
+  "runId": "d04-20261008070714200-ba2d4765",
+  "sourceEvidence": "docs/qa/d04-cloud/native-1791443939898.json",
+  "sourceTimeUTC": "2026-10-08T07:18:59.898Z",
+  "listQueryWindow": {
+    "start": "2026-10-08 15:10:00",
+    "end": "2026-10-08 15:25:00",
+    "timezone": "Asia/Hong_Kong"
+  },
+  "requests": [
+    {
+      "requestId": "7963c6ab-bc80-43e7-8463-611b98a5f210",
+      "toolReturn": {
+        "success": false,
+        "data": {},
+        "message": "getFunctionLogDetail 已废弃：底层 GetFunctionLogDetail 接口已下线，请使用 env.getLogService().searchClsLog() 查询云函数日志"
+      },
+      "originalSdkCode": "NOT_OBTAINED",
+      "originalErrCode": "NOT_OBTAINED",
+      "conflictEvidence": "NOT_OBTAINED",
+      "retryEvidence": "NOT_OBTAINED"
+    },
+    {
+      "requestId": "ce277c90-061f-4505-a1d9-1eee40236c32",
+      "toolReturn": {
+        "success": false,
+        "data": {},
+        "message": "getFunctionLogDetail 已废弃：底层 GetFunctionLogDetail 接口已下线，请使用 env.getLogService().searchClsLog() 查询云函数日志"
+      },
+      "originalSdkCode": "NOT_OBTAINED",
+      "originalErrCode": "NOT_OBTAINED",
+      "conflictEvidence": "NOT_OBTAINED",
+      "retryEvidence": "NOT_OBTAINED"
+    },
+    {
+      "requestId": "0044ee14-220b-4ffb-9c53-311af8bf6a71",
+      "toolReturn": {
+        "success": false,
+        "data": {},
+        "message": "getFunctionLogDetail 已废弃：底层 GetFunctionLogDetail 接口已下线，请使用 env.getLogService().searchClsLog() 查询云函数日志"
+      },
+      "originalSdkCode": "NOT_OBTAINED",
+      "originalErrCode": "NOT_OBTAINED",
+      "conflictEvidence": "NOT_OBTAINED",
+      "retryEvidence": "NOT_OBTAINED"
+    },
+    {
+      "requestId": "f0ff8da1-6254-4e49-8918-e0f50d8a8ae7",
+      "toolReturn": {
+        "success": false,
+        "data": {},
+        "message": "getFunctionLogDetail 已废弃：底层 GetFunctionLogDetail 接口已下线，请使用 env.getLogService().searchClsLog() 查询云函数日志"
+      },
+      "originalSdkCode": "NOT_OBTAINED",
+      "originalErrCode": "NOT_OBTAINED",
+      "conflictEvidence": "NOT_OBTAINED",
+      "retryEvidence": "NOT_OBTAINED"
+    }
+  ],
+  "listLogs": {
+    "success": false,
+    "data": {},
+    "message": "getFunctionLogsV2 已废弃：底层 GetFunctionLogs 接口已下线，请使用 env.getLogService().searchClsLog() 查询云函数日志"
+  },
+  "logService": {
+    "success": true,
+    "data": {
+      "action": "checkLogService",
+      "enabled": false
+    },
+    "message": "日志服务未开通或仍在初始化中"
+  },
+  "console": {
+    "initialRead": "'ce277c90-061f-4505-a1d9-1eee40236c32' is not recognized as an internal or external command,\r\noperable program or batch file.\r\n        function reference(collection,id) {\r\n          if(!definitions.has(collection) || !text(id))fail('INVALID_TRANSACTION_DOCUMENT');\r\n          return transaction.collection(collection).doc(id);\r\n        }\r\n        function key(collection,id){return JSON.stringify([collection,id]);}\r\n        async function provider(operation) {\r\n          try{return await operation();}catch(error){\r\n            if(error instanceof CloudDocumentTransactionError)throw error;\r\n            // Only an explicit provider duplicate marker is accepted. Generic\r\n            // database/transport failures are not evidence of a unique conflict.\r\n            if(duplicate(error))fail('CLOUD_UNIQUE_CONFLICT');\r\n            fail('CLOUD_DOCUMENT_OPERATION_FAILED');\r\n          }\r\n        }\r\n        async function read(collection,id) {\r\n          const doc=reference(collection,id),cacheKey=key(collection,id);\r\n          if(reads.has(cacheKey))return copy(reads.get(cacheKey));\r\n          const response=await provider(()=>doc.get());\r\n",
+    "correctedRead": "[wechatide] skill-call: client=Codex tool=get_simulator_console\n{\n  \"ok\": true,\n  \"tool\": \"get_simulator_console\",\n  \"clientName\": \"Codex\",\n  \"result\": \"\"\n}\n",
+    "interpretation": "筛选无命中；不能证明console全空或平台无日志"
+  },
+  "before": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "restore": {
+    "ok": true,
+    "code": "ENV_READY",
+    "message": "环境设置成功，当前环境: cloudbase-d8gwtxzm64150b7e0，地域: ap-shanghai",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0"
+  },
+  "after": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "mutations": [],
+  "probeInvocations": "NOT_RUN",
+  "rootCause": "UNPROVEN"
+}

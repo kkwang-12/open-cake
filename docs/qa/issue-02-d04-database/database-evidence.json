@@ -1,0 +1,727 @@
+{
+  "recordedAt": "2026-10-08T07:02:55.172Z",
+  "status": "READY_FOR_MAIN_REVIEW",
+  "envId": "dinner-cook-test-d5e320u981ec341",
+  "before": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "site": "domestic",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "during": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "dinner-cook-test-d5e320u981ec341",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: dinner-cook-test-d5e320u981ec341 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "restoration": {
+    "ok": true,
+    "code": "ENV_READY",
+    "message": "环境设置成功，当前环境: cloudbase-d8gwtxzm64150b7e0，地域: ap-shanghai",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0"
+  },
+  "after": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "site": "domestic",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "initial": {
+    "success": true,
+    "requestId": "926ec28d-a9f4-4ae3-baef-b4c2bd76f384",
+    "collections": [],
+    "pager": {
+      "Offset": 0,
+      "Limit": 100,
+      "Total": 0
+    },
+    "message": "获取 NoSQL 数据库集合列表成功"
+  },
+  "mutations": [
+    {
+      "name": "jjl_d04_probe_resources",
+      "step": "create",
+      "result": {
+        "success": true,
+        "requestId": "ac40fa48-337a-40ed-bb21-95b68e0dc518",
+        "action": "createCollection",
+        "message": "云开发数据库集合创建成功",
+        "collection": "jjl_d04_probe_resources",
+        "collectionName": "jjl_d04_probe_resources"
+      }
+    },
+    {
+      "name": "jjl_d04_probe_resources",
+      "step": "rule",
+      "result": {
+        "success": true,
+        "data": {
+          "action": "updateResourcePermission",
+          "envId": "dinner-cook-test-d5e320u981ec341",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "jjl_d04_probe_resources",
+          "permission": "CUSTOM",
+          "hints": [],
+          "verificationHint": "对于 jjl_d04_probe_resources 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+          "propagationHint": "刚更新完 jjl_d04_probe_resources 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+          "raw": {
+            "RequestId": "0c092904-09e0-434f-b146-e6cd8463d46a",
+            "Data": {
+              "Success": true
+            }
+          }
+        },
+        "message": "资源权限更新成功"
+      }
+    },
+    {
+      "name": "jjl_d04_probe_records",
+      "step": "create",
+      "result": {
+        "success": true,
+        "requestId": "1f27c6a5-4727-4627-b390-2ddf82451c6f",
+        "action": "createCollection",
+        "message": "云开发数据库集合创建成功",
+        "collection": "jjl_d04_probe_records",
+        "collectionName": "jjl_d04_probe_records"
+      }
+    },
+    {
+      "name": "jjl_d04_probe_records",
+      "step": "rule",
+      "result": {
+        "success": true,
+        "data": {
+          "action": "updateResourcePermission",
+          "envId": "dinner-cook-test-d5e320u981ec341",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "jjl_d04_probe_records",
+          "permission": "CUSTOM",
+          "hints": [],
+          "verificationHint": "对于 jjl_d04_probe_records 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+          "propagationHint": "刚更新完 jjl_d04_probe_records 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+          "raw": {
+            "RequestId": "181202db-f887-4895-9157-3bb2bb40e4dd",
+            "Data": {
+              "Success": true
+            }
+          }
+        },
+        "message": "资源权限更新成功"
+      }
+    },
+    {
+      "name": "jjl_d04_probe_receipts",
+      "step": "create",
+      "result": {
+        "success": true,
+        "requestId": "02fe2622-b194-41b2-b07b-502b1262965b",
+        "action": "createCollection",
+        "message": "云开发数据库集合创建成功",
+        "collection": "jjl_d04_probe_receipts",
+        "collectionName": "jjl_d04_probe_receipts"
+      }
+    },
+    {
+      "name": "jjl_d04_probe_receipts",
+      "step": "rule",
+      "result": {
+        "success": true,
+        "data": {
+          "action": "updateResourcePermission",
+          "envId": "dinner-cook-test-d5e320u981ec341",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "jjl_d04_probe_receipts",
+          "permission": "CUSTOM",
+          "hints": [],
+          "verificationHint": "对于 jjl_d04_probe_receipts 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+          "propagationHint": "刚更新完 jjl_d04_probe_receipts 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+          "raw": {
+            "RequestId": "e4f5bc5a-7629-485c-a045-db2fbec1e986",
+            "Data": {
+              "Success": true
+            }
+          }
+        },
+        "message": "资源权限更新成功"
+      }
+    }
+  ],
+  "indexCreate": {
+    "success": true,
+    "requestId": "2bb600d3-456e-4c56-ad31-56a143013d8a",
+    "action": "updateCollection",
+    "message": "云开发数据库集合更新成功",
+    "collection": "jjl_d04_probe_receipts",
+    "collectionName": "jjl_d04_probe_receipts"
+  },
+  "readbacks": [
+    {
+      "key": "jjl_d04_probe_resources/detail",
+      "result": {
+        "success": true,
+        "requestId": "ff54a5b1-b8d8-42f5-9a4a-7f53752695fd",
+        "indexNum": 2,
+        "indexes": [
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:07.242+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:07.236+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 4096,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取云开发数据库集合信息成功",
+        "collection": "jjl_d04_probe_resources",
+        "collectionName": "jjl_d04_probe_resources"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_resources/indexes",
+      "result": {
+        "success": true,
+        "requestId": "c720fdc7-6429-4995-9d62-1350fd7f4fee",
+        "indexNum": 2,
+        "indexes": [
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:07.242+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:07.236+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 4096,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取索引列表成功",
+        "collection": "jjl_d04_probe_resources",
+        "collectionName": "jjl_d04_probe_resources"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_resources/rules",
+      "result": {
+        "success": true,
+        "data": {
+          "action": "getResourcePermission",
+          "envId": "dinner-cook-test-d5e320u981ec341",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "jjl_d04_probe_resources",
+          "aclTag": "CUSTOM",
+          "permissions": [
+            {
+              "Resource": "jjl_d04_probe_resources",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\":false,\"write\":false}"
+            }
+          ],
+          "hints": [],
+          "raw": {
+            "RequestId": "e530c1dc-4c85-4c54-9eee-8c1350e9fe8f",
+            "Data": {
+              "TotalCount": 1,
+              "PermissionList": [
+                {
+                  "Resource": "jjl_d04_probe_resources",
+                  "Permission": "CUSTOM",
+                  "ResourceType": "collection",
+                  "SecurityRule": "{\"read\":false,\"write\":false}"
+                }
+              ]
+            }
+          }
+        },
+        "message": "资源权限查询成功"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_records/detail",
+      "result": {
+        "success": true,
+        "requestId": "496b5853-0a5f-4c20-a3c1-a73c95e0d0f9",
+        "indexNum": 2,
+        "indexes": [
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:15.144+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:15.138+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 4096,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取云开发数据库集合信息成功",
+        "collection": "jjl_d04_probe_records",
+        "collectionName": "jjl_d04_probe_records"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_records/indexes",
+      "result": {
+        "success": true,
+        "requestId": "40822621-e8d1-488f-8d64-0223ac063697",
+        "indexNum": 2,
+        "indexes": [
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:15.138+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 4096,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:15.144+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取索引列表成功",
+        "collection": "jjl_d04_probe_records",
+        "collectionName": "jjl_d04_probe_records"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_records/rules",
+      "result": {
+        "success": true,
+        "data": {
+          "action": "getResourcePermission",
+          "envId": "dinner-cook-test-d5e320u981ec341",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "jjl_d04_probe_records",
+          "aclTag": "CUSTOM",
+          "permissions": [
+            {
+              "Resource": "jjl_d04_probe_records",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\":false,\"write\":false}"
+            }
+          ],
+          "hints": [],
+          "raw": {
+            "RequestId": "70cdef87-c55f-4479-bd82-779a14dba0af",
+            "Data": {
+              "TotalCount": 1,
+              "PermissionList": [
+                {
+                  "Resource": "jjl_d04_probe_records",
+                  "Permission": "CUSTOM",
+                  "ResourceType": "collection",
+                  "SecurityRule": "{\"read\":false,\"write\":false}"
+                }
+              ]
+            }
+          }
+        },
+        "message": "资源权限查询成功"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_receipts/detail",
+      "result": {
+        "success": true,
+        "requestId": "1c84e480-564e-41c5-ba13-85c4019c4036",
+        "indexNum": 3,
+        "indexes": [
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:27.664+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 4096,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:27.672+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "uq_d04_probe_command",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:39.245+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "runId",
+                "Direction": "1"
+              },
+              {
+                "Name": "caseId",
+                "Direction": "1"
+              },
+              {
+                "Name": "commandKey",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": true,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取云开发数据库集合信息成功",
+        "collection": "jjl_d04_probe_receipts",
+        "collectionName": "jjl_d04_probe_receipts"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_receipts/indexes",
+      "result": {
+        "success": true,
+        "requestId": "388cd704-9c22-44cc-bfdb-51140657e88e",
+        "indexNum": 3,
+        "indexes": [
+          {
+            "Name": "_id_",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:27.664+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_id",
+                "Direction": "1"
+              }
+            ],
+            "Size": 4096,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "uq_d04_probe_command",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:39.245+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "runId",
+                "Direction": "1"
+              },
+              {
+                "Name": "caseId",
+                "Direction": "1"
+              },
+              {
+                "Name": "commandKey",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": true,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          },
+          {
+            "Name": "_openid_1",
+            "Accesses": {
+              "Ops": 0,
+              "Since": "2026-10-08T15:01:27.672+08:00"
+            },
+            "Keys": [
+              {
+                "Name": "_openid",
+                "Direction": "1"
+              }
+            ],
+            "Size": 8192,
+            "Unique": false,
+            "Sparse": false,
+            "PartialFilterExpression": ""
+          }
+        ],
+        "message": "获取索引列表成功",
+        "collection": "jjl_d04_probe_receipts",
+        "collectionName": "jjl_d04_probe_receipts"
+      }
+    },
+    {
+      "key": "jjl_d04_probe_receipts/rules",
+      "result": {
+        "success": true,
+        "data": {
+          "action": "getResourcePermission",
+          "envId": "dinner-cook-test-d5e320u981ec341",
+          "resourceType": "noSqlDatabase",
+          "resourceId": "jjl_d04_probe_receipts",
+          "aclTag": "CUSTOM",
+          "permissions": [
+            {
+              "Resource": "jjl_d04_probe_receipts",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\":false,\"write\":false}"
+            }
+          ],
+          "hints": [],
+          "raw": {
+            "RequestId": "315cfe98-afe8-44a5-9291-7b1de609b39a",
+            "Data": {
+              "TotalCount": 1,
+              "PermissionList": [
+                {
+                  "Resource": "jjl_d04_probe_receipts",
+                  "Permission": "CUSTOM",
+                  "ResourceType": "collection",
+                  "SecurityRule": "{\"read\":false,\"write\":false}"
+                }
+              ]
+            }
+          }
+        },
+        "message": "资源权限查询成功"
+      }
+    }
+  ],
+  "final": {
+    "success": true,
+    "requestId": "b75ec3f6-64bf-4290-b536-8903d950fd35",
+    "collections": [
+      {
+        "TableName": "jjl_d04_probe_receipts",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 3,
+        "IndexSize": 20480
+      },
+      {
+        "TableName": "jjl_d04_probe_records",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 2,
+        "IndexSize": 12288
+      },
+      {
+        "TableName": "jjl_d04_probe_resources",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 2,
+        "IndexSize": 12288
+      }
+    ],
+    "pager": {
+      "Offset": 0,
+      "Limit": 100,
+      "Total": 3
+    },
+    "message": "获取 NoSQL 数据库集合列表成功"
+  },
+  "indexBuildStatus": "NOT_EXPOSED_BY_TOOL",
+  "D04Experiments": "NOT_RUN",
+  "probeDataWrites": "NOT_RUN",
+  "functionsAndSubjectConfig": "NOT_RUN",
+  "bindingVerificationNote": "写操作前一次set_env确认及初始列表；规则修改响应含test envId；逐次auth补充要求到达时本轮写操作已结束，此后没有写操作；恢复后只写本地结果文件。"
+}

@@ -1,0 +1,58 @@
+{
+  "recordedAt": "2026-10-08T06:51:37.652Z",
+  "status": "BLOCKED",
+  "installedCli": {
+    "pathCommandLookup": "Get-Command tcb,cloudbase: no results",
+    "commonCandidatesAllExist": false,
+    "codexPackageSearch": "no @cloudbase/cli/package.json or tcb.cmd/cloudbase.cmd hits",
+    "toolCacheFilenameSearch": "no CLI filename hits",
+    "installedVersion": "NOT_AVAILABLE",
+    "runtimeHelp": "NOT_RUN (no installed executable)"
+  },
+  "officialPackage": {
+    "name": "@cloudbase/cli",
+    "version": "3.8.5",
+    "metadataUrl": "https://registry.npmjs.org/@cloudbase%2fcli/latest",
+    "archiveUrl": "https://registry.npmjs.org/@cloudbase/cli/-/cli-3.8.5.tgz",
+    "inspection": "static source only; downloaded archive not installed/executed",
+    "sourceFile": "package/dist/standalone/cli.js",
+    "command": "EnvCreateCommand env/create",
+    "options": [
+      "--alias",
+      "--package",
+      "--region",
+      "--duration",
+      "--auto-renew",
+      "--postgresql",
+      "--external-storage-bucket",
+      "--external-storage-region",
+      "--external-storage-base-path",
+      "--platform-id"
+    ],
+    "defaultRequestedResources": [
+      "flexdb",
+      "storage",
+      "function"
+    ],
+    "WxAppIdCreateParameter": false,
+    "associatedAppIdFlag": false,
+    "NoSqlActuallyProvisioned": "NOT_RUN",
+    "archiveSha256": "aab513e935137c7f66c7463c96e7087d91cbb26024a74fb6f30b1316bbdd45f0"
+  },
+  "officialDocs": {
+    "cli": "https://docs.cloudbase.net/cli-v1/envs/basement",
+    "sdk": "https://docs.cloudbase.net/api-reference/manager/node/env",
+    "wechatCreation": "https://docs.cloudbase.net/quick-start/create-env"
+  },
+  "conclusion": "CLI source requests flexdb, unlike current MCP schema; this proves intended resource request only, not current successful NoSQL provisioning or WeChat association. No verified complete automatic path.",
+  "operations": {
+    "newCloudResources": [],
+    "globalInstall": false,
+    "cliExecution": false,
+    "uiRetry": false,
+    "sharedConfigChanged": false,
+    "createPurchase": "NOT_RUN",
+    "association": "NOT_RUN",
+    "issue02": "NOT_RUN"
+  }
+}

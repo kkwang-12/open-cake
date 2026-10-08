@@ -1,0 +1,358 @@
+{
+  "recordedAt": "2026-10-08T06:44:11.958Z",
+  "status": "BLOCKED",
+  "issue": "01",
+  "appId": "wx154f791a17268ace",
+  "testEnvId": null,
+  "authBefore": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "AUTO_BOUND",
+    "env_setup_actions": [
+      "list_envs"
+    ],
+    "env_candidates": [
+      {
+        "envId": "cloudbase-d8gwtxzm64150b7e0",
+        "alias": "cloudbase",
+        "region": "ap-shanghai",
+        "status": "NORMAL",
+        "env_type": "baas"
+      }
+    ],
+    "env_candidates_summary": {
+      "total": 1,
+      "returned": 1,
+      "truncated": false
+    },
+    "message": "当前已登录，已自动绑定唯一环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "authAfter": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "site": "domestic",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "regionQueries": {
+    "shanghai": {
+      "EnvList": [
+        {
+          "EnvId": "cloudbase-d8gwtxzm64150b7e0",
+          "Alias": "cloudbase",
+          "Status": "NORMAL",
+          "EnvType": "baas",
+          "Region": "ap-shanghai",
+          "PackageId": "baas_personal",
+          "PackageName": "个人版",
+          "IsDefault": true
+        }
+      ],
+      "TotalCount": 1,
+      "Offset": 0,
+      "Limit": 100,
+      "HasMore": false,
+      "AppliedFilters": {
+        "alias": null,
+        "aliasExact": null,
+        "envId": null,
+        "region": "ap-shanghai",
+        "fields": [
+          "EnvId",
+          "Alias",
+          "Status",
+          "EnvType",
+          "Region",
+          "PackageId",
+          "PackageName",
+          "IsDefault"
+        ],
+        "currentEnvOnly": false
+      },
+      "credential_scope": "account",
+      "current_region": "ap-shanghai",
+      "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+      "query_region": "ap-shanghai"
+    },
+    "guangzhou": {
+      "EnvList": [],
+      "TotalCount": 0,
+      "Offset": 0,
+      "Limit": 100,
+      "HasMore": false,
+      "AppliedFilters": {
+        "alias": null,
+        "aliasExact": null,
+        "envId": null,
+        "region": "ap-guangzhou",
+        "fields": [
+          "EnvId",
+          "Alias",
+          "Status",
+          "EnvType",
+          "Region",
+          "PackageId",
+          "PackageName",
+          "IsDefault"
+        ],
+        "currentEnvOnly": false
+      },
+      "credential_scope": "account",
+      "current_region": "ap-shanghai",
+      "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+      "query_region": "ap-guangzhou"
+    },
+    "singaporeFirstAttempt": {
+      "ok": false,
+      "code": "AUTH_REQUIRED",
+      "message": "当前未登录，请先调用 auth 工具完成认证。",
+      "next_step": {
+        "tool": "auth",
+        "action": "start_auth",
+        "suggested_args": {
+          "action": "start_auth",
+          "authMode": "device"
+        }
+      }
+    },
+    "domesticStatus": {
+      "ok": true,
+      "code": "STATUS",
+      "auth_status": "READY",
+      "site": "domestic",
+      "credential_scope": "account",
+      "current_region": "ap-shanghai",
+      "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+      "auth_config": {
+        "auth_mode": "device",
+        "client_id": null,
+        "oauth_endpoint": null,
+        "oauth_custom": false,
+        "uses_toolbox_defaults": true
+      },
+      "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+      "env_status": "READY",
+      "env_setup_status": "NOT_NEEDED",
+      "env_setup_actions": [],
+      "env_candidates": [],
+      "env_candidates_summary": {
+        "total": 0,
+        "returned": 0,
+        "truncated": false
+      },
+      "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+      "next_step": {
+        "tool": "auth",
+        "action": "status",
+        "suggested_args": {
+          "action": "status"
+        }
+      }
+    },
+    "singaporeDomestic": {
+      "EnvList": [],
+      "TotalCount": 0,
+      "Offset": 0,
+      "Limit": 100,
+      "HasMore": false,
+      "AppliedFilters": {
+        "alias": null,
+        "aliasExact": null,
+        "envId": null,
+        "region": "ap-singapore",
+        "fields": [
+          "EnvId",
+          "Alias",
+          "Status",
+          "EnvType",
+          "Region",
+          "PackageId",
+          "PackageName",
+          "IsDefault"
+        ],
+        "currentEnvOnly": false
+      },
+      "credential_scope": "account",
+      "current_region": "ap-shanghai",
+      "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+      "query_region": "ap-singapore"
+    }
+  },
+  "wechatAssociation": "[wechatide] skill-call: client=Codex tool=cloud_env_list\n{\n  \"ok\": true,\n  \"tool\": \"cloud_env_list\",\n  \"clientName\": \"Codex\",\n  \"result\": {\n    \"appid\": \"wx154f791a17268ace\",\n    \"list\": [\n      \"cloudbase-d8gwtxzm64150b7e0\"\n    ]\n  }\n}\n",
+  "development": {
+    "EnvId": "cloudbase-d8gwtxzm64150b7e0",
+    "Alias": "cloudbase",
+    "Status": "NORMAL",
+    "Region": "ap-shanghai",
+    "Source": "miniapp",
+    "WxAppId": "wx154f791a17268ace",
+    "RuntimeMode": "nosql",
+    "RuntimeBackends": {
+      "postgresql": false,
+      "nosql": true,
+      "mysql": false
+    },
+    "Databases": [
+      {
+        "InstanceId": "tnt-m100muyvs",
+        "Region": "ap-shanghai",
+        "Status": "RUNNING",
+        "UpdateTime": "2026-10-08 09:37:34"
+      }
+    ],
+    "Functions": [
+      {
+        "Backend": "scf",
+        "Namespace": "cloudbase-d8gwtxzm64150b7e0",
+        "Region": "ap-shanghai"
+      }
+    ],
+    "requestId": "a65ddd77-f1c2-4df1-ae06-e584c9b6c6e1"
+  },
+  "packages": [
+    {
+      "PackageName": "baas_personal",
+      "PackageTitle": "个人版",
+      "UnitPrice": "39.9"
+    },
+    {
+      "PackageName": "starter",
+      "PackageTitle": "入门版",
+      "UnitPrice": "99"
+    },
+    {
+      "PackageName": "startup",
+      "PackageTitle": "初创版",
+      "UnitPrice": "299"
+    },
+    {
+      "PackageName": "commercial",
+      "PackageTitle": "商用版",
+      "UnitPrice": "499"
+    },
+    {
+      "PackageName": "baas_team",
+      "PackageTitle": "团队版",
+      "UnitPrice": "999"
+    },
+    {
+      "PackageName": "team_premium",
+      "PackageTitle": "团队高级版",
+      "UnitPrice": "4999"
+    },
+    {
+      "PackageName": "team_advanced",
+      "PackageTitle": "团队进阶版",
+      "UnitPrice": "9999"
+    },
+    {
+      "PackageName": "team_flagship",
+      "PackageTitle": "团队旗舰版",
+      "UnitPrice": "19999"
+    },
+    {
+      "PackageName": "enterprise_starter",
+      "PackageTitle": "企业入门版",
+      "UnitPrice": "29999"
+    },
+    {
+      "PackageName": "enterprise_basic",
+      "PackageTitle": "企业基础版",
+      "UnitPrice": "49999"
+    }
+  ],
+  "creationCapability": {
+    "tool": "manageEnv",
+    "resources": [
+      "storage",
+      "function",
+      "postgresql"
+    ],
+    "nosqlCreationSupported": false,
+    "source": "current exposed tool schema: 不再包含 flexdb(文档数据库)：新建环境不会创建 NoSQL 实例",
+    "paidOperationRule": "展示配置摘要并等待用户确认",
+    "wechatCliVersion": "0.3.11",
+    "wechatCliEnvironmentTools": [
+      "cloud_env_list"
+    ],
+    "environmentCreateOrAssociateToolExposed": false
+  },
+  "uiFailure": {
+    "native": {
+      "content": [
+        {
+          "type": "text",
+          "text": "node_repl kernel exited unexpectedly\n\nnode_repl diagnostics: {\"kernel_pid\":6660,\"kernel_status\":\"exited(code=1)\",\"kernel_stderr_tail\":\"windows sandbox failed: helper_unknown_error: setup refresh had errors\",\"reason\":\"stdout_eof\",\"stream_error\":null}"
+        }
+      ],
+      "isError": true
+    },
+    "browser": "cua.getState retry: kernel exited code=1; windows sandbox failed: helper_unknown_error: setup refresh had errors"
+  },
+  "wechatLogin": {
+    "loginExpired": false,
+    "versionRelation": "equal"
+  },
+  "operations": {
+    "createdResources": [],
+    "modifiedResources": [],
+    "setEnvExecuted": false,
+    "sharedConfigChanged": false,
+    "packagePurchase": "NOT_RUN",
+    "createTest": "NOT_RUN",
+    "associateTest": "NOT_RUN",
+    "D04": "NOT_RUN"
+  },
+  "authorization": {
+    "verifiedThreadId": "01a101b8-2f61-70e1-95fb-6e30056bd0e1",
+    "verifiedUserText": "你直接指挥 验证开发云环境最小链路 窗口，我给你完整权限",
+    "scope": "问题01及直接回报"
+  }
+}

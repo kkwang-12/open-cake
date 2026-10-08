@@ -1,0 +1,33 @@
+{
+  "recordedAt": "2026-10-08T08:36:43.4584715Z",
+  "tests": 1009,
+  "passed": 1009,
+  "failed": 0,
+  "staticFiles": 381,
+  "mainKiB": 1392,
+  "featuresKiB": 153,
+  "legacyKiB": 45,
+  "sources": [
+    {
+      "path": "scripts/verify-transaction-native.js",
+      "sha256": "2C85F6B5306C849638799505E3C7B38D5DB9E6108E84CF5CE03998BAB02E6E4F"
+    },
+    {
+      "path": "scripts/cloud-checks/native-batch-transport.js",
+      "sha256": "95486493FD31C10532A432F9A506536079E474C32961805020194CF14AAA6528"
+    },
+    {
+      "path": "tests/native-batch-transport.test.js",
+      "sha256": "6DEA42A6B0049D093BF5A7C6CEC40B56824617AFA39A6BE0A6BB90DDEBFF3667"
+    },
+    {
+      "path": "cloudfunctions/_shared/cloud-document-transaction.js",
+      "sha256": "7C4A097634DEB0A2A18AAE5047E419391B192B3C75F0447B440CDD1BA463B2AB"
+    },
+    {
+      "path": "scripts/cloud-checks/transaction-probe.js",
+      "sha256": "CEB31CCD2EC95034D95433FE1BBCFB42777173F22B9ECFA95B1A40CDEF01DB57"
+    }
+  ],
+  "review": "Bounded tool retry, browser batch start guarded by unique ticket, no cloud retry on request failure; native identity/run/expiry gates retained; no raw provider or credential response"
+}

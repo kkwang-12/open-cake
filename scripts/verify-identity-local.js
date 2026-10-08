@@ -14,7 +14,10 @@ for(const [name,args] of [['tests',['--test','tests/*.test.js']],['static',['scr
   results.push({name,exitCode:result.status,passed:!result.error && result.status===0});
 }
 const sources=['cloudfunctions/_shared/runtime.js','cloudfunctions/_shared/native-context.js',
-  'cloudfunctions/_shared/cloud-identity-repository.js','cloudfunctions/user/index.js','cloudfunctions/store/index.js',
+  'cloudfunctions/_shared/cloud-identity-repository.js','cloudfunctions/_shared/cloud-document-transaction.js',
+  'cloudfunctions/_shared/cloud-transaction-probe.js','scripts/cloud-checks/transaction-probe.js',
+  'scripts/cloud-checks/transaction-scenarios.js','scripts/verify-transaction-native.js',
+  'cloudfunctions/_shared/api-contract.js','cloudfunctions/user/index.js','cloudfunctions/store/index.js',
   'scripts/cloud-checks/identity-persistence.js','scripts/cloud-checks/initialization-rejection.js'];
 fs.writeFileSync(path.join(output,'report.json'),JSON.stringify({scope:'LOCAL_REGRESSION_ONLY',
   time:new Date().toISOString(),nodeVersion:process.version,results,

@@ -1,0 +1,23 @@
+{
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "time": "2026-10-08T08:33:06.907Z",
+  "appId": "wx154f791a17268ace",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "runId": "d04-transport-1791448249568",
+  "evidence": [],
+  "transportRetries": [
+    {
+      "stage": "START",
+      "attempt": 1,
+      "code": "WECHAT_EVALUATION_FAILED"
+    },
+    {
+      "stage": "START",
+      "attempt": 2,
+      "code": "WECHAT_EVALUATION_REJECTED"
+    }
+  ],
+  "errorCode": "WECHAT_EVALUATION_REJECTED",
+  "passed": false,
+  "device": "NOT_RUN"
+}

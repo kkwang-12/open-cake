@@ -32,6 +32,8 @@ API 本地请求上限 64 KiB（UTF-8），是本项目技术上限，不声称�
 
 ## 身份、幂等与版本规则
 
+2026-10-08当前实现：user.me/store.health仅development工具真实复验通过，真机待补。user.me首次按可信原生元组事务创建默认users，后续复读不覆盖；这里的READ/非mutation标记指无显式业务幂等命令，不应推断user.me零数据库写。该自然键创建不代替尚未实现的user.bootstrap/Profile/隐私同意接口。SDK身份必须与平台本次第二参数一致，不能接受复用实例残留或event身份。详见[实际记录](PHASE-2-CLOUD-REVALIDATION-2026-10-08.md)。
+
 所有面向小程序 action 至少要求可信平台 AppID / environment / OPENID 匹配；公共投影不要求已创建 users，但仍核验平台身份。OWNER 先加载本环境 ACTIVE 用户（缺记录先调用 user.bootstrap）并做父实体所有权校验；系统回调 / 任务不复用这类客户端入口。商家能力按 D06 当前角色及目标实体 storeId 检查。
 
 表中 KEY 表示 idempotencyKey 必填，绑定 environment / 稳定 subjectId / 完整 domain.action / key，指纹来自规范白名单业务输入（剔除幂等键本身与 requestId）。管理员目标门店 / 实体与版本仍在指纹中；同键异参拒绝。quote.create 虽不占资源，也持久化报价，必须去重。读 action 不建立业务幂等记录。

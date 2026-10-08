@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-08T08:24:09.3591130Z",
+  "tests": 1005,
+  "passed": 1005,
+  "failed": 0,
+  "staticFiles": 377,
+  "sdk": "4.0.2",
+  "mainKiB": 1392,
+  "featuresKiB": 153,
+  "legacyKiB": 45,
+  "review": "Native platform identity and allowlist retained; exact provider markers only; diagnostic contains no raw provider message, identity, env or credentials",
+  "sources": [
+    {
+      "path": "cloudfunctions/_shared/cloud-document-transaction.js",
+      "sha256": "7C4A097634DEB0A2A18AAE5047E419391B192B3C75F0447B440CDD1BA463B2AB"
+    },
+    {
+      "path": "scripts/cloud-checks/transaction-probe.js",
+      "sha256": "CEB31CCD2EC95034D95433FE1BBCFB42777173F22B9ECFA95B1A40CDEF01DB57"
+    },
+    {
+      "path": "tests/cloud-document-transaction.test.js",
+      "sha256": "43EB386D072AEF377E711D1B9F25864B3EB526EDA1E16AEAF12BA3E783A58396"
+    },
+    {
+      "path": "tests/transaction-probe-handler.test.js",
+      "sha256": "D79CA03B03FE474FD0DED5E472651289F7E73F31DD9D1617968EA8F162EF2FBF"
+    }
+  ]
+}

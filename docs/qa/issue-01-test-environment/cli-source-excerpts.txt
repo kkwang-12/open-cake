@@ -1,0 +1,70 @@
+Source: https://registry.npmjs.org/@cloudbase/cli/-/cli-3.8.5.tgz
+Static inspection only; package code never executed.
+
+HELP OPTION DEFINITIONS
+let EnvCreateCommand = class EnvCreateCommand extends common_1.Command {
+    get options() {
+        return {
+            cmd: 'env',
+            childCmd: 'create',
+            options: [
+                {
+                    flags: '--alias <alias>',
+                    desc: (0, i18n_1.t)('环境别名')
+                },
+                {
+                    flags: '--package <package>',
+                    desc: (0, i18n_1.t)('套餐 ID，可选值：baas_personal（个人版）| baas_pf_standard（标准版）| baas_pf_enterprise（企业版）；不填时展示套餐列表供选择')
+                },
+                {
+                    flags: '-r, --region <region>',
+                    desc: (0, i18n_1.t)('环境地域，默认 ap-shanghai')
+                },
+                {
+                    flags: '--duration <duration>',
+                    desc: (0, i18n_1.t)('购买时长（月），可选值：1-12,24，默认 1')
+                },
+                {
+                    flags: '--auto-renew',
+                    desc: (0, i18n_1.t)('开启自动续费，默认不开启')
+                },
+                {
+                    flags: '--postgresql',
+                    desc: (0, i18n_1.t)('创建 PG（PostgreSQL）环境模式')
+                },
+                {
+                    flags: '--external-storage-bucket <bucket>',
+                    desc: (0, i18n_1.t)('云存储使用的共享桶名称，需与 --external-storage-region、--external-storage-base-path 同时指定；仅作用于云存储，不包含静态托管')
+                },
+                {
+                    flags: '--external-storage-region <region>',
+                    desc: (0, i18n_1.t)('共享桶所在地域，例如 ap-shanghai')
+                },
+                {
+                    flags: '--external-storage-base-path <basePath>',
+                    desc: (0, i18n_1.t)('当前环境在共享桶内的目录前缀，同一共享桶内各环境需唯一')
+                },
+                {
+                    flags: '--platform-id <platformId>',
+                    desc: (0, i18n_1.t)('平台版资源池 ID。指定后在平台版资源池下开通环境，与 --package/--region/--duration/--auto-renew/--postgresql 互斥')
+                }
+            ],
+            desc: (0, i18n_1.t)('创建云开发环境，在没有参数输入时返回套餐列表；指定 --platform-id 时在平台版资源池下开通环境'),
+            requiredEnvId: false,
+            examples: [
+                'tcb env create --alias myenv --package baas_personal --yes',
+                'tcb env create --alias myenv --package baas_personal --region ap-singapore --yes',
+                'tcb env create --alias myenv --package baas_personal --duration 12 --auto-renew --yes',
+                '# 创建 PG（PostgreSQL）环境模式',
+                'tcb env create --alias mypgenv --package baas_personal --postgresql --yes',
+                '# 云存储使用共享桶（ExternalStorage）',
+                'tcb env create --alias myenv --package baas_personal --external-storage-bucket my-bucket-1250000000 --external-storage-region ap-shanghai --external-storage-base-path myenv --yes',
+                '# 在平台版资源池下开通环境',
+                'tcb env create --platform-id pf-xxx --alias myenv --yes',
+                'tcb env create'
+            ]
+        };
+    }
+
+RESOURCE REQUEST
+const result = yield app.env.createEnv(Object.assign({ Alias: alias, PackageId: targetPackage.PackageName, Resources: usePostgresql ? ['flexdb', 'storage', 'function', 'postgresql'] : ['flexdb', 'storage', 'function'], Period: period, RenewFlag: autoRenew ? 'NOTIFY_AND_AUTO_RENEW' : 'NOTIFY_AND_MANUAL_RENEW' }, (externalStorage ? { ExternalStorage: externalStorage } : {})));

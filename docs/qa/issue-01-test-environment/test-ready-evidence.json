@@ -1,0 +1,148 @@
+{
+  "recordedAt": "2026-10-08T06:58:16.049Z",
+  "status": "READY_FOR_MAIN_REVIEW",
+  "test": {
+    "RequestId": "abcdf71c-7eff-4021-931e-74d7258c63f6",
+    "EnvId": "dinner-cook-test-d5e320u981ec341",
+    "Alias": "dinner-cook-test",
+    "Status": "NORMAL",
+    "Region": "ap-shanghai",
+    "Source": "miniapp",
+    "WxAppId": "wx154f791a17268ace",
+    "RuntimeMode": "nosql",
+    "RuntimeBackends": {
+      "postgresql": false,
+      "nosql": true,
+      "mysql": false
+    },
+    "Databases": [
+      {
+        "InstanceId": "tnt-if33ogxaq",
+        "Region": "ap-shanghai",
+        "Status": "RUNNING",
+        "UpdateTime": "2026-10-08 14:56:27"
+      }
+    ],
+    "Storages": [
+      {
+        "Bucket": "6469-dinner-cook-test-d5e320u981ec341-1501710237",
+        "Region": "ap-shanghai",
+        "Status": "NORMAL",
+        "ExternalStorage": {
+          "BasePath": "",
+          "BucketName": "",
+          "Enabled": false,
+          "Provider": "",
+          "Region": ""
+        }
+      }
+    ],
+    "Functions": [
+      {
+        "Backend": "scf",
+        "Namespace": "dinner-cook-test-d5e320u981ec341",
+        "Region": "ap-shanghai"
+      }
+    ]
+  },
+  "development": {
+    "RequestId": "4ec58b76-79fb-4b95-9fd0-266ddd56a641",
+    "EnvId": "cloudbase-d8gwtxzm64150b7e0",
+    "Alias": "cloudbase",
+    "Status": "NORMAL",
+    "Region": "ap-shanghai",
+    "Source": "miniapp",
+    "WxAppId": "wx154f791a17268ace",
+    "RuntimeMode": "nosql",
+    "RuntimeBackends": {
+      "postgresql": false,
+      "nosql": true,
+      "mysql": false
+    },
+    "Databases": [
+      {
+        "InstanceId": "tnt-m100muyvs",
+        "Region": "ap-shanghai",
+        "Status": "RUNNING",
+        "UpdateTime": "2026-10-08 09:37:34"
+      }
+    ],
+    "Storages": [
+      {
+        "Bucket": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237",
+        "Region": "ap-shanghai",
+        "Status": "NORMAL",
+        "ExternalStorage": {
+          "BasePath": "",
+          "BucketName": "",
+          "Enabled": false,
+          "Provider": "",
+          "Region": ""
+        }
+      }
+    ],
+    "Functions": [
+      {
+        "Backend": "scf",
+        "Namespace": "cloudbase-d8gwtxzm64150b7e0",
+        "Region": "ap-shanghai"
+      }
+    ]
+  },
+  "aliasQuery": {
+    "EnvList": [
+      {
+        "EnvId": "dinner-cook-test-d5e320u981ec341",
+        "Alias": "dinner-cook-test",
+        "Status": "NORMAL",
+        "EnvType": "baas",
+        "Region": "ap-shanghai",
+        "PackageId": "baas_personal",
+        "PackageName": "个人版",
+        "IsDefault": false
+      }
+    ],
+    "TotalCount": 1,
+    "Offset": 0,
+    "Limit": 100,
+    "HasMore": false,
+    "AppliedFilters": {
+      "alias": "dinner-cook-test",
+      "aliasExact": true,
+      "envId": null,
+      "region": "ap-shanghai",
+      "fields": [
+        "EnvId",
+        "Alias",
+        "Status",
+        "EnvType",
+        "Region",
+        "PackageId",
+        "PackageName",
+        "IsDefault"
+      ],
+      "currentEnvOnly": false
+    },
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "query_region": "ap-shanghai"
+  },
+  "wechatAssociationRaw": "[wechatide] skill-call: client=Codex tool=cloud_env_list\n{\n  \"ok\": true,\n  \"tool\": \"cloud_env_list\",\n  \"clientName\": \"Codex\",\n  \"result\": {\n    \"appid\": \"wx154f791a17268ace\",\n    \"list\": [\n      \"cloudbase-d8gwtxzm64150b7e0\",\n      \"dinner-cook-test-d5e320u981ec341\"\n    ]\n  }\n}",
+  "isolation": {
+    "differentEnvId": true,
+    "differentDatabaseInstance": true,
+    "differentStorageBucket": true,
+    "externalStorageDisabled": true,
+    "differentFunctionNamespace": true
+  },
+  "bindingBefore": "cloudbase-d8gwtxzm64150b7e0",
+  "bindingAfter": "cloudbase-d8gwtxzm64150b7e0",
+  "regionAfter": "ap-shanghai",
+  "createdBy": "用户在微信云开发控制台创建，本窗口只读核验",
+  "windowMutations": [],
+  "setEnvExecuted": false,
+  "sharedConfigChanged": false,
+  "D04": "NOT_RUN",
+  "issue02": "NOT_RUN"
+}

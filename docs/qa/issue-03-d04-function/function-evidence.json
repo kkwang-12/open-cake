@@ -1,0 +1,329 @@
+{
+  "recordedAt": "2026-10-08T07:12:32.757Z",
+  "status": "READY_FOR_MAIN_REVIEW",
+  "envId": "dinner-cook-test-d5e320u981ec341",
+  "functionName": "jjl-d04-probe",
+  "sourceComparison": {
+    "files": [
+      {
+        "src": "scripts/cloud-checks/transaction-probe.js",
+        "dst": "index.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "6f405259e3108e5f4242f9b72d6f5f882b0eb5a9ee75a52d940b59b908e4d09b",
+        "packageSha256": "6f405259e3108e5f4242f9b72d6f5f882b0eb5a9ee75a52d940b59b908e4d09b"
+      },
+      {
+        "src": "cloudfunctions/user/package.json",
+        "dst": "package.json",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "b1ca404b1f848e6e2e02c79363f73c2388d7418abd750ecd9d413699198d22e9",
+        "packageSha256": "b1ca404b1f848e6e2e02c79363f73c2388d7418abd750ecd9d413699198d22e9"
+      },
+      {
+        "src": "cloudfunctions/user/package-lock.json",
+        "dst": "package-lock.json",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "03ac9ed2c56e903b42f3472b470b1c60e181194f80d212eabf19cc07d84c93db",
+        "packageSha256": "03ac9ed2c56e903b42f3472b470b1c60e181194f80d212eabf19cc07d84c93db"
+      },
+      {
+        "src": "cloudfunctions/_shared/runtime.js",
+        "dst": "shared/runtime.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "3c9c462f71efd64de42544839c8a820276aae89bcb9b95b9ec03a8a57d779820",
+        "packageSha256": "3c9c462f71efd64de42544839c8a820276aae89bcb9b95b9ec03a8a57d779820"
+      },
+      {
+        "src": "cloudfunctions/_shared/native-context.js",
+        "dst": "shared/native-context.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49",
+        "packageSha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49"
+      },
+      {
+        "src": "cloudfunctions/_shared/cloud-document-transaction.js",
+        "dst": "shared/cloud-document-transaction.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "ef333aa3ad04234d26b6436e6934d656031892aa8eff8268b35c5104a1ebd67a",
+        "packageSha256": "ef333aa3ad04234d26b6436e6934d656031892aa8eff8268b35c5104a1ebd67a"
+      },
+      {
+        "src": "cloudfunctions/_shared/cloud-transaction-probe.js",
+        "dst": "shared/cloud-transaction-probe.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "e8948d7c6d691812caabb434c625df2e9c9f1aa3b51331de6f674cb11765b84a",
+        "packageSha256": "e8948d7c6d691812caabb434c625df2e9c9f1aa3b51331de6f674cb11765b84a"
+      },
+      {
+        "src": "cloudfunctions/_shared/authorization-model.js",
+        "dst": "shared/authorization-model.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "ff0ad1a744b0f7a0842dc83b880d951cbdc9897d1493f81c5e0be17cdcbbff90",
+        "packageSha256": "ff0ad1a744b0f7a0842dc83b880d951cbdc9897d1493f81c5e0be17cdcbbff90"
+      },
+      {
+        "src": "cloudfunctions/_shared/idempotency-model.js",
+        "dst": "shared/idempotency-model.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "d79b24986ba5939f2bad1f59a2bc7ade2a4f089c543ef7009c5b7c428d88faa0",
+        "packageSha256": "d79b24986ba5939f2bad1f59a2bc7ade2a4f089c543ef7009c5b7c428d88faa0"
+      },
+      {
+        "src": "cloudfunctions/_shared/trade-model.js",
+        "dst": "shared/trade-model.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "c595ae6c9dc0a599d33b2ca833291e700ede58d786e15fad3278aa9016dd86d2",
+        "packageSha256": "c595ae6c9dc0a599d33b2ca833291e700ede58d786e15fad3278aa9016dd86d2"
+      },
+      {
+        "src": "cloudfunctions/_shared/resource-model.js",
+        "dst": "shared/resource-model.js",
+        "exists": true,
+        "equal": true,
+        "sourceSha256": "97a1f4c6c983c7baa22a558421edff339438c72c6a49f8d66afb2013f25af5b2",
+        "packageSha256": "97a1f4c6c983c7baa22a558421edff339438c72c6a49f8d66afb2013f25af5b2"
+      }
+    ],
+    "allMatch": true
+  },
+  "dependencies": {
+    "npmCiExit": 0,
+    "packagesAdded": 102,
+    "sdk": "4.0.2",
+    "cloudSdkProof": "两次实际原生identify返回sdkVersion"
+  },
+  "deployment": {
+    "success": true,
+    "data": {
+      "action": "createFunction",
+      "functionName": "jjl-d04-probe",
+      "raw": {
+        "RequestId": "bec219c5-9d06-47a0-91a5-49b668f08971",
+        "SCFErrorCode": "",
+        "SCFErrorMsg": ""
+      }
+    },
+    "message": "已创建函数 jjl-d04-probe",
+    "nextActions": [
+      {
+        "tool": "queryFunctions",
+        "action": "getFunctionDetail",
+        "reason": "确认函数配置"
+      },
+      {
+        "tool": "queryFunctions",
+        "action": "listFunctionTriggers",
+        "reason": "检查函数��发器"
+      }
+    ]
+  },
+  "configUpdate": {
+    "success": true,
+    "data": {
+      "action": "updateFunctionConfig",
+      "functionName": "jjl-d04-probe",
+      "raw": {
+        "RequestId": "349542e9-baaa-407c-bb36-8d84c87c9817"
+      }
+    },
+    "message": "已更新函数 jjl-d04-probe 的配置",
+    "nextActions": [
+      {
+        "tool": "queryFunctions",
+        "action": "getFunctionDetail",
+        "reason": "确认配置变更结果"
+      }
+    ]
+  },
+  "detail": {
+    "status": "Active",
+    "available": "Available",
+    "runtime": "Nodejs20.19",
+    "type": "Event",
+    "handler": "index.main",
+    "namespace": "dinner-cook-test-d5e320u981ec341",
+    "timeout": 20,
+    "codeResult": "success",
+    "triggers": [],
+    "env": {
+      "JJL_APP_ID": "wx154f791a17268ace",
+      "JJL_CLOUD_ENV": "dinner-cook-test-d5e320u981ec341",
+      "JJL_DEVELOPMENT_ENV": "cloudbase-d8gwtxzm64150b7e0",
+      "JJL_PROBE_EXPIRES_AT": "1791450434200",
+      "JJL_PROBE_RUN_ID": "d04-20261008070714200-ba2d4765",
+      "JJL_PROBE_USER_ID": "[REDACTED_64_HEX]",
+      "JJL_STAGE": "test",
+      "JJL_TEST_ENV": "dinner-cook-test-d5e320u981ec341"
+    },
+    "subjectMatchesNative": true,
+    "requestId": "dd4e4028-7914-4b2f-8727-732c4f663a76"
+  },
+  "initialNative": {
+    "ok": true,
+    "requestId": "ecae7107-c3b8-4ef4-9a86-5560a22adf25",
+    "data": {
+      "scope": "SDK_CAPABILITY_PROBE",
+      "businessOrderCreated": false,
+      "runId": "d04-20261008070714200-ba2d4765",
+      "caseId": "atomic",
+      "command": 0,
+      "mode": "PICKUP",
+      "subjectId": "[REDACTED_64_HEX]",
+      "disposition": "IDENTIFIED"
+    },
+    "sdkVersion": "4.0.2",
+    "platformRequestId": "b69dc2c7-0de8-4f91-b07f-fb8d87214c0d",
+    "controlledSession": "本窗口新建隔离工程；本机已登录微信开发者工具主动发起；主流程明确认可该会话为验收主体"
+  },
+  "afterConfigNative": {
+    "ok": true,
+    "requestId": "d6055bb5-2ce7-4714-a44d-b8db3eca9bb8",
+    "data": {
+      "scope": "SDK_CAPABILITY_PROBE",
+      "businessOrderCreated": false,
+      "runId": "d04-20261008070714200-ba2d4765",
+      "caseId": "atomic",
+      "command": 0,
+      "mode": "PICKUP",
+      "subjectId": "[REDACTED_64_HEX]",
+      "disposition": "IDENTIFIED"
+    },
+    "sdkVersion": "4.0.2",
+    "sameSubject": true,
+    "platformRequestId": "9cf8fa47-924b-4a4c-bfe2-9ba3853d4fce"
+  },
+  "noTrustedIdentity": {
+    "platformRequestId": "60c81147-860e-4934-a11c-1aba7ff7b0b0",
+    "requestId": "dadf7f5f-40b8-4bdb-b1cf-fd48a94c6940",
+    "errorCode": "AUTH_REQUIRED"
+  },
+  "project": "D:/dinner cook/artifacts/d04-identify-validation-20261008",
+  "expiresAt": 1791450434200,
+  "expiresAtUTC": "2026-10-08T09:07:14.200Z",
+  "expiresAtHongKong": "2026-10-08 17:07:14.200 +08:00",
+  "before": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "restore": {
+    "ok": true,
+    "code": "ENV_READY",
+    "message": "环境设置成功，当前环境: cloudbase-d8gwtxzm64150b7e0，地域: ap-shanghai",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0"
+  },
+  "after": {
+    "ok": true,
+    "code": "STATUS",
+    "auth_status": "READY",
+    "credential_scope": "account",
+    "current_region": "ap-shanghai",
+    "scope_note": "当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "auth_config": {
+      "auth_mode": "device",
+      "client_id": null,
+      "oauth_endpoint": null,
+      "oauth_custom": false,
+      "uses_toolbox_defaults": true
+    },
+    "current_env_id": "cloudbase-d8gwtxzm64150b7e0",
+    "env_status": "READY",
+    "env_setup_status": "NOT_NEEDED",
+    "env_setup_actions": [],
+    "env_candidates": [],
+    "env_candidates_summary": {
+      "total": 0,
+      "returned": 0,
+      "truncated": false
+    },
+    "message": "当前已登录，环境: cloudbase-d8gwtxzm64150b7e0 当前为账号级登录。DescribeEnvs 按地域查询；未传 region 时使用当前地域 ap-shanghai。其他地域请用 queryEnv(action=\"list\", region=\"ap-singapore\")，或 CLI: tcb env list -r ap-singapore。",
+    "next_step": {
+      "tool": "auth",
+      "action": "status",
+      "suggested_args": {
+        "action": "status"
+      }
+    }
+  },
+  "emptyCollections": {
+    "success": true,
+    "requestId": "2f1fe469-66d0-4863-bca2-6bb58d79557c",
+    "collections": [
+      {
+        "TableName": "jjl_d04_probe_receipts",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 3,
+        "IndexSize": 28672
+      },
+      {
+        "TableName": "jjl_d04_probe_records",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 2,
+        "IndexSize": 20480
+      },
+      {
+        "TableName": "jjl_d04_probe_resources",
+        "Count": 0,
+        "Size": 0,
+        "IndexCount": 2,
+        "IndexSize": 20480
+      }
+    ],
+    "pager": {
+      "Offset": 0,
+      "Limit": 100,
+      "Total": 3
+    },
+    "message": "获取 NoSQL 数据库集合列表成功"
+  },
+  "toolTimeouts": [
+    "首次原生结果读取超时；重编译后再次读取成功",
+    "配置后编译紧接读取超时；不重编译再次读取成功"
+  ],
+  "D04DataOperations": "NOT_RUN",
+  "experiments": "NOT_RUN",
+  "subjectPubliclySaved": false
+}
