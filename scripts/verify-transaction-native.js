@@ -4,17 +4,19 @@ const fs=require('node:fs');
 const path=require('node:path');
 const {spawnSync}=require('node:child_process');
 const {randomBytes}=require('node:crypto');
-const {runTransactionScenarios}=require('./cloud-checks/transaction-scenarios');
+const {runTransactionScenarios,runReadProtectionScenarios}=require('./cloud-checks/transaction-scenarios');
 const {createNativeBatchTransport}=require('./cloud-checks/native-batch-transport');
 const root=path.resolve(__dirname,'..');
 const args=Object.fromEntries(process.argv.slice(2).map(value=>{
-  const match=/^--(project|test-env|run-id)=(.+)$/.exec(value);
+  const match=/^--(project|test-env|run-id|suite)=(.+)$/.exec(value);
   if(!match)throw new Error('INVALID_RUN_ARGUMENT');return [match[1],match[2]];
 }));
 if(!args.project || !/^[A-Za-z0-9_-]{1,128}$/.test(args['test-env']||'') ||
   args['test-env']==='cloudbase-d8gwtxzm64150b7e0' || !/^[A-Za-z0-9_-]{16,48}$/.test(args['run-id']||''))
   throw new Error('ISOLATED_TEST_CONFIGURATION_REQUIRED');
 const project=path.resolve(args.project);
+const suite=args.suite || 'baseline';
+if(!['baseline','read-protection'].includes(suite))throw new Error('INVALID_RUN_ARGUMENT');
 if(project===root)throw new Error('ISOLATED_PROJECT_REQUIRED');
 const config=JSON.parse(fs.readFileSync(path.join(project,'project.config.json'),'utf8'));
 if(config.appid!=='wx154f791a17268ace')throw new Error('APP_MISMATCH');
@@ -40,14 +42,16 @@ const invokeMany=createNativeBatchTransport({evaluate,environment:args['test-env
 async function main() {
   let result,errorCode;
   const partialEvidence=[];
-  try{result=await runTransactionScenarios({invokeMany,runId:args['run-id'],onEvidence:row=>partialEvidence.push(row)});}
+  const scenarios=suite==='baseline'?runTransactionScenarios:runReadProtectionScenarios;
+  try{result=await scenarios({invokeMany,runId:args['run-id'],onEvidence:row=>partialEvidence.push(row)});}
   catch(error){errorCode=['INVALID_PROBE_RESPONSE','PROBE_RUN_NOT_FRESH','PROBE_READ_FAILED','PROBE_READ_INVALID',
     'WECHAT_EVALUATION_FAILED','WECHAT_RESPONSE_MISSING','WECHAT_EVALUATION_REJECTED','NATIVE_RUN_NOT_STARTED',
-    'NATIVE_BATCH_FAILED','NATIVE_BATCH_TIMEOUT'].includes(error.message)?error.message:'PROBE_EXECUTION_FAILED';}
+    'NATIVE_BATCH_FAILED','NATIVE_BATCH_TIMEOUT','INVALID_PROBE_TRANSPORT',
+    'PROBE_READ_PROTECTION_FAILED'].includes(error.message)?error.message:'PROBE_EXECUTION_FAILED';}
   const output=path.join(root,'docs','qa','d04-cloud','native-'+Date.now()+'.json');
   fs.mkdirSync(path.dirname(output),{recursive:true});
   fs.writeFileSync(output,JSON.stringify({scope:'REAL_WX_CLOUD_SIMULATOR',time:new Date().toISOString(),
-    appId:config.appid,environment:args['test-env'],runId:args['run-id'],evidence:partialEvidence,...result,
+    appId:config.appid,environment:args['test-env'],runId:args['run-id'],suite,evidence:partialEvidence,...result,
     transportRetries,errorCode:errorCode||null,passed:!errorCode && result.passed,device:'NOT_RUN'},null,2)+'\n',{flag:'wx'});
   console.log(JSON.stringify({output,passed:!errorCode && result.passed,errorCode:errorCode||null,
     assertions:result?.assertions || []}));

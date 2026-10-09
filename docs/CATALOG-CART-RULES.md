@@ -1,6 +1,6 @@
 # D03：商品规格与购物袋行规则
 
-日期：2026-10-03。范围：服务端纯模型及离线测试。没有网络接口、数据库、库存预留、正式商品或 UI 改动。E05 / E06 的经营值与独立 / 共享资源分配仍待商家确认；下面冻结的是技术契约。
+本文件维护商品/SKU、留言、袋行与库存引用的技术约束；正式经营值查[EXTERNAL-DEPENDENCIES](EXTERNAL-DEPENDENCIES.md)，实现/验收状态查[CURRENT-STATUS](CURRENT-STATUS.md)。
 
 ## 商品、SKU 与步骤
 
@@ -49,18 +49,6 @@ maxLines 与 maxQuantityPerLine 来自发布配置，没有硬编码正式上限
 
 技术结构同时支持独立与共享，E06 尚无最终经营选择。报价与加袋都不预留；创建订单事务才预留。
 
-## 三分类离线样例与验证
+## 示例与证据入口
 
-唯一示例来源：[tests/fixtures/catalog.js](../tests/fixtures/catalog.js)，标 OFFLINE TEST ONLY；不被 miniprogram 或云 seed 导入，无正式经营发布权限。
-
-| 分类 | 测试 productId / skuId 后缀 | 明确选项 | 留言 / 资源示例 |
-|---|---|---|---|
-| CAKE | offline-product-CAKE / offline-sku-CAKE | SIZE=SMALL + FLAVOR=A；LARGE+A 虽有组选项但无 SKU 不可选 | 测试 maxLength=12；offline-resource-CAKE |
-| MINI_CAKE | offline-product-MINI_CAKE / offline-sku-MINI_CAKE | PACK=ONE | 本示例不适用留言；商家可以明确配置支持 |
-| BREAD | offline-product-BREAD / offline-sku-BREAD | [] | 不提供蛋糕留言；offline-resource-BREAD |
-
-各例测试价 1000 分、SKU 数量 1–8、门店上限 6 / 3 行、提前量 60 分钟，**全为测试参数**，没有填入正式经营配置。共享资源测试让两个 SKU 指向同资源，需求 2×1+3×2=8，验证聚合而不扣余额。
-
-回归覆盖合法三分类、未配置 / 缺选 / 重复规格、歧义 SKU、跨店 / 下架 / 缺经营值、NFC 与 emoji、null / 空串、数量和行数、哈希 / 重复行篡改、旧版本、删除、同留言合并、更新竞争与不可变输出、资源乘加溢出及稀疏数组。另有 D03 袋 → D02 captureOrderFacts 的真实跨模块回归。
-
-本地模型通过不代表 E05 / E06 已确认，也不代表数据库、购物袋接口或 C03 / B01–B04 已验收。记录见 [PHASE-2-EXECUTION.md](PHASE-2-EXECUTION.md)。
+开发示例唯一来源：[catalog.js](../tests/fixtures/catalog.js)。正式目录不能使用夹具默认值；历史D03实现和验证按[阶段二记录](archive/stages/phase-2.md#phase-2-execution)定位。

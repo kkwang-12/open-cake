@@ -8,3 +8,4 @@ artifacts/design-ref/*
 !artifacts/design-ref/*.jpg
 miniprogram/config.local.js
 project.private.config.json
+docs/qa/local-checks/

@@ -1,6 +1,6 @@
 # D01：V1 交易与状态规则
 
-日期：2026-10-03。规则版本：`v1-2026-10-03`。范围：离线模型与后续云端实现契约；未创建订单 / 支付接口，未接入真实收退款。
+规则版本：`v1-2026-10-03`。本文件维护用户已确认的交易政策与状态约束；实现、部署和验证状态只查[CURRENT-STATUS](CURRENT-STATUS.md)。
 
 ## 决策来源
 
@@ -104,12 +104,6 @@ PENDING / FAILED 意图保留预算；确认成功时在同一事务中减少对
 
 订单记录政策版本；当前不支持的历史政策版本拒绝自动操作，后续变更需显式兼容，不默默套新规则。资源定位、库存共享、时段回补和 SDK 事务能力分别等待 D03–D05；`RESOLVE_CANCELLED_RESERVATIONS` 不是无条件退库存指令。
 
-## 代码、验证与参考
+## 实现与证据入口
 
-代码：[trade-model.js](../cloudfunctions/_shared/trade-model.js)。回归：[trade-model.test.js](../tests/trade-model.test.js)。字段：[DATA_MODEL.md](DATA_MODEL.md)。调用边界：[API_CONTRACT.md](API_CONTRACT.md)。
-
-两个现有云函数继续只同步 runtime.js。本模块尚未接入 user / store，不影响小程序主包；后续 Order / Payment 函数真正使用时，必须按 I07 随独立函数部署包携带，禁止引用包外 `_shared`。
-
-平台核查（2026-10-03）：客户端返回之后应由商户查单确认，后端结合可信异步通知、主动查单和对账恢复实际结果；模型据此区分可信付款与客户端返回。[微信支付官方：支付回调和查单实现指引](https://pay.wechatpay.cn/doc/v3/merchant/4012075249)
-
-D01 离线测试不替代真实支付、退款、库存并发、云权限或跨账户验收。执行结果见 [阶段二记录](PHASE-2-EXECUTION.md)。
+对应源码：[trade-model.js](../cloudfunctions/_shared/trade-model.js)。历史D01证据按[阶段二记录](archive/stages/phase-2.md#phase-2-execution)定位。客户端回调不作资金证据，可信通知/查单/对账按本文件规则处理；平台接口实施时核对官方资料。

@@ -48,7 +48,7 @@ planUserOrderCommand(order,command,principal,roles,args) 先按上表解析 acto
 
 初始管理员由受控运维流程核验真实微信身份，指定最小门店 / 能力，并写授权与审计；E12 缺身份，不生成管理员、白名单或示例 PIN。初始化不能作为普通客户端 action，不从首次访问者自动授予管理员。
 
-角色管理服务除 ROLE_MANAGE 外，保证目标门店和委派能力不超过操作者当前授权；禁止本人通过此流程修改自身角色、追加无关门店或扩张能力。撤销不删除记录：按版本设 REVOKED、revokedAt、version+1 并审计。全局授权需独立受控运维入口。2026-10-06 [A01](A01-ADMIN-AUTHORIZATION.md) 已补内部离线事务：同一当前授权覆盖完整委派范围，角色 / 脱敏审计 / 回执原子；初始化独立受控 / 一次性。真实人员 / 入口 / SDK 仍未接入，不能只调用 requireStoreCapability 就直接写 admin_roles。基础 D06 guard 保持原兼容边界，A01 服务额外校验环境、应用、角色主键、时间与审计引用。
+角色管理服务除 ROLE_MANAGE 外，保证目标门店和委派能力不超过操作者当前授权；禁止本人通过此流程修改自身角色、追加无关门店或扩张能力。撤销不删除记录：按版本设 REVOKED、revokedAt、version+1 并审计。全局授权需独立受控运维入口。2026-10-06 [A01](archive/stages/phase-8.md#a01-admin-authorization) 已补内部离线事务：同一当前授权覆盖完整委派范围，角色 / 脱敏审计 / 回执原子；初始化独立受控 / 一次性。真实人员 / 入口 / SDK 仍未接入，不能只调用 requireStoreCapability 就直接写 admin_roles。基础 D06 guard 保持原兼容边界，A01 服务额外校验环境、应用、角色主键、时间与审计引用。
 
 撤销后下一次操作重新读角色即拒绝，不信任登录时角色或入口状态。进行中的敏感事务需角色 / 用户版本与状态的并发校验，和业务写入原子提交；若 SDK 无法保证读集冲突，须验证可用写入栅栏 / CAS 方案，不凭纯函数保证撤销竞态。检查失败或资金状态未知不继续副作用。管理入口显隐只改善体验，直接打开页面、调用函数也要鉴权。
 
@@ -56,27 +56,14 @@ planUserOrderCommand(order,command,principal,roles,args) 先按上表解析 acto
 
 [security-rules.draft.json](../cloudfunctions/database/security-rules.draft.json) 是本地清单，25 个目标集合全部普通客户端直接 read/write/create/update/delete=false；包含公开目录集合，因为公开读取经投影接口进行。新增集合默认拒绝，先补清单 / 字典。初始化规则须在集合可访问前完成并逐集合读回核验。
 
-清单外层 schemaVersion/policyVersion/status/clientAccess/collections 是本项目元数据，不是可整体提交的腾讯 API 参数。将每个 collections[name] 规则对象单独配置到集合，明确 false 的五项操作，避免相反的 create/update/delete 覆盖。当前没有创建集合、上传规则或执行管理 API。
+清单外层 schemaVersion/policyVersion/status/clientAccess/collections 是本项目元数据，不是可整体提交的腾讯 API 参数。将每个 collections[name] 规则对象单独配置到集合，明确 false 的五项操作，避免相反的 create/update/delete 覆盖。部署与验收状态只查CURRENT-STATUS。
 
 [CloudBase 官方规则说明](https://cloud.tencent.com/document/product/876/123478)支持 JSON 布尔规则，create/update/delete 未配置时继承 write。[官方云函数示例](https://docs.cloudbase.net/recipes/secure-database-multi-tenant-rules)说明客户端规则不能替代管理员身份运行的云函数内鉴权，因此还需服务端所有权 / 能力检查。草案格式不代表开发环境已验证有效。
 
 云函数调用权限与数据库权限分别管理；I03 / I07 核验实际入口 / SDK / SOURCE 及服务账户。用户入口不得提供任意集合读写。回调、定时任务、受控初始化独立入口，客户端无管理密钥。支付回调 HTTP 入口仍需验签、商户 / 应用 / 金额 / 事件身份与幂等证据。云存储公开素材 / 上传规则另按媒体领域设计，本草案不代表文件权限已完成。
 
-## 离线与真实验收
+## 验收要求与实现
 
-[authorization-model.js](../cloudfunctions/_shared/authorization-model.js) 与 [authorization-model.test.js](../tests/authorization-model.test.js) 覆盖稳定身份、环境隔离、禁用 / 缺用户、伪造 principal、跨用户记录、门店 / 能力隔离、撤销、复合退款权限、系统命令拒绝、D01 / D03 衔接、不可变输出及 25 集合清单。身份、用户、角色、订单参数均为隔离测试资料。
+实现按authorization-model/authorization-wrapper/collection-security-rules及相关测试核对。真实环境分别验证双账号隔离、客户端直读写拒绝、角色/门店范围、撤销并发和初始化授权；不能用调用方提供的角色或本地快照替代身份与权限证据。
 
-真实环境仍需以下证据，不能用离线通过标 D06 整体验收：
-
-| 实际用例 | 期望 / 证据 |
-|---|---|
-| 两顾客 A / B，经接口管理地址 / 袋及查看报价 / 订单 | 本人成功；互查 / 互改和子记录猜 ID 失败，无资源 / 财务副作用 |
-| 伪造 openid / userId / actor / role / ownerId / 价格 / nextStatus | 可信主体不变，非法字段拒绝或白名单丢弃；不存在提权 |
-| 非管理员直开管理页面 / 调函数，目录角色请求退款 | 入口及服务端拒绝，日志不泄露隐私 |
-| 门店 A 管理员访问门店 B | 列表 / 详情 / 修改拒绝，传 storeId 不绕过 |
-| 撤销 / 禁用后下一次操作，以及与敏感事务竞争 | 最新授权生效，事务冲突 / 重试不能使用旧权限 |
-| 客户端 SDK 对 25 集合执行直读 / 直写 | 拒绝；特别核验角色、订单、价格、财务、支付事件；不能用管理员 SDK 测试 |
-| 公开接口查询草稿 / 下架 / 内部字段 | 只返回发布投影，无完整配置、角色、资源或隐私 |
-| 假回调 / 用户调用系统证据入口 | 拒绝，真实入口按独立认证机制核验 |
-
-当前没有改现有函数部署包、Home / 主包或云配置。下一项 D07 可推进离线 API 契约 / 开发种子计划；完整接口、真实部署与阶段门禁仍受外部条件约束。
+[历史D06过程与验证](archive/stages/phase-2.md#authorization-rules)仅追溯当时事实；当前状态不在此维护。

@@ -1,0 +1,15 @@
+{
+  "archivesHashVerified": 40,
+  "taskDefinitionsPreserved": 67,
+  "collectionHeadingsPreserved": 26,
+  "networkActionsPreserved": 61,
+  "splitCollectionFieldTablesPreserved": 22,
+  "linkFilesChecked": 175,
+  "missingLinks": [],
+  "entryBeforeBytes": 663460,
+  "entryAfterBytes": 36666,
+  "entryReductionPercent": 94,
+  "currentStatusLines": 35,
+  "defaultColdStartBytes": 6621,
+  "note": "Entry/read-context reduction only; archives and full references retained, not repository byte-size reduction"
+}

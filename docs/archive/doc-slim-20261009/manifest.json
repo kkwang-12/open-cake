@@ -1,0 +1,246 @@
+{
+  "date": "2026-10-09",
+  "purpose": "Immutable source snapshots; historical status is not current state",
+  "files": [
+    {
+      "path": "docs/CLOUD-BACKFILL-TRACKER-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/CLOUD-BACKFILL-TRACKER-2026-10-08.md",
+      "sha256": "57f4fcfdc5f9e5f698a9a06c6c96bcdda7e8321230689a1e3d2d3cd223738a33",
+      "bytes": 28555
+    },
+    {
+      "path": "docs/CLOUD-ENVIRONMENT-HANDOFF-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/CLOUD-ENVIRONMENT-HANDOFF-2026-10-08.md",
+      "sha256": "7ecda8a52fe9ce2e450b5494646383932a61a345de1bf763b9409b6a2c1354d8",
+      "bytes": 11890
+    },
+    {
+      "path": "docs/CLOUD-ENVIRONMENT-RESULT-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/CLOUD-ENVIRONMENT-RESULT-2026-10-08.md",
+      "sha256": "fca84fe9c30dc12b2d2deca7614a8658fe524481b03106048e6ed1d48a0a366d",
+      "bytes": 9825
+    },
+    {
+      "path": "docs/D04-CLOUD-REPAIR-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/D04-CLOUD-REPAIR-2026-10-08.md",
+      "sha256": "2282fcec275b89f1347760a50ce5067d7540c6e1277cdbd824cb2e73c4e2b237",
+      "bytes": 4676
+    },
+    {
+      "path": "docs/D04-CLOUD-RUN-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/D04-CLOUD-RUN-2026-10-08.md",
+      "sha256": "9b000fcacacc5e479ce8d62371e87192f304f60ff4822006c5dec3ac8cff8184",
+      "bytes": 1697
+    },
+    {
+      "path": "docs/D04-ORDER-DOCUMENT-SESSION-2026-10-09.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/D04-ORDER-DOCUMENT-SESSION-2026-10-09.md",
+      "sha256": "605747acef03276937e13d7d9df74688aee5a845554a46251079d4fbeff1c216",
+      "bytes": 4092
+    },
+    {
+      "path": "docs/D04-ORDER-WRITE-BUDGET-2026-10-09.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/D04-ORDER-WRITE-BUDGET-2026-10-09.md",
+      "sha256": "3f1dafc4d958ec865988678067f7f969ef50adfd192ccd98739c5c666226411e",
+      "bytes": 2994
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-01-TEST-ENVIRONMENT.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-01-TEST-ENVIRONMENT.md",
+      "sha256": "00914f17ab4744d0e3e001c85b9e2b572aa19125c6eee414690e82d24e00c910",
+      "bytes": 5317
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-02-D04-DATABASE.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-02-D04-DATABASE.md",
+      "sha256": "162034f1b262d6c7cd6a4932e26a8d762c75f8ab620b7fa383222ed7b3fe9333",
+      "bytes": 2474
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-03-D04-FUNCTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-03-D04-FUNCTION.md",
+      "sha256": "c57e78c723c7cc3745e37ef39910007242deaa19660fe7e98ed6016e23182b30",
+      "bytes": 3515
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-04-D04-CONCURRENCY-LOGS.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-04-D04-CONCURRENCY-LOGS.md",
+      "sha256": "63024731450596d1490ca8707a275d827ce76314cb5e5cfb6ad76906beae3c30",
+      "bytes": 2552
+    },
+    {
+      "path": "docs/ISSUE-RESULT-01-TEST-ENVIRONMENT.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-01-TEST-ENVIRONMENT.md",
+      "sha256": "476f216797f9a5650cc48b44bd94c745deb04b3ef8f77153b02e23250c577177",
+      "bytes": 11461
+    },
+    {
+      "path": "docs/ISSUE-RESULT-02-D04-DATABASE.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-02-D04-DATABASE.md",
+      "sha256": "50dfb1267693a90d99562e3a218dad63c188a0229f9674db6aa0646b7faa1516",
+      "bytes": 4281
+    },
+    {
+      "path": "docs/ISSUE-RESULT-03-D04-FUNCTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-03-D04-FUNCTION.md",
+      "sha256": "f67c0d9c1a2174ef75748b7c1aee024ec82a4dd04a07cd520c9b42686ce58035",
+      "bytes": 4698
+    },
+    {
+      "path": "docs/ISSUE-RESULT-04-D04-CONCURRENCY-LOGS.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-04-D04-CONCURRENCY-LOGS.md",
+      "sha256": "ec7f2f7e8898994cf77e560656fd910a99df753238e2c4034ca10b823551062e",
+      "bytes": 4463
+    },
+    {
+      "path": "docs/PHASE-1-CLOUD-REVALIDATION-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-1-CLOUD-REVALIDATION-2026-10-08.md",
+      "sha256": "4be090d2432b427ca3cd0604b0a1438bdec9e2653844aef46e8dad36518e42d0",
+      "bytes": 7561
+    },
+    {
+      "path": "docs/PHASE-1-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-1-EXECUTION.md",
+      "sha256": "63d91893c19668bd812df62d3a3ccfd6480225cda8ffd512e755fdee94f60f1c",
+      "bytes": 13665
+    },
+    {
+      "path": "docs/PHASE-2-CLOUD-REVALIDATION-2026-10-08.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-2-CLOUD-REVALIDATION-2026-10-08.md",
+      "sha256": "d31881ac4d5ad38f3b1e1790e9241ca9aa1ea0703a2c0303b12d057cfa58b721",
+      "bytes": 7081
+    },
+    {
+      "path": "docs/PHASE-2-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-2-EXECUTION.md",
+      "sha256": "29bc7d68f806267dbdc427cf3e118a49c70c435e84e3d6a25d40088647e8ab05",
+      "bytes": 26190
+    },
+    {
+      "path": "docs/PHASE-2-REVIEW.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-2-REVIEW.md",
+      "sha256": "cfbf66c58fae3315367863c9dea9ed79ebf05a771a49dd0df6bc699fafa84691",
+      "bytes": 4226
+    },
+    {
+      "path": "docs/PHASE-3-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-3-EXECUTION.md",
+      "sha256": "04daf3f87f1332b8dd9c578bade69e45cce7cd40a31bdc57998e8c31f0e4e52e",
+      "bytes": 9086
+    },
+    {
+      "path": "docs/PHASE-4-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-4-EXECUTION.md",
+      "sha256": "6083fa0682c69f6967dfb93973b1a150ac9bcb98cfecc315c7c0e86a1f1dab46",
+      "bytes": 3411
+    },
+    {
+      "path": "docs/PHASE-5-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-5-EXECUTION.md",
+      "sha256": "afe89c33eab972a6a9de205bb7fa8d3fe46b4de209dc319d0b0cab5f7b87cd90",
+      "bytes": 5172
+    },
+    {
+      "path": "docs/PHASE-5-REVIEW.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-5-REVIEW.md",
+      "sha256": "894dba1c6fee5c859bf85d5650c707b9ba6f1f0e5fb05526263b369bb0168252",
+      "bytes": 4861
+    },
+    {
+      "path": "docs/PHASE-6-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-6-EXECUTION.md",
+      "sha256": "ad76bff54886488a8a48ec4c0d9ca3e2fd80c23a80347321f7209dbef89ec35a",
+      "bytes": 10157
+    },
+    {
+      "path": "docs/PHASE-6-REVIEW.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-6-REVIEW.md",
+      "sha256": "cf0c2f637a0b2b3ded9388d572a0768dd8ba6017745ea20a4b1a9e57fe11c3a3",
+      "bytes": 3514
+    },
+    {
+      "path": "docs/PHASE-7-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-7-EXECUTION.md",
+      "sha256": "a1d00c8dfe9afdbf21ab067fd45a897f3c06dbec5eeea074fed781431a9ba970",
+      "bytes": 11057
+    },
+    {
+      "path": "docs/PHASE-7-REVIEW-2026-10-06.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-7-REVIEW-2026-10-06.md",
+      "sha256": "fb255fe0e54e18848861c64bfe7c93b438f708d35d0a799bd416eb517a6a3e79",
+      "bytes": 8728
+    },
+    {
+      "path": "docs/PHASE-8-EXECUTION.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PHASE-8-EXECUTION.md",
+      "sha256": "9a78fb63302ec90af2a411ad96f4325f59a320aa9503d7e69bd78bc5244e8c92",
+      "bytes": 7167
+    },
+    {
+      "path": "docs/PROJECT-READINESS-REVIEW-2026-10-09.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/PROJECT-READINESS-REVIEW-2026-10-09.md",
+      "sha256": "04da8c344ab51731653c30e89539ef311702dac1200e14e36edc47ac8af9c279",
+      "bytes": 8515
+    },
+    {
+      "path": "docs/DATA_MODEL.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/DATA_MODEL.md",
+      "sha256": "2ef35e50fe88e58a9f330720e4537ff2195158a169bece1fb836d838c8ed8c57",
+      "bytes": 95727
+    },
+    {
+      "path": "docs/API_CONTRACT.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/API_CONTRACT.md",
+      "sha256": "9396a57afef74f245bbe9d26590af2eecef538633b1f77ca582c3c2f1e38fe10",
+      "bytes": 55140
+    },
+    {
+      "path": "docs/API_NETWORK.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/API_NETWORK.md",
+      "sha256": "cdb6e892537d0821cc1c99b50f96ea18e8727533498cfaef8767a4f40ea7907d",
+      "bytes": 41980
+    },
+    {
+      "path": "docs/TRANSACTIONS.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/TRANSACTIONS.md",
+      "sha256": "7df1ff7fbd54bf54146419a323e841c57b6e2a390e1546140496ff965ccd9c8f",
+      "bytes": 30350
+    },
+    {
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/DEVELOPMENT-PLAN.md",
+      "sha256": "dc928473576d85d491b2aa853907fe2c6231d53db0f32a00dccb8829b19e5701",
+      "bytes": 56085
+    },
+    {
+      "path": "README.md",
+      "archive": "docs/archive/doc-slim-20261009/README.md",
+      "sha256": "7642ded710467e379bcc07b63a68e08fff4e7e2179897a16629cb6fbd0adc337",
+      "bytes": 21826
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/HANDOFF.md",
+      "sha256": "fb823d97107c6e8999e3343e322486043c5772b156cfe2dbc92e7f5a95127fb2",
+      "bytes": 1000
+    },
+    {
+      "path": "docs/EXTERNAL-DEPENDENCIES.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/EXTERNAL-DEPENDENCIES.md",
+      "sha256": "b5886fb284c69e08379809c14348346b4142c4fb635940ced05049437360434a",
+      "bytes": 8495
+    },
+    {
+      "path": "docs/CURRENT-STATUS.md",
+      "archive": "docs/archive/doc-slim-20261009/docs/CURRENT-STATUS.md",
+      "sha256": "a1fec58135442e2671ccfa84c1f976b24e95dd3c42f8769c3bf136b8ef7d4a32",
+      "bytes": 4807
+    },
+    {
+      "path": "docs/HANDOFF-HISTORY-2026-10-09.md",
+      "archive": "docs/archive/HANDOFF-HISTORY-2026-10-09.md",
+      "sha256": "93975cf23123b09aa8e76c51a2856584d44a90e62fb026780b882467212d33b5",
+      "bytes": 115169
+    }
+  ]
+}

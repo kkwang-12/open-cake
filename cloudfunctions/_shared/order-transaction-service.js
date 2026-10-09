@@ -1,10 +1,12 @@
 'use strict';
 // Internal application service with an injected ATOMIC transaction session.
-// No cloud SDK adapter/handler is installed. The only current executor is test-only.
+// Document-session mapping exists; live provider protection/query hooks and a
+// callable handler remain uninstalled. Current acceptance executors are test-only.
 const { prepareOrderCreationRequest, planOrderCreation } = require('./order-creation-model');
 const { requireOwner } = require('./authorization-model');
 const { planResourceHolds } = require('./resource-model');
 const { idempotencyId, decideIdempotency, scopedDocumentId } = require('./idempotency-model');
+const { validateOrderWriteLimits, measureOrderWrites } = require('./order-write-budget');
 
 class OrderTransactionError extends Error {
   constructor(code) { super(code); this.name = 'OrderTransactionError'; this.code = code; }
@@ -16,7 +18,7 @@ function freeze(value) {
   if (value && typeof value === 'object') { Object.values(value).forEach(freeze); Object.freeze(value); }
   return value;
 }
-const TX_METHODS = ['readUser','readReceipt','readCreationState','readOrder','readOrderByNumber',
+const TX_METHODS = ['readUser','readReceipt','readCreationState','readOrder','readOrderByNumber','assertReplayReads',
   'assertCreationReads','updateResource','insertReservation','insertOrder','insertItem',
   'insertLog','consumeQuote','insertReceipt'];
 async function write(effect) {
@@ -38,8 +40,9 @@ function requireCurrentOrderUser(user, principal) {
   if (user.version !== principal.userVersion) fail('VERSION_CONFLICT');
 }
 
-function createOrderTransactionService({ runTransaction, now, buildContext, newRequestId }) {
+function createOrderTransactionService({ runTransaction, now, buildContext, newRequestId, transactionLimits = null }) {
   if (![runTransaction,now,buildContext,newRequestId].every(value => typeof value === 'function')) fail('INVALID_CONFIGURATION');
+  const writeLimits = validateOrderWriteLimits(transactionLimits);
   return Object.freeze({
     async execute(event, principal) {
       const { payload, request } = prepareOrderCreationRequest(event, principal);
@@ -61,6 +64,8 @@ function createOrderTransactionService({ runTransaction, now, buildContext, newR
           requireOwner(principal, existing);
           const expectedId = scopedDocumentId('order', [principal.environment,principal.subjectId,'ORDER_CREATE',payload.idempotencyKey]);
           if (existing._id !== expectedId || existing.quoteId !== payload.quoteId) fail('INVALID_IDEMPOTENCY_RECORD');
+          if (await tx.assertReplayReads({ userId: principal.subjectId, userVersion: principal.userVersion,
+            orderId: existing._id, orderVersion: existing.version, receiptId }) !== true) fail('VERSION_CONFLICT');
           return outcome('REPLAY', decision.result);
         }
         const state = await tx.readCreationState(payload.quoteId, principal);
@@ -81,11 +86,6 @@ function createOrderTransactionService({ runTransaction, now, buildContext, newR
         if (await tx.readOrder(order._id) !== null || await tx.readOrderByNumber(order.orderNo) !== null) fail('VERSION_CONFLICT');
         // This is an adapter obligation, not proof of SDK serializability. It must
         // fence user/catalog/config/cart/address/quote/resource reads until commit.
-        if (await tx.assertCreationReads({ ...plan.conditions, userId: principal.subjectId }) !== true) fail('VERSION_CONFLICT');
-        for (const change of holds.resourceChanges) await write(tx.updateResource(change, timestampNow));
-        for (const reservation of holds.reservations) await write(tx.insertReservation(reservation));
-        await write(tx.insertOrder(order)); // Must enforce BOTH _id and unique orderNo.
-        for (const item of plan.proposedItems) await write(tx.insertItem(item));
         const log = freeze({
           _id: scopedDocumentId('order-log', [principal.environment,order._id,'0','ORDER_CREATED']),
           schemaVersion: 1, version: 0, createdAt: timestampNow, updatedAt: timestampNow,
@@ -93,13 +93,22 @@ function createOrderTransactionService({ runTransaction, now, buildContext, newR
           actor: { type: 'CUSTOMER', subjectId: principal.subjectId, service: null },
           before: null, after: axes(order), requestId, eventId: null, reason: '', publicMessage: '订单已创建，待付款'
         });
+        const result = freeze({ entityId: order._id, version: order.version, errorCode: null });
+        const receiptRecord = freeze({ ...plan.idempotency,
+          schemaVersion: 1, version: 0, createdAt: timestampNow, updatedAt: timestampNow,
+          status: 'SUCCEEDED', result, leaseUntil: null, retentionUntil: null });
+        // Account for actual planned payloads before the first BUSINESS write.
+        // assertCreationReads may need adapter fence writes, separately budgeted.
+        measureOrderWrites({ plan, holds, log, receipt: receiptRecord, timestamp: timestampNow }, writeLimits);
+        if (await tx.assertCreationReads({ ...plan.conditions, userId: principal.subjectId }) !== true) fail('VERSION_CONFLICT');
+        for (const change of holds.resourceChanges) await write(tx.updateResource(change, timestampNow));
+        for (const reservation of holds.reservations) await write(tx.insertReservation(reservation));
+        await write(tx.insertOrder(order)); // Must enforce BOTH _id and unique orderNo.
+        for (const item of plan.proposedItems) await write(tx.insertItem(item));
         await write(tx.insertLog(log));
         await write(tx.consumeQuote(plan.quoteConsumption, { now: timestampNow,
           ownerId: principal.subjectId, storeId: order.storeId }));
-        const result = freeze({ entityId: order._id, version: order.version, errorCode: null });
-        await write(tx.insertReceipt(freeze({ ...plan.idempotency,
-          schemaVersion: 1, version: 0, createdAt: timestampNow, updatedAt: timestampNow,
-          status: 'SUCCEEDED', result, leaseUntil: null, retentionUntil: null })));
+        await write(tx.insertReceipt(receiptRecord));
         const beforeCommit = now();
         if (!timestamp(beforeCommit) || beforeCommit < timestampNow) fail('INVALID_CONFIGURATION');
         if (beforeCommit >= plan.conditions.quoteExpiresAt) fail('QUOTE_EXPIRED');

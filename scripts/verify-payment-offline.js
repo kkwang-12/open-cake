@@ -2,6 +2,7 @@
 // P08 LOCAL EVIDENCE ONLY. Never loads keys, deploys or invokes money APIs.
 const fs=require('node:fs'),path=require('node:path'),crypto=require('node:crypto');
 const {spawn}=require('node:child_process');
+const {failureSummary}=require('./test-diagnostics');
 const root=path.resolve(__dirname,'..');
 const paymentTests=['payment-configuration','payment-intent','payment-notification','payment-recovery',
   'payment-session','refund','payment-maintenance'].map(name=>'tests/'+name+'.test.js');
@@ -83,6 +84,7 @@ function evidenceDirectory(name){
   fs.mkdirSync(directory);return directory;
 }
 async function verify(name='p08-'+new Date().toISOString().replace(/[:.]/g,'-')){
+  console.log('Scope: complete LOCAL suite + Payment stage checks. Use verify:offline for joint Payment/Admin checks; do not stack full-suite runners.');
   const before=sourceSnapshot(),directory=evidenceDirectory(name),boundary=await runtimeBoundary();
   const all=fs.readdirSync(path.join(root,'tests')).filter(file=>file.endsWith('.test.js')).sort().map(file=>'tests/'+file);
   const remaining=all.filter(file=>!paymentTests.includes(file)&&!legacyTests.includes(file));
@@ -96,12 +98,22 @@ async function verify(name='p08-'+new Date().toISOString().replace(/[:.]/g,'-'))
     checks.push({...result,output:undefined,...parsed,passed:parsed.passed&&result.errorCode===null,
       log:id+'.tap',logSha256:digest(result.output)});
     console.log(id+': '+(checks.at(-1).passed?'PASS':'FAIL')+' ('+(parsed.counts?.tests??'unknown')+')');
+    if(!checks.at(-1).passed){
+      if(result.errorCode)console.error('Runner: '+result.errorCode);
+      for(const line of failureSummary(result.output))console.error(line);
+      console.error('Log: '+path.join(directory,id+'.tap'));
+    }
   }
   for(const [id,file] of [['static','scripts/check.js'],['icons','scripts/check-ui-icons.js']]){
     const result=await runStep(id,[file]);fs.writeFileSync(path.join(directory,id+'.txt'),result.output,'utf8');
     checks.push({...result,output:undefined,passed:result.exitCode===0&&result.errorCode===null,
       log:id+'.txt',logSha256:digest(result.output)});
     console.log(id+': '+(checks.at(-1).passed?'PASS':'FAIL'));
+    if(!checks.at(-1).passed){
+      if(result.errorCode)console.error('Runner: '+result.errorCode);
+      for(const line of failureSummary(result.output))console.error(line);
+      console.error('Log: '+path.join(directory,id+'.txt'));
+    }
   }
   const after=sourceSnapshot(),unchanged=before.sha256===after.sha256;
   const report={schemaVersion:1,scope:'OFFLINE_PAYMENT_ACCEPTANCE_EVIDENCE',generatedAt:new Date().toISOString(),
@@ -126,4 +138,4 @@ if(require.main===module){
     console.error(error.code||'EVIDENCE_FAILED');process.exitCode=1;
   });
 }
-module.exports={testResult,runtimeBoundary,sourceSnapshot,runStep,evidenceDirectory,verify};
+module.exports={testResult,runtimeBoundary,sourceSnapshot,runStep,evidenceDirectory,verify,paymentTests,legacyTests};

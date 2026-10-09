@@ -4,7 +4,11 @@ const path=require('node:path');
 const {createHash}=require('node:crypto');
 const root=path.resolve(__dirname,'..');
 const name='jjl-d04-probe';
-const functionRoot=path.join(root,'artifacts','d04-cloud-probe','functions');
+const args=process.argv.slice(2);
+if(args.length>1 || (args.length && !/^--package=[A-Za-z0-9_-]{1,64}$/.test(args[0])))
+  throw new Error('INVALID_PACKAGE_ARGUMENT');
+const packageName=args.length?args[0].slice('--package='.length):'d04-cloud-probe';
+const functionRoot=path.join(root,'artifacts',packageName,'functions');
 const target=path.join(functionRoot,name);
 if(fs.existsSync(target))throw new Error('VALIDATION_PACKAGE_EXISTS');
 const files=[['scripts/cloud-checks/transaction-probe.js','index.js'],

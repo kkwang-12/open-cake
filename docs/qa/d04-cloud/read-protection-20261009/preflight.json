@@ -1,0 +1,15 @@
+{
+  "scope": "READ_PROTECTION_PREFLIGHT",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "appId": "wx154f791a17268ace",
+  "previousRunId": "d04-transport-1791448249568",
+  "previousExpiresAt": 1791450434200,
+  "allowlistedSubjectId": "c073607a6443289a38a05280e34515273fc34021d6f2613a4b89423a52a84227",
+  "expectedConfiguration": {
+    "JJL_APP_ID": "wx154f791a17268ace",
+    "JJL_CLOUD_ENV": "dinner-cook-test-d5e320u981ec341",
+    "JJL_TEST_ENV": "dinner-cook-test-d5e320u981ec341",
+    "JJL_STAGE": "test",
+    "JJL_DEVELOPMENT_ENV": "cloudbase-d8gwtxzm64150b7e0"
+  }
+}

@@ -1,8 +1,8 @@
 # C03 规格读取与合法组合（本地）
 
-更新时间：2026-10-04。入口见 [阶段三](PHASE-3-EXECUTION.md)、[公开目录](CATALOG-READ.md)、[D03 权威规则](CATALOG-CART-RULES.md)。
+更新时间：2026-10-04。入口见 [阶段三](archive/stages/phase-3.md#phase-3-execution)、[公开目录](archive/stages/phase-3.md#catalog-read)、[D03 权威规则](CATALOG-CART-RULES.md)。
 
-C03 已完成公开商品详情投影、客户端规格纯模型、开发示例读取及离线回归。没有新云 handler、数据库操作、库存占用、购买或页面改动。下一项 C04 商品详情页，独立规格交互 / 留言 / 数量确认属于 C05。
+此处维护规格投影、合法组合及确认失效规则；实现/页面接入/验收状态只查[CURRENT-STATUS](CURRENT-STATUS.md)。
 
 ## 公开详情投影
 
@@ -41,12 +41,8 @@ changeOption 遇商品版本或已匹配 SKU 事实变化返回 SPECIFICATION_VE
 
 生成检查：node scripts/generate-specification-preview.js --check；Shop 生成检查仍 node scripts/generate-shop-preview.js --check。小程序只 require JS 模块，后端模型、密钥、库存和整张海报不进入这些前端配置。
 
-## 验证与未验收范围
+## 验证边界
 
-新增 18 项回归，全套 183/183；静态 163 个文件，主包源估算 1983/2048 KiB。测试覆盖非法组合、尺寸切换后失效夹心清除、可选组省略、版本和价格变化、冻结 / 数据隔离、三分类 / 示例价格、正式详情字段与可用性、图集精确引用，以及每个离线显式 SKU 与 D03 权威解析一致。
+非法组合、尺寸切换、失效选项清除、价格/版本变化、数据隔离和SKU权威解析均须验证。夹具里的口味、夹心、数量/留言上限、提前量及素材登记不能转为正式经营默认值。微信编译、真机、云目录与SDK分别提供证据。
 
-离线测试中的口味、夹心、数量上限 8、留言上限 12 和提前量 60 等仅是测试输入，未写入经营配置或用户示例。测试用素材登记同样不代表门店商品已具有正式实拍。
-
-微信官方本地工具成功打开 Shop；尝试在运行时执行规格 Service 时 automation_evaluate 超时，没有获得规格模块的原生运行结果。本次不声明原生规格交互、真机、云 API / SDK / 实时目录验收通过。离线 JS-only 模块解析已测试，C04/C05 接页后继续微信运行验收。
-
-本机证据在 artifacts/phase-3-qa/c03-tests.txt、c03-static.txt、c03-contract-audit.json、c03-report.json，Git 忽略。已有未提交文件按 C03 基线核对保留；未 commit / push / 上传 / 部署。60 个 action 的部署状态仍为 2 个现有本地入口 / 58 个 PLANNED。正式商品、实拍、未知经营参数与云环境继续按 [外部条件](EXTERNAL-DEPENDENCIES.md) 待补。
+[原C03过程与验证](archive/stages/phase-3.md#specification-rules)只作历史来源，不在此维护旧测试数量或下一任务。

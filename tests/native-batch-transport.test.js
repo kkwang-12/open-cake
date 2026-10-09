@@ -43,3 +43,9 @@ test('native transport stops after three tool failures and never evaluates unsaf
   await assert.rejects(invoke([{...input,caseId:"';private"}]),/INVALID_SCENARIO_LITERAL/);assert.equal(calls,0);
   await assert.rejects(invoke([input]),/WECHAT_EVALUATION_FAILED/);assert.equal(calls,3);
 });
+
+test('native transport sends bounded read-protection cases once after a dropped start reply',async()=>{
+  const h=harness({dropStart:true});
+  await h.invoke([{operation:'read-protection',caseId:'read-existing',command:0,mode:'PICKUP'}]);
+  assert.equal(h.stats().calls,1);assert.equal(h.stats().retries[0].stage,'START');
+});

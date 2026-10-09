@@ -15,7 +15,7 @@
 
 first 27/28，剩余为测试误期望回滚模拟外部版本变更，已改为保护外部变化并验证本次退款未提交。replay-before 2/2 探针复现新重放未拒绝伪造 review 关联 / 自洽错误 transition，已加强操作绑定。affected-first 204/205 是 registry 重复定义既有 retry、误计 62；已去重，实际 61。affected-final 209/210 是模拟履约比夹具时钟晚，校正时间；终稿 affected-verified / full-final 通过。复查修正真实模型中 CLOSED 付款订单补偿映射、已付完整来源和异常投影白名单。未声称这些是云 / 真机事故。
 
-仅串行内存、真实本地 O03 / A01 / P06 服务、合成 provider 弱对象身份验证。实际 SDK / 唯一 / 并发 / 平台认证、正式 SLOT 策略、资金 / 页面 / 真机仍待 [A06](../../A06-MERCHANT-RESOLUTION.md) 的 RF01–RF07。无 Git 提交 / 推送 / 云操作 / 资金调用 / UI 改动。下一项 A07 可离线阶段评审 / 真实运营与旧入口退役清单。
+仅串行内存、真实本地 O03 / A01 / P06 服务、合成 provider 弱对象身份验证。实际 SDK / 唯一 / 并发 / 平台认证、正式 SLOT 策略、资金 / 页面 / 真机仍待 [A06](../../archive/stages/phase-8.md#a06-merchant-resolution) 的 RF01–RF07。无 Git 提交 / 推送 / 云操作 / 资金调用 / UI 改动。下一项 A07 可离线阶段评审 / 真实运营与旧入口退役清单。
 
 | 证据 | SHA256 |
 |---|---|

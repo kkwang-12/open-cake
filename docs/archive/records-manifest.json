@@ -1,0 +1,1979 @@
+{
+  "date": "2026-10-09",
+  "scope": "Markdown organization only; original QA logs/JSON/images untouched",
+  "sourceZip": "docs/archive/source-snapshots-2026-10-09.zip",
+  "zipSha256": "1bbe72aefeb3b2bd243653424aa4839b31cc6b97bb41114a965e50f3be2f49c8",
+  "sources": [
+    {
+      "path": "docs/A01-ADMIN-AUTHORIZATION.md",
+      "sha256": "57695b934d533bc23769e9815d41b73f6c9fe1e40e7d9e2189b4b5c079eb7c24",
+      "bytes": 9417
+    },
+    {
+      "path": "docs/A02-MERCHANT-ORDERS.md",
+      "sha256": "94d4240d537a2ada717a356ec2e7256671b4c0f49b0b73f157a4269fda9125d6",
+      "bytes": 11946
+    },
+    {
+      "path": "docs/A03-PICKUP-SESSION.md",
+      "sha256": "592e978db0791f815994c003aa02b6245eaaa026e119fab1d00840c15b05351e",
+      "bytes": 9247
+    },
+    {
+      "path": "docs/A04-MERCHANT-CATALOG.md",
+      "sha256": "01e9680e63a4522adbed7221fdab225f3cf2b1e80a16fe43132ee12227bbe3df",
+      "bytes": 11503
+    },
+    {
+      "path": "docs/A05-MERCHANT-STORE.md",
+      "sha256": "cee9022b9bb96c756fe197c496d2a5b36acd2b8ddd4cd7ac57eced81a299cc8f",
+      "bytes": 9456
+    },
+    {
+      "path": "docs/A06-MERCHANT-RESOLUTION.md",
+      "sha256": "341e6881cfa7eca0d90d4bb283698b98ecc85cd7787d5c16a680c9a744ed79a5",
+      "bytes": 11244
+    },
+    {
+      "path": "docs/A07-ADMIN-ACCEPTANCE.md",
+      "sha256": "df4d3802ba30517064f066f3df060cc5bdfd009a89762fe42952213809914f94",
+      "bytes": 10292
+    },
+    {
+      "path": "docs/API_CONTRACT.md",
+      "sha256": "2db2fdc978969c3db4eca3b1a8750627f98361dd2687adfdd4be6cc383d83f36",
+      "bytes": 3811
+    },
+    {
+      "path": "docs/API_NETWORK.md",
+      "sha256": "5ac2c21fdf7bed133df97b19ccc1457ded1aae0d3a83e4e582a6e6e0529c79f3",
+      "bytes": 1419
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/API_CONTRACT.md",
+      "sha256": "9396a57afef74f245bbe9d26590af2eecef538633b1f77ca582c3c2f1e38fe10",
+      "bytes": 55140
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/API_NETWORK.md",
+      "sha256": "cdb6e892537d0821cc1c99b50f96ea18e8727533498cfaef8767a4f40ea7907d",
+      "bytes": 41980
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/CLOUD-BACKFILL-TRACKER-2026-10-08.md",
+      "sha256": "57f4fcfdc5f9e5f698a9a06c6c96bcdda7e8321230689a1e3d2d3cd223738a33",
+      "bytes": 28555
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/CLOUD-ENVIRONMENT-HANDOFF-2026-10-08.md",
+      "sha256": "7ecda8a52fe9ce2e450b5494646383932a61a345de1bf763b9409b6a2c1354d8",
+      "bytes": 11890
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/CLOUD-ENVIRONMENT-RESULT-2026-10-08.md",
+      "sha256": "fca84fe9c30dc12b2d2deca7614a8658fe524481b03106048e6ed1d48a0a366d",
+      "bytes": 9825
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/CURRENT-STATUS.md",
+      "sha256": "a1fec58135442e2671ccfa84c1f976b24e95dd3c42f8769c3bf136b8ef7d4a32",
+      "bytes": 4807
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/D04-CLOUD-REPAIR-2026-10-08.md",
+      "sha256": "2282fcec275b89f1347760a50ce5067d7540c6e1277cdbd824cb2e73c4e2b237",
+      "bytes": 4676
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/D04-CLOUD-RUN-2026-10-08.md",
+      "sha256": "9b000fcacacc5e479ce8d62371e87192f304f60ff4822006c5dec3ac8cff8184",
+      "bytes": 1697
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/D04-ORDER-DOCUMENT-SESSION-2026-10-09.md",
+      "sha256": "605747acef03276937e13d7d9df74688aee5a845554a46251079d4fbeff1c216",
+      "bytes": 4092
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/D04-ORDER-WRITE-BUDGET-2026-10-09.md",
+      "sha256": "3f1dafc4d958ec865988678067f7f969ef50adfd192ccd98739c5c666226411e",
+      "bytes": 2994
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/DATA_MODEL.md",
+      "sha256": "2ef35e50fe88e58a9f330720e4537ff2195158a169bece1fb836d838c8ed8c57",
+      "bytes": 95727
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/DEVELOPMENT-PLAN.md",
+      "sha256": "dc928473576d85d491b2aa853907fe2c6231d53db0f32a00dccb8829b19e5701",
+      "bytes": 56085
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/EXTERNAL-DEPENDENCIES.md",
+      "sha256": "b5886fb284c69e08379809c14348346b4142c4fb635940ced05049437360434a",
+      "bytes": 8495
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/HANDOFF.md",
+      "sha256": "fb823d97107c6e8999e3343e322486043c5772b156cfe2dbc92e7f5a95127fb2",
+      "bytes": 1000
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-01-TEST-ENVIRONMENT.md",
+      "sha256": "00914f17ab4744d0e3e001c85b9e2b572aa19125c6eee414690e82d24e00c910",
+      "bytes": 5317
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-02-D04-DATABASE.md",
+      "sha256": "162034f1b262d6c7cd6a4932e26a8d762c75f8ab620b7fa383222ed7b3fe9333",
+      "bytes": 2474
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-03-D04-FUNCTION.md",
+      "sha256": "c57e78c723c7cc3745e37ef39910007242deaa19660fe7e98ed6016e23182b30",
+      "bytes": 3515
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-04-D04-CONCURRENCY-LOGS.md",
+      "sha256": "63024731450596d1490ca8707a275d827ce76314cb5e5cfb6ad76906beae3c30",
+      "bytes": 2552
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-01-TEST-ENVIRONMENT.md",
+      "sha256": "476f216797f9a5650cc48b44bd94c745deb04b3ef8f77153b02e23250c577177",
+      "bytes": 11461
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-02-D04-DATABASE.md",
+      "sha256": "50dfb1267693a90d99562e3a218dad63c188a0229f9674db6aa0646b7faa1516",
+      "bytes": 4281
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-03-D04-FUNCTION.md",
+      "sha256": "f67c0d9c1a2174ef75748b7c1aee024ec82a4dd04a07cd520c9b42686ce58035",
+      "bytes": 4698
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-04-D04-CONCURRENCY-LOGS.md",
+      "sha256": "ec7f2f7e8898994cf77e560656fd910a99df753238e2c4034ca10b823551062e",
+      "bytes": 4463
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-1-CLOUD-REVALIDATION-2026-10-08.md",
+      "sha256": "4be090d2432b427ca3cd0604b0a1438bdec9e2653844aef46e8dad36518e42d0",
+      "bytes": 7561
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-1-EXECUTION.md",
+      "sha256": "63d91893c19668bd812df62d3a3ccfd6480225cda8ffd512e755fdee94f60f1c",
+      "bytes": 13665
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-2-CLOUD-REVALIDATION-2026-10-08.md",
+      "sha256": "d31881ac4d5ad38f3b1e1790e9241ca9aa1ea0703a2c0303b12d057cfa58b721",
+      "bytes": 7081
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-2-EXECUTION.md",
+      "sha256": "29bc7d68f806267dbdc427cf3e118a49c70c435e84e3d6a25d40088647e8ab05",
+      "bytes": 26190
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-2-REVIEW.md",
+      "sha256": "cfbf66c58fae3315367863c9dea9ed79ebf05a771a49dd0df6bc699fafa84691",
+      "bytes": 4226
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-3-EXECUTION.md",
+      "sha256": "04daf3f87f1332b8dd9c578bade69e45cce7cd40a31bdc57998e8c31f0e4e52e",
+      "bytes": 9086
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-4-EXECUTION.md",
+      "sha256": "6083fa0682c69f6967dfb93973b1a150ac9bcb98cfecc315c7c0e86a1f1dab46",
+      "bytes": 3411
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-5-EXECUTION.md",
+      "sha256": "afe89c33eab972a6a9de205bb7fa8d3fe46b4de209dc319d0b0cab5f7b87cd90",
+      "bytes": 5172
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-5-REVIEW.md",
+      "sha256": "894dba1c6fee5c859bf85d5650c707b9ba6f1f0e5fb05526263b369bb0168252",
+      "bytes": 4861
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-6-EXECUTION.md",
+      "sha256": "ad76bff54886488a8a48ec4c0d9ca3e2fd80c23a80347321f7209dbef89ec35a",
+      "bytes": 10157
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-6-REVIEW.md",
+      "sha256": "cf0c2f637a0b2b3ded9388d572a0768dd8ba6017745ea20a4b1a9e57fe11c3a3",
+      "bytes": 3514
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-7-EXECUTION.md",
+      "sha256": "a1d00c8dfe9afdbf21ab067fd45a897f3c06dbec5eeea074fed781431a9ba970",
+      "bytes": 11057
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-7-REVIEW-2026-10-06.md",
+      "sha256": "fb255fe0e54e18848861c64bfe7c93b438f708d35d0a799bd416eb517a6a3e79",
+      "bytes": 8728
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PHASE-8-EXECUTION.md",
+      "sha256": "9a78fb63302ec90af2a411ad96f4325f59a320aa9503d7e69bd78bc5244e8c92",
+      "bytes": 7167
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/PROJECT-READINESS-REVIEW-2026-10-09.md",
+      "sha256": "04da8c344ab51731653c30e89539ef311702dac1200e14e36edc47ac8af9c279",
+      "bytes": 8515
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/docs/TRANSACTIONS.md",
+      "sha256": "7df1ff7fbd54bf54146419a323e841c57b6e2a390e1546140496ff965ccd9c8f",
+      "bytes": 30350
+    },
+    {
+      "path": "docs/archive/doc-slim-20261009/README.md",
+      "sha256": "7642ded710467e379bcc07b63a68e08fff4e7e2179897a16629cb6fbd0adc337",
+      "bytes": 21826
+    },
+    {
+      "path": "docs/archive/HANDOFF-HISTORY-2026-10-09.md",
+      "sha256": "93975cf23123b09aa8e76c51a2856584d44a90e62fb026780b882467212d33b5",
+      "bytes": 115169
+    },
+    {
+      "path": "docs/archive/README.md",
+      "sha256": "7d38ad12ef650901f2b248676746715490a4b7d37842c8d84ab0d8af67034a5c",
+      "bytes": 913
+    },
+    {
+      "path": "docs/AUTHORIZATION-RULES.md",
+      "sha256": "0d5fedd8b184677fa362ebda6ae19d28dbe728fe8bcfa6a57f79c093967140f6",
+      "bytes": 11702
+    },
+    {
+      "path": "docs/B01-B02-CART-SERVICE.md",
+      "sha256": "b0b8ebbfd3ac65f42cb4e913177145338f0fea76da3c62f9e1c4c87864edd0b5",
+      "bytes": 4134
+    },
+    {
+      "path": "docs/B03-LOCAL-BAG.md",
+      "sha256": "db3db93e907ab43e3086a07d60465fce5b597029dfc1763b5fc3f15f5c6e0408",
+      "bytes": 3927
+    },
+    {
+      "path": "docs/B04-CART-RETRY.md",
+      "sha256": "f58bb3b08b16f668bf45cba060a63d9c0252898460b7247ebbdcdc366424b94d",
+      "bytes": 4553
+    },
+    {
+      "path": "docs/B05-CART-REVIEW.md",
+      "sha256": "0e94920519f900ba75a3622f00def6b5e9258f7448e6051305132078c03ff254",
+      "bytes": 5416
+    },
+    {
+      "path": "docs/B06-CHECKOUT-SELECTION.md",
+      "sha256": "aab38c77b4c73d9919f09a57a8d3288ea0b84e5fc62a83f7a31d34ea53b611f5",
+      "bytes": 4834
+    },
+    {
+      "path": "docs/C05-ACCEPTANCE-REVIEW.md",
+      "sha256": "4ea1881c2750e8bcc10f834f67d307b74ae8274244a14428803c4447c61cb7ae",
+      "bytes": 4891
+    },
+    {
+      "path": "docs/C06-HOME-SEARCH.md",
+      "sha256": "7cb5d814000cd3cd1f150dceb8d7d5f97381ea80a2d4e6186894dc08fb7a1ee7",
+      "bytes": 4138
+    },
+    {
+      "path": "docs/C07-FAVORITES.md",
+      "sha256": "de66cdf40ad07bd95f007c1a13e9dda7dae8f6de06da78ab530d4a433f83384f",
+      "bytes": 3670
+    },
+    {
+      "path": "docs/C08-CATALOG-ACCEPTANCE.md",
+      "sha256": "b95ec3c3cb5035af7677cb5e3fab2fad40e7723ba1b57d77d95bfa5b37c4c3a8",
+      "bytes": 5072
+    },
+    {
+      "path": "docs/CATALOG-CART-RULES.md",
+      "sha256": "34f8b36fbba6cab34df66e7b784979dc956c782a109cedeb16418bc902d8f5de",
+      "bytes": 8118
+    },
+    {
+      "path": "docs/CATALOG-DRAFTS.md",
+      "sha256": "44cae1662dd9de5e7caf959dc1728e09973288b525195859d4733adfc33c020d",
+      "bytes": 9480
+    },
+    {
+      "path": "docs/CATALOG-READ.md",
+      "sha256": "bc90a87c85c1de10c1b5460802cc2400133145e2b5ee51d04e620bc1555e4ac7",
+      "bytes": 9638
+    },
+    {
+      "path": "docs/CLOUD-BACKFILL-TRACKER-2026-10-08.md",
+      "sha256": "e31f087cf1b7a488cc26376972bd2ca6f60db747df5aa7be6947210673b0ae94",
+      "bytes": 345
+    },
+    {
+      "path": "docs/CLOUD-ENVIRONMENT-HANDOFF-2026-10-08.md",
+      "sha256": "6a5b807db63c6d6d57aeeb70f0dce0580a3575dc6d5c82c683f2a11b9fc03048",
+      "bytes": 357
+    },
+    {
+      "path": "docs/CLOUD-ENVIRONMENT-RESULT-2026-10-08.md",
+      "sha256": "54391408049cc50d2ff46a9e16c014fe1daee5218b83487ea28fb8f263859397",
+      "bytes": 372
+    },
+    {
+      "path": "docs/CLOUD-RESOURCE-MANIFEST-2026-10-08.md",
+      "sha256": "77eea66452b184d395d2194841113f0b6023ea4a74005abee786054daaf8396c",
+      "bytes": 7914
+    },
+    {
+      "path": "docs/CLOUD-RESOURCE-R1-RESULT-2026-10-08.md",
+      "sha256": "a1d6058847d0c254eb8e5a5eba7105349ddd79248862fb331e3b225d793f4855",
+      "bytes": 4117
+    },
+    {
+      "path": "docs/CURRENT-STATUS.md",
+      "sha256": "e933cd51354c16fe1857753c0f82ed1a61f24648bdec776540379c7b3d4c27ba",
+      "bytes": 2999
+    },
+    {
+      "path": "docs/D04-CLOUD-REPAIR-2026-10-08.md",
+      "sha256": "ab3972d72b3493f03c70b5828b12cbf9a34077ccce49dab3a798936c1d846ab3",
+      "bytes": 349
+    },
+    {
+      "path": "docs/D04-CLOUD-RUN-2026-10-08.md",
+      "sha256": "4408a85db5f2ac9e4b35f7f0b63aa49c2c2129a48ab861fbf84235761d5adbb0",
+      "bytes": 328
+    },
+    {
+      "path": "docs/D04-CLOUD-SDK-ACCEPTANCE-PLAN.md",
+      "sha256": "36e027870d12ab9c729ea0667032c677978e5a8d2faf99c21a8a5d29d4e126a8",
+      "bytes": 7183
+    },
+    {
+      "path": "docs/D04-ORDER-DOCUMENT-SESSION-2026-10-09.md",
+      "sha256": "a36c6daf702e196c9c2792343f3ffb5d01e9c2ccb7055f185711deb771c97c64",
+      "bytes": 356
+    },
+    {
+      "path": "docs/D04-ORDER-WRITE-BUDGET-2026-10-09.md",
+      "sha256": "c03b73427758f780012805ac119168c248be85d4b498f4939c62725e7c831f7c",
+      "bytes": 346
+    },
+    {
+      "path": "docs/D04-PROBE-ENVIRONMENT-HANDOFF.md",
+      "sha256": "29712da9d6239ee7f13c778962fe5f2ba5ca0258245d921c93a6306ac1f56826",
+      "bytes": 6305
+    },
+    {
+      "path": "docs/D04-SDK-INTEGRATION.md",
+      "sha256": "2f4321709711d8876e91e5389e02a2d0d12ea40444ea408e68a7d7a623d2a9d1",
+      "bytes": 2934
+    },
+    {
+      "path": "docs/DAILY-SUMMARY-2026-10-04.md",
+      "sha256": "248c76f7090592f28a08be0aa6bf0ee183798198150d81bf25f7729320628919",
+      "bytes": 3740
+    },
+    {
+      "path": "docs/DATA_MODEL.md",
+      "sha256": "10d74b7a9453619926d972be085b9276feaa79e9e9f462304bf21bd01fbbc913",
+      "bytes": 5627
+    },
+    {
+      "path": "docs/DEVELOPMENT-PLAN.md",
+      "sha256": "d1d94adb8a5c48dddfbfdebc7055f18fda7ec72cfd1138289752fb0ceaf24a07",
+      "bytes": 7015
+    },
+    {
+      "path": "docs/DEVELOPMENT-SEED.md",
+      "sha256": "65dbcf9f5acb61dc597ee44061132b2e8f7e5cf1e1d2695fc872e2ac826a7a8c",
+      "bytes": 6098
+    },
+    {
+      "path": "docs/EXTERNAL-DEPENDENCIES.md",
+      "sha256": "ef5d7ca99f68f95096023c3f2c79403c782c17c1bf10233a97ff4a1d64cba900",
+      "bytes": 1950
+    },
+    {
+      "path": "docs/FULFILLMENT-RULES.md",
+      "sha256": "3033240f654f8a8b9920f48c260105eafbbdc051e9f5287879f4e3bea889a848",
+      "bytes": 9253
+    },
+    {
+      "path": "docs/HANDOFF-HISTORY-2026-10-09.md",
+      "sha256": "e923317d55fd66dea494419b1bead85ea88790bea931ff0c27491d6ff7813cc4",
+      "bytes": 150
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "sha256": "c7444d2dc684ed449c85f82af5f4a193a10a2d0c1607c852bc217f97f9b73221",
+      "bytes": 265
+    },
+    {
+      "path": "docs/INITIALIZATION.md",
+      "sha256": "7fec51b3fb587f9b966a9cd5fb549407662b74876f9b0f22373ca581e348abbb",
+      "bytes": 3909
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-01-TEST-ENVIRONMENT.md",
+      "sha256": "5720d8efa3dfe0b8fb644c742d1cb5653e72b07faa610d71433d0b48877aa7af",
+      "bytes": 351
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-02-D04-DATABASE.md",
+      "sha256": "a14626e69724c81ee8cfe42a2c94dd41fd7f7c5434d68a87644a946532624706",
+      "bytes": 351
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-03-D04-FUNCTION.md",
+      "sha256": "0fd7bd05f00eb3d436ff50ecbf064e71f58e3ac51ee3b8bce58e100c77f77f3c",
+      "bytes": 363
+    },
+    {
+      "path": "docs/ISSUE-HANDOFF-04-D04-CONCURRENCY-LOGS.md",
+      "sha256": "28026f38ad95a301f3ac60d6ea0339838da73b1201104c95dd9f36a403ea3d29",
+      "bytes": 356
+    },
+    {
+      "path": "docs/ISSUE-RESULT-01-TEST-ENVIRONMENT.md",
+      "sha256": "ba57a326f791e6b97133aaeaee1e97d16d910cb411f009bbf24821fbae04e7db",
+      "bytes": 353
+    },
+    {
+      "path": "docs/ISSUE-RESULT-02-D04-DATABASE.md",
+      "sha256": "5268e531e4850c7f2dc56dcdf6f4202a340422f55720456f6571e537c0e8333b",
+      "bytes": 356
+    },
+    {
+      "path": "docs/ISSUE-RESULT-03-D04-FUNCTION.md",
+      "sha256": "66e5da498db2ad2f5df9923e310138cc76e2ad317ee55e7a60c4d5042ba2fea5",
+      "bytes": 356
+    },
+    {
+      "path": "docs/ISSUE-RESULT-04-D04-CONCURRENCY-LOGS.md",
+      "sha256": "e5209bd0a4bbeba4e0af0b3029ff8649be32b1d3d9910e2dbbd1da876a1bc45c",
+      "bytes": 361
+    },
+    {
+      "path": "docs/NAVIGATION-DEVICE-CHECK.md",
+      "sha256": "b30c931050ac84655911d51b4b226d174c34b1e890e73cffa28a94a5e156ded8",
+      "bytes": 7492
+    },
+    {
+      "path": "docs/O01-CONTROLLED-ORDER-COMMANDS.md",
+      "sha256": "122fe6e13dc73b71d507287226cdcda4bb576f6ba9fe0c3c669045cd4aaca560",
+      "bytes": 5280
+    },
+    {
+      "path": "docs/O02-ORDER-CREATION.md",
+      "sha256": "d316806bc80407fdd8f662b1fe7e702548ccd8c5054fb627f1027a71c2d563f7",
+      "bytes": 4692
+    },
+    {
+      "path": "docs/O03-ATOMIC-ORDER-TRANSACTION.md",
+      "sha256": "e39f8ad24ad79aa5d7c6fffa010cfe89c3993eadbb198c3325ae8bc25d34a727",
+      "bytes": 5860
+    },
+    {
+      "path": "docs/O04-ORDER-RECOVERY.md",
+      "sha256": "c523c0e64f91d8b4c4f36ae8f349270f5d86de5e6b88d83afaa9aef9ec9441ed",
+      "bytes": 4787
+    },
+    {
+      "path": "docs/O05-ORDER-CANCELLATION.md",
+      "sha256": "23764fb704903b074e330599ee9e9c87a0120afdfbdbac76a2d76aa46ff21f86",
+      "bytes": 7289
+    },
+    {
+      "path": "docs/O06-ORDER-READ.md",
+      "sha256": "062a1397f54b9317f1e177dc78bbff08fe64acb7dcb4f613d4a69b6b48516d48",
+      "bytes": 7220
+    },
+    {
+      "path": "docs/O07-PICKUP-CREDENTIAL.md",
+      "sha256": "131cfb5ace9bdab2854c875dee9ca904fdb1f4fb12d969c6f9fb519d28416836",
+      "bytes": 6919
+    },
+    {
+      "path": "docs/O08-ORDER-DELIVERY.md",
+      "sha256": "db062facdf6fd34548f84d9a780391c743d2c552d867c9a7a0eda1a01128cf87",
+      "bytes": 6411
+    },
+    {
+      "path": "docs/ORDER-CLOUD-ACCEPTANCE.md",
+      "sha256": "d32a14fdc85730d9d445c6a114e3afb27b71991933df90fbaecbbe33d266deda",
+      "bytes": 9121
+    },
+    {
+      "path": "docs/P01-PAYMENT-CONFIGURATION.md",
+      "sha256": "f459591a34daa1ed2ac8a86eb36801ee91cec6a9e630d59a3304d6eb7b344eb7",
+      "bytes": 6006
+    },
+    {
+      "path": "docs/P02-PAYMENT-INTENTS.md",
+      "sha256": "3b408106acf88aa74bccb0f5c1786b448364a5f102923c4fcfd6b2a96e6a8693",
+      "bytes": 6626
+    },
+    {
+      "path": "docs/P03-PAYMENT-NOTIFICATIONS.md",
+      "sha256": "05cfcd5dfcf59b8bec2487b606e34dd2ddca11a26add2d895b3581625d9d145c",
+      "bytes": 7805
+    },
+    {
+      "path": "docs/P04-PAYMENT-RECOVERY.md",
+      "sha256": "665b92a95fa28b2999458a7749cb2735c4eefc50533d95c4f43798d6f4cc480c",
+      "bytes": 8564
+    },
+    {
+      "path": "docs/P05-PAYMENT-SESSION.md",
+      "sha256": "13aed7038c9c2b364805667f4655634f6856cd540fdce76f9adddd73eb787ce4",
+      "bytes": 4985
+    },
+    {
+      "path": "docs/P06-REFUND-RECOVERY.md",
+      "sha256": "73b45fa233d3acba288c4ade28afa00c3471f51db1b2ed7d1bb26cd7f3901c89",
+      "bytes": 6512
+    },
+    {
+      "path": "docs/P07-MAINTENANCE-RECONCILIATION.md",
+      "sha256": "8c8aaafd3cac64add2a2b4a63af6fa5ec2e9f7ca75cdf1b855696c0f3be14b7c",
+      "bytes": 5832
+    },
+    {
+      "path": "docs/P08-PAYMENT-ACCEPTANCE.md",
+      "sha256": "3e65a8337a1320a48c16652d266f4db9178023daf69d380ac1723daf42bc0260",
+      "bytes": 10528
+    },
+    {
+      "path": "docs/PAYMENT-CLOUD-ACCEPTANCE.md",
+      "sha256": "73ed6f77cfe6399f8622d3604120627b7892fa7ef75003907964db31627b832a",
+      "bytes": 4253
+    },
+    {
+      "path": "docs/PHASE-1-CLOUD-REVALIDATION-2026-10-08.md",
+      "sha256": "2f30a54150c1adc6596b2d58dfa8826f269204a8c2c4414f13034a09cd62f35d",
+      "bytes": 346
+    },
+    {
+      "path": "docs/PHASE-1-EXECUTION.md",
+      "sha256": "450c1d7678f48c326a06545ac52b244d411e90b77918f7949b800a1d836f2dfe",
+      "bytes": 335
+    },
+    {
+      "path": "docs/PHASE-2-CLOUD-REVALIDATION-2026-10-08.md",
+      "sha256": "a915f5d60646daf37610f6bb30473602bd248f3f781cbc634f9302bc1b42d163",
+      "bytes": 370
+    },
+    {
+      "path": "docs/PHASE-2-EXECUTION.md",
+      "sha256": "153f198398f6abf2a29843bd5eb7ee2ebabd448d0fb1c9de6cfca2a0a61d57e3",
+      "bytes": 332
+    },
+    {
+      "path": "docs/PHASE-2-REVIEW.md",
+      "sha256": "434c643d5aa72003287c61fb89eb1a43a3fc89bc167a877b6e63c620d87f0366",
+      "bytes": 344
+    },
+    {
+      "path": "docs/PHASE-3-EXECUTION.md",
+      "sha256": "f1f48b93d2325b220d79d1a30519639291a9c0179af6be7e003dbf30649284ed",
+      "bytes": 329
+    },
+    {
+      "path": "docs/PHASE-4-EXECUTION.md",
+      "sha256": "21867bb6ec59467268d6136e7c7cab6b41eb5fe0a111b5574836be3833ae7f36",
+      "bytes": 329
+    },
+    {
+      "path": "docs/PHASE-5-EXECUTION.md",
+      "sha256": "28d6ee7dbca5fc8c4af645acd2351f09f25078158ac49e1642387d41bb1e3e8a",
+      "bytes": 328
+    },
+    {
+      "path": "docs/PHASE-5-REVIEW.md",
+      "sha256": "fe4f1312c056ff1c5341066a5551deb86d44baf66f8e9c4a7762a15d13a44163",
+      "bytes": 339
+    },
+    {
+      "path": "docs/PHASE-6-EXECUTION.md",
+      "sha256": "b9a8f72800d0738dd1b3f9e16ae5186d0f9f4a733d45d0ad41a73e9ec240dd9a",
+      "bytes": 325
+    },
+    {
+      "path": "docs/PHASE-6-REVIEW.md",
+      "sha256": "f7fd7045c667196bf38a1306673e7c28ead78833fc186d9f5aaac930ffe0bf27",
+      "bytes": 337
+    },
+    {
+      "path": "docs/PHASE-7-EXECUTION.md",
+      "sha256": "0d4d1e470fe5bbc0a7be5b47881dda5e98c682770f7e42381155b3431c9d2feb",
+      "bytes": 342
+    },
+    {
+      "path": "docs/PHASE-7-REVIEW-2026-10-06.md",
+      "sha256": "18bf48ef7da755e81db35b05377b89ca2255674f8780233db7d5f07bb811cce2",
+      "bytes": 348
+    },
+    {
+      "path": "docs/PHASE-8-EXECUTION.md",
+      "sha256": "83c0af249e8fa54a929fcedf5165a69b07a79f1dfeb466a495d9c332370ef1d9",
+      "bytes": 324
+    },
+    {
+      "path": "docs/PRODUCT-DETAIL-REDESIGN.md",
+      "sha256": "aba6250e56009a0d7d6483dd7a5c26dde29dc4b189f409e3e477a79f467c2cc7",
+      "bytes": 5652
+    },
+    {
+      "path": "docs/PRODUCT-DETAIL.md",
+      "sha256": "fa74c57872658162ded75c1f9e792892c863200943d22225fb8d71f4a4899859",
+      "bytes": 4112
+    },
+    {
+      "path": "docs/PROJECT-READINESS-REVIEW-2026-10-09.md",
+      "sha256": "5a2f1b1ddeeac093749eebb68c5a8c737fe6d1aa6aff05c00d4afaf1e25dea17",
+      "bytes": 350
+    },
+    {
+      "path": "docs/PROJECT-REVIEW.md",
+      "sha256": "1c4992262597c4e2db8c7c6035932f14a248ee966f35bf4a38cc5c903da37700",
+      "bytes": 22075
+    },
+    {
+      "path": "docs/qa/a01-2026-10-06/summary.md",
+      "sha256": "4d499f6369f95024dffce764f36eb3e7d784c7fefeb4b2d819fa94629f77c236",
+      "bytes": 1551
+    },
+    {
+      "path": "docs/qa/a02-2026-10-06/summary.md",
+      "sha256": "9a1e17659dd6e73050c53ad2261eb4b132ee2de1d8d9510e5073d34b58e1031f",
+      "bytes": 2564
+    },
+    {
+      "path": "docs/qa/a03-2026-10-06/summary.md",
+      "sha256": "f79b6c8ded1634c87c9cfe67c26591f4be2f5c213441d7ddac5db30f90cfebb3",
+      "bytes": 2699
+    },
+    {
+      "path": "docs/qa/a04-2026-10-06/summary.md",
+      "sha256": "0770a140afca6a7dbebe36026aaece1d90bb8523c16519dcf33358046de8989f",
+      "bytes": 2733
+    },
+    {
+      "path": "docs/qa/a05-2026-10-06/summary.md",
+      "sha256": "3f3f275376d466195b7b590f6f76364f27e5fb87511008fccc6bdd0bd0966123",
+      "bytes": 3011
+    },
+    {
+      "path": "docs/qa/a06-2026-10-06/summary.md",
+      "sha256": "c0c746e3755204d22d889c90bee409799fbdbd76280d2f2f919939b8d746bb65",
+      "bytes": 3002
+    },
+    {
+      "path": "docs/qa/a07-2026-10-06/summary.md",
+      "sha256": "7bb5b72b8b79511cc6a1bc9c2f8d362aa39c550ca9a9197307367da1beef1f82",
+      "bytes": 2733
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "671f0df725343690c140c9792a8630a035c88043f532c01d830f1e7b6804a151",
+      "bytes": 1312
+    },
+    {
+      "path": "docs/reference/data/00-context.md",
+      "sha256": "dc80626de669cd79ff3548c4b4b1ffce129398d630a280730e275a932052b440",
+      "bytes": 380
+    },
+    {
+      "path": "docs/reference/data/01.md",
+      "sha256": "007e8f6197eee5b197487b2901e854a66c7b64b2906dd475ab31c12a1fabdbf4",
+      "bytes": 3388
+    },
+    {
+      "path": "docs/reference/data/02.md",
+      "sha256": "f8416b645e9e5ff11d2373f3d875a55b801922d2e8221c2afa8d5ce264127112",
+      "bytes": 1008
+    },
+    {
+      "path": "docs/reference/data/03.md",
+      "sha256": "a4393502d922160d17d45ce1f736e0d335ff6be4ddbc2c40b248d1e18982da5c",
+      "bytes": 778
+    },
+    {
+      "path": "docs/reference/data/04.md",
+      "sha256": "19d5dedccf29e35e96b471755329defd96c5ad540d7c350d8ae710e50526620c",
+      "bytes": 3095
+    },
+    {
+      "path": "docs/reference/data/05.md",
+      "sha256": "97cae89c9624befc5983835401992f212ca47deae1a56dcb744d9f4eb844e1d1",
+      "bytes": 1638
+    },
+    {
+      "path": "docs/reference/data/06.md",
+      "sha256": "d2ddc3a3785f71e6a3b5afb60adc7aff674cf5700a439bda3f3a617106ba4fca",
+      "bytes": 4545
+    },
+    {
+      "path": "docs/reference/data/07.md",
+      "sha256": "be0fc3281045912e443b7f46a77c8903a98f36cb1ea305c76fede526eebf3f39",
+      "bytes": 9039
+    },
+    {
+      "path": "docs/reference/data/08.md",
+      "sha256": "4cd66866f394ba82553decad557190a13c0493bab101d1a1b9286d0fb4cb5706",
+      "bytes": 10668
+    },
+    {
+      "path": "docs/reference/data/09.md",
+      "sha256": "856726d03b0aaf9e65999fe62bb0546d8b37f1376ef212d8b7269829ee320b4b",
+      "bytes": 4239
+    },
+    {
+      "path": "docs/reference/data/10.md",
+      "sha256": "e93ec696dfccd613cb12d1283ed8b6f5a7a582a72f34f97922539d046ed46c7c",
+      "bytes": 3202
+    },
+    {
+      "path": "docs/reference/data/11.md",
+      "sha256": "ce2b13dcc93252cf0919d45fbf267bc51180467003aa17012fa3823513c12553",
+      "bytes": 2583
+    },
+    {
+      "path": "docs/reference/data/12.md",
+      "sha256": "0c5a36f9ed07d9c8e01e5512c794e3d0ea76c4300966378553aaf6783c854b4c",
+      "bytes": 1249
+    },
+    {
+      "path": "docs/reference/data/13.md",
+      "sha256": "7c74f6bde8f6b05fcfca564070c33b0f1954a216c54103eed78ceec4778a23d5",
+      "bytes": 1939
+    },
+    {
+      "path": "docs/reference/data/14.md",
+      "sha256": "514b36c93e0d081bffdffa04e5e9667db7085375d0c60799d1c61a5fe60e04ed",
+      "bytes": 1191
+    },
+    {
+      "path": "docs/reference/data/15.md",
+      "sha256": "99fe235ff947bd20598f311322ee8977416378f46e39688cd9337525cdd07ff9",
+      "bytes": 2375
+    },
+    {
+      "path": "docs/reference/data/16.md",
+      "sha256": "90df37b3aeb8cf7c11ba99e427db8b3cc2ae3f100b40c8047d7867d78e98558c",
+      "bytes": 1682
+    },
+    {
+      "path": "docs/reference/data/17.md",
+      "sha256": "fdb882f02a1c6541363c9f3f8becd9dcb2f104d2fe711e0713f51f377f822adf",
+      "bytes": 740
+    },
+    {
+      "path": "docs/reference/data/18.md",
+      "sha256": "0a6a471e97a30e1861eb80c9cb7f3bf32036b7cca3cbccceccc303ecca0c62ad",
+      "bytes": 1649
+    },
+    {
+      "path": "docs/reference/data/19.md",
+      "sha256": "ec46d091163998e163b39330c2daad11f044a1714c6343ba9df3634d2aad6f56",
+      "bytes": 711
+    },
+    {
+      "path": "docs/reference/data/20.md",
+      "sha256": "574a6556c7b203ced0d554faebf7ae5b0e4ce35a1796456f0f0a00995be92f6a",
+      "bytes": 1274
+    },
+    {
+      "path": "docs/reference/data/21.md",
+      "sha256": "9a8831a20ef47b7e7bbc7ca637c0d3d98d535c407c949c3ae8abed215dfbc30b",
+      "bytes": 1116
+    },
+    {
+      "path": "docs/reference/data/22.md",
+      "sha256": "d5542630efdd1f3bbdcf474f9729fe77129011041eed089216e9dfce3147dfc8",
+      "bytes": 1194
+    },
+    {
+      "path": "docs/reference/data/23.md",
+      "sha256": "8443c19d50abc1d78f6e322fc767e6fc8751c04bd436cfcc73f158658923f213",
+      "bytes": 696
+    },
+    {
+      "path": "docs/reference/data/24.md",
+      "sha256": "027c37a754f30e2951702221860a7c54aa38ffc9d7ee9e680df71b51574a11c0",
+      "bytes": 2496
+    },
+    {
+      "path": "docs/reference/data/25.md",
+      "sha256": "575431af50be1d687d35d9f80317baf481b58e8c4b2aa076513a00d512649cdb",
+      "bytes": 2075
+    },
+    {
+      "path": "docs/reference/data/26.md",
+      "sha256": "c173e02bd2f79b3a4b21753a7b483d184853609c08aea0c288c86d3a13979d6c",
+      "bytes": 2525
+    },
+    {
+      "path": "docs/reference/data/27.md",
+      "sha256": "d0a234ad856e70c2eef91eeda28fa38ac4c1f2ba16d1b6002563c3b3a6195dba",
+      "bytes": 1900
+    },
+    {
+      "path": "docs/reference/data/28.md",
+      "sha256": "dc86ff5b7d682cf0d70cd86e5d1c9c2c92afdf888e1e388dcdf0b860811b1440",
+      "bytes": 1332
+    },
+    {
+      "path": "docs/reference/data/29.md",
+      "sha256": "da3be8b5ec5e5488734990e01d7c71510969ed7d1fd6b268b1f6dabbde1545d8",
+      "bytes": 1419
+    },
+    {
+      "path": "docs/reference/data/30.md",
+      "sha256": "bd84a2f7240130c9222cdfc2ad35c64defa857ced64b983960a862d29cdd871e",
+      "bytes": 1356
+    },
+    {
+      "path": "docs/reference/data/31.md",
+      "sha256": "54163a8af75c6d0d851dffc8c52e5bd5880132ec1fb69ac6deeb07b10c6ecd3b",
+      "bytes": 1305
+    },
+    {
+      "path": "docs/reference/data/32.md",
+      "sha256": "cbb6d87626b2c49cba1b605d5db2ca149090da6291371895eedf9eafc2801278",
+      "bytes": 1434
+    },
+    {
+      "path": "docs/reference/data/collections/addresses.md",
+      "sha256": "79211d8edaa968c00b65f680c579b2f43c838edf9b27024934ea66cbf6bd07b8",
+      "bytes": 1182
+    },
+    {
+      "path": "docs/reference/data/collections/admin_roles.md",
+      "sha256": "089ea0cc2e40febee6a8210b51926b021c71f490caee699219ca352c804720f9",
+      "bytes": 1674
+    },
+    {
+      "path": "docs/reference/data/collections/audit_logs.md",
+      "sha256": "bb661924711d1179ed5b63cd6b03c2cd2b3b0c5281d2601df646e981bad96ae5",
+      "bytes": 1143
+    },
+    {
+      "path": "docs/reference/data/collections/cancellation_requests.md",
+      "sha256": "442086377e2020c20e3508bab6d35afd03432940e72c86f36cf77f7d4addb71d",
+      "bytes": 1402
+    },
+    {
+      "path": "docs/reference/data/collections/carts.md",
+      "sha256": "d0985fc4eddbe2f67019f7887bce3a2f7e17b3515fd3b16903c23ef187f394cc",
+      "bytes": 659
+    },
+    {
+      "path": "docs/reference/data/collections/categories.md",
+      "sha256": "7bc92062737064eb325bbe0e07540fac9d73e548be9659774d4ae66537a2657f",
+      "bytes": 607
+    },
+    {
+      "path": "docs/reference/data/collections/checkout_quotes.md",
+      "sha256": "4044fb439e68b4afa2410c8857eb1fc395f383d089eb90c581a9ff199019efef",
+      "bytes": 1000
+    },
+    {
+      "path": "docs/reference/data/collections/favorites.md",
+      "sha256": "f44bba97dc7bc60854deb98e05d6602b076b6687abec1121f3b37b6d0d8bbace",
+      "bytes": 453
+    },
+    {
+      "path": "docs/reference/data/collections/idempotency_records.md",
+      "sha256": "ccff381404e2e4a4397529aa249e0980ecc1452434899b80b4b904b209bdd002",
+      "bytes": 1038
+    },
+    {
+      "path": "docs/reference/data/collections/orders.md",
+      "sha256": "eb9ed54b1f9a8a36f1eeaa00c843f4a281e3f83043cedc4bc80635b61f80b05f",
+      "bytes": 2341
+    },
+    {
+      "path": "docs/reference/data/collections/order_items.md",
+      "sha256": "a924ccc661d1b7695559a292479490ba7c91d9b24c167f907fd721f53d573dfd",
+      "bytes": 811
+    },
+    {
+      "path": "docs/reference/data/collections/order_logs.md",
+      "sha256": "547eabe025404758061fb542428dad37a4919f6e15dc9b91f235818605e781d0",
+      "bytes": 1063
+    },
+    {
+      "path": "docs/reference/data/collections/payments.md",
+      "sha256": "1ea103c3527db53801594966287af54426e8cdaba9fa32241e7166c2a36ebd8c",
+      "bytes": 1617
+    },
+    {
+      "path": "docs/reference/data/collections/payment_events.md",
+      "sha256": "23cd7916d1f837fb6d9b28577b5c6f394d19f5bed157274ef3ad573a1bdd8d92",
+      "bytes": 1335
+    },
+    {
+      "path": "docs/reference/data/collections/products.md",
+      "sha256": "dcef3d162aee6e91242f9e59f7c91c796e23a3421d80df378234c80cf7fa2843",
+      "bytes": 1150
+    },
+    {
+      "path": "docs/reference/data/collections/refunds.md",
+      "sha256": "a1cac262c3c551008f844ccd900fa491a940c9b81cc30a1f3c760bbd204b0edb",
+      "bytes": 1943
+    },
+    {
+      "path": "docs/reference/data/collections/reservations.md",
+      "sha256": "f0ece515621dbfcf5febfa7625d15a3c2ecc6f01494779d7a062c396ee39813f",
+      "bytes": 1001
+    },
+    {
+      "path": "docs/reference/data/collections/skus.md",
+      "sha256": "83041c826f30486b50e965af6e311a106d9f58a566d777726cdadc9ac7633e17",
+      "bytes": 1131
+    },
+    {
+      "path": "docs/reference/data/collections/slot_inventory.md",
+      "sha256": "1515f92d34b8f653148de7e5180d8ed3bf06ef7789d7cadc7245a86a1c87f42b",
+      "bytes": 1439
+    },
+    {
+      "path": "docs/reference/data/collections/stores.md",
+      "sha256": "b5a1e52a30bdf914e481c20a3f7227016b393b693a324bc3c2f7a1fbb1879010",
+      "bytes": 835
+    },
+    {
+      "path": "docs/reference/data/collections/store_config.md",
+      "sha256": "ad4d28e0287799885c976281c12f76d494656f57ca462cfe48bd10cb536dcacc",
+      "bytes": 1734
+    },
+    {
+      "path": "docs/reference/data/collections/users.md",
+      "sha256": "403c885caee2f65061799cfef6cc9dab52c45dff3455e0885ed78ca2ae2ba392",
+      "bytes": 909
+    },
+    {
+      "path": "docs/reference/internal-api/00-context.md",
+      "sha256": "93e51a7a2cbc2ae2ebe5d03cf93ea5c475085f4a2c521f2151197b2a133d32fb",
+      "bytes": 4213
+    },
+    {
+      "path": "docs/reference/internal-api/01.md",
+      "sha256": "37ea48bec373373744eadb4e30c23929aa8a2d2e80e4d6d27cf28446d9da9a12",
+      "bytes": 1428
+    },
+    {
+      "path": "docs/reference/internal-api/02.md",
+      "sha256": "8774a942044d15df66338169b37b6b14eab83b7b6cd49d48cdbe0c5f1181ffc7",
+      "bytes": 1834
+    },
+    {
+      "path": "docs/reference/internal-api/03.md",
+      "sha256": "de718f5f9cec99dcbb739dfb28fce8f1cecd959198d2c9dddd31b8a62d168e3f",
+      "bytes": 1279
+    },
+    {
+      "path": "docs/reference/internal-api/04.md",
+      "sha256": "93c44bbc12a9e4fe778172add62a95571cf37b7424cc9a60872f83f47f541d3f",
+      "bytes": 1077
+    },
+    {
+      "path": "docs/reference/internal-api/05.md",
+      "sha256": "6f8f47bb1a76f26dd89d3579040fe191dc6b97927035fe105b1cc323c164a230",
+      "bytes": 2954
+    },
+    {
+      "path": "docs/reference/internal-api/06.md",
+      "sha256": "6632119ca89eada85db484ed36ad883cbf581a8bb9d9004997addafe9d274de9",
+      "bytes": 3129
+    },
+    {
+      "path": "docs/reference/internal-api/07.md",
+      "sha256": "883bc595b5e9b7aa528d4b951d2d9ebd47b52fd51a60541742bef983f7dceff1",
+      "bytes": 2879
+    },
+    {
+      "path": "docs/reference/internal-api/08.md",
+      "sha256": "429115bcb9496c448779c0b46b01700155515d38e1c43c143fa2cca77859ecc7",
+      "bytes": 2822
+    },
+    {
+      "path": "docs/reference/internal-api/09.md",
+      "sha256": "270b3470dc4e85b5331c0160e44aff9ef4eab1497ac32a2fdf3e0ea5136d4b5e",
+      "bytes": 3122
+    },
+    {
+      "path": "docs/reference/internal-api/10.md",
+      "sha256": "7c69bead28225d74cec7d2cbcb8d8fbc6e5845f9e51c3ae11288f1685591416c",
+      "bytes": 2797
+    },
+    {
+      "path": "docs/reference/internal-api/11.md",
+      "sha256": "4e62a85b993823ed82e04ce86dd944c01b8f8ca28812e345de123996c2f23ef9",
+      "bytes": 1479
+    },
+    {
+      "path": "docs/reference/internal-api/12.md",
+      "sha256": "83193d70c8cb9a5ff7422090171c0deab2a5551c593ea4d37dd03b01fb2b373d",
+      "bytes": 1170
+    },
+    {
+      "path": "docs/reference/internal-api/13.md",
+      "sha256": "55405fdb27c70600acd7f1e597a0fac7ce50054d7cf3c1f0cef9853efd9aee7f",
+      "bytes": 995
+    },
+    {
+      "path": "docs/reference/internal-api/14.md",
+      "sha256": "af1089a8efef6245dc5fb23c6ccec8d901a33f7d974dea6419b2fec3cc53e5ea",
+      "bytes": 614
+    },
+    {
+      "path": "docs/reference/internal-api/15.md",
+      "sha256": "665964d5285461fe079300c32f6c459a80b39fbfb08f928ec3855f2a40920194",
+      "bytes": 828
+    },
+    {
+      "path": "docs/reference/internal-api/16.md",
+      "sha256": "43147d58540f5f1517d1ec4d1978ed230918e21d5a5f9a50bd485c8539bd9c25",
+      "bytes": 1341
+    },
+    {
+      "path": "docs/reference/internal-api/17.md",
+      "sha256": "91832ef23386db85a7c05404c9cc5bae9ce6297fc72413103e7736f608d10b58",
+      "bytes": 1088
+    },
+    {
+      "path": "docs/reference/internal-api/18.md",
+      "sha256": "5e6db9ed7661f26ffa62486f60fb62d55cb108703ee38c726b1209fc82f7c409",
+      "bytes": 1258
+    },
+    {
+      "path": "docs/reference/internal-api/19.md",
+      "sha256": "8273884563dd1a2813955e6165bf07d0a9e7d7a9de0e7d0ea931369d34bc553a",
+      "bytes": 978
+    },
+    {
+      "path": "docs/reference/internal-api/20.md",
+      "sha256": "50ed2e669320509c51783faa40bc1c6b2af96de9b8f51ae0b9403379df5f1f43",
+      "bytes": 1193
+    },
+    {
+      "path": "docs/reference/internal-api/21.md",
+      "sha256": "f1f60d5707d611449b1114af3f938b9c6312ac1bc45704f54610dea48af659a1",
+      "bytes": 1078
+    },
+    {
+      "path": "docs/reference/internal-api/22.md",
+      "sha256": "3fc81f1af1a464d17757edacf82efaa97de39e8dd92105f0b2c89e6bf0598e16",
+      "bytes": 1211
+    },
+    {
+      "path": "docs/reference/internal-api/23.md",
+      "sha256": "b9f7d21475fada1d2ef3ed97211b222ec451cc8b3c1dcde761562967274c4fb5",
+      "bytes": 1452
+    },
+    {
+      "path": "docs/reference/internal-api/24.md",
+      "sha256": "222ff67a64df967eaa7bfc8b052ef9eb0f3b77fb1796aa6552f68a0571c60bf4",
+      "bytes": 742
+    },
+    {
+      "path": "docs/reference/internal-api/25.md",
+      "sha256": "5d60b4e9a361dc5280c3ff58ececd4538e915f7a3166942f05cb21a2c4450718",
+      "bytes": 1085
+    },
+    {
+      "path": "docs/reference/internal-api/26.md",
+      "sha256": "d4c9eb0ac8009bad05a118a60d05c6cbe945b7126eceb6ba8519794f55403ab1",
+      "bytes": 1012
+    },
+    {
+      "path": "docs/reference/internal-api/27.md",
+      "sha256": "2e91c83c9c3ea2509110da8fde7c8755751ad0a3bcc663e0d6ff17512c683b65",
+      "bytes": 984
+    },
+    {
+      "path": "docs/reference/internal-api/28.md",
+      "sha256": "51e7f421fb749220d8bdf2e242d41df2a0ef596442fa3586daa60691f99aa242",
+      "bytes": 754
+    },
+    {
+      "path": "docs/reference/internal-api/29.md",
+      "sha256": "3b878bd88c26dfeb1ae24787553b3fb8228b7f5b824ab7964ba04384566923c4",
+      "bytes": 760
+    },
+    {
+      "path": "docs/reference/internal-api/30.md",
+      "sha256": "5f2880a2cd5044228288d854c833be716ebace1dd4c885fa973b86c77a1ad9dd",
+      "bytes": 1267
+    },
+    {
+      "path": "docs/reference/internal-api/31.md",
+      "sha256": "3aa2df4d3a8a8495efbc5cf2b55c3003b6711154e1ce6183d2c2926adbf908ff",
+      "bytes": 1425
+    },
+    {
+      "path": "docs/reference/internal-api/32.md",
+      "sha256": "2adf923c1e62b42ab1f0414ca6bf7d6d3d40aac37ad2953d01bfb4db266aa050",
+      "bytes": 1960
+    },
+    {
+      "path": "docs/reference/internal-api/33.md",
+      "sha256": "1e704d8c5728e4ec1e3ead06b00f967c8c061298a61c29bfb9fe4e7aada9f0be",
+      "bytes": 1532
+    },
+    {
+      "path": "docs/reference/internal-api/34.md",
+      "sha256": "cdf5ba0c35e493c906c15d17940c4266ff5bd0278874a2af0e7e5a20e2cf6426",
+      "bytes": 1720
+    },
+    {
+      "path": "docs/reference/internal-api/35.md",
+      "sha256": "958401eeb90d5aa9d989fdb999b133c7c34f2bb1a16f4d2babc976db4ba50bf4",
+      "bytes": 2003
+    },
+    {
+      "path": "docs/reference/internal-api/36.md",
+      "sha256": "f806409ff7b1e0d7156b4977e8bf957ebf4d970a0ea08947f469b80e236fdc6a",
+      "bytes": 1761
+    },
+    {
+      "path": "docs/reference/network-api/00-context.md",
+      "sha256": "89e3c7937ab629c748490518972b3b02d6101c169553f00b514d1d36de6eb5ec",
+      "bytes": 525
+    },
+    {
+      "path": "docs/reference/network-api/01.md",
+      "sha256": "0d0da016df23a09358375f5d56435fb84e8477ecc99e477881abccdc520e74b2",
+      "bytes": 3677
+    },
+    {
+      "path": "docs/reference/network-api/02.md",
+      "sha256": "9ed54ca18cb51e0fd94300aa53382aba45706e8453d3d04805d3fbbf2f087afd",
+      "bytes": 2784
+    },
+    {
+      "path": "docs/reference/network-api/03.md",
+      "sha256": "101c238a8b03ac7da82e69d332f781b69f5ef7ebe0cb1dd7d4d82d5297514210",
+      "bytes": 9837
+    },
+    {
+      "path": "docs/reference/network-api/04.md",
+      "sha256": "dde092810ac3934e9d2cf6e1d52cd2fe5e6aaa37be71c1d7b3060c500785883c",
+      "bytes": 6779
+    },
+    {
+      "path": "docs/reference/network-api/05.md",
+      "sha256": "a42aea582c1c4cc50bd6d0ce6d82b61d26a1ebaa0baf8d56e4740ad6cf8ee6aa",
+      "bytes": 2761
+    },
+    {
+      "path": "docs/reference/network-api/06.md",
+      "sha256": "f9d31f46eba0a39e7a66a59b000ebed7c0e6bbfcd079a6f4b8bc26ffb8ca0444",
+      "bytes": 2006
+    },
+    {
+      "path": "docs/reference/network-api/07.md",
+      "sha256": "a6c0240a78734e91cdad073a137d5674cf657504381322665c3b3ede183a521a",
+      "bytes": 4218
+    },
+    {
+      "path": "docs/reference/network-api/08.md",
+      "sha256": "8756661d08ac7aa196a75801a7ecc891e72d21f067aef1d32cbdac06a6b7af25",
+      "bytes": 2047
+    },
+    {
+      "path": "docs/reference/network-api/09.md",
+      "sha256": "35011a733b6252a9e85e31db7d67472211d6f26614783c73108975e432834e7c",
+      "bytes": 1091
+    },
+    {
+      "path": "docs/reference/network-api/10.md",
+      "sha256": "55405fdb27c70600acd7f1e597a0fac7ce50054d7cf3c1f0cef9853efd9aee7f",
+      "bytes": 995
+    },
+    {
+      "path": "docs/reference/network-api/11.md",
+      "sha256": "af1089a8efef6245dc5fb23c6ccec8d901a33f7d974dea6419b2fec3cc53e5ea",
+      "bytes": 614
+    },
+    {
+      "path": "docs/reference/network-api/12.md",
+      "sha256": "665964d5285461fe079300c32f6c459a80b39fbfb08f928ec3855f2a40920194",
+      "bytes": 828
+    },
+    {
+      "path": "docs/reference/plan/phase-1.md",
+      "sha256": "13e4c54a5cd9dfdcc16d1ab7a8fe94f19366049c24d5d22a915e4da7f287a26c",
+      "bytes": 3070
+    },
+    {
+      "path": "docs/reference/plan/phase-2.md",
+      "sha256": "2c515d9b9a4021bed4e9e7197bdfacd2005d9fbe1540856a00d1cc7fb7737954",
+      "bytes": 2831
+    },
+    {
+      "path": "docs/reference/plan/phase-3.md",
+      "sha256": "c75a6959ab641ce753b5db7e8f6eafc68b5c15e2bdb0eb3d5625e21048ebc175",
+      "bytes": 2852
+    },
+    {
+      "path": "docs/reference/plan/phase-4.md",
+      "sha256": "35524e01843659cb7ac7ac3346bb94e06a3565ba64adb05c01ad138b3b0e1909",
+      "bytes": 1996
+    },
+    {
+      "path": "docs/reference/plan/phase-5.md",
+      "sha256": "7ad7416d6def1cc2b49b98b19a505b05f99c8d6cef7692810da01abafa996368",
+      "bytes": 2591
+    },
+    {
+      "path": "docs/reference/plan/phase-6.md",
+      "sha256": "38b6e026ac47e6c5941c2739809d264a7855f6774e819fbabe0138c58ec253d7",
+      "bytes": 3226
+    },
+    {
+      "path": "docs/reference/plan/phase-7.md",
+      "sha256": "feffbff2723d7924a59b65f4e216825ce206460da89edab0248bff5b194cc442",
+      "bytes": 3247
+    },
+    {
+      "path": "docs/reference/plan/phase-8.md",
+      "sha256": "7d4f7471ecc1a83760a3f14faa7e67d2774001315cf43ade2f238a0e8b623e43",
+      "bytes": 2747
+    },
+    {
+      "path": "docs/reference/plan/phase-9.md",
+      "sha256": "0a78614514733945d724a96055631097b313fd367b985f5a3cea44e7fa5ac1a4",
+      "bytes": 3127
+    },
+    {
+      "path": "docs/reference/transactions/00-context.md",
+      "sha256": "bab1923151cb166a90989db5b991af67a199acd80260cf9104ea8ba43e7a59c1",
+      "bytes": 512
+    },
+    {
+      "path": "docs/reference/transactions/01.md",
+      "sha256": "d6909a688c66269f5eb1edfd21597dfa600dbf94697b889619d82e2818078905",
+      "bytes": 4099
+    },
+    {
+      "path": "docs/reference/transactions/02.md",
+      "sha256": "15506bf4a16300e57d3e462a3d475af085d5b98fd1f5495bdeb876faa4359236",
+      "bytes": 1563
+    },
+    {
+      "path": "docs/reference/transactions/03.md",
+      "sha256": "73487af4440b1e47be6e5fe70b2c2b62f5c707e48f24d897efa797310f44b9dc",
+      "bytes": 3095
+    },
+    {
+      "path": "docs/reference/transactions/04.md",
+      "sha256": "188519afb2e538bad4effeb217ee8f7611ba17dab6bd7422fcef92cf19a71239",
+      "bytes": 1896
+    },
+    {
+      "path": "docs/reference/transactions/05.md",
+      "sha256": "d44cda9c097698659022605b9c848aab58e984f519f2d0f5a4d497b0d715f116",
+      "bytes": 3139
+    },
+    {
+      "path": "docs/reference/transactions/06.md",
+      "sha256": "c5232ac242ae99613636b5ed8b247f75b9b3c8a637fd4539b953a1c3a3b94f2b",
+      "bytes": 1484
+    },
+    {
+      "path": "docs/reference/transactions/07.md",
+      "sha256": "575b9493790283bb0c3cfbd923a0267d2e539196367e606336397b41c569e9eb",
+      "bytes": 1263
+    },
+    {
+      "path": "docs/reference/transactions/08.md",
+      "sha256": "34bd98a9ff61108566c8a21dbacf85f8d693e39b58c3b2865d4785c10fd7b8a4",
+      "bytes": 1169
+    },
+    {
+      "path": "docs/reference/transactions/09.md",
+      "sha256": "46a4922d834e6782032db2310e3a1f8724898ace30f1549599bc46e25a1f702a",
+      "bytes": 689
+    },
+    {
+      "path": "docs/reference/transactions/10.md",
+      "sha256": "92cb9206eb8e0799153996dcc1a72aacf78b8149c0990c95c3d7b0112dd92570",
+      "bytes": 1424
+    },
+    {
+      "path": "docs/reference/transactions/11.md",
+      "sha256": "0e62677e37f595cd6d7fee98ef366d60854f8df0df3ff320c2c4ceafdad746da",
+      "bytes": 1428
+    },
+    {
+      "path": "docs/reference/transactions/12.md",
+      "sha256": "ba8c274e940a89e1a8362c1f0c162c15152d0838633168c4aef5e07d1490a92e",
+      "bytes": 1038
+    },
+    {
+      "path": "docs/reference/transactions/13.md",
+      "sha256": "486b769c58a95a0dc83310fe75d207f81647887a528ff0dcf1e281c1b9f4512d",
+      "bytes": 1185
+    },
+    {
+      "path": "docs/reference/transactions/14.md",
+      "sha256": "f62e832339af5b147445cdf6e544c3c22ac174c5d5af4f95a1eaf26970d46462",
+      "bytes": 1031
+    },
+    {
+      "path": "docs/reference/transactions/15.md",
+      "sha256": "ea161d8f58bf5fe3e8e28c28ad1d86a1871c176581bc13bc18f29bee45346715",
+      "bytes": 994
+    },
+    {
+      "path": "docs/reference/transactions/16.md",
+      "sha256": "62f681b2e3eb07bc9fc46d74cece94c84119f6d6caf3accdeb06f0bc5a567ba1",
+      "bytes": 1613
+    },
+    {
+      "path": "docs/reference/transactions/17.md",
+      "sha256": "1ea81deea6381e5d3730db99fd0b899038fa9c46637b69c551fd43ab6785045e",
+      "bytes": 1906
+    },
+    {
+      "path": "docs/reference/transactions/18.md",
+      "sha256": "2a15c0a1a0309bba85a1dd3aaba92eb0c32ff69931590f71a9386e7fe7d623fb",
+      "bytes": 1690
+    },
+    {
+      "path": "docs/reference/transactions/19.md",
+      "sha256": "b7358d88fbf2389c4e284192debc462c877cfc33e42e1afd323d47681a82e08e",
+      "bytes": 1338
+    },
+    {
+      "path": "docs/SPECIFICATION-RULES.md",
+      "sha256": "6fd299c2fb80331d43077cf777901d17825af9c6ada9edc672e51acbec172718",
+      "bytes": 6439
+    },
+    {
+      "path": "docs/TRANSACTION-RULES.md",
+      "sha256": "a2179cc854b41f0de786aaa7795c7207e3601df5395be30ec120b3570c98e6f4",
+      "bytes": 9804
+    },
+    {
+      "path": "docs/TRANSACTIONS.md",
+      "sha256": "84ee39aa246b78c89cecda9d69ac19e55fd250ee697d273a9ce112819982ed53",
+      "bytes": 2188
+    },
+    {
+      "path": "docs/UI-ADJUSTMENT-GUIDE.md",
+      "sha256": "25e9945388885592f2244d4c53d02dfe87fc3329bdc0c96ea0d2e026317d27a6",
+      "bytes": 3683
+    },
+    {
+      "path": "docs/UI-ANIMATIONS.md",
+      "sha256": "bc274d489ee33b7f7de67a4ac821f4801b2183cd90a356ba6baef4853a3b5a5d",
+      "bytes": 24117
+    },
+    {
+      "path": "docs/UI-R01A-EVIDENCE.md",
+      "sha256": "5b2e846b6f89a0c121e16880c22660f7b22a972018a6d6648f759a554fe52a12",
+      "bytes": 8417
+    },
+    {
+      "path": "docs/UI-TYPOGRAPHY.md",
+      "sha256": "cb6757d58c8ed6437b73e6062360ceb0e28d38ed2e92c27d0bbc7c70d7848dd1",
+      "bytes": 32241
+    },
+    {
+      "path": "docs/X01-ADDRESSES.md",
+      "sha256": "b4d385b972d26b81da1a39a4678f9fa29603a7a1d0966e62fb1f295b6d88e64b",
+      "bytes": 5080
+    },
+    {
+      "path": "docs/X02-STORE-FULFILLMENT.md",
+      "sha256": "3e3333c55c8d19fdcec26508c699f67ea279f2adfdeaaedc384eec685fa8fb31",
+      "bytes": 5789
+    },
+    {
+      "path": "docs/X03-DELIVERY-RANGE.md",
+      "sha256": "7a3e763cb01fc5654b788fe02c6920d359b1714b1ed4e8f29ae3cb66978a9734",
+      "bytes": 3766
+    },
+    {
+      "path": "docs/X04-APPOINTMENT-AVAILABILITY.md",
+      "sha256": "3d09c09467ce6c6b3cf2766ff7684005d2bdfd4d8cc82d31adf795693e4420bd",
+      "bytes": 4734
+    },
+    {
+      "path": "docs/X05-TRUSTED-QUOTE.md",
+      "sha256": "0286f55c7c5b637768afae001a28bc3922b1c2615cfeb727239b457d0304c413",
+      "bytes": 5669
+    },
+    {
+      "path": "docs/X06-CHECKOUT-CONFIRMATION.md",
+      "sha256": "13f024547c3f1218590396172a9fbaea45b62033ef603800d1f68d4d16bfd93d",
+      "bytes": 4670
+    },
+    {
+      "path": "README.md",
+      "sha256": "2ff5d9bde8faa8d5a185190be82beb41ec7e0ba3aa9283f29873eed1c54a6194",
+      "bytes": 864
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "5139fe7231cc292a7685872346589b8bce16bebddbf811be89e87fe11cb52526",
+      "bytes": 3622
+    }
+  ],
+  "records": [
+    {
+      "original": "docs/A01-ADMIN-AUTHORIZATION.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a01-admin-authorization",
+      "source": "docs/A01-ADMIN-AUTHORIZATION.md"
+    },
+    {
+      "original": "docs/A02-MERCHANT-ORDERS.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a02-merchant-orders",
+      "source": "docs/A02-MERCHANT-ORDERS.md"
+    },
+    {
+      "original": "docs/A03-PICKUP-SESSION.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a03-pickup-session",
+      "source": "docs/A03-PICKUP-SESSION.md"
+    },
+    {
+      "original": "docs/A04-MERCHANT-CATALOG.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a04-merchant-catalog",
+      "source": "docs/A04-MERCHANT-CATALOG.md"
+    },
+    {
+      "original": "docs/A05-MERCHANT-STORE.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a05-merchant-store",
+      "source": "docs/A05-MERCHANT-STORE.md"
+    },
+    {
+      "original": "docs/A06-MERCHANT-RESOLUTION.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a06-merchant-resolution",
+      "source": "docs/A06-MERCHANT-RESOLUTION.md"
+    },
+    {
+      "original": "docs/A07-ADMIN-ACCEPTANCE.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "a07-admin-acceptance",
+      "source": "docs/A07-ADMIN-ACCEPTANCE.md"
+    },
+    {
+      "original": "docs/B01-B02-CART-SERVICE.md",
+      "volume": "docs/archive/stages/phase-4.md",
+      "anchor": "b01-b02-cart-service",
+      "source": "docs/B01-B02-CART-SERVICE.md"
+    },
+    {
+      "original": "docs/B03-LOCAL-BAG.md",
+      "volume": "docs/archive/stages/phase-4.md",
+      "anchor": "b03-local-bag",
+      "source": "docs/B03-LOCAL-BAG.md"
+    },
+    {
+      "original": "docs/B04-CART-RETRY.md",
+      "volume": "docs/archive/stages/phase-4.md",
+      "anchor": "b04-cart-retry",
+      "source": "docs/B04-CART-RETRY.md"
+    },
+    {
+      "original": "docs/B05-CART-REVIEW.md",
+      "volume": "docs/archive/stages/phase-4.md",
+      "anchor": "b05-cart-review",
+      "source": "docs/B05-CART-REVIEW.md"
+    },
+    {
+      "original": "docs/B06-CHECKOUT-SELECTION.md",
+      "volume": "docs/archive/stages/phase-4.md",
+      "anchor": "b06-checkout-selection",
+      "source": "docs/B06-CHECKOUT-SELECTION.md"
+    },
+    {
+      "original": "docs/C05-ACCEPTANCE-REVIEW.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "c05-acceptance-review",
+      "source": "docs/C05-ACCEPTANCE-REVIEW.md"
+    },
+    {
+      "original": "docs/C06-HOME-SEARCH.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "c06-home-search",
+      "source": "docs/C06-HOME-SEARCH.md"
+    },
+    {
+      "original": "docs/C07-FAVORITES.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "c07-favorites",
+      "source": "docs/C07-FAVORITES.md"
+    },
+    {
+      "original": "docs/C08-CATALOG-ACCEPTANCE.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "c08-catalog-acceptance",
+      "source": "docs/C08-CATALOG-ACCEPTANCE.md"
+    },
+    {
+      "original": "docs/CATALOG-DRAFTS.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "catalog-drafts",
+      "source": "docs/CATALOG-DRAFTS.md"
+    },
+    {
+      "original": "docs/CATALOG-READ.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "catalog-read",
+      "source": "docs/CATALOG-READ.md"
+    },
+    {
+      "original": "docs/CLOUD-BACKFILL-TRACKER-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "cloud-backfill-tracker-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/CLOUD-BACKFILL-TRACKER-2026-10-08.md"
+    },
+    {
+      "original": "docs/CLOUD-ENVIRONMENT-HANDOFF-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "cloud-environment-handoff-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/CLOUD-ENVIRONMENT-HANDOFF-2026-10-08.md"
+    },
+    {
+      "original": "docs/CLOUD-ENVIRONMENT-RESULT-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "cloud-environment-result-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/CLOUD-ENVIRONMENT-RESULT-2026-10-08.md"
+    },
+    {
+      "original": "docs/CLOUD-RESOURCE-MANIFEST-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "cloud-resource-manifest-2026-10-08",
+      "source": "docs/CLOUD-RESOURCE-MANIFEST-2026-10-08.md"
+    },
+    {
+      "original": "docs/CLOUD-RESOURCE-R1-RESULT-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "cloud-resource-r1-result-2026-10-08",
+      "source": "docs/CLOUD-RESOURCE-R1-RESULT-2026-10-08.md"
+    },
+    {
+      "original": "docs/D04-CLOUD-REPAIR-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "d04-cloud-repair-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/D04-CLOUD-REPAIR-2026-10-08.md"
+    },
+    {
+      "original": "docs/D04-CLOUD-RUN-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "d04-cloud-run-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/D04-CLOUD-RUN-2026-10-08.md"
+    },
+    {
+      "original": "docs/D04-CLOUD-SDK-ACCEPTANCE-PLAN.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "d04-cloud-sdk-acceptance-plan",
+      "source": "docs/D04-CLOUD-SDK-ACCEPTANCE-PLAN.md"
+    },
+    {
+      "original": "docs/D04-ORDER-DOCUMENT-SESSION-2026-10-09.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "d04-order-document-session-2026-10-09",
+      "source": "docs/archive/doc-slim-20261009/docs/D04-ORDER-DOCUMENT-SESSION-2026-10-09.md"
+    },
+    {
+      "original": "docs/D04-ORDER-WRITE-BUDGET-2026-10-09.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "d04-order-write-budget-2026-10-09",
+      "source": "docs/archive/doc-slim-20261009/docs/D04-ORDER-WRITE-BUDGET-2026-10-09.md"
+    },
+    {
+      "original": "docs/D04-PROBE-ENVIRONMENT-HANDOFF.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "d04-probe-environment-handoff",
+      "source": "docs/D04-PROBE-ENVIRONMENT-HANDOFF.md"
+    },
+    {
+      "original": "docs/DAILY-SUMMARY-2026-10-04.md",
+      "volume": "docs/archive/stages/phase-0.md",
+      "anchor": "daily-summary-2026-10-04",
+      "source": "docs/DAILY-SUMMARY-2026-10-04.md"
+    },
+    {
+      "original": "docs/HANDOFF-HISTORY-2026-10-09.md",
+      "volume": "docs/archive/stages/phase-0.md",
+      "anchor": "handoff-history-2026-10-09",
+      "source": "docs/HANDOFF-HISTORY-2026-10-09.md"
+    },
+    {
+      "original": "docs/INITIALIZATION.md",
+      "volume": "docs/archive/stages/phase-1.md",
+      "anchor": "initialization",
+      "source": "docs/INITIALIZATION.md"
+    },
+    {
+      "original": "docs/ISSUE-HANDOFF-01-TEST-ENVIRONMENT.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-handoff-01-test-environment",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-01-TEST-ENVIRONMENT.md"
+    },
+    {
+      "original": "docs/ISSUE-HANDOFF-02-D04-DATABASE.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-handoff-02-d04-database",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-02-D04-DATABASE.md"
+    },
+    {
+      "original": "docs/ISSUE-HANDOFF-03-D04-FUNCTION.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-handoff-03-d04-function",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-03-D04-FUNCTION.md"
+    },
+    {
+      "original": "docs/ISSUE-HANDOFF-04-D04-CONCURRENCY-LOGS.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-handoff-04-d04-concurrency-logs",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-HANDOFF-04-D04-CONCURRENCY-LOGS.md"
+    },
+    {
+      "original": "docs/ISSUE-RESULT-01-TEST-ENVIRONMENT.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-result-01-test-environment",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-01-TEST-ENVIRONMENT.md"
+    },
+    {
+      "original": "docs/ISSUE-RESULT-02-D04-DATABASE.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-result-02-d04-database",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-02-D04-DATABASE.md"
+    },
+    {
+      "original": "docs/ISSUE-RESULT-03-D04-FUNCTION.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-result-03-d04-function",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-03-D04-FUNCTION.md"
+    },
+    {
+      "original": "docs/ISSUE-RESULT-04-D04-CONCURRENCY-LOGS.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "issue-result-04-d04-concurrency-logs",
+      "source": "docs/archive/doc-slim-20261009/docs/ISSUE-RESULT-04-D04-CONCURRENCY-LOGS.md"
+    },
+    {
+      "original": "docs/NAVIGATION-DEVICE-CHECK.md",
+      "volume": "docs/archive/stages/phase-1.md",
+      "anchor": "navigation-device-check",
+      "source": "docs/NAVIGATION-DEVICE-CHECK.md"
+    },
+    {
+      "original": "docs/O01-CONTROLLED-ORDER-COMMANDS.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o01-controlled-order-commands",
+      "source": "docs/O01-CONTROLLED-ORDER-COMMANDS.md"
+    },
+    {
+      "original": "docs/O02-ORDER-CREATION.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o02-order-creation",
+      "source": "docs/O02-ORDER-CREATION.md"
+    },
+    {
+      "original": "docs/O03-ATOMIC-ORDER-TRANSACTION.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o03-atomic-order-transaction",
+      "source": "docs/O03-ATOMIC-ORDER-TRANSACTION.md"
+    },
+    {
+      "original": "docs/O04-ORDER-RECOVERY.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o04-order-recovery",
+      "source": "docs/O04-ORDER-RECOVERY.md"
+    },
+    {
+      "original": "docs/O05-ORDER-CANCELLATION.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o05-order-cancellation",
+      "source": "docs/O05-ORDER-CANCELLATION.md"
+    },
+    {
+      "original": "docs/O06-ORDER-READ.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o06-order-read",
+      "source": "docs/O06-ORDER-READ.md"
+    },
+    {
+      "original": "docs/O07-PICKUP-CREDENTIAL.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o07-pickup-credential",
+      "source": "docs/O07-PICKUP-CREDENTIAL.md"
+    },
+    {
+      "original": "docs/O08-ORDER-DELIVERY.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "o08-order-delivery",
+      "source": "docs/O08-ORDER-DELIVERY.md"
+    },
+    {
+      "original": "docs/P01-PAYMENT-CONFIGURATION.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p01-payment-configuration",
+      "source": "docs/P01-PAYMENT-CONFIGURATION.md"
+    },
+    {
+      "original": "docs/P02-PAYMENT-INTENTS.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p02-payment-intents",
+      "source": "docs/P02-PAYMENT-INTENTS.md"
+    },
+    {
+      "original": "docs/P03-PAYMENT-NOTIFICATIONS.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p03-payment-notifications",
+      "source": "docs/P03-PAYMENT-NOTIFICATIONS.md"
+    },
+    {
+      "original": "docs/P04-PAYMENT-RECOVERY.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p04-payment-recovery",
+      "source": "docs/P04-PAYMENT-RECOVERY.md"
+    },
+    {
+      "original": "docs/P05-PAYMENT-SESSION.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p05-payment-session",
+      "source": "docs/P05-PAYMENT-SESSION.md"
+    },
+    {
+      "original": "docs/P06-REFUND-RECOVERY.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p06-refund-recovery",
+      "source": "docs/P06-REFUND-RECOVERY.md"
+    },
+    {
+      "original": "docs/P07-MAINTENANCE-RECONCILIATION.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p07-maintenance-reconciliation",
+      "source": "docs/P07-MAINTENANCE-RECONCILIATION.md"
+    },
+    {
+      "original": "docs/P08-PAYMENT-ACCEPTANCE.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "p08-payment-acceptance",
+      "source": "docs/P08-PAYMENT-ACCEPTANCE.md"
+    },
+    {
+      "original": "docs/PHASE-1-CLOUD-REVALIDATION-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-1.md",
+      "anchor": "phase-1-cloud-revalidation-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-1-CLOUD-REVALIDATION-2026-10-08.md"
+    },
+    {
+      "original": "docs/PHASE-1-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-1.md",
+      "anchor": "phase-1-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-1-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-2-CLOUD-REVALIDATION-2026-10-08.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "phase-2-cloud-revalidation-2026-10-08",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-2-CLOUD-REVALIDATION-2026-10-08.md"
+    },
+    {
+      "original": "docs/PHASE-2-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "phase-2-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-2-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-2-REVIEW.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "phase-2-review",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-2-REVIEW.md"
+    },
+    {
+      "original": "docs/PHASE-3-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "phase-3-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-3-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-4-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-4.md",
+      "anchor": "phase-4-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-4-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-5-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "phase-5-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-5-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-5-REVIEW.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "phase-5-review",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-5-REVIEW.md"
+    },
+    {
+      "original": "docs/PHASE-6-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "phase-6-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-6-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-6-REVIEW.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "phase-6-review",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-6-REVIEW.md"
+    },
+    {
+      "original": "docs/PHASE-7-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "phase-7-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-7-EXECUTION.md"
+    },
+    {
+      "original": "docs/PHASE-7-REVIEW-2026-10-06.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "phase-7-review-2026-10-06",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-7-REVIEW-2026-10-06.md"
+    },
+    {
+      "original": "docs/PHASE-8-EXECUTION.md",
+      "volume": "docs/archive/stages/phase-8.md",
+      "anchor": "phase-8-execution",
+      "source": "docs/archive/doc-slim-20261009/docs/PHASE-8-EXECUTION.md"
+    },
+    {
+      "original": "docs/PRODUCT-DETAIL-REDESIGN.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "product-detail-redesign",
+      "source": "docs/PRODUCT-DETAIL-REDESIGN.md"
+    },
+    {
+      "original": "docs/PRODUCT-DETAIL.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "product-detail",
+      "source": "docs/PRODUCT-DETAIL.md"
+    },
+    {
+      "original": "docs/PROJECT-READINESS-REVIEW-2026-10-09.md",
+      "volume": "docs/archive/stages/phase-0.md",
+      "anchor": "project-readiness-review-2026-10-09",
+      "source": "docs/archive/doc-slim-20261009/docs/PROJECT-READINESS-REVIEW-2026-10-09.md"
+    },
+    {
+      "original": "docs/PROJECT-REVIEW.md",
+      "volume": "docs/archive/stages/phase-0.md",
+      "anchor": "project-review",
+      "source": "docs/PROJECT-REVIEW.md"
+    },
+    {
+      "original": "docs/UI-R01A-EVIDENCE.md",
+      "volume": "docs/archive/stages/phase-1.md",
+      "anchor": "ui-r01a-evidence",
+      "source": "docs/UI-R01A-EVIDENCE.md"
+    },
+    {
+      "original": "docs/X01-ADDRESSES.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "x01-addresses",
+      "source": "docs/X01-ADDRESSES.md"
+    },
+    {
+      "original": "docs/X02-STORE-FULFILLMENT.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "x02-store-fulfillment",
+      "source": "docs/X02-STORE-FULFILLMENT.md"
+    },
+    {
+      "original": "docs/X03-DELIVERY-RANGE.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "x03-delivery-range",
+      "source": "docs/X03-DELIVERY-RANGE.md"
+    },
+    {
+      "original": "docs/X04-APPOINTMENT-AVAILABILITY.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "x04-appointment-availability",
+      "source": "docs/X04-APPOINTMENT-AVAILABILITY.md"
+    },
+    {
+      "original": "docs/X05-TRUSTED-QUOTE.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "x05-trusted-quote",
+      "source": "docs/X05-TRUSTED-QUOTE.md"
+    },
+    {
+      "original": "docs/X06-CHECKOUT-CONFIRMATION.md",
+      "volume": "docs/archive/stages/phase-5.md",
+      "anchor": "x06-checkout-confirmation",
+      "source": "docs/X06-CHECKOUT-CONFIRMATION.md"
+    },
+    {
+      "original": "docs/AUTHORIZATION-RULES.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "authorization-rules",
+      "source": "docs/AUTHORIZATION-RULES.md",
+      "retainedAsTechnical": true
+    },
+    {
+      "original": "docs/DEVELOPMENT-SEED.md",
+      "volume": "docs/archive/stages/phase-2.md",
+      "anchor": "development-seed",
+      "source": "docs/DEVELOPMENT-SEED.md",
+      "retainedAsTechnical": true
+    },
+    {
+      "original": "docs/SPECIFICATION-RULES.md",
+      "volume": "docs/archive/stages/phase-3.md",
+      "anchor": "specification-rules",
+      "source": "docs/SPECIFICATION-RULES.md",
+      "retainedAsTechnical": true
+    },
+    {
+      "original": "docs/ORDER-CLOUD-ACCEPTANCE.md",
+      "volume": "docs/archive/stages/phase-6.md",
+      "anchor": "order-cloud-acceptance",
+      "source": "docs/ORDER-CLOUD-ACCEPTANCE.md",
+      "retainedAsTechnical": true
+    },
+    {
+      "original": "docs/PAYMENT-CLOUD-ACCEPTANCE.md",
+      "volume": "docs/archive/stages/phase-7.md",
+      "anchor": "payment-cloud-acceptance",
+      "source": "docs/PAYMENT-CLOUD-ACCEPTANCE.md",
+      "retainedAsTechnical": true
+    }
+  ],
+  "counts": {
+    "rootBefore": 103,
+    "rootAfter": 21,
+    "processRecords": 82,
+    "historyVolumes": 9,
+    "technicalDocumentsWithHistoricalSectionsRemoved": 5
+  }
+}

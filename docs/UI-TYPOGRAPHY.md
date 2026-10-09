@@ -1,6 +1,6 @@
 # 小程序 UI 字体与布局规范
 
-后续页面安排与后端接入边界见 [UI 调整指南](UI-ADJUSTMENT-GUIDE.md)。指南不自动授权批量改版；本轮仅施工我的首页。
+页面范围与后端接入边界见 [UI 调整指南](UI-ADJUSTMENT-GUIDE.md)，实际施工范围由用户当次请求决定；当前任务只查 [CURRENT-STATUS](CURRENT-STATUS.md)。指南不自动授权批量改版。
 
 动画、交互特效、触觉反馈和跨页转场统一记录在 [UI-ANIMATIONS.md](UI-ANIMATIONS.md)；SVG 分类与引用路径见 [图标素材库](../miniprogram/assets/icons/README.md)。本文件只维护静态字体、布局、组件外观、安全区和页面状态。
 

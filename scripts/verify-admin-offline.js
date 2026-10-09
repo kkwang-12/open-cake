@@ -2,6 +2,7 @@
 // A07 local evidence only: stubbed platform probes, no SDK, network or deployment.
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),crypto=require('node:crypto');
 const {testResult,sourceSnapshot,runStep,evidenceDirectory,runtimeBoundary}=require('./verify-payment-offline');
+const {failureSummary}=require('./test-diagnostics');
 const {ACTION_CONTRACTS}=require('../cloudfunctions/_shared/api-contract');
 const {createClient}=require('../miniprogram/services/cloud');
 const {pickupAvailability}=require('../miniprogram/features/admin/pickup-session');
@@ -69,6 +70,7 @@ async function adminBoundary(){
     legacyEnabled:settings.enableLegacyDemo===true,legacy,dependencies,pickupClosed,payment};
 }
 async function verify(name='a07-'+new Date().toISOString().replace(/[:.]/g,'-')){
+  console.log('Scope: complete LOCAL suite + Admin stage checks. Use verify:offline for joint Payment/Admin checks; do not stack full-suite runners.');
   const before=sourceSnapshot(),directory=evidenceDirectory(name),boundary=await adminBoundary();
   // An interrupted run leaves an explicit incomplete report, never a green one.
   fs.writeFileSync(path.join(directory,'summary.json'),JSON.stringify({schemaVersion:1,scope:'OFFLINE_ADMIN_ACCEPTANCE_EVIDENCE',
@@ -84,11 +86,21 @@ async function verify(name='a07-'+new Date().toISOString().replace(/[:.]/g,'-'))
     checks.push({...result,output:undefined,...parsed,passed:parsed.passed&&result.errorCode===null,
       log:id+'.tap',logSha256:digest(result.output)});
     console.log(id+': '+(checks.at(-1).passed?'PASS':'FAIL')+' ('+(parsed.counts?.tests??'unknown')+')');
+    if(!checks.at(-1).passed){
+      if(result.errorCode)console.error('Runner: '+result.errorCode);
+      for(const line of failureSummary(result.output))console.error(line);
+      console.error('Log: '+path.join(directory,id+'.tap'));
+    }
   }
   for(const [id,file] of [['static','scripts/check.js'],['icons','scripts/check-ui-icons.js']]){
     const result=await runStep(id,[file]);fs.writeFileSync(path.join(directory,id+'.txt'),result.output,'utf8');
     checks.push({...result,output:undefined,passed:result.exitCode===0&&result.errorCode===null,log:id+'.txt',logSha256:digest(result.output)});
     console.log(id+': '+(checks.at(-1).passed?'PASS':'FAIL'));
+    if(!checks.at(-1).passed){
+      if(result.errorCode)console.error('Runner: '+result.errorCode);
+      for(const line of failureSummary(result.output))console.error(line);
+      console.error('Log: '+path.join(directory,id+'.txt'));
+    }
   }
   const after=sourceSnapshot(),sourceUnchanged=before.sha256===after.sha256;
   const report={schemaVersion:1,scope:'OFFLINE_ADMIN_ACCEPTANCE_EVIDENCE',generatedAt:new Date().toISOString(),
@@ -113,4 +125,4 @@ if(require.main===module){
     console.error(error.code||'EVIDENCE_FAILED');process.exitCode=1;
   });
 }
-module.exports={probeLegacy,dependencyBoundary,adminBoundary,verify};
+module.exports={probeLegacy,dependencyBoundary,adminBoundary,verify,adminTests};

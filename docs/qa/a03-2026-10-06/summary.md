@@ -35,4 +35,4 @@ boundaries-before 保留修复前 3 项失败。session-first / affected-after �
 
 共 383 个公共源码 / 素材文件，范围沿用 P08 固定代码根目录；逐文件摘要见 [source-files.txt](source-files.txt)。私有配置、密钥、本机数据和文档排除；先前 A01 / A02 等历史证据不修改。
 
-实现范围与真实验收计划见 [A03](../../A03-PICKUP-SESSION.md)。
+实现范围与真实验收计划见 [A03](../../archive/stages/phase-8.md#a03-pickup-session)。

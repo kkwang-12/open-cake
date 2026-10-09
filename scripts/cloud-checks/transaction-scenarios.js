@@ -82,4 +82,31 @@ async function runTransactionScenarios({invokeMany,runId,onEvidence=()=>{}}) {
     businessOrderPersistence:'NOT_RUN',predicateFencing:'NOT_RUN',transactionBudget:'NOT_RUN',
     lostResponseTransport:'NOT_RUN'};
 }
-module.exports={runTransactionScenarios};
+async function runReadProtectionScenarios({invokeMany,runId,onEvidence=()=>{}}) {
+  const evidence=[],assertions=[];
+  for(const caseId of ['read-existing','read-missing','query-empty']) {
+    const input={operation:'read-protection',caseId,command:0,mode:'PICKUP'};
+    const responses=await invokeMany([input]);
+    if(!Array.isArray(responses) || responses.length!==1)throw new Error('INVALID_PROBE_TRANSPORT');
+    const response=responses[0],data=response?.data;
+    if(!response || typeof response.ok!=='boolean' || typeof response.requestId!=='string' ||
+      (response.ok && (!data || data.scope!=='SDK_CAPABILITY_PROBE' || data.businessOrderCreated!==false ||
+        data.runId!==runId || data.caseId!==caseId || data.command!==0 || data.mode!=='PICKUP' ||
+        data.disposition!=='READ_PROTECTION_OBSERVED')))throw new Error('INVALID_PROBE_RESPONSE');
+    const row={input,response};evidence.push(row);onEvidence(row);
+    if(!response.ok)throw new Error('PROBE_READ_PROTECTION_FAILED');
+    const expected={
+      STALE_COMMIT:[true,true,1,true,false],READER_CONFLICT:[true,false,1,false,true],
+      WRITER_CONFLICT:[false,true,caseId==='read-existing'?0:null,true,true],
+      QUERY_UNAVAILABLE:[false,false,null,false,false],QUERY_REJECTED:[false,false,null,false,false]
+    }[data.outcome];
+    const actual=[data.writerCommitted,data.readerCommitted,data.dependencyVersion,data.decisionExists,data.readProtected];
+    if(!expected || JSON.stringify(expected)!==JSON.stringify(actual) ||
+      (data.outcome.startsWith('QUERY_') && caseId!=='query-empty'))throw new Error('INVALID_PROBE_RESPONSE');
+    assertions.push({name:caseId+'-commit-protection',passed:data.readProtected,outcome:data.outcome});
+  }
+  return {assertions,evidence,passed:assertions.every(row=>row.passed),
+    businessOrderPersistence:'NOT_RUN',predicateFencing:assertions[2].passed?'SDK_PROBE_PASSED':'NOT_PROTECTED',
+    transactionBudget:'NOT_RUN',lostResponseTransport:'NOT_RUN'};
+}
+module.exports={runTransactionScenarios,runReadProtectionScenarios};

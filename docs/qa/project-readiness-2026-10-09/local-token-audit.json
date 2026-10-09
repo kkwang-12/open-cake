@@ -1,0 +1,175 @@
+{
+  "scope": "LOCAL_PROJECT_SESSION_LOGS_NOT_BILL",
+  "sessions": 111,
+  "subagents": 102,
+  "first": "2026-10-02T14:52:21.128Z",
+  "sumLastCumulative": {
+    "input_tokens": 458387265,
+    "cached_input_tokens": 435423488,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2487071,
+    "reasoning_output_tokens": 674400,
+    "total_tokens": 460874336
+  },
+  "uniqueLastUsageEvents": 4577,
+  "sumUniqueLastUsage": {
+    "input_tokens": 459614576,
+    "cached_input_tokens": 436574464,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2497993,
+    "reasoning_output_tokens": 679186,
+    "total_tokens": 462112569
+  },
+  "totalCalls": 3042,
+  "compactions": 9,
+  "toolCalls": 666,
+  "topSessions": [
+    {
+      "id": "01a101b8-2f61-70e1-95fb-6e30056bd0e1",
+      "first": "2026-10-09T01:11:08.585Z",
+      "last": "2026-10-09T01:12:40.750Z",
+      "source": "vscode",
+      "forked_from_id": null,
+      "usage": {
+        "input_tokens": 197089924,
+        "cached_input_tokens": 189027968,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1603588,
+        "reasoning_output_tokens": 421441,
+        "total_tokens": 198693512
+      },
+      "calls": 2,
+      "compactions": 0,
+      "tools": 0,
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "efforts": [
+        "high"
+      ]
+    },
+    {
+      "id": "01a1077e-f097-7483-b1c4-9b7d1b24a130",
+      "first": "2026-10-04T15:21:03.225Z",
+      "last": "2026-10-08T08:56:16.609Z",
+      "source": "vscode",
+      "forked_from_id": null,
+      "usage": {
+        "input_tokens": 27985000,
+        "cached_input_tokens": 26785024,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 135970,
+        "reasoning_output_tokens": 28705,
+        "total_tokens": 28120970
+      },
+      "calls": 211,
+      "compactions": 2,
+      "tools": 176,
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "efforts": [
+        "medium"
+      ]
+    },
+    {
+      "id": "01a0fd8c-09d6-7a03-8e7a-ca9ccc835718",
+      "first": "2026-10-02T16:58:17.666Z",
+      "last": "2026-10-08T01:43:10.274Z",
+      "source": "vscode",
+      "forked_from_id": null,
+      "usage": {
+        "input_tokens": 22194221,
+        "cached_input_tokens": 20914432,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 246869,
+        "reasoning_output_tokens": 88407,
+        "total_tokens": 22441090
+      },
+      "calls": 197,
+      "compactions": 3,
+      "tools": 187,
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "efforts": [
+        "high",
+        "ultra"
+      ]
+    },
+    {
+      "id": "01a11950-f667-7903-bc6e-971eaf9a4a6e",
+      "first": "2026-10-08T02:21:43.022Z",
+      "last": "2026-10-08T07:24:44.643Z",
+      "source": "vscode",
+      "forked_from_id": null,
+      "usage": {
+        "input_tokens": 21156109,
+        "cached_input_tokens": 20517888,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 61774,
+        "reasoning_output_tokens": 10156,
+        "total_tokens": 21217883
+      },
+      "calls": 146,
+      "compactions": 1,
+      "tools": 131,
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "efforts": [
+        "medium"
+      ]
+    },
+    {
+      "id": "01a10cc3-d5ff-7992-8669-515b05b9c824",
+      "first": "2026-10-05T16:20:05.316Z",
+      "last": "2026-10-08T00:45:18.610Z",
+      "source": "vscode",
+      "forked_from_id": null,
+      "usage": {
+        "input_tokens": 17369348,
+        "cached_input_tokens": 16517120,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 106230,
+        "reasoning_output_tokens": 29979,
+        "total_tokens": 17475578
+      },
+      "calls": 112,
+      "compactions": 2,
+      "tools": 99,
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "efforts": [
+        "medium",
+        "high"
+      ]
+    },
+    {
+      "id": "01a110ec-4d27-7d53-a822-2a3c2b444f12",
+      "first": "2026-10-06T11:52:19.718Z",
+      "last": "2026-10-08T02:15:51.642Z",
+      "source": "vscode",
+      "forked_from_id": null,
+      "usage": {
+        "input_tokens": 10101240,
+        "cached_input_tokens": 9597440,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 90222,
+        "reasoning_output_tokens": 27932,
+        "total_tokens": 10191462
+      },
+      "calls": 57,
+      "compactions": 1,
+      "tools": 48,
+      "models": [
+        "gpt-6.1-sol"
+      ],
+      "efforts": [
+        "high",
+        "medium"
+      ]
+    }
+  ]
+}

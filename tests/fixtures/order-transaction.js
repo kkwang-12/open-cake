@@ -7,7 +7,7 @@ const { createOrderTransactionService } = require('../../cloudfunctions/_shared/
 const { createOrderCartSyncService, createOrderRecoveryService } = require('../../cloudfunctions/_shared/order-recovery-service');
 const { createOrderCancellationService } = require('../../cloudfunctions/_shared/order-cancellation-service');
 function fail(code) { throw Object.assign(new Error(code), { code }); }
-function setup() {
+function setup(serviceOptions = {}) {
   const base = quoteSetup(), p = base.principal, store = clone(base.state.store);
   const config = clone(base.state.configuration);
   config.paymentHoldMinutes = 15; // Explicit synthetic policy, not merchant configuration.
@@ -118,6 +118,8 @@ function setup() {
         readOrderByNumber: async number => Object.values(staged.orders).find(value => value.orderNo === number) || null,
         assertCreationReads: async conditions => !controls.denyFence &&
           staged.users[conditions.userId].version === conditions.userVersion && JSON.stringify(db) === snapshot,
+        assertReplayReads: async conditions => !controls.denyFence &&
+          staged.users[conditions.userId].version === conditions.userVersion && JSON.stringify(db) === snapshot,
         assertSyncReads: async conditions => !controls.denyFence && JSON.stringify(db) === snapshot &&
           staged.users[conditions.userId].version === conditions.userVersion &&
           staged.orders[conditions.orderId].version === conditions.orderVersion &&
@@ -169,6 +171,7 @@ function setup() {
     queue = pending.catch(() => {}); return pending;
   };
   const service = createOrderTransactionService({ runTransaction,
+    ...serviceOptions,
     now: () => controls.nowSequence ? controls.nowSequence.shift() : controls.now,
     buildContext: async () => contextFor(), newRequestId: () => 'offline-server-trace-' + (++requestSequence) });
   const cartSyncService = createOrderCartSyncService({ runTransaction, now: () => controls.now });

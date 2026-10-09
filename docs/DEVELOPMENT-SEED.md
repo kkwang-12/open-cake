@@ -1,6 +1,6 @@
 # D07：开发种子与可重复计划
 
-日期：2026-10-03。revision=development-draft-v1-2026-10-03。当前是本地无副作用规划器与只写 JSON 的 CLI；**未创建云集合 / 写入云数据 / 执行管理员初始化**。
+revision=`development-draft-v1-2026-10-03`。本文定义无副作用规划器与本地JSON输出CLI的边界；实际云种子/权限/部署验收只查[CURRENT-STATUS](CURRENT-STATUS.md)。
 
 实现：[development-seed.js](../cloudfunctions/_shared/development-seed.js)、[plan-development-seed.js](../scripts/plan-development-seed.js)、[回归](../tests/development-seed.test.js)。测试目录中的 catalog.js 明确 OFFLINE TEST ONLY，不能被 seed 引入。
 
@@ -48,4 +48,4 @@ CLI 只在本工作区 artifacts/development-seed 已存在目录中写计划，
 
 错误码：SEED_ENVIRONMENT_REJECTED（非开发或配置不符）、INVALID_SEED_INPUT（非法快照 / 时间 / 集合）、SEED_CONFLICT（逻辑键 / ID 冲突）。CLI 另有 OUTPUT_ALREADY_EXISTS / SEED_PLAN_FAILED，不能把失败当做部分成功。
 
-本机已保存 offline-dev 的输入与生成计划到 artifacts/development-seed；artifacts 被 Git 忽略，不能当作已提交种子、真实云 ID、或可营业配置。云环境可用后必须单独验证落库，当前本地回归只证明规划 / 保留 / 拒绝边界。
+artifacts为本地输出，不作为已提交种子或正式经营配置；实际落库、权限、事务与并发须独立验证。[原D07记录](archive/stages/phase-2.md#development-seed)按需追溯。

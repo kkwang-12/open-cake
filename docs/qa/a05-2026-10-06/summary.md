@@ -14,7 +14,7 @@
 
 初次 26 项失败为新调用 productLeadTimes=[] 和组合夹具元数据时间不一致；second 25/26，最后为测试误期待 QUOTE_CHANGED，O03 原逻辑保留 SLOT_FULL_OR_CLOSED。arithmetic-before 为 1 项极大提前量草稿拒绝探针，修复前复现漏校验，最终通过。full-final / source-run 是区分内部证明发布序号与记录 version 之前的通过记录；终稿必须使用 full-verified / source-verified。没有把本地串行内存通过作为 SDK 并发、地图转换、正式经营批准或付款证据。
 
-详细范围 / MS01–MS07 / 真实适配器约束见 [A05](../../A05-MERCHANT-STORE.md)。未改 UI、实际云配置 / 索引 / handler / allowlist，未 Git 提交 / 推送 / 部署。下一项 A06 可离线部分。
+详细范围 / MS01–MS07 / 真实适配器约束见 [A05](../../archive/stages/phase-8.md#a05-merchant-store)。未改 UI、实际云配置 / 索引 / handler / allowlist，未 Git 提交 / 推送 / 部署。下一项 A06 可离线部分。
 
 | 证据 | SHA256 |
 |---|---|

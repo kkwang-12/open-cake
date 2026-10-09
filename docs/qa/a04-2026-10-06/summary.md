@@ -33,4 +33,4 @@ scope=OFFLINE_MERCHANT_CATALOG_EVIDENCE；不代表真实商家身份、正式�
 
 共 387 个公共源码 / 素材文件，范围沿用 P08 固定代码根目录；逐文件摘要见 [source-files.txt](source-files.txt)。私有配置、密钥、本机数据和文档排除，历史 A01–A03 等证据不修改。
 
-实现范围、适配器约束和实际验收计划见 [A04](../../A04-MERCHANT-CATALOG.md)。
+实现范围、适配器约束和实际验收计划见 [A04](../../archive/stages/phase-8.md#a04-merchant-catalog)。
