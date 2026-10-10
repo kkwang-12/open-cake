@@ -48,14 +48,16 @@ Page({
       const ids = new Set(products.map(item => item.id));
       for (const item of page.items) if (!ids.has(item.id)) { products.push(item); ids.add(item.id); }
       this._loaded = true;
+      this._cursorInvalid = false;
       this.setData({ products, nextCursor: page.nextCursor, hasMore: page.hasMore, source: page.source, loading: false, refreshing: false, listReady: true, error: '' });
     } catch (error) {
       if (ticket !== this._requestEpoch || !this._visible) return;
       // Fixed UI text; never display an upstream stack, raw request or private error message.
       // An actual replacement failure must not leave the previous category looking like current results.
       const failure = reset ? { products: [], nextCursor: null, hasMore: false, source: '' } : {};
+      this._cursorInvalid = ['INVALID_REQUEST','CURSOR_INVALID','CURSOR_EXPIRED'].includes(error.code);
       this.setData(Object.assign(failure, { loading: false, refreshing: false, error: error.code === 'CLOUD_NOT_CONFIGURED' ?
-        '商品服务暂未开通，欢迎稍后再来。' : error.code==='INVALID_REQUEST'?
+        '商品服务暂未开通，欢迎稍后再来。' : ['INVALID_REQUEST','CURSOR_INVALID','CURSOR_EXPIRED'].includes(error.code)?
         '商品分页已失效，请重新加载。':'商品加载失败，请重试。' }));
     }
   },
@@ -67,7 +69,7 @@ Page({
     return this.load(true);
   },
   loadMore() { return this.load(false); },
-  retry() { if (this.data.loading) return; return this.load(this.data.products.length === 0); },
+  retry() { if (this.data.loading) return; return this.load(this._cursorInvalid || this.data.products.length === 0); },
   onReachBottom() { return this.loadMore(); },
   select(e) {
     if (this.data.refreshing) return;

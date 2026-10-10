@@ -109,4 +109,42 @@ async function runReadProtectionScenarios({invokeMany,runId,onEvidence=()=>{}}) 
     businessOrderPersistence:'NOT_RUN',predicateFencing:assertions[2].passed?'SDK_PROBE_PASSED':'NOT_PROTECTED',
     transactionBudget:'NOT_RUN',lostResponseTransport:'NOT_RUN'};
 }
-module.exports={runTransactionScenarios,runReadProtectionScenarios};
+async function runWriteProtectionScenarios({invokeMany,runId,onEvidence=()=>{},cases}) {
+  const evidence=[],assertions=[];
+  const allCases=['write-existing-early','write-existing-late','fence-missing','fence-query-empty',
+    'bypass-missing','bypass-query-empty'];
+  const selected=cases || allCases;
+  if(!Array.isArray(selected) || !selected.length || new Set(selected).size!==selected.length ||
+    selected.some(name=>!allCases.includes(name)))throw new Error('INVALID_GUARD_CASES');
+  for(const caseId of selected) {
+    const input={operation:'write-protection',caseId,command:0,mode:'PICKUP'};
+    const responses=await invokeMany([input]);
+    if(!Array.isArray(responses) || responses.length!==1)throw new Error('INVALID_PROBE_TRANSPORT');
+    const response=responses[0],data=response?.data,existing=caseId.startsWith('write-existing-');
+    const bypass=caseId.startsWith('bypass-');
+    if(!response || typeof response.ok!=='boolean' || typeof response.requestId!=='string' ||
+      (response.ok && (!data || data.scope!=='SDK_CAPABILITY_PROBE' || data.businessOrderCreated!==false ||
+        data.runId!==runId || data.caseId!==caseId || data.command!==0 || data.mode!=='PICKUP' ||
+        data.disposition!=='WRITE_PROTECTION_OBSERVED' || data.fenceVersion!==2 || data.lockReleaseVerified!==true ||
+        data.writerParticipates!==!bypass || data.protectionKind!==(existing?'DOCUMENT_WRITE':'SHARED_FENCE'))))
+      throw new Error('INVALID_PROBE_RESPONSE');
+    const row={input,response};evidence.push(row);onEvidence(row);
+    if(!response.ok)throw new Error('PROBE_WRITE_PROTECTION_FAILED');
+    const expected={STALE_COMMIT:[true,true,existing?2:1,true,false],READER_CONFLICT:[true,false,existing?2:1,false,true],
+      WRITER_CONFLICT:[false,true,existing?2:null,true,true]}[data.outcome];
+    const actual=[data.writerCommitted,data.readerCommitted,data.dependencyVersion,data.decisionExists,data.readProtected];
+    if(!expected || JSON.stringify(expected)!==JSON.stringify(actual) ||
+      data.readerState!==(data.outcome==='READER_CONFLICT'?'PROVIDER_CONFLICT_ABORTED':'COMMITTED') ||
+      data.writerState!==(data.outcome==='WRITER_CONFLICT'?'PROVIDER_CONFLICT_ABORTED':'COMMITTED') ||
+      data.releaseMarker!==(data.outcome==='READER_CONFLICT') ||
+      (data.readProtected?data.conflictDiagnostic?.providerCode!=='DATABASE_TRANSACTION_CONFLICT':data.conflictDiagnostic!==null))
+      throw new Error('INVALID_PROBE_RESPONSE');
+    const expectedOutcome=bypass?'STALE_COMMIT':caseId==='write-existing-early'?'WRITER_CONFLICT':'READER_CONFLICT';
+    assertions.push({name:caseId+'-commit-contract',passed:data.outcome===expectedOutcome,outcome:data.outcome});
+  }
+  return {assertions,evidence,passed:assertions.every(row=>row.passed),
+    complete:selected.length===allCases.length,notRun:allCases.filter(name=>!selected.includes(name)),
+    businessOrderPersistence:'NOT_RUN',predicateFencing:'COOPERATIVE_PROTOCOL_ONLY',
+    transactionBudget:'NOT_RUN',lostResponseTransport:'NOT_RUN'};
+}
+module.exports={runTransactionScenarios,runReadProtectionScenarios,runWriteProtectionScenarios};

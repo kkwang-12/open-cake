@@ -64,6 +64,20 @@ function shop(service=createCatalogClient(settings)){
   return {page,app,toasts,navigations};
 }
 const category=id=>({currentTarget:{dataset:{id}}});
+test('Shop retries an invalid/expired cloud cursor from the first page instead of replaying the rejected cursor',async()=>{
+  for(const code of ['CURSOR_INVALID','CURSOR_EXPIRED']){
+    const requests=[];
+    const {page}=shop({async list(input){
+      requests.push(clone(input));
+      if(requests.length===1)return {source:'PUBLIC_CATALOG',items:[{id:'cloud-product'}],hasMore:true,nextCursor:'cloud-next'};
+      if(requests.length===2)throw Object.assign(new Error('private cursor reason'),{code});
+      return {source:'PUBLIC_CATALOG',items:[],hasMore:false,nextCursor:null};
+    }});
+    page.onLoad({});await page.onShow();await page.loadMore();
+    assert.equal(requests[1].cursor,'cloud-next');assert.match(page.data.error,/分页已失效/);
+    await page.retry();assert.equal(requests[2].cursor,null);assert.equal(page.data.error,'');assert.equal(page.data.products.length,0);
+  }
+});
 const response=(items,nextCursor=null)=>({source:'DEVELOPMENT_EXAMPLE',items:clone(items),nextCursor,hasMore:nextCursor!==null});
 test('Shop defaults to Cake, accepts Home category and opens filtered details without buying',async()=>{
   const {page,app,toasts,navigations}=shop();

@@ -12,6 +12,7 @@ const settings={appId:process.env.JJL_APP_ID,environment:process.env.JJL_CLOUD_E
   runId:process.env.JJL_PROBE_RUN_ID,allowedUserId:process.env.JJL_PROBE_USER_ID,
   expiresAt:Number(process.env.JJL_PROBE_EXPIRES_AT)};
 const probe=createTransactionProbe({cloud,settings});
+const probeRevision='d04-write-guard-lifecycle-1';
 exports.main=async(event,invocation)=>{
   let probeCode=null,diagnostic=null;
   const handle=createHandler({action:'probe',settings,
@@ -20,13 +21,14 @@ exports.main=async(event,invocation)=>{
     mapError:error=>{
       const known=error instanceof TransactionProbeError || error instanceof CloudDocumentTransactionError || error instanceof ResourceModelError;
       if(known)probeCode=error.code;
-      if(error instanceof CloudDocumentTransactionError && error.diagnostic)diagnostic=error.diagnostic;
+      if((error instanceof CloudDocumentTransactionError || error instanceof TransactionProbeError) && error.diagnostic)
+        diagnostic=error.diagnostic;
       return 'INTERNAL_ERROR';
     }});
   const result=await handle(event,invocation);
   if(!result.ok && probeCode) {
     console.warn({code:probeCode,requestId:result.requestId,stage:settings.stage});
-    return {...result,error:{code:probeCode,message:'隔离验收未完成',...(diagnostic?{diagnostic}: {})}};
+    return {...result,probeRevision,error:{code:probeCode,message:'隔离验收未完成',...(diagnostic?{diagnostic}: {})}};
   }
-  return result.ok?{...result,sdkVersion:require('wx-server-sdk/package.json').version}:result;
+  return result.ok?{...result,probeRevision,sdkVersion:require('wx-server-sdk/package.json').version}:{...result,probeRevision};
 };

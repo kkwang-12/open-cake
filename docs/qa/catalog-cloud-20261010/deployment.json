@@ -1,0 +1,176 @@
+{
+  "time": "2026-10-10T01:18:48.318Z",
+  "scope": "AUTHORIZED_DEVELOPMENT_CATALOG_EMPTY_READ_VALIDATION",
+  "authorization": {
+    "environment": "cloudbase-d8gwtxzm64150b7e0",
+    "function": "catalog",
+    "collections": [
+      "categories",
+      "products",
+      "skus",
+      "media_assets"
+    ],
+    "storeId": "g1-catalog-store",
+    "businessDocumentsLimit": 0,
+    "storageUploadsLimit": 0,
+    "appUpload": false,
+    "publication": false
+  },
+  "before": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"requestId\": \"f5837b7a-2a2a-4ef8-b8f5-dfff08cf78da\",\n  \"collections\": [\n    {\n      \"TableName\": \"admin_roles\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 3,\n      \"IndexSize\": 28672\n    },\n    {\n      \"TableName\": \"audit_logs\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 2,\n      \"IndexSize\": 20480\n    },\n    {\n      \"TableName\": \"users\",\n      \"Count\": 1,\n      \"Size\": 344,\n      \"IndexCount\": 3,\n      \"IndexSize\": 73728\n    }\n  ],\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 100,\n    \"Total\": 3\n  },\n  \"message\": \"获取 NoSQL 数据库集合列表成功\"\n}"
+      }
+    ]
+  },
+  "deployment": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"createFunction\",\n    \"functionName\": \"catalog\",\n    \"raw\": {\n      \"RequestId\": \"f613bc3e-0883-408b-ac54-2535408b7def\",\n      \"SCFErrorCode\": \"\",\n      \"SCFErrorMsg\": \"\"\n    }\n  },\n  \"message\": \"已创建函数 catalog\",\n  \"nextActions\": [\n    {\n      \"tool\": \"queryFunctions\",\n      \"action\": \"getFunctionDetail\",\n      \"reason\": \"确认函数配置\"\n    },\n    {\n      \"tool\": \"queryFunctions\",\n      \"action\": \"listFunctionTriggers\",\n      \"reason\": \"检查函数触发器\"\n    }\n  ]\n}"
+      }
+    ]
+  },
+  "functionPermission": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"updateResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"function\",\n    \"resourceId\": \"catalog\",\n    \"permission\": \"CUSTOM\",\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"3db95e2f-72cc-490d-a380-1574ebc3f662\",\n      \"Data\": {\n        \"Success\": true\n      }\n    }\n  },\n  \"message\": \"资源权限更新成功\"\n}"
+      }
+    ]
+  },
+  "readback": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getFunctionDetail\",\n    \"functionName\": \"catalog\",\n    \"functionDetail\": {\n      \"AccessInfo\": {\n        \"Host\": \"\",\n        \"Vip\": \"\"\n      },\n      \"AddTime\": \"2026-10-10 09:16:37\",\n      \"ApmConfig\": {\n        \"InstanceId\": \"\",\n        \"Region\": \"\"\n      },\n      \"AsyncRunEnable\": \"FALSE\",\n      \"AvailableStatus\": \"Available\",\n      \"CfsConfig\": {\n        \"CfsInsList\": []\n      },\n      \"ClsLogsetId\": \"\",\n      \"ClsTopicId\": \"\",\n      \"ClusterName\": \"ap-shanghai-tcb-cube-1\",\n      \"CodeError\": \"\",\n      \"CodeInfo\": \"'use strict';\\nconst cloud=require('wx-server-sdk');\\nconst {nativeContextForInvocation}=require('./shared/native-context');\\nconst {createCatalogCloudHandler,createCloudCatalogRepository}=require('./shared/catalog-cloud-handler');\\ncloud.init({env:cloud.DYNAMIC_CURRENT_ENV});\\nlet prefixes=[];\\ntry { prefixes=JSON.parse(process.env.JJL_CATALOG_MEDIA_PREFIXES || '[]'); } catch (_) { prefixes=null; }\\nconst settings={appId:process.env.JJL_APP_ID,environment:process.env.JJL_CLOUD_ENV,stage:process.env.JJL_STAGE,\\n  enabled:process.env.JJL_CATALOG_READ_ENABLED==='true',storeId:process.env.JJL_CATALOG_STORE_ID,\\n  allowedCloudPrefixes:prefixes,cursorKey:{id:'catalog-v1',secret:Buffer.from(process.env.JJL_CATALOG_CURSOR_SECRET || '','base64')}};\\n// Invalid deployment config must return a safe envelope instead of failing module initialization.\\nconst repository=settings.storeId?{readSnapshot:()=>createCloudCatalogRepository(cloud.database(),settings.storeId).readSnapshot()}:null;\\nexports.main=createCatalogCloudHandler({settings,repository,getContext:invocation=>nativeContextForInvocation(cloud,invocation)});\\n\",\n      \"CodeResult\": \"success\",\n      \"CodeSecret\": \"\",\n      \"CodeSize\": 7428316,\n      \"CosFsConfig\": {\n        \"CosFsInsList\": []\n      },\n      \"CpuSize\": 0.2,\n      \"DeadLetterConfig\": {\n        \"FilterType\": \"\",\n        \"Name\": \"\",\n        \"Type\": \"\"\n      },\n      \"DeployMode\": \"code\",\n      \"Description\": \"\",\n      \"DiskSize\": 512,\n      \"DnsCache\": \"FALSE\",\n      \"EipConfig\": {\n        \"EipFixed\": \"FALSE\",\n        \"Eips\": []\n      },\n      \"Environment\": {\n        \"Variables\": [\n          {\n            \"Key\": \"JJL_APP_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 18\n          },\n          {\n            \"Key\": \"JJL_CLOUD_ENV\",\n            \"Value\": \"***\",\n            \"ValueLength\": 27\n          },\n          {\n            \"Key\": \"JJL_STAGE\",\n            \"Value\": \"***\",\n            \"ValueLength\": 11\n          },\n          {\n            \"Key\": \"JJL_CATALOG_READ_ENABLED\",\n            \"Value\": \"***\",\n            \"ValueLength\": 4\n          },\n          {\n            \"Key\": \"JJL_CATALOG_STORE_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 16\n          },\n          {\n            \"Key\": \"JJL_CATALOG_MEDIA_PREFIXES\",\n            \"Value\": \"***\",\n            \"ValueLength\": 2\n          },\n          {\n            \"Key\": \"JJL_CATALOG_CURSOR_SECRET\",\n            \"Value\": \"***\",\n            \"ValueLength\": 44\n          }\n        ]\n      },\n      \"ErrNo\": 0,\n      \"FunctionId\": \"lam-9enp8uxb\",\n      \"FunctionName\": \"catalog\",\n      \"FunctionVersion\": \"$LATEST\",\n      \"GooseFsConfigs\": [],\n      \"Handler\": \"index.main\",\n      \"IgnoreSysLog\": false,\n      \"ImageConfig\": {\n        \"Args\": \"\",\n        \"Command\": \"\",\n        \"ContainerImageAccelerate\": false,\n        \"ImageType\": \"\",\n        \"ImageUri\": \"\",\n        \"RegistryId\": \"\"\n      },\n      \"InitTimeout\": 65,\n      \"InstallDependency\": \"TRUE\",\n      \"InstanceConcurrencyConfig\": {\n        \"DynamicEnabled\": \"\",\n        \"InstanceIsolationEnabled\": \"\",\n        \"MaxConcurrency\": 0,\n        \"MixNodeConfig\": null,\n        \"SessionConfig\": {\n          \"IdleTimeoutStrategy\": \"\",\n          \"MaximumConcurrencySessionPerInstance\": 0,\n          \"MaximumIdleTimeInSeconds\": 0,\n          \"MaximumTTLInSeconds\": 0,\n          \"SessionName\": \"\",\n          \"SessionPath\": \"\",\n          \"SessionSource\": \"\"\n        },\n        \"Type\": \"\"\n      },\n      \"IntranetConfig\": {\n        \"IpAddress\": [],\n        \"IpFixed\": \"DISABLE\"\n      },\n      \"L5Enable\": \"FALSE\",\n      \"Layers\": [],\n      \"LogFormat\": \"tcb-default\",\n      \"LogType\": \"normal\",\n      \"MemorySize\": 256,\n      \"ModTime\": \"2026-10-10 09:16:37\",\n      \"Namespace\": \"cloudbase-d8gwtxzm64150b7e0\",\n      \"NodeSpec\": \"\",\n      \"NodeType\": \"CPU\",\n      \"OnsEnable\": \"FALSE\",\n      \"OverClockConfig\": {\n        \"TimeOut\": 0\n      },\n      \"Plugins\": [],\n      \"Port\": 0,\n      \"PrivilegeEnable\": false,\n      \"ProtocolParams\": {\n        \"WSParams\": {\n          \"IdleTimeOut\": 0\n        }\n      },\n      \"ProtocolType\": \"\",\n      \"PublicNetConfig\": {\n        \"EipConfig\": {\n          \"EipAddress\": [],\n          \"EipStatus\": \"DISABLE\"\n        },\n        \"PublicNetStatus\": \"ENABLE\"\n      },\n      \"Qualifier\": \"$LATEST\",\n      \"ReadinessProbe\": {\n        \"Enable\": false,\n        \"FailureThreshold\": 0,\n        \"HTTPGetURL\": \"\",\n        \"InitialDelaySeconds\": 0,\n        \"PeriodSeconds\": 0,\n        \"SuccessThreshold\": 0,\n        \"TimeoutSeconds\": 0\n      },\n      \"RequestId\": \"b1eb1c98-65e8-42a1-9c9d-2cdf64b9d0de\",\n      \"ResourceId\": \"scf-sh-9enp8uxb\",\n      \"Role\": \"TCB_QcsRole\",\n      \"Runtime\": \"Nodejs20.19\",\n      \"SFType\": \"\",\n      \"SessionSourceConfig\": [],\n      \"Status\": \"Active\",\n      \"StatusDesc\": \"\",\n      \"StatusReasons\": [],\n      \"Tags\": [],\n      \"Timeout\": 20,\n      \"TraceEnable\": \"FALSE\",\n      \"Triggers\": [],\n      \"Type\": \"Event\",\n      \"UseGpu\": \"FALSE\",\n      \"VpcConfig\": {\n        \"SubnetId\": \"\",\n        \"VpcId\": \"\"\n      }\n    },\n    \"layers\": [],\n    \"triggers\": [],\n    \"requestId\": \"b1eb1c98-65e8-42a1-9c9d-2cdf64b9d0de\",\n    \"raw\": {\n      \"AccessInfo\": {\n        \"Host\": \"\",\n        \"Vip\": \"\"\n      },\n      \"AddTime\": \"2026-10-10 09:16:37\",\n      \"ApmConfig\": {\n        \"InstanceId\": \"\",\n        \"Region\": \"\"\n      },\n      \"AsyncRunEnable\": \"FALSE\",\n      \"AvailableStatus\": \"Available\",\n      \"CfsConfig\": {\n        \"CfsInsList\": []\n      },\n      \"ClsLogsetId\": \"\",\n      \"ClsTopicId\": \"\",\n      \"ClusterName\": \"ap-shanghai-tcb-cube-1\",\n      \"CodeError\": \"\",\n      \"CodeInfo\": \"'use strict';\\nconst cloud=require('wx-server-sdk');\\nconst {nativeContextForInvocation}=require('./shared/native-context');\\nconst {createCatalogCloudHandler,createCloudCatalogRepository}=require('./shared/catalog-cloud-handler');\\ncloud.init({env:cloud.DYNAMIC_CURRENT_ENV});\\nlet prefixes=[];\\ntry { prefixes=JSON.parse(process.env.JJL_CATALOG_MEDIA_PREFIXES || '[]'); } catch (_) { prefixes=null; }\\nconst settings={appId:process.env.JJL_APP_ID,environment:process.env.JJL_CLOUD_ENV,stage:process.env.JJL_STAGE,\\n  enabled:process.env.JJL_CATALOG_READ_ENABLED==='true',storeId:process.env.JJL_CATALOG_STORE_ID,\\n  allowedCloudPrefixes:prefixes,cursorKey:{id:'catalog-v1',secret:Buffer.from(process.env.JJL_CATALOG_CURSOR_SECRET || '','base64')}};\\n// Invalid deployment config must return a safe envelope instead of failing module initialization.\\nconst repository=settings.storeId?{readSnapshot:()=>createCloudCatalogRepository(cloud.database(),settings.storeId).readSnapshot()}:null;\\nexports.main=createCatalogCloudHandler({settings,repository,getContext:invocation=>nativeContextForInvocation(cloud,invocation)});\\n\",\n      \"CodeResult\": \"success\",\n      \"CodeSecret\": \"\",\n      \"CodeSize\": 7428316,\n      \"CosFsConfig\": {\n        \"CosFsInsList\": []\n      },\n      \"CpuSize\": 0.2,\n      \"DeadLetterConfig\": {\n        \"FilterType\": \"\",\n        \"Name\": \"\",\n        \"Type\": \"\"\n      },\n      \"DeployMode\": \"code\",\n      \"Description\": \"\",\n      \"DiskSize\": 512,\n      \"DnsCache\": \"FALSE\",\n      \"EipConfig\": {\n        \"EipFixed\": \"FALSE\",\n        \"Eips\": []\n      },\n      \"Environment\": {\n        \"Variables\": [\n          {\n            \"Key\": \"JJL_APP_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 18\n          },\n          {\n            \"Key\": \"JJL_CLOUD_ENV\",\n            \"Value\": \"***\",\n            \"ValueLength\": 27\n          },\n          {\n            \"Key\": \"JJL_STAGE\",\n            \"Value\": \"***\",\n            \"ValueLength\": 11\n          },\n          {\n            \"Key\": \"JJL_CATALOG_READ_ENABLED\",\n            \"Value\": \"***\",\n            \"ValueLength\": 4\n          },\n          {\n            \"Key\": \"JJL_CATALOG_STORE_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 16\n          },\n          {\n            \"Key\": \"JJL_CATALOG_MEDIA_PREFIXES\",\n            \"Value\": \"***\",\n            \"ValueLength\": 2\n          },\n          {\n            \"Key\": \"JJL_CATALOG_CURSOR_SECRET\",\n            \"Value\": \"***\",\n            \"ValueLength\": 44\n          }\n        ]\n      },\n      \"ErrNo\": 0,\n      \"FunctionId\": \"lam-9enp8uxb\",\n      \"FunctionName\": \"catalog\",\n      \"FunctionVersion\": \"$LATEST\",\n      \"GooseFsConfigs\": [],\n      \"Handler\": \"index.main\",\n      \"IgnoreSysLog\": false,\n      \"ImageConfig\": {\n        \"Args\": \"\",\n        \"Command\": \"\",\n        \"ContainerImageAccelerate\": false,\n        \"ImageType\": \"\",\n        \"ImageUri\": \"\",\n        \"RegistryId\": \"\"\n      },\n      \"InitTimeout\": 65,\n      \"InstallDependency\": \"TRUE\",\n      \"InstanceConcurrencyConfig\": {\n        \"DynamicEnabled\": \"\",\n        \"InstanceIsolationEnabled\": \"\",\n        \"MaxConcurrency\": 0,\n        \"MixNodeConfig\": null,\n        \"SessionConfig\": {\n          \"IdleTimeoutStrategy\": \"\",\n          \"MaximumConcurrencySessionPerInstance\": 0,\n          \"MaximumIdleTimeInSeconds\": 0,\n          \"MaximumTTLInSeconds\": 0,\n          \"SessionName\": \"\",\n          \"SessionPath\": \"\",\n          \"SessionSource\": \"\"\n        },\n        \"Type\": \"\"\n      },\n      \"IntranetConfig\": {\n        \"IpAddress\": [],\n        \"IpFixed\": \"DISABLE\"\n      },\n      \"L5Enable\": \"FALSE\",\n      \"Layers\": [],\n      \"LogFormat\": \"tcb-default\",\n      \"LogType\": \"normal\",\n      \"MemorySize\": 256,\n      \"ModTime\": \"2026-10-10 09:16:37\",\n      \"Namespace\": \"cloudbase-d8gwtxzm64150b7e0\",\n      \"NodeSpec\": \"\",\n      \"NodeType\": \"CPU\",\n      \"OnsEnable\": \"FALSE\",\n      \"OverClockConfig\": {\n        \"TimeOut\": 0\n      },\n      \"Plugins\": [],\n      \"Port\": 0,\n      \"PrivilegeEnable\": false,\n      \"ProtocolParams\": {\n        \"WSParams\": {\n          \"IdleTimeOut\": 0\n        }\n      },\n      \"ProtocolType\": \"\",\n      \"PublicNetConfig\": {\n        \"EipConfig\": {\n          \"EipAddress\": [],\n          \"EipStatus\": \"DISABLE\"\n        },\n        \"PublicNetStatus\": \"ENABLE\"\n      },\n      \"Qualifier\": \"$LATEST\",\n      \"ReadinessProbe\": {\n        \"Enable\": false,\n        \"FailureThreshold\": 0,\n        \"HTTPGetURL\": \"\",\n        \"InitialDelaySeconds\": 0,\n        \"PeriodSeconds\": 0,\n        \"SuccessThreshold\": 0,\n        \"TimeoutSeconds\": 0\n      },\n      \"RequestId\": \"b1eb1c98-65e8-42a1-9c9d-2cdf64b9d0de\",\n      \"ResourceId\": \"scf-sh-9enp8uxb\",\n      \"Role\": \"TCB_QcsRole\",\n      \"Runtime\": \"Nodejs20.19\",\n      \"SFType\": \"\",\n      \"SessionSourceConfig\": [],\n      \"Status\": \"Active\",\n      \"StatusDesc\": \"\",\n      \"StatusReasons\": [],\n      \"Tags\": [],\n      \"Timeout\": 20,\n      \"TraceEnable\": \"FALSE\",\n      \"Triggers\": [],\n      \"Type\": \"Event\",\n      \"UseGpu\": \"FALSE\",\n      \"VpcConfig\": {\n        \"SubnetId\": \"\",\n        \"VpcId\": \"\"\n      }\n    }\n  },\n  \"message\": \"已获取函数 catalog 的详情\",\n  \"nextActions\": [\n    {\n      \"tool\": \"queryFunctions\",\n      \"action\": \"listFunctionLogs\",\n      \"reason\": \"查看该函数的执行日志\"\n    },\n    {\n      \"tool\": \"manageFunctions\",\n      \"action\": \"updateFunctionConfig\",\n      \"reason\": \"更新该函数配置\"\n    },\n    {\n      \"tool\": \"queryGateway\",\n      \"action\": \"getRoute\",\n      \"reason\": \"查看该函数是否已暴露网关访问入口\"\n    }\n  ]\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"function\",\n    \"resourceId\": \"catalog\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"function\",\n        \"SecurityRule\": \"{\\\"*\\\":{\\\"invoke\\\":\\\"auth != null && auth.loginType != 'ANONYMOUS'\\\"}}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"919f61eb-315a-4ca3-bc50-dbfc153b974f\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"function\",\n            \"SecurityRule\": \"{\\\"*\\\":{\\\"invoke\\\":\\\"auth != null && auth.loginType != 'ANONYMOUS'\\\"}}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"4c3fec2b-e89f-4656-b64e-c8d916b4ca78\",\n  \"indexNum\": 3,\n  \"indexes\": [\n    {\n      \"Name\": \"_openid_1\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:15:52.777+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_openid\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 12288,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"catalog_public_scan\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:15:57.414+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"published\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"_id_\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:15:52.772+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    }\n  ],\n  \"message\": \"获取云开发数据库集合信息成功\",\n  \"collection\": \"categories\",\n  \"collectionName\": \"categories\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"categories\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"categories\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"7a1205cc-3da5-4696-b168-b96c57832bb4\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"categories\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"39dee5b7-c3a9-4168-900f-0710fc83c8c3\",\n  \"indexNum\": 3,\n  \"indexes\": [\n    {\n      \"Name\": \"_id_\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:15:59.659+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"_openid_1\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:15:59.666+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_openid\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 12288,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"catalog_public_scan\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:04.658+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"storeId\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"status\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    }\n  ],\n  \"message\": \"获取云开发数据库集合信息成功\",\n  \"collection\": \"products\",\n  \"collectionName\": \"products\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"products\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"products\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"e5edb8a6-50fd-4b8d-ab2a-9d9114cc0a3f\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"products\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"d6588ea9-13ba-435e-a907-e45a8958a21f\",\n  \"indexNum\": 3,\n  \"indexes\": [\n    {\n      \"Name\": \"_openid_1\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:06.63+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_openid\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 12288,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"catalog_public_scan\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:10.815+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"storeId\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"status\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"_id_\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:06.625+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    }\n  ],\n  \"message\": \"获取云开发数据库集合信息成功\",\n  \"collection\": \"skus\",\n  \"collectionName\": \"skus\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"skus\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"skus\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"7fd4df42-d201-4412-84c1-13fb25221223\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"skus\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"053de019-3290-4c24-861a-708a7f4b8cfa\",\n  \"indexNum\": 3,\n  \"indexes\": [\n    {\n      \"Name\": \"_openid_1\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:12.725+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_openid\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 12288,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"catalog_public_scan\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:16.724+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"status\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"sourceKind\",\n          \"Direction\": \"1\"\n        },\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    },\n    {\n      \"Name\": \"_id_\",\n      \"Accesses\": {\n        \"Ops\": 0,\n        \"Since\": \"2026-10-10T09:16:12.719+08:00\"\n      },\n      \"Keys\": [\n        {\n          \"Name\": \"_id\",\n          \"Direction\": \"1\"\n        }\n      ],\n      \"Size\": 8192,\n      \"Unique\": false,\n      \"Sparse\": false,\n      \"PartialFilterExpression\": \"\"\n    }\n  ],\n  \"message\": \"获取云开发数据库集合信息成功\",\n  \"collection\": \"media_assets\",\n  \"collectionName\": \"media_assets\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"media_assets\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"media_assets\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"ba48c5f2-7ae7-4179-8d67-ac404ec3fd5c\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"media_assets\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "managementRejection": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"invokeFunction\",\n    \"functionName\": \"catalog\",\n    \"invokeResult\": {\n      \"RequestId\": \"756fe027-919d-4190-9d09-30569d4d55be\",\n      \"MemUsage\": 22142976,\n      \"Duration\": 50,\n      \"BillDuration\": 100,\n      \"FunctionRequestId\": \"756fe027-919d-4190-9d09-30569d4d55be\",\n      \"InvokeResult\": 0,\n      \"Log\": \"START RequestId: 756fe027-919d-4190-9d09-30569d4d55be\\nEvent RequestId: 756fe027-919d-4190-9d09-30569d4d55be\\n{\\n  code: 'AUTH_REQUIRED',\\n  requestId: '664aa9f8-92a0-42b2-808d-da6b318bb5e5',\\n  stage: 'development'\\n}\\nResponse RequestId: 756fe027-919d-4190-9d09-30569d4d55be RetMsg: {\\\"ok\\\":false,\\\"requestId\\\":\\\"664aa9f8-92a0-42b2-808d-da6b318bb5e5\\\",\\\"error\\\":{\\\"code\\\":\\\"AUTH_REQUIRED\\\",\\\"message\\\":\\\"身份验证失败\\\"}}\\nEND RequestId: 756fe027-919d-4190-9d09-30569d4d55be\\nReport RequestId: 756fe027-919d-4190-9d09-30569d4d55be Duration: 50ms Memory: 256MB MemUsage: 21.117188MB\\n\",\n      \"RetMsg\": \"{\\\"ok\\\":false,\\\"requestId\\\":\\\"664aa9f8-92a0-42b2-808d-da6b318bb5e5\\\",\\\"error\\\":{\\\"code\\\":\\\"AUTH_REQUIRED\\\",\\\"message\\\":\\\"身份验证失败\\\"}}\",\n      \"ErrMsg\": \"\"\n    },\n    \"raw\": {\n      \"RequestId\": \"756fe027-919d-4190-9d09-30569d4d55be\",\n      \"MemUsage\": 22142976,\n      \"Duration\": 50,\n      \"BillDuration\": 100,\n      \"FunctionRequestId\": \"756fe027-919d-4190-9d09-30569d4d55be\",\n      \"InvokeResult\": 0,\n      \"Log\": \"START RequestId: 756fe027-919d-4190-9d09-30569d4d55be\\nEvent RequestId: 756fe027-919d-4190-9d09-30569d4d55be\\n{\\n  code: 'AUTH_REQUIRED',\\n  requestId: '664aa9f8-92a0-42b2-808d-da6b318bb5e5',\\n  stage: 'development'\\n}\\nResponse RequestId: 756fe027-919d-4190-9d09-30569d4d55be RetMsg: {\\\"ok\\\":false,\\\"requestId\\\":\\\"664aa9f8-92a0-42b2-808d-da6b318bb5e5\\\",\\\"error\\\":{\\\"code\\\":\\\"AUTH_REQUIRED\\\",\\\"message\\\":\\\"身份验证失败\\\"}}\\nEND RequestId: 756fe027-919d-4190-9d09-30569d4d55be\\nReport RequestId: 756fe027-919d-4190-9d09-30569d4d55be Duration: 50ms Memory: 256MB MemUsage: 21.117188MB\\n\",\n      \"RetMsg\": \"{\\\"ok\\\":false,\\\"requestId\\\":\\\"664aa9f8-92a0-42b2-808d-da6b318bb5e5\\\",\\\"error\\\":{\\\"code\\\":\\\"AUTH_REQUIRED\\\",\\\"message\\\":\\\"身份验证失败\\\"}}\",\n      \"ErrMsg\": \"\"\n    }\n  },\n  \"message\": \"已调用函数 catalog\",\n  \"nextActions\": [\n    {\n      \"tool\": \"queryFunctions\",\n      \"action\": \"listFunctionLogs\",\n      \"reason\": \"查看本次调用日志\"\n    }\n  ]\n}"
+      }
+    ]
+  },
+  "nativeState": "PASSED_10_OF_10",
+  "clientEnabled": true,
+  "after": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"requestId\": \"403ab2c9-773e-4ba2-abf4-2bb4a9eacb25\",\n  \"collections\": [\n    {\n      \"TableName\": \"admin_roles\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 3,\n      \"IndexSize\": 28672\n    },\n    {\n      \"TableName\": \"audit_logs\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 2,\n      \"IndexSize\": 20480\n    },\n    {\n      \"TableName\": \"categories\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 3,\n      \"IndexSize\": 32768\n    },\n    {\n      \"TableName\": \"media_assets\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 3,\n      \"IndexSize\": 32768\n    },\n    {\n      \"TableName\": \"products\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 3,\n      \"IndexSize\": 32768\n    },\n    {\n      \"TableName\": \"skus\",\n      \"Count\": 0,\n      \"Size\": 0,\n      \"IndexCount\": 3,\n      \"IndexSize\": 32768\n    },\n    {\n      \"TableName\": \"users\",\n      \"Count\": 1,\n      \"Size\": 344,\n      \"IndexCount\": 3,\n      \"IndexSize\": 73728\n    }\n  ],\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 100,\n    \"Total\": 7\n  },\n  \"message\": \"获取 NoSQL 数据库集合列表成功\"\n}"
+      }
+    ]
+  },
+  "nativeEvidence": "native-1791595292680.json",
+  "clientMode": "development/cloud",
+  "mainSimulator": "BLOCKED_WECHAT_APPID_LOOKUP_ECONNRESET"
+}

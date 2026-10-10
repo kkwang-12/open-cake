@@ -1,0 +1,30 @@
+{
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "runId": "d04-read-20261009-1791514384-3d87b5",
+  "collections": {
+    "jjl_d04_probe_resources": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"e1ed1c7c-1d41-4d64-beb2-37d02dfd90eb\",\n  \"data\": [\n    {\n      \"_id\": \"9ce0bd832d0d189d332d3283ca9420a90aa94eabf0140a368b9ebfdab1bda932\",\n      \"caseId\": \"read-existing\",\n      \"createdAt\": 1791514785968,\n      \"heldUnits\": 1,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_DEPENDENCY\",\n      \"updatedAt\": 1791514785968,\n      \"version\": 1\n    },\n    {\n      \"_id\": \"c9a3f4ef84ab94f8fcf13fff12c5bbc94de8eb082f5518ec9379479f788c6399\",\n      \"caseId\": \"read-missing\",\n      \"createdAt\": 1791514790484,\n      \"heldUnits\": 1,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_DEPENDENCY\",\n      \"updatedAt\": 1791514790484,\n      \"version\": 1\n    },\n    {\n      \"_id\": \"6edbc907e109b114f7472db8d25aabadebe7c6a1f7c14c1ed36df49139901c02\",\n      \"caseId\": \"query-empty\",\n      \"createdAt\": 1791514796599,\n      \"heldUnits\": 1,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_DEPENDENCY\",\n      \"updatedAt\": 1791514796599,\n      \"version\": 1\n    }\n  ],\n  \"total\": 3,\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 12,\n    \"Total\": 3\n  },\n  \"message\": \"文档查询成功\",\n  \"collection\": \"jjl_d04_probe_resources\",\n  \"collectionName\": \"jjl_d04_probe_resources\"\n}"
+        }
+      ]
+    },
+    "jjl_d04_probe_records": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"e4f27ef1-51de-4d8b-8572-f8d66e3b3c01\",\n  \"data\": [\n    {\n      \"_id\": \"7d23a62fad34ddd15fb5415b602704df4c7f3ee79c9dec4caad0f6cc8b608385\",\n      \"caseId\": \"read-existing\",\n      \"createdAt\": 1791514785968,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_SETUP\",\n      \"updatedAt\": 1791514785968,\n      \"version\": 0\n    },\n    {\n      \"_id\": \"484fad148bb74cdc87c3ab772a49308ea135cb774dbe84e333236080dc89c2b1\",\n      \"caseId\": \"read-existing\",\n      \"createdAt\": 1791514785968,\n      \"observedVersion\": 0,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_DECISION\",\n      \"updatedAt\": 1791514785968,\n      \"version\": 0\n    },\n    {\n      \"_id\": \"a56a817603649b106b6a89ea1b48fe5555f0bf1e4cf40dac3f776851c8dfaee1\",\n      \"caseId\": \"read-missing\",\n      \"createdAt\": 1791514790484,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_SETUP\",\n      \"updatedAt\": 1791514790484,\n      \"version\": 0\n    },\n    {\n      \"_id\": \"e75065618deff4eb31c5cb96bd89be804118d5d8439e00e0e797f538e3bb1452\",\n      \"caseId\": \"read-missing\",\n      \"createdAt\": 1791514790484,\n      \"observedVersion\": null,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_DECISION\",\n      \"updatedAt\": 1791514790484,\n      \"version\": 0\n    },\n    {\n      \"_id\": \"02aab9b3b02438dd4cf941ae7938f6ebca2a538902984d1e71be0feb5ae10fe7\",\n      \"caseId\": \"query-empty\",\n      \"createdAt\": 1791514796599,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_SETUP\",\n      \"updatedAt\": 1791514796599,\n      \"version\": 0\n    },\n    {\n      \"_id\": \"4c6f329a3458d4a30af6a31adf37e84d4851402f768dca3b0d3ef76678e4339d\",\n      \"caseId\": \"query-empty\",\n      \"createdAt\": 1791514796599,\n      \"observedVersion\": null,\n      \"runId\": \"d04-read-20261009-1791514384-3d87b5\",\n      \"type\": \"READ_DECISION\",\n      \"updatedAt\": 1791514796599,\n      \"version\": 0\n    }\n  ],\n  \"total\": 6,\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 12,\n    \"Total\": 6\n  },\n  \"message\": \"文档查询成功\",\n  \"collection\": \"jjl_d04_probe_records\",\n  \"collectionName\": \"jjl_d04_probe_records\"\n}"
+        }
+      ]
+    },
+    "jjl_d04_probe_receipts": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"eb258f3d-d617-4e34-baa9-7effcb8602e0\",\n  \"data\": [],\n  \"total\": 0,\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 12,\n    \"Total\": 0\n  },\n  \"message\": \"文档查询成功\",\n  \"collection\": \"jjl_d04_probe_receipts\",\n  \"collectionName\": \"jjl_d04_probe_receipts\"\n}"
+        }
+      ]
+    }
+  }
+}

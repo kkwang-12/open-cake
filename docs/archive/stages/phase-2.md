@@ -1722,3 +1722,50 @@ CLI 只在本工作区 artifacts/development-seed 已存在目录中写计划，
 
 本机已保存 offline-dev 的输入与生成计划到 artifacts/development-seed；artifacts 被 Git 忽略，不能当作已提交种子、真实云 ID、或可营业配置。云环境可用后必须单独验证落库，当前本地回归只证明规划 / 保留 / 拒绝边界。
 
+---
+
+<a id="d04-read-protection-20261009"></a>
+## D04 SDK读取保护实测与接入决策（2026-10-09）
+
+来源：本轮用户在test探针更新、配置起两小时和最多9个隔离文档的明确范围后要求继续推进；不复用昨日授权。环境`dinner-cook-test-d5e320u981ec341`，AppID`wx154f791a17268ace`，wx-server-sdk=4.0.2，run=`d04-read-20261009-1791514384-3d87b5`。原生identify主体与原白名单一致，管理端调用不代替微信身份。
+
+每个实验先让事务A读取依赖并暂存独立decision，再由事务B修改该依赖并提交，最后提交A。两事务操作均指向本轮确定的探针文档；手动事务不自动重试实验。query-empty使用同一事务内限定scope/run/case/owner/type的where查询，不用事务外查询补结果。
+
+| 读取依赖 | A读到的状态 | B提交后状态 | A提交及落库事实 | 云函数requestId |
+| --- | --- | --- | --- | --- |
+| 已有文档 | version=0 | version=1 | 提交成功，decision仍记observedVersion=0 | dc3050c7-ca1f-4d62-b678-e99fdc5ac2d7 |
+| 不存在文档 | null | version=1新文档 | 提交成功，decision仍记observedVersion=null | 94b4db3d-9f55-49c7-a4a7-6d9a5479274c |
+| 空查询 | 空匹配集 | 新增匹配记录version=1 | 提交成功，decision仍记observedVersion=null | d1b2c849-d017-49cf-80fc-183869d43581 |
+
+三项均为STALE_COMMIT，读取保护断言0/3；这是事务能力的负向实测，不能写成保护验收通过。事务内where在该部署实际可执行，与文档列出的限制不同，但空谓词没有阻止新匹配记录。原生传输无重试，不能以此证明真实丢响应恢复。
+
+接入决策：SDK快照读、重读比较及唯一索引均不足以完成protectReads；保护已有依赖与缺失/查询谓词需分别建立实际提交约束，并覆盖所有相关写路径及额外操作预算。不能仅把现有读取包装成返回true的hook后开放购买。这里不选定未经云验证的字段或新集合方案。
+
+原始证据：[三次原生响应/平台请求标识](../../qa/d04-cloud/native-1791514800945.json)、[三集合按run精确读取](../../qa/d04-cloud/read-protection-20261009/documents.json)、[授权](../../qa/d04-cloud/read-protection-20261009/authorization.json)、[原生主体](../../qa/d04-cloud/read-protection-20261009/identity-cli.json)、[部署回读](../../qa/d04-cloud/read-protection-20261009/deployment.json)。本轮落库resources=3、records=6、receipts=0，共9个隔离文档；无正式订单。保留原文档及证据，不进行清理。
+
+窗口原截止香港12:53:04，实验结束后于11:02:18提前设为过期；原生同一合法操作返回PROBE_NOT_AUTHORIZED，请求标识及配置恢复见[原生关闭验证](../../qa/d04-cloud/read-protection-20261009/closure-cli.json)、[环境恢复原记录](../../qa/d04-cloud/read-protection-20261009/environment-recovery.json)。当前进度、阻塞和下一步仅维护在[CURRENT-STATUS](../../CURRENT-STATUS.md)。
+
+<a id="d04-write-protection-20261009"></a>
+## D04实际写入保护与事务终止判定（2026-10-09）
+
+来源：用户明确同意只更新test的jjl-d04-probe、原操作者白名单、最多2小时、现有3集合及最多22个新文档。run=`d04-write-20261009-1791515997-acb5d0`。代码新增实际版本写入与协作保护记录；用不参与保护记录的写入作为反例。不改正式订单session/入口/字段，不把原生读取当完整保护。
+
+事务A读旧依赖并暂存独立决策；早写场景先改变已有依赖版本，其他场景等事务B改变依赖后再写保护版本。缺失/查询使用预先存在的READ_FENCE记录，协作方B在同事务改变该记录后插入依赖。所有保护写均改变version，未用相同值更新。手动事务不自动重试；已使用案例不重跑。执行器可指定严格校验的子集，并明确complete=false和notRun，避免将部分取证当完整套件通过。
+
+| 场景 | 原生结果 | 按run只读回查 | 证据 |
+| --- | --- | --- | --- |
+| write-existing-early | PROBE_ROLLBACK_UNCONFIRMED | 依赖version=0，无决策 | [原始响应](../../qa/d04-cloud/native-1791516078363.json) |
+| write-existing-late | PROBE_ROLLBACK_UNCONFIRMED | 竞争方依赖version=1，无决策 | [原始响应](../../qa/d04-cloud/native-1791516260558.json) |
+| fence-missing | PROBE_ROLLBACK_UNCONFIRMED | 保护记录version=1，新依赖version=1，无决策 | [脱敏诊断响应](../../qa/d04-cloud/native-1791516626647.json) |
+| fence-query-empty | NOT_RUN | 没有该案例文档 | [执行记录](../../qa/d04-cloud/write-protection-20261009/execution.json) |
+| bypass-missing | STALE_COMMIT，反例预期成立 | 保护记录和依赖version=1，决策仍记null | [两个反例响应](../../qa/d04-cloud/native-1791516685407.json) |
+| bypass-query-empty | STALE_COMMIT，反例预期成立 | 保护记录和依赖version=1，决策仍记null | [两个反例响应](../../qa/d04-cloud/native-1791516685407.json) |
+
+fence-missing诊断：先按严格DATABASE_TRANSACTION_CONFLICT标记识别读取方冲突；后续rollback报DATABASE_TRANSACTION_FAIL，消息经分类为TRANSACTION_TERMINAL。primary诊断仅完整字段匹配，因此输出providerCode=UNKNOWN、numericErrCode=-501001；不能把该UNKNOWN解释为没有触发冲突。未记录完整SDK消息/上下文/身份/凭据。尚缺精确终止语义及接受条件：不能仅凭文字分类或没有决策文档就承认保护成功。另一方回滚失败也必须尝试清理本方，本地测试已覆盖。
+
+结论：3个协作保护案例同类回滚未确认，停止增量补丁；整体应复核冲突后终止状态、诊断代码提取、清理双方及最终持久化证据的接受规则，再验证保护协议。两个反例证明共享保护记录必须覆盖所有相关写路径，但不证明协作协议整体已通过。正式protectReads/findOrderByNumber仍未接通，正式订单/支付门禁保持关闭。
+
+执行取证：日志服务未开启，旧函数日志接口已下线，未开通新服务。自动化通道3次超时后只关闭/重开原d04-identify test工程窗口s1并编译identify页，恢复后原生运行版本确认d04-write-guard-diagnostic-1。首次诊断部署后响应未带diagnostic，未把原因确定为版本延迟；最终有版本标记的响应保留。最终独立包artifacts/d04-write-protection-revision-20261009的11文件与源码哈希一致，完整回归1062/1062、87文件、静态415；见[执行/验证记录](../../qa/d04-cloud/write-protection-20261009/execution.json)。
+
+授权与收尾：[授权](../../qa/d04-cloud/write-protection-20261009/authorization.json)、[资源/权限](../../qa/d04-cloud/write-protection-20261009/preflight.json)、[原生身份](../../qa/d04-cloud/write-protection-20261009/identity-cli.json)、[首次部署及配置回读](../../qa/d04-cloud/write-protection-20261009/deployment.json)。共resources=8、records=7、receipts=0，新增15个，低于22上限；全部保留。[原始文档](../../qa/d04-cloud/write-protection-20261009/documents.json)。香港11:31:42提前关闭，原生合法操作返回PROBE_NOT_AUTHORIZED，工具恢复development；[关闭回读](../../qa/d04-cloud/write-protection-20261009/closure.json)。
+

@@ -100,6 +100,7 @@ Page({
   },
   configure(){
     if(!this.data.product||this.data.loading||this.data.adding||this._successTransition)return;
+    if(this.data.product.source==='PUBLIC_CATALOG'&&!this.data.product.canConfigure){wx.showToast({title:'加购服务尚未开放',icon:'none'});return;}
     if(this.data.sheetOpen&&this.data.sheetPhase!=='closing')return;
     if(!this._model){wx.showToast({title:'此商品的规格资料尚未接通',icon:'none'});return;}
     successMotion.dispose(this);this.setData({success:null});this.renderSelection();sheet.open(this);
@@ -196,7 +197,7 @@ Page({
   async favorite(){
     const product=this.data.product;
     if(!product||this.data.loading||this.data.favoriteBusy)return;
-    if(product.source!=='DEVELOPMENT_EXAMPLE'){wx.showToast({title:'此预览商品尚未接通收藏',icon:'none'});return;}
+    if(product.source!=='DEVELOPMENT_EXAMPLE'){wx.showToast({title:product.source==='PUBLIC_CATALOG'?'收藏服务尚未开放':'此预览商品尚未接通收藏',icon:'none'});return;}
     const ticket=this._epoch;this.setData({favoriteBusy:true});
     try{
       const result=await favorites.set(product.productId,!this.data.favorited);

@@ -12,7 +12,7 @@ const env={JJL_APP_ID:context.APPID,JJL_CLOUD_ENV:context.ENV,JJL_STAGE:'test',J
 env.JJL_PROBE_USER_ID=identityFromPlatform(context,{appId:context.APPID,environment:context.ENV,stage:'test'})._id;
 const invocation={environment:JSON.stringify({WX_OPENID:context.OPENID,WX_APPID:context.APPID}),
   namespace:context.ENV,request_id:'offline-platform-request'};
-function harness(patch={},readFailure=null) {
+function harness(patch={},readFailure=null,probeFailure=null) {
   let calls=0;const logs=[];const records={};
   const sdk={init(){},getWXContext:()=>context,database:()=>{calls++;return {
     runTransaction:async work=>work({collection:name=>({doc:id=>({get:async()=>{
@@ -22,6 +22,8 @@ function harness(patch={},readFailure=null) {
   const factory=vm.runInThisContext('(function(require,exports,process,console){'+fs.readFileSync(filename,'utf8')+'\n})');
   const exports={};
   factory(name=>name==='wx-server-sdk'?sdk:name==='wx-server-sdk/package.json'?{version:'4.0.2'}:
+    name==='./shared/cloud-transaction-probe' && probeFailure?{...require('../cloudfunctions/_shared/cloud-transaction-probe'),
+      createTransactionProbe:()=>({execute:async()=>{throw probeFailure;}})}:
     name==='./shared/runtime'?{createHandler:options=>require('../cloudfunctions/_shared/runtime').createHandler({
       ...options,logger:{info:e=>logs.push(e),warn:e=>logs.push(e),error:e=>logs.push(e)}})}:
       require(path.resolve(__dirname,'../cloudfunctions/_shared',name.slice('./shared/'.length))),exports,
@@ -34,6 +36,16 @@ test('D04 actual isolated entry prepares only probe resources and does not retur
   assert.equal(result.ok,true);assert.equal(result.data.disposition,'PREPARED');assert.equal(result.data.created,3);
   assert.equal(result.data.businessOrderCreated,false);assert.equal(result.sdkVersion,'4.0.2');
   assert.equal(JSON.stringify([result,h.stats().logs]).includes(context.OPENID),false);
+});
+
+test('test entry preserves sanitized manual-transaction diagnostics and runtime revision',async()=>{
+  const {TransactionProbeError}=require('../cloudfunctions/_shared/cloud-transaction-probe');
+  const diagnostic={operation:'rollback',providerCode:'UNKNOWN',messageClass:'TRANSACTION_TERMINAL',
+    numericErrCode:-502001,primary:{providerCode:'DATABASE_TRANSACTION_CONFLICT'}};
+  const h=harness({},null,new TransactionProbeError('PROBE_ROLLBACK_UNCONFIRMED',diagnostic));
+  const result=await h.main({action:'probe',payload:{operation:'write-protection',caseId:'fence-missing'}},invocation);
+  assert.deepEqual(result.error.diagnostic,diagnostic);
+  assert.equal(result.probeRevision,'d04-write-guard-lifecycle-1');
 });
 test('D04 actual entry refuses warm SDK management identity, even with forged event context',async()=>{
   const h=harness();const result=await h.main({action:'probe',payload:{operation:'prepare',caseId:'atomic'},context:invocation},

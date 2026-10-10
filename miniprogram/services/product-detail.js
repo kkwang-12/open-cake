@@ -7,6 +7,7 @@ const {formatCents}=require('./catalog');
 function createProductDetailClient(settings,catalog=createCatalogClient(settings),specification=createSpecificationClient(settings)){
   async function get(productId){
     if(!['development','test','production'].includes(settings.stage)||!['shell','cloud'].includes(settings.mode))throw createError('INVALID_CONFIGURATION');
+    if(settings.mode==='cloud')return catalog.get(productId);
     if(settings.stage!=='development'||settings.mode!=='shell')throw createError('CLOUD_NOT_CONFIGURED');
     if(typeof productId!=='string'||!/^(development-example-[a-z0-9-]+|preview-(cake|mini|bread))$/.test(productId))throw createError('PRODUCT_UNAVAILABLE');
     // Keep approved Home's old design links working, without mapping them to unrelated current SKUs.

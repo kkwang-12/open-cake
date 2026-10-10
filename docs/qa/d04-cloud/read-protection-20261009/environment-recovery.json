@@ -1,0 +1,86 @@
+{
+  "scope": "NATIVE_ENVIRONMENT_RECOVERY_AND_CLOSURE",
+  "runId": "d04-read-20261009-1791514384-3d87b5",
+  "events": [
+    {
+      "tool": "automation_evaluate",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "error": "cant find runtimeid by projectpath"
+    },
+    {
+      "tool": "open_project_window",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "code": "APPID_ERROR",
+      "error": "Cannot read properties of undefined (reading '0')"
+    },
+    {
+      "tool": "get_user_appids",
+      "hasTargetAppId": true
+    },
+    {
+      "tool": "project_list",
+      "count": 0
+    },
+    {
+      "tool": "project_import",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "success": true
+    },
+    {
+      "tool": "open_project_window",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "success": true
+    },
+    {
+      "tool": "automation_evaluate",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "error": "timeout waiting for automator response"
+    },
+    {
+      "tool": "simulator_open_page",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "page": "pages/verify/index",
+      "success": true
+    },
+    {
+      "finding": "该旧工程启动页会调用development user.me/store.health及身份拒绝验证，不符合本轮test范围；发现后关闭其窗口，转为既有test专用识别工程。"
+    },
+    {
+      "tool": "close_project_window",
+      "project": "artifacts/cloud-env-validation-20261008",
+      "success": true
+    },
+    {
+      "tool": "project_import/open_project_window/simulator_open_page",
+      "project": "artifacts/d04-identify-validation-20261008",
+      "success": true
+    }
+  ],
+  "developmentUsersReadback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"requestId\": \"0b40204b-fb98-4cac-947f-368f4f0e7273\",\n  \"data\": [\n    {\n      \"_id\": \"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\",\n      \"createdAt\": 1791429397518,\n      \"updatedAt\": 1791429397518,\n      \"version\": 0\n    }\n  ],\n  \"total\": 1,\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 2,\n    \"Total\": 1\n  },\n  \"message\": \"文档查询成功\",\n  \"collection\": \"users\",\n  \"collectionName\": \"users\"\n}"
+      }
+    ]
+  },
+  "closure": {
+    "effectiveExpiresAt": 1791514938000,
+    "configuredRunId": "d04-read-20261009-1791514384-3d87b5",
+    "requestId": "18ae48ee-f55c-4703-9f06-d44a21bc5ccf",
+    "disabledByExpiry": true
+  },
+  "closureConfigResult": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"updateFunctionConfig\",\n    \"functionName\": \"jjl-d04-probe\",\n    \"raw\": {\n      \"RequestId\": \"90e6b63c-329e-4442-86b7-1690b61a391d\"\n    }\n  },\n  \"message\": \"已更新函数 jjl-d04-probe 的配置\",\n  \"nextActions\": [\n    {\n      \"tool\": \"queryFunctions\",\n      \"action\": \"getFunctionDetail\",\n      \"reason\": \"确认配置变更结果\"\n    }\n  ]\n}"
+      }
+    ]
+  },
+  "finalBinding": {
+    "authStatus": "READY",
+    "environment": "cloudbase-d8gwtxzm64150b7e0",
+    "region": "ap-shanghai"
+  }
+}

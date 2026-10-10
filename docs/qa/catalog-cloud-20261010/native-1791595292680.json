@@ -1,0 +1,151 @@
+{
+  "state": "COMPLETED",
+  "time": "2026-10-10T01:21:31.311Z",
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "appId": "wx154f791a17268ace",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "rows": [
+    {
+      "name": "empty-categories",
+      "result": {
+        "ok": true,
+        "requestId": "25bae3e8-5c0d-4573-82ba-f55496a43c7e",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "items": []
+        }
+      },
+      "platformRequestId": "ec04c9be-0351-4a7f-9d63-d0f8d27a4053"
+    },
+    {
+      "name": "empty-products",
+      "result": {
+        "ok": true,
+        "requestId": "fc2c3518-3a50-41ed-8ea3-3f757facf1a7",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "items": [],
+          "nextCursor": null,
+          "hasMore": false
+        }
+      },
+      "platformRequestId": "a0538900-a24d-4790-932e-2960e5f63f5c"
+    },
+    {
+      "name": "missing-product",
+      "result": {
+        "ok": false,
+        "requestId": "50435a4d-441e-41fd-b6e3-92af6e0eaef6",
+        "error": {
+          "code": "PRODUCT_UNAVAILABLE",
+          "message": "商品不存在或暂未开放"
+        }
+      },
+      "platformRequestId": "f8e9cb9e-6abc-41b5-9f20-cd6ecd1a0596"
+    },
+    {
+      "name": "forged-owner",
+      "result": {
+        "ok": false,
+        "requestId": "bdebff82-f2d1-4975-8770-a4d90eccfaeb",
+        "error": {
+          "code": "INVALID_REQUEST",
+          "message": "请求无效"
+        }
+      },
+      "platformRequestId": "5c7264e4-7758-40e5-b8cc-b7587085ae2c"
+    },
+    {
+      "name": "other-store",
+      "result": {
+        "ok": false,
+        "requestId": "223ffbec-6bdb-403f-973d-d022e37dda3c",
+        "error": {
+          "code": "NOT_FOUND",
+          "message": "内容不存在"
+        }
+      },
+      "platformRequestId": "9638b62f-d0c0-4806-a07c-aa1fb085b790"
+    },
+    {
+      "name": "invalid-cursor",
+      "result": {
+        "ok": false,
+        "requestId": "4fdc4915-6e3a-4ed0-a4aa-9826c90aa5da",
+        "error": {
+          "code": "CURSOR_INVALID",
+          "message": "分页已失效，请重新加载"
+        }
+      },
+      "platformRequestId": "5ad35523-9355-4042-9c54-75fad346552d"
+    }
+  ],
+  "clientReads": [
+    {
+      "collection": "categories",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "products",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "skus",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "media_assets",
+      "denied": true,
+      "code": -502003
+    }
+  ],
+  "assertions": [
+    {
+      "name": "empty-categories",
+      "passed": true
+    },
+    {
+      "name": "empty-products",
+      "passed": true
+    },
+    {
+      "name": "missing-product",
+      "passed": true
+    },
+    {
+      "name": "forged-owner",
+      "passed": true
+    },
+    {
+      "name": "other-store",
+      "passed": true
+    },
+    {
+      "name": "invalid-cursor",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:categories",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:products",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:skus",
+      "passed": true
+    },
+    {
+      "name": "client-read-denied:media_assets",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "device": "NOT_RUN",
+  "businessDocumentsAdded": 0,
+  "storageUploads": 0
+}

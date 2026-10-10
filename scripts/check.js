@@ -89,7 +89,7 @@ for (const component of Object.values(app.usingComponents || {})) for (const suf
 const { pages: routes } = require('../miniprogram/constants/routes');
 for (const value of Object.values(routes)) if (!pages.includes(value.slice(1))) fail('路由未注册：' + value);
 const canonical = fs.readFileSync(path.join(root, 'cloudfunctions', '_shared', 'runtime.js'), 'utf8');
-for (const name of ['user', 'store']) {
+for (const name of ['user', 'store', 'catalog']) {
   if (fs.readFileSync(path.join(root, 'cloudfunctions', name, 'shared', 'runtime.js'), 'utf8') !== canonical) fail('云函数共用代码未同步，请执行 prepare-cloud');
   const manifest = JSON.parse(fs.readFileSync(path.join(root, 'cloudfunctions', name, 'package.json'), 'utf8'));
   if (!/^\d+\.\d+\.\d+$/.test(manifest.dependencies['wx-server-sdk'])) fail('SDK 必须锁定稳定版本');

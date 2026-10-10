@@ -1,0 +1,103 @@
+{
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "time": "2026-10-09T03:31:25.408Z",
+  "appId": "wx154f791a17268ace",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "runId": "d04-write-20261009-1791515997-acb5d0",
+  "suite": "write-protection",
+  "evidence": [
+    {
+      "input": {
+        "operation": "write-protection",
+        "caseId": "bypass-missing",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "9e6304da-1e06-493c-ab63-2bbfadb04724",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-write-20261009-1791515997-acb5d0",
+          "caseId": "bypass-missing",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "WRITE_PROTECTION_OBSERVED",
+          "outcome": "STALE_COMMIT",
+          "writerCommitted": true,
+          "readerCommitted": true,
+          "dependencyVersion": 1,
+          "fenceVersion": 1,
+          "decisionExists": true,
+          "writerParticipates": false,
+          "protectionKind": "SHARED_FENCE",
+          "readProtected": false
+        },
+        "probeRevision": "d04-write-guard-diagnostic-1",
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "ccb4e408-1855-4d6e-b00f-4eaa4ee8d085"
+      }
+    },
+    {
+      "input": {
+        "operation": "write-protection",
+        "caseId": "bypass-query-empty",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": true,
+        "requestId": "548cbec3-6954-4583-8525-d4b567b827dc",
+        "data": {
+          "scope": "SDK_CAPABILITY_PROBE",
+          "businessOrderCreated": false,
+          "runId": "d04-write-20261009-1791515997-acb5d0",
+          "caseId": "bypass-query-empty",
+          "command": 0,
+          "mode": "PICKUP",
+          "disposition": "WRITE_PROTECTION_OBSERVED",
+          "outcome": "STALE_COMMIT",
+          "writerCommitted": true,
+          "readerCommitted": true,
+          "dependencyVersion": 1,
+          "fenceVersion": 1,
+          "decisionExists": true,
+          "writerParticipates": false,
+          "protectionKind": "SHARED_FENCE",
+          "readProtected": false
+        },
+        "probeRevision": "d04-write-guard-diagnostic-1",
+        "sdkVersion": "4.0.2",
+        "platformRequestId": "144d1036-ff5a-4d76-ba63-e22261073efd"
+      }
+    }
+  ],
+  "assertions": [
+    {
+      "name": "bypass-missing-commit-contract",
+      "passed": true,
+      "outcome": "STALE_COMMIT"
+    },
+    {
+      "name": "bypass-query-empty-commit-contract",
+      "passed": true,
+      "outcome": "STALE_COMMIT"
+    }
+  ],
+  "passed": true,
+  "complete": false,
+  "notRun": [
+    "write-existing-early",
+    "write-existing-late",
+    "fence-missing",
+    "fence-query-empty"
+  ],
+  "businessOrderPersistence": "NOT_RUN",
+  "predicateFencing": "COOPERATIVE_PROTOCOL_ONLY",
+  "transactionBudget": "NOT_RUN",
+  "lostResponseTransport": "NOT_RUN",
+  "transportRetries": [],
+  "errorCode": null,
+  "device": "NOT_RUN"
+}

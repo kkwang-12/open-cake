@@ -1,6 +1,7 @@
 const config=require('../config');
 const fixtures=require('../fixtures/shop-development');
 const {createError}=require('./errors');
+const {createCloudCatalogClient}=require('./catalog-cloud');
 const CATEGORIES=['CAKE','MINI_CAKE','BREAD'];
 function wellFormed(value){
   for(let i=0;i<value.length;i++){
@@ -15,10 +16,12 @@ function formatCents(cents){
   const whole=Math.floor(cents/100),fraction=cents%100;
   return String(whole)+(fraction?'.'+String(fraction).padStart(2,'0'):'');
 }
-function createCatalogClient(settings,samples=fixtures){
+function createCatalogClient(settings,samples=fixtures,transport){
+  const cloud=createCloudCatalogClient(settings,transport,formatCents);
   async function list(input={}){
     if(!['development','test','production'].includes(settings.stage)||!['shell','cloud'].includes(settings.mode))throw createError('INVALID_CONFIGURATION');
-    // Cloud adapters have not been deployed. Never fall back to development products in another stage/mode.
+    if(settings.mode==='cloud')return cloud.list(input);
+    // Shell examples are only available in development; cloud errors never fall back to samples.
     if(settings.stage!=='development'||settings.mode!=='shell')throw createError('CLOUD_NOT_CONFIGURED');
     if(!input||typeof input!=='object'||Array.isArray(input)||Object.keys(input).some(field=>!['categoryCode','search','pageSize','cursor'].includes(field))||
         (input.categoryCode!==undefined&&!CATEGORIES.includes(input.categoryCode)))throw createError('INVALID_REQUEST');
@@ -60,6 +63,6 @@ function createCatalogClient(settings,samples=fixtures){
       // This unsigned local marker is ONLY for non-purchasable shell examples, never sent to a server.
       nextCursor:hasMore?'development-preview.'+encodeURIComponent(JSON.stringify([samples.revision,category,search,offset+selected.length])):null};
   }
-  return {list};
+  return {list,get:productId=>settings.mode==='cloud'?cloud.get(productId):Promise.reject(createError('CLOUD_NOT_CONFIGURED'))};
 }
 module.exports={...createCatalogClient(config),createCatalogClient,formatCents};

@@ -52,9 +52,13 @@ async function adminBoundary(){
   const client=createClient({mode:'cloud',stage:'test',cloudEnvironments:{test:'OFFLINE_ADMIN_PROBE'}},
     ()=>({cloud:{init(){platformCalls++;},callFunction(){platformCalls++;}}}),{warn(){}});
   const planned=Object.entries(ACTION_CONTRACTS).filter(([,item])=>item.status==='PLANNED');
+  const catalogReads=new Set(['catalog.categories.list','catalog.products.list','catalog.product.get']);
   for(const [name,item] of planned){
     try{await client.call(item.domain,item.action,{});unexpected.push(name);}
-    catch(error){(error.code==='INVALID_REQUEST'?rejected:unexpected).push(name);}
+    catch(error){
+      const expected=catalogReads.has(name)?'CLOUD_NOT_CONFIGURED':'INVALID_REQUEST';
+      (error.code===expected?rejected:unexpected).push(name);
+    }
   }
   const settings=require('../miniprogram/runtime-config'),legacy=[];
   for(const stage of ['development','test','production'])for(const mode of ['shell','cloud'])for(const enabled of [false,true]){
@@ -66,7 +70,8 @@ async function adminBoundary(){
   const pickupClosed=['connected','callable','confirmationAllowed','fulfillmentAllowed','successFeedbackAllowed'].every(key=>pickup[key]===false);
   return {passed:planned.length>0&&unexpected.length===0&&platformCalls===0&&!functionPresent&&settings.enableLegacyDemo===false&&
       legacy.every(probe=>probe.passed)&&dependencies.passed&&pickupClosed&&payment.passed,
-    plannedActions:planned.length,rejectedActions:rejected.length,unexpected,platformCalls,adminFunctionPresent:functionPresent,
+    plannedActions:planned.length,rejectedActions:rejected.length,catalogReadActions:planned.filter(([name])=>catalogReads.has(name)).length,
+    unexpected,platformCalls,adminFunctionPresent:functionPresent,
     legacyEnabled:settings.enableLegacyDemo===true,legacy,dependencies,pickupClosed,payment};
 }
 async function verify(name='a07-'+new Date().toISOString().replace(/[:.]/g,'-')){

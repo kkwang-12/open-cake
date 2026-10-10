@@ -35,7 +35,7 @@
 
 [读取本节](reference/network-api/08.md)
 
-## C02 本地目录读取补充
+## C02 公开目录读取约束
 
 [读取本节](reference/network-api/09.md)
 

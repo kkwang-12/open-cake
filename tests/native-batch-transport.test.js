@@ -49,3 +49,9 @@ test('native transport sends bounded read-protection cases once after a dropped 
   await h.invoke([{operation:'read-protection',caseId:'read-existing',command:0,mode:'PICKUP'}]);
   assert.equal(h.stats().calls,1);assert.equal(h.stats().retries[0].stage,'START');
 });
+
+test('native transport sends a write-protection experiment only once after a dropped start reply',async()=>{
+  const h=harness({dropStart:true});
+  await h.invoke([{operation:'write-protection',caseId:'write-existing-late',command:0,mode:'PICKUP'}]);
+  assert.equal(h.stats().calls,1);assert.equal(h.stats().retries[0].stage,'START');
+});

@@ -18,7 +18,7 @@ function createNativeBatchTransport({evaluate,environment,ticketPrefix,pause=()=
     if(!Array.isArray(payloads) || !payloads.length || payloads.length>2)throw new Error('INVALID_SCENARIO_LITERAL');
     for(const p of payloads) {
       if(!p || Object.keys(p).sort().join(',')!=='caseId,command,mode,operation' ||
-        !/^[a-z0-9-]{1,24}$/.test(p.caseId) || !['prepare','hold','read','unique','read-protection'].includes(p.operation) ||
+        !/^[a-z0-9-]{1,24}$/.test(p.caseId) || !['prepare','hold','read','unique','read-protection','write-protection'].includes(p.operation) ||
         !['PICKUP','DELIVERY'].includes(p.mode) || !Number.isInteger(p.command) || p.command<0 || p.command>7)
         throw new Error('INVALID_SCENARIO_LITERAL');
     }

@@ -1,6 +1,6 @@
 // 由 scripts/configure-local.js 生成；只含公开配置。
 module.exports = {
-  "mode": "shell",
+  "mode": "cloud",
   "stage": "development",
   "appId": "wx154f791a17268ace",
   "cloudEnvironments": {
@@ -8,5 +8,10 @@ module.exports = {
     "test": "",
     "production": ""
   },
-  "enableLegacyDemo": false
+  "enableLegacyDemo": false,
+  "catalog": {
+    "enabled": true,
+    "storeId": "g1-catalog-store",
+    "allowedCloudPrefixes": []
+  }
 };

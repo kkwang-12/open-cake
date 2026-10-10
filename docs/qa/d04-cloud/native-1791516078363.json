@@ -1,0 +1,31 @@
+{
+  "scope": "REAL_WX_CLOUD_SIMULATOR",
+  "time": "2026-10-09T03:21:18.363Z",
+  "appId": "wx154f791a17268ace",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "runId": "d04-write-20261009-1791515997-acb5d0",
+  "suite": "write-protection",
+  "evidence": [
+    {
+      "input": {
+        "operation": "write-protection",
+        "caseId": "write-existing-early",
+        "command": 0,
+        "mode": "PICKUP"
+      },
+      "response": {
+        "ok": false,
+        "requestId": "5b757272-d6f2-43ec-a9cf-2bf1c9543e59",
+        "error": {
+          "code": "PROBE_ROLLBACK_UNCONFIRMED",
+          "message": "隔离验收未完成"
+        },
+        "platformRequestId": "b33513ef-3da9-479f-a761-4823f219f810"
+      }
+    }
+  ],
+  "transportRetries": [],
+  "errorCode": "PROBE_WRITE_PROTECTION_FAILED",
+  "passed": false,
+  "device": "NOT_RUN"
+}

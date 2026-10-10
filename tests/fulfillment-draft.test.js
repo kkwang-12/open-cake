@@ -11,11 +11,12 @@ function setup(){const values={},reference=storeInfo.confirmed();
   return {values,reference,platform,make,service:make()};
 }
 test('X02 confirmed store reference matches frozen policy but supplies neither OPEN status nor phone/location evidence',async()=>{
-  const value=await storeInfo.get();assert.equal(value.status,'CONFIGURATION_PENDING');assert.equal(value.phone,null);
+  const offline=storeInfo.createStoreInformationClient(settings);
+  const value=await offline.get();assert.equal(value.status,'CONFIGURATION_PENDING');assert.equal(value.phone,null);
   assert.equal(value.openingHours,'每天 08:00–21:00');assert.equal(value.slotMinutes,V1_FULFILLMENT_POLICY.slotMinutes);
   assert.deepEqual(value.capacities,V1_FULFILLMENT_POLICY.capacities);assert.deepEqual(value.delivery,V1_FULFILLMENT_POLICY.delivery);
   assert.equal(value.checkoutAllowed,false);assert(!('storeId' in value));assert(!('location' in value));
-  value.name='changed';assert.equal((await storeInfo.get()).name,'家家乐蛋糕店');
+  value.name='changed';assert.equal((await offline.get()).name,'家家乐蛋糕店');
   await assert.rejects(storeInfo.createStoreInformationClient({...settings,stage:'production'}).get(),e=>e.code==='CLOUD_NOT_CONFIGURED');
 });
 test('X02 pickup contact and modes persist across new clients; other AppIDs do not inherit inputs',()=>{

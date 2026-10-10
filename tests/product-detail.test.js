@@ -48,6 +48,16 @@ test('C04 inconsistent card/SKU price or source cannot produce a detail; missing
   await assert.rejects(createProductDetailClient(settings,{list:async()=>({items:[]})},specification).get(id),error=>error.code==='PRODUCT_UNAVAILABLE');
 });
 function deferred(){let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return {promise,resolve,reject};}
+test('public cloud detail displays read-only product data without writing shell bag/favorites or opening purchase controls',async()=>{
+  let writes=0;
+  const publicDetail={productId:'cloud-product',name:'Cloud product',description:'From public response',categoryLabel:'蛋糕 / CAKE',priceLabel:'10',
+    images:[{key:'photo:r1',src:'cloud://catalog-test/catalog/p.png'}],variantLabels:[],source:'PUBLIC_CATALOG',canPurchase:false,canConfigure:false};
+  const {page,toasts}=productPage({get:async()=>publicDetail},{add:async()=>{writes++;}},()=>true,{contains(){writes++;},set:async()=>{writes++;}});
+  page.onLoad({id:publicDetail.productId});await page.onShow();page.configure();await page.favorite();await page.addToBag();
+  assert.equal(page.data.product.name,publicDetail.name);assert.equal(page.data.gallery[0].src,publicDetail.images[0].src);
+  assert.equal(page.data.sheetOpen,false);assert.equal(writes,0);
+  assert.ok(toasts.some(value=>value.title==='加购服务尚未开放'));assert.ok(toasts.some(value=>value.title==='收藏服务尚未开放'));
+});
 function productPage(service=createProductDetailClient(settings),bag={add:async()=>{throw new Error('No storage');}},confirm=()=>false,favorites={contains:()=>false,set:async()=>{throw new Error('No storage');}}){
   let page;const navigations=[],toasts=[],modals=[];
   const platform={showToast:value=>toasts.push(value),showModal:value=>{modals.push(value);value.success({confirm:confirm()});}};

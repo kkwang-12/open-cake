@@ -31,6 +31,7 @@
       </view>
       <view class="product-price">¥ {{product.priceLabel}}</view>
       <text class="product-description">{{product.description}}</text>
+      <text wx:if="{{product.source === 'PUBLIC_CATALOG'}}" class="product-description">{{product.notice}}</text>
       <view class="benefits"><view wx:for="{{benefits}}" wx:key="title" class="benefit"><image class="benefit-icon" src="{{item.icon}}" /><view><text class="benefit-title">{{item.title}}</text><text class="benefit-description">{{item.description}}</text></view></view></view>
     </view>
     <view class="bottom-area action-safe-footer {{success ? 'has-success' : ''}}">

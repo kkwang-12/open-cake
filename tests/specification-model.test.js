@@ -180,7 +180,8 @@ test('C03 preview service rejects other stages/cloud mode/invalid IDs/duplicates
 test('C03 services/utils load using JS-only module resolution without Node built-ins',async()=>{
   const file=path.join(__dirname,'../miniprogram/services/specification.js'),load=createRequire(file);
   const context={module:{exports:{}},require:name=>{
-    assert.ok(!name.endsWith('.json'));assert.ok(!name.startsWith('node:'));return load(name);
+    assert.ok(!name.endsWith('.json'));assert.ok(!name.startsWith('node:'));
+    return name==='../config'?{stage:'development',mode:'shell'}:load(name);
   }};
   vm.runInNewContext(fs.readFileSync(file,'utf8'),context);
   assert.equal((await context.module.exports.get('development-example-mango-cake')).skus.length,3);

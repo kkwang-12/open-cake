@@ -1,0 +1,44 @@
+{
+  "time": "2026-10-10T01:28:04.255Z",
+  "scope": "LOCAL_SIMULATOR_ONLY",
+  "originalProject": "D:/dinner cook",
+  "isolatedProject": "D:/dinner cook/artifacts/g1-catalog-native-20261010",
+  "attempts": [
+    {
+      "tool": "open_project_window",
+      "project": "D:/dinner cook",
+      "ok": false,
+      "code": "APPID_ERROR",
+      "message": "read ECONNRESET"
+    },
+    {
+      "tool": "automation_runtime_info",
+      "action": "currentPage",
+      "project": "D:/dinner cook",
+      "ok": false,
+      "code": "APPID_ERROR",
+      "message": "read ECONNRESET"
+    },
+    {
+      "tool": "simulator_refresh",
+      "project": "D:/dinner cook/artifacts/g1-catalog-native-20261010",
+      "ok": false,
+      "code": "APPID_ERROR",
+      "message": "read ECONNRESET"
+    }
+  ],
+  "sameClientSourceCopy": {
+    "time": "2026-10-10T01:25:00.978Z",
+    "source": "D:\\dinner cook\\miniprogram",
+    "copy": "D:\\dinner cook\\artifacts\\g1-catalog-native-20261010\\miniprogram",
+    "filesMatched": 233,
+    "originalValidationPreserved": "D:\\dinner cook\\artifacts\\g1-catalog-native-20261010\\empty-validation-source",
+    "publicConfigOnly": true
+  },
+  "nativeDirectoryEvidence": "native-1791595292680.json",
+  "nativeDirectoryPassed": true,
+  "pageCompilationAccepted": false,
+  "physicalDevice": "NOT_RUN",
+  "upload": false,
+  "publish": false
+}

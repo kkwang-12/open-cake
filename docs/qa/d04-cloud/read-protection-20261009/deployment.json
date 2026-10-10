@@ -1,0 +1,54 @@
+{
+  "scope": "DEPLOYMENT_READBACK",
+  "functionName": "jjl-d04-probe",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "status": "Active",
+  "available": "Available",
+  "codeResult": "success",
+  "runtime": "Nodejs20.19",
+  "type": "Event",
+  "handler": "index.main",
+  "timeout": 20,
+  "triggers": [],
+  "runId": "d04-read-20261009-1791514384-3d87b5",
+  "expiresAt": 1791521584000,
+  "configurationMatches": true,
+  "subjectMatchesPrior": true,
+  "codeRequestId": "0de3136a-841a-4fb8-bc8b-f78bd61b6b6c",
+  "configRequestId": "b922baa1-7f17-4909-b84f-dd24eba213b0",
+  "readbackRequestId": "604b7629-b1fe-4d26-a429-c81a15fb227c",
+  "collections": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"requestId\": \"dd60eb27-9b9f-48c8-a109-cc4caaebfa9c\",\n  \"collections\": [\n    {\n      \"TableName\": \"jjl_d04_probe_receipts\",\n      \"Count\": 31,\n      \"Size\": 16396,\n      \"IndexCount\": 3,\n      \"IndexSize\": 110592\n    },\n    {\n      \"TableName\": \"jjl_d04_probe_records\",\n      \"Count\": 112,\n      \"Size\": 59938,\n      \"IndexCount\": 2,\n      \"IndexSize\": 81920\n    },\n    {\n      \"TableName\": \"jjl_d04_probe_resources\",\n      \"Count\": 144,\n      \"Size\": 72294,\n      \"IndexCount\": 2,\n      \"IndexSize\": 90112\n    }\n  ],\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 20,\n    \"Total\": 3\n  },\n  \"message\": \"获取 NoSQL 数据库集合列表成功\"\n}"
+      }
+    ]
+  },
+  "collectionPermissions": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"dinner-cook-test-d5e320u981ec341\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"jjl_d04_probe_resources\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"jjl_d04_probe_resources\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"f4f9f9ba-a4e4-4c32-a645-f34cd2612754\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"jjl_d04_probe_resources\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"dinner-cook-test-d5e320u981ec341\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"jjl_d04_probe_records\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"jjl_d04_probe_records\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"fd19a14d-d364-47bc-8b3b-86e0577d107c\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"jjl_d04_probe_records\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"dinner-cook-test-d5e320u981ec341\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"jjl_d04_probe_receipts\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"jjl_d04_probe_receipts\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"358cccb9-9108-4b4e-93be-a20a5d1f303a\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"jjl_d04_probe_receipts\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\":false,\\\"write\\\":false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+        }
+      ]
+    }
+  ]
+}

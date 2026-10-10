@@ -1,0 +1,18 @@
+{
+  "scope": "READ_PROTECTION_AUTHORIZATION",
+  "environment": "dinner-cook-test-d5e320u981ec341",
+  "appId": "wx154f791a17268ace",
+  "runId": "d04-read-20261009-1791514384-3d87b5",
+  "startsAt": 1791514384000,
+  "expiresAt": 1791521584000,
+  "allowlistedSubjectId": "c073607a6443289a38a05280e34515273fc34021d6f2613a4b89423a52a84227",
+  "userConfirmation": "2026-10-09：用户在明确的探针更新、两小时窗口及最多9个隔离文档范围后要求继续推进。",
+  "maxNewDocuments": 9,
+  "collections": [
+    "jjl_d04_probe_resources",
+    "jjl_d04_probe_records",
+    "jjl_d04_probe_receipts"
+  ],
+  "codeUpdateRequestId": "0de3136a-841a-4fb8-bc8b-f78bd61b6b6c",
+  "package": "artifacts/d04-read-protection-20261009/functions/jjl-d04-probe"
+}

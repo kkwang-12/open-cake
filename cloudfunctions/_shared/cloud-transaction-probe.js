@@ -8,8 +8,11 @@ const COLLECTIONS=Object.freeze({resources:'jjl_d04_probe_resources',records:'jj
 const CASES=Object.freeze(['atomic','same-key','stock-last','slot-last','mode-independent','unique',
   ...Array.from({length:7},(_,i)=>'fault-'+(i+1))]);
 const READ_CASES=Object.freeze(['read-existing','read-missing','query-empty']);
+const GUARD_CASES=Object.freeze(['write-existing-early','write-existing-late','fence-missing',
+  'fence-query-empty','bypass-missing','bypass-query-empty']);
 class TransactionProbeError extends Error {
-  constructor(code){super(code);this.name='TransactionProbeError';this.code=code;}
+  constructor(code,diagnostic){super(code);this.name='TransactionProbeError';this.code=code;
+    if(diagnostic)this.diagnostic=Object.freeze(diagnostic);}
 }
 const fail=code=>{throw new TransactionProbeError(code);};
 const plain=value=>value!==null && typeof value==='object' && [Object.prototype,null].includes(Object.getPrototypeOf(value));
@@ -31,14 +34,15 @@ function createTransactionProbe({cloud,settings,now=Date.now}) {
   }
   function parse(payload) {
     if(!plain(payload) || Object.keys(payload).some(key=>!['operation','caseId','command','mode'].includes(key)) ||
-      !['identify','prepare','hold','read','unique','read-protection'].includes(payload.operation) ||
-      !(payload.operation==='read-protection'?READ_CASES:CASES).includes(payload.caseId))fail('INVALID_PROBE_REQUEST');
+      !['identify','prepare','hold','read','unique','read-protection','write-protection'].includes(payload.operation) ||
+      !(payload.operation==='read-protection'?READ_CASES:payload.operation==='write-protection'?GUARD_CASES:CASES)
+        .includes(payload.caseId))fail('INVALID_PROBE_REQUEST');
     const command=payload.command===undefined?0:payload.command,mode=payload.mode===undefined?'PICKUP':payload.mode;
     if(!Number.isInteger(command) || command<0 || command>7 || !['PICKUP','DELIVERY'].includes(mode) ||
       (payload.operation==='prepare' && (command!==0 || mode!=='PICKUP')) ||
       (payload.operation==='identify' && (payload.caseId!=='atomic' || command!==0 || mode!=='PICKUP')) ||
       (payload.operation==='unique' && (payload.caseId!=='unique' || command>1)) ||
-      (payload.operation==='read-protection' && (command!==0 || mode!=='PICKUP')) ||
+      (['read-protection','write-protection'].includes(payload.operation) && (command!==0 || mode!=='PICKUP')) ||
       (payload.operation==='hold' && payload.caseId==='unique'))fail('INVALID_PROBE_REQUEST');
     return {operation:payload.operation,caseId:payload.caseId,command,mode};
   }
@@ -153,6 +157,149 @@ function createTransactionProbe({cloud,settings,now=Date.now}) {
       fail('PROBE_READ_PROTECTION_FAILED');
     }
   }
+  // Actual changing writes, never same-value updates. Shared fences only work
+  // if every writer participates; bypass cases deliberately falsify that premise.
+  async function writeProtection(caseId,ownerId,time,context) {
+    const existing=caseId.startsWith('write-existing-'),early=caseId==='write-existing-early';
+    const query=caseId.endsWith('query-empty'),bypass=caseId.startsWith('bypass-');
+    const common=base(caseId,ownerId,time),run=adapter();
+    const dependencyId=id(caseId,'guard-dependency'),fenceId=existing?dependencyId:id(caseId,'guard-fence');
+    const setupId=id(caseId,'guard-setup'),decisionId=id(caseId,'guard-decision');
+    const dependency={...common,_id:dependencyId,type:'READ_DEPENDENCY',heldUnits:0};
+    const db=cloud.database({env:config.environment,throwOnNotFound:false});
+    if(!db || typeof db.startTransaction!=='function')fail('PROBE_MANUAL_TRANSACTION_UNAVAILABLE');
+    await run.runTransaction(async tx=>{
+      authorize(context);
+      for(const [collection,documentId] of [[COLLECTIONS.resources,dependencyId],[COLLECTIONS.resources,fenceId],
+        [COLLECTIONS.records,setupId],[COLLECTIONS.records,decisionId]])
+        if(await tx.read(collection,documentId)!==null)fail('PROBE_RUN_NOT_FRESH');
+      await tx.insert(COLLECTIONS.records,{...common,_id:setupId,type:'GUARD_SETUP'});
+      await tx.insert(COLLECTIONS.resources,existing?dependency:{...common,_id:fenceId,type:'READ_FENCE'});
+    });
+    const isConflict=error=>!!error && [error.code,error.errCode,error.errMsg,error.message].some(value=>
+      typeof value==='string' && /\bDATABASE_TRANSACTION_CONFLICT\b/.test(value));
+    let reader=null,writer=null,readerClosed=false,writerClosed=false;
+    let readerCommitted=false,writerCommitted=false,readerConflict=false,writerConflict=false;
+    function safeError(error,operation) {
+      const values=[error?.code,error?.errCode,error?.errMsg,error?.message].filter(value=>typeof value==='string');
+      const message=values.join(' ');
+      const providerCode=['DATABASE_TRANSACTION_CONFLICT','DATABASE_TRANSACTION_FAIL','DATABASE_REQUEST_FAILED']
+        .find(code=>values.some(value=>new RegExp('\\b'+code+'\\b').test(value))) || 'UNKNOWN';
+      return {operation,providerCode,numericErrCode:Number.isSafeInteger(error?.errCode)?error.errCode:null,
+        messageClass:/NoSuchTransaction|no such transaction|transaction.*(?:not exist|not found|aborted)/i.test(message)?
+          'TRANSACTION_TERMINAL':/WriteConflict/i.test(message)?'WRITE_CONFLICT':'UNKNOWN'};
+    }
+    let primaryError=null;
+    async function rollback(tx) {
+      if(!tx)return;
+      try{await tx.rollback();}catch(error){throw new TransactionProbeError('PROBE_ROLLBACK_UNCONFIRMED',
+        {...safeError(error,'rollback'),primary:primaryError});}
+    }
+    async function fence(tx) {
+      authorize(context);
+      const result=await tx.collection(COLLECTIONS.resources).doc(fenceId).update({data:{version:1}});
+      if(result?.stats?.updated!==1)fail('PROBE_GUARD_WRITE_INVALID');
+    }
+    try {
+      authorize(context);reader=await db.startTransaction();
+      const resources=reader.collection(COLLECTIONS.resources);
+      // Fence is read before the predicate, so any cooperative writer changing
+      // the predicate after this snapshot must conflict with this revision write.
+      const observed=(await resources.doc(fenceId).get())?.data;
+      if(check(observed,caseId,ownerId)._id!==fenceId || observed.version!==0)fail('PROBE_STATE_INVALID');
+      if(query) {
+        if(typeof resources.where!=='function')fail('PROBE_GUARD_QUERY_UNAVAILABLE');
+        const response=await resources.where({scope:common.scope,runId:config.runId,caseId,ownerId,
+          type:'READ_DEPENDENCY'}).limit(2).get();
+        if(!Array.isArray(response?.data) || response.data.length!==0)fail('PROBE_READ_INVALID');
+      }else if(!existing && (await resources.doc(dependencyId).get())?.data!==null)fail('PROBE_READ_INVALID');
+      if(early)await fence(reader);
+      authorize(context);
+      const added=await reader.collection(COLLECTIONS.records).add({data:{...common,_id:decisionId,
+        type:'GUARD_DECISION',observedVersion:existing?0:null}});
+      if(added?._id!==decisionId)fail('PROBE_STATE_INVALID');
+      authorize(context);writer=await db.startTransaction();
+      try {
+        if(!bypass) {
+          const value=(await writer.collection(COLLECTIONS.resources).doc(fenceId).get())?.data;
+          if(check(value,caseId,ownerId)._id!==fenceId || value.version!==0)fail('PROBE_STATE_INVALID');
+          await fence(writer);
+        }
+        authorize(context);
+        if(existing) {
+          const result=await writer.collection(COLLECTIONS.resources).doc(dependencyId).update({data:{heldUnits:1}});
+          if(result?.stats?.updated!==1)fail('PROBE_GUARD_WRITE_INVALID');
+        }else {
+          const result=await writer.collection(COLLECTIONS.resources).add({data:{...dependency,version:1,heldUnits:1}});
+          if(result?._id!==dependencyId)fail('PROBE_STATE_INVALID');
+        }
+        authorize(context);await writer.commit();writerClosed=true;writerCommitted=true;
+      }catch(error) {
+        if(!isConflict(error))throw error;
+        primaryError=safeError(error,'writer-conflict');
+        // The provider defines a write conflict as transaction termination.
+        // Do not commit or end it a second time. Fresh writes below verify that
+        // its locks were released; unknown errors still require cleanup.
+        writerClosed=true;writerConflict=true;
+      }
+      try {
+        if(!early)await fence(reader);
+        authorize(context);await reader.commit();readerClosed=true;readerCommitted=true;
+      }catch(error) {
+        if(!isConflict(error))throw error;
+        primaryError=safeError(error,'reader-conflict');
+        readerClosed=true;readerConflict=true;
+      }
+      if(readerConflict && writerConflict)fail('PROBE_INTERLEAVING_INCONCLUSIVE');
+      const outcome=readerConflict?'READER_CONFLICT':writerConflict?'WRITER_CONFLICT':'STALE_COMMIT';
+      const state=await run.runTransaction(async tx=>{
+        authorize(context);
+        const dependencyNow=await tx.read(COLLECTIONS.resources,dependencyId),fenceNow=await tx.read(COLLECTIONS.resources,fenceId);
+        const decision=await tx.read(COLLECTIONS.records,decisionId);
+        for(const row of [dependencyNow,fenceNow,decision])if(row)check(row,caseId,ownerId);
+        const expectedDependency=writerCommitted || (existing && readerCommitted)?1:existing?0:null;
+        if(!fenceNow || fenceNow.version!==1 || (dependencyNow?.version??null)!==expectedDependency ||
+          !!decision!==readerCommitted || (decision && (decision.type!=='GUARD_DECISION' ||
+            decision.observedVersion!==(existing?0:null))) ||
+          (dependencyNow && dependencyNow.heldUnits!==(writerCommitted?1:0)))fail('PROBE_STATE_INVALID');
+        // Reclaim both potential lock locations in a fresh transaction. A
+        // missing decision alone is insufficient: it could remain staged in a
+        // live reader. Occupying its exact ID detects that retained write lock.
+        await tx.updateVersioned(COLLECTIONS.resources,fenceId,1,{updatedAt:time});
+        if(readerConflict)await tx.insert(COLLECTIONS.records,{...common,_id:decisionId,
+          type:'GUARD_RELEASE_CHECK',observedVersion:existing?0:null});
+        authorize(context);
+        return {expectedDependency,expectedHeld:writerCommitted?1:0};
+      });
+      const verified=await run.runTransaction(async tx=>{
+        authorize(context);
+        const dependencyNow=await tx.read(COLLECTIONS.resources,dependencyId),fenceNow=await tx.read(COLLECTIONS.resources,fenceId);
+        const decision=await tx.read(COLLECTIONS.records,decisionId);
+        for(const row of [dependencyNow,fenceNow,decision])if(row)check(row,caseId,ownerId);
+        const expectedDependency=existing?2:state.expectedDependency;
+        const expectedDecision=readerConflict?'GUARD_RELEASE_CHECK':'GUARD_DECISION';
+        if(!fenceNow || fenceNow.version!==2 || (dependencyNow?.version??null)!==expectedDependency ||
+          (dependencyNow && dependencyNow.heldUnits!==state.expectedHeld) || !decision ||
+          decision.type!==expectedDecision || decision.observedVersion!==(existing?0:null))fail('PROBE_RELEASE_CHECK_FAILED');
+        return {dependencyVersion:dependencyNow?.version??null,fenceVersion:fenceNow.version,
+          decisionExists:decision.type==='GUARD_DECISION',releaseMarker:readerConflict};
+      });
+      return {outcome,writerCommitted,readerCommitted,...verified,writerParticipates:!bypass,
+        readerState:readerConflict?'PROVIDER_CONFLICT_ABORTED':'COMMITTED',
+        writerState:writerConflict?'PROVIDER_CONFLICT_ABORTED':'COMMITTED',
+        conflictDiagnostic:primaryError,lockReleaseVerified:true,
+        protectionKind:existing?'DOCUMENT_WRITE':'SHARED_FENCE',readProtected:readerConflict || writerConflict};
+    }catch(error) {
+      // Always attempt both cleanups. A failed writer rollback must not skip
+      // releasing the reader's locks. Unknown cleanup remains a failed probe.
+      let cleanupError=null;
+      for(const tx of [writer && !writerClosed?writer:null,reader && !readerClosed?reader:null])
+        if(tx)try{await rollback(tx);}catch(failed){cleanupError ||= failed;}
+      if(cleanupError)throw cleanupError;
+      if(error instanceof TransactionProbeError)throw error;
+      throw new TransactionProbeError('PROBE_WRITE_PROTECTION_FAILED',safeError(error,'experiment'));
+    }
+  }
   return Object.freeze({async execute(payload,context) {
     const input=parse(payload),{ownerId,time}=authorize(context,input.operation==='identify');
     const {operation,caseId,command,mode}=input;
@@ -163,6 +310,9 @@ function createTransactionProbe({cloud,settings,now=Date.now}) {
     if(operation==='read-protection')return {scope:'SDK_CAPABILITY_PROBE',businessOrderCreated:false,
       runId:config.runId,caseId,command,mode,disposition:'READ_PROTECTION_OBSERVED',
       ...await readProtection(caseId,ownerId,time,context)};
+    if(operation==='write-protection')return {scope:'SDK_CAPABILITY_PROBE',businessOrderCreated:false,
+      runId:config.runId,caseId,command,mode,disposition:'WRITE_PROTECTION_OBSERVED',
+      ...await writeProtection(caseId,ownerId,time,context)};
     const common=base(caseId,ownerId,time),storeId=id(caseId,'store');
     const resourceIds=[id(caseId,'STOCK'),id(caseId,'PICKUP'),id(caseId,'DELIVERY')];
     const operationId=id(caseId,'operation',command),logId=id(caseId,'log',command),receiptId=id(caseId,'receipt',command);
@@ -246,4 +396,4 @@ function createTransactionProbe({cloud,settings,now=Date.now}) {
     return {scope:'SDK_CAPABILITY_PROBE',businessOrderCreated:false,runId:config.runId,caseId,command,mode,...result};
   }});
 }
-module.exports={createTransactionProbe,TransactionProbeError,COLLECTIONS,CASES,READ_CASES};
+module.exports={createTransactionProbe,TransactionProbeError,COLLECTIONS,CASES,READ_CASES,GUARD_CASES};
