@@ -16,7 +16,9 @@ if (Object.keys(local).some(key => !allowed.includes(key))) throw new Error('本
 if (local.appId !== undefined && local.appId !== project.appid) throw new Error('本地 AppID 与 project.config.json 不一致');
 const config = { ...defaultConfig, ...local, cloudEnvironments: { ...defaultConfig.cloudEnvironments, ...(local.cloudEnvironments || {}) } };
 if (!config.catalog || typeof config.catalog!=='object' || Array.isArray(config.catalog) ||
-    Object.keys(config.catalog).some(key=>!['enabled','storeId','allowedCloudPrefixes'].includes(key)) || typeof config.catalog.enabled!=='boolean' ||
+    Object.keys(config.catalog).some(key=>!['enabled','storeId','allowedCloudPrefixes','allowReferenceImages'].includes(key)) || typeof config.catalog.enabled!=='boolean' ||
+    (config.catalog.allowReferenceImages!==undefined&&typeof config.catalog.allowReferenceImages!=='boolean') ||
+    (config.catalog.allowReferenceImages===true&&config.stage!=='development') ||
     typeof config.catalog.storeId!=='string' || !Array.isArray(config.catalog.allowedCloudPrefixes) ||
     !config.catalog.allowedCloudPrefixes.every(prefix=>typeof prefix==='string' && /^cloud:\/\/[A-Za-z0-9._-]+\/(?:[A-Za-z0-9_-]+\/)*$/.test(prefix)) ||
     (config.catalog.enabled && !/^[A-Za-z0-9_-]{1,256}$/.test(config.catalog.storeId))) throw new Error('无效的目录读取配置');

@@ -46,9 +46,12 @@ test('C02 All excludes other stores/categories, drafts/off-sale/archive, no vali
     value=>value.skus[0].status='OFF_SALE',
     value=>value.skus[0].unitPriceCents=null,
     value=>value.skus[0].maxQuantity=null,
-    value=>value.skus[0].stockRequirements=[],
     value=>value.skus[0].selectedOptions=[null]
   ]){const value=records();mutate(value);assert.ok(!reader(value).productsList(query(),1000).items.some(item=>item.productId==='product-0'));}
+  const noStock=records();noStock.skus[0].stockRequirements=[];
+  assert.ok(reader(noStock).productsList(query(),1000).items.some(item=>item.productId==='product-0'));
+  rejects(()=>require('../cloudfunctions/_shared/catalog-model').resolveSku(noStock.products[0],[noStock.skus[0]],
+    noStock.skus[0].selectedOptions,noStock.skus[0]._id),'CONFIGURATION_REQUIRED');
   const value=records();value.categories[0].published=false;
   assert.equal(reader(value).productsList(query(),1000).items.length,6);
 });
@@ -145,7 +148,7 @@ test('C03 hidden, cross-store, incomplete and unknown details share unavailable;
     value=>value.products[0].storeId='another-store',value=>value.products[0].status='DRAFT',
     value=>value.products[0].status='OFF_SALE',value=>value.categories[0].published=false,
     value=>value.skus[0].status='OFF_SALE',value=>value.skus[0].maxQuantity=null,
-    value=>value.products[0].minLeadTimeMinutes=null,value=>value.mediaAssets[0].sourceKind='DESIGN_PREVIEW'
+    value=>value.products[0].minLeadTimeMinutes=-1,value=>value.mediaAssets[0].sourceKind='DESIGN_PREVIEW'
   ]){const value=records();mutate(value);rejects(()=>reader(value).productGet({productId:'product-0'}),'PRODUCT_UNAVAILABLE');}
   rejects(()=>reader().productGet({productId:'unknown'}),'PRODUCT_UNAVAILABLE');
   for(const input of [null,{}, {productId:''},{productId:'../secret'},{productId:'product-0',includeDraft:true}])
@@ -175,6 +178,32 @@ test('C03 only complete on-sale SKUs set detail price and quantity; labels come 
   alternative.status='DRAFT';assert.equal(reader(value).productGet({productId:'product-0'}).skus.length,1);
   alternative.status='ON_SALE';alternative.minQuantity=null;
   assert.equal(reader(value).productGet({productId:'product-0'}).minPriceCents,1000);
+});
+test('readonly catalog shows confirmed prices with unknown purchase policies while authoritative purchase remains blocked',()=>{
+  const value=records(),product=value.products[0],sku=value.skus[0];
+  product.minLeadTimeMinutes=null;product.messagePolicy=null;
+  sku.minQuantity=null;sku.maxQuantity=null;sku.stockRequirements=[];
+  const detail=reader(value).productGet({productId:product._id});
+  assert.equal(detail.minPriceCents,sku.unitPriceCents);assert.equal(detail.minLeadTimeMinutes,null);
+  assert.equal(detail.skus[0].minQuantity,null);assert.equal(detail.skus[0].maxQuantity,null);
+  assert.ok(!JSON.stringify(detail).includes('stockRequirements'));
+  const {resolveSku}=require('../cloudfunctions/_shared/catalog-model');
+  rejects(()=>resolveSku(product,[sku],sku.selectedOptions,sku._id),'CONFIGURATION_REQUIRED');
+  for(const mutate of [s=>s.unitPriceCents=null,s=>s.currency='USD',s=>s.maxQuantity=2]){
+    const changed=clone(value);mutate(changed.skus[0]);
+    rejects(()=>reader(changed).productGet({productId:product._id}),'PRODUCT_UNAVAILABLE');
+  }
+});
+test('readonly reference cover requires both explicit development configuration and per-asset approval, retains source truth',()=>{
+  const value=records();value.mediaAssets[0].sourceKind='DESIGN_PREVIEW';
+  value.products.forEach(p=>p.images[0].sourceKind='DESIGN_PREVIEW');
+  const enabled={...context,allowReferenceImages:true};
+  rejects(()=>reader(value,enabled).productGet({productId:'product-0'}),'PRODUCT_UNAVAILABLE');
+  value.mediaAssets[0].catalogApproved=true;
+  rejects(()=>reader(value).productGet({productId:'product-0'}),'PRODUCT_UNAVAILABLE');
+  const detail=reader(value,enabled).productGet({productId:'product-0'});
+  assert.equal(detail.cover.sourceKind,'DESIGN_PREVIEW');assert.ok(!JSON.stringify(detail).includes('catalogApproved'));
+  rejects(()=>reader(value,{...enabled,stage:'production'}),'INVALID_CATALOG_READ_CONFIGURATION');
 });
 test('C03 frozen isolated formal detail round-trips client combinations to D03 authoritative SKU facts',()=>{
   const {createSpecificationModel}=require('../miniprogram/utils/specification-model');

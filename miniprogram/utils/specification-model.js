@@ -45,10 +45,11 @@ function createSpecificationModel(input){
       !CATEGORIES.includes(input.categoryCode)||!Array.isArray(input.optionGroups)||!Array.isArray(input.skus)||!input.skus.length)
     fail('INVALID_SPECIFICATION_CONFIGURATION');
   const preview=input.source==='DEVELOPMENT_EXAMPLE';
+  const readOnly=input.source==='PUBLIC_CATALOG'&&input.canPurchase===false;
   if((input.source!==undefined&&!['PUBLIC_CATALOG','DEVELOPMENT_EXAMPLE'].includes(input.source))||
       (preview&&input.canPurchase!==false)||
       (input.minLeadTimeMinutes!==null&&!integer(input.minLeadTimeMinutes))||
-      (!preview&&input.minLeadTimeMinutes===null))fail('INVALID_SPECIFICATION_CONFIGURATION');
+      (!preview&&!readOnly&&input.minLeadTimeMinutes===null))fail('INVALID_SPECIFICATION_CONFIGURATION');
   const groups=[],byGroup=new Map();
   for(const original of input.optionGroups){
     if(!plain(original)||!text(original.groupCode)||!text(original.label)||typeof original.required!=='boolean'||
@@ -85,7 +86,7 @@ function createSpecificationModel(input){
         !text(original.description)||original.currency!=='CNY'||
         (original.unitPriceCents!==null&&!integer(original.unitPriceCents,true))||
         (!preview&&original.unitPriceCents===null)||
-        !((original.minQuantity===null&&original.maxQuantity===null&&preview)||
+        !((original.minQuantity===null&&original.maxQuantity===null&&(preview||readOnly))||
           (integer(original.minQuantity,true)&&integer(original.maxQuantity,true)&&original.minQuantity<=original.maxQuantity)))
       fail('INVALID_SPECIFICATION_CONFIGURATION');
     let chosen;
@@ -135,7 +136,7 @@ function createSpecificationModel(input){
         ...option,enabled:enabled(chosen,index,option.optionCode),selected:chosen.get(group.groupCode)===option.optionCode
       }))})),
       messagePolicy,messageSupport,source:config.source,
-      configurationPending:preview&&(config.minLeadTimeMinutes===null||messageSupport==='PENDING_LIMIT'||messageSupport==='UNKNOWN'||
+      configurationPending:(preview||readOnly)&&(config.minLeadTimeMinutes===null||messageSupport==='PENDING_LIMIT'||messageSupport==='UNKNOWN'||
         !matchedSku||matchedSku.unitPriceCents===null||matchedSku.minQuantity===null||matchedSku.maxQuantity===null),
       // A configuration match is never proof of live stock, store availability or purchase authorization.
       canPurchase:false,requiresReconfirmation:false,clearedOptions:[],notice:''});

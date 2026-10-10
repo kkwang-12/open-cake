@@ -83,7 +83,7 @@ function assertSaleConfiguration(product, sku) {
     if (product.messagePolicy.normalizationVersion !== NORMALIZATION_VERSION) fail('NORMALIZATION_UNSUPPORTED');
   }
 }
-function resolveSku(product, skus, selection, requestedSkuId) {
+function matchSku(product, skus, selection, requestedSkuId) {
   if (!plain(product) || !text(product._id) || !text(product.storeId) || !text(product.name) ||
       !integer(product.version) || !CATEGORIES.includes(product.categoryCode)) fail('INVALID_CATALOG');
   if (product.status !== 'ON_SALE') fail('PRODUCT_UNAVAILABLE');
@@ -106,6 +106,19 @@ function resolveSku(product, skus, selection, requestedSkuId) {
   }
   if (!match || match.status !== 'ON_SALE') fail('SKU_UNAVAILABLE');
   if (requestedSkuId !== undefined && requestedSkuId !== match._id) fail('SKU_SELECTION_MISMATCH');
+  return {match, selectedOptions};
+}
+// Browsing requires authoritative identity/options/price, not an invented stock or purchase policy.
+function resolveDisplaySku(product, skus, selection, requestedSkuId) {
+  const {match, selectedOptions}=matchSku(product,skus,selection,requestedSkuId);
+  if(!integer(match.unitPriceCents,true)||match.currency!=='CNY')fail('INVALID_CATALOG');
+  if(!((match.minQuantity===null&&match.maxQuantity===null)||
+      (integer(match.minQuantity,true)&&integer(match.maxQuantity,true)&&match.maxQuantity>=match.minQuantity)))fail('INVALID_CATALOG');
+  return freeze({_id:match._id,version:match.version,description:match.description,selectedOptions,
+    unitPriceCents:match.unitPriceCents,currency:'CNY',minQuantity:match.minQuantity,maxQuantity:match.maxQuantity});
+}
+function resolveSku(product, skus, selection, requestedSkuId) {
+  const {match, selectedOptions}=matchSku(product,skus,selection,requestedSkuId);
   assertSaleConfiguration(product, match);
   return freeze({ _id: match._id, productId: product._id, storeId: product.storeId, version: match.version,
     description: match.description, currency: 'CNY', unitPriceCents: match.unitPriceCents,
@@ -156,5 +169,5 @@ function aggregateStockRequirements(lines) {
   return freeze([...demands].sort(([a], [b]) => a < b ? -1 : a > b ? 1 : 0)
     .map(([resourceId, requiredUnits]) => ({ resourceId, requiredUnits })));
 }
-module.exports = { CATEGORIES, NORMALIZATION_VERSION, CatalogModelError, resolveSku, assertQuantity,
+module.exports = { CATEGORIES, NORMALIZATION_VERSION, CatalogModelError, resolveSku, resolveDisplaySku, assertQuantity,
   normalizeCakeMessage, messageFingerprint, aggregateStockRequirements };

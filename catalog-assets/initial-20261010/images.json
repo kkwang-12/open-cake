@@ -1,0 +1,108 @@
+{
+  "createdAt": 1791599036996,
+  "reference": {
+    "file": "catalog-assets/development/catalog-example.png",
+    "sha256": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+  },
+  "images": [
+    {
+      "key": "strawberry-cake",
+      "file": "strawberry-cake-r1.png",
+      "sha256": "36ea452e8d59a842cf253a77527cd82e08fc158bcc0dda0b32eacd44fdbbf974",
+      "byteLength": 1933111,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "chocolate-cake",
+      "file": "chocolate-cake-r1.png",
+      "sha256": "bb3586f223d65ac12b687776ed56ca3a92dadc504be061f6c7d79b5270b9a00f",
+      "byteLength": 2457516,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "mango-cake",
+      "file": "mango-cake-r1.png",
+      "sha256": "48e43a4616be8b07771fabcfdca38dd1924a106aa06b12d48afd5b83d16d7ce0",
+      "byteLength": 1996519,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "strawberry-mini",
+      "file": "strawberry-mini-r1.png",
+      "sha256": "3b04c98eda517fe2b294fc3d51e89ed04c3acd54938d598a48d208ded92557a7",
+      "byteLength": 1959853,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "chocolate-mini",
+      "file": "chocolate-mini-r1.png",
+      "sha256": "b361ee056e743ffe53628d80b1131b8f3469ae67ade189243dd51d48a17265e5",
+      "byteLength": 2317291,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "blueberry-mini",
+      "file": "blueberry-mini-r1.png",
+      "sha256": "cfedd6e621115b0b59bb4a7cf8ff495f21872c626c7509e5e99a2cd3c724a186",
+      "byteLength": 1985807,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "croissant",
+      "file": "croissant-r1.png",
+      "sha256": "f9e9eb38cb54bb01e0f473cb6932df9ff8a2bb3c041941f2786f2279c1db0602",
+      "byteLength": 2079800,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "bagel",
+      "file": "bagel-r1.png",
+      "sha256": "0dafacf9a83835dd4b0c0e4f0f2129b55590b1affa2ef722ee101688f3829c52",
+      "byteLength": 2048031,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    },
+    {
+      "key": "sourdough",
+      "file": "sourdough-r1.png",
+      "sha256": "fb14d386b6fc5a7eefc05d5093b8cd5531928f05774124bd506a04559037affd",
+      "byteLength": 2506757,
+      "width": 1254,
+      "height": 1254,
+      "sourceKind": "DESIGN_PREVIEW",
+      "generator": "BUILT_IN_IMAGE_GEN",
+      "referenceHash": "59bd65e8a237f6774841955062979f146ac5daabf5122e1c4c47ec34fe62bbbe"
+    }
+  ]
+}

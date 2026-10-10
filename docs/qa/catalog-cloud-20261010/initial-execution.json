@@ -1,0 +1,190 @@
+{
+  "authorization": "USER_CONFIRMED_2026-10-10_36_DOCUMENTS_9_REFERENCE_IMAGES_CATALOG_ONLY",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "startedAt": 1791599227754,
+  "beforeCounts": [
+    {
+      "name": "admin_roles",
+      "count": 0
+    },
+    {
+      "name": "audit_logs",
+      "count": 0
+    },
+    {
+      "name": "categories",
+      "count": 0
+    },
+    {
+      "name": "media_assets",
+      "count": 0
+    },
+    {
+      "name": "products",
+      "count": 0
+    },
+    {
+      "name": "skus",
+      "count": 0
+    },
+    {
+      "name": "users",
+      "count": 1
+    }
+  ],
+  "uploads": [
+    {
+      "key": "strawberry-cake",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/strawberry-cake-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "chocolate-cake",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/chocolate-cake-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "mango-cake",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/mango-cake-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "strawberry-mini",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/strawberry-mini-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "chocolate-mini",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/chocolate-mini-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "blueberry-mini",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/blueberry-mini-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "croissant",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/croissant-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "bagel",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/bagel-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    },
+    {
+      "key": "sourdough",
+      "success": true,
+      "cloudPath": "catalog/g1-initial-20261010/sourdough-r1.png",
+      "storageCdnDomain": "636c-cloudbase-d8gwtxzm64150b7e0-1501710237.tcb.qcloud.la"
+    }
+  ],
+  "inserts": [
+    {
+      "collectionName": "media_assets",
+      "expected": 9,
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"fc7016e7-be4f-4e18-99eb-c2ca2b4bb005\",\n  \"insertedIds\": [\n    \"bd9f15c08a81405bc445989fae9d40892bd27170404427f6bd869e1d66b4ef99\",\n    \"41460dfe0834e54f1945ee52d0eb58a2057fa7fbb2f9f802692fa5f8df961b5b\",\n    \"fd007f60f17f39f8d9cffb03ed0d4c06f4ddf5ef5e1d8eba6ffe37ec13aa5cf4\",\n    \"167123c89cc582f20c3234df6447c07d8f32ac1a9504c92891346dfb19527bc4\",\n    \"262d003036cbe16f973e014f0ba8b29dc9f00e2a569fa7686dd207607036b78f\",\n    \"f1405e7f458a4749a6655c21a70d65afe0abaf77128e9913b9e956055881fbc9\",\n    \"11fee86d784da45e4b17602b97080195f39d3f0ce5391bfca5fa75ae9be8539e\",\n    \"19850de5b5159f6a07535435dfab6bd7c7887858467b778c267de7b22f85eae0\",\n    \"2fe93ce8c7ceb976320690c0096ac89ed741f9e52435c1735499e793cd44ad93\"\n  ],\n  \"insertedCount\": 9,\n  \"message\": \"文档插入成功\",\n  \"collection\": \"media_assets\",\n  \"collectionName\": \"media_assets\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "collectionName": "skus",
+      "expected": 15,
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"98640c93-3750-4237-b371-09fdae9c3611\",\n  \"insertedIds\": [\n    \"g1-initial-strawberry-cake-6-inch\",\n    \"g1-initial-strawberry-cake-8-inch\",\n    \"g1-initial-strawberry-cake-10-inch\",\n    \"g1-initial-chocolate-cake-6-inch\",\n    \"g1-initial-chocolate-cake-8-inch\",\n    \"g1-initial-chocolate-cake-10-inch\",\n    \"g1-initial-mango-cake-6-inch\",\n    \"g1-initial-mango-cake-8-inch\",\n    \"g1-initial-mango-cake-10-inch\",\n    \"g1-initial-strawberry-mini-single\",\n    \"g1-initial-chocolate-mini-single\",\n    \"g1-initial-blueberry-mini-single\",\n    \"g1-initial-croissant-single\",\n    \"g1-initial-bagel-single\",\n    \"g1-initial-sourdough-single\"\n  ],\n  \"insertedCount\": 15,\n  \"message\": \"文档插入成功\",\n  \"collection\": \"skus\",\n  \"collectionName\": \"skus\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "collectionName": "products",
+      "expected": 9,
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"fc98a371-bfac-4f3f-b8a9-a562d6ba1acd\",\n  \"insertedIds\": [\n    \"g1-initial-strawberry-cake\",\n    \"g1-initial-chocolate-cake\",\n    \"g1-initial-mango-cake\",\n    \"g1-initial-strawberry-mini\",\n    \"g1-initial-chocolate-mini\",\n    \"g1-initial-blueberry-mini\",\n    \"g1-initial-croissant\",\n    \"g1-initial-bagel\",\n    \"g1-initial-sourdough\"\n  ],\n  \"insertedCount\": 9,\n  \"message\": \"文档插入成功\",\n  \"collection\": \"products\",\n  \"collectionName\": \"products\"\n}"
+          }
+        ]
+      }
+    },
+    {
+      "collectionName": "categories",
+      "expected": 3,
+      "response": {
+        "content": [
+          {
+            "type": "text",
+            "text": "{\n  \"success\": true,\n  \"requestId\": \"e8512a2e-53c9-4d60-95d3-af42ccebd43f\",\n  \"insertedIds\": [\n    \"g1-initial-category-CAKE\",\n    \"g1-initial-category-MINI_CAKE\",\n    \"g1-initial-category-BREAD\"\n  ],\n  \"insertedCount\": 3,\n  \"message\": \"文档插入成功\",\n  \"collection\": \"categories\",\n  \"collectionName\": \"categories\"\n}"
+          }
+        ]
+      }
+    }
+  ],
+  "functionCodeConfirmed": true,
+  "functionCodeReadback": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getFunctionDetail\",\n    \"functionName\": \"catalog\",\n    \"functionDetail\": {\n      \"AccessInfo\": {\n        \"Host\": \"\",\n        \"Vip\": \"\"\n      },\n      \"AddTime\": \"2026-10-10 09:16:37\",\n      \"ApmConfig\": {\n        \"InstanceId\": \"\",\n        \"Region\": \"\"\n      },\n      \"AsyncRunEnable\": \"FALSE\",\n      \"AvailableStatus\": \"Available\",\n      \"CfsConfig\": {\n        \"CfsInsList\": []\n      },\n      \"ClsLogsetId\": \"\",\n      \"ClsTopicId\": \"\",\n      \"ClusterName\": \"ap-shanghai-tcb-cube-1\",\n      \"CodeError\": \"\",\n      \"CodeInfo\": \"'use strict';\\nconst cloud=require('wx-server-sdk');\\nconst {nativeContextForInvocation}=require('./shared/native-context');\\nconst {createCatalogCloudHandler,createCloudCatalogRepository}=require('./shared/catalog-cloud-handler');\\ncloud.init({env:cloud.DYNAMIC_CURRENT_ENV});\\nlet prefixes=[];\\ntry { prefixes=JSON.parse(process.env.JJL_CATALOG_MEDIA_PREFIXES || '[]'); } catch (_) { prefixes=null; }\\nconst settings={appId:process.env.JJL_APP_ID,environment:process.env.JJL_CLOUD_ENV,stage:process.env.JJL_STAGE,\\n  enabled:process.env.JJL_CATALOG_READ_ENABLED==='true',storeId:process.env.JJL_CATALOG_STORE_ID,\\n  allowedCloudPrefixes:prefixes,allowReferenceImages:process.env.JJL_CATALOG_REFERENCE_IMAGES_ENABLED==='true',\\n  cursorKey:{id:'catalog-v1',secret:Buffer.from(process.env.JJL_CATALOG_CURSOR_SECRET || '','base64')}};\\n// Invalid deployment config must return a safe envelope instead of failing module initialization.\\nconst repository=settings.storeId?{readSnapshot:()=>createCloudCatalogRepository(cloud.database(),settings.storeId,settings.allowReferenceImages).readSnapshot()}:null;\\nexports.main=createCatalogCloudHandler({settings,repository,getContext:invocation=>nativeContextForInvocation(cloud,invocation)});\\n\",\n      \"CodeResult\": \"success\",\n      \"CodeSecret\": \"\",\n      \"CodeSize\": 7428931,\n      \"CosFsConfig\": {\n        \"CosFsInsList\": []\n      },\n      \"CpuSize\": 0.2,\n      \"DeadLetterConfig\": {\n        \"FilterType\": \"\",\n        \"Name\": \"\",\n        \"Type\": \"\"\n      },\n      \"DeployMode\": \"code\",\n      \"Description\": \"\",\n      \"DiskSize\": 512,\n      \"DnsCache\": \"FALSE\",\n      \"EipConfig\": {\n        \"EipFixed\": \"FALSE\",\n        \"Eips\": []\n      },\n      \"Environment\": {\n        \"Variables\": [\n          {\n            \"Key\": \"JJL_APP_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 18\n          },\n          {\n            \"Key\": \"JJL_CLOUD_ENV\",\n            \"Value\": \"***\",\n            \"ValueLength\": 27\n          },\n          {\n            \"Key\": \"JJL_STAGE\",\n            \"Value\": \"***\",\n            \"ValueLength\": 11\n          },\n          {\n            \"Key\": \"JJL_CATALOG_READ_ENABLED\",\n            \"Value\": \"***\",\n            \"ValueLength\": 4\n          },\n          {\n            \"Key\": \"JJL_CATALOG_STORE_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 16\n          },\n          {\n            \"Key\": \"JJL_CATALOG_MEDIA_PREFIXES\",\n            \"Value\": \"***\",\n            \"ValueLength\": 2\n          },\n          {\n            \"Key\": \"JJL_CATALOG_CURSOR_SECRET\",\n            \"Value\": \"***\",\n            \"ValueLength\": 44\n          }\n        ]\n      },\n      \"ErrNo\": 0,\n      \"FunctionId\": \"lam-9enp8uxb\",\n      \"FunctionName\": \"catalog\",\n      \"FunctionVersion\": \"$LATEST\",\n      \"GooseFsConfigs\": [],\n      \"Handler\": \"index.main\",\n      \"IgnoreSysLog\": false,\n      \"ImageConfig\": {\n        \"Args\": \"\",\n        \"Command\": \"\",\n        \"ContainerImageAccelerate\": false,\n        \"ImageType\": \"\",\n        \"ImageUri\": \"\",\n        \"RegistryId\": \"\"\n      },\n      \"InitTimeout\": 65,\n      \"InstallDependency\": \"TRUE\",\n      \"InstanceConcurrencyConfig\": {\n        \"DynamicEnabled\": \"\",\n        \"InstanceIsolationEnabled\": \"\",\n        \"MaxConcurrency\": 0,\n        \"MixNodeConfig\": null,\n        \"SessionConfig\": {\n          \"IdleTimeoutStrategy\": \"\",\n          \"MaximumConcurrencySessionPerInstance\": 0,\n          \"MaximumIdleTimeInSeconds\": 0,\n          \"MaximumTTLInSeconds\": 0,\n          \"SessionName\": \"\",\n          \"SessionPath\": \"\",\n          \"SessionSource\": \"\"\n        },\n        \"Type\": \"\"\n      },\n      \"IntranetConfig\": {\n        \"IpAddress\": [],\n        \"IpFixed\": \"DISABLE\"\n      },\n      \"L5Enable\": \"FALSE\",\n      \"Layers\": [],\n      \"LogFormat\": \"tcb-default\",\n      \"LogType\": \"normal\",\n      \"MemorySize\": 256,\n      \"ModTime\": \"2026-10-10 10:33:59\",\n      \"Namespace\": \"cloudbase-d8gwtxzm64150b7e0\",\n      \"NodeSpec\": \"\",\n      \"NodeType\": \"CPU\",\n      \"OnsEnable\": \"FALSE\",\n      \"OverClockConfig\": {\n        \"TimeOut\": 0\n      },\n      \"Plugins\": [],\n      \"Port\": 0,\n      \"PrivilegeEnable\": false,\n      \"ProtocolParams\": {\n        \"WSParams\": {\n          \"IdleTimeOut\": 0\n        }\n      },\n      \"ProtocolType\": \"\",\n      \"PublicNetConfig\": {\n        \"EipConfig\": {\n          \"EipAddress\": [],\n          \"EipStatus\": \"DISABLE\"\n        },\n        \"PublicNetStatus\": \"ENABLE\"\n      },\n      \"Qualifier\": \"$LATEST\",\n      \"ReadinessProbe\": {\n        \"Enable\": false,\n        \"FailureThreshold\": 0,\n        \"HTTPGetURL\": \"\",\n        \"InitialDelaySeconds\": 0,\n        \"PeriodSeconds\": 0,\n        \"SuccessThreshold\": 0,\n        \"TimeoutSeconds\": 0\n      },\n      \"RequestId\": \"090e366e-4df4-4378-852b-3b80be03b055\",\n      \"ResourceId\": \"scf-sh-9enp8uxb\",\n      \"Role\": \"TCB_QcsRole\",\n      \"Runtime\": \"Nodejs20.19\",\n      \"SFType\": \"\",\n      \"SessionSourceConfig\": [],\n      \"Status\": \"Active\",\n      \"StatusDesc\": \"\",\n      \"StatusReasons\": [],\n      \"Tags\": [],\n      \"Timeout\": 20,\n      \"TraceEnable\": \"FALSE\",\n      \"Triggers\": [],\n      \"Type\": \"Event\",\n      \"UseGpu\": \"FALSE\",\n      \"VpcConfig\": {\n        \"SubnetId\": \"\",\n        \"VpcId\": \"\"\n      }\n    },\n    \"layers\": [],\n    \"triggers\": [],\n    \"requestId\": \"090e366e-4df4-4378-852b-3b80be03b055\",\n    \"raw\": {\n      \"AccessInfo\": {\n        \"Host\": \"\",\n        \"Vip\": \"\"\n      },\n      \"AddTime\": \"2026-10-10 09:16:37\",\n      \"ApmConfig\": {\n        \"InstanceId\": \"\",\n        \"Region\": \"\"\n      },\n      \"AsyncRunEnable\": \"FALSE\",\n      \"AvailableStatus\": \"Available\",\n      \"CfsConfig\": {\n        \"CfsInsList\": []\n      },\n      \"ClsLogsetId\": \"\",\n      \"ClsTopicId\": \"\",\n      \"ClusterName\": \"ap-shanghai-tcb-cube-1\",\n      \"CodeError\": \"\",\n      \"CodeInfo\": \"'use strict';\\nconst cloud=require('wx-server-sdk');\\nconst {nativeContextForInvocation}=require('./shared/native-context');\\nconst {createCatalogCloudHandler,createCloudCatalogRepository}=require('./shared/catalog-cloud-handler');\\ncloud.init({env:cloud.DYNAMIC_CURRENT_ENV});\\nlet prefixes=[];\\ntry { prefixes=JSON.parse(process.env.JJL_CATALOG_MEDIA_PREFIXES || '[]'); } catch (_) { prefixes=null; }\\nconst settings={appId:process.env.JJL_APP_ID,environment:process.env.JJL_CLOUD_ENV,stage:process.env.JJL_STAGE,\\n  enabled:process.env.JJL_CATALOG_READ_ENABLED==='true',storeId:process.env.JJL_CATALOG_STORE_ID,\\n  allowedCloudPrefixes:prefixes,allowReferenceImages:process.env.JJL_CATALOG_REFERENCE_IMAGES_ENABLED==='true',\\n  cursorKey:{id:'catalog-v1',secret:Buffer.from(process.env.JJL_CATALOG_CURSOR_SECRET || '','base64')}};\\n// Invalid deployment config must return a safe envelope instead of failing module initialization.\\nconst repository=settings.storeId?{readSnapshot:()=>createCloudCatalogRepository(cloud.database(),settings.storeId,settings.allowReferenceImages).readSnapshot()}:null;\\nexports.main=createCatalogCloudHandler({settings,repository,getContext:invocation=>nativeContextForInvocation(cloud,invocation)});\\n\",\n      \"CodeResult\": \"success\",\n      \"CodeSecret\": \"\",\n      \"CodeSize\": 7428931,\n      \"CosFsConfig\": {\n        \"CosFsInsList\": []\n      },\n      \"CpuSize\": 0.2,\n      \"DeadLetterConfig\": {\n        \"FilterType\": \"\",\n        \"Name\": \"\",\n        \"Type\": \"\"\n      },\n      \"DeployMode\": \"code\",\n      \"Description\": \"\",\n      \"DiskSize\": 512,\n      \"DnsCache\": \"FALSE\",\n      \"EipConfig\": {\n        \"EipFixed\": \"FALSE\",\n        \"Eips\": []\n      },\n      \"Environment\": {\n        \"Variables\": [\n          {\n            \"Key\": \"JJL_APP_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 18\n          },\n          {\n            \"Key\": \"JJL_CLOUD_ENV\",\n            \"Value\": \"***\",\n            \"ValueLength\": 27\n          },\n          {\n            \"Key\": \"JJL_STAGE\",\n            \"Value\": \"***\",\n            \"ValueLength\": 11\n          },\n          {\n            \"Key\": \"JJL_CATALOG_READ_ENABLED\",\n            \"Value\": \"***\",\n            \"ValueLength\": 4\n          },\n          {\n            \"Key\": \"JJL_CATALOG_STORE_ID\",\n            \"Value\": \"***\",\n            \"ValueLength\": 16\n          },\n          {\n            \"Key\": \"JJL_CATALOG_MEDIA_PREFIXES\",\n            \"Value\": \"***\",\n            \"ValueLength\": 2\n          },\n          {\n            \"Key\": \"JJL_CATALOG_CURSOR_SECRET\",\n            \"Value\": \"***\",\n            \"ValueLength\": 44\n          }\n        ]\n      },\n      \"ErrNo\": 0,\n      \"FunctionId\": \"lam-9enp8uxb\",\n      \"FunctionName\": \"catalog\",\n      \"FunctionVersion\": \"$LATEST\",\n      \"GooseFsConfigs\": [],\n      \"Handler\": \"index.main\",\n      \"IgnoreSysLog\": false,\n      \"ImageConfig\": {\n        \"Args\": \"\",\n        \"Command\": \"\",\n        \"ContainerImageAccelerate\": false,\n        \"ImageType\": \"\",\n        \"ImageUri\": \"\",\n        \"RegistryId\": \"\"\n      },\n      \"InitTimeout\": 65,\n      \"InstallDependency\": \"TRUE\",\n      \"InstanceConcurrencyConfig\": {\n        \"DynamicEnabled\": \"\",\n        \"InstanceIsolationEnabled\": \"\",\n        \"MaxConcurrency\": 0,\n        \"MixNodeConfig\": null,\n        \"SessionConfig\": {\n          \"IdleTimeoutStrategy\": \"\",\n          \"MaximumConcurrencySessionPerInstance\": 0,\n          \"MaximumIdleTimeInSeconds\": 0,\n          \"MaximumTTLInSeconds\": 0,\n          \"SessionName\": \"\",\n          \"SessionPath\": \"\",\n          \"SessionSource\": \"\"\n        },\n        \"Type\": \"\"\n      },\n      \"IntranetConfig\": {\n        \"IpAddress\": [],\n        \"IpFixed\": \"DISABLE\"\n      },\n      \"L5Enable\": \"FALSE\",\n      \"Layers\": [],\n      \"LogFormat\": \"tcb-default\",\n      \"LogType\": \"normal\",\n      \"MemorySize\": 256,\n      \"ModTime\": \"2026-10-10 10:33:59\",\n      \"Namespace\": \"cloudbase-d8gwtxzm64150b7e0\",\n      \"NodeSpec\": \"\",\n      \"NodeType\": \"CPU\",\n      \"OnsEnable\": \"FALSE\",\n      \"OverClockConfig\": {\n        \"TimeOut\": 0\n      },\n      \"Plugins\": [],\n      \"Port\": 0,\n      \"PrivilegeEnable\": false,\n      \"ProtocolParams\": {\n        \"WSParams\": {\n          \"IdleTimeOut\": 0\n        }\n      },\n      \"ProtocolType\": \"\",\n      \"PublicNetConfig\": {\n        \"EipConfig\": {\n          \"EipAddress\": [],\n          \"EipStatus\": \"DISABLE\"\n        },\n        \"PublicNetStatus\": \"ENABLE\"\n      },\n      \"Qualifier\": \"$LATEST\",\n      \"ReadinessProbe\": {\n        \"Enable\": false,\n        \"FailureThreshold\": 0,\n        \"HTTPGetURL\": \"\",\n        \"InitialDelaySeconds\": 0,\n        \"PeriodSeconds\": 0,\n        \"SuccessThreshold\": 0,\n        \"TimeoutSeconds\": 0\n      },\n      \"RequestId\": \"090e366e-4df4-4378-852b-3b80be03b055\",\n      \"ResourceId\": \"scf-sh-9enp8uxb\",\n      \"Role\": \"TCB_QcsRole\",\n      \"Runtime\": \"Nodejs20.19\",\n      \"SFType\": \"\",\n      \"SessionSourceConfig\": [],\n      \"Status\": \"Active\",\n      \"StatusDesc\": \"\",\n      \"StatusReasons\": [],\n      \"Tags\": [],\n      \"Timeout\": 20,\n      \"TraceEnable\": \"FALSE\",\n      \"Triggers\": [],\n      \"Type\": \"Event\",\n      \"UseGpu\": \"FALSE\",\n      \"VpcConfig\": {\n        \"SubnetId\": \"\",\n        \"VpcId\": \"\"\n      }\n    }\n  },\n  \"message\": \"已获取函数 catalog 的详情\",\n  \"nextActions\": [\n    {\n      \"tool\": \"queryFunctions\",\n      \"action\": \"listFunctionLogs\",\n      \"reason\": \"查看该函数的执行日志\"\n    },\n    {\n      \"tool\": \"manageFunctions\",\n      \"action\": \"updateFunctionConfig\",\n      \"reason\": \"更新该函数配置\"\n    },\n    {\n      \"tool\": \"queryGateway\",\n      \"action\": \"getRoute\",\n      \"reason\": \"查看该函数是否已暴露网关访问入口\"\n    }\n  ]\n}"
+      }
+    ]
+  },
+  "functionConfigConfirmed": true,
+  "storageRuleUpdate": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"updateResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"storage\",\n    \"resourceId\": \"636c-cloudbase-d8gwtxzm64150b7e0-1501710237\",\n    \"permission\": \"CUSTOM\",\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"ded95f35-a8b2-4c80-ab44-5760c04fc207\",\n      \"Data\": {\n        \"Success\": true\n      }\n    }\n  },\n  \"message\": \"资源权限更新成功\"\n}"
+      }
+    ]
+  },
+  "storageRule": {
+    "read": "auth != null && ((resource.openid != null && resource.openid != '' && (resource.openid == auth.openid || resource.openid == auth.uid)) || (auth.loginType != 'ANONYMOUS' && (resource.path == 'catalog/g1-initial-20261010/strawberry-cake-r1.png' || resource.path == 'catalog/g1-initial-20261010/chocolate-cake-r1.png' || resource.path == 'catalog/g1-initial-20261010/mango-cake-r1.png' || resource.path == 'catalog/g1-initial-20261010/strawberry-mini-r1.png' || resource.path == 'catalog/g1-initial-20261010/chocolate-mini-r1.png' || resource.path == 'catalog/g1-initial-20261010/blueberry-mini-r1.png' || resource.path == 'catalog/g1-initial-20261010/croissant-r1.png' || resource.path == 'catalog/g1-initial-20261010/bagel-r1.png' || resource.path == 'catalog/g1-initial-20261010/sourdough-r1.png')))",
+    "write": false
+  },
+  "documentReadback": [
+    {
+      "collection": "categories",
+      "count": 3,
+      "exactContentMatch": true
+    },
+    {
+      "collection": "products",
+      "count": 9,
+      "exactContentMatch": true
+    },
+    {
+      "collection": "skus",
+      "count": 15,
+      "exactContentMatch": true
+    },
+    {
+      "collection": "media_assets",
+      "count": 9,
+      "exactContentMatch": true
+    }
+  ],
+  "nativeStatus": "AUTOMATOR_TIMEOUT; NOT_ACCEPTED",
+  "mainReferenceConfigurationEnabled": false,
+  "device": "NOT_RUN",
+  "funds": "NOT_RUN",
+  "appUpload": "NOT_RUN"
+}

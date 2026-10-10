@@ -1,7 +1,7 @@
 'use strict';
 // C02/C03 public projections over a trusted, consistent, finite snapshot. No SDK handler.
 const { canonicalJSON, requestFingerprint }=require('./idempotency-model');
-const { CATEGORIES, resolveSku }=require('./catalog-model');
+const { CATEGORIES, NORMALIZATION_VERSION, resolveDisplaySku }=require('./catalog-model');
 const { projectMediaReference }=require('./media-model');
 const { pageRequest, issueCursor, readCursor }=require('./pagination-model');
 const API_VERSION='v1-api-2026-10-03';
@@ -21,6 +21,8 @@ function createCatalogReadModel(records,context,key){
   context=snapshot(context,'INVALID_CATALOG_READ_CONFIGURATION');
   if(!plain(context)||!text(context.environment)||!id(context.storeId)||
       !['development','test','production'].includes(context.stage)||!Array.isArray(context.allowedCloudPrefixes)||
+      (context.allowReferenceImages!==undefined&&typeof context.allowReferenceImages!=='boolean')||
+      (context.allowReferenceImages===true&&context.stage!=='development')||
       !plain(key)||!text(key.id)||!Buffer.isBuffer(key.secret)||key.secret.length<32)fail('INVALID_CATALOG_READ_CONFIGURATION');
   key={id:key.id,secret:Buffer.from(key.secret)}; // Caller cannot rotate/mutate this snapshot's key bytes.
   if(!plain(records)||Object.keys(records).sort().join(',')!==['categories','products','skus','mediaAssets'].sort().join(',')||
@@ -50,14 +52,17 @@ function createCatalogReadModel(records,context,key){
   for(const product of records.products){
     if(product.storeId!==context.storeId||product.status!=='ON_SALE'||!categoryCodes.has(product.categoryCode))continue;
     if(!text(product.name)||typeof product.description!=='string'||!product.description.isWellFormed()||
-        !integer(product.version)||!integer(product.sortOrder)||!Array.isArray(product.images))continue;
+        !integer(product.version)||!integer(product.sortOrder)||!Array.isArray(product.images)||
+        (product.minLeadTimeMinutes!==null&&!integer(product.minLeadTimeMinutes))||
+        (product.messagePolicy!==null&&(!plain(product.messagePolicy)||!Number.isSafeInteger(product.messagePolicy.maxLength)||
+          product.messagePolicy.maxLength<=0||product.messagePolicy.normalizationVersion!==NORMALIZATION_VERSION||product.categoryCode==='BREAD')))continue;
     const skus=records.skus.filter(sku=>sku.productId===product._id);
     const available=[];
     for(const sku of skus){
       if(sku.status!=='ON_SALE'||!Array.isArray(sku.selectedOptions)||
           !sku.selectedOptions.every(option=>plain(option)&&text(option.groupCode)&&text(option.optionCode)))continue;
       try{
-        available.push(resolveSku(product,skus,sku.selectedOptions.map(option=>({groupCode:option.groupCode,optionCode:option.optionCode})),sku._id));
+        available.push(resolveDisplaySku(product,skus,sku.selectedOptions.map(option=>({groupCode:option.groupCode,optionCode:option.optionCode})),sku._id));
       }catch(error){
         // Known domain configuration failures fail closed; unexpected programming failures are not hidden.
         if(error.name!=='CatalogModelError')throw error;
@@ -77,7 +82,7 @@ function createCatalogReadModel(records,context,key){
         }
       }catch(error){if(error.name!=='MediaModelError')throw error;}
     }
-    // Formal publication requires a registered, published real-photo reference. Network image failure is a UI fallback.
+    // Covers must pass the registered media policy; approved development references retain their true source kind.
     const cover=images[0]||null;
     if(!cover)continue;
     const minPriceCents=available.reduce((minimum,sku)=>Math.min(minimum,sku.unitPriceCents),Number.MAX_SAFE_INTEGER);
@@ -133,7 +138,7 @@ function createCatalogReadModel(records,context,key){
     input=snapshot(input,'INVALID_REQUEST');
     if(!plain(input)||Object.keys(input).join(',')!=='productId'||!id(input.productId))fail('INVALID_REQUEST');
     const detail=details.get(input.productId);
-    // Unknown, cross-store, draft and non-purchasable products share an unavailable response.
+    // Unknown, cross-store, draft and invalid display records share an unavailable response.
     if(!detail)fail('PRODUCT_UNAVAILABLE');
     return freeze({apiVersion:API_VERSION,...detail});
   }

@@ -85,6 +85,16 @@ test('C03 duplicate combos/IDs, missing required choices and malformed prices/qu
     input=>input.messagePolicy.normalizationVersion='unknown'
   ]){const input=configuration();mutate(input);rejects(()=>createSpecificationModel(input),'INVALID_SPECIFICATION_CONFIGURATION');}
 });
+test('readonly public configuration preserves unknown purchase limits, but never permits missing price or purchase-capable input',()=>{
+  const input=configuration();input.source='PUBLIC_CATALOG';input.canPurchase=false;input.minLeadTimeMinutes=null;
+  input.skus.forEach(sku=>{sku.minQuantity=null;sku.maxQuantity=null;});
+  const model=createSpecificationModel(input),state=model.evaluate(choices(['S','V','FRUIT']));
+  assert.equal(state.status,'MATCHED');assert.equal(state.configurationPending,true);assert.equal(state.canPurchase,false);
+  assert.equal(model.configuration().minLeadTimeMinutes,null);
+  rejects(()=>createSpecificationModel({...input,canPurchase:true}),'INVALID_SPECIFICATION_CONFIGURATION');
+  const missingPrice=clone(input);missingPrice.skus[0].unitPriceCents=null;
+  rejects(()=>createSpecificationModel(missingPrice),'INVALID_SPECIFICATION_CONFIGURATION');
+});
 test('C03 selection/schema/getter/non-JSON/sparse inputs fail without executing hooks or trusting supplied labels',()=>{
   const model=createSpecificationModel(configuration());
   for(const selected of [[{groupCode:'UNKNOWN',optionCode:'A'}],choices(['BAD']),

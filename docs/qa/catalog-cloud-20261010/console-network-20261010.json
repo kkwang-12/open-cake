@@ -1,0 +1,52 @@
+{
+  "date": "2026-10-10",
+  "scope": "READ_ONLY_CONSOLE_CONNECTIVITY_DIAGNOSIS",
+  "reportedFailure": {
+    "apiIdentifier": "qbase/GetPrivilegeMultiEndRevRelation",
+    "code": "UNKNOWN_ERROR",
+    "message": "Error: read ECONNRESET",
+    "pageUrl": "/overview",
+    "environmentIdProvided": false,
+    "requestIdProvided": false,
+    "reportedTime": "2026-10-10 11:39:59",
+    "userAgentAndTokensOmitted": true
+  },
+  "currentDevtoolsStatus": {
+    "ok": true,
+    "success": true,
+    "versionRelation": "equal",
+    "loginExpired": false,
+    "cliTokenRequired": false,
+    "skillVersion": "0.3.11"
+  },
+  "systemProxy": {
+    "enabled": true,
+    "loopback": true,
+    "port": 7890,
+    "localBypassPresent": true,
+    "loopbackBypassPresent": true,
+    "listenerCheck": "UNAVAILABLE"
+  },
+  "publicHttpProbes": [
+    {"url":"https://developers.weixin.qq.com/","mode":"direct","transportResponseReceived":false,"milliseconds":8044,"errorType":"TaskCanceledException"},
+    {"url":"https://developers.weixin.qq.com/","mode":"system-proxy-7890","transportResponseReceived":true,"httpStatus":200,"milliseconds":266},
+    {"url":"https://tcb.cloud.tencent.com/","mode":"direct","transportResponseReceived":true,"httpStatus":200,"milliseconds":310},
+    {"url":"https://tcb.cloud.tencent.com/","mode":"system-proxy-7890","transportResponseReceived":true,"httpStatus":200,"milliseconds":206}
+  ],
+  "environmentListReadback": {
+    "region":"ap-shanghai",
+    "credentialScope":"account",
+    "total":2,
+    "hasMore":false,
+    "environments":[
+      {"id":"cloudbase-d8gwtxzm64150b7e0","status":"NORMAL"},
+      {"id":"dinner-cook-test-d5e320u981ec341","status":"NORMAL"}
+    ]
+  },
+  "failedManagementApiReproduced": false,
+  "loginChangedByThisCheck": false,
+  "networkSettingsChanged": false,
+  "cloudResourcesChanged": false,
+  "businessApiInvoked": false,
+  "rootCause": "NOT_ESTABLISHED"
+}

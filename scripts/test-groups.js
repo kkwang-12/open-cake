@@ -19,7 +19,7 @@ const groups = {
   },
   catalog: {
     description: '商品、规格、库存与目录链路；关联购物袋与报价',
-    primary: files('catalog-model catalog-read-model catalog-cloud catalog-draft-model catalog-domain-chain specification-model stock-review media-model pagination-model shop-catalog'),
+      primary: files('catalog-model catalog-read-model catalog-cloud initial-catalog catalog-draft-model catalog-domain-chain specification-model stock-review media-model pagination-model shop-catalog'),
     related: files('cart-model cart-service local-bag local-favorites product-detail quote-model merchant-catalog')
   },
   checkout: {

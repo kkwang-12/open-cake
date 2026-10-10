@@ -39,7 +39,7 @@ function mapError(error) {
   return 'INTERNAL_ERROR';
 }
 // Queries share a read-only SDK transaction snapshot. This does not claim predicate/write protection for orders.
-function createCloudCatalogRepository(database, storeId) {
+function createCloudCatalogRepository(database, storeId, allowReferenceImages=false) {
   if (!database || typeof database.runTransaction!=='function' || !id(storeId)) fail('CONFIGURATION_REQUIRED');
   return Object.freeze({
     async readSnapshot() {
@@ -65,6 +65,8 @@ function createCloudCatalogRepository(database, storeId) {
         const products=await read('products',{storeId,status:'ON_SALE'},LIMITS.products);
         const skus=await read('skus',{storeId,status:'ON_SALE'},LIMITS.skus);
         const mediaAssets=await read('media_assets',{status:'PUBLISHED',sourceKind:'REAL_PHOTO'},LIMITS.mediaAssets);
+        if(allowReferenceImages===true)mediaAssets.push(...await read('media_assets',
+          {status:'PUBLISHED',sourceKind:'DESIGN_PREVIEW'},LIMITS.mediaAssets-mediaAssets.length));
         return {categories,products,skus,mediaAssets};
       }, 2);
     }
@@ -79,10 +81,10 @@ function createCatalogCloudHandler({getContext, settings, repository, logger=con
         if (settings.enabled!==true || !id(settings.storeId) || !repository || typeof repository.readSnapshot!=='function') fail('CONFIGURATION_REQUIRED');
         const payload=validateRequest(action,event.payload===undefined?{}:event.payload,settings.storeId);
         createCatalogReadModel({categories:[],products:[],skus:[],mediaAssets:[]},{environment:settings.environment,stage:settings.stage,
-          storeId:settings.storeId,allowedCloudPrefixes:settings.allowedCloudPrefixes},settings.cursorKey);
+          storeId:settings.storeId,allowedCloudPrefixes:settings.allowedCloudPrefixes,allowReferenceImages:settings.allowReferenceImages===true},settings.cursorKey);
         const records=await repository.readSnapshot();
         const model=createCatalogReadModel(records,{environment:settings.environment,stage:settings.stage,
-          storeId:settings.storeId,allowedCloudPrefixes:settings.allowedCloudPrefixes},settings.cursorKey);
+          storeId:settings.storeId,allowedCloudPrefixes:settings.allowedCloudPrefixes,allowReferenceImages:settings.allowReferenceImages===true},settings.cursorKey);
         if (action==='categories.list') return model.categoriesList();
         if (action==='products.list') return model.productsList(payload,now());
         return model.productGet(payload);

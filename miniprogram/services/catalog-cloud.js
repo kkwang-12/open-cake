@@ -12,13 +12,16 @@ function createCloudCatalogClient(settings,transport=createClient(settings,()=>t
     const catalog=settings.catalog;
     if(!catalog||catalog.enabled!==true)throw createError('CLOUD_NOT_CONFIGURED');
     if(!id(catalog.storeId)||!Array.isArray(catalog.allowedCloudPrefixes)||
+        (catalog.allowReferenceImages!==undefined&&typeof catalog.allowReferenceImages!=='boolean')||
+        (catalog.allowReferenceImages===true&&settings.stage!=='development')||
         !catalog.allowedCloudPrefixes.every(prefix=>typeof prefix==='string'&&/^cloud:\/\/[A-Za-z0-9._-]+\/(?:[A-Za-z0-9_-]+\/)*$/.test(prefix)))
       throw createError('INVALID_CONFIGURATION');
     return catalog;
   }
   function media(ref){
     const catalog=configured();
-    if(!plain(ref)||!text(ref.assetId)||!text(ref.revision)||ref.sourceKind!=='REAL_PHOTO'||typeof ref.storageRef!=='string'||
+    if(!plain(ref)||!text(ref.assetId)||!text(ref.revision)||
+        !(ref.sourceKind==='REAL_PHOTO'||(ref.sourceKind==='DESIGN_PREVIEW'&&catalog.allowReferenceImages===true))||typeof ref.storageRef!=='string'||
         !/^cloud:\/\/[A-Za-z0-9._-]+\/[A-Za-z0-9_./-]+$/.test(ref.storageRef)||
         ref.storageRef.split('/').some(part=>part==='.'||part==='..')||
         !catalog.allowedCloudPrefixes.some(prefix=>ref.storageRef.startsWith(prefix)))throw createError('INVALID_RESPONSE');

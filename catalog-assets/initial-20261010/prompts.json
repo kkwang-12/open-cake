@@ -1,0 +1,43 @@
+{
+  "tool": "BUILT_IN_IMAGE_GEN",
+  "reference": "catalog-assets/development/catalog-example.png",
+  "sourceKind": "DESIGN_PREVIEW",
+  "prompts": [
+    {
+      "key": "strawberry-cake",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 草莓鲜奶蛋糕，参考图第一行左边商品，白色鲜奶奶油圆形整蛋糕，顶部草莓和一圈奶油花，去掉生日牌。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "chocolate-cake",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 黑巧克力蛋糕，参考图第一行中间商品，深棕色圆形整蛋糕，顶部巧克力卷和可可碎。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "mango-cake",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 芒果鲜奶蛋糕，参考图第一行右边商品，白色奶油圆形整蛋糕，顶部芒果块和一圈奶油花。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "strawberry-mini",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 草莓小蛋糕，参考图第二行左边商品，单个小圆蛋糕，奶白色侧面和底部金黄色碎屑，顶部草莓。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "chocolate-mini",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 巧克力小蛋糕，参考图第二行中间商品，单个小圆巧克力蛋糕，顶部巧克力奶油花和巧克力块。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "blueberry-mini",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 蓝莓芝士小蛋糕，参考图第二行右边商品，单个奶白色小圆芝士蛋糕，顶部蓝莓和紫色果酱。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "croissant",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 牛角面包，参考图第三行左边商品，单个金黄色酥皮牛角面包。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "bagel",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 贝果，参考图第三行中间商品，单个金黄色原味圆环贝果。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    },
+    {
+      "key": "sourdough",
+      "prompt": "Use case: product-mockup\nAsset type: 小程序商品目录的 AI 参考配图。\nInput images: Image 1 是整体参考图，仅参考对应商品的外观，勿复制海报界面。\nSubject: 欧式面包，参考图第三行右边商品，单个带切口的圆形欧式面包，切面露出有孔洞的内部。\nStyle: 与参考图一致的写实烘焙商品摄影风格。\nComposition: 正方形，单件商品完整居中，三分之四略俯视角，商品占画面约75%，保留边缘空隙。\nBackdrop: 浅灰白色背景和台面，柔和自然光和细微接触阴影。\nConstraints: 只生成该款商品的单张独立配图；不出现其他商品、文字、价格、标签、水印、品牌、UI、边框、拼图或人物。保留对应参考商品的核心造型，不能把小蛋糕做成大型整蛋糕。"
+    }
+  ]
+}

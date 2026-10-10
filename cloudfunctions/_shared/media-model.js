@@ -85,7 +85,11 @@ function projectMediaReference(asset,context,usage) {
     if(context.stage!=='development'||asset.status==='RETIRED') fail('MEDIA_NOT_READY');
   } else {
     if(kind!=='CLOUD'||asset.status==='DRAFT') fail('MEDIA_NOT_READY');
-    if(usage==='PUBLIC_CATALOG'&&(asset.status!=='PUBLISHED'||asset.sourceKind!=='REAL_PHOTO')) fail('MEDIA_NOT_READY');
+    if(usage==='PUBLIC_CATALOG'){
+      const approvedReference=context.stage==='development'&&context.allowReferenceImages===true&&
+        asset.sourceKind==='DESIGN_PREVIEW'&&asset.catalogApproved===true;
+      if(asset.status!=='PUBLISHED'||(asset.sourceKind!=='REAL_PHOTO'&&!approvedReference))fail('MEDIA_NOT_READY');
+    }
   }
   return Object.freeze({assetId:asset.assetId,storageRef:asset.storageRef,sourceKind:asset.sourceKind,revision:asset.revision});
 }

@@ -118,6 +118,31 @@ test('catalog SDK repository refuses duplicated/malformed responses and payloads
   const data=databaseRecords();data.products[0].privateNote='x'.repeat(2*1024*1024);
   await assert.rejects(createCloudCatalogRepository(database(data),settings.storeId).readSnapshot(),error=>error.code==='CONFIGURATION_REQUIRED');
 });
+test('catalog reference scan is opt-in and shares the existing combined media budget and query index',async()=>{
+  const data=databaseRecords(),real=data.media_assets[0];
+  data.media_assets.push({...real,_id:'approved-reference',sourceKind:'DESIGN_PREVIEW',catalogApproved:true},
+    {...real,_id:'unapproved-reference',sourceKind:'DESIGN_PREVIEW'});
+  assert.equal((await createCloudCatalogRepository(database(data),settings.storeId).readSnapshot()).mediaAssets.length,1);
+  const db=database(data),result=await createCloudCatalogRepository(db,settings.storeId,true).readSnapshot();
+  assert.equal(result.mediaAssets.length,3);assert.deepEqual(db.queries.at(-1).filter,{status:'PUBLISHED',sourceKind:'DESIGN_PREVIEW'});
+  data.media_assets=Array.from({length:200},(_,i)=>({...real,_id:'real-'+i}));
+  data.media_assets.push({...real,_id:'extra-reference',sourceKind:'DESIGN_PREVIEW',catalogApproved:true});
+  await assert.rejects(createCloudCatalogRepository(database(data),settings.storeId,true).readSnapshot(),error=>error.code==='CONFIGURATION_REQUIRED');
+});
+test('approved reference and unknown purchase configuration round-trip through cloud transport without enabling purchase',async()=>{
+  const data=records();data.mediaAssets[0].sourceKind='DESIGN_PREVIEW';data.mediaAssets[0].catalogApproved=true;
+  data.products.forEach(p=>{p.images=[{...p.images[0],sourceKind:'DESIGN_PREVIEW'}];p.minLeadTimeMinutes=null;p.messagePolicy=null;});
+  data.skus.forEach(s=>{s.minQuantity=null;s.maxQuantity=null;s.stockRequirements=[];});
+  const handler=harness({settings:{...settings,allowReferenceImages:true},repository:{async readSnapshot(){return data;}}}).handler;
+  const transport={async call(domain,action,payload){return handler({action,payload});}};
+  const enabledSettings={...clientSettings,catalog:{...clientSettings.catalog,allowReferenceImages:true}};
+  const client=createCatalogClient(enabledSettings,undefined,transport),page=await client.list();
+  assert.equal(page.items.length,3);assert.equal(page.items[0].canPurchase,false);
+  const detail=await client.get(page.items[0].id);
+  assert.equal(detail.canPurchase,false);assert.equal(detail.canConfigure,false);assert.equal(detail.variantLabels.length,1);
+  await assert.rejects(createCatalogClient(clientSettings,undefined,transport).list(),error=>error.code==='INVALID_RESPONSE');
+  await assert.rejects(createCatalogClient({...enabledSettings,stage:'production'},undefined,transport).list(),error=>error.code==='INVALID_CONFIGURATION');
+});
 function connected(overrides={}){
   const value=harness(overrides),calls=[],transport=createClient(clientSettings,()=>({cloud:{init(){},async callFunction(request){
     calls.push(request);return {result:await value.handler(request.data)};

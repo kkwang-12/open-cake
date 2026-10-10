@@ -1,0 +1,28 @@
+{
+  "date": "2026-10-10",
+  "scope": "READ_ONLY_LOCAL_DEVTOOLS_DIAGNOSIS",
+  "execution": "NON_SANDBOX",
+  "installationCheck": {
+    "compatible": true,
+    "version": "2.02.2608080",
+    "command": "D:\\微信web开发者工具\\wechatide.cmd"
+  },
+  "statusCheck": {
+    "tool": "check_wechatide_status",
+    "client": "Codex",
+    "requestedSkillVersion": "0.3.11",
+    "ok": true,
+    "success": true,
+    "versionRelation": "equal",
+    "loginExpired": true,
+    "cliTokenRequired": false,
+    "tokenRequired": false,
+    "skillVersion": "0.3.11"
+  },
+  "identityFieldsOmitted": true,
+  "projectOpened": false,
+  "businessApiInvoked": false,
+  "loginAttempted": false,
+  "cloudResourcesChanged": false,
+  "historicalTimeoutCause": "NOT_ESTABLISHED"
+}
