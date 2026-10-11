@@ -1,0 +1,950 @@
+{
+  "state": "COMPLETED",
+  "appId": "wx154f791a17268ace",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "categories": {
+    "response": {
+      "ok": true,
+      "requestId": "17964fbf-a88e-4fe7-9a4f-95ee59d2f5cd",
+      "data": {
+        "apiVersion": "v1-api-2026-10-03",
+        "items": [
+          {
+            "code": "CAKE",
+            "nameZh": "蛋糕",
+            "nameEn": "CAKE",
+            "sortOrder": 0
+          },
+          {
+            "code": "MINI_CAKE",
+            "nameZh": "小蛋糕",
+            "nameEn": "MINI CAKE",
+            "sortOrder": 1
+          },
+          {
+            "code": "BREAD",
+            "nameZh": "面包",
+            "nameEn": "BREAD",
+            "sortOrder": 2
+          }
+        ]
+      }
+    },
+    "platformRequestId": "3c75cf6d-ec94-4686-b07a-df2799b3e54e"
+  },
+  "pages": [
+    {
+      "response": {
+        "ok": true,
+        "requestId": "e6849b9a-f163-469e-bbaf-613fd6e1f4ea",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "items": [
+            {
+              "productId": "g1-initial-strawberry-cake",
+              "version": 0,
+              "categoryCode": "CAKE",
+              "name": "草莓鲜奶蛋糕",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-strawberry-cake",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-cake-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 16800,
+              "currency": "CNY"
+            },
+            {
+              "productId": "g1-initial-chocolate-cake",
+              "version": 0,
+              "categoryCode": "CAKE",
+              "name": "黑巧克力蛋糕",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-chocolate-cake",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-cake-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 18800,
+              "currency": "CNY"
+            },
+            {
+              "productId": "g1-initial-mango-cake",
+              "version": 0,
+              "categoryCode": "CAKE",
+              "name": "芒果鲜奶蛋糕",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-mango-cake",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/mango-cake-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 17800,
+              "currency": "CNY"
+            },
+            {
+              "productId": "g1-initial-strawberry-mini",
+              "version": 0,
+              "categoryCode": "MINI_CAKE",
+              "name": "草莓小蛋糕",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-strawberry-mini",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 3600,
+              "currency": "CNY"
+            }
+          ],
+          "nextCursor": "eyJiaW5kaW5nIjoiOTM0ZWM1YWFkYjNiMTU2ZDhmMmRjZDllNjY0ZWM1YzllNWU1OGNhNGRmOTlhYzI4YzY5N2NmYWViM2ZlODM4MCIsImV4cGlyZXNBdCI6MTc5MTY5NTgyNzkwNywiaXNzdWVkQXQiOjE3OTE2OTQ5Mjc5MDcsImtleUlkIjoiY2F0YWxvZy12MSIsImxhc3QiOlszLCJnMS1pbml0aWFsLXN0cmF3YmVycnktbWluaSJdLCJzb3J0SWQiOiJDQVRBTE9HIiwidmVyc2lvbiI6MX0.n9qo6lHm6xm5yGVHLbaF1nj_ZJyHlDLpDGT_ve7tAs8",
+          "hasMore": true
+        }
+      },
+      "platformRequestId": "9908e6b3-bf9f-4a50-a460-9800afd897a0"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "dec47522-e050-4ecd-a0f6-061d302ee5a4",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "items": [
+            {
+              "productId": "g1-initial-chocolate-mini",
+              "version": 0,
+              "categoryCode": "MINI_CAKE",
+              "name": "巧克力小蛋糕",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-chocolate-mini",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-mini-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 3800,
+              "currency": "CNY"
+            },
+            {
+              "productId": "g1-initial-blueberry-mini",
+              "version": 0,
+              "categoryCode": "MINI_CAKE",
+              "name": "蓝莓芝士小蛋糕",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-blueberry-mini",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/blueberry-mini-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 4200,
+              "currency": "CNY"
+            },
+            {
+              "productId": "g1-initial-croissant",
+              "version": 0,
+              "categoryCode": "BREAD",
+              "name": "牛角面包",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-croissant",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/croissant-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 1200,
+              "currency": "CNY"
+            },
+            {
+              "productId": "g1-initial-bagel",
+              "version": 0,
+              "categoryCode": "BREAD",
+              "name": "贝果",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-bagel",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/bagel-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 1200,
+              "currency": "CNY"
+            }
+          ],
+          "nextCursor": "eyJiaW5kaW5nIjoiOTM0ZWM1YWFkYjNiMTU2ZDhmMmRjZDllNjY0ZWM1YzllNWU1OGNhNGRmOTlhYzI4YzY5N2NmYWViM2ZlODM4MCIsImV4cGlyZXNBdCI6MTc5MTY5NTgyODY0MywiaXNzdWVkQXQiOjE3OTE2OTQ5Mjg2NDMsImtleUlkIjoiY2F0YWxvZy12MSIsImxhc3QiOls3LCJnMS1pbml0aWFsLWJhZ2VsIl0sInNvcnRJZCI6IkNBVEFMT0ciLCJ2ZXJzaW9uIjoxfQ.jdmKLuRwA8X48lSV77iQGvNjeWBzn_d_rBO18miyEd8",
+          "hasMore": true
+        }
+      },
+      "platformRequestId": "d93d99bb-be24-435b-8a7a-c477d7beba73"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "62b92f8d-d22a-40d1-a564-c064ecedca27",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "items": [
+            {
+              "productId": "g1-initial-sourdough",
+              "version": 0,
+              "categoryCode": "BREAD",
+              "name": "欧式面包",
+              "description": "AI 参考配图，商品外观以实际制作为准。",
+              "cover": {
+                "assetId": "g1-initial-sourdough",
+                "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/sourdough-r1.png",
+                "sourceKind": "DESIGN_PREVIEW",
+                "revision": "r1"
+              },
+              "minPriceCents": 1200,
+              "currency": "CNY"
+            }
+          ],
+          "nextCursor": null,
+          "hasMore": false
+        }
+      },
+      "platformRequestId": "150b6cae-537d-4ec4-913d-d1e30650011c"
+    }
+  ],
+  "details": [
+    {
+      "response": {
+        "ok": true,
+        "requestId": "fa41e1f1-8b68-46b1-bd30-0c55983f5084",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-strawberry-cake",
+          "version": 0,
+          "categoryCode": "CAKE",
+          "name": "草莓鲜奶蛋糕",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-strawberry-cake",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-cake-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 16800,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-strawberry-cake",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-cake-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [
+            {
+              "groupCode": "SIZE",
+              "label": "尺寸",
+              "required": true,
+              "options": [
+                {
+                  "optionCode": "INCH_6",
+                  "label": "6寸"
+                },
+                {
+                  "optionCode": "INCH_8",
+                  "label": "8寸"
+                },
+                {
+                  "optionCode": "INCH_10",
+                  "label": "10寸"
+                }
+              ]
+            }
+          ],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-strawberry-cake-10-inch",
+              "version": 0,
+              "description": "10寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_10",
+                  "label": "10寸"
+                }
+              ],
+              "unitPriceCents": 32800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            },
+            {
+              "skuId": "g1-initial-strawberry-cake-6-inch",
+              "version": 0,
+              "description": "6寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_6",
+                  "label": "6寸"
+                }
+              ],
+              "unitPriceCents": 16800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            },
+            {
+              "skuId": "g1-initial-strawberry-cake-8-inch",
+              "version": 0,
+              "description": "8寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_8",
+                  "label": "8寸"
+                }
+              ],
+              "unitPriceCents": 23800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "4cbc3329-e473-40e2-ac9e-6a2624c1caa4"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "371e1639-fa62-4bed-9ecd-a156771b55a4",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-chocolate-cake",
+          "version": 0,
+          "categoryCode": "CAKE",
+          "name": "黑巧克力蛋糕",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-chocolate-cake",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-cake-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 18800,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-chocolate-cake",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-cake-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [
+            {
+              "groupCode": "SIZE",
+              "label": "尺寸",
+              "required": true,
+              "options": [
+                {
+                  "optionCode": "INCH_6",
+                  "label": "6寸"
+                },
+                {
+                  "optionCode": "INCH_8",
+                  "label": "8寸"
+                },
+                {
+                  "optionCode": "INCH_10",
+                  "label": "10寸"
+                }
+              ]
+            }
+          ],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-chocolate-cake-10-inch",
+              "version": 0,
+              "description": "10寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_10",
+                  "label": "10寸"
+                }
+              ],
+              "unitPriceCents": 34800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            },
+            {
+              "skuId": "g1-initial-chocolate-cake-6-inch",
+              "version": 0,
+              "description": "6寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_6",
+                  "label": "6寸"
+                }
+              ],
+              "unitPriceCents": 18800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            },
+            {
+              "skuId": "g1-initial-chocolate-cake-8-inch",
+              "version": 0,
+              "description": "8寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_8",
+                  "label": "8寸"
+                }
+              ],
+              "unitPriceCents": 25800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "df2ce590-443f-46d2-bb1f-622201edfcea"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "525e3d23-5bed-4f89-af15-fabe366ff157",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-mango-cake",
+          "version": 0,
+          "categoryCode": "CAKE",
+          "name": "芒果鲜奶蛋糕",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-mango-cake",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/mango-cake-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 17800,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-mango-cake",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/mango-cake-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [
+            {
+              "groupCode": "SIZE",
+              "label": "尺寸",
+              "required": true,
+              "options": [
+                {
+                  "optionCode": "INCH_6",
+                  "label": "6寸"
+                },
+                {
+                  "optionCode": "INCH_8",
+                  "label": "8寸"
+                },
+                {
+                  "optionCode": "INCH_10",
+                  "label": "10寸"
+                }
+              ]
+            }
+          ],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-mango-cake-10-inch",
+              "version": 0,
+              "description": "10寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_10",
+                  "label": "10寸"
+                }
+              ],
+              "unitPriceCents": 33800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            },
+            {
+              "skuId": "g1-initial-mango-cake-6-inch",
+              "version": 0,
+              "description": "6寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_6",
+                  "label": "6寸"
+                }
+              ],
+              "unitPriceCents": 17800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            },
+            {
+              "skuId": "g1-initial-mango-cake-8-inch",
+              "version": 0,
+              "description": "8寸",
+              "selectedOptions": [
+                {
+                  "groupCode": "SIZE",
+                  "optionCode": "INCH_8",
+                  "label": "8寸"
+                }
+              ],
+              "unitPriceCents": 24800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "9228f603-77d8-42b2-9cc1-69232102d594"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "00699828-278a-4040-b90d-c47f34cc6947",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-strawberry-mini",
+          "version": 0,
+          "categoryCode": "MINI_CAKE",
+          "name": "草莓小蛋糕",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-strawberry-mini",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 3600,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-strawberry-mini",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-strawberry-mini-single",
+              "version": 0,
+              "description": "单个",
+              "selectedOptions": [],
+              "unitPriceCents": 3600,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "6e76ecec-03f1-4708-b3aa-891b7b6c6ca6"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "d27eab5e-50fd-471c-9400-c878b40656f8",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-chocolate-mini",
+          "version": 0,
+          "categoryCode": "MINI_CAKE",
+          "name": "巧克力小蛋糕",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-chocolate-mini",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-mini-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 3800,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-chocolate-mini",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-mini-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-chocolate-mini-single",
+              "version": 0,
+              "description": "单个",
+              "selectedOptions": [],
+              "unitPriceCents": 3800,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "15e473d4-ae52-470a-a171-cf8380b282d5"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "a9fed2fb-b592-481c-b746-812f9aab9b9e",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-blueberry-mini",
+          "version": 0,
+          "categoryCode": "MINI_CAKE",
+          "name": "蓝莓芝士小蛋糕",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-blueberry-mini",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/blueberry-mini-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 4200,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-blueberry-mini",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/blueberry-mini-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-blueberry-mini-single",
+              "version": 0,
+              "description": "单个",
+              "selectedOptions": [],
+              "unitPriceCents": 4200,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "16da74fe-cb20-4d1f-a932-cece8db6cca8"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "91c33ee2-c7c5-4b83-b7f5-69782711d48b",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-croissant",
+          "version": 0,
+          "categoryCode": "BREAD",
+          "name": "牛角面包",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-croissant",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/croissant-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 1200,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-croissant",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/croissant-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-croissant-single",
+              "version": 0,
+              "description": "单份",
+              "selectedOptions": [],
+              "unitPriceCents": 1200,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "4f58d163-5f2f-4edb-ac87-37be0a4e5ebc"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "8b435f99-073b-4554-86ee-22077fbb59ca",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-bagel",
+          "version": 0,
+          "categoryCode": "BREAD",
+          "name": "贝果",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-bagel",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/bagel-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 1200,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-bagel",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/bagel-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-bagel-single",
+              "version": 0,
+              "description": "单份",
+              "selectedOptions": [],
+              "unitPriceCents": 1200,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "8ce7b3d9-1b7a-4d7e-900c-8c5dce83c9c5"
+    },
+    {
+      "response": {
+        "ok": true,
+        "requestId": "3f927224-53ca-4af5-af79-986afcaf4852",
+        "data": {
+          "apiVersion": "v1-api-2026-10-03",
+          "productId": "g1-initial-sourdough",
+          "version": 0,
+          "categoryCode": "BREAD",
+          "name": "欧式面包",
+          "description": "AI 参考配图，商品外观以实际制作为准。",
+          "cover": {
+            "assetId": "g1-initial-sourdough",
+            "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/sourdough-r1.png",
+            "sourceKind": "DESIGN_PREVIEW",
+            "revision": "r1"
+          },
+          "minPriceCents": 1200,
+          "currency": "CNY",
+          "images": [
+            {
+              "assetId": "g1-initial-sourdough",
+              "storageRef": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/sourdough-r1.png",
+              "sourceKind": "DESIGN_PREVIEW",
+              "revision": "r1"
+            }
+          ],
+          "optionGroups": [],
+          "messagePolicy": null,
+          "minLeadTimeMinutes": null,
+          "skus": [
+            {
+              "skuId": "g1-initial-sourdough-single",
+              "version": 0,
+              "description": "单份",
+              "selectedOptions": [],
+              "unitPriceCents": 1200,
+              "currency": "CNY",
+              "minQuantity": null,
+              "maxQuantity": null
+            }
+          ]
+        }
+      },
+      "platformRequestId": "738ae2a8-6ee5-442d-9ad8-dae1e3300757"
+    }
+  ],
+  "images": [
+    {
+      "productId": "g1-initial-strawberry-cake",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-chocolate-cake",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-mango-cake",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-strawberry-mini",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-chocolate-mini",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-blueberry-mini",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-croissant",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-bagel",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    },
+    {
+      "productId": "g1-initial-sourdough",
+      "downloaded": true,
+      "width": 1254,
+      "height": 1254,
+      "type": "png"
+    }
+  ],
+  "directReads": [
+    {
+      "collection": "categories",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "products",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "skus",
+      "denied": true,
+      "code": -502003
+    },
+    {
+      "collection": "media_assets",
+      "denied": true,
+      "code": -502003
+    }
+  ],
+  "verifiedAt": "2026-10-11T05:05:54.003Z",
+  "scope": "NATIVE_SIMULATOR_READ_ONLY_EXISTING_CATALOG",
+  "assertions": [
+    {
+      "name": "native-development-app-and-environment",
+      "passed": true
+    },
+    {
+      "name": "three-categories",
+      "passed": true
+    },
+    {
+      "name": "signed-pagination-4-4-1",
+      "passed": true
+    },
+    {
+      "name": "all-nine-adopted-products",
+      "passed": true
+    },
+    {
+      "name": "all-nine-details-and-fifteen-skus",
+      "passed": true
+    },
+    {
+      "name": "all-nine-png-downloads-decoded",
+      "passed": true
+    },
+    {
+      "name": "four-client-collection-reads-denied",
+      "passed": true
+    },
+    {
+      "name": "shop-cake-native-client-page",
+      "passed": true
+    },
+    {
+      "name": "shop-bread-native-client-page",
+      "passed": true
+    },
+    {
+      "name": "shop-mini-native-client-page",
+      "passed": true
+    },
+    {
+      "name": "detail-native-page-image-and-closed-spec-button",
+      "passed": true
+    },
+    {
+      "name": "native-prices-and-sku-options-match-adoption",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "device": "NOT_RUN",
+  "cardTap": "NOT_ACCEPTED_SELECTOR_UNAVAILABLE",
+  "storageRulesReadback": "NOT_RECHECKED",
+  "anonymousStorage": "NOT_RUN",
+  "funds": "NOT_RUN",
+  "deployment": "NOT_CHANGED"
+}

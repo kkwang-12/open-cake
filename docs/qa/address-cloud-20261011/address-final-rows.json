@@ -1,0 +1,38 @@
+{
+  "ok": true,
+  "tool": "cloud_db_read_doc",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "requestId": "256aa405-5977-43b8-a5b2-02fe5ae22bd4",
+    "data": [
+      {
+        "_id": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7",
+        "createdAt": 1791714528182,
+        "deletedAt": 1791714835849,
+        "ownerId": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+        "schemaVersion": 1,
+        "updatedAt": 1791714835849,
+        "version": 2
+      },
+      {
+        "_id": "d6b78d428c2f20ffb9aae5c4dfd87643f0b20b25f3f497ff0d03888963251622",
+        "createdAt": 1791714529351,
+        "deletedAt": 1791714834966,
+        "ownerId": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+        "schemaVersion": 1,
+        "updatedAt": 1791714834966,
+        "version": 1
+      }
+    ],
+    "total": 2,
+    "pager": {
+      "Offset": 0,
+      "Limit": 3,
+      "Total": 2
+    },
+    "message": "文档查询成功",
+    "collection": "addresses",
+    "collectionName": "addresses"
+  }
+}

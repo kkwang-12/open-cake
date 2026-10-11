@@ -33,24 +33,24 @@
   "packOptions": {
     "ignore": [
       {
-        "type": "file",
-        "value": "assets/home/strawberry-hero-r01a.png"
+        "value": "assets/home/strawberry-hero-r01a.png",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "config.local.js"
+        "value": "config.local.js",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "config.local.example.js"
+        "value": "config.local.example.js",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "assets/home/pear.jpg"
+        "value": "assets/home/pear.jpg",
+        "type": "file"
       },
       {
-        "type": "file",
-        "value": "assets/home/latte.jpg"
+        "value": "assets/home/latte.jpg",
+        "type": "file"
       }
     ],
     "include": []

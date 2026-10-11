@@ -1,0 +1,9 @@
+{
+  "ok": false,
+  "errorType": "CONNECT_ERROR",
+  "message": "Failed to connect to WechatIDE. Please run `wechatide auth -c <clientName>` to auth and start WechatIDE server.",
+  "source": "connect",
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "suggestions": "启动 WechatIDE 并授权 CLI 连接, wechatide auth -c Codex\n查看该工具完整参数, wechatide -c Codex automation_evaluate -h"
+}

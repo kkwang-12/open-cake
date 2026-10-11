@@ -1,0 +1,41 @@
+'use strict';
+const fs=require('node:fs'),{scopedDocumentId}=require('../cloudfunctions/_shared/idempotency-model');
+const env='cloudbase-d8gwtxzm64150b7e0',owner='31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066';
+const planPath='artifacts/address-reverify-plan.json';
+if(fs.existsSync(planPath)&&process.argv[2]!=='--resume')throw new Error('EXISTING_PLAN_MUST_BE_RESUMED_NOT_REPLACED');
+const existing=fs.existsSync(planPath)?JSON.parse(fs.readFileSync(planPath,'utf8')):null;
+const run=existing?existing.run:'g1-address-reverify-20261011-'+Date.now(),keys={createA:run+'-createA',createB:run+'-createB',updateA:run+'-updateA',defaultA:run+'-defaultA',defaultB:run+'-defaultB',sameDefault:run+'-sameDefault'};
+const ids=[keys.createA,keys.createB].map(key=>scopedDocumentId('address',[env,owner,key]));
+const common=`const env='${env}',run='${run}',ids=['${ids[0]}','${ids[1]}'];
+ const out={state:'COMPLETED',run,ids,checks:[]};
+ const check=(name,value)=>{out.checks.push({name,passed:!!value});if(!value)throw Object.assign(new Error(name),{safeCheck:name});};
+ async function call(action,payload){const r=await wx.cloud.callFunction({name:'address',data:{action,payload:payload||{}},config:{env}});return r.result;}
+ async function success(action,payload){const r=await call(action,payload);if(!r||!r.ok)throw Object.assign(new Error('BUSINESS_FAILED'),{safeCheck:action,errorCode:r&&r.error&&r.error.code||'INVALID_RESPONSE'});return r.data;}
+ const address=label=>({receiverName:'受控复验样例'+label,phone:'13800000000',province:'安徽省',city:'合肥市',district:'庐江县',detail:'仅开发复验，不配送 '+run+' '+label,regionCodes:{province:null,city:null,district:null}});`;
+const wrap=body=>'async function(){\n '+common+'\n try{\n'+body+'\n }catch(e){out.state=\'FAILED\';out.failedCheck=e.safeCheck||\'TRANSPORT_FAILED\';out.errorCode=e.errorCode||e.errCode||null;}return out;\n}\n';
+const setup=` const before=await success('list');check('controlled empty baseline seven',before.items.length===0&&before.userVersion===7&&before.defaultAddressId===null&&before.subjectHash==='133a76b53fc4f5c8');
+ const a=await success('create',{address:address('A'),idempotencyKey:run+'-createA'});check('first sample identity/version',a.addressId===ids[0]&&a.version===0&&a.userVersion===8);
+ const b=await success('create',{address:address('B'),idempotencyKey:run+'-createB'});check('second sample identity/version',b.addressId===ids[1]&&b.version===0&&b.userVersion===9);
+ const updated=await success('update',{addressId:ids[0],expectedVersion:0,address:address('A 已修改'),idempotencyKey:run+'-updateA'});check('one address edit and parent guard',updated.version===1&&updated.userVersion===10);out.userVersion=updated.userVersion;`;
+const race=` const before=await success('list');check('race baseline ten',before.userVersion===10&&before.items.length===2&&before.items.some(x=>x.addressId===ids[0])&&before.items.some(x=>x.addressId===ids[1]));
+ const keys=[run+'-defaultA',run+'-defaultB'];
+ const responses=await Promise.all(ids.map((addressId,i)=>call('setDefault',{addressId,expectedVersion:i===0?1:0,expectedUserVersion:10,idempotencyKey:keys[i]})));
+ out.responses=responses.map((r,i)=>({key:keys[i],ok:r.ok,error:r.error&&r.error.code,requestId:r.requestId,userVersion:r.data&&r.data.userVersion,defaultAddressId:r.data&&r.data.defaultAddressId}));
+ const after=await success('list');out.userVersion=after.userVersion;out.defaultAddressId=after.defaultAddressId;
+ check('only one parent version increment',after.userVersion===11);
+ check('one winner one explicit version conflict',responses.filter(r=>r.ok).length===1&&responses.filter(r=>!r.ok&&r.error.code==='VERSION_CONFLICT').length===1);`;
+const same=` const before=await success('list');check('same-default baseline eleven',before.userVersion===11&&before.items.length===2&&ids.includes(before.defaultAddressId));
+ const row=before.items.find(x=>x.addressId===before.defaultAddressId);
+ const result=await success('setDefault',{addressId:row.addressId,expectedVersion:row.version,expectedUserVersion:11,idempotencyKey:run+'-sameDefault'});
+ check('same pointer advances committed parent version',result.version===12&&result.userVersion===12&&result.defaultAddressId===before.defaultAddressId);out.userVersion=result.userVersion;out.defaultAddressId=result.defaultAddressId;`;
+const cleanup=` const before=await success('list');check('cleanup only approved owner and sample ids',before.subjectHash==='133a76b53fc4f5c8'&&before.userVersion>=7&&before.userVersion<=15&&before.items.length<=2&&before.items.every(row=>ids.includes(row.addressId))&&(before.defaultAddressId===null||ids.includes(before.defaultAddressId)));
+ check('cleanup keeps total new receipts within eight',before.userVersion+before.items.length<=15);
+ const rows=before.items.slice().sort((a,b)=>Number(a.addressId===before.defaultAddressId)-Number(b.addressId===before.defaultAddressId));
+ let revision=before.userVersion;out.removals=[];
+ for(const row of rows){const result=await success('remove',{addressId:row.addressId,expectedVersion:row.version,expectedUserVersion:revision,idempotencyKey:run+'-remove'+row.addressId});out.removals.push({addressId:row.addressId,userVersion:result.userVersion});check('one parent increment per removal',result.deleted===true&&result.userVersion===revision+1);revision=result.userVersion;}
+ const after=await success('list');check('no active samples and default null',after.items.length===0&&after.defaultAddressId===null&&after.userVersion===revision);out.userVersion=after.userVersion;out.defaultAddressId=after.defaultAddressId;out.count=after.items.length;`;
+for(const [stage,body]of Object.entries({setup,race,same,cleanup}))fs.writeFileSync('artifacts/address-reverify-'+stage+'.js',wrap(body));
+const plan={authorization:'User 云允许 after explicit additional 2-address/8-receipt request',environment:env,run,baseline:{userVersion:7,addressCount:0,defaultAddressId:null},maximumNewAddresses:2,maximumNewReceipts:8,expectedNewReceipts:7,ids,keys,stages:['setup','race','same','cleanup'],execution:'Await each native stage; persist result before advancing; never use getApp background state or restart the run.',failure:'Management readback before resume/cleanup; keep original IDs/keys; reserve two receipts for cleanup.',spentNewAddresses:0,spentNewReceipts:0};
+fs.writeFileSync(planPath,JSON.stringify({...plan,...existing},null,2)+'\n');
+const vm=require('node:vm');for(const stage of ['setup','race','same','cleanup'])new vm.Script('('+fs.readFileSync('artifacts/address-reverify-'+stage+'.js','utf8')+')');
+console.log(JSON.stringify({prepared:true,run,maximumNewAddresses:2,maximumNewReceipts:8,awaitedStages:4}));

@@ -1,0 +1,44 @@
+{
+  "state": "COMPLETED",
+  "checks": [
+    {
+      "name": "client direct address write denied",
+      "passed": true
+    },
+    {
+      "name": "signed two-page native seek",
+      "passed": true
+    },
+    {
+      "name": "exactly one native concurrent winner and one version conflict",
+      "passed": false
+    },
+    {
+      "name": "one atomic parent version increment",
+      "passed": true
+    },
+    {
+      "name": "previous revision cursor rejected",
+      "passed": true
+    },
+    {
+      "name": "forged owner rejected",
+      "passed": true
+    }
+  ],
+  "race": [
+    {
+      "key": "g1-address-20261011-1791714559921-default-recheck0",
+      "ok": true,
+      "userVersion": 5,
+      "defaultAddressId": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7"
+    },
+    {
+      "key": "g1-address-20261011-1791714559921-default-recheck1",
+      "ok": false,
+      "error": "INTERNAL_ERROR"
+    }
+  ],
+  "finalUserVersion": 5,
+  "defaultAddressId": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7"
+}

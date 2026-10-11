@@ -1,6 +1,6 @@
 const config = require('../config');
 const { createError } = require('./errors');
-const allowedActions = { user: ['me'], store: ['health'], catalog: ['categories.list','products.list','product.get'] };
+const allowedActions = { user: ['me'], store: ['health'], catalog: ['categories.list','products.list','product.get'], address:['list','get','create','update','remove','setDefault'] };
 const hasDomain = domain => Object.prototype.hasOwnProperty.call(allowedActions, domain);
 function createClient(settings, platform, logger = console) {
   let initializedEnv = '';
@@ -30,6 +30,7 @@ function createClient(settings, platform, logger = console) {
     try {
       if (!hasDomain(domain) || !allowedActions[domain].includes(action)) throw createError('INVALID_REQUEST', requestId);
       if (domain==='catalog' && (!settings.catalog || settings.catalog.enabled!==true)) throw createError('CLOUD_NOT_CONFIGURED',requestId);
+      if(domain==='address'&&(!settings.addresses||settings.addresses.enabled!==true))throw createError('CLOUD_NOT_CONFIGURED',requestId);
       const env = initialize();
       let response;
       try {

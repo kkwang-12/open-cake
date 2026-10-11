@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "tool": "polling_task_result",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "taskId": "confirmation_cloud_fn_deploy_0eaee024-8293-4cae-8d88-d675ef3d97c3",
+    "taskType": "confirmation_cloud_fn_deploy",
+    "status": "success",
+    "createdAt": 1791712331127,
+    "updatedAt": 1791712336670,
+    "detail": "execution_success",
+    "result": {
+      "address": {
+        "error": {
+          "message": "Error: TencentCloud API error: {\n    \"Response\": {\n        \"Error\": {\n            \"Code\": \"FailedOperation.UpdateFunctionCode\",\n            \"Message\": \"当前函数处于Updating状态，无法进行此操作，请稍后重试。\"\n        },\n        \"RequestId\": \"47408c14-9d79-4b38-8b63-c71d72f71f9e\"\n    }\n}"
+        }
+      }
+    }
+  }
+}

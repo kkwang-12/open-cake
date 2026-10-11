@@ -1,0 +1,29 @@
+{
+  "ok": true,
+  "tool": "cloud_db_read_doc",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "requestId": "60595ebb-4e6f-4a35-899a-f9a197fc7b1a",
+    "data": [
+      {
+        "_id": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+        "createdAt": 1791429397518,
+        "defaultAddressId": null,
+        "schemaVersion": 1,
+        "status": "ACTIVE",
+        "updatedAt": 1791714836009,
+        "version": 7
+      }
+    ],
+    "total": 1,
+    "pager": {
+      "Offset": 0,
+      "Limit": 2,
+      "Total": 1
+    },
+    "message": "文档查询成功",
+    "collection": "users",
+    "collectionName": "users"
+  }
+}

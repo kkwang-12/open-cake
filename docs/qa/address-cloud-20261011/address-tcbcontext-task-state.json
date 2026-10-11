@@ -1,0 +1,19 @@
+{
+  "ok": true,
+  "tool": "polling_task_result",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "taskId": "confirmation_cloud_fn_inc_deploy_c48fc8fe-4c79-46e9-b994-416777f1a6cf",
+    "taskType": "confirmation_cloud_fn_inc_deploy",
+    "status": "success",
+    "createdAt": 1791714437243,
+    "updatedAt": 1791714441096,
+    "detail": "execution_success",
+    "result": {
+      "name": "address",
+      "filesCount": 1,
+      "packSize": "4.1 KB"
+    }
+  }
+}

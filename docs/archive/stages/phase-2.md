@@ -1769,3 +1769,13 @@ fence-missing诊断：先按严格DATABASE_TRANSACTION_CONFLICT标记识别读�
 
 授权与收尾：[授权](../../qa/d04-cloud/write-protection-20261009/authorization.json)、[资源/权限](../../qa/d04-cloud/write-protection-20261009/preflight.json)、[原生身份](../../qa/d04-cloud/write-protection-20261009/identity-cli.json)、[首次部署及配置回读](../../qa/d04-cloud/write-protection-20261009/deployment.json)。共resources=8、records=7、receipts=0，新增15个，低于22上限；全部保留。[原始文档](../../qa/d04-cloud/write-protection-20261009/documents.json)。香港11:31:42提前关闭，原生合法操作返回PROBE_NOT_AUTHORIZED，工具恢复development；[关闭回读](../../qa/d04-cloud/write-protection-20261009/closure.json)。
 
+## G1 本人地址原生事务与回执验收（2026-10-11）
+
+development既有address入口，SDK4.0.2/Nodejs20.19，run `g1-address-20261011-1791714559921`；限2样例/8安全回执及当前用户版本/默认指针，不涉及其他用户或订单资金。传输事件额外字段的哈希31563d5f9a0343e5精确匹配tcbContext；入口只剔除userInfo/tcbContext，可信身份仍取平台context，[诊断原图](../../qa/address-cloud-20261011/user-input-diagnostic-tcbcontext.png)、[增量终态](../../qa/address-cloud-20261011/address-tcbcontext-task-state.json)、[原生预检](../../qa/address-cloud-20261011/readiness-tcbcontext-fixed.json)。
+
+后台执行曾遭自动化响应超时，后续getApp运行记录丢失，未把后台检查全标通过，也未重建地址。管理回读确认两条地址、一次编辑及一个默认地址成功/用户version4；[按原键分步恢复](../../qa/address-cloud-20261011/native-recover-read.json)确认列表、修改后重放投影及原竞争败者VERSION_CONFLICT。另一次原生并发[完整响应](../../qa/address-cloud-20261011/native-race.json)显示1成功/1INTERNAL_ERROR，父版本只增到5；签名分页、旧游标失效及客户端地址直写拒绝均通过。失败方错误类别未达到契约，不能宣称完整并发验收通过。
+
+清理复用原两地址/原删除键，非默认先删、默认后删，[原生清理](../../qa/address-cloud-20261011/native-cleanup.json)返回列表空/默认null/父version7；三个私有集合实际文档同版本直写及直读均拒绝。[最终地址](../../qa/address-cloud-20261011/address-final-rows.json)仅2条且全部软删，[用户](../../qa/address-cloud-20261011/address-final-user.json)version7/defaultnull。新增成功回执7条（create2/update1/setDefault2/remove2），[完整字段审计](../../qa/address-cloud-20261011/receipt-audit.json)确认仅规定字段/无联系方式与DTO/两个竞争败者键都未持久化；不据此推断所有事务逐写失败均已验证。
+
+回读发现第二次设置同一默认指针的回执result.version为4，而成功父版本为5。已准备候选修复：setDefault回执使用本事务user.version+1；Provider诊断只保留固定类别/数字错误号/冲突或终止标记，不泄露原消息，也不把一般DATABASE_TRANSACTION_FAIL直接视为安全版本冲突。原7条证据不改写。候选[本地1104回归](../../qa/local-checks/tests-1791715109711-35116.tap)通过，尚未部署/真实竞争复验；2样例额度已耗尽，追加云写须另获有界授权。当前进度只见CURRENT-STATUS。
+

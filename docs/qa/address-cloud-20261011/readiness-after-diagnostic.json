@@ -1,0 +1,28 @@
+{
+  "state": "COMPLETED",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "address": {
+    "envelopeValid": true,
+    "ok": false,
+    "error": "INVALID_REQUEST",
+    "apiVersion": null,
+    "itemCount": null
+  },
+  "clientReads": [
+    {
+      "collection": "users",
+      "rejected": true,
+      "code": -502003
+    },
+    {
+      "collection": "addresses",
+      "rejected": true,
+      "code": -502003
+    },
+    {
+      "collection": "idempotency_records",
+      "rejected": true,
+      "code": -502003
+    }
+  ]
+}

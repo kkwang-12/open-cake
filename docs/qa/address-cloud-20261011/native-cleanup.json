@@ -1,0 +1,56 @@
+{
+  "state": "COMPLETED",
+  "checks": [
+    {
+      "name": "client write denied users",
+      "passed": true
+    },
+    {
+      "name": "client write denied idempotency_records",
+      "passed": true
+    },
+    {
+      "name": "remove increments parent exactly once",
+      "passed": true
+    },
+    {
+      "name": "remove increments parent exactly once",
+      "passed": true
+    },
+    {
+      "name": "final list empty version seven default null",
+      "passed": true
+    },
+    {
+      "name": "deleted create replay returns not found",
+      "passed": true
+    },
+    {
+      "name": "client read denied users",
+      "passed": true
+    },
+    {
+      "name": "client read denied addresses",
+      "passed": true
+    },
+    {
+      "name": "client read denied idempotency_records",
+      "passed": true
+    }
+  ],
+  "removals": [
+    {
+      "addressId": "d6b78d428c2f20ffb9aae5c4dfd87643f0b20b25f3f497ff0d03888963251622",
+      "ok": true,
+      "userVersion": 6
+    },
+    {
+      "addressId": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7",
+      "ok": true,
+      "userVersion": 7
+    }
+  ],
+  "userVersion": 7,
+  "defaultAddressId": null,
+  "count": 0
+}

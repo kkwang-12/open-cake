@@ -1,0 +1,14 @@
+{
+  "date": "2026-10-11",
+  "clientName": "Codex",
+  "project": "D:\\Open cake",
+  "attempts": [
+    {"tool": "check_wechatide_status", "ok": false, "errorType": "CONNECT_ERROR"},
+    {"tool": "auth", "ok": true, "authorized": true, "status": "success", "alreadyTrusted": true, "port": 51943, "cliTokenRequired": false},
+    {"tool": "check_wechatide_status", "ok": false, "errorType": "CONNECT_ERROR"}
+  ],
+  "nativeReadinessExecuted": false,
+  "newAddresses": 0,
+  "newReceipts": 0,
+  "conclusion": "Authorization success did not restore CLI service connection. Stopped after three attempts per user instruction."
+}

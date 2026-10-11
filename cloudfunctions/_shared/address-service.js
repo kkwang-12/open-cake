@@ -5,7 +5,7 @@ const {planAddressCommand,validateAddress,publicAddress}=require('./address-mode
 const {requestFingerprint,idempotencyId}=require('./idempotency-model');
 function fail(code){throw Object.assign(new Error(code),{code});}
 const clone=value=>JSON.parse(JSON.stringify(value));
-// Offline application service. SDK adapter/handler/pagination are not deployed.
+// Reusable command rules; the caller supplies current authorization and an atomic SDK session.
 function createAddressService({runTransaction,now,newAddressId,validatePhone,verifyRegion}){
   if(![runTransaction,now,newAddressId].every(value=>typeof value==='function'))fail('INVALID_CONFIGURATION');
   return {async execute(event,principal){
@@ -15,7 +15,8 @@ function createAddressService({runTransaction,now,newAddressId,validatePhone,ver
     if(action==='list')fail('CONFIGURATION_REQUIRED');
     const receiptId=contract.mutation?idempotencyId({environment:principal.environment,
       actorScope:JSON.stringify([principal.appId,principal.subjectId]),command:'address.'+action,key:payload.idempotencyKey}):null;
-    const fingerprint=contract.mutation?requestFingerprint(payload):null;
+    const {idempotencyKey,...business}=payload;
+    const fingerprint=contract.mutation?requestFingerprint(business):null;
     return runTransaction(async tx=>{
       const user=await tx.readUser(principal.subjectId);
       if(user===null)fail('USER_NOT_PROVISIONED');

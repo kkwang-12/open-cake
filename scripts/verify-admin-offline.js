@@ -52,11 +52,12 @@ async function adminBoundary(){
   const client=createClient({mode:'cloud',stage:'test',cloudEnvironments:{test:'OFFLINE_ADMIN_PROBE'}},
     ()=>({cloud:{init(){platformCalls++;},callFunction(){platformCalls++;}}}),{warn(){}});
   const planned=Object.entries(ACTION_CONTRACTS).filter(([,item])=>item.status==='PLANNED');
+  const addressActions=new Set(['address.list','address.get','address.create','address.update','address.remove','address.setDefault']);
   const catalogReads=new Set(['catalog.categories.list','catalog.products.list','catalog.product.get']);
   for(const [name,item] of planned){
     try{await client.call(item.domain,item.action,{});unexpected.push(name);}
     catch(error){
-      const expected=catalogReads.has(name)?'CLOUD_NOT_CONFIGURED':'INVALID_REQUEST';
+      const expected=(catalogReads.has(name)||addressActions.has(name))?'CLOUD_NOT_CONFIGURED':'INVALID_REQUEST';
       (error.code===expected?rejected:unexpected).push(name);
     }
   }

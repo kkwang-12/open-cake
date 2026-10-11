@@ -1,7 +1,7 @@
 <page-header back="{{true}}" />
 <view class="page address-page">
   <view class="display-title">{{editing ? (editId ? '编辑地址' : '新增地址') : (selectMode ? '选择配送地址' : '配送地址')}}</view>
-  <view class="address-note">地址仅保存在本机，配送范围及位置尚待核验。</view>
+  <view class="address-note">{{scope === 'CLOUD_OWNER' ? '地址已保存至本人云账户，配送范围及位置尚待核验。' : scope === 'LOCAL_DEVICE' ? '地址仅保存在本机，配送范围及位置尚待核验。' : '地址云服务暂未开通。'}}</view>
   <view wx:if="{{error}}" class="error-note">{{error}}<button wx:if="{{!editing}}" class="secondary-action" bindtap="load">重新读取</button></view>
   <view wx:if="{{editing}}" class="address-form">
     <label class="field-label">收件人<input class="address-input" data-field="receiverName" value="{{form.receiverName}}" placeholder="收件人姓名" maxlength="2048" disabled="{{busy}}" bindinput="input" /></label>
@@ -22,10 +22,11 @@
         <button wx:if="{{!item.isDefault}}" class="default-address" disabled="{{busy}}" data-id="{{item.addressId}}" data-index="{{index}}" bindtap="setDefault">设为默认</button>
         <button class="edit-address" disabled="{{busy}}" data-id="{{item.addressId}}" data-index="{{index}}" bindtap="edit">编辑</button>
         <button class="remove-address" disabled="{{busy}}" data-id="{{item.addressId}}" data-index="{{index}}" bindtap="remove">删除</button>
-        <button wx:if="{{selectMode}}" class="choose-address" disabled="{{busy}}" data-id="{{item.addressId}}" data-index="{{index}}" bindtap="choose">使用此地址</button>
+        <button wx:if="{{selectMode && selectionAllowed}}" class="choose-address" disabled="{{busy}}" data-id="{{item.addressId}}" data-index="{{index}}" bindtap="choose">使用此地址</button>
       </view>
     </view>
-    <view wx:if="{{!addresses.length && !error}}" class="address-empty">还没有保存地址</view>
-    <button class="primary-action add-address" disabled="{{busy}}" bindtap="add">新增地址</button>
+    <view wx:if="{{!addresses.length && !error && !loading}}" class="address-empty">还没有保存地址</view>
+    <view wx:if="{{loading}}" class="address-empty">正在读取地址…</view>
+    <button class="primary-action add-address" disabled="{{busy || loading || !scope}}" bindtap="add">新增地址</button>
   </block>
 </view>

@@ -1,0 +1,24 @@
+{
+  "state": "COMPLETED",
+  "checks": [
+    {
+      "name": "list has exactly two original samples",
+      "passed": true
+    },
+    {
+      "name": "version four and original default persisted",
+      "passed": true
+    },
+    {
+      "name": "same create key reprojects current address without new sample",
+      "passed": true
+    },
+    {
+      "name": "original losing key remains version conflict",
+      "passed": true
+    }
+  ],
+  "userVersion": 4,
+  "defaultAddressId": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7",
+  "originalLoserError": "VERSION_CONFLICT"
+}

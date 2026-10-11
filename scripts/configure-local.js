@@ -8,13 +8,15 @@ if (typeof project.appid !== 'string' || !/^wx[0-9a-f]{16}$/.test(project.appid)
 const defaultConfig = {
   mode: 'shell', stage: 'development', appId: project.appid,
   cloudEnvironments: { development: '', test: '', production: '' }, enableLegacyDemo: false,
-  catalog: { enabled:false, storeId:'', allowedCloudPrefixes:[] }
+  catalog: { enabled:false, storeId:'', allowedCloudPrefixes:[] }, addresses:{enabled:false}
 };
 const local = fs.existsSync(localPath) ? require(localPath) : {};
 const allowed = Object.keys(defaultConfig);
 if (Object.keys(local).some(key => !allowed.includes(key))) throw new Error('本地配置含不支持字段；凭证不得写入小程序配置');
 if (local.appId !== undefined && local.appId !== project.appid) throw new Error('本地 AppID 与 project.config.json 不一致');
 const config = { ...defaultConfig, ...local, cloudEnvironments: { ...defaultConfig.cloudEnvironments, ...(local.cloudEnvironments || {}) } };
+if(!config.addresses||typeof config.addresses!=='object'||Array.isArray(config.addresses)||
+  Object.keys(config.addresses).some(key=>key!=='enabled')||typeof config.addresses.enabled!=='boolean')throw new Error('无效的地址服务配置');
 if (!config.catalog || typeof config.catalog!=='object' || Array.isArray(config.catalog) ||
     Object.keys(config.catalog).some(key=>!['enabled','storeId','allowedCloudPrefixes','allowReferenceImages'].includes(key)) || typeof config.catalog.enabled!=='boolean' ||
     (config.catalog.allowReferenceImages!==undefined&&typeof config.catalog.allowReferenceImages!=='boolean') ||

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "tool": "cloud_fn_info",
+  "clientName": "Codex",
+  "result": {
+    "appid": "wx154f791a17268ace",
+    "list": [
+      {
+        "name": "address",
+        "status": "Active",
+        "timeout": 3,
+        "runtime": "Nodejs16.13"
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "tool": "cloud_db_read_struct",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "requestId": "f9eafe44-cd38-483d-8184-14240a440904",
+    "indexNum": 2,
+    "indexes": [
+      {
+        "Name": "_id_",
+        "Accesses": {
+          "Ops": 0,
+          "Since": "2026-10-11T14:38:56.221+08:00"
+        },
+        "Keys": [
+          {
+            "Name": "_id",
+            "Direction": "1"
+          }
+        ],
+        "Size": 8192,
+        "Unique": false,
+        "Sparse": false,
+        "PartialFilterExpression": ""
+      },
+      {
+        "Name": "_openid_1",
+        "Accesses": {
+          "Ops": 0,
+          "Since": "2026-10-11T14:38:56.227+08:00"
+        },
+        "Keys": [
+          {
+            "Name": "_openid",
+            "Direction": "1"
+          }
+        ],
+        "Size": 12288,
+        "Unique": false,
+        "Sparse": false,
+        "PartialFilterExpression": ""
+      }
+    ],
+    "message": "获取云开发数据库集合信息成功",
+    "collection": "addresses",
+    "collectionName": "addresses"
+  }
+}

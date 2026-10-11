@@ -1,0 +1,222 @@
+{
+  "shop-cake": {
+    "route": "pages/shop/shop",
+    "category": "cake",
+    "source": "PUBLIC_CATALOG",
+    "error": "",
+    "loading": false,
+    "products": [
+      {
+        "id": "g1-initial-strawberry-cake",
+        "version": 0,
+        "categoryCode": "CAKE",
+        "name": "草莓鲜奶蛋糕",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 16800,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "168起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-cake-r1.png",
+        "canPurchase": false
+      },
+      {
+        "id": "g1-initial-chocolate-cake",
+        "version": 0,
+        "categoryCode": "CAKE",
+        "name": "黑巧克力蛋糕",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 18800,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "188起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-cake-r1.png",
+        "canPurchase": false
+      },
+      {
+        "id": "g1-initial-mango-cake",
+        "version": 0,
+        "categoryCode": "CAKE",
+        "name": "芒果鲜奶蛋糕",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 17800,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "178起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/mango-cake-r1.png",
+        "canPurchase": false
+      }
+    ]
+  },
+  "shop-bread": {
+    "route": "pages/shop/shop",
+    "category": "bread",
+    "source": "PUBLIC_CATALOG",
+    "error": "",
+    "loading": false,
+    "products": [
+      {
+        "id": "g1-initial-croissant",
+        "version": 0,
+        "categoryCode": "BREAD",
+        "name": "牛角面包",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 1200,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "12起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/croissant-r1.png",
+        "canPurchase": false
+      },
+      {
+        "id": "g1-initial-bagel",
+        "version": 0,
+        "categoryCode": "BREAD",
+        "name": "贝果",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 1200,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "12起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/bagel-r1.png",
+        "canPurchase": false
+      },
+      {
+        "id": "g1-initial-sourdough",
+        "version": 0,
+        "categoryCode": "BREAD",
+        "name": "欧式面包",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 1200,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "12起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/sourdough-r1.png",
+        "canPurchase": false
+      }
+    ]
+  },
+  "shop-mini": {
+    "route": "pages/shop/shop",
+    "category": "mini",
+    "source": "PUBLIC_CATALOG",
+    "error": "",
+    "loading": false,
+    "products": [
+      {
+        "id": "g1-initial-strawberry-mini",
+        "version": 0,
+        "categoryCode": "MINI_CAKE",
+        "name": "草莓小蛋糕",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 3600,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "36起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png",
+        "canPurchase": false
+      },
+      {
+        "id": "g1-initial-chocolate-mini",
+        "version": 0,
+        "categoryCode": "MINI_CAKE",
+        "name": "巧克力小蛋糕",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 3800,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "38起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/chocolate-mini-r1.png",
+        "canPurchase": false
+      },
+      {
+        "id": "g1-initial-blueberry-mini",
+        "version": 0,
+        "categoryCode": "MINI_CAKE",
+        "name": "蓝莓芝士小蛋糕",
+        "description": "AI 参考配图，商品外观以实际制作为准。",
+        "minPriceCents": 4200,
+        "currency": "CNY",
+        "priceFrom": true,
+        "priceLabel": "42起",
+        "image": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/blueberry-mini-r1.png",
+        "canPurchase": false
+      }
+    ]
+  },
+  "detail-mini": {
+    "route": "features/product/product",
+    "error": "",
+    "loading": false,
+    "product": {
+      "productId": "g1-initial-strawberry-mini",
+      "name": "草莓小蛋糕",
+      "description": "AI 参考配图，商品外观以实际制作为准。",
+      "categoryLabel": "小蛋糕 / MINI CAKE",
+      "priceLabel": "36",
+      "priceMeaning": "云端商品价格，以结算报价为准。",
+      "images": [
+        {
+          "key": "g1-initial-strawberry-mini:r1",
+          "src": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png"
+        }
+      ],
+      "variantLabels": [
+        {
+          "skuId": "g1-initial-strawberry-mini-single",
+          "label": "单个",
+          "priceLabel": "36"
+        }
+      ],
+      "source": "PUBLIC_CATALOG",
+      "notice": "加购与购买服务尚未开放。",
+      "canPurchase": false,
+      "canConfigure": false
+    },
+    "gallery": [
+      {
+        "key": "g1-initial-strawberry-mini:r1",
+        "src": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png",
+        "failed": false
+      }
+    ],
+    "sheetOpen": false
+  },
+  "detail-gate": {
+    "route": "features/product/product",
+    "error": "",
+    "loading": false,
+    "product": {
+      "productId": "g1-initial-strawberry-mini",
+      "name": "草莓小蛋糕",
+      "description": "AI 参考配图，商品外观以实际制作为准。",
+      "categoryLabel": "小蛋糕 / MINI CAKE",
+      "priceLabel": "36",
+      "priceMeaning": "云端商品价格，以结算报价为准。",
+      "images": [
+        {
+          "key": "g1-initial-strawberry-mini:r1",
+          "src": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png"
+        }
+      ],
+      "variantLabels": [
+        {
+          "skuId": "g1-initial-strawberry-mini-single",
+          "label": "单个",
+          "priceLabel": "36"
+        }
+      ],
+      "source": "PUBLIC_CATALOG",
+      "notice": "加购与购买服务尚未开放。",
+      "canPurchase": false,
+      "canConfigure": false
+    },
+    "gallery": [
+      {
+        "key": "g1-initial-strawberry-mini:r1",
+        "src": "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/strawberry-mini-r1.png",
+        "failed": false
+      }
+    ],
+    "sheetOpen": false
+  }
+}

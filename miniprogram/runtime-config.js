@@ -12,6 +12,12 @@ module.exports = {
   "catalog": {
     "enabled": true,
     "storeId": "g1-catalog-store",
-    "allowedCloudPrefixes": []
+    "allowedCloudPrefixes": [
+      "cloud://cloudbase-d8gwtxzm64150b7e0.636c-cloudbase-d8gwtxzm64150b7e0-1501710237/catalog/g1-initial-20261010/"
+    ],
+    "allowReferenceImages": true
+  },
+  "addresses": {
+    "enabled": false
   }
 };

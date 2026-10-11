@@ -46,3 +46,35 @@ test('candidate storage policy permits only exact reference files to non-anonymo
   assert.equal(read({openid:'owner',loginType:'WECHAT'},{path:'private/old.png',openid:'owner'}),true);
   assert.equal(read({openid:'stranger',loginType:'WECHAT'},{path:'private/old.png',openid:'owner'}),false);
 });
+
+
+test('adopted nine-product catalog reaches client list and details with unknown buying limits still closed',async()=>{
+  const {createCatalogCloudHandler}=require('../cloudfunctions/_shared/catalog-cloud-handler');
+  const {createCatalogClient}=require('../miniprogram/services/catalog');
+  const {createHomeCatalogClient}=require('../miniprogram/services/home-catalog');
+  const plan=buildInitialCatalogPlan(images(),1000),d=plan.documents;
+  const settings={appId:'offline-adopted-app',environment:ENVIRONMENT,stage:'development',enabled:true,
+    storeId:STORE_ID,allowReferenceImages:true,allowedCloudPrefixes:plan.allowedCloudPrefixes,
+    cursorKey:{id:'offline-adopted',secret:Buffer.alloc(32,7)}};
+  const handler=createCatalogCloudHandler({settings,now:()=>2000,
+    getContext:()=>({APPID:settings.appId,ENV:ENVIRONMENT,OPENID:'offline-adopted-user'}),
+    repository:{readSnapshot:async()=>({categories:d.categories,products:d.products,skus:d.skus,mediaAssets:d.media_assets})},
+    logger:{info(){},warn(){},error(){}}});
+  const transport={call:async(domain,action,payload)=>{assert.equal(domain,'catalog');return handler({action,payload});}};
+  const clientSettings={mode:'cloud',stage:'development',cloudEnvironments:{development:ENVIRONMENT},catalog:{
+    enabled:true,storeId:STORE_ID,allowReferenceImages:true,allowedCloudPrefixes:plan.allowedCloudPrefixes}};
+  const client=createCatalogClient(clientSettings,undefined,transport),cards=[];
+  let cursor=null;
+  do{const page=await client.list({pageSize:4,cursor});cards.push(...page.items);cursor=page.nextCursor;}while(cursor);
+  assert.equal(cards.length,9);assert.equal(new Set(cards.map(c=>c.id)).size,9);
+  assert.deepEqual(cards.map(c=>c.id),d.products.map(p=>p._id));
+  for(const card of cards){
+    const detail=await client.get(card.id),variants=d.skus.filter(s=>s.productId===card.id);
+    assert.equal(card.canPurchase,false);assert.equal(detail.canPurchase,false);assert.equal(detail.canConfigure,false);
+    assert.equal(detail.images[0].src,card.image);assert.ok(detail.description.includes('AI 参考'));
+    assert.deepEqual(detail.variantLabels.map(v=>v.skuId).sort(),variants.map(v=>v._id).sort());
+  }
+  const home=await createHomeCatalogClient(client).get();
+  assert.equal(home.source,'PUBLIC_CATALOG');assert.deepEqual(home.products.map(p=>p.categoryCode),['CAKE','MINI_CAKE','BREAD']);
+  await assert.rejects(createCatalogClient({...clientSettings,catalog:{...clientSettings.catalog,allowedCloudPrefixes:[]}},undefined,transport).list(),e=>e.code==='INVALID_RESPONSE');
+});

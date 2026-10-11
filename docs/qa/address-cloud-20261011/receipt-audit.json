@@ -1,0 +1,32 @@
+{
+  "state": "PARTIAL",
+  "run": "g1-address-20261011-1791714559921",
+  "checks": {
+    "totalSeven": true,
+    "exactSafeFields": true,
+    "noContactOrResponse": true,
+    "losingKeysAbsent": true,
+    "allSucceeded": true,
+    "defaultReceiptVersionsAligned": false
+  },
+  "counts": {
+    "address.create": 2,
+    "address.update": 1,
+    "address.setDefault": 2,
+    "address.remove": 2
+  },
+  "defaultReceiptVersions": [
+    {
+      "key": "g1-address-20261011-1791714559921-default0",
+      "actual": 4,
+      "expected": 4
+    },
+    {
+      "key": "g1-address-20261011-1791714559921-default-recheck0",
+      "actual": 4,
+      "expected": 5
+    }
+  ],
+  "requestId": "69ffa00b-b466-4aa6-871b-440224aab8eb",
+  "retained": "Raw private or unexpected fields are never printed or persisted."
+}

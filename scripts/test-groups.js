@@ -24,7 +24,7 @@ const groups = {
   },
   checkout: {
     description: '购物袋、地址、配送、时段、报价与确认；关联订单创建',
-    primary: files('cart-model cart-service local-bag bag-review checkout-selection checkout-server-selection checkout-fulfillment-page checkout-submission-contract address-service local-addresses addresses-page fulfillment-model fulfillment-draft store-fulfillment delivery-evaluation delivery-status appointment-availability quote-model confirmation-session'),
+    primary: files('cart-model cart-service local-bag bag-review checkout-selection checkout-server-selection checkout-fulfillment-page checkout-submission-contract address-service address-cloud address-client local-addresses addresses-page fulfillment-model fulfillment-draft store-fulfillment delivery-evaluation delivery-status appointment-availability quote-model confirmation-session'),
     related: files('catalog-model specification-model authorization-model resource-model order-creation-model order-transaction-service')
   },
   client: {

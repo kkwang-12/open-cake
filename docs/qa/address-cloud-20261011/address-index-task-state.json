@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "tool": "polling_task_result",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "taskId": "confirmation_cloud_db_write_struct_49d5493c-a6c0-4472-af5c-e51723e9a4d6",
+    "taskType": "confirmation_cloud_db_write_struct",
+    "status": "success",
+    "createdAt": 1791702780124,
+    "updatedAt": 1791702785138,
+    "detail": "execution_success",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"2d09e3a3-7f12-4fff-bb1e-6a8f8114df0b\",\n  \"action\": \"updateCollection\",\n  \"message\": \"云开发数据库集合更新成功\",\n  \"collection\": \"addresses\",\n  \"collectionName\": \"addresses\"\n}"
+        }
+      ]
+    }
+  }
+}

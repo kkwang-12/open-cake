@@ -1,0 +1,35 @@
+{
+  "authorization": "User 云允许 after explicit additional 2-address/8-receipt request",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "run": "g1-address-reverify-20261011-1791728754797",
+  "baseline": {
+    "userVersion": 7,
+    "addressCount": 0,
+    "defaultAddressId": null
+  },
+  "maximumNewAddresses": 2,
+  "maximumNewReceipts": 8,
+  "expectedNewReceipts": 7,
+  "ids": [
+    "37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73",
+    "94cf42fc2836c7aad1592d69132a84d98be1f1fe18d0733e8d2acfae5c51c630"
+  ],
+  "keys": {
+    "createA": "g1-address-reverify-20261011-1791728754797-createA",
+    "createB": "g1-address-reverify-20261011-1791728754797-createB",
+    "updateA": "g1-address-reverify-20261011-1791728754797-updateA",
+    "defaultA": "g1-address-reverify-20261011-1791728754797-defaultA",
+    "defaultB": "g1-address-reverify-20261011-1791728754797-defaultB",
+    "sameDefault": "g1-address-reverify-20261011-1791728754797-sameDefault"
+  },
+  "stages": [
+    "setup",
+    "race",
+    "same",
+    "cleanup"
+  ],
+  "execution": "Await each native stage; persist result before advancing; never use getApp background state or restart the run.",
+  "failure": "Management readback before resume/cleanup; keep original IDs/keys; reserve two receipts for cleanup.",
+  "spentNewAddresses": 0,
+  "spentNewReceipts": 0
+}

@@ -1,0 +1,96 @@
+{
+  "ok": true,
+  "tool": "cloud_db_read_doc",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "requestId": "22ab5317-362e-40ee-aca5-f4dd50aca73b",
+    "data": [
+      {
+        "_id": "14f8a74686ab95f89624819cf742b48437e886a0180cbf49f0dbe4fbef7a175e",
+        "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+        "command": "address.create",
+        "createdAt": 1791714528329,
+        "key": "g1-address-20261011-1791714559921-createA",
+        "leaseUntil": null,
+        "requestFingerprint": "33d0e05fae3709408efca4863b0729970977b19933691028643b6301c794ba48",
+        "result": {
+          "entityId": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7",
+          "errorCode": null,
+          "version": 0
+        },
+        "retentionUntil": null,
+        "schemaVersion": 1,
+        "status": "SUCCEEDED",
+        "updatedAt": 1791714528329,
+        "version": 0
+      },
+      {
+        "_id": "d42dda93e42b54e82d29edf42217ae6cf9e0626746b986361d6724a535505bd3",
+        "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+        "command": "address.create",
+        "createdAt": 1791714529500,
+        "key": "g1-address-20261011-1791714559921-createB",
+        "leaseUntil": null,
+        "requestFingerprint": "7cce3741149d0409e14dc70bc954152a4d08dfe65551f9717abaee6a636e0481",
+        "result": {
+          "entityId": "d6b78d428c2f20ffb9aae5c4dfd87643f0b20b25f3f497ff0d03888963251622",
+          "errorCode": null,
+          "version": 0
+        },
+        "retentionUntil": null,
+        "schemaVersion": 1,
+        "status": "SUCCEEDED",
+        "updatedAt": 1791714529500,
+        "version": 0
+      },
+      {
+        "_id": "7235edfd4127c07cb4e65a4c379a5db0d1eca45afd18935e609647362e3b3b95",
+        "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+        "command": "address.update",
+        "createdAt": 1791714531961,
+        "key": "g1-address-20261011-1791714559921-updateA",
+        "leaseUntil": null,
+        "requestFingerprint": "cbd36cc16b6ddae7d9200e7a25db93a15d71dacc541d246943a069a3039a4dff",
+        "result": {
+          "entityId": "9cfa7fe08101a73109ee99ead81e5393115bcd5dbb968c421562a45590bba8e7",
+          "errorCode": null,
+          "version": 1
+        },
+        "retentionUntil": null,
+        "schemaVersion": 1,
+        "status": "SUCCEEDED",
+        "updatedAt": 1791714531961,
+        "version": 0
+      },
+      {
+        "_id": "f67d00245eecfece91406e17390205635bbc697ed007098b3adadac051de8c9c",
+        "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+        "command": "address.setDefault",
+        "createdAt": 1791714534565,
+        "key": "g1-address-20261011-1791714559921-default0",
+        "leaseUntil": null,
+        "requestFingerprint": "1242bd452c765de3e4a2aafe24207e9875082e1d95d501210b065cef4d28215a",
+        "result": {
+          "entityId": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+          "errorCode": null,
+          "version": 4
+        },
+        "retentionUntil": null,
+        "schemaVersion": 1,
+        "status": "SUCCEEDED",
+        "updatedAt": 1791714534565,
+        "version": 0
+      }
+    ],
+    "total": 4,
+    "pager": {
+      "Offset": 0,
+      "Limit": 9,
+      "Total": 4
+    },
+    "message": "文档查询成功",
+    "collection": "idempotency_records",
+    "collectionName": "idempotency_records"
+  }
+}

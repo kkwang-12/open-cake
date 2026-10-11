@@ -1,0 +1,22 @@
+{
+  "ok": true,
+  "tool": "polling_task_result",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "taskId": "confirmation_cloud_db_write_struct_96f4cb60-b668-4b23-9f6b-281adfe16c29",
+    "taskType": "confirmation_cloud_db_write_struct",
+    "status": "success",
+    "createdAt": 1791700814691,
+    "updatedAt": 1791700820346,
+    "detail": "execution_success",
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"cb9001f7-9d87-4b58-b9d8-f0218122be5a\",\n  \"action\": \"createCollection\",\n  \"message\": \"云开发数据库集合创建成功\",\n  \"collection\": \"idempotency_records\",\n  \"collectionName\": \"idempotency_records\"\n}"
+        }
+      ]
+    }
+  }
+}

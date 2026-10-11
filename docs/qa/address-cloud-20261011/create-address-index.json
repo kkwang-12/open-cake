@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "tool": "cloud_db_write_struct",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "taskId": "confirmation_cloud_db_write_struct_49d5493c-a6c0-4472-af5c-e51723e9a4d6",
+    "taskType": "confirmation_cloud_db_write_struct",
+    "status": "pending",
+    "message": "Waiting for user confirmation."
+  }
+}

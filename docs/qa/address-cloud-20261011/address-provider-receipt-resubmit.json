@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "tool": "cloud_fn_inc_deploy",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "taskId": "confirmation_cloud_fn_inc_deploy_4554e48c-cd4c-4d56-8a09-83d8476b7eac",
+    "taskType": "confirmation_cloud_fn_inc_deploy",
+    "status": "pending",
+    "message": "Waiting for user confirmation."
+  }
+}
