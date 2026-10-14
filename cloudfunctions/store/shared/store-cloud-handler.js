@@ -40,6 +40,10 @@ function createStoreCloudHandler({getContext,settings,repository,logger=console,
   const health=createHandler({action:'health',getContext,settings,logger,
     handle:({stage,environment})=>({available:true,stage,environment})});
   return async function main(event={},invocation){
+    // Platform metadata is transport-only; identity always comes from invocation context.
+    if(plain(event)){
+      const {userInfo,tcbContext,...request}=event;event=request;
+    }
     if(event&&event.action==='health')return health(event,invocation);
     return createHandler({action:'get',getContext,settings,logger,mapError,async handle(){
       const {payload}=parseApiRequest('store',event);

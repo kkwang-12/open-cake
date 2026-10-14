@@ -1,0 +1,104 @@
+TAP version 13
+# Subtest: store.get returns only published public fields; health remains available with get disabled
+ok 1 - store.get returns only published public fields; health remains available with get disabled
+  ---
+  duration_ms: 3.9436
+  type: 'test'
+  ...
+# Subtest: store.get rejects native scope, forged input, cross-store requests and unsupported actions before database access
+ok 2 - store.get rejects native scope, forged input, cross-store requests and unsupported actions before database access
+  ---
+  duration_ms: 0.564
+  type: 'test'
+  ...
+# Subtest: store transport accepts injected metadata without trusting its identity or bypassing the disabled gate
+not ok 3 - store transport accepts injected metadata without trusting its identity or bypassing the disabled gate
+  ---
+  duration_ms: 0.7405
+  type: 'test'
+  location: 'D:\\Open cake\\tests\\store-cloud.test.js:44:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    false !== true
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (D:\Open cake\tests\store-cloud.test.js:47:10)
+    async Test.run (node:internal/test_runner/test:1313:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+  ...
+# Subtest: store transport still rejects extra business fields, nested metadata and cross-store targets
+not ok 4 - store transport still rejects extra business fields, nested metadata and cross-store targets
+  ---
+  duration_ms: 0.5976
+  type: 'test'
+  location: 'D:\\Open cake\\tests\\store-cloud.test.js:57:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 'INVALID_REQUEST'
+    - 'NOT_FOUND'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 'NOT_FOUND'
+  actual: 'INVALID_REQUEST'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (D:\Open cake\tests\store-cloud.test.js:66:60)
+    async Test.run (node:internal/test_runner/test:1313:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+  ...
+# Subtest: store.get fails closed for absent, draft, closed, mismatched, unpublished, future and incomplete configuration
+ok 5 - store.get fails closed for absent, draft, closed, mismatched, unpublished, future and incomplete configuration
+  ---
+  duration_ms: 0.7742
+  type: 'test'
+  ...
+# Subtest: store SDK repository reads two exact IDs in one bounded transaction without writes
+ok 6 - store SDK repository reads two exact IDs in one bounded transaction without writes
+  ---
+  duration_ms: 0.3943
+  type: 'test'
+  ...
+# Subtest: store SDK repository rejects duplicate, wrong-ID, oversized and malformed provider responses
+ok 7 - store SDK repository rejects duplicate, wrong-ID, oversized and malformed provider responses
+  ---
+  duration_ms: 0.5452
+  type: 'test'
+  ...
+# Subtest: cloud client transports store.get to the configured environment and preserves unsupported slots boundary
+ok 8 - cloud client transports store.get to the configured environment and preserves unsupported slots boundary
+  ---
+  duration_ms: 0.5917
+  type: 'test'
+  ...
+# Subtest: store client is disabled by default and does not reach the platform
+ok 9 - store client is disabled by default and does not reach the platform
+  ---
+  duration_ms: 0.2047
+  type: 'test'
+  ...
+# Subtest: store deploy package is self-contained and matches its shared source
+ok 10 - store deploy package is self-contained and matches its shared source
+  ---
+  duration_ms: 144.5177
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 8
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 366.7057

@@ -1,5 +1,5 @@
 {
-  "scope": "STORE_READ_CANDIDATE_NOT_DEPLOYED",
+  "scope": "STORE_TRANSPORT_FIX_CANDIDATE_SOURCE",
   "files": [
     {
       "path": "index.js",
@@ -43,7 +43,7 @@
     },
     {
       "path": "shared/store-cloud-handler.js",
-      "sha256": "0610fdc1b9554fbb3ff04739c45f7049e41075571fff06b565e14cd2ef41d537"
+      "sha256": "da170f59328bbc8dd584836eefe9745e0f43ad2fea97ac50c9c447ce0e7f4e4d"
     },
     {
       "path": "shared/store-fulfillment.js",

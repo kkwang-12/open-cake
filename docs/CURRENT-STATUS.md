@@ -1,8 +1,10 @@
 # 当前工作状态
 
-更新：2026-10-14（Asia/Hong_Kong）。这是唯一的进度/阻塞/下一步入口；开始时核对Git，按任务读取源码。历史证据不构成新授权。
+更新：2026-10-14（Asia/Shanghai）。这是唯一的进度/阻塞/下一步入口；开始时核对Git，按任务读取源码。历史证据不构成新授权。
 
-## 当前任务：G2 门店公开云读取（已部署，原生验收PARTIAL；用户暂停）
+- 本机接力基线为main e801905，旧记录备份在stash `pre-main-merge-20261014-local-progress`。本轮store传输修复已部署并原生复验，新增正式上限/取消名额规则已登记，草稿补参方案已准备。用户明确要求先提交推送当前成果至origin/main；未执行补参更新、未重跑旧验收窗口或重建资源。
+
+## 当前任务：G2 门店公开云读取（边界6/6通过；正式上限已确认，草稿补参待确认）
 
 - 用户2026-10-13明确选择“先接通选购草稿，购买继续关闭”，并授权有界云验证。development cart get/add/update/remove及既有页面服务已接通；页面/样式/组件未修改。未知库存/提前量不阻止保存，正式SKU数量范围仍校验，未知留言长度不允许非空留言；不填默认经营值。[技术接口](reference/network-api/14.md)。
 - 新命令原子写本人袋/安全引用回执/users.version；相同值新key也物理保护袋与用户，默认地址指针不变。回执不保存行/留言/价格/响应快照，重放重新授权并返回当前袋。客户端未确认请求按app/环境/原生subject隔离，保留原payload/key/version，不导入离线袋；加购携带get返回的cartId防止调用期间换号写入另一账号。
@@ -13,7 +15,12 @@
 - 工具首次预检因Windows .cmd双引号传输报Invalid token，改为短单引号表达式后8项预检通过；最后页面复查曾AUTOMATOR_TIMEOUT，按约定仅刷新一次/最小读检查后重试，最终6项通过。[首次页面超时](qa/cart-cloud-20261013/native-pages-final-attempt1.json)保留，不认定为业务失败或后台验收成功。测试分组关联补齐后tooling 14/14通过，[日志](qa/local-checks/tests-1791861324289-31156.tap)。
 - 2026-10-14门店读取：仅绑定门店的原生身份只读SDK快照及公开字段/营业窗口白名单；health保留。[接口约束](reference/network-api/15.md)。完整本地1130/1130（94文件），[最终日志](qa/local-checks/tests-1791970994470-17416.tap)，静态565项；初次2个旧关闭边界/请求标识断言失败已修正并保留原日志。CloudBase代码审查已核对原生鉴权、SDK有界读取及敏感字段投影。随后仅store更新代码和公开配置，回读Active/Available、Nodejs20.19/timeout10/无触发器，新JJL_STORE_READ_ENABLED=false；客户端新读取开关未启用。云端源码包已下载到原机artifacts，13文件逐一比对尚未完成，不认定源码验收通过。
 - 用户确认后development新建stores/store_config，客户端读写false规则已回读；按[批准计划](../artifacts/g2-store-20261014/draft-plan.json)插入2条DRAFT且逐字段回读一致。门店activeConfigId/location仍null，配置cartLimits/slotPolicy仍null，未发布、不写库存/时段/报价/订单、其他函数未操作。[执行与暂停位置](qa/g2-store-cloud-20261014/execution.json)、[13文件候选](../artifacts/g2-store-20261014/package.json)。MCP本轮显式绑定development/ap-shanghai，不能再沿用current_env_id=null的旧快照；后续操作仍核对目标环境。
-- [原生只读6项](qa/g2-store-cloud-20261014/native-readonly.json)5通过：health成功、伪造字段/slots拒绝、两集合客户端直读-502003；合法get预期CONFIGURATION_REQUIRED却返回INVALID_REQUEST，原因未定位，门店读取验收未通过。这不是自动化断连；当前微信登录有效/skill匹配、运行时已恢复。用户暂停后不再修复或调用云接口。晚上接力先比对已部署候选和微信原生传入业务事件，定位合法get错误；不要重复创建集合/插入草稿或把5/6写成通过。已确认经营值只查FULFILLMENT-RULES/CATALOG-CART-RULES，缺项只查EXTERNAL-DEPENDENCIES；购买/订单/支付/商家继续关闭，真机/资金/发布未验收。
+- 先前[原生只读6项](qa/g2-store-cloud-20261014/native-readonly.json)5通过；合法get预期CONFIGURATION_REQUIRED却返回INVALID_REQUEST。本机接力发现store未剔除微信注入的userInfo/tcbContext，新增测试稳定复现；现在只在顶层剔除这两个传输字段，原生身份仍从invocation取，额外业务字段/嵌套元数据/跨门店请求/关闭开关边界保留。源码与store独立副本同步，以下部署后原生结果确认此故障已修复。
+- 修复候选最终完整回归1132/1132（94文件），[日志](qa/local-checks/tests-1791985632294-7096.tap)；新增用例修复前2失败的[日志](qa/local-checks/tests-1791985612760-4440.tap)保留。静态586项，主包估算1415KiB。[13文件本地候选哈希](../artifacts/g2-store-20261014/package.json)已更新，不作为完整云源码比对证据；本机旧config.local已备份并按新main公开runtime对齐，避免configure退回地址false/缺cart。
+- 用户要求发起登录并扫码后，[门禁](qa/g2-store-cloud-20261014/gate-after-user-login.json)确认loginExpired=false/skill0.3.11 equal；[函数](qa/g2-store-cloud-20261014/local-function-info.json)store Active/Nodejs20.19/timeout10。此电脑原生工具首次无D:\Open cake运行时；打开主工程后一次[自动化超时](qa/g2-store-cloud-20261014/local-runtime-timeout.json)，仅刷新一次后[最小运行时](qa/g2-store-cloud-20261014/local-runtime-restored.json)恢复。未把工具故障算为业务通过。
+- [修复部署前6项原生检查](qa/g2-store-cloud-20261014/local-native-before-transport-fix.json)仍5/6。原增量任务0f7ae9fa在用户继续后[查询终态success/execution_success](qa/g2-store-cloud-20261014/transport-task-state.json)，内部确认store仅1文件/1.8KB；未重发部署，无新增文档/集合，不改读取开关或经营草稿。
+- [部署后同一6项原生复验](qa/g2-store-cloud-20261014/local-native-after-transport-fix.json)6/6通过；这是关闭开关边界验收，不是发布配置后公开读取成功，当前无部署pending。完整云源码13文件比对仍待：电脑操作两条入口均kernel assets路径不存在，连接器搜索未找到CloudBase；[取证入口错误](qa/g2-store-cloud-20261014/source-access-errors.json)。已请用户将云端store代码保存至artifacts/store-deployed-20261014.zip；不据本地哈希宣称云源码一致。
+- 用户本轮已确认4个正式上限，唯一来源[CATALOG-CART-RULES](CATALOG-CART-RULES.md)；取消名额规则已登记[FULFILLMENT-RULES](FULFILLMENT-RULES.md)，实现状态/释放版本绑定仍待。[云端门店](qa/g2-store-cloud-20261014/store-draft-current.json)/[配置](qa/g2-store-cloud-20261014/store-config-draft-current.json)均DRAFT/version0，activeConfigId null/cartLimits null/slotPolicy null。[补参计划](../artifacts/g2-store-20261014/limits-patch-plan.json)仅更新现有store_config 1条至version1，保持DRAFT/未发布，不改store/读取开关/商品/资源；用户选择先存档，未批准或执行此写操作。后续获确认后须重读版本并更新执行时updatedAt。模型预览不代表原生完整事务；位置服务Key可用性仍待回复，可信位置不能伪造，不开放购买/订单/支付/商家。
 
 ## 已完成：本轮本人云地址追加复验
 
@@ -30,7 +37,7 @@
 
 - 拉取已保存main并打开仓库根目录，不将cloudfunctions或miniprogram子目录单独导入；AppID wx154f791a17268ace/development云环境保持一致。旧stash pre-main-sync-20261011仅原机保留，不作为接力基线。
 - 根目录npm ci；如需重建runtime-config，先复制当前公开runtime-config到config.local保留已启用目录/地址配置，再npm run configure。机密游标密钥保留在云函数配置，无需迁移或旋转；私有配置/令牌不入库。
-- 原地址复验run已完成，预算已用2地址/7回执，不再执行setup或重启整轮。再次验证只读基线为同一subjectHash、用户version14/0活动地址/defaultnull；后续新写须明确新增范围。微信安装路径按本机实际调整，先核对登录/版本与CLI连接。
+- 原地址复验run已完成，预算已用2地址/7回执，不再执行setup或重启整轮；随后云袋验收将当前用户版本推进至18，默认null/0活动地址。不要沿用地址完成时version14作为当前基线；后续新写须明确新增范围。微信安装路径按本机实际调整，先核对登录/版本与CLI连接。
 
 - 上轮从远端main `c0d3989`接力，已启用development初版参考图及精确目录路径白名单；实际首页、三分类列表、详情与图片读通，购买/加购/收藏门禁保留。原机改动保留于stash `pre-main-sync-20261011`，不恢复旧快照；未新增云目录文档/素材、更新函数、提交/推送/上传或发布。
 
@@ -70,4 +77,4 @@
 - 联合离线阶段与Payment/Admin边界的既有证据保留在[原记录](qa/test-orchestration-20261009/summary.json)，不能替代正式接入后的合法成功/未授权拒绝验证。真实接入时按接口及开放能力更新边界断言，不能直接移除门禁。
 - 本机切cloud后4个离线测试暴露对隐式本机配置的依赖；已改用显式shell测试client，保留所有失败断言及购买门禁。受限HTTP失败与修正前失败原日志保留，最终通过结果不遮盖失败。[配置失败](qa/local-checks/tests-1791595372330-5476.tap)。验收分本地/云/真机/资金/发布，不用测试数估算上线比例。
 - 原生自动化/工程恢复及开发环境只读核查证据保留在[执行记录](qa/d04-cloud/write-protection-20261009/execution.json)与[恢复核查](qa/d04-cloud/read-protection-20261009/environment-recovery.json)；后续实际调用前复核环境、身份、版本，避免触发无关业务。
-- 经营资料、支付账户及其他缺项只维护在[EXTERNAL-DEPENDENCIES](EXTERNAL-DEPENDENCIES.md)。目录原新增额度已用完；地址追加2地址/8回执额度已用2/7，云袋1袋/5回执额度已用1/4，样例均已清理；本轮批准的门店2集合/2草稿及store更新已执行。剩余额度不构成新一轮授权，其他新部署/发布/资金未授权。用户明确暂停并授权提交推送当前改动至origin/main；最终提交和同步状态以Git为准。默认单agent；本轮仅补齐暂停证据与提交检查，不重复已通过的业务回归。
+- 经营资料、支付账户及其他缺项只维护在[EXTERNAL-DEPENDENCIES](EXTERNAL-DEPENDENCIES.md)。目录额度已用完，地址/云袋样例均清理；门店2集合/2草稿及store修复已执行，不扩资源窗口。用户现明确授权提交推送本轮源码/规则/证据/未执行方案至main，未授权草稿补参、小程序发布或资金操作。默认单agent；同一最终源码1132回归已通过，不因存档重复执行。

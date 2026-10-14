@@ -1,0 +1,11 @@
+{
+  "date": "2026-10-14",
+  "attempts": [
+    {"tool": "node_repl Computer Use initialization", "error": "failed to write kernel assets: 系统找不到指定的路径。 (os error 3)"},
+    {"tool": "cua_repl browser inventory", "error": "failed to write kernel assets: 系统找不到指定的路径。 (os error 3)"},
+    {"tool": "Plugin Management search CloudBase first attempt", "error": "HTTP request failed for chatgpt.com/backend-api/ps/mcp"},
+    {"tool": "Plugin Management search CloudBase retry", "plugins": []}
+  ],
+  "sourceArchivePresent": false,
+  "cloudBusinessMutations": 0
+}

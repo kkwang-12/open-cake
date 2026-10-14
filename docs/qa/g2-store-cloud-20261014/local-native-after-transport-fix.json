@@ -1,0 +1,46 @@
+{
+  "state": "PASSED",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "tests": [
+    {
+      "name": "health",
+      "passed": true,
+      "ok": true,
+      "code": null,
+      "requestId": "05f776da-b8ca-4cf9-a0ad-f930bfcc4730"
+    },
+    {
+      "name": "get-closed",
+      "passed": true,
+      "ok": false,
+      "code": "CONFIGURATION_REQUIRED",
+      "requestId": "8e5f6517-3ea0-48c4-ae7e-95f5dadce8e5"
+    },
+    {
+      "name": "forged-payload",
+      "passed": true,
+      "ok": false,
+      "code": "INVALID_REQUEST",
+      "requestId": "a55b088a-58b9-4e94-acb1-f1fd54f81f6d"
+    },
+    {
+      "name": "slots-closed",
+      "passed": true,
+      "ok": false,
+      "code": "INVALID_REQUEST",
+      "requestId": "f6d14d81-563f-4262-ac99-85a8a7ea9c4b"
+    },
+    {
+      "name": "stores-client-read",
+      "passed": true,
+      "rejected": true,
+      "code": -502003
+    },
+    {
+      "name": "store_config-client-read",
+      "passed": true,
+      "rejected": true,
+      "code": -502003
+    }
+  ]
+}

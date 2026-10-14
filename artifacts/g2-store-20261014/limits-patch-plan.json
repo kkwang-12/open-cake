@@ -1,0 +1,60 @@
+{
+  "scope": "DEVELOPMENT_EXISTING_STORE_CONFIG_LIMITS_DRAFT_ONLY",
+  "executionStatus": "PREPARED_REQUIRES_NEW_CLOUD_WRITE_APPROVAL",
+  "appId": "wx154f791a17268ace",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "collection": "store_config",
+  "query": {
+    "_id": "g2-initial-config-20261014",
+    "storeId": "g1-catalog-store",
+    "status": "DRAFT",
+    "version": 0,
+    "cartLimits": null
+  },
+  "update": {
+    "$set": {
+      "cartLimits": {
+        "maxLines": 60,
+        "maxQuantityPerLine": 15,
+        "maxOrderNoteLength": 30
+      },
+      "updatedAt": 1791987525089
+    },
+    "$inc": {
+      "version": 1
+    }
+  },
+  "expected": {
+    "matched": 1,
+    "modified": 1,
+    "nextVersion": 1,
+    "status": "DRAFT",
+    "publishedAt": null
+  },
+  "unchanged": [
+    "stores",
+    "activeConfigId",
+    "location",
+    "slotPolicy",
+    "deliveryRules",
+    "catalog",
+    "carts",
+    "users",
+    "reading flags"
+  ],
+  "newDocuments": 0,
+  "newCollections": 0,
+  "newReceipts": 0,
+  "publication": false,
+  "confirmedPolicySources": [
+    "docs/CATALOG-CART-RULES.md",
+    "docs/FULFILLMENT-RULES.md"
+  ],
+  "cakeMessage": "30 code points confirmed; catalog field publication is a separate operation, not part of this patch",
+  "slotRelease": "Before fulfillment only; runtime binding pending, not fabricated as implemented",
+  "validation": {
+    "existingPlanner": "planConfigSave accepted local proposed draft",
+    "snapshot": "Approved draft and projected current record; not a native complete transaction snapshot",
+    "stillNotPublishable": "CONFIGURATION_REQUIRED"
+  }
+}

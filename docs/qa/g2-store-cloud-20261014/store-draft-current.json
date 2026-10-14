@@ -1,0 +1,28 @@
+{
+  "ok": true,
+  "tool": "cloud_db_read_doc",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "requestId": "d4706de4-636b-4c8e-8e2f-ebfeba9052f5",
+    "data": [
+      {
+        "_id": "g1-catalog-store",
+        "activeConfigId": null,
+        "schemaVersion": 1,
+        "status": "DRAFT",
+        "timeZone": "Asia/Shanghai",
+        "version": 0
+      }
+    ],
+    "total": 1,
+    "pager": {
+      "Offset": 0,
+      "Limit": 1,
+      "Total": 1
+    },
+    "message": "文档查询成功",
+    "collection": "stores",
+    "collectionName": "stores"
+  }
+}

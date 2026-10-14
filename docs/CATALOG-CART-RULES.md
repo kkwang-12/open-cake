@@ -1,6 +1,19 @@
 # D03：商品规格与购物袋行规则
 
-本文件维护商品/SKU、留言、袋行与库存引用的技术约束；正式经营值查[EXTERNAL-DEPENDENCIES](EXTERNAL-DEPENDENCIES.md)，实现/验收状态查[CURRENT-STATUS](CURRENT-STATUS.md)。
+本文件维护商品/SKU、留言、袋行与库存引用的技术约束及已确认上限；缺项查[EXTERNAL-DEPENDENCIES](EXTERNAL-DEPENDENCIES.md)，实现/验收状态查[CURRENT-STATUS](CURRENT-STATUS.md)。
+
+## 已确认经营上限
+
+用户于2026-10-14确认下列正式值；不得沿用开发fixture中的上限。
+
+| 项目 | 值 / 字段 |
+| --- | --- |
+| 购物袋最多商品种类 / 行数 | 60，cartLimits.maxLines=60；同SKU不同留言形成不同袋行，均占行数 |
+| 每种商品 / 单行数量上限 | 15，cartLimits.maxQuantityPerLine=15；仍同时受SKU数量范围及履约日共享配额约束 |
+| 订单备注长度上限 | 30，cartLimits.maxOrderNoteLength=30 |
+| 支持留言的蛋糕留言上限 | 30，messagePolicy.maxLength=30；按下文既有规范化和Unicode码点计数，不改变不支持留言商品的策略 |
+
+这些值不代表库存或时段已占用；同日蛋糕共享15个配额继续独立生效，不因袋行上限而放宽。配置和商品字段须通过受控发布流程落库，不将本节直接当作已发布云数据。
 
 ## 商品、SKU 与步骤
 

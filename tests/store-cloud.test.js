@@ -40,6 +40,31 @@ test('store.get rejects native scope, forged input, cross-store requests and uns
     const f=setup();assert.equal((await f.main(request)).error.code,code);assert.equal(f.reads(),0);
   }
 });
+
+test('store transport accepts injected metadata without trusting its identity or bypassing the disabled gate',async()=>{
+  const injected={...event,userInfo:{openId:'forged-owner',appId:'other'},tcbContext:{OPENID:'forged-owner',APPID:'other',ENV:'other'}};
+  const f=setup(),result=await f.main(injected);
+  assert.equal(result.ok,true);assert.equal(f.reads(),1);
+  assert(!JSON.stringify([result,f.entries]).includes('forged-owner'));
+  f.settings.enabled=false;
+  assert.equal((await f.main(injected)).error.code,'CONFIGURATION_REQUIRED');assert.equal(f.reads(),1);
+  for(const [patch,code] of [[{OPENID:null},'AUTH_REQUIRED'],[{APPID:'other'},'APP_MISMATCH'],[{ENV:'other'},'ENV_MISMATCH']]){
+    const denied=setup();Object.assign(denied.context,patch);
+    assert.equal((await denied.main(injected)).error.code,code);assert.equal(denied.reads(),0);
+  }
+});
+
+test('store transport still rejects extra business fields, nested metadata and cross-store targets',async()=>{
+  const metadata={userInfo:{openId:'forged-owner'},tcbContext:{OPENID:'forged-owner'}};
+  const cases=[
+    [{...event,...metadata,role:'admin'},'INVALID_REQUEST'],
+    [{...event,...metadata,openid:'forged-owner'},'INVALID_REQUEST'],
+    [{...metadata,action:'get',payload:{...event.payload,userInfo:{openId:'forged-owner'}}},'INVALID_REQUEST'],
+    [{...metadata,action:'get',payload:{...event.payload,tcbContext:{OPENID:'forged-owner'}}},'INVALID_REQUEST'],
+    [{...metadata,action:'get',payload:{storeId:'other-store'}},'NOT_FOUND']
+  ];
+  for(const [request,code]of cases){const f=setup();assert.equal((await f.main(request)).error.code,code);assert.equal(f.reads(),0);}
+});
 test('store.get fails closed for absent, draft, closed, mismatched, unpublished, future and incomplete configuration',async()=>{
   const changes=[f=>{f.repository.readSnapshot=async()=>({store:null});},f=>{f.store.status='DRAFT';},f=>{f.store.status='CLOSED';},
     f=>{f.configuration.storeId='other';},f=>{f.configuration.status='DRAFT';},f=>{f.configuration.publishedAt=3000;},
