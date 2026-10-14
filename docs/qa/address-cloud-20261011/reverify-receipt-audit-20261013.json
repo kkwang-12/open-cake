@@ -1,0 +1,35 @@
+{
+  "state": "PASSED",
+  "date": "2026-10-13",
+  "run": "g1-address-reverify-20261011-1791728754797",
+  "checks": {
+    "totalSeven": true,
+    "withinBudget": true,
+    "exactSafeFields": true,
+    "scopeCorrect": true,
+    "allSucceeded": true,
+    "oneRaceReceipt": true,
+    "defaultReceiptVersionsAligned": true,
+    "countsCorrect": true
+  },
+  "counts": {
+    "address.create": 2,
+    "address.update": 1,
+    "address.setDefault": 2,
+    "address.remove": 2
+  },
+  "defaultReceiptVersions": [
+    {
+      "key": "g1-address-reverify-20261011-1791728754797-defaultA",
+      "actual": 11,
+      "expected": 11
+    },
+    {
+      "key": "g1-address-reverify-20261011-1791728754797-sameDefault",
+      "actual": 12,
+      "expected": 12
+    }
+  ],
+  "requestId": "16fd0465-6bda-4048-99bb-781ab7aedbf9",
+  "retained": "No contact data, request payload, or response snapshot persisted."
+}

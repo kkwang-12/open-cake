@@ -1,0 +1,131 @@
+{
+  "success": true,
+  "requestId": "1acccea0-6c2d-42a3-a4b9-f5a9481d121c",
+  "data": [
+    {
+      "_id": "g2-initial-config-20261014",
+      "cartLimits": null,
+      "configVersion": 0,
+      "createdAt": 1791971127391,
+      "deliveryRules": [],
+      "fulfillmentModes": [
+        "PICKUP",
+        "DELIVERY"
+      ],
+      "fulfillmentPolicyVersion": "v1-fulfillment-2026-10-03",
+      "paymentHoldMinutes": 30,
+      "publishedAt": null,
+      "quoteTtlMinutes": 5,
+      "schemaVersion": 1,
+      "slotPolicy": null,
+      "status": "DRAFT",
+      "storeId": "g1-catalog-store",
+      "timePolicy": {
+        "crossDayStrategy": "REJECT",
+        "dateOverrides": [],
+        "maxAdvanceDays": 3,
+        "minLeadTimeMinutes": 0,
+        "policyVersion": "v1-store-hours-20261014",
+        "timeZone": "Asia/Shanghai",
+        "weeklyWindows": [
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 1
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 1
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 2
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 2
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 3
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 3
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 4
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 4
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 5
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 5
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 6
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 6
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "PICKUP",
+            "startMinute": 480,
+            "weekday": 7
+          },
+          {
+            "endMinute": 1260,
+            "fulfillment": "DELIVERY",
+            "startMinute": 480,
+            "weekday": 7
+          }
+        ]
+      },
+      "tradePolicyVersion": "v1-2026-10-03",
+      "updatedAt": 1791971127391,
+      "version": 0
+    }
+  ],
+  "total": 1,
+  "pager": {
+    "Offset": 0,
+    "Limit": 2,
+    "Total": 1
+  },
+  "message": "文档查询成功",
+  "collection": "store_config",
+  "collectionName": "store_config"
+}

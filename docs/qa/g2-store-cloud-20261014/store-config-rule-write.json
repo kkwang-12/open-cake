@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "data": {
+    "action": "updateResourcePermission",
+    "envId": "cloudbase-d8gwtxzm64150b7e0",
+    "resourceType": "noSqlDatabase",
+    "resourceId": "store_config",
+    "permission": "CUSTOM",
+    "hints": [],
+    "verificationHint": "对于 store_config 这类有后端权限控制的集合，前端调用 .doc(id).update() / .doc(id).remove() 后，不能只看是否没有抛异常。请显式检查返回结果中的 updated / deleted 是否大于 0；如果 result.code、result.message 存在，或 updated / deleted 为 0，要把它当作真实失败并向上抛错。",
+    "propagationHint": "刚更新完 store_config 的安全规则时，后端权限通常在数秒到约 30 秒内生效。若紧接着的真实写操作仍返回 DATABASE_PERMISSION_DENIED，请先间隔数秒用同一登录态重试同一条 .doc(id).update() / .doc(id).remove()；不要盲等数分钟，也不要立刻连续重写规则，更不要在短暂传播窗口里把旧拒绝直接当成规则表达式仍然错误。",
+    "raw": {
+      "RequestId": "06ef493b-62a1-4a4e-8c3c-9d007744289f",
+      "Data": {
+        "Success": true
+      }
+    }
+  },
+  "message": "资源权限更新成功"
+}

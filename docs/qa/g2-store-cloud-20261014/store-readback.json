@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "requestId": "948c8dfc-a4da-4b84-b8eb-056c7257f116",
+  "data": [
+    {
+      "_id": "g1-catalog-store",
+      "activeConfigId": null,
+      "address": "安徽省合肥市庐江县X085沙溪派出所南侧约50米",
+      "createdAt": 1791971127391,
+      "location": null,
+      "name": "家家乐蛋糕店",
+      "phone": "0551-87866225",
+      "schemaVersion": 1,
+      "status": "DRAFT",
+      "timeZone": "Asia/Shanghai",
+      "updatedAt": 1791971127391,
+      "version": 0
+    }
+  ],
+  "total": 1,
+  "pager": {
+    "Offset": 0,
+    "Limit": 2,
+    "Total": 1
+  },
+  "message": "文档查询成功",
+  "collection": "stores",
+  "collectionName": "stores"
+}

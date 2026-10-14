@@ -20,22 +20,22 @@ const groups = {
   catalog: {
     description: '商品、规格、库存与目录链路；关联购物袋与报价',
       primary: files('catalog-model catalog-read-model catalog-cloud initial-catalog catalog-draft-model catalog-domain-chain specification-model stock-review media-model pagination-model shop-catalog'),
-    related: files('cart-model cart-service local-bag local-favorites product-detail quote-model merchant-catalog')
+    related: files('cart-model cart-service cart-cloud cart-client local-bag local-favorites product-detail quote-model merchant-catalog')
   },
   checkout: {
     description: '购物袋、地址、配送、时段、报价与确认；关联订单创建',
-    primary: files('cart-model cart-service local-bag bag-review checkout-selection checkout-server-selection checkout-fulfillment-page checkout-submission-contract address-service address-cloud address-client local-addresses addresses-page fulfillment-model fulfillment-draft store-fulfillment delivery-evaluation delivery-status appointment-availability quote-model confirmation-session'),
+    primary: files('cart-model cart-service cart-cloud cart-client local-bag bag-review checkout-selection checkout-server-selection checkout-fulfillment-page checkout-submission-contract address-service address-cloud address-client local-addresses addresses-page fulfillment-model fulfillment-draft store-fulfillment delivery-evaluation delivery-status appointment-availability quote-model confirmation-session'),
     related: files('catalog-model specification-model authorization-model resource-model order-creation-model order-transaction-service')
   },
   client: {
     description: '页面、本机持久化、交互与导航；关联客户端业务链路',
     primary: files('account-ui bag-page bag-swipe bottom-sheet custom-tab-bar home-hero home-catalog local-favorites navigation product-detail product-success-motion'),
-    related: files('catalog-domain-chain local-bag local-addresses addresses-page checkout-fulfillment-page confirmation-session payment-session pickup-session cloud')
+    related: files('catalog-domain-chain cart-client local-bag local-addresses addresses-page checkout-fulfillment-page confirmation-session payment-session pickup-session cloud')
   },
   cloud: {
     description: '云客户端、身份、契约与初始化；关联权限与事务适配',
-    primary: files('cloud cloud-identity-repository user-persistence-handler api-contract authorization-model native-context development-seed initialization-rejection'),
-    related: files('admin-access payment-acceptance cloud-document-transaction order-document-session order-write-budget')
+    primary: files('cloud store-cloud cloud-identity-repository user-persistence-handler api-contract authorization-model native-context development-seed initialization-rejection'),
+    related: files('cart-cloud cart-client admin-access payment-acceptance cloud-document-transaction order-document-session order-write-budget')
   },
   legacy: {
     description: '旧版演示基线；HTTP 测试需要本机回环连接',

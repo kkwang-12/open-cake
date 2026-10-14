@@ -60,16 +60,21 @@ function createCloudCatalogClient(settings,transport=createClient(settings,()=>t
       throw createError('INVALID_RESPONSE');
     const summary=card(value),images=value.images.map(media);
     if(new Set(images.map(image=>image.key)).size!==images.length||images[0].src!==summary.image)throw createError('INVALID_RESPONSE');
+    const draftEnabled=settings.mode==='cloud'&&settings.stage==='development'&&settings.cart&&settings.cart.enabled===true&&
+      settings.cart.storeId===settings.catalog.storeId;
     let configuration;
-    try{configuration=createSpecificationModel({...value,source:'PUBLIC_CATALOG',canPurchase:false}).configuration();}
+    try{configuration=createSpecificationModel({...value,source:'PUBLIC_CATALOG',canPurchase:false,
+      ...(draftEnabled&&value.messagePolicy===null?{messageSupport:'DISABLED'}:{})}).configuration();}
     catch(_){throw createError('INVALID_RESPONSE');}
     if(Math.min(...configuration.skus.map(sku=>sku.unitPriceCents))!==value.minPriceCents)throw createError('INVALID_RESPONSE');
     const from=configuration.skus.length>1;
+    const canConfigure=draftEnabled;
     return {productId,name:value.name,description:value.description,
       categoryLabel:{CAKE:'蛋糕 / CAKE',MINI_CAKE:'小蛋糕 / MINI CAKE',BREAD:'面包 / BREAD'}[value.categoryCode],
       priceLabel:formatCents(value.minPriceCents)+(from?'起':''),priceMeaning:from?'不同规格价格不同，以云端报价为准。':'云端商品价格，以结算报价为准。',
       images,variantLabels:configuration.skus.map(sku=>({skuId:sku.skuId,label:sku.description,priceLabel:formatCents(sku.unitPriceCents)})),
-      source:'PUBLIC_CATALOG',notice:'加购与购买服务尚未开放。',canPurchase:false,canConfigure:false};
+      source:'PUBLIC_CATALOG',notice:canConfigure?'选购草稿 · 库存与经营配置待核验，暂未开放购买。':'加购与购买服务尚未开放。',
+      canPurchase:false,canConfigure:!!canConfigure,...(canConfigure?{configuration}:{})};
   }
   return {list,get};
 }

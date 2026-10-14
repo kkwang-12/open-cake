@@ -1,0 +1,74 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "run": "g1-cart-verify-20261013",
+        "success": true,
+        "assertions": [
+          {
+            "name": "original-native-subject-and-owner-version",
+            "passed": true
+          },
+          {
+            "name": "valid-add",
+            "passed": true
+          },
+          {
+            "name": "owner-guard-increment",
+            "passed": true
+          }
+        ],
+        "stage": "add",
+        "response": {
+          "ok": true,
+          "requestId": "8dea79b7-b6ed-445e-8d59-f73b867e3b57",
+          "data": {
+            "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+            "storeId": "g1-catalog-store",
+            "version": 1,
+            "lines": [
+              {
+                "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+                "lineVersion": 0,
+                "productId": "g1-initial-strawberry-cake",
+                "skuId": "g1-initial-strawberry-cake-6-inch",
+                "quantity": 1,
+                "cakeMessage": null,
+                "normalizationVersion": "unicode-nfc-trim-codepoints-v1",
+                "addedAt": 1791859825129,
+                "updatedAt": 1791859825129,
+                "display": {
+                  "name": "草莓鲜奶蛋糕",
+                  "specLabel": "6寸",
+                  "selectedOptions": [
+                    {
+                      "groupCode": "SIZE",
+                      "optionCode": "INCH_6",
+                      "label": "6寸"
+                    }
+                  ],
+                  "unitPriceCents": 16800,
+                  "currency": "CNY",
+                  "productVersion": 0,
+                  "skuVersion": 0,
+                  "minQuantity": null,
+                  "maxQuantity": null
+                },
+                "availability": "DRAFT_ONLY"
+              }
+            ],
+            "checkoutAllowed": false,
+            "scope": "CLOUD_SELECTION_DRAFT",
+            "apiVersion": "v1-api-2026-10-03",
+            "subjectHash": "133a76b53fc4f5c8"
+          }
+        },
+        "userVersion": 15
+      }
+    }
+  }
+}

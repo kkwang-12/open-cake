@@ -1,0 +1,53 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "state": "COMPLETED",
+        "run": "g1-address-reverify-20261011-1791728754797",
+        "ids": [
+          "37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73",
+          "94cf42fc2836c7aad1592d69132a84d98be1f1fe18d0733e8d2acfae5c51c630"
+        ],
+        "checks": [
+          {
+            "name": "cleanup only approved owner and sample ids",
+            "passed": true
+          },
+          {
+            "name": "cleanup keeps total new receipts within eight",
+            "passed": true
+          },
+          {
+            "name": "one parent increment per removal",
+            "passed": true
+          },
+          {
+            "name": "one parent increment per removal",
+            "passed": true
+          },
+          {
+            "name": "no active samples and default null",
+            "passed": true
+          }
+        ],
+        "removals": [
+          {
+            "addressId": "94cf42fc2836c7aad1592d69132a84d98be1f1fe18d0733e8d2acfae5c51c630",
+            "userVersion": 13
+          },
+          {
+            "addressId": "37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73",
+            "userVersion": 14
+          }
+        ],
+        "userVersion": 14,
+        "defaultAddressId": null,
+        "count": 0
+      }
+    }
+  }
+}

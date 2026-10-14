@@ -1,0 +1,58 @@
+{
+  "scope": "USER_PAUSED_2026-10-14",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "authorization": "USER_CONFIRMED_2_COLLECTIONS_2_DRAFT_DOCUMENTS_STORE_UPDATE_ONLY",
+  "function": {
+    "name": "store",
+    "status": "Active",
+    "available": "Available",
+    "runtime": "Nodejs20.19",
+    "timeout": 10,
+    "modTime": "2026-10-14 17:52:52",
+    "triggers": [],
+    "readEnabled": false,
+    "namespace": "cloudbase-d8gwtxzm64150b7e0"
+  },
+  "documentsCreated": 2,
+  "collectionsCreated": 2,
+  "draftsReadbackMatched": 2,
+  "clientRulesReadback": [
+    [
+      {
+        "Resource": "stores",
+        "Permission": "CUSTOM",
+        "ResourceType": "collection",
+        "SecurityRule": "{\"read\":false,\"write\":false}"
+      }
+    ],
+    [
+      {
+        "Resource": "store_config",
+        "Permission": "CUSTOM",
+        "ResourceType": "collection",
+        "SecurityRule": "{\"read\":false,\"write\":false}"
+      }
+    ]
+  ],
+  "functionRuleBefore": "{\r\n  \"*\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  },\r\n  \"address\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  }\r\n}",
+  "functionRuleAfter": "NOT_RECHECKED",
+  "sourceArchiveDownloaded": true,
+  "deployedSourceFingerprint": "NOT_COMPARED",
+  "native": {
+    "passed": 5,
+    "total": 6,
+    "accepted": false,
+    "failed": [
+      {
+        "name": "get-closed",
+        "passed": false,
+        "ok": false,
+        "code": "INVALID_REQUEST",
+        "requestId": "45c06a2e-739a-4cb5-afb7-f754e414dc0c"
+      }
+    ]
+  },
+  "cloudWritesRemainingInConfirmedPlan": 0,
+  "nextAction": "DIAGNOSE_VALID_STORE_GET_INVALID_REQUEST_WITHOUT_RECREATING_COLLECTIONS_OR_INSERTING_DRAFTS",
+  "newOrdersOrPayments": 0
+}

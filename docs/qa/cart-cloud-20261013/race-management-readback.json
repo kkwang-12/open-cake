@@ -1,0 +1,95 @@
+{
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "scope": "MANAGEMENT_READBACK_AFTER_AMBIGUOUS_RACE",
+  "user": {
+    "_id": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+    "defaultAddressId": null,
+    "status": "ACTIVE",
+    "version": 17
+  },
+  "cart": {
+    "_id": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+    "lines": [
+      {
+        "addedAt": 1791859825129,
+        "cakeMessage": null,
+        "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+        "lineVersion": 1,
+        "messageFingerprint": "6c9f4b6928079aeee67eba6e8a983948c0b5d18d17649039908b9465d4fa04b2",
+        "normalizationVersion": "unicode-nfc-trim-codepoints-v1",
+        "productId": "g1-initial-strawberry-cake",
+        "quantity": 3,
+        "skuId": "g1-initial-strawberry-cake-6-inch",
+        "updatedAt": 1791859885769
+      }
+    ],
+    "ownerId": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+    "storeId": "g1-catalog-store",
+    "version": 3
+  },
+  "receipts": [
+    {
+      "_id": "ae7f4a2017e9b1d375ba1e9d64e8514f6e0d3c693b206c8599c78116170c3a6f",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.add",
+      "createdAt": 1791859825335,
+      "key": "g1-cart-verify-20261013-add",
+      "leaseUntil": null,
+      "requestFingerprint": "855b12c39c841c104182ed7bc75e5fc8b767d44355a93070aa2fe92481f8fe47",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 1
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791859825335,
+      "version": 0
+    },
+    {
+      "_id": "29450b7b2d6ba15ffa706c7f6e59f0ba3da7163023087155381276da24db3d25",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.update",
+      "createdAt": 1791859851649,
+      "key": "g1-cart-verify-20261013-sameUpdate",
+      "leaseUntil": null,
+      "requestFingerprint": "10709dc2126b64b9f626aaf15949c22bd60e2e93ae736561d6127fb5733ad568",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 2
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791859851649,
+      "version": 0
+    },
+    {
+      "_id": "2afe544797310eb79a47b2e6c2c01a5ff253fd2cdadc5593ce599f98cca7601d",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.update",
+      "createdAt": 1791859885943,
+      "key": "g1-cart-verify-20261013-raceB",
+      "leaseUntil": null,
+      "requestFingerprint": "862fec605cd8fe8ab34e6e0ba7992f62dcff5be9309c457658c5a088e636adf7",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 3
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791859885943,
+      "version": 0
+    }
+  ],
+  "newCarts": 1,
+  "newReceipts": 3,
+  "userVersionIncrement": 3,
+  "loserReceiptAbsent": true,
+  "initialLoserCode": "INTERNAL_ERROR",
+  "initialRaceStrictAssertionPassed": false
+}

@@ -1,0 +1,228 @@
+{
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "region": "ap-shanghai",
+  "scope": "READ_ONLY",
+  "collections": [
+    {
+      "TableName": "addresses",
+      "Count": 4,
+      "Size": 2078,
+      "IndexCount": 3,
+      "IndexSize": 110592
+    },
+    {
+      "TableName": "admin_roles",
+      "Count": 0,
+      "Size": 0,
+      "IndexCount": 3,
+      "IndexSize": 28672
+    },
+    {
+      "TableName": "audit_logs",
+      "Count": 0,
+      "Size": 0,
+      "IndexCount": 2,
+      "IndexSize": 20480
+    },
+    {
+      "TableName": "categories",
+      "Count": 3,
+      "Size": 618,
+      "IndexCount": 3,
+      "IndexSize": 73728
+    },
+    {
+      "TableName": "idempotency_records",
+      "Count": 14,
+      "Size": 8592,
+      "IndexCount": 2,
+      "IndexSize": 73728
+    },
+    {
+      "TableName": "media_assets",
+      "Count": 9,
+      "Size": 6564,
+      "IndexCount": 3,
+      "IndexSize": 73728
+    },
+    {
+      "TableName": "products",
+      "Count": 9,
+      "Size": 6726,
+      "IndexCount": 3,
+      "IndexSize": 73728
+    },
+    {
+      "TableName": "skus",
+      "Count": 15,
+      "Size": 5706,
+      "IndexCount": 3,
+      "IndexSize": 73728
+    },
+    {
+      "TableName": "users",
+      "Count": 1,
+      "Size": 344,
+      "IndexCount": 3,
+      "IndexSize": 73728
+    }
+  ],
+  "functions": [
+    {
+      "name": "address",
+      "runtime": "Nodejs20.19",
+      "status": "Active",
+      "modifiedAt": "2026-10-11 22:48:40"
+    },
+    {
+      "name": "catalog",
+      "runtime": "Nodejs20.19",
+      "status": "Active",
+      "modifiedAt": "2026-10-11 18:15:33"
+    },
+    {
+      "name": "jjl-d06-identity-20261008",
+      "runtime": "Nodejs20.19",
+      "status": "Active",
+      "modifiedAt": "2026-10-11 18:15:32"
+    },
+    {
+      "name": "jjl-i03-rejection-20261008",
+      "runtime": "Nodejs20.19",
+      "status": "Active",
+      "modifiedAt": "2026-10-11 18:15:32"
+    },
+    {
+      "name": "store",
+      "runtime": "Nodejs20.19",
+      "status": "Active",
+      "modifiedAt": "2026-10-11 18:15:32"
+    },
+    {
+      "name": "user",
+      "runtime": "Nodejs20.19",
+      "status": "Active",
+      "modifiedAt": "2026-10-11 18:15:31"
+    }
+  ],
+  "user": {
+    "_id": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+    "defaultAddressId": null,
+    "status": "ACTIVE",
+    "version": 14
+  },
+  "receiptRules": {
+    "success": true,
+    "data": {
+      "action": "getResourcePermission",
+      "envId": "cloudbase-d8gwtxzm64150b7e0",
+      "resourceType": "noSqlDatabase",
+      "resourceId": "idempotency_records",
+      "aclTag": "CUSTOM",
+      "permissions": [
+        {
+          "Resource": "idempotency_records",
+          "Permission": "CUSTOM",
+          "ResourceType": "collection",
+          "SecurityRule": "{\"read\": false, \"write\": false}"
+        }
+      ],
+      "hints": [],
+      "raw": {
+        "RequestId": "20395fc1-82dd-4040-a236-56372060f474",
+        "Data": {
+          "TotalCount": 1,
+          "PermissionList": [
+            {
+              "Resource": "idempotency_records",
+              "Permission": "CUSTOM",
+              "ResourceType": "collection",
+              "SecurityRule": "{\"read\": false, \"write\": false}"
+            }
+          ]
+        }
+      }
+    },
+    "message": "资源权限查询成功"
+  },
+  "functionRules": {
+    "success": true,
+    "data": {
+      "action": "getResourcePermission",
+      "envId": "cloudbase-d8gwtxzm64150b7e0",
+      "resourceType": "function",
+      "resourceId": "*",
+      "aclTag": "CUSTOM",
+      "permissions": [
+        {
+          "Resource": "",
+          "Permission": "CUSTOM",
+          "ResourceType": "function",
+          "SecurityRule": "{\r\n  \"*\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  },\r\n  \"address\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  }\r\n}"
+        }
+      ],
+      "hints": [],
+      "raw": {
+        "RequestId": "f5b2422e-e2ed-40b1-968a-9ed742a43b7e",
+        "Data": {
+          "TotalCount": 1,
+          "PermissionList": [
+            {
+              "Resource": "",
+              "Permission": "CUSTOM",
+              "ResourceType": "function",
+              "SecurityRule": "{\r\n  \"*\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  },\r\n  \"address\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  }\r\n}"
+            }
+          ]
+        }
+      }
+    },
+    "message": "资源权限查询成功"
+  },
+  "product": {
+    "_id": "g1-initial-strawberry-cake",
+    "messagePolicy": null,
+    "minLeadTimeMinutes": null,
+    "name": "草莓鲜奶蛋糕",
+    "optionGroups": [
+      {
+        "groupCode": "SIZE",
+        "label": "尺寸",
+        "options": [
+          {
+            "label": "6寸",
+            "optionCode": "INCH_6"
+          },
+          {
+            "label": "8寸",
+            "optionCode": "INCH_8"
+          },
+          {
+            "label": "10寸",
+            "optionCode": "INCH_10"
+          }
+        ],
+        "required": true
+      }
+    ],
+    "status": "ON_SALE",
+    "storeId": "g1-catalog-store",
+    "version": 0
+  },
+  "sku": {
+    "_id": "g1-initial-strawberry-cake-6-inch",
+    "maxQuantity": null,
+    "minQuantity": null,
+    "productId": "g1-initial-strawberry-cake",
+    "selectedOptions": [
+      {
+        "groupCode": "SIZE",
+        "optionCode": "INCH_6"
+      }
+    ],
+    "status": "ON_SALE",
+    "storeId": "g1-catalog-store",
+    "unitPriceCents": 16800,
+    "version": 0
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-13",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "state": "COMPLETED",
+  "address": {
+    "envelopeValid": true,
+    "ok": true,
+    "error": null,
+    "apiVersion": "v1-api-2026-10-03",
+    "itemCount": 0,
+    "userVersion": 7,
+    "defaultAddressId": null,
+    "subjectHash": "133a76b53fc4f5c8"
+  },
+  "clientReads": [
+    {
+      "collection": "users",
+      "rejected": true,
+      "code": -502003
+    },
+    {
+      "collection": "addresses",
+      "rejected": true,
+      "code": -502003
+    },
+    {
+      "collection": "idempotency_records",
+      "rejected": true,
+      "code": -502003
+    }
+  ],
+  "transport": {
+    "initialTimeout": true,
+    "refreshSucceeded": true,
+    "multilineSourceRejected": "Uncaught Unexpected token ')'",
+    "singleLineSourceSucceeded": true
+  },
+  "scope": "REAL_WX_CLOUD_SIMULATOR"
+}

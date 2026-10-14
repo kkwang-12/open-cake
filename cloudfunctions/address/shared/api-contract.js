@@ -32,7 +32,7 @@ define('catalog','categories.list','PLATFORM','','CategoryList');
 define('catalog','products.list','PLATFORM','storeId:id categoryCode?:category search?:search','ProductPage',false,'CATALOG');
 define('catalog','product.get','PLATFORM','productId:id','ProductDetail');
 define('cart','get','OWNER','storeId:id','Cart');
-define('cart','add','OWNER','storeId:id expectedVersion:counter productId:id skuId:id selectedOptions:selection quantity:positive cakeMessage?:message','Cart',true);
+define('cart','add','OWNER','storeId:id cartId?:id expectedVersion:counter productId:id skuId:id selectedOptions:selection quantity:positive cakeMessage?:message','Cart',true);
 define('cart','update','OWNER','cartId:id expectedVersion:counter lineId:id expectedLineVersion:counter skuId:id selectedOptions:selection quantity:positive cakeMessage?:message','Cart',true);
 define('cart','remove','OWNER','cartId:id expectedVersion:counter lineId:id expectedLineVersion:counter','Cart',true);
 define('address','list','OWNER','','AddressPage',false,'UPDATED_DESC');

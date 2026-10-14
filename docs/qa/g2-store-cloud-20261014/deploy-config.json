@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "data": {
+    "action": "updateFunctionConfig",
+    "functionName": "store",
+    "raw": {
+      "RequestId": "add20c28-1b27-4612-9033-89215ed1b1d8"
+    }
+  },
+  "message": "已更新函数 store 的配置",
+  "nextActions": [
+    {
+      "tool": "queryFunctions",
+      "action": "getFunctionDetail",
+      "reason": "确认配置变更结果"
+    }
+  ]
+}

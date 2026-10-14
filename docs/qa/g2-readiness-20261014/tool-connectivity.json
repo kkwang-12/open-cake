@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-14",
+  "project": "D:\\dinner cook",
+  "scope": "READ_ONLY_RUNTIME_PREFLIGHT",
+  "status": { "success": true, "versionRelation": "equal", "loginExpired": false, "cliTokenRequired": false, "skillVersion": "0.3.11" },
+  "attempts": [
+    { "operation": "automation_evaluate", "result": "cant find runtimeid by projectpath D:\\dinner cook" },
+    { "operation": "open_project_window", "success": true, "type": "newopen" },
+    { "operation": "automation_evaluate", "retry": 1, "result": "timeout waiting for automator response" }
+  ],
+  "nextAction": "USER_MANUAL_COMPILE_MAIN_PROJECT",
+  "businessApiInvokedByCheck": false,
+  "cloudWritesByCheck": false,
+  "uploadedOrDeployed": false
+}

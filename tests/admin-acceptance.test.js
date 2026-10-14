@@ -14,6 +14,7 @@ test('A07 unopened business writes and disabled catalog reads are blocked by the
   const result=await adminBoundary();assert.equal(result.passed,true);assert.equal(result.plannedActions,59);
   assert.equal(result.rejectedActions,59);assert.equal(result.platformCalls,0);assert.equal(result.adminFunctionPresent,false);
   assert.equal(result.catalogReadActions,3);
+  assert.equal(result.cartDraftActions,4);
   assert.equal(result.pickupClosed,true);assert.equal(result.payment.paymentPlatformCalls,0);
 });
 test('A07 legacy staff, order and fake refund calls are denied in all eleven prohibited runtime combinations',async()=>{

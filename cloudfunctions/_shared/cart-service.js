@@ -25,10 +25,10 @@ function publicCart(cart) {
   // No private owner, fingerprints, inventory resources or price snapshots.
   return freeze({ cartId: cart._id, storeId: cart.storeId, version: cart.version,
     lines: cart.lines.map(line => Object.fromEntries(
-      ['lineId','lineVersion','productId','skuId','quantity','cakeMessage','addedAt','updatedAt']
+      ['lineId','lineVersion','productId','skuId','quantity','cakeMessage','normalizationVersion','addedAt','updatedAt']
         .map(key => [key,line[key]]))) });
 }
-function createCartService({ runTransaction, now, newLineId }) {
+function createCartService({ runTransaction, now, newLineId, selectionDraft=false }) {
   if (![runTransaction, now, newLineId].every(value => typeof value === 'function')) fail('INVALID_CONFIGURATION');
   return Object.freeze({
     async execute(event, principal) {
@@ -36,7 +36,8 @@ function createCartService({ runTransaction, now, newLineId }) {
       requireOwner(principal, { ownerId: principal && principal.subjectId });
       const { contract, payload } = parseApiRequest('cart', event);
       const action = contract.action;
-      const fingerprint = contract.mutation ? requestFingerprint(payload) : null;
+      const {idempotencyKey,...business}=payload;
+      const fingerprint = contract.mutation ? requestFingerprint(business) : null;
       const receiptId = contract.mutation ? idempotencyId({ environment: principal.environment,
         actorScope: JSON.stringify([principal.appId,principal.subjectId]),
         command: 'cart.'+action, key: payload.idempotencyKey }) : null;
@@ -58,11 +59,11 @@ function createCartService({ runTransaction, now, newLineId }) {
         const receipt = await tx.readReceipt(receiptId);
         if (receipt !== null) {
           if (receipt.fingerprint !== fingerprint) fail('IDEMPOTENCY_KEY_REUSED');
-          // Return the original command result, including its original version.
-          // Clients must GET to learn about subsequent mutations.
+          // The SDK provider reconstructs the current authorized cart from a safe
+          // entity-reference receipt. Offline providers may retain test snapshots.
           return freeze(JSON.parse(JSON.stringify(receipt.response)));
         }
-        const context = { now: now() };
+        const context = { now: now(), selectionDraft };
         if (action !== 'remove') {
           const line = action === 'update' ? cart.lines.find(item => item.lineId === payload.lineId) : null;
           if (action === 'update' && !line) throw new CartModelError('LINE_NOT_FOUND');
@@ -71,10 +72,15 @@ function createCartService({ runTransaction, now, newLineId }) {
           if (!catalog || !catalog.product || catalog.product._id !== productId) fail('PRODUCT_UNAVAILABLE');
           context.product = catalog.product;
           context.skus = catalog.skus;
-          context.limits = await tx.readLimits(cart.storeId);
+          if(!selectionDraft)context.limits = await tx.readLimits(cart.storeId);
           if (action === 'add') context.newLineId = newLineId();
         }
-        const plan = planCartCommand(cart, action.toUpperCase(), actor, payload, context);
+        let plan = planCartCommand(cart, action.toUpperCase(), actor, payload, context);
+        // Each new cloud draft command physically guards the cart, even a no-op.
+        if(selectionDraft&&!plan.changed){
+          plan={...plan,changed:true,nextCart:{...plan.nextCart,version:cart.version+1,updatedAt:context.now}};
+          validateCart(plan.nextCart);
+        }
         // A session must check the version (null means create-if-absent) and
         // commit cart+receipt together; an unconditional set is not sufficient.
         if (plan.changed) await tx.saveCart(plan.nextCart, existed ? cart.version : null);

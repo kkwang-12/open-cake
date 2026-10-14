@@ -1,0 +1,44 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "run": "g1-cart-verify-20261013",
+        "success": true,
+        "assertions": [
+          {
+            "name": "original-subject-before-cleanup",
+            "passed": true
+          },
+          {
+            "name": "sample-line-removed",
+            "passed": true
+          },
+          {
+            "name": "cleanup-owner-guard",
+            "passed": true
+          }
+        ],
+        "stage": "cleanup",
+        "response": {
+          "ok": true,
+          "requestId": "5868e71c-4910-4eae-ab36-b6cec00bae61",
+          "data": {
+            "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+            "storeId": "g1-catalog-store",
+            "version": 4,
+            "lines": [],
+            "checkoutAllowed": false,
+            "scope": "CLOUD_SELECTION_DRAFT",
+            "apiVersion": "v1-api-2026-10-03",
+            "subjectHash": "133a76b53fc4f5c8"
+          }
+        },
+        "userVersion": 18
+      }
+    }
+  }
+}

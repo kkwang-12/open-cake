@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "route": "features/addresses/addresses",
+        "scope": "CLOUD_OWNER",
+        "revision": 14,
+        "loading": false,
+        "busy": false,
+        "count": 0,
+        "error": "",
+        "selectMode": false,
+        "selectionAllowed": false
+      }
+    }
+  }
+}

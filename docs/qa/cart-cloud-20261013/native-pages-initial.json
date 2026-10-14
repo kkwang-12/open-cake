@@ -1,0 +1,67 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "success": true,
+        "checks": [
+          {
+            "name": "existing-bag-page-reads-owned-empty-draft",
+            "passed": true
+          },
+          {
+            "name": "bag-checkout-remains-closed",
+            "passed": true
+          },
+          {
+            "name": "existing-product-page-configures-cloud-draft",
+            "passed": true
+          },
+          {
+            "name": "product-purchase-remains-closed",
+            "passed": true
+          },
+          {
+            "name": "existing-specification-sheet-opens",
+            "passed": true
+          },
+          {
+            "name": "unknown-message-input-closed",
+            "passed": true
+          }
+        ],
+        "bag": {
+          "scope": "CLOUD_SELECTION_DRAFT",
+          "subjectHash": "133a76b53fc4f5c8",
+          "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+          "revision": 4,
+          "count": 0,
+          "quantity": 0,
+          "selectedQuantity": 0,
+          "checkoutAllowed": false,
+          "loading": false,
+          "busy": false,
+          "error": ""
+        },
+        "product": {
+          "source": "PUBLIC_CATALOG",
+          "productId": "g1-initial-strawberry-cake",
+          "canConfigure": true,
+          "canPurchase": false,
+          "skuCount": 3,
+          "minLeadTimeMinutes": null,
+          "sheetOpen": true,
+          "sheetPhase": "open",
+          "messageEnabled": false,
+          "messageHint": "",
+          "loading": false,
+          "error": ""
+        },
+        "writes": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "requestId": "3eb2a848-96aa-4a69-83fe-45f191e437c6",
+  "insertedIds": [
+    "g2-initial-config-20261014"
+  ],
+  "insertedCount": 1,
+  "message": "文档插入成功",
+  "collection": "store_config",
+  "collectionName": "store_config"
+}

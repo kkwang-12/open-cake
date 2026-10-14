@@ -19,6 +19,10 @@
 
 [读取本节](reference/network-api/04.md)
 
+## 门店公开云读取
+
+[读取本节](reference/network-api/15.md)
+
 ## 分页、索引与游标
 
 [读取本节](reference/network-api/05.md)
@@ -54,3 +58,7 @@
 ## X01 本人地址云接口
 
 [读取本节](reference/network-api/13.md)
+
+## G1 本人云购物袋选购草稿
+
+[读取本节](reference/network-api/14.md)

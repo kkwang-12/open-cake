@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "state": "COMPLETED",
+        "run": "g1-address-reverify-20261011-1791728754797",
+        "ids": [
+          "37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73",
+          "94cf42fc2836c7aad1592d69132a84d98be1f1fe18d0733e8d2acfae5c51c630"
+        ],
+        "checks": [
+          {
+            "name": "race baseline ten",
+            "passed": true
+          },
+          {
+            "name": "only one parent version increment",
+            "passed": true
+          },
+          {
+            "name": "one winner one explicit version conflict",
+            "passed": true
+          }
+        ],
+        "responses": [
+          {
+            "key": "g1-address-reverify-20261011-1791728754797-defaultA",
+            "ok": true,
+            "requestId": "dcb0d16d-a81b-4a3e-983c-f43e76fb3806",
+            "userVersion": 11,
+            "defaultAddressId": "37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73"
+          },
+          {
+            "key": "g1-address-reverify-20261011-1791728754797-defaultB",
+            "ok": false,
+            "error": "VERSION_CONFLICT",
+            "requestId": "30abd289-7252-4cd1-adb1-46d39e022401"
+          }
+        ],
+        "userVersion": 11,
+        "defaultAddressId": "37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73"
+      }
+    }
+  }
+}

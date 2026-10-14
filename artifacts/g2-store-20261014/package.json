@@ -1,0 +1,57 @@
+{
+  "scope": "STORE_READ_CANDIDATE_NOT_DEPLOYED",
+  "files": [
+    {
+      "path": "index.js",
+      "sha256": "bf5e50e8a9e58f4f9ed16c86faaa4713332c6f0edc8fa355a231ef7a08067f6a"
+    },
+    {
+      "path": "package.json",
+      "sha256": "5e07dc5ae34146191902f2af2a9df2bc6b5f046d8ded755163a90bb36d42c422"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "1d2a0d3bf5d3a4bf359f9bdf374028088e8e6146fc4439acab1ab6e74b0e382a"
+    },
+    {
+      "path": "shared/api-contract.js",
+      "sha256": "e297e513bac8de5f8723e968e68ec7c373a684c23b4e3bcfe2afb0417b3d6d12"
+    },
+    {
+      "path": "shared/authorization-model.js",
+      "sha256": "ff0ad1a744b0f7a0842dc83b880d951cbdc9897d1493f81c5e0be17cdcbbff90"
+    },
+    {
+      "path": "shared/fulfillment-model.js",
+      "sha256": "b1f8ce22899bc3efd258154f77d95d2ffd174538e71705b71500767c0c1fda03"
+    },
+    {
+      "path": "shared/idempotency-model.js",
+      "sha256": "d79b24986ba5939f2bad1f59a2bc7ade2a4f089c543ef7009c5b7c428d88faa0"
+    },
+    {
+      "path": "shared/native-context.js",
+      "sha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49"
+    },
+    {
+      "path": "shared/resource-model.js",
+      "sha256": "97a1f4c6c983c7baa22a558421edff339438c72c6a49f8d66afb2013f25af5b2"
+    },
+    {
+      "path": "shared/runtime.js",
+      "sha256": "86c91e9e663f77c907b03ba0ca76e1590c8b47aa762c5a2d411e8a1a76486e4c"
+    },
+    {
+      "path": "shared/store-cloud-handler.js",
+      "sha256": "0610fdc1b9554fbb3ff04739c45f7049e41075571fff06b565e14cd2ef41d537"
+    },
+    {
+      "path": "shared/store-fulfillment.js",
+      "sha256": "f9a72c0f246d21d3e89e77907d21e19a68a8f914ab7121767251306283e54416"
+    },
+    {
+      "path": "shared/trade-model.js",
+      "sha256": "c595ae6c9dc0a599d33b2ca833291e700ede58d786e15fad3278aa9016dd86d2"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "user": {
+    "_id": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+    "defaultAddressId": null,
+    "status": "ACTIVE",
+    "version": 18
+  },
+  "cart": {
+    "_id": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+    "createdAt": 1791859825084,
+    "lines": [],
+    "ownerId": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+    "schemaVersion": 1,
+    "storeId": "g1-catalog-store",
+    "updatedAt": 1791860202867,
+    "version": 4
+  },
+  "receipts": [
+    {
+      "_id": "ae7f4a2017e9b1d375ba1e9d64e8514f6e0d3c693b206c8599c78116170c3a6f",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.add",
+      "createdAt": 1791859825335,
+      "key": "g1-cart-verify-20261013-add",
+      "leaseUntil": null,
+      "requestFingerprint": "855b12c39c841c104182ed7bc75e5fc8b767d44355a93070aa2fe92481f8fe47",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 1
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791859825335,
+      "version": 0
+    },
+    {
+      "_id": "29450b7b2d6ba15ffa706c7f6e59f0ba3da7163023087155381276da24db3d25",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.update",
+      "createdAt": 1791859851649,
+      "key": "g1-cart-verify-20261013-sameUpdate",
+      "leaseUntil": null,
+      "requestFingerprint": "10709dc2126b64b9f626aaf15949c22bd60e2e93ae736561d6127fb5733ad568",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 2
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791859851649,
+      "version": 0
+    },
+    {
+      "_id": "2afe544797310eb79a47b2e6c2c01a5ff253fd2cdadc5593ce599f98cca7601d",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.update",
+      "createdAt": 1791859885943,
+      "key": "g1-cart-verify-20261013-raceB",
+      "leaseUntil": null,
+      "requestFingerprint": "862fec605cd8fe8ab34e6e0ba7992f62dcff5be9309c457658c5a088e636adf7",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 3
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791859885943,
+      "version": 0
+    },
+    {
+      "_id": "179058b40e51ddb4b223be81d9540ec1b685da218d7265c36b082cce47dd2bdd",
+      "actorScope": "[\"wx154f791a17268ace\",\"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\"]",
+      "command": "cart.remove",
+      "createdAt": 1791860202968,
+      "key": "g1-cart-verify-20261013-removeV3",
+      "leaseUntil": null,
+      "requestFingerprint": "3d360b6d049e6e75ee80a33ba8bd2ba98bea8d3aae269579c0bdd42c93043443",
+      "result": {
+        "entityId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+        "errorCode": null,
+        "version": 4
+      },
+      "retentionUntil": null,
+      "schemaVersion": 1,
+      "status": "SUCCEEDED",
+      "updatedAt": 1791860202968,
+      "version": 0
+    }
+  ],
+  "existingFunctionsUnchanged": true,
+  "receiptRulesUnchanged": true,
+  "functionSnapshot": [
+    {
+      "name": "cart",
+      "modifiedAt": "2026-10-13 10:43:36",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    },
+    {
+      "name": "address",
+      "modifiedAt": "2026-10-11 22:48:40",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    },
+    {
+      "name": "catalog",
+      "modifiedAt": "2026-10-11 18:15:33",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    },
+    {
+      "name": "jjl-d06-identity-20261008",
+      "modifiedAt": "2026-10-11 18:15:32",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    },
+    {
+      "name": "jjl-i03-rejection-20261008",
+      "modifiedAt": "2026-10-11 18:15:32",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    },
+    {
+      "name": "store",
+      "modifiedAt": "2026-10-11 18:15:32",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    },
+    {
+      "name": "user",
+      "modifiedAt": "2026-10-11 18:15:31",
+      "status": "Active",
+      "runtime": "Nodejs20.19"
+    }
+  ],
+  "receiptRules": [
+    {
+      "Resource": "idempotency_records",
+      "Permission": "CUSTOM",
+      "ResourceType": "collection",
+      "SecurityRule": "{\"read\": false, \"write\": false}"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "scope": "DEVELOPMENT_STORE_DRAFT_ONLY",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "appId": "wx154f791a17268ace",
+  "requiresNewWriteAuthorization": true,
+  "budget": {
+    "collections": 2,
+    "documents": 2,
+    "businessInventoryDocuments": 0,
+    "slotDocuments": 0,
+    "quoteDocuments": 0,
+    "orderDocuments": 0
+  },
+  "operations": [
+    {
+      "collection": "stores",
+      "action": "CREATE_ONLY",
+      "document": {
+        "schemaVersion": 1,
+        "version": 0,
+        "createdAt": 1791971127391,
+        "updatedAt": 1791971127391,
+        "_id": "g1-catalog-store",
+        "name": "家家乐蛋糕店",
+        "address": "安徽省合肥市庐江县X085沙溪派出所南侧约50米",
+        "phone": "0551-87866225",
+        "timeZone": "Asia/Shanghai",
+        "location": null,
+        "status": "DRAFT",
+        "activeConfigId": null
+      }
+    },
+    {
+      "collection": "store_config",
+      "action": "CREATE_ONLY",
+      "document": {
+        "schemaVersion": 1,
+        "version": 0,
+        "createdAt": 1791971127391,
+        "updatedAt": 1791971127391,
+        "_id": "g2-initial-config-20261014",
+        "storeId": "g1-catalog-store",
+        "configVersion": 0,
+        "status": "DRAFT",
+        "publishedAt": null,
+        "fulfillmentModes": [
+          "PICKUP",
+          "DELIVERY"
+        ],
+        "tradePolicyVersion": "v1-2026-10-03",
+        "fulfillmentPolicyVersion": "v1-fulfillment-2026-10-03",
+        "timePolicy": {
+          "policyVersion": "v1-store-hours-20261014",
+          "timeZone": "Asia/Shanghai",
+          "minLeadTimeMinutes": 0,
+          "maxAdvanceDays": 3,
+          "crossDayStrategy": "REJECT",
+          "weeklyWindows": [
+            {
+              "weekday": 1,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 1,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 2,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 2,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 3,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 3,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 4,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 4,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 5,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 5,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 6,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 6,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 7,
+              "fulfillment": "PICKUP",
+              "startMinute": 480,
+              "endMinute": 1260
+            },
+            {
+              "weekday": 7,
+              "fulfillment": "DELIVERY",
+              "startMinute": 480,
+              "endMinute": 1260
+            }
+          ],
+          "dateOverrides": []
+        },
+        "quoteTtlMinutes": 5,
+        "paymentHoldMinutes": 30,
+        "deliveryRules": [],
+        "cartLimits": null,
+        "slotPolicy": null
+      }
+    }
+  ],
+  "clientPermissions": {
+    "stores": {
+      "read": false,
+      "write": false
+    },
+    "store_config": {
+      "read": false,
+      "write": false
+    }
+  },
+  "functionUpdate": {
+    "name": "store",
+    "sourceDirectory": "cloudfunctions/store",
+    "newActions": [
+      "get"
+    ],
+    "preserveActions": [
+      "health"
+    ],
+    "readEnabled": false
+  },
+  "publicationBlockedBy": [
+    "CART_LIMITS_UNCONFIRMED",
+    "DELIVERY_TRUSTED_LOCATION_NOT_INTEGRATED",
+    "SLOT_RELEASE_POLICY_UNCONFIRMED"
+  ],
+  "environmentSelection": "EXPLICIT_ENV_ID_ONLY",
+  "productionChanges": false,
+  "clientUpload": false,
+  "paymentCalls": false
+}

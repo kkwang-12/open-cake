@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "requestId": "87b670e3-c70c-44f6-8b75-fc363ea6c790",
+  "action": "createCollection",
+  "message": "云开发数据库集合创建成功",
+  "collection": "store_config",
+  "collectionName": "store_config"
+}

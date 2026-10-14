@@ -10,5 +10,38 @@
   "nativeReadinessExecuted": false,
   "newAddresses": 0,
   "newReceipts": 0,
-  "conclusion": "Authorization success did not restore CLI service connection. Stopped after three attempts per user instruction."
+  "conclusion": "Authorization success did not restore CLI service connection. Stopped after three attempts per user instruction.",
+  "recovery20261013": {
+    "project": "D:\\dinner cook",
+    "cli": "D:\\微信web开发者工具\\wechatide.cmd",
+    "gate": {
+      "initialConnectionWarning": true,
+      "automaticAuthTriggered": true,
+      "ok": true,
+      "loginExpired": true,
+      "skillVersion": "0.3.11",
+      "versionRelation": "equal"
+    },
+    "login": {
+      "success": true,
+      "taskId": "login_63d1c279-e745-482b-9337-d9037b053cc5",
+      "status": "pending",
+      "windowDisplayed": true
+    },
+    "nativeReadinessExecuted": false,
+    "newAddresses": 0,
+    "newReceipts": 0,
+    "conclusion": "CLI connected after automatic auth. Native verification requires the original user's renewed WeChat login. No cloud business call or mutation executed.",
+    "afterUserLogin": {
+      "loginExpired": false,
+      "skillVersion": "0.3.11",
+      "versionRelation": "equal",
+      "originalAccountVerifiedByNativeSubjectHash": true,
+      "firstEvaluate": "AUTOMATOR_TIMEOUT",
+      "refresh": "SUCCESS",
+      "multilineEvaluate": "Uncaught Unexpected token ')'",
+      "singleLineEvaluate": "SUCCESS",
+      "nativeReadinessEvidence": "reverify-readiness-20261013.json"
+    }
+  }
 }

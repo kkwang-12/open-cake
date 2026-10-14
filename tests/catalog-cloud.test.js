@@ -140,6 +140,13 @@ test('approved reference and unknown purchase configuration round-trip through c
   assert.equal(page.items.length,3);assert.equal(page.items[0].canPurchase,false);
   const detail=await client.get(page.items[0].id);
   assert.equal(detail.canPurchase,false);assert.equal(detail.canConfigure,false);assert.equal(detail.variantLabels.length,1);
+  const draftSettings={...enabledSettings,cart:{enabled:true,storeId:settings.storeId}};
+  const draft=await createCatalogClient(draftSettings,undefined,transport).get(page.items[0].id);
+  assert.equal(draft.canConfigure,true);assert.equal(draft.canPurchase,false);assert.equal(draft.configuration.source,'PUBLIC_CATALOG');
+  assert.equal(draft.configuration.skus[0].minQuantity,null);assert.equal(draft.configuration.minLeadTimeMinutes,null);
+  assert.equal(draft.configuration.messageSupport,'DISABLED');
+  const mismatched=await createCatalogClient({...draftSettings,cart:{enabled:true,storeId:'other-store'}},undefined,transport).get(page.items[0].id);
+  assert.equal(mismatched.canConfigure,false);assert.equal(mismatched.configuration,undefined);
   await assert.rejects(createCatalogClient(clientSettings,undefined,transport).list(),error=>error.code==='INVALID_RESPONSE');
   await assert.rejects(createCatalogClient({...enabledSettings,stage:'production'},undefined,transport).list(),error=>error.code==='INVALID_CONFIGURATION');
 });

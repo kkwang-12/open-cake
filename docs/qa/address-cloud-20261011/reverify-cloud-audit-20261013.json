@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-13",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "function": {
+    "name": "address",
+    "status": "Active",
+    "runtime": "Nodejs20.19",
+    "timeout": 20,
+    "modifiedAt": "2026-10-11 22:48:40",
+    "codeResult": "success"
+  },
+  "permissions": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"function\",\n    \"resourceId\": \"address\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"function\",\n        \"SecurityRule\": \"{\\r\\n  \\\"*\\\": {\\r\\n    \\\"invoke\\\": \\\"auth != null && auth.loginType != 'ANONYMOUS'\\\"\\r\\n  },\\r\\n  \\\"address\\\": {\\r\\n    \\\"invoke\\\": \\\"auth != null && auth.loginType != 'ANONYMOUS'\\\"\\r\\n  }\\r\\n}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"7fa15f47-db06-4620-823a-9fec178705c0\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"function\",\n            \"SecurityRule\": \"{\\r\\n  \\\"*\\\": {\\r\\n    \\\"invoke\\\": \\\"auth != null && auth.loginType != 'ANONYMOUS'\\\"\\r\\n  },\\r\\n  \\\"address\\\": {\\r\\n    \\\"invoke\\\": \\\"auth != null && auth.loginType != 'ANONYMOUS'\\\"\\r\\n  }\\r\\n}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"addresses\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"addresses\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\": false, \\\"write\\\": false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"a8731dcb-23fe-4a2b-b311-d1ff5513c8bf\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"addresses\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\": false, \\\"write\\\": false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+        }
+      ]
+    },
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"data\": {\n    \"action\": \"getResourcePermission\",\n    \"envId\": \"cloudbase-d8gwtxzm64150b7e0\",\n    \"resourceType\": \"noSqlDatabase\",\n    \"resourceId\": \"idempotency_records\",\n    \"aclTag\": \"CUSTOM\",\n    \"permissions\": [\n      {\n        \"Resource\": \"idempotency_records\",\n        \"Permission\": \"CUSTOM\",\n        \"ResourceType\": \"collection\",\n        \"SecurityRule\": \"{\\\"read\\\": false, \\\"write\\\": false}\"\n      }\n    ],\n    \"hints\": [],\n    \"raw\": {\n      \"RequestId\": \"07262acc-0077-4f85-9cae-b17e018b55c6\",\n      \"Data\": {\n        \"TotalCount\": 1,\n        \"PermissionList\": [\n          {\n            \"Resource\": \"idempotency_records\",\n            \"Permission\": \"CUSTOM\",\n            \"ResourceType\": \"collection\",\n            \"SecurityRule\": \"{\\\"read\\\": false, \\\"write\\\": false}\"\n          }\n        ]\n      }\n    }\n  },\n  \"message\": \"资源权限查询成功\"\n}"
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "user": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"77f3783a-64ba-4219-82f6-342a63d6cf9b\",\n  \"data\": [\n    {\n      \"_id\": \"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\",\n      \"defaultAddressId\": null,\n      \"version\": 14\n    }\n  ],\n  \"total\": 1,\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 1,\n    \"Total\": 1\n  },\n  \"message\": \"文档查询成功\",\n  \"collection\": \"users\",\n  \"collectionName\": \"users\"\n}"
+        }
+      ]
+    },
+    "addresses": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"success\": true,\n  \"requestId\": \"92831ab0-d390-4608-8f57-758a5d7c843c\",\n  \"data\": [\n    {\n      \"_id\": \"37bd77de24f50836c135d922f5643a5a0a3d208c0fbc23274d861a84d10def73\",\n      \"deletedAt\": 1791855652142,\n      \"ownerId\": \"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\",\n      \"version\": 2\n    },\n    {\n      \"_id\": \"94cf42fc2836c7aad1592d69132a84d98be1f1fe18d0733e8d2acfae5c51c630\",\n      \"deletedAt\": 1791855651222,\n      \"ownerId\": \"31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066\",\n      \"version\": 1\n    }\n  ],\n  \"total\": 2,\n  \"pager\": {\n    \"Offset\": 0,\n    \"Limit\": 2,\n    \"Total\": 2\n  },\n  \"message\": \"文档查询成功\",\n  \"collection\": \"addresses\",\n  \"collectionName\": \"addresses\"\n}"
+        }
+      ]
+    }
+  }
+}

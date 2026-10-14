@@ -1,0 +1,69 @@
+{
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "run": "g1-cart-verify-20261013",
+  "passed": true,
+  "assertions": [
+    {
+      "name": "original-active-owner-version-18",
+      "passed": true
+    },
+    {
+      "name": "one-owned-empty-cart-version-4",
+      "passed": true
+    },
+    {
+      "name": "write-budget",
+      "passed": true
+    },
+    {
+      "name": "add-safe-receipt",
+      "passed": true
+    },
+    {
+      "name": "sameUpdate-safe-receipt",
+      "passed": true
+    },
+    {
+      "name": "raceB-safe-receipt",
+      "passed": true
+    },
+    {
+      "name": "removeV3-safe-receipt",
+      "passed": true
+    },
+    {
+      "name": "initial-race-loser-has-no-receipt",
+      "passed": true
+    },
+    {
+      "name": "existing-function-deployments-unchanged",
+      "passed": true
+    },
+    {
+      "name": "receipt-rule-unchanged-and-private",
+      "passed": true
+    },
+    {
+      "name": "deployed-source-matches-candidate-and-sdk",
+      "passed": true
+    },
+    {
+      "name": "initial-internal-error-recovered-with-original-key",
+      "passed": true
+    }
+  ],
+  "newCarts": 1,
+  "newReceipts": 4,
+  "userVersion": 18,
+  "cartVersion": 4,
+  "remainingSampleLines": 0,
+  "raceInitialStrictAssertionPassed": false,
+  "raceRecoveredWithOriginalKey": true,
+  "limitations": [
+    "FIRST_RACE_LOSER_INTERNAL_ERROR_SOURCE_NOT_LOCATED",
+    "REAL_SECOND_USER_PENDING",
+    "ACTUAL_RESPONSE_LOSS_PENDING",
+    "DEVICE_PENDING",
+    "PURCHASE_CLOSED"
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "ok": true,
+  "tool": "automation_evaluate",
+  "clientName": "Codex",
+  "result": {
+    "success": true,
+    "result": {
+      "result": {
+        "run": "g1-cart-verify-20261013",
+        "success": true,
+        "assertions": [
+          {
+            "name": "original-native-subject-and-owner-version",
+            "passed": true
+          },
+          {
+            "name": "original-key-reprojects-current-cart",
+            "passed": true
+          },
+          {
+            "name": "same-key-changed-input-denied",
+            "passed": true
+          },
+          {
+            "name": "unknown-message-policy-denied",
+            "passed": true
+          },
+          {
+            "name": "replay-and-rejections-write-nothing",
+            "passed": true
+          }
+        ],
+        "stage": "replay",
+        "response": {
+          "ok": true,
+          "requestId": "65be310f-350e-4a02-856d-f0729cbc61ea",
+          "data": {
+            "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+            "storeId": "g1-catalog-store",
+            "version": 3,
+            "lines": [
+              {
+                "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+                "lineVersion": 1,
+                "productId": "g1-initial-strawberry-cake",
+                "skuId": "g1-initial-strawberry-cake-6-inch",
+                "quantity": 3,
+                "cakeMessage": null,
+                "normalizationVersion": "unicode-nfc-trim-codepoints-v1",
+                "addedAt": 1791859825129,
+                "updatedAt": 1791859885769,
+                "display": {
+                  "name": "草莓鲜奶蛋糕",
+                  "specLabel": "6寸",
+                  "selectedOptions": [
+                    {
+                      "groupCode": "SIZE",
+                      "optionCode": "INCH_6",
+                      "label": "6寸"
+                    }
+                  ],
+                  "unitPriceCents": 16800,
+                  "currency": "CNY",
+                  "productVersion": 0,
+                  "skuVersion": 0,
+                  "minQuantity": null,
+                  "maxQuantity": null
+                },
+                "availability": "DRAFT_ONLY"
+              }
+            ],
+            "checkoutAllowed": false,
+            "scope": "CLOUD_SELECTION_DRAFT",
+            "apiVersion": "v1-api-2026-10-03",
+            "subjectHash": "133a76b53fc4f5c8"
+          }
+        },
+        "reused": {
+          "ok": false,
+          "requestId": "10ca447f-45af-41f3-b8f8-03b118995a32",
+          "error": {
+            "code": "IDEMPOTENCY_KEY_REUSED",
+            "message": "操作参数已变化"
+          }
+        },
+        "message": {
+          "ok": false,
+          "requestId": "eb78e679-00ef-4a96-a4d9-a391f535d61a",
+          "error": {
+            "code": "CONFIGURATION_REQUIRED",
+            "message": "服务资料尚未配置"
+          }
+        },
+        "userVersion": 17
+      }
+    }
+  }
+}

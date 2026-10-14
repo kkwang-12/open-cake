@@ -54,10 +54,12 @@ async function adminBoundary(){
   const planned=Object.entries(ACTION_CONTRACTS).filter(([,item])=>item.status==='PLANNED');
   const addressActions=new Set(['address.list','address.get','address.create','address.update','address.remove','address.setDefault']);
   const catalogReads=new Set(['catalog.categories.list','catalog.products.list','catalog.product.get']);
+  const cartDraftActions=new Set(['cart.get','cart.add','cart.update','cart.remove']);
+  const storeReads=new Set(['store.get']);
   for(const [name,item] of planned){
     try{await client.call(item.domain,item.action,{});unexpected.push(name);}
     catch(error){
-      const expected=(catalogReads.has(name)||addressActions.has(name))?'CLOUD_NOT_CONFIGURED':'INVALID_REQUEST';
+      const expected=(catalogReads.has(name)||addressActions.has(name)||cartDraftActions.has(name)||storeReads.has(name))?'CLOUD_NOT_CONFIGURED':'INVALID_REQUEST';
       (error.code===expected?rejected:unexpected).push(name);
     }
   }
@@ -72,6 +74,7 @@ async function adminBoundary(){
   return {passed:planned.length>0&&unexpected.length===0&&platformCalls===0&&!functionPresent&&settings.enableLegacyDemo===false&&
       legacy.every(probe=>probe.passed)&&dependencies.passed&&pickupClosed&&payment.passed,
     plannedActions:planned.length,rejectedActions:rejected.length,catalogReadActions:planned.filter(([name])=>catalogReads.has(name)).length,
+    cartDraftActions:planned.filter(([name])=>cartDraftActions.has(name)).length,
     unexpected,platformCalls,adminFunctionPresent:functionPresent,
     legacyEnabled:settings.enableLegacyDemo===true,legacy,dependencies,pickupClosed,payment};
 }

@@ -16,8 +16,14 @@
 | 配送费 | 0 元 = 0 分，FLAT，无附加阶梯收费 |
 | 配送时间含义 | 预计配送时间段 ESTIMATED，不承诺具体分钟送达 |
 | 最终判断 | 地址范围、时段有效性和容量占用由云端最终校验；客户端结果不是权威 |
+| 门店名称 | 用户于2026-10-14确认：家家乐蛋糕店 |
+| 门店电话 | 用户于2026-10-14确认区号0551及号码87866225；完整号码0551-87866225 |
 | 门店地址 | 用户提供：安徽省合肥市庐江县X085沙溪派出所南侧约50米 |
 | 营业时间 | 用户提供：每天 08:00 至 21:00；按中国当地时区 Asia/Shanghai 记录 |
+| 未来预约窗口 | 用户于2026-10-14确认：未来可预约三天；maxAdvanceDays=3，按下文当地日期末日含边界规则 |
+| 付款保留时间 | 用户于2026-10-14确认：半小时，paymentHoldMinutes=30；实际截止仍受预约提前量边界限制 |
+| 报价有效期 | 用户于2026-10-14确认：5分钟，quoteTtlMinutes=5；实际过期时间仍不得越过预约提前量边界 |
+| 商品最短提前量 | 用户于2026-10-14确认：CAKE至少提前30分钟，BREAD/MINI_CAKE无需提前、可直接拿；对应商品minLeadTimeMinutes分别30/0/0。通用门店不得再叠加30分钟限制两类即取商品，时间计算仍按选购商品最大提前量 |
 
 门店原始点：经度117.2886、纬度31.1498，用户提供高德GCJ-02坐标。距离模型使用可信WGS84，必须由可信服务转换/核验；不得把原始点直接标为verified，也不得编造verifiedAt。
 
@@ -31,7 +37,7 @@
 
 weeklyWindows 明确每个营业日 / 模式，dateOverrides 优先且每日期 / 模式唯一；closed=true 时 windows=[]，缩短营业则 closed=false 且非空有效窗口。不重叠，缺当日窗口就无可约时段，不隐式全天营业。用户已确认每天营业，正式周日历应覆盖周一至周日两模式各 08:00–21:00；临时停业用 dateOverrides 明确配置。测试日历保持隔离，不作为完整发布配置。
 
-最短提前量取门店与选中产品要求的最大值。未知提前量 / 最大未来天数不填 0 或 14；这些只能作为明确测试参数。最大预约天数相对当地 today，末日含边界；开始时刻必须严格晚于 now+最大提前量，确保有正的付款窗口。截止等于当前时刻的时段不可继续下单。
+最短提前量取门店与选中产品要求的最大值。未知提前量不填0；未来窗口按用户确认取maxAdvanceDays=3，不采用测试值14。最大预约天数相对当地today，末日含边界；今天是否可约仍取决于提前量、营业窗口和容量。开始时刻必须严格晚于now+最大提前量，确保有正的付款窗口。截止等于当前时刻的时段不可继续下单。
 
 slot ID = scopedDocumentId('slot',[environment,storeId,fulfillment,serviceDate,startAt,endAt])；不含 policyVersion。模式决定独立资源，同一真实时间段修改配置版本不会另开新 ID 获得第二份容量。更新政策时保留已占用计数并检查当前版本 / 最大容量，禁止删除重建清空预约。政策版本仍存 slot / appointmentSnapshot，并与当前发布配置复核。
 
@@ -43,7 +49,7 @@ slot_inventory.capacityUnit=ORDER，自取 capacityTotal=3，配送=1。已 HELD
 
 resolveAppointment 重建当前合法定义，核对真实 slot 的 ID / 门店 / 模式 / 日期 / 时区 / 起止 / policyVersion / ORDER 单位 / 容量，检查 OPEN、当前占用与剩余量。返回 appointmentSnapshot（保持 D02 字段名）以及 SLOT 请求 quantity=1/expectedVersion；实际 order 服务将其与 D03 聚合 STOCK 请求一起交 D04 事务提交。纯函数快照过后余额可变化，所以客户端或函数计算通过都不代表已占用。
 
-付款截止 `min(now+paymentHoldMinutes, startAt-minLeadTimeMinutes)`；无明确支付保留时长不补默认，deadline 必须 > now。创建订单时复核当前时间和最新配置，存统一 paymentDeadlineAt，资源 expiresAt 一致；到期仍先核实支付结果再释放。报价时效与支付占用是不同概念。
+付款截止 `min(now+paymentHoldMinutes, startAt-minLeadTimeMinutes)`；paymentHoldMinutes按用户确认取30，因此通常保留30分钟，临近预约提前量边界时会缩短，deadline必须>now。创建订单时复核当前时间和最新配置，存统一paymentDeadlineAt，资源expiresAt一致；到期仍先核实支付结果再释放。报价时效与支付占用是不同概念；quoteTtlMinutes按用户确认取5，报价过期也受预约提前量边界限制。
 
 ## 20 km 免费范围与可信坐标边界
 

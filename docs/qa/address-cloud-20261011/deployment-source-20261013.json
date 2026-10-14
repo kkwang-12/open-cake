@@ -1,0 +1,126 @@
+{
+  "date": "2026-10-13",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "functionName": "address",
+  "allMatched": false,
+  "files": [
+    {
+      "file": "index.js",
+      "deployedSha256": "440acf94d1eed959d07ad93695153a5f63bb1733dec1dc70d29f230c2f612743",
+      "localSha256": "423649f6c440c9433e975d4c38a06ca848c226435eb9eaafef1b5fa9d8611662",
+      "manifestSha256": "440acf94d1eed959d07ad93695153a5f63bb1733dec1dc70d29f230c2f612743",
+      "matched": false,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "package.json",
+      "deployedSha256": "a5aab741c7778f5875e61f2f88d253c3b6238054eb1dc6bf569aefb4a67a4d95",
+      "localSha256": "1a3a11d2cc2d97ebd17165189587e692d5efaf46c00ee1ba9f8ab3ddbabb6ae5",
+      "manifestSha256": "a5aab741c7778f5875e61f2f88d253c3b6238054eb1dc6bf569aefb4a67a4d95",
+      "matched": false,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "package-lock.json",
+      "deployedSha256": "83d36c2c47e40ae828ef2d76b08389de1321bb5dc962d86afc65c1a7eac1f344",
+      "localSha256": "83d36c2c47e40ae828ef2d76b08389de1321bb5dc962d86afc65c1a7eac1f344",
+      "manifestSha256": "83d36c2c47e40ae828ef2d76b08389de1321bb5dc962d86afc65c1a7eac1f344",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/address-cloud-handler.js",
+      "deployedSha256": "3fcc35b95ac78dd67c4cea6987e8dcc6783adaf9e1f642e26e074feba407d711",
+      "localSha256": "1ce7cec2a8aba48a9fc20e4190b73668d9669114f4a57b516e9018ac18350405",
+      "manifestSha256": "3fcc35b95ac78dd67c4cea6987e8dcc6783adaf9e1f642e26e074feba407d711",
+      "matched": false,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/address-model.js",
+      "deployedSha256": "c97f52436a7bcf5e743f15dce82e681a1a42725f665a1038f006de585d19915c",
+      "localSha256": "c97f52436a7bcf5e743f15dce82e681a1a42725f665a1038f006de585d19915c",
+      "manifestSha256": "c97f52436a7bcf5e743f15dce82e681a1a42725f665a1038f006de585d19915c",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/address-service.js",
+      "deployedSha256": "484a4f3f559ed0ce61e57d71e36affdbc9d3183743d1a7f74f8f32fa4780c8da",
+      "localSha256": "484a4f3f559ed0ce61e57d71e36affdbc9d3183743d1a7f74f8f32fa4780c8da",
+      "manifestSha256": "484a4f3f559ed0ce61e57d71e36affdbc9d3183743d1a7f74f8f32fa4780c8da",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/api-contract.js",
+      "deployedSha256": "09d6b3bb26889831a68cc1f872a2e02125818dd156a1bb6c32613daaa94adcc8",
+      "localSha256": "09d6b3bb26889831a68cc1f872a2e02125818dd156a1bb6c32613daaa94adcc8",
+      "manifestSha256": "09d6b3bb26889831a68cc1f872a2e02125818dd156a1bb6c32613daaa94adcc8",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/authorization-model.js",
+      "deployedSha256": "ff0ad1a744b0f7a0842dc83b880d951cbdc9897d1493f81c5e0be17cdcbbff90",
+      "localSha256": "ff0ad1a744b0f7a0842dc83b880d951cbdc9897d1493f81c5e0be17cdcbbff90",
+      "manifestSha256": "ff0ad1a744b0f7a0842dc83b880d951cbdc9897d1493f81c5e0be17cdcbbff90",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/idempotency-model.js",
+      "deployedSha256": "d79b24986ba5939f2bad1f59a2bc7ade2a4f089c543ef7009c5b7c428d88faa0",
+      "localSha256": "d79b24986ba5939f2bad1f59a2bc7ade2a4f089c543ef7009c5b7c428d88faa0",
+      "manifestSha256": "d79b24986ba5939f2bad1f59a2bc7ade2a4f089c543ef7009c5b7c428d88faa0",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/native-context.js",
+      "deployedSha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49",
+      "localSha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49",
+      "manifestSha256": "323efb2f2fde0d27d93f2e4241fc5c0a0fcf5f4cb3fd1649da61779861aa6d49",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/pagination-model.js",
+      "deployedSha256": "c4227238a510022df7c191b34e6356486838fe4350d34ec6f636542e130248d2",
+      "localSha256": "c4227238a510022df7c191b34e6356486838fe4350d34ec6f636542e130248d2",
+      "manifestSha256": "c4227238a510022df7c191b34e6356486838fe4350d34ec6f636542e130248d2",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/runtime.js",
+      "deployedSha256": "86c91e9e663f77c907b03ba0ca76e1590c8b47aa762c5a2d411e8a1a76486e4c",
+      "localSha256": "86c91e9e663f77c907b03ba0ca76e1590c8b47aa762c5a2d411e8a1a76486e4c",
+      "manifestSha256": "86c91e9e663f77c907b03ba0ca76e1590c8b47aa762c5a2d411e8a1a76486e4c",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    },
+    {
+      "file": "shared/trade-model.js",
+      "deployedSha256": "c595ae6c9dc0a599d33b2ca833291e700ede58d786e15fad3278aa9016dd86d2",
+      "localSha256": "c595ae6c9dc0a599d33b2ca833291e700ede58d786e15fad3278aa9016dd86d2",
+      "manifestSha256": "c595ae6c9dc0a599d33b2ca833291e700ede58d786e15fad3278aa9016dd86d2",
+      "matched": true,
+      "deployedMatchesCandidate": true,
+      "localMatchesAfterLineEndingNormalization": true
+    }
+  ],
+  "deploymentConfirmed": true
+}

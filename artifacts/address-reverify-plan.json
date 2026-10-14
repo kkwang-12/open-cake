@@ -30,6 +30,6 @@
   ],
   "execution": "Await each native stage; persist result before advancing; never use getApp background state or restart the run.",
   "failure": "Management readback before resume/cleanup; keep original IDs/keys; reserve two receipts for cleanup.",
-  "spentNewAddresses": 0,
-  "spentNewReceipts": 0
+  "spentNewAddresses": 2,
+  "spentNewReceipts": 7
 }

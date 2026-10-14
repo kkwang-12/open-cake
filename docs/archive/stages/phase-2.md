@@ -1779,3 +1779,31 @@ development既有address入口，SDK4.0.2/Nodejs20.19，run `g1-address-20261011
 
 回读发现第二次设置同一默认指针的回执result.version为4，而成功父版本为5。已准备候选修复：setDefault回执使用本事务user.version+1；Provider诊断只保留固定类别/数字错误号/冲突或终止标记，不泄露原消息，也不把一般DATABASE_TRANSACTION_FAIL直接视为安全版本冲突。原7条证据不改写。候选[本地1104回归](../../qa/local-checks/tests-1791715109711-35116.tap)通过，尚未部署/真实竞争复验；2样例额度已耗尽，追加云写须另获有界授权。当前进度只见CURRENT-STATUS。
 
+## G1 地址并发与回执追加复验（2026-10-13）
+
+沿用追加授权及固定run `g1-address-reverify-20261011-1791728754797`，最多2样例/8安全回执，不更换key或重启实验。[源码回读比对](../../qa/address-cloud-20261011/deployment-source-20261013.json)确认云端13文件全部匹配已验证候选；本机3处原始字节差异仅为CRLF/LF，换行归一后13文件一致。函数Active/Nodejs20.19/timeout20，address及通配规则拒匿名，addresses/idempotency_records读写false，[管控与清理证据](../../qa/address-cloud-20261011/reverify-cloud-audit-20261013.json)。未重新部署、改规则或旋转密钥。
+
+微信扫码恢复后原生预检首次自动化超时；重新编译后多行命令报Unexpected token ')'，同一合法脚本改为单行传输成功，无业务源码补丁。[预检](../../qa/address-cloud-20261011/reverify-readiness-20261013.json)确认原subjectHash、用户version7/0活动地址/defaultnull，三个私有集合客户端直读拒绝。各步骤直接await并保存响应，未使用getApp后台结果。
+
+[setup](../../qa/address-cloud-20261011/reverify-setup-20261013.json)完成两次create及一次update，父version10；[race](../../qa/address-cloud-20261011/reverify-race-20261013.json)一成功/一VERSION_CONFLICT，父版本只增加一次至11；[same](../../qa/address-cloud-20261011/reverify-same-20261013.json)重复同一默认指针，响应version/userVersion均12；[cleanup](../../qa/address-cloud-20261011/reverify-cleanup-20261013.json)软删两样例、默认null/父version14。四步共14项断言通过。本轮竞争通过不证明旧INTERNAL_ERROR对应的所有提供方失败路径均已消除，旧原生失败与脱敏诊断保留，不扩大事务保证。
+
+[完整回执审计](../../qa/address-cloud-20261011/reverify-receipt-audit-20261013.json)确认新增7条（create2/update1/setDefault2/remove2）、字段/作用域正确、无联系方式或响应快照、竞争败者无回执，默认回执版本11与12均匹配各自成功父版本。管理回读两样例全部软删、用户version14/defaultnull；2地址/7回执均在授权预算内。
+
+在原生复验后启用本机development地址开关，页面/样式/组件未修改。[现有页面数据](../../qa/address-cloud-20261011/reverify-page-20261013.json)为CLOUD_OWNER/空列表/revision14/无错误，配送选择false。配置变化对应cloud/client及address-client局部验证323/323（33文件）通过，[本地日志](../../qa/local-checks/tests-1791855980101-28292.tap)；业务候选仍沿用既有1104全量，不重复全量。第二用户真实越权、真机及实际丢响应未运行，不宣布G1整体完成。
+
+## G1 本人云袋与原键恢复（2026-10-13）
+
+用户选择“先接通选购草稿，购买继续关闭”，随后明确授权development `cloudbase-d8gwtxzm64150b7e0`：新cart Event函数及私有carts集合，原验收账号/隔离目录g1-catalog-store，最多1本人袋/5新回执/该用户版本+5，结束清空样例行。沿用[固定run与原请求](../../../artifacts/g1-cart-verification-plan-20261013.json)，不重启或换key；未部署其他函数、改UI、提交推送或发布/操作资金。[管控预检](../../qa/cart-cloud-20261013/preflight-control.json)、[原生预检](../../qa/cart-cloud-20261013/preflight-native.json)基线用户14/defaultnull/0活动地址；6寸草莓价格16800分、数量/提前量/留言限制为null。
+
+[部署](../../qa/cart-cloud-20261013/deployment.json)为Active/Available/Nodejs20.19/timeout20/无触发器；继承原通配拒匿名规则，现有通配/address内容不变，新carts客户端read/write=false，回执规则及其他6函数部署时间不变。[下载源码](../../qa/cart-cloud-20261013/deployed-source.json)13文件逐一精确匹配候选，安装SDK4.0.2。[readiness](../../qa/cart-cloud-20261013/native-readiness.json)8项含私有集合直读、越权目录/袋及身份payload拒绝；首次Windows .cmd双引号脚本传输失败原记录保留，改成短单引号表达式后通过。
+
+[add](../../qa/cart-cloud-20261013/native-add.json)使袋version1/用户15；[sameUpdate](../../qa/cart-cloud-20261013/native-sameUpdate.json)同值新key物理写袋version2/用户16，行版本仍0。每新命令原子写袋、仅实体引用与版本的回执和users.version，默认地址不变。未知库存/提前量允许有效选购草稿；真实数量范围及留言规范仍校验，未知留言限制不允许非空输入，不构造经营默认值或库存承诺。
+
+[首次并发](../../qa/cart-cloud-20261013/native-race.json)raceB成功、raceA返回INTERNAL_ERROR，袋version3/行版本1/数量3、用户17。立即返回VERSION_CONFLICT的严格断言失败；[管理回读](../../qa/cart-cloud-20261013/race-management-readback.json)确认仅3成功回执、raceA不存在。随后[原败者key/原参数恢复](../../qa/cart-cloud-20261013/native-raceRecovery.json)确认VERSION_CONFLICT且袋/用户不变。首次错误来源未定位，不把普通提供方失败改标冲突，不宣称所有并发失败路径已经解决。
+
+[原键重放](../../qa/cart-cloud-20261013/native-replay.json)返回当前version3/数量3，同key异参及未知留言拒绝，用户保持17。[清理](../../qa/cart-cloud-20261013/native-cleanup.json)使袋空/version4、用户18/defaultnull；保留空袋和可审计回执。[最终管理回读](../../qa/cart-cloud-20261013/final-management-readback.json)及[12项审计](../../qa/cart-cloud-20261013/final-audit.json)确认新增1袋/4回执（add/sameUpdate/raceB/removeV3），字段/作用域/原请求指纹/结果版本1–4均正确，无行、留言、价格或响应快照，竞争败者无回执；用户只+4，低于+5上限。
+
+审计后启用本机cart开关。现有页面服务复用云袋，不导入本机离线袋；未确认操作存原payload/key/version并按app/env/subject隔离。删除已提交但丢响应时，reviewAll仅在袋版本已推进后确认旧key（只能重放或拒绝），解决旧行消失后无法点击重试的问题；版本未推进则只保留记录，不因刷新自动执行新写。该路径由针对当前实际client/handler的离线注入测试覆盖，未制造真实网络丢响应。
+
+[最终页面检查](../../qa/cart-cloud-20261013/native-pages.json)6项通过：袋CLOUD_SELECTION_DRAFT/空/version4，商品PUBLIC_CATALOG/canConfigure=true，原规格弹层打开；canPurchase=false/未知留言输入关闭。最后复查曾[自动化超时](../../qa/cart-cloud-20261013/native-pages-final-attempt1.json)，刷新一次、最小读取恢复后仅重试一次并通过；未用getApp后台结果验收。初版[联合离线](../../qa/g1-cart-local-20261013/summary.json)1120项及59个关闭action通过；恢复补齐后的[最终本地](../../qa/local-checks/tests-1791860732869-12700.tap)1122/1122（93文件），静态552项/50图标/主包约1414KiB。真实第二用户、逐写提供方回滚、实际丢响应及真机仍待验收，G1整体PARTIAL，购买/订单/支付/商家继续关闭。当前状态唯一见CURRENT-STATUS。
+

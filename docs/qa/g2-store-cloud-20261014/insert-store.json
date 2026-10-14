@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "requestId": "6ac38102-322f-41a0-986e-6f83a8c3bb16",
+  "insertedIds": [
+    "g1-catalog-store"
+  ],
+  "insertedCount": 1,
+  "message": "文档插入成功",
+  "collection": "stores",
+  "collectionName": "stores"
+}

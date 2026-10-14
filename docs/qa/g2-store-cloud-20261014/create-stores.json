@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "requestId": "2a9e83a8-8f4c-480f-a96b-548b23137ee3",
+  "action": "createCollection",
+  "message": "云开发数据库集合创建成功",
+  "collection": "stores",
+  "collectionName": "stores"
+}

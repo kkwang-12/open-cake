@@ -203,4 +203,5 @@ function createLocalBagClient(settings,platform,readSpecification=specification.
   function reviewAll(){return review(true);}
   return {add,list,remove,select,updateQuantity,review,reviewAll,selectReviewed,acceptChanges};
 }
-module.exports={...createLocalBagClient(config),createLocalBagClient,LocalBagError,STORAGE_KEY};
+const client=config.mode==='cloud'?require('./cloud-bag').createCloudBagClient(config):createLocalBagClient(config);
+module.exports={...client,createLocalBagClient,LocalBagError,STORAGE_KEY};

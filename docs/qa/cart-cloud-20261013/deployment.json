@@ -1,0 +1,121 @@
+{
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "functionName": "cart",
+  "functionId": "lam-7idtbk21",
+  "runtime": "Nodejs20.19",
+  "status": "Active",
+  "availableStatus": "Available",
+  "type": "Event",
+  "timeout": 20,
+  "handler": "index.main",
+  "dependencyInstalled": "TRUE",
+  "codeSize": 7438325,
+  "modifiedAt": "2026-10-13 10:43:36",
+  "environmentKeys": [
+    "JJL_APP_ID",
+    "JJL_CLOUD_ENV",
+    "JJL_STAGE",
+    "JJL_CART_ENABLED",
+    "JJL_CART_SELECTION_DRAFT",
+    "JJL_CART_STORE_ID"
+  ],
+  "triggers": [],
+  "permissions": {
+    "cart": {
+      "success": true,
+      "data": {
+        "action": "getResourcePermission",
+        "envId": "cloudbase-d8gwtxzm64150b7e0",
+        "resourceType": "function",
+        "resourceId": "cart",
+        "aclTag": "CUSTOM",
+        "permissions": [
+          {
+            "Resource": "",
+            "Permission": "CUSTOM",
+            "ResourceType": "function",
+            "SecurityRule": "{\r\n  \"*\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  },\r\n  \"address\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  }\r\n}"
+          }
+        ],
+        "hints": [],
+        "raw": {
+          "RequestId": "d00cb0ff-152a-4b04-94ec-367dc3f9994e",
+          "Data": {
+            "TotalCount": 1,
+            "PermissionList": [
+              {
+                "Resource": "",
+                "Permission": "CUSTOM",
+                "ResourceType": "function",
+                "SecurityRule": "{\r\n  \"*\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  },\r\n  \"address\": {\r\n    \"invoke\": \"auth != null && auth.loginType != 'ANONYMOUS'\"\r\n  }\r\n}"
+              }
+            ]
+          }
+        }
+      },
+      "message": "资源权限查询成功"
+    },
+    "carts": {
+      "success": true,
+      "data": {
+        "action": "getResourcePermission",
+        "envId": "cloudbase-d8gwtxzm64150b7e0",
+        "resourceType": "noSqlDatabase",
+        "resourceId": "carts",
+        "aclTag": "CUSTOM",
+        "permissions": [
+          {
+            "Resource": "carts",
+            "Permission": "CUSTOM",
+            "ResourceType": "collection",
+            "SecurityRule": "{\"read\":false,\"write\":false}"
+          }
+        ],
+        "hints": [],
+        "raw": {
+          "RequestId": "5cbecbb4-3873-4ffd-aa20-61168c135a33",
+          "Data": {
+            "TotalCount": 1,
+            "PermissionList": [
+              {
+                "Resource": "carts",
+                "Permission": "CUSTOM",
+                "ResourceType": "collection",
+                "SecurityRule": "{\"read\":false,\"write\":false}"
+              }
+            ]
+          }
+        }
+      },
+      "message": "资源权限查询成功"
+    }
+  },
+  "creation": {
+    "success": true,
+    "data": {
+      "action": "createFunction",
+      "functionName": "cart",
+      "raw": {
+        "RequestId": "0bece9ef-ff5c-4bb7-b28f-09eda0549073",
+        "SCFErrorCode": "",
+        "SCFErrorMsg": ""
+      }
+    },
+    "message": "已创建函数 cart",
+    "nextActions": [
+      {
+        "tool": "queryFunctions",
+        "action": "getFunctionDetail",
+        "reason": "确认函数配置"
+      },
+      {
+        "tool": "queryFunctions",
+        "action": "listFunctionTriggers",
+        "reason": "检查函数触发器"
+      }
+    ]
+  },
+  "collectionCreateRequestId": "d0da2e47-bb12-46c2-8a4a-0649bff63e80",
+  "collectionRuleWriteRequestId": "7ffe9778-ad0b-4c8e-815c-48bcea9f2382",
+  "existingFunctionRulesUnchanged": true
+}

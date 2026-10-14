@@ -1,0 +1,164 @@
+{
+  "schemaVersion": 1,
+  "authorization": "USER_APPROVED_2026-10-13_EXACT_SCOPE",
+  "environment": "cloudbase-d8gwtxzm64150b7e0",
+  "appId": "wx154f791a17268ace",
+  "storeId": "g1-catalog-store",
+  "run": "g1-cart-verify-20261013",
+  "ownerId": "31ff3558a96bb28340f368ac467898ea71ccc2c30c8cfa4b5511dc8c6bd05066",
+  "subjectHash": "133a76b53fc4f5c8",
+  "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+  "baseline": {
+    "userVersion": 14,
+    "defaultAddressId": null,
+    "activeAddresses": 0,
+    "cartVersion": 0,
+    "cartAbsent": true
+  },
+  "maximumNewCarts": 1,
+  "maximumNewReceipts": 5,
+  "expectedNewReceipts": 4,
+  "maximumUserVersionIncrement": 5,
+  "productId": "g1-initial-strawberry-cake",
+  "skuId": "g1-initial-strawberry-cake-6-inch",
+  "selectedOptions": [
+    {
+      "groupCode": "SIZE",
+      "optionCode": "INCH_6"
+    }
+  ],
+  "keys": {
+    "add": "g1-cart-verify-20261013-add",
+    "sameUpdate": "g1-cart-verify-20261013-sameUpdate",
+    "raceA": "g1-cart-verify-20261013-raceA",
+    "raceB": "g1-cart-verify-20261013-raceB",
+    "removeV3": "g1-cart-verify-20261013-removeV3",
+    "removeV2": "g1-cart-verify-20261013-removeV2",
+    "removeV1": "g1-cart-verify-20261013-removeV1",
+    "removeV4": "g1-cart-verify-20261013-removeV4"
+  },
+  "receiptIds": {
+    "add": "ae7f4a2017e9b1d375ba1e9d64e8514f6e0d3c693b206c8599c78116170c3a6f",
+    "sameUpdate": "29450b7b2d6ba15ffa706c7f6e59f0ba3da7163023087155381276da24db3d25",
+    "raceA": "b4548647795db97a707cee6d8237016cf7b7c8bb68e7ac399ee901a6fc2a7bcb",
+    "raceB": "2afe544797310eb79a47b2e6c2c01a5ff253fd2cdadc5593ce599f98cca7601d",
+    "removeV3": "179058b40e51ddb4b223be81d9540ec1b685da218d7265c36b082cce47dd2bdd",
+    "removeV2": "1cab1a5a92b07411b8a6b546960402baf5b5270d27857e0ad846d94fd8cf4850",
+    "removeV1": "a49b3225b6001de76d0e4d8f0f54825d5adc370bb861032845ca7de880e9bb5c",
+    "removeV4": "3c8b112d85e8567a6d0fa0f538da89cc54020e0fa5611b104e2fe52930143d14"
+  },
+  "stages": [
+    "readiness",
+    "add",
+    "sameUpdate",
+    "race",
+    "replay",
+    "cleanup"
+  ],
+  "spentNewCarts": 1,
+  "spentNewReceipts": 4,
+  "execution": "Await and persist each stage; baseline-check native subject/version; never restart or replace run/key after unknown response.",
+  "cleanup": "Remove the sample line using fixed removeV3 (or removeV2 if race failed); keep empty owned cart and safe receipts; never reset versions.",
+  "requests": {
+    "add": {
+      "storeId": "g1-catalog-store",
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "expectedVersion": 0,
+      "productId": "g1-initial-strawberry-cake",
+      "skuId": "g1-initial-strawberry-cake-6-inch",
+      "selectedOptions": [
+        {
+          "groupCode": "SIZE",
+          "optionCode": "INCH_6"
+        }
+      ],
+      "quantity": 1,
+      "cakeMessage": "",
+      "idempotencyKey": "g1-cart-verify-20261013-add"
+    },
+    "sameUpdate": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "skuId": "g1-initial-strawberry-cake-6-inch",
+      "selectedOptions": [
+        {
+          "groupCode": "SIZE",
+          "optionCode": "INCH_6"
+        }
+      ],
+      "expectedVersion": 1,
+      "expectedLineVersion": 0,
+      "quantity": 1,
+      "idempotencyKey": "g1-cart-verify-20261013-sameUpdate"
+    },
+    "raceA": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "skuId": "g1-initial-strawberry-cake-6-inch",
+      "selectedOptions": [
+        {
+          "groupCode": "SIZE",
+          "optionCode": "INCH_6"
+        }
+      ],
+      "expectedVersion": 2,
+      "expectedLineVersion": 0,
+      "quantity": 2,
+      "idempotencyKey": "g1-cart-verify-20261013-raceA"
+    },
+    "raceB": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "skuId": "g1-initial-strawberry-cake-6-inch",
+      "selectedOptions": [
+        {
+          "groupCode": "SIZE",
+          "optionCode": "INCH_6"
+        }
+      ],
+      "expectedVersion": 2,
+      "expectedLineVersion": 0,
+      "quantity": 3,
+      "idempotencyKey": "g1-cart-verify-20261013-raceB"
+    },
+    "removeV3": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "expectedVersion": 3,
+      "expectedLineVersion": 1,
+      "idempotencyKey": "g1-cart-verify-20261013-removeV3"
+    },
+    "removeV2": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "expectedVersion": 2,
+      "expectedLineVersion": 0,
+      "idempotencyKey": "g1-cart-verify-20261013-removeV2"
+    },
+    "removeV1": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "expectedVersion": 1,
+      "expectedLineVersion": 0,
+      "idempotencyKey": "g1-cart-verify-20261013-removeV1"
+    },
+    "removeV4": {
+      "cartId": "a9c0301ea0fa94a8196febcbdcd9ae1316b60f9ed692c58b87cf109beeb4b497",
+      "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+      "expectedVersion": 4,
+      "expectedLineVersion": 2,
+      "idempotencyKey": "g1-cart-verify-20261013-removeV4"
+    }
+  },
+  "lineId": "1ce43742edd802cf79d09e9fa4a0fab247d2e3ae361d6676be8204465016de4a",
+  "authorizedMaximum": {
+    "carts": 1,
+    "newReceipts": 5,
+    "userVersionIncrement": 5
+  },
+  "raceInitialOutcome": "ONE_WINNER_LOSER_INTERNAL_ERROR",
+  "finalUserVersion": 18,
+  "finalCartVersion": 4,
+  "sampleLinesCleaned": true,
+  "raceRecoveredWithOriginalKey": true
+}

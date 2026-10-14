@@ -1,0 +1,59 @@
+{
+  "functionName": "cart",
+  "files": [
+    {
+      "path": "index.js",
+      "matched": true
+    },
+    {
+      "path": "package.json",
+      "matched": true
+    },
+    {
+      "path": "package-lock.json",
+      "matched": true
+    },
+    {
+      "path": "shared/api-contract.js",
+      "matched": true
+    },
+    {
+      "path": "shared/authorization-model.js",
+      "matched": true
+    },
+    {
+      "path": "shared/cart-cloud-handler.js",
+      "matched": true
+    },
+    {
+      "path": "shared/cart-model.js",
+      "matched": true
+    },
+    {
+      "path": "shared/cart-service.js",
+      "matched": true
+    },
+    {
+      "path": "shared/catalog-model.js",
+      "matched": true
+    },
+    {
+      "path": "shared/idempotency-model.js",
+      "matched": true
+    },
+    {
+      "path": "shared/native-context.js",
+      "matched": true
+    },
+    {
+      "path": "shared/runtime.js",
+      "matched": true
+    },
+    {
+      "path": "shared/trade-model.js",
+      "matched": true
+    }
+  ],
+  "sdkVersion": "4.0.2",
+  "allMatched": true
+}

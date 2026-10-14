@@ -1,0 +1,18 @@
+{
+  "success": true,
+  "data": {
+    "action": "updateFunctionCode",
+    "functionName": "store",
+    "raw": {
+      "RequestId": "e4625513-1617-46f6-aac2-c1bb2d3626de"
+    }
+  },
+  "message": "已更新函数 store 的代码",
+  "nextActions": [
+    {
+      "tool": "queryFunctions",
+      "action": "getFunctionDetail",
+      "reason": "确认最新函数配置"
+    }
+  ]
+}

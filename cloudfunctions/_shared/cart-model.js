@@ -1,5 +1,7 @@
 'use strict';
-const { NORMALIZATION_VERSION, resolveSku, assertQuantity, normalizeCakeMessage, messageFingerprint } = require('./catalog-model');
+const { NORMALIZATION_VERSION, resolveSku, resolveDisplaySku, assertQuantity, normalizeCakeMessage, messageFingerprint } = require('./catalog-model');
+// Transport bound for selection drafts, not a published business quantity policy.
+const DRAFT_MAX_LINES = 100;
 
 const messages = Object.freeze({ INVALID_CART: '购物袋数据无效', FORBIDDEN: '无权操作购物袋',
   VERSION_CONFLICT: '购物袋已更新，请刷新', LINE_NOT_FOUND: '购物袋行不存在',
@@ -57,15 +59,26 @@ function planCartCommand(cart, command, actor, args, context) {
     changedLineId = lines[lineIndex].lineId;
     lines.splice(lineIndex, 1); // Removal remains possible for unavailable products/configs.
   } else {
-    const limits = context.limits;
+    const draft = context.selectionDraft === true;
+    const limits = draft ? {maxLines:DRAFT_MAX_LINES,maxQuantityPerLine:Number.MAX_SAFE_INTEGER} : context.limits;
     if (!plain(limits) || !integer(limits.maxLines, true) || !integer(limits.maxQuantityPerLine, true)) fail('CONFIGURATION_REQUIRED');
     if (!plain(context.product) || context.product.storeId !== cart.storeId) fail('FORBIDDEN');
-    const sku = resolveSku(context.product, context.skus, args.selectedOptions, args.skuId);
+    const sku = draft ? {...resolveDisplaySku(context.product,context.skus,args.selectedOptions,args.skuId),productId:context.product._id} :
+      resolveSku(context.product, context.skus, args.selectedOptions, args.skuId);
+    const quantityCheck = quantity => {
+      if(!draft)return assertQuantity(quantity,sku,limits.maxQuantityPerLine);
+      if(!integer(quantity,true)||!Number.isSafeInteger(quantity*sku.unitPriceCents)||
+        (sku.minQuantity!==null&&(quantity<sku.minQuantity||quantity>sku.maxQuantity)))fail('INVALID_CART_COMMAND');
+    };
     if (!integer(args.quantity, true)) fail('INVALID_CART_COMMAND');
     const oldLine = command === 'UPDATE' ? lines[lineIndex] : null;
     if (oldLine && (oldLine.productId !== context.product._id || oldLine.skuId !== sku._id)) fail('INVALID_CART_COMMAND');
     const value = command === 'UPDATE' && !Object.prototype.hasOwnProperty.call(args, 'cakeMessage') ? oldLine.cakeMessage : args.cakeMessage;
-    const message = normalizeCakeMessage(value, context.product.messagePolicy);
+    const draftMessage = draft && context.product.messagePolicy===null && (value === '' || value === undefined) ? null :
+      draft && context.product.messagePolicy!==null && value===null ? '' : value;
+    if(draft && context.product.messagePolicy===null && context.product.categoryCode!=='BREAD' &&
+      draftMessage!==null)fail('CONFIGURATION_REQUIRED');
+    const message = normalizeCakeMessage(draft ? draftMessage : value, context.product.messagePolicy);
     const matching = lines.findIndex(line => line.productId === sku.productId && line.skuId === sku._id &&
       line.normalizationVersion === message.normalizationVersion && line.messageFingerprint === message.messageFingerprint &&
       line.cakeMessage === message.cakeMessage);
@@ -73,11 +86,11 @@ function planCartCommand(cart, command, actor, args, context) {
       if (matching >= 0) {
         lineIndex = matching;
         const quantity = lines[lineIndex].quantity + args.quantity;
-        assertQuantity(quantity, sku, limits.maxQuantityPerLine);
+        quantityCheck(quantity);
         lines[lineIndex] = { ...lines[lineIndex], quantity, lineVersion: lines[lineIndex].lineVersion + 1, updatedAt: context.now };
         changedLineId = lines[lineIndex].lineId;
       } else {
-        assertQuantity(args.quantity, sku, limits.maxQuantityPerLine);
+        quantityCheck(args.quantity);
         if (lines.length >= limits.maxLines) fail('CART_LIMIT_EXCEEDED');
         if (!text(context.newLineId) || lines.some(line => line.lineId === context.newLineId)) fail('INVALID_CART_COMMAND');
         changedLineId = context.newLineId;
@@ -87,7 +100,7 @@ function planCartCommand(cart, command, actor, args, context) {
     } else {
       // UPDATE merging two existing lines would obscure their identities. Require explicit remove/add.
       if (matching >= 0 && matching !== lineIndex) fail('INVALID_CART_COMMAND');
-      assertQuantity(args.quantity, sku, limits.maxQuantityPerLine);
+      quantityCheck(args.quantity);
       if (oldLine.quantity === args.quantity && oldLine.cakeMessage === message.cakeMessage &&
           oldLine.normalizationVersion === message.normalizationVersion) {
         return Object.freeze({ nextCart: frozenCart({ _id: cart._id, schemaVersion: 1, ownerId: cart.ownerId,
@@ -102,7 +115,8 @@ function planCartCommand(cart, command, actor, args, context) {
   }
   const nextCart = { _id: cart._id, schemaVersion: 1, ownerId: cart.ownerId, storeId: cart.storeId,
     version: cart.version + 1, createdAt: cart.createdAt, updatedAt: context.now, lines };
+  if(context.selectionDraft===true&&!Number.isSafeInteger(lines.reduce((sum,line)=>sum+line.quantity,0)))fail('INVALID_CART_COMMAND');
   validateCart(nextCart); // Also guards version increment overflow without mutating input.
   return Object.freeze({ nextCart: frozenCart(nextCart), changedLineId, changed: true });
 }
-module.exports = { CartModelError, validateCart, planCartCommand };
+module.exports = { CartModelError, validateCart, planCartCommand, DRAFT_MAX_LINES };
