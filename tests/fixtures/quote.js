@@ -5,6 +5,7 @@ const {planCartCommand}=require('../../cloudfunctions/_shared/cart-model');
 const {identityFromPlatform,resolveCustomer}=require('../../cloudfunctions/_shared/authorization-model');
 const {buildSlotDefinitions,V1_FULFILLMENT_POLICY,DISTANCE_ALGORITHM_VERSION}=require('../../cloudfunctions/_shared/fulfillment-model');
 const {TRADE_POLICY}=require('../../cloudfunctions/_shared/trade-model');
+const {SLOT_RELEASE_POLICY_VERSION}=require('../../cloudfunctions/_shared/slot-release-policy');
 const {requestFingerprint}=require('../../cloudfunctions/_shared/idempotency-model');
 const clone=value=>JSON.parse(JSON.stringify(value));
 function actor(id='A'){
@@ -15,14 +16,15 @@ function setup(mode='PICKUP'){
   const principal=actor(),now=Date.parse('2026-10-05T00:00:00Z'),cat=catalog();
   cat.product.images=[{assetId:'offline-photo',storageRef:'offline://not-real-photo',sourceKind:'REAL_PHOTO',revision:'offline-v1',privateMetadata:'never exposed'}];
   const store={_id:cat.product.storeId,version:1,status:'OPEN',name:'OFFLINE_TEST_ONLY',address:'仅离线门店',phone:'0551-00000000',
-    timeZone:'Asia/Shanghai',activeConfigId:'offline-config',location:{longitude:0,latitude:0,coordinateSystem:'WGS84',source:'OFFLINE_TEST_ONLY',verifiedAt:1000}};
+    timeZone:'Asia/Shanghai',activeConfigId:'offline-config',location:{longitude:0,latitude:0,coordinateSystem:'GCJ02',source:'OFFLINE_TEST_ONLY',verifiedAt:1000}};
   const configuration={_id:'offline-config',storeId:store._id,status:'PUBLISHED',configVersion:2,publishedAt:now-1000,
+    slotPolicy:{unit:'ORDER',unitsPerOrder:1,slotMinutes:30,capacityPerSlot:{PICKUP:3,DELIVERY:1},releasePolicyVersion:SLOT_RELEASE_POLICY_VERSION},
     fulfillmentPolicyVersion:V1_FULFILLMENT_POLICY.version,tradePolicyVersion:TRADE_POLICY.version,quoteTtlMinutes:10,fulfillmentModes:['PICKUP','DELIVERY'],
     timePolicy:{policyVersion:'OFFLINE_TEST_ONLY',timeZone:'Asia/Shanghai',minLeadTimeMinutes:60,maxAdvanceDays:7,crossDayStrategy:'REJECT',
       weeklyWindows:Array.from({length:7},(_,i)=>['PICKUP','DELIVERY'].map(fulfillment=>({weekday:i+1,fulfillment,startMinute:480,endMinute:1260}))).flat(),dateOverrides:[]},
     deliveryRules:[{ruleId:'offline-radius',ruleVersion:0,priority:0,status:'ACTIVE',operator:'STORE_SELF',windowNature:'ESTIMATED',
       distanceAlgorithmVersion:DISTANCE_ALGORITHM_VERSION,area:{kind:'RADIUS',regionPaths:null,center:clone(store.location),radiusMeters:20000,
-        vertices:null,coordinateSystem:'WGS84',boundaryIncluded:true},feePolicy:{kind:'FLAT',baseFeeCents:0,includedMeters:null,stepMeters:null,stepFeeCents:null,rounding:null}}]};
+        vertices:null,coordinateSystem:'GCJ02',boundaryIncluded:true},feePolicy:{kind:'FLAT',baseFeeCents:0,includedMeters:null,stepMeters:null,stepFeeCents:null,rounding:null}}]};
   const cart=clone(planCartCommand({...emptyCart(),ownerId:principal.subjectId},'ADD',principal,{expectedVersion:0,skuId:cat.skus[0]._id,
     selectedOptions:cat.selectedOptions,quantity:2,cakeMessage:'测试留言'},{...cartContext(cat),now:2000,newLineId:'offline-line'}).nextCart);
   const definition=buildSlotDefinitions({store,environment:principal.environment,now,fulfillment:mode,serviceDate:'2026-10-06',timePolicy:configuration.timePolicy,productLeadTimes:[60]})[0];

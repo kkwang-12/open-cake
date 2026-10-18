@@ -83,10 +83,10 @@ test('A05 closing store keeps config and resources; reopening needs complete val
   s.controls.policyAccepted=true;await s.execute('store.update',{patch:{status:'OPEN'},idempotencyKey:'OFFLINE_REOPEN_STORE_KEY'});
   assert.equal(s.db.stores[s.storeId].status,'OPEN');
 });
-test('A05 map token resolves only through trusted scoped adapter; raw/client/GCJ02 and stale centers are rejected',async()=>{
+test('A05 map token resolves only through trusted scoped adapter; raw/client/WGS84 and stale centers are rejected',async()=>{
   const s=await setup();await rejects(()=>s.execute('store.update',{patch:{location:{latitude:31.1498,longitude:117.2886}}}),'INVALID_REQUEST');
   await rejects(()=>s.execute('store.update',{patch:{mapSelectionToken:'UNVERIFIED_TOKEN'}}),'LOCATION_REQUIRED');
-  s.controls.mapLocation={...clone(s.db.stores[s.storeId].location),coordinateSystem:'GCJ02'};
+  s.controls.mapLocation={...clone(s.db.stores[s.storeId].location),coordinateSystem:'WGS84'};
   await rejects(()=>s.execute('store.update',{patch:{mapSelectionToken:'OFFLINE_SERVER_MAP_TOKEN'}}),'COORDINATE_SYSTEM_UNSUPPORTED');
   s.controls.mapLocation={...clone(s.db.stores[s.storeId].location),latitude:1};
   await rejects(()=>s.execute('store.update',{patch:{mapSelectionToken:'OFFLINE_SERVER_MAP_TOKEN'}}),'CONFIGURATION_REQUIRED');
@@ -105,9 +105,11 @@ test('A05 complete shape alone cannot approve publication: location/policy/phone
 });
 test('A05 rejects altered V1 capacities, hours, radius/edge/fee/operator, coordinate system and policy extra fields',async()=>{
   const changes=[d=>d.slotPolicy.capacityPerSlot.PICKUP=4,d=>d.slotPolicy.capacityPerSlot.DELIVERY=2,d=>d.slotPolicy.slotMinutes=15,
+    d=>d.slotPolicy.releasePolicyVersion='OFFLINE_TEST_ONLY',d=>d.slotPolicy.releasePolicyVersion='UNKNOWN',
     d=>d.timePolicy.weeklyWindows[0].startMinute=510,d=>d.timePolicy.timeZone='UTC',d=>d.deliveryRules[0].area.radiusMeters=20001,
     d=>d.deliveryRules[0].area.boundaryIncluded=false,d=>d.deliveryRules[0].feePolicy.baseFeeCents=1,d=>d.deliveryRules[0].operator='RIDER',
-    d=>d.deliveryRules[0].windowNature='EXACT',d=>d.deliveryRules[0].area.center.coordinateSystem='GCJ02',d=>d.extraField='CLIENT'];
+    d=>d.deliveryRules[0].windowNature='EXACT',d=>d.deliveryRules[0].area.center.coordinateSystem='WGS84',
+    d=>d.deliveryRules[0].distanceAlgorithmVersion='haversine-r6371000-v1',d=>d.extraField='CLIENT'];
   for(const change of changes){const s=await setup(),event=s.event('config.save'),before=state(s);change(event.payload.draft);
     await assert.rejects(()=>s.storeService.execute(event,s.member));assert.equal(state(s),before);}
 });
@@ -249,7 +251,7 @@ test('A05 actual merchant can still prepare a confirmed historical order after i
   const facts=clone(s.db.orders[s.orderId].appointmentSnapshot);
   await s.merchantService.execute(s.event('ACCEPT'),s.primary);await s.merchantService.execute(s.event('START_MAKING'),s.primary);
   assert.equal(s.db.orders[s.orderId].orderStatus,'MAKING');assert.deepEqual(s.db.orders[s.orderId].appointmentSnapshot,facts);
-  assert.equal(s.db.slots[slotId].status,'CLOSED');assert.equal(s.db.slots[slotId].confirmedUnits,1);
+  assert.equal(s.db.slots[slotId].status,'CLOSED');assert.equal(s.db.slots[slotId].confirmedUnits,0);assert.equal(s.db.slots[slotId].consumedUnits,1);
 });
 
 test('A05 drafts reject unsafe lead arithmetic or a booking horizon outside supported four-digit calendar even without slots',async()=>{

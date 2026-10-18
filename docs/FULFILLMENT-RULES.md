@@ -25,7 +25,7 @@
 | 报价有效期 | 用户于2026-10-14确认：5分钟，quoteTtlMinutes=5；实际过期时间仍不得越过预约提前量边界 |
 | 商品最短提前量 | 用户于2026-10-14确认：CAKE至少提前30分钟，BREAD/MINI_CAKE无需提前、可直接拿；对应商品minLeadTimeMinutes分别30/0/0。通用门店不得再叠加30分钟限制两类即取商品，时间计算仍按选购商品最大提前量 |
 
-门店原始点：经度117.2886、纬度31.1498，用户提供高德GCJ-02坐标。距离模型使用可信WGS84，必须由可信服务转换/核验；不得把原始点直接标为verified，也不得编造verifiedAt。
+门店位置资料：原始高德点经度117.2886、纬度31.1498（GCJ-02），保留来源，不直接重标为已核验。经营者确认腾讯地图“家家乐蛋糕坊”（安徽省合肥市庐江县泥河镇邮电局对面，POI编号14583499300862051574）就是本店，新定位链门店点取该POI的经度117.288694、纬度31.149852（GCJ02）。位置须经受控维护并绑定门店版本；坐标/POI来源字段及人工身份确认不替代运行时位置证明，verifiedAt只记录真实核验事件时间，不编造时间。
 
 正式经营参数未配置时，参数化算法可以验证，但不得据此生成可购买报价；待确认项统一登记在EXTERNAL-DEPENDENCIES。
 
@@ -34,6 +34,8 @@
 用户于2026-10-14确认：仅尚未开始履约的预约时段名额在取消确认后回补，已经开始履约的名额不回补。支付意图存在时仍须先核实支付/关单状态，不能以退出付款或请求超时视为取消确认；同一名额最多释放一次。
 
 这是时段名额政策，不是无条件恢复商品或原料库存。履约开始状态、名额消耗及释放策略版本必须在正式订单/资源实现中明确绑定；不通过仅填写配置版本字符串来宣称已实现。历史订单不得静默套用新政策。
+
+正式释放策略版本为 `cancel-before-fulfillment-v1-20261018`，履约开始界点是受权 `START_MAKING`（ACCEPTED→MAKING），接单本身不算开始。新报价及订单的 `appointmentSnapshot.releasePolicyVersion` 与 SLOT 预占记录的 `releasePolicyVersion` 必须一致；开始制作在同一事务将库存与该名额由 CONFIRMED 转为 CONSUMED，并绑定同一制作日志。取消前未开始的 HELD/CONFIRMED 名额仅在付款状态已核实且取消获准后释放；MAKING/READY/DELIVERING 取消保留 CONSUMED，完成、退款及重放均不回补。缺少版本的历史记录不补写新版本、不改计数；历史制作后取消仍须其原有明确策略，未知版本或混用版本拒绝执行。字段与适配器约束见[内部门店契约](reference/internal-api/35.md)。
 
 ## 时间与时段身份
 
@@ -51,7 +53,7 @@ buildSlotDefinitions 只返回时段定义，含 minLeadTimeMinutes 内部计算
 
 ## 容量与 D04 衔接
 
-slot_inventory.capacityUnit=ORDER，自取 capacityTotal=3，配送=1。已 HELD + CONFIRMED + CONSUMED 都计入容量；满额无法继续下单。自取或配送一个满额不影响另一个，按资源 ID 独立原子裁决。完成订单不能通过立即回补允许同一时段超过累计容量；退款不是自动释放或重开时段的指令。已付取消何时回补仍须明确经营策略；未核实付款不释放，遵循 D01 / D04。
+slot_inventory.capacityUnit=ORDER，自取 capacityTotal=3，配送=1。已 HELD + CONFIRMED + CONSUMED 都计入容量；满额无法继续下单。自取或配送一个满额不影响另一个，按资源 ID 独立原子裁决。完成订单不能通过立即回补允许同一时段超过累计容量；退款不是自动释放或重开时段的指令。已付取消遵循上节绑定的释放策略；未核实付款不释放，遵循 D01 / D04。
 
 resolveAppointment 重建当前合法定义，核对真实 slot 的 ID / 门店 / 模式 / 日期 / 时区 / 起止 / policyVersion / ORDER 单位 / 容量，检查 OPEN、当前占用与剩余量。返回 appointmentSnapshot（保持 D02 字段名）以及 SLOT 请求 quantity=1/expectedVersion；实际 order 服务将其与 D03 聚合 STOCK 请求一起交 D04 事务提交。纯函数快照过后余额可变化，所以客户端或函数计算通过都不代表已占用。
 
@@ -59,11 +61,11 @@ resolveAppointment 重建当前合法定义，核对真实 slot 的 ID / 门店 
 
 ## 20 km 免费范围与可信坐标边界
 
-当前技术算法版本 `haversine-r6371000-v1`：对服务端统一的 WGS84 经纬度计算球面直线距离，技术球半径取 6371000 米；不是道路里程、车程或骑手报价。所有商业范围 / 运费值来自用户确认，算法版本用于复现判断。改算法必须升级规则版本并重报价，不悄悄改变历史订单。
+新定位链技术算法版本 `haversine-gcj02-r6371000-v2`：对服务端统一且已核验的GCJ02经纬度计算球面近似直线距离，技术球半径取6371000米；不是WGS84测地距离、道路里程、车程或骑手报价。所有商业范围/运费值来自用户确认，算法版本用于复现判断。旧WGS84算法 `haversine-r6371000-v1` 不能用于新规则；修改坐标/算法必须升级配送规则版本并重新报价，不重标、改写或重算历史订单事实。旧坐标记录不自动迁移，进入新链时拒绝并要求重新核验。
 
 Location 五字段 longitude/latitude/coordinateSystem/source/verifiedAt 均需合法，verifiedAt 不得晚于服务端 now。source/verifiedAt 字段本身不证明可信，未来服务须由受控定位 / 地理编码 / 核验链构造，不能接收客户端声称已核验的对象。门店或地址位置为 null 时拒绝范围评估；地址行政文字正确不等于已在范围内。
 
-当前只接受 WGS84，GCJ02 / 其他来源须先在可信服务显式转换 / 核验，不能混用坐标或只改 coordinateSystem 标签。真实地图来源与转换尚未接入；没有默认经纬度。来源系统须随地图选点资料登记。
+新链只接受规范标签 `GCJ02`。腾讯[官方坐标接口](https://github.com/TencentLBS/tencentmap-webservice-skill/blob/main/references/api-tools.md)仅支持将其他坐标转入GCJ-02，不提供GCJ-02反向转出；不得假造WGS84结果。WGS84/BD09等必须先由受控服务显式转换并重新核验，不能混算或只改coordinateSystem标签；`GCJ-02` 等非规范标签也不自动修正。地图返回的地址/候选点不能直接作为位置证明，没有默认经纬度；来源系统须随地图选点资料登记。
 
 distance<=20000 米含边界，计算采用仅机器精度级浮点容差，不向外扩几十 / 几百米；超过边界 1 mm 的回归被拒绝。允许范围内 feeCents 固定 0。evaluateDeliveryRange 返回冻结的距离 / 范围 / 0 费 / 算法 / 预计时间语义 / 门店自行配送结果，不生成虚假 evaluationId 或占容量；订单 deliverySnapshot 的 ruleId/ruleVersion/evaluationId/addressFingerprint 由未来服务端产生并绑定当前报价与地址。
 

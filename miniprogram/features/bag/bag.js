@@ -15,7 +15,7 @@ Page({
     const lineNodeIds={};this._lineNodeSequence=this._lineNodeSequence||0;
     for(const line of result.lines)lineNodeIds[line.lineId]=this.data.lineNodeIds[line.lineId]||'bag-line-'+(++this._lineNodeSequence);
     this._swipeInProgress=false;this._swipingId='';removalMotion.dispose(this,false);
-    this.setData({...result,lineNodeIds,swipingId:'',swipeReset:this.data.swipeReset+1,removingId:'',removingIndex:-1,removingHeight:0,removalCollapsing:false,excludedQuantity:result.quantity-result.selectedQuantity,loading:false,error:''},()=>{this.measureSummary();this.measureSwipeWidth();});
+    this.setData({...result,lineNodeIds,swipingId:'',swipeReset:this.data.swipeReset+1,removingId:'',removingIndex:-1,removingHeight:0,removalCollapsing:false,excludedQuantity:result.quantity-(result.previewQuantity||result.selectedQuantity),loading:false,error:''},()=>{this.measureSummary();this.measureSwipeWidth();});
   },
   closeSwipes(){if((this.data.busy||this.data.removingId)&&this._visible)return;this._swipeInProgress=false;this._swipingId='';this.setData({swipingId:'',swipeReset:this.data.swipeReset+1});},
   swipeStarted({id}){
@@ -136,7 +136,7 @@ Page({
   },
   async previewSelected(){
     this.closeSwipes();
-    if(this.data.busy||this.data.loading||!this.data.selectedQuantity)return;
+    if(this.data.busy||this.data.loading||!(this.data.selectedQuantity||this.data.previewQuantity))return;
     const ticket=this._epoch;this.setData({busy:true,error:''});
     try{
       await selection.prepare(this.data.revision);

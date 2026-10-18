@@ -6,7 +6,9 @@ const messages = {
   INVALID_REQUEST: '请求无效', INTERNAL_ERROR: '服务暂时不可用',
   CONFIGURATION_REQUIRED: '服务资料尚未配置', PRODUCT_UNAVAILABLE: '商品不存在或暂未开放',
   NOT_FOUND: '内容不存在', FORBIDDEN:'无权访问此内容', VERSION_CONFLICT:'记录已变化，请刷新',
-  IDEMPOTENCY_KEY_REUSED:'操作参数已变化', BUSY:'操作结果待确认', LOCATION_REQUIRED:'地址位置尚未核验', CURSOR_INVALID: '分页已失效，请重新加载', CURSOR_EXPIRED: '分页已过期，请重新加载'
+  IDEMPOTENCY_KEY_REUSED:'操作参数已变化', BUSY:'操作结果待确认', LOCATION_REQUIRED:'地址位置尚未核验', CURSOR_INVALID: '分页已失效，请重新加载', CURSOR_EXPIRED: '分页已过期，请重新加载',
+  QUOTE_CHANGED:'报价内容已变化，请重新确认',QUOTE_EXPIRED:'报价已过期，请重新确认',
+  APPOINTMENT_UNAVAILABLE:'预约时间暂不可用',RESOURCE_UNAVAILABLE:'商品可预约数量不足',FULFILLMENT_UNAVAILABLE:'当前履约方式不可用'
 };
 function createHandler({ action, handle, getContext, settings, logger = console, mapError = () => 'INTERNAL_ERROR' }) {
   return async function main(event = {}, invocationContext) {

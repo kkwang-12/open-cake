@@ -11,8 +11,8 @@ async function ready(s){for(const command of ['ACCEPT','START_MAKING','MARK_READ
 async function denyRequest(s){const event=s.event('cancellation.review');event.payload.decision='REJECT';delete event.payload.refundCents;
   return s.resolutionService.execute(event,s.primary);}
 test('A07 unopened business writes and disabled catalog reads are blocked by the actual client before any cloud call',async()=>{
-  const result=await adminBoundary();assert.equal(result.passed,true);assert.equal(result.plannedActions,59);
-  assert.equal(result.rejectedActions,59);assert.equal(result.platformCalls,0);assert.equal(result.adminFunctionPresent,false);
+  const result=await adminBoundary();assert.equal(result.passed,true);assert.equal(result.plannedActions,60);
+  assert.equal(result.rejectedActions,60);assert.equal(result.platformCalls,0);assert.equal(result.adminFunctionPresent,false);
   assert.equal(result.catalogReadActions,3);
   assert.equal(result.cartDraftActions,4);
   assert.equal(result.pickupClosed,true);assert.equal(result.payment.paymentPlatformCalls,0);

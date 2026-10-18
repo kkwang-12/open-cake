@@ -185,6 +185,13 @@
       "create": false,
       "update": false,
       "delete": false
+    },
+    "location_verifications": {
+      "read": false,
+      "write": false,
+      "create": false,
+      "update": false,
+      "delete": false
     }
   }
 }

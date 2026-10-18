@@ -306,6 +306,7 @@ test('P04 historical O03 details read closed/late-refund logs without exposing p
     s.db.orders.OFFLINE_ORDER=full;p(s).amountCents=full.totalCents;s.db.budget.reservedAmountCents=full.totalCents;
     s.db.held.quote.storeId=full.storeId;s.db.held.resources.forEach(e=>e.resource.storeId=full.storeId);
     s.db.held.reservations.forEach(r=>Object.assign(r,{storeId:full.storeId,createdAt:full.createdAt,updatedAt:full.createdAt}));
+    s.db.held.reservations.filter(r=>r.resourceKind==='SLOT').forEach(r=>r.releasePolicyVersion=full.appointmentSnapshot.releasePolicyVersion);
     Object.assign(s.db.logs.OFFLINE_CREATED,{createdAt:full.createdAt,updatedAt:full.createdAt});
     const items=Object.values(tx.db.items).map(item=>({...s.clone(item),orderId:full._id,createdAt:full.createdAt,updatedAt:full.createdAt}));
     if(scenario==='closed'){await query(s,'CLOSED');await cancel(s);}

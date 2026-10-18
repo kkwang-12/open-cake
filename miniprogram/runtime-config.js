@@ -18,10 +18,17 @@ module.exports = {
     "allowReferenceImages": true
   },
   "addresses": {
-    "enabled": true
+    "enabled": true,
+    "locationEnabled": true
   },
   "cart": {
     "enabled": true,
     "storeId": "g1-catalog-store"
+  },
+  "store": {
+    "enabled": true
+  },
+  "checkout": {
+    "enabled": true
   }
 };

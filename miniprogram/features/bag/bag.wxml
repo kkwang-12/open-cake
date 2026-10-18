@@ -29,7 +29,7 @@
       </view>
       </view>
     </view>
-    <view class="bag-storage-note {{removalCollapsing ? 'line-shifting' : ''}}">已保存在本机。商品、库存及履约信息核验后才能结算。</view>
+    <view class="bag-storage-note {{removalCollapsing ? 'line-shifting' : ''}}">{{scope === 'CLOUD_SELECTION_DRAFT' ? '已保存至云端。商品、时段及金额以报价核验为准。' : '已保存在本机。商品、库存及履约信息核验后才能结算。'}}</view>
     <view wx:if="{{removalCollapsing}}" class="removal-scroll-spacer" aria-hidden="true" />
   </block>
   <empty-state wx:elif="{{!error && !loading}}" title="购物袋为空" description="选一份心意，放进购物袋。" action="浏览商品" bind:action="goShop" />
@@ -41,5 +41,5 @@
   <text class="summary-note">配送费将在确认履约信息后核验，暂未计入合计。</text>
   <text wx:if="{{excludedQuantity}}" class="summary-note">{{excludedQuantity}} 件商品暂不可结算，请查看对应商品提示。</text>
   <view class="summary-total"><text>合计</text><text class="summary-amount">¥ {{subtotalLabel}}</text></view>
-  <button class="checkout-button action-capsule" disabled="{{busy || loading || !selectedQuantity}}" bindtap="previewSelected">去结算（{{quantity}}）</button>
+  <button class="checkout-button action-capsule" disabled="{{busy || loading || !(selectedQuantity || previewQuantity)}}" bindtap="previewSelected">{{previewQuantity ? '核验报价' : '去结算'}}（{{quantity}}）</button>
 </view>

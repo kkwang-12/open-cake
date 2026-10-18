@@ -205,6 +205,7 @@ test('P06 P04 late compensation intent settles while preserving cancelled order 
     original.db.payments[original.paymentId].amountCents=full.totalCents;original.db.budget.reservedAmountCents=full.totalCents;
     original.db.held.quote.storeId=full.storeId;original.db.held.resources.forEach(e=>e.resource.storeId=full.storeId);
     original.db.held.reservations.forEach(item=>Object.assign(item,{storeId:full.storeId,createdAt:full.createdAt,updatedAt:full.createdAt}));
+    original.db.held.reservations.filter(item=>item.resourceKind==='SLOT').forEach(item=>item.releasePolicyVersion=full.appointmentSnapshot.releasePolicyVersion);
     const items=Object.values(tx.db.items).map(item=>({...original.clone(item),orderId:full._id,createdAt:full.createdAt,updatedAt:full.createdAt}));
     original.controls.now=full.paymentDeadlineAt+1000;
     const q=await original.recoveryService().prepareQuery(original.paymentId,original.invocation);

@@ -4,6 +4,7 @@ const {CATEGORIES,NORMALIZATION_VERSION,resolveSku}=require('./catalog-model');
 const {validateResource}=require('./resource-model');
 const {validateMediaAsset,projectMediaReference}=require('./media-model');
 const {canonicalJSON,scopedDocumentId}=require('./idempotency-model');
+const {isDailyQuota,validateTemplate,validateDailyResource}=require('./daily-quota');
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const counter=value=>Number.isSafeInteger(value)&&value>=0;
 const time=value=>counter(value)&&value>0&&Number.isFinite(new Date(value).getTime());
@@ -51,11 +52,20 @@ function validateSku(sku,product,groups){
   if(sku.productId!==product._id||sku.storeId!==product.storeId||!text(sku.description)||!statuses.includes(sku.status)||sku.currency!=='CNY'||
     ['unitPriceCents','minQuantity','maxQuantity'].some(field=>sku[field]!==null&&(!counter(sku[field])||sku[field]===0))||
     sku.minQuantity!==null&&sku.maxQuantity!==null&&sku.minQuantity>sku.maxQuantity||!dense(sku.stockRequirements))fail('INVALID_CATALOG_DRAFT');
-  const ids=new Set();for(const requirement of sku.stockRequirements){if(!exact(requirement,['resourceId','unitsPerItem'])||!text(requirement.resourceId)||
+  const ids=new Set();for(const requirement of sku.stockRequirements){if(isDailyQuota(requirement))validateTemplate(requirement,product);
+    if((!isDailyQuota(requirement)&&!exact(requirement,['resourceId','unitsPerItem']))||!text(requirement.resourceId)||
     !counter(requirement.unitsPerItem)||requirement.unitsPerItem===0||ids.has(requirement.resourceId))fail('INVALID_CATALOG_DRAFT');ids.add(requirement.resourceId);}
   if(!dense(sku.selectedOptions)||sku.selectedOptions.some(option=>!exact(option,['groupCode','optionCode','label'])||!text(option.groupCode)||!text(option.optionCode)||!text(option.label))||
     new Set(sku.selectedOptions.map(option=>option.groupCode)).size!==sku.selectedOptions.length)fail('INVALID_SELECTION');
   if(sku.status!=='ARCHIVED'&&canonicalJSON(optionsFor(groups,sku.selectedOptions))!==canonicalJSON(sku.selectedOptions))fail('INVALID_SELECTION');
+}
+function resourceExists(ref,product,state,context,open=false){
+  if(!isDailyQuota(ref))return state.resources.some(resource=>resource._id===ref.resourceId&&(!open||resource.status==='OPEN'));
+  validateTemplate(ref,product,context.environment);
+  return state.resources.some(resource=>{
+    if(resource.categoryCode!==product.categoryCode||(open&&resource.status!=='OPEN'))return false;
+    validateDailyResource(resource,context.environment,product.storeId,product.categoryCode,resource.serviceDate);return true;
+  });
 }
 function validateCatalogState(state,storeId,context,now){
   if(!time(now)||!state||state.environment!==context.environment||state.appId!==context.appId||state.storeId!==storeId||state.complete!==true||
@@ -66,12 +76,13 @@ function validateCatalogState(state,storeId,context,now){
   const categoryCodes=new Set();for(const category of state.categories){if(!category||!CATEGORIES.includes(category.code)||categoryCodes.has(category.code)||
     typeof category.published!=='boolean'||!text(category.nameZh)||!text(category.nameEn)||!counter(category.sortOrder))fail('INVALID_CATALOG_STATE');categoryCodes.add(category.code);}
   if(categoryCodes.size!==CATEGORIES.length)fail('INVALID_CATALOG_STATE');
-  for(const resource of state.resources){validateResource('STOCK',resource);if(!text(resource.name)||!text(resource.unit))fail('INVALID_RESOURCE');}
+  for(const resource of state.resources){validateResource('STOCK',resource);if(!text(resource.name)||!text(resource.unit))fail('INVALID_RESOURCE');
+    if(isDailyQuota(resource))validateDailyResource(resource,context.environment,storeId,resource.categoryCode,resource.serviceDate);}
   const mediaIds=new Set();for(const asset of state.mediaAssets){validateMediaAsset(asset,context);if(asset.updatedAt>now||mediaIds.has(asset._id))fail('INVALID_MEDIA_ASSET');mediaIds.add(asset._id);}
   for(const product of state.products){const groups=validateProduct(product),keys=new Set(),skus=state.skus.filter(sku=>sku.productId===product._id);
     if(!skus.length)fail('INVALID_CATALOG_STATE');for(const sku of skus){validateSku(sku,product,groups);if(sku.status!=='ARCHIVED'){
       const key=combination(sku.selectedOptions);if(keys.has(key))fail('INVALID_SELECTION');keys.add(key);}
-      if(sku.stockRequirements.some(ref=>!state.resources.some(resource=>resource._id===ref.resourceId)))fail('INVALID_RESOURCE');}}
+      if(sku.stockRequirements.some(ref=>!resourceExists(ref,product,state,context)))fail('INVALID_RESOURCE');}}
   if(state.skus.some(sku=>!state.products.some(product=>product._id===sku.productId)))fail('INVALID_CATALOG_STATE');
 }
 function validateMedia(product,state,context,publishing){
@@ -84,7 +95,7 @@ function publishable(product,skus,state,context){
   if(!state.categories.some(category=>category.code===product.categoryCode&&category.published))fail('CONFIGURATION_REQUIRED');
   validateMedia(product,state,context,true);const selling=skus.filter(sku=>sku.status==='ON_SALE');if(!selling.length)fail('CONFIGURATION_REQUIRED');
   for(const sku of selling){resolveSku({...product,status:'ON_SALE'},skus,sku.selectedOptions,sku._id);
-    if(sku.stockRequirements.some(ref=>!state.resources.some(resource=>resource._id===ref.resourceId&&resource.status==='OPEN')))fail('RESOURCE_UNAVAILABLE');}
+    if(sku.stockRequirements.some(ref=>!resourceExists(ref,product,state,context,true)))fail('RESOURCE_UNAVAILABLE');}
 }
 function nextVersion(record,now){if(!counter(record.version+1)||now<record.updatedAt)fail('VERSION_CONFLICT');return {...record,version:record.version+1,updatedAt:now};}
 function planProductSave(payload,previous,state,context,receiptId,now){
@@ -114,7 +125,7 @@ function planProductSave(payload,previous,state,context,receiptId,now){
         createdAt:now,updatedAt:now,storeId:product.storeId,productId:product._id,...business};
     validateSku(sku,product,groups);
     if(sku.status!=='ARCHIVED'){const key=combination(sku.selectedOptions);if(keys.has(key))fail('INVALID_SELECTION');keys.add(key);}
-    if(sku.stockRequirements.some(ref=>!state.resources.some(resource=>resource._id===ref.resourceId)))fail('INVALID_RESOURCE');return sku;
+    if(sku.stockRequirements.some(ref=>!resourceExists(ref,product,state,context)))fail('INVALID_RESOURCE');return sku;
   });
   if(old.some(sku=>!seen.has(sku._id)))fail('SKU_REMOVAL_FORBIDDEN');
   validateMedia(product,state,context,product.status==='ON_SALE');if(product.status==='ON_SALE')publishable(product,skus,state,context);
@@ -129,11 +140,13 @@ function planProductStatus(payload,product,state,context,now){
 }
 function planInventoryTotal(payload,resource,now){
   if(resource.version!==payload.expectedVersion)fail('VERSION_CONFLICT');validateResource('STOCK',resource);
+  if(isDailyQuota(resource))validateDailyResource({...resource,totalUnits:payload.totalUnits},resource.environment,resource.storeId,resource.categoryCode,resource.serviceDate);
   if(payload.totalUnits<resource.heldUnits+resource.confirmedUnits+resource.consumedUnits)fail('RESOURCE_UNAVAILABLE');
   return {collection:'inventory_resources',before:resource,after:{...nextVersion(resource,now),totalUnits:payload.totalUnits},skuWrites:[]};
 }
 function productDTO(product,skus){return {...pick(product,['_id','version','createdAt','updatedAt','storeId','status',...productFields]),
   skus:skus.map(sku=>pick(sku,['_id','version','productId','storeId',...skuFields]))};}
 function resourceDTO(resource){return {...pick(resource,['_id','version','createdAt','updatedAt','storeId','name','unit','status','totalUnits','heldUnits','confirmedUnits','consumedUnits']),
+  ...(isDailyQuota(resource)?pick(resource,['scope','categoryCode','serviceDate','quotaPolicyVersion']):{}),
   availableUnits:validateResource('STOCK',resource)};}
 module.exports={validateCatalogState,planProductSave,planProductStatus,planInventoryTotal,productDTO,resourceDTO};

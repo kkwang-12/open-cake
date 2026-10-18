@@ -94,8 +94,11 @@ test('X01 stale address versions cannot update/select a snapshot, and unsigned l
 test('X01 trusted address records reject unnormalized coordinates and a default change cannot move the user timestamp backwards',async()=>{
   const s=setup(),address=await s.create(),record=s.state.addresses[address.addressId];
   record.location={longitude:117.2,latitude:31.1,coordinateSystem:'GCJ-02',source:'OFFLINE_TEST_ONLY',verifiedAt:1000};
-  await assert.rejects(s.execute('get',{addressId:address.addressId}),e=>e.code==='INVALID_ADDRESS_RECORD');
-  record.location.coordinateSystem='WGS84';record.location.privateToken='must-not-enter-snapshot';
+  for(const coordinateSystem of ['GCJ-02','WGS84','BD09']){
+    record.location.coordinateSystem=coordinateSystem;
+    await assert.rejects(s.execute('get',{addressId:address.addressId}),e=>e.code==='INVALID_ADDRESS_RECORD');
+  }
+  record.location.coordinateSystem='GCJ02';record.location.privateToken='must-not-enter-snapshot';
   const snapshot=snapshotAddress(record,s.a.principal,0);assert.equal(snapshot.addressSnapshot.location.source,'OFFLINE_TEST_ONLY');
   assert(!('privateToken' in snapshot.addressSnapshot.location));
   record.location=null;s.state.users[s.a.record._id].updatedAt=9000;

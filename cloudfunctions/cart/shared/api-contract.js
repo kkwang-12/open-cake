@@ -37,6 +37,7 @@ define('cart','update','OWNER','cartId:id expectedVersion:counter lineId:id expe
 define('cart','remove','OWNER','cartId:id expectedVersion:counter lineId:id expectedLineVersion:counter','Cart',true);
 define('address','list','OWNER','','AddressPage',false,'UPDATED_DESC');
 define('address','get','OWNER','addressId:id','Address');
+define('address','location.resolve','OWNER','address:address addressId?:nullableId expectedVersion?:counter','AddressLocationSelection');
 define('address','create','OWNER','address:address','Address',true);
 define('address','update','OWNER','addressId:id expectedVersion:counter address:address','Address',true);
 define('address','remove','OWNER','addressId:id expectedVersion:counter expectedUserVersion:counter','Removal',true);

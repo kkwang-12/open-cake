@@ -251,15 +251,19 @@ test('O05 paid customer request retains fulfillment/resources; merchant rejectio
   assert.equal(rejection.resourceResolution.resourceChanges.length,2);assert.equal(JSON.stringify(s.db),before);
 });
 
-test('O05 after-making approval never restores consumed stock; slot release requires explicit policy',async()=>{
-  const s=await created();paid(s,'MAKING');const before=JSON.stringify(s.db);
+test('O05 legacy after-making approval keeps its explicit historical policy, never infers the new rule',async()=>{
+  const s=await created();paid(s,'MAKING');
+  // Synthetic legacy order/reservations have no newly bound release version.
+  delete s.order.appointmentSnapshot.releasePolicyVersion;
+  delete Object.values(s.db.reservations).find(row=>row.resourceKind==='SLOT').releasePolicyVersion;
+  const legacyBefore=JSON.stringify(s.db);
   const args={reviewId:'review-test',decision:'APPROVE',refundCents:800};
   assert.throws(()=>paidPlan(s,'cancellation.review',args),error=>error.code==='CONFIGURATION_REQUIRED');
   const retained=paidPlan(s,'cancellation.review',args,'admin','RETAIN');
   assert.equal(retained.resourceResolution.resourceChanges.length,0);assert.equal(retained.requiresFundsExecutor,true);
   const released=paidPlan(s,'cancellation.review',args,'admin','RELEASE_UNCONSUMED');
   assert.equal(released.resourceResolution.resourceChanges.length,1);assert.equal(released.resourceResolution.resourceChanges[0].resourceKind,'SLOT');
-  assert.equal(s.db.stocks[s.stockId].consumedUnits,2);assert.equal(JSON.stringify(s.db),before);
+  assert.equal(s.db.stocks[s.stockId].consumedUnits,2);assert.equal(JSON.stringify(s.db),legacyBefore);
   s.db.stocks[s.stockId].consumedUnits=1;
   assert.throws(()=>paidPlan(s,'cancellation.review',args,'admin','RETAIN'),error=>error.code==='INVALID_RESOURCE');
 });

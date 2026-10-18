@@ -16,8 +16,10 @@ function validateAddress(address){
       !(address.regionCodes[field]===null||text(address.regionCodes[field]))))fail('INVALID_ADDRESS_RECORD');
   if(address.location!==null&&(!plain(address.location)||!Number.isFinite(address.location.longitude)||
     Math.abs(address.location.longitude)>180||!Number.isFinite(address.location.latitude)||Math.abs(address.location.latitude)>90||
-    address.location.coordinateSystem!=='WGS84'||!text(address.location.source)||
+    address.location.coordinateSystem!=='GCJ02'||!text(address.location.source)||
     !Number.isSafeInteger(address.location.verifiedAt)||address.location.verifiedAt<1||address.location.verifiedAt>address.updatedAt))fail('INVALID_ADDRESS_RECORD');
+  if(address.locationProof!==undefined&&address.locationProof!==null&&
+    (address.location===null||typeof address.locationProof!=='string'||!/^v1\.[A-Za-z0-9_-]{43}$/.test(address.locationProof)))fail('INVALID_ADDRESS_RECORD');
   return address;
 }
 function active(address,principal){
@@ -55,10 +57,10 @@ function planAddressCommand(user,address,command,args,principal,context){
   if(command==='CREATE'){
     if(address!==null||!text(context.newAddressId))fail('VERSION_CONFLICT');
     nextAddress={_id:context.newAddressId,ownerId:user._id,schemaVersion:1,version:0,
-      ...normalizeAddress(args.address,context),location:null,createdAt:context.now,updatedAt:context.now,deletedAt:null};
+      ...normalizeAddress(args.address,context),location:null,locationProof:null,createdAt:context.now,updatedAt:context.now,deletedAt:null};
   }else if(command==='UPDATE'){
     nextAddress={...JSON.parse(JSON.stringify(current)),...normalizeAddress(args.address,context),
-      version:current.version+1,location:null,updatedAt:context.now};
+      version:current.version+1,location:null,locationProof:null,updatedAt:context.now};
   }else if(command==='REMOVE'){
     nextAddress={...JSON.parse(JSON.stringify(current)),version:current.version+1,updatedAt:context.now,deletedAt:context.now};
     if(nextUser.defaultAddressId===current._id){nextUser.defaultAddressId=null;userChanged=true;}
@@ -79,4 +81,4 @@ function snapshotAddress(address,principal,expectedVersion){
   return freeze({addressVersion:version,addressSnapshot:{...value,location:address.location===null?null:
     Object.fromEntries(['longitude','latitude','coordinateSystem','source','verifiedAt'].map(field=>[field,address.location[field]]))}});
 }
-module.exports={planAddressCommand,validateAddress,publicAddress,snapshotAddress};
+module.exports={planAddressCommand,validateAddress,publicAddress,snapshotAddress,normalizeAddress};

@@ -21,7 +21,15 @@
 
 ## D02 集合字段字典
 
+[订单事务内部保护字段](reference/data/transaction-fence.md)：`_transactionFence` 的适用集合、旧文档初始化、白名单及业务版本边界。
+
+[分类履约日库存](reference/data/daily-quota.md)：SKU分日模板、日期资源ID、分类计数上限及重复初始化边界。
+
 [读取本节](reference/data/05.md)
+
+### location_verifications
+
+[读取字段与可信绑定约束](reference/data/collections/location_verifications.md)。
 
 ### users
 

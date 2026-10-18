@@ -3,6 +3,7 @@
 const {V1_FULFILLMENT_POLICY:V1,validateTimePolicy,validateLocation,buildSlotDefinitions,DISTANCE_ALGORITHM_VERSION}=require('./fulfillment-model');
 const {projectStoreInformation}=require('./store-fulfillment');
 const {validateResource}=require('./resource-model');
+const {SLOT_RELEASE_POLICY_VERSION}=require('./slot-release-policy');
 const {canonicalJSON,scopedDocumentId}=require('./idempotency-model');
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const copy=value=>JSON.parse(canonicalJSON(value));
@@ -32,7 +33,7 @@ function validateDraft(draft,at,complete=false){
   if(draft.slotPolicy!==null&&(!exact(draft.slotPolicy,['unit','unitsPerOrder','capacityPerSlot','slotMinutes','releasePolicyVersion'])||
     draft.slotPolicy.unit!=='ORDER'||draft.slotPolicy.unitsPerOrder!==1||draft.slotPolicy.slotMinutes!==30||
     !exact(draft.slotPolicy.capacityPerSlot,['PICKUP','DELIVERY'])||draft.slotPolicy.capacityPerSlot.PICKUP!==3||
-    draft.slotPolicy.capacityPerSlot.DELIVERY!==1||!text(draft.slotPolicy.releasePolicyVersion)))fail('INVALID_CONFIG_DRAFT');
+    draft.slotPolicy.capacityPerSlot.DELIVERY!==1||draft.slotPolicy.releasePolicyVersion!==SLOT_RELEASE_POLICY_VERSION))fail('INVALID_CONFIG_DRAFT');
   if(draft.timePolicy!==null){
     const policy=draft.timePolicy;
     if(!exact(policy,['policyVersion','timeZone','minLeadTimeMinutes','maxAdvanceDays','crossDayStrategy','weeklyWindows','dateOverrides'])||
@@ -53,7 +54,7 @@ function validateDraft(draft,at,complete=false){
       rule.windowNature!=='ESTIMATED'||rule.distanceAlgorithmVersion!==DISTANCE_ALGORITHM_VERSION||
       !exact(rule.area,['kind','regionPaths','center','radiusMeters','vertices','coordinateSystem','boundaryIncluded'])||
       rule.area.kind!=='RADIUS'||rule.area.regionPaths!==null||rule.area.radiusMeters!==20000||rule.area.vertices!==null||
-      rule.area.coordinateSystem!=='WGS84'||rule.area.boundaryIncluded!==true||
+      rule.area.coordinateSystem!=='GCJ02'||rule.area.boundaryIncluded!==true||
       !exact(rule.feePolicy,['kind','baseFeeCents','includedMeters','stepMeters','stepFeeCents','rounding'])||rule.feePolicy.kind!=='FLAT'||rule.feePolicy.baseFeeCents!==0||
       ['includedMeters','stepMeters','stepFeeCents','rounding'].some(field=>rule.feePolicy[field]!==null))fail('INVALID_CONFIG_DRAFT');
     location(rule.area.center,at);

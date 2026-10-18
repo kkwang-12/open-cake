@@ -10,8 +10,8 @@ function actor(openId='A'){
   return resolveCustomer(platform,settings,{...identityFromPlatform(platform,settings),schemaVersion:1,version:0,status:'ACTIVE'});
 }
 function setup(meters=0){
-  // Isolated synthetic origin, not the merchant's unconverted GCJ-02 point.
-  const point=latitude=>({longitude:0,latitude,coordinateSystem:'WGS84',source:'OFFLINE_VERIFIED_TEST_ONLY',verifiedAt:2000});
+  // Synthetic GCJ-02 fixture only; it is not proof of the merchant's actual location.
+  const point=latitude=>({longitude:0,latitude,coordinateSystem:'GCJ02',source:'OFFLINE_VERIFIED_TEST_ONLY',verifiedAt:2000});
   const principal=actor(),store={_id:'offline-store',version:2,status:'OPEN',name:'OFFLINE TEST ONLY',phone:'0551-00000000',
     address:'仅离线测试门店',timeZone:'Asia/Shanghai',activeConfigId:'offline-config',location:point(0)};
   const address={_id:'offline-address',ownerId:principal.subjectId,schemaVersion:1,version:3,receiverName:'仅离线测试',phone:'13800000000',
@@ -19,7 +19,7 @@ function setup(meters=0){
     location:point(meters/6371000*180/Math.PI),createdAt:1000,updatedAt:3000,deletedAt:null,privateNote:'must-not-expose'};
   const rule={ruleId:'offline-radius-rule',ruleVersion:4,priority:0,status:'ACTIVE',operator:'STORE_SELF',windowNature:'ESTIMATED',
     distanceAlgorithmVersion:DISTANCE_ALGORITHM_VERSION,area:{kind:'RADIUS',regionPaths:null,center:clone(store.location),radiusMeters:20000,
-      vertices:null,coordinateSystem:'WGS84',boundaryIncluded:true},feePolicy:{kind:'FLAT',baseFeeCents:0,includedMeters:null,stepMeters:null,stepFeeCents:null,rounding:null}};
+      vertices:null,coordinateSystem:'GCJ02',boundaryIncluded:true},feePolicy:{kind:'FLAT',baseFeeCents:0,includedMeters:null,stepMeters:null,stepFeeCents:null,rounding:null}};
   const configuration={_id:'offline-config',storeId:store._id,status:'PUBLISHED',configVersion:5,publishedAt:1000,
     fulfillmentModes:['PICKUP','DELIVERY'],fulfillmentPolicyVersion:V1_FULFILLMENT_POLICY.version,deliveryRules:[rule],
     timePolicy:{policyVersion:'OFFLINE_TEST_ONLY',timeZone:'Asia/Shanghai',minLeadTimeMinutes:60,maxAdvanceDays:7,crossDayStrategy:'REJECT',
@@ -57,7 +57,7 @@ test('X03 entity/version/exact-point verification is required; source labels, cl
 test('X03 missing/unsupported/future locations and text-only edits cannot reuse old range evidence',()=>{
   let s=setup();s.address.location=null;code(()=>s.run(),'LOCATION_REQUIRED');
   s=setup();s.store.location=null;code(()=>s.run(),'LOCATION_REQUIRED');
-  s=setup();s.store.location.coordinateSystem='GCJ02';code(()=>s.run(),'COORDINATE_SYSTEM_UNSUPPORTED');
+  s=setup();s.store.location.coordinateSystem='WGS84';code(()=>s.run(),'COORDINATE_SYSTEM_UNSUPPORTED');
   s=setup();s.store.location.verifiedAt=5000;code(()=>s.run(),'LOCATION_REQUIRED');
   s=setup();s.address.location.verifiedAt=3500;code(()=>s.run(),'INVALID_ADDRESS_RECORD');
   s=setup();s.address.detail='新门牌，即使文字仍写庐江县';s.address.version++;s.address.location=null;s.input.expectedAddressVersion++;
@@ -72,7 +72,7 @@ test('X03 forged principal, foreign/deleted address, mismatched IDs and stale ve
 test('X03 only unambiguous published enabled V1 radius/free rules with the verified store center can be evaluated',()=>{
   for(const mutate of [s=>s.configuration.status='DRAFT',s=>s.configuration.storeId='another',s=>s.configuration.publishedAt=5000,
     s=>s.configuration.deliveryRules=[],s=>s.rule.status='RETIRED',s=>s.rule.area.radiusMeters=21000,s=>s.rule.area.boundaryIncluded=false,
-    s=>s.rule.area.center.latitude=0.01,s=>s.rule.area.coordinateSystem='GCJ02',s=>s.rule.area.regionPaths=[],s=>s.rule.feePolicy.baseFeeCents=1,
+    s=>s.rule.area.center.latitude=0.01,s=>s.rule.area.coordinateSystem='WGS84',s=>s.rule.area.regionPaths=[],s=>s.rule.feePolicy.baseFeeCents=1,
     s=>s.rule.feePolicy.stepMeters=1000,s=>s.rule.operator='RIDER',s=>s.rule.distanceAlgorithmVersion='other',
     s=>s.configuration.deliveryRules.push({...clone(s.rule),ruleId:'ambiguous',priority:1})]){
     const s=setup();mutate(s);code(()=>s.run(),'CONFIGURATION_REQUIRED');
@@ -95,4 +95,14 @@ test('X03 bindings change with address/rule/config/store versions and location; 
   assert.equal(new Set([original,...variants].map(value=>value.evaluationFingerprint)).size,variants.length+1);
   assert.equal(original.addressSnapshot.detail,'仅离线门牌');assert.equal(original.addressSnapshot.location.latitude,0);
   assert.equal(s.run().evaluationFingerprint,s.run().evaluationFingerprint);
+});
+
+test('X03 GCJ02 labels cannot authorize a point, and legacy distance versions cannot validate a new rule',()=>{
+  const s=setup(15000),result=s.run();
+  assert.equal(result.range.coordinateSystem,'GCJ02');
+  assert.equal(result.range.distanceAlgorithmVersion,'haversine-gcj02-r6371000-v2');
+  s.rule.distanceAlgorithmVersion='haversine-r6371000-v1';code(()=>s.run(),'CONFIGURATION_REQUIRED');
+  s.rule.distanceAlgorithmVersion=DISTANCE_ALGORITHM_VERSION;
+  code(()=>s.run(s.input,s.principal,{now:4000,verifyLocation:()=>false}),'LOCATION_REQUIRED');
+  s.address.location.coordinateSystem='WGS84';s.approve();code(()=>s.run(),'INVALID_ADDRESS_RECORD');
 });

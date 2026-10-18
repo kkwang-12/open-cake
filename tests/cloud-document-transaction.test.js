@@ -38,6 +38,41 @@ function harness(options={}) {
   return {adapter,stats:()=>({records,databaseCalls,writes})};
 }
 const rejects=(work,code)=>assert.rejects(work,error=>error.code===code);
+
+test('D04 internal protection initializes legacy fence without changing business version or timestamp',async()=>{
+  const record={_id:'r',version:4,heldUnits:1,updatedAt:7};
+  const h=harness({records:{probe_resources:{r:record}}});
+  await h.adapter.runTransaction(async tx=>{
+    await tx.read('probe_resources','r');
+    assert.equal(await tx.protectExisting('probe_resources','r',0),1);
+    assert.deepEqual(await tx.read('probe_resources','r'),{...record,_transactionFence:1});
+    assert.equal(await tx.updateVersioned('probe_resources','r',4,{heldUnits:2}),1);
+  });
+  assert.deepEqual(h.stats().records.probe_resources.r,{...record,version:5,heldUnits:2,_transactionFence:1});
+});
+
+test('D04 invalid/overflowing fence or zero-row protection rejects without committing',async()=>{
+  for(const value of [null,-1,'0',Number.MAX_SAFE_INTEGER]){
+    const record={_id:'r',version:0,_transactionFence:value};
+    const h=harness({records:{probe_resources:{r:record}}});
+    await rejects(h.adapter.runTransaction(tx=>tx.protectExisting('probe_resources','r',value)),'INVALID_TRANSACTION_FENCE');
+    assert.equal(h.stats().writes,0);
+  }
+  const h=harness({records:{probe_resources:{r:{_id:'r',version:0}}},zeroUpdate:true});
+  await rejects(h.adapter.runTransaction(tx=>tx.protectExisting('probe_resources','r',0)),'VERSION_CONFLICT');
+  assert.equal(Object.hasOwn(h.stats().records.probe_resources.r,'_transactionFence'),false);
+});
+
+test('D04 explicit insertNew uses create-if-absent without a preceding get',async()=>{
+  let reads=0,adds=0;
+  const cloud={database:()=>({runTransaction:work=>work({collection:()=>({
+    doc:()=>({get:async()=>{reads++;throw Error('unexpected read');}}),
+    add:async({data})=>{adds++;return {_id:data._id};}
+  })})})};
+  const adapter=createCloudDocumentTransactionAdapter({cloud,environment:'offline-test-env',collections:{items:[]}});
+  await adapter.runTransaction(tx=>tx.insertNew('items',{_id:'new-item',version:0}));
+  assert.equal(reads,0);assert.equal(adds,1);
+});
 test('D04 SDK primitives read actual null shape and commit insert/update across collections',async()=>{
   const h=harness();
   await h.adapter.runTransaction(async tx=>{

@@ -4,7 +4,7 @@ const files = names => names.split(/\s+/).filter(Boolean).map(name => 'tests/' +
 const groups = {
   orders: {
     description: '订单、事务、资源、幂等；关联支付与商家履约',
-    primary: files('order-command-model order-creation-model order-facts order-transaction-service order-document-session order-write-budget order-recovery-service order-cancellation order-read order-pickup order-delivery cloud-document-transaction transaction-probe transaction-probe-handler transaction-read-protection transaction-write-protection trade-model resource-model idempotency-model'),
+    primary: files('order-cloud order-command-model order-creation-model order-facts order-transaction-service order-document-session order-sdk-session order-write-budget order-recovery-service order-cancellation order-read order-pickup order-delivery cloud-document-transaction transaction-probe transaction-probe-handler transaction-read-protection transaction-write-protection trade-model resource-model idempotency-model'),
     related: files('quote-model checkout-submission-contract confirmation-session authorization-model payment-intent payment-notification refund merchant-order merchant-resolution admin-acceptance')
   },
   payments: {
@@ -19,12 +19,12 @@ const groups = {
   },
   catalog: {
     description: '商品、规格、库存与目录链路；关联购物袋与报价',
-      primary: files('catalog-model catalog-read-model catalog-cloud initial-catalog catalog-draft-model catalog-domain-chain specification-model stock-review media-model pagination-model shop-catalog'),
+      primary: files('catalog-model daily-quota catalog-read-model catalog-cloud initial-catalog catalog-draft-model catalog-domain-chain specification-model stock-review media-model pagination-model shop-catalog'),
     related: files('cart-model cart-service cart-cloud cart-client local-bag local-favorites product-detail quote-model merchant-catalog')
   },
   checkout: {
     description: '购物袋、地址、配送、时段、报价与确认；关联订单创建',
-    primary: files('cart-model cart-service cart-cloud cart-client local-bag bag-review checkout-selection checkout-server-selection checkout-fulfillment-page checkout-submission-contract address-service address-cloud address-client local-addresses addresses-page fulfillment-model fulfillment-draft store-fulfillment delivery-evaluation delivery-status appointment-availability quote-model confirmation-session'),
+    primary: files('cart-model cart-service cart-cloud cart-client local-bag bag-review cloud-checkout checkout-selection checkout-server-selection checkout-fulfillment-page checkout-submission-contract address-service address-cloud address-client address-location local-addresses addresses-page fulfillment-model fulfillment-draft store-fulfillment delivery-evaluation delivery-status appointment-availability quote-model quote-cloud confirmation-session'),
     related: files('catalog-model specification-model authorization-model resource-model order-creation-model order-transaction-service')
   },
   client: {
@@ -35,7 +35,7 @@ const groups = {
   cloud: {
     description: '云客户端、身份、契约与初始化；关联权限与事务适配',
     primary: files('cloud store-cloud cloud-identity-repository user-persistence-handler api-contract authorization-model native-context development-seed initialization-rejection'),
-    related: files('cart-cloud cart-client admin-access payment-acceptance cloud-document-transaction order-document-session order-write-budget')
+    related: files('cart-cloud cart-client admin-access payment-acceptance cloud-document-transaction order-document-session order-sdk-session order-write-budget')
   },
   legacy: {
     description: '旧版演示基线；HTTP 测试需要本机回环连接',
@@ -43,7 +43,7 @@ const groups = {
   },
   tooling: {
     description: '本地测试编排与原生批量工具传输',
-    primary: files('native-batch-transport test-orchestration'), related: []
+    primary: files('native-batch-transport test-orchestration transaction-probe-package order-sdk-lab-package quote-data-plan'), related: []
   }
 };
 

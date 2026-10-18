@@ -1,5 +1,6 @@
 'use strict';
 const { createHash } = require('node:crypto');
+const {isDailyQuota,validateTemplate}=require('./daily-quota');
 
 // Pure, server-side D03 models. No database, inventory hold or published seed.
 const CATEGORIES = Object.freeze(['CAKE', 'MINI_CAKE', 'BREAD']);
@@ -61,13 +62,17 @@ function selectionFor(groups, selection, code) {
   // Follow configured group order. Client labels and ordering are not authority.
   return [...groups.keys()].flatMap(code => result.filter(option => option.groupCode === code));
 }
-function stockRequirements(sku) {
+function stockRequirements(sku,product) {
   if (!Array.isArray(sku.stockRequirements) || !sku.stockRequirements.length) fail('CONFIGURATION_REQUIRED');
   const seen = new Set();
   return Array.from(sku.stockRequirements, requirement => {
     if (!plain(requirement) || !text(requirement.resourceId) || !integer(requirement.unitsPerItem, true) ||
         seen.has(requirement.resourceId)) fail('INVALID_CATALOG');
     seen.add(requirement.resourceId);
+    if(isDailyQuota(requirement)){
+      validateTemplate(requirement,product||{categoryCode:requirement.categoryCode});
+      return {...requirement};
+    }
     return { resourceId: requirement.resourceId, unitsPerItem: requirement.unitsPerItem };
   });
 }
@@ -75,7 +80,7 @@ function assertSaleConfiguration(product, sku) {
   if (!integer(product.minLeadTimeMinutes) || !integer(sku.unitPriceCents, true) ||
       !integer(sku.minQuantity, true) || !integer(sku.maxQuantity, true)) fail('CONFIGURATION_REQUIRED');
   if (sku.maxQuantity < sku.minQuantity || sku.currency !== 'CNY') fail('INVALID_CATALOG');
-  stockRequirements(sku);
+  stockRequirements(sku,product);
   if (product.messagePolicy !== null) {
     if (product.categoryCode === 'BREAD') fail('INVALID_CATALOG');
     if (!plain(product.messagePolicy) || !integer(product.messagePolicy.maxLength, true) ||
@@ -123,7 +128,7 @@ function resolveSku(product, skus, selection, requestedSkuId) {
   return freeze({ _id: match._id, productId: product._id, storeId: product.storeId, version: match.version,
     description: match.description, currency: 'CNY', unitPriceCents: match.unitPriceCents,
     minQuantity: match.minQuantity, maxQuantity: match.maxQuantity, selectedOptions,
-    stockRequirements: stockRequirements(match) });
+    stockRequirements: stockRequirements(match,product) });
 }
 function assertQuantity(quantity, sku, maxQuantityPerLine) {
   if (!integer(maxQuantityPerLine, true)) fail('CONFIGURATION_REQUIRED');
@@ -160,6 +165,7 @@ function aggregateStockRequirements(lines) {
     storeId = line.sku.storeId;
     if (!integer(line.quantity, true)) fail('INVALID_QUANTITY');
     for (const requirement of stockRequirements(line.sku)) {
+      if(isDailyQuota(requirement))fail('CONFIGURATION_REQUIRED'); // Bind the fulfillment date before aggregating.
       const demand = requirement.unitsPerItem * line.quantity;
       const requiredUnits = (demands.get(requirement.resourceId) || 0) + demand;
       if (!integer(demand, true) || !integer(requiredUnits, true)) fail('RESOURCE_OVERFLOW');

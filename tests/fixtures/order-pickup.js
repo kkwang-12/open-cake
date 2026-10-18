@@ -20,11 +20,11 @@ async function setup(){
   for(const r of Object.values(s.db.reservations)){
     const resource=(r.resourceKind==='STOCK'?s.db.stocks:s.db.slots)[r.resourceId];
     resource.heldUnits-=r.quantity;resource.version++;resource.updatedAt=order.updatedAt;
-    r.status=r.resourceKind==='STOCK'?'CONSUMED':'CONFIRMED';r.version++;r.updatedAt=order.updatedAt;
-    if(r.resourceKind==='STOCK'){
-      resource.consumedUnits+=r.quantity;r.resolvedAt=order.updatedAt;
+    r.status='CONSUMED';r.version++;r.updatedAt=order.updatedAt;
+    {
+      resource.consumedUnits+=r.quantity;r.resolvedAt=Object.values(s.db.logs).find(log=>log.command==='START_MAKING').createdAt;
       r.resolutionLogId=Object.values(s.db.logs).find(log=>log.command==='START_MAKING')._id;
-    }else resource.confirmedUnits+=r.quantity;
+    }
   }
   const merchant=s.actor('offline-pickup-merchant');
   s.db.users[merchant.subjectId]={_id:merchant.subjectId,schemaVersion:1,environment:merchant.environment,

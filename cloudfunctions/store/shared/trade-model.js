@@ -1,4 +1,5 @@
 'use strict';
+const {isBoundSlotPolicy}=require('./slot-release-policy');
 
 // Pure server-side model guards. Callers must resolve identity, persisted records
 // and payment evidence on the server, then apply the plan in a database transaction.
@@ -146,7 +147,7 @@ function planOrderCommand(order, command, actor, args = {}) {
       requireState(order, [transitions[command][0]]);
       if (command === 'COMPLETE_PICKUP' && order.fulfillment !== 'PICKUP') fail('INVALID_TRANSITION');
       if (['START_DELIVERY', 'COMPLETE_DELIVERY'].includes(command) && order.fulfillment !== 'DELIVERY') fail('INVALID_TRANSITION');
-      const effects = command === 'START_MAKING' ? ['CONSUME_STOCK_RESERVATIONS'] :
+      const effects = command === 'START_MAKING' ? ['CONSUME_STOCK_RESERVATIONS',...(isBoundSlotPolicy(order)?['CONSUME_SLOT_RESERVATION']:[])] :
         command === 'COMPLETE_PICKUP' ? ['VERIFY_PICKUP_CREDENTIAL', 'RECORD_FULFILLMENT'] :
         command === 'COMPLETE_DELIVERY' ? ['RECORD_DELIVERY_CONFIRMATION', 'RECORD_FULFILLMENT'] : [];
       return plan(order, transitions[command][1], effects);

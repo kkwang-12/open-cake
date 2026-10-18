@@ -58,8 +58,12 @@ function createCloudBagClient(settings,platform=()=>typeof wx==='undefined'?null
     if(!Number.isSafeInteger(quantity))fail('INVALID_RESPONSE');return clone(value);
   }
   function view(cart){
+    const preview=settings.checkout?.enabled===true,eligible=cart.lines.filter(line=>line.display);
+    const previewQuantity=preview?eligible.reduce((n,line)=>n+line.quantity,0):0;
+    const previewSubtotal=preview?eligible.reduce((n,line)=>n+line.display.unitPriceCents*line.quantity,0):0;
     return {scope:cart.scope,subjectHash:cart.subjectHash,cartId:cart.cartId,checkoutAllowed:false,revision:cart.version,
-      quantity:cart.lines.reduce((sum,line)=>sum+line.quantity,0),selectedQuantity:0,subtotalCents:0,subtotalLabel:'0',allSelected:false,reviewed:true,
+      quantity:cart.lines.reduce((sum,line)=>sum+line.quantity,0),selectedQuantity:0,previewQuantity,
+      subtotalCents:previewSubtotal,subtotalLabel:formatCents(previewSubtotal),allSelected:false,reviewed:true,
       lines:cart.lines.map(line=>{
         const d=line.display,total=d&&Number.isSafeInteger(d.unitPriceCents*line.quantity)?d.unitPriceCents*line.quantity:null;
         return {...line,name:d?d.name:'商品暂不可用',specLabel:d?d.specLabel:'',cakeMessage:line.cakeMessage||'',

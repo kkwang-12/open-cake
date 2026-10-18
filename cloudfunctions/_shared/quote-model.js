@@ -11,6 +11,8 @@ const {resolveSku,aggregateStockRequirements,messageFingerprint}=require('./cata
 const {validateResource}=require('./resource-model');
 const {captureOrderFacts}=require('./order-facts');
 const {TRADE_POLICY}=require('./trade-model');
+const {SLOT_RELEASE_POLICY_VERSION}=require('./slot-release-policy');
+const {requirementsForDate,validateQuotaResources}=require('./daily-quota');
 const {scopedDocumentId,requestFingerprint,canonicalJSON,decideIdempotency}=require('./idempotency-model');
 const integer=value=>Number.isSafeInteger(value)&&value>=0;
 const timestamp=value=>Number.isSafeInteger(value)&&value>0&&Number.isFinite(new Date(value).getTime());
@@ -19,6 +21,7 @@ function freeze(value){if(value&&typeof value==='object'){Object.values(value).f
 function resolve(state,input,principal,context,quoteId){
   if(!state||!state.store||!state.configuration||!context||!timestamp(context.now))fail('CONFIGURATION_REQUIRED');
   const {store,configuration,cart,catalogs,slot,address,stocks}=state;
+  if(configuration.slotPolicy?.releasePolicyVersion!==SLOT_RELEASE_POLICY_VERSION)fail('CONFIGURATION_REQUIRED');
   if(configuration.publishedAt>context.now||configuration.tradePolicyVersion!==TRADE_POLICY.version||
     !Number.isSafeInteger(configuration.quoteTtlMinutes)||configuration.quoteTtlMinutes<1||
     !Number.isSafeInteger(configuration.quoteTtlMinutes*60000))fail('CONFIGURATION_REQUIRED');
@@ -28,14 +31,17 @@ function resolve(state,input,principal,context,quoteId){
   const selected=resolveCheckoutSelection(cart,{cartId:input.cartId,expectedVersion:input.expectedCartVersion,
     lines:input.lines.map(line=>({lineId:line.lineId,expectedLineVersion:line.lineVersion}))},principal,catalogs,context.limits);
   if(!slot||slot._id!==input.slotId)fail('APPOINTMENT_UNAVAILABLE');
-  const demandLines=[],items=selected.lines.map(line=>{
+  const demandLines=[],quotaSources=[],items=selected.lines.map(line=>{
     const cat=catalogs.find(entry=>entry.product._id===line.productId),product=cat.product;
     const sku=resolveSku(product,cat.skus,cat.skus.find(value=>value._id===line.skuId).selectedOptions,line.skuId);
     const sourceImage=Array.isArray(product.images)&&product.images[0];
-    if(!sourceImage||sourceImage.sourceKind!=='REAL_PHOTO')fail('CONFIGURATION_REQUIRED');
+    const approvedPreview=context.stage==='development'&&context.allowReferenceImages===true&&sourceImage?.sourceKind==='DESIGN_PREVIEW';
+    if(!sourceImage||(sourceImage.sourceKind!=='REAL_PHOTO'&&!approvedPreview))fail('CONFIGURATION_REQUIRED');
     const image=freeze(Object.fromEntries(['assetId','storageRef','sourceKind','revision'].map(key=>[key,sourceImage[key]])));
     if(typeof context.verifyProductImage!=='function'||context.verifyProductImage(product._id,product.version,image)!==true)fail('CONFIGURATION_REQUIRED');
-    demandLines.push({sku,quantity:line.quantity});
+    const rawSku=cat.skus.find(value=>value._id===line.skuId);
+    quotaSources.push({product,sku:rawSku});
+    demandLines.push({sku:{...sku,stockRequirements:requirementsForDate(product,rawSku,principal.environment,slot.serviceDate)},quantity:line.quantity});
     return {lineId:line.lineId,productId:line.productId,skuId:line.skuId,productVersion:line.productVersion,skuVersion:line.skuVersion,
       categoryCode:product.categoryCode,productName:product.name,skuDescription:sku.description,selectedOptions:sku.selectedOptions,
       productImage:image,unitPriceCents:line.unitPriceCents,quantity:line.quantity,cakeMessage:line.cakeMessage};
@@ -46,6 +52,7 @@ function resolve(state,input,principal,context,quoteId){
   const demands=aggregateStockRequirements(demandLines);
   if(!Array.isArray(stocks)||stocks.some(resource=>!resource||resource.storeId!==store._id)||new Set(stocks.map(resource=>resource._id)).size!==stocks.length)fail('INVALID_RESOURCE');
   stocks.forEach(resource=>validateResource('STOCK',resource));
+  for(const {product,sku}of quotaSources)validateQuotaResources(product,sku,principal.environment,slot.serviceDate,stocks);
   const resourceVersions=demands.map(demand=>{
     const resource=stocks.find(value=>value._id===demand.resourceId);
     if(!resource||resource.status!=='OPEN'||validateResource('STOCK',resource)<demand.requiredUnits)fail('RESOURCE_UNAVAILABLE');
@@ -66,7 +73,7 @@ function resolve(state,input,principal,context,quoteId){
       lineVersion:line.lineVersion,quantity:line.quantity,messageFingerprint:messageFingerprint(line.cakeMessage)}))},
     storeSnapshot:{storeId:store._id,name:store.name,address:store.address,phone:store.phone,timeZone:store.timeZone,configVersion:configuration.configVersion},
     contactSnapshot:fulfillment.contact,addressSnapshot:delivery?delivery.addressSnapshot:null,
-    appointmentSnapshot:appointment.appointmentSnapshot,deliverySnapshot,items});
+    appointmentSnapshot:{...appointment.appointmentSnapshot,releasePolicyVersion:configuration.slotPolicy.releasePolicyVersion},deliverySnapshot,items});
   return {facts,resourceVersions,addressVersion:delivery?address.version:null,delivery};
 }
 function deadline(createdAt,configuration,appointment){

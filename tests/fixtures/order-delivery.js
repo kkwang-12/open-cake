@@ -25,9 +25,9 @@ async function setup({mode='DELIVERY',customer}={}){
     const resource=(r.resourceKind==='STOCK'?s.db.stocks:s.db.slots)[r.resourceId];
     resource.heldUnits-=r.quantity;resource.version++;resource.updatedAt=order.updatedAt;
     r.version++;r.updatedAt=order.updatedAt;
-    if(r.resourceKind==='STOCK'){
+    {
       resource.consumedUnits+=r.quantity;r.status='CONSUMED';r.resolvedAt=making.createdAt;r.resolutionLogId=making._id;
-    }else{resource.confirmedUnits+=r.quantity;r.status='CONFIRMED';}
+    }
   }
   const merchant=s.actor('offline-delivery-merchant');
   s.db.users[merchant.subjectId]={_id:merchant.subjectId,schemaVersion:1,environment:merchant.environment,

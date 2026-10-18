@@ -5,6 +5,8 @@ const {validateOriginalLog}=require('./payment-notification-model');
 const {validateLedger,planAttempt}=require('./refund-model');
 const {validateJob}=require('./payment-maintenance-model');
 const {planControlledOrderCommand}=require('./order-command-model');
+const {isBoundSlotPolicy}=require('./slot-release-policy');
+const {validateFulfillmentResources}=require('./order-fulfillment-resources');
 const {canonicalJSON,scopedDocumentId}=require('./idempotency-model');
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const copy=value=>JSON.parse(canonicalJSON(value));
@@ -76,9 +78,11 @@ function planResolution(domain,event,order,state,principal,roles,context){
     approvedRefundCents:plan.command==='APPROVE_CANCELLATION'?plan.effectInput.refundCents:null,refundId:null};
   let resolution={resourceChanges:[],reservationChanges:[]};
   if(plan.command==='APPROVE_CANCELLATION'){
+    if(isBoundSlotPolicy(order)&&['MAKING','READY','DELIVERING'].includes(order.orderStatus))validateFulfillmentResources(order,state,context);
     const quote=state.quote;
     if(!quote||quote._id!==order.quoteId||quote.status!=='CONSUMED'||quote.consumedOrderId!==order._id||quote.ownerId!==order.ownerId||
-      quote.storeId!==order.storeId||quote.facts?.appointmentSnapshot?.slotId!==order.appointmentSnapshot?.slotId)fail('INVALID_RESOLUTION_STATE');
+      quote.storeId!==order.storeId||quote.facts?.appointmentSnapshot?.slotId!==order.appointmentSnapshot?.slotId||
+      quote.facts?.appointmentSnapshot?.releasePolicyVersion!==order.appointmentSnapshot?.releasePolicyVersion)fail('INVALID_RESOLUTION_STATE');
     resolution=planCancelledResources(order,quote.resourceVersions,state.reservations,state.resources,{...context,logId:log._id});
   }
   validateOrderTime(next,context.now);

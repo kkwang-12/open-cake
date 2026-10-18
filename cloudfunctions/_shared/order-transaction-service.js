@@ -1,7 +1,7 @@
 'use strict';
 // Internal application service with an injected ATOMIC transaction session.
-// Document-session mapping exists; live provider protection/query hooks and a
-// callable handler remain uninstalled. Current acceptance executors are test-only.
+// order-sdk-session supplies the SDK provider; a callable handler remains
+// uninstalled. Internal outcomes do not grant checkout or payment capabilities.
 const { prepareOrderCreationRequest, planOrderCreation } = require('./order-creation-model');
 const { requireOwner } = require('./authorization-model');
 const { planResourceHolds } = require('./resource-model');
@@ -63,7 +63,8 @@ function createOrderTransactionService({ runTransaction, now, buildContext, newR
           if (!existing) fail('NOT_FOUND');
           requireOwner(principal, existing);
           const expectedId = scopedDocumentId('order', [principal.environment,principal.subjectId,'ORDER_CREATE',payload.idempotencyKey]);
-          if (existing._id !== expectedId || existing.quoteId !== payload.quoteId) fail('INVALID_IDEMPOTENCY_RECORD');
+          if (existing._id !== expectedId || existing.quoteId !== payload.quoteId ||
+            existing.orderNo !== 'V1-'+expectedId.toUpperCase()) fail('INVALID_IDEMPOTENCY_RECORD');
           if (await tx.assertReplayReads({ userId: principal.subjectId, userVersion: principal.userVersion,
             orderId: existing._id, orderVersion: existing.version, receiptId }) !== true) fail('VERSION_CONFLICT');
           return outcome('REPLAY', decision.result);
@@ -99,8 +100,9 @@ function createOrderTransactionService({ runTransaction, now, buildContext, newR
           status: 'SUCCEEDED', result, leaseUntil: null, retentionUntil: null });
         // Account for actual planned payloads before the first BUSINESS write.
         // assertCreationReads may need adapter fence writes, separately budgeted.
-        measureOrderWrites({ plan, holds, log, receipt: receiptRecord, timestamp: timestampNow }, writeLimits);
-        if (await tx.assertCreationReads({ ...plan.conditions, userId: principal.subjectId }) !== true) fail('VERSION_CONFLICT');
+        const businessWriteBudget=measureOrderWrites({ plan, holds, log, receipt: receiptRecord, timestamp: timestampNow }, writeLimits);
+        if (await tx.assertCreationReads({ ...plan.conditions, userId: principal.subjectId,
+          orderId:order._id,receiptId,businessWriteBudget }) !== true) fail('VERSION_CONFLICT');
         for (const change of holds.resourceChanges) await write(tx.updateResource(change, timestampNow));
         for (const reservation of holds.reservations) await write(tx.insertReservation(reservation));
         await write(tx.insertOrder(order)); // Must enforce BOTH _id and unique orderNo.

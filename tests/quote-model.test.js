@@ -6,6 +6,26 @@ const {catalog,cartContext}=require('./fixtures/catalog');
 const {planCartCommand}=require('../cloudfunctions/_shared/cart-model');
 const code=(fn,expected)=>assert.throws(fn,error=>error.code===expected);
 const plan=s=>planQuoteCreation(s.state,s.event,s.principal,s.context);
+
+test('development explicitly approved reference imagery remains DESIGN_PREVIEW in quote and order facts',()=>{
+  const s=setup();s.cat.product.images[0].sourceKind='DESIGN_PREVIEW';
+  s.context.stage='development';s.context.allowReferenceImages=true;
+  const quote=plan(s).proposedQuote;
+  assert.equal(quote.facts.items[0].productImage.sourceKind,'DESIGN_PREVIEW');
+  for(const stage of ['production','test',undefined]){
+    s.context.stage=stage;code(()=>plan(s),'CONFIGURATION_REQUIRED');
+  }
+});
+test('X05 new quotes require a supported slot release version and revalidation refuses changed/stripped bindings',()=>{
+  for(const version of [undefined,null,'OFFLINE_TEST_ONLY','UNKNOWN']){
+    const s=setup();s.state.configuration.slotPolicy.releasePolicyVersion=version;
+    code(()=>plan(s),'CONFIGURATION_REQUIRED');
+  }
+  const s=setup(),quote=clone(plan(s).proposedQuote);
+  assert.equal(quote.facts.appointmentSnapshot.releasePolicyVersion,s.state.configuration.slotPolicy.releasePolicyVersion);
+  delete quote.facts.appointmentSnapshot.releasePolicyVersion;
+  code(()=>revalidateQuote(quote,s.state,s.principal,s.context),'QUOTE_CHANGED');
+});
 test('X05 pickup recomputes integer cents, captures facts and proposes atomic persistence without reserving resources',()=>{
   const s=setup(),before=JSON.stringify(s.state),result=plan(s),quote=result.proposedQuote;
   assert.equal(quote.facts.subtotalCents,2000);assert.equal(quote.facts.totalCents,2000);assert.equal(quote.facts.deliveryFeeCents,0);

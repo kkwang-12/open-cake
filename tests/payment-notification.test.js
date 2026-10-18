@@ -254,6 +254,7 @@ test('P03 payment log and immutable O03 snapshots remain compatible with O06 his
   s.db.held.quote.storeId=full.storeId;
   s.db.held.resources.forEach(entry=>entry.resource.storeId=full.storeId);
   s.db.held.reservations.forEach(r=>Object.assign(r,{storeId:full.storeId,createdAt:full.createdAt,updatedAt:full.createdAt}));
+  s.db.held.reservations.filter(r=>r.resourceKind==='SLOT').forEach(r=>r.releasePolicyVersion=full.appointmentSnapshot.releasePolicyVersion);
   Object.assign(s.db.logs.OFFLINE_CREATED,{createdAt:full.createdAt,updatedAt:full.createdAt});
   const items=Object.values(tx.db.items).filter(item=>item.orderId===created.result.entityId)
     .map(item=>({...s.clone(item),orderId:full._id,createdAt:full.createdAt,updatedAt:full.createdAt}));

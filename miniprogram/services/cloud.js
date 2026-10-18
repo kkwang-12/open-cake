@@ -1,6 +1,6 @@
 const config = require('../config');
 const { createError } = require('./errors');
-const allowedActions = { user: ['me'], store: ['health','get'], catalog: ['categories.list','products.list','product.get'], address:['list','get','create','update','remove','setDefault'],cart:['get','add','update','remove'] };
+const allowedActions = { user: ['me'], store: ['health','get','slots.list'], catalog: ['categories.list','products.list','product.get'], address:['list','get','create','update','remove','setDefault','location.resolve'],cart:['get','add','update','remove'],checkout:['quote.create','quote.get'] };
 const hasDomain = domain => Object.prototype.hasOwnProperty.call(allowedActions, domain);
 function createClient(settings, platform, logger = console) {
   let initializedEnv = '';
@@ -29,7 +29,8 @@ function createClient(settings, platform, logger = console) {
     const requestId = 'client-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
     try {
       if (!hasDomain(domain) || !allowedActions[domain].includes(action)) throw createError('INVALID_REQUEST', requestId);
-      if(domain==='store'&&action==='get'&&(!settings.store||settings.store.enabled!==true))throw createError('CLOUD_NOT_CONFIGURED',requestId);
+      if(domain==='store'&&action!=='health'&&(!settings.store||settings.store.enabled!==true))throw createError('CLOUD_NOT_CONFIGURED',requestId);
+      if(domain==='checkout'&&(settings.checkout?.enabled!==true||settings.stage!=='development'))throw createError('CLOUD_NOT_CONFIGURED',requestId);
       if (domain==='catalog' && (!settings.catalog || settings.catalog.enabled!==true)) throw createError('CLOUD_NOT_CONFIGURED',requestId);
       if(domain==='address'&&(!settings.addresses||settings.addresses.enabled!==true))throw createError('CLOUD_NOT_CONFIGURED',requestId);
       if(domain==='cart'&&(!settings.cart||settings.cart.enabled!==true||settings.stage!=='development'))throw createError('CLOUD_NOT_CONFIGURED',requestId);

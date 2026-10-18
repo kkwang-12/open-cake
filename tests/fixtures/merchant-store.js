@@ -5,9 +5,10 @@ const {setup:quoteSetup,clone}=require('./quote');
 const {buildSlotDefinitions,localServiceDate}=require('../../cloudfunctions/_shared/fulfillment-model');
 const {createMerchantStoreService}=require('../../cloudfunctions/_shared/merchant-store-service');
 const {draftOf}=require('../../cloudfunctions/_shared/merchant-store-model');
+const {SLOT_RELEASE_POLICY_VERSION}=require('../../cloudfunctions/_shared/slot-release-policy');
 function completeConfig(config,storeId,at){return {...clone(config),storeId,schemaVersion:1,version:0,createdAt:at,updatedAt:Math.max(at,config.publishedAt||at),
   cartLimits:{maxLines:10,maxQuantityPerLine:10,maxOrderNoteLength:100},paymentHoldMinutes:15,
-  slotPolicy:{unit:'ORDER',unitsPerOrder:1,slotMinutes:30,capacityPerSlot:{PICKUP:3,DELIVERY:1},releasePolicyVersion:'OFFLINE_TEST_ONLY'}};}
+  slotPolicy:{unit:'ORDER',unitsPerOrder:1,slotMinutes:30,capacityPerSlot:{PICKUP:3,DELIVERY:1},releasePolicyVersion:SLOT_RELEASE_POLICY_VERSION}};}
 function attach(s,context){
   s.controls.storeReads=0;s.controls.storeFences=[];s.controls.locationAccepted=true;s.controls.policyAccepted=true;
   s.controls.phoneAccepted=true;s.controls.mapLocation=null;

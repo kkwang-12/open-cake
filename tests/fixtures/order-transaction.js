@@ -92,6 +92,7 @@ function setup(serviceOptions = {}) {
           const reservations=Object.values(staged.reservations).filter(value=>value.orderId===order._id);
           return {roles:Object.values(staged.roles).filter(role=>role.subjectId===principal.subjectId),
             quote:staged.quotes[order.quoteId]||null,reservations,
+            logs:Object.values(staged.logs).filter(log=>log.orderId===order._id),
             resources:reservations.map(r=>({resourceKind:r.resourceKind,
               resource:(r.resourceKind==='STOCK'?staged.stocks:staged.slots)[r.resourceId]}))};
         },

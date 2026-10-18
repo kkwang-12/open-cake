@@ -1,5 +1,6 @@
 'use strict';
 const { validateTradeSnapshot } = require('./trade-model');
+const {isBoundSlotPolicy}=require('./slot-release-policy');
 
 // Offline model utilities. Inputs must already be resolved/authorized by the
 // future server-side quote/order service; this module does not trust a client quote.
@@ -56,7 +57,7 @@ const sectionFields = {
   storeSnapshot: ['storeId', 'name', 'address', 'phone', 'timeZone', 'configVersion'],
   contactSnapshot: ['name', 'phone'],
   addressSnapshot: ['addressId', 'receiverName', 'phone', 'province', 'city', 'district', 'regionCodes', 'detail', 'location'],
-  appointmentSnapshot: ['storeId', 'slotId', 'serviceDate', 'timeZone', 'startAt', 'endAt', 'policyVersion', 'minLeadTimeMinutes'],
+  appointmentSnapshot: ['storeId', 'slotId', 'serviceDate', 'timeZone', 'startAt', 'endAt', 'policyVersion', 'minLeadTimeMinutes', 'releasePolicyVersion'],
   deliverySnapshot: ['ruleId', 'ruleVersion', 'feeCents', 'evaluationId', 'addressFingerprint']
 };
 function captureOrderFacts(input) {
@@ -66,6 +67,7 @@ function captureOrderFacts(input) {
     sections[name] = name === 'addressSnapshot' && input.fulfillment === 'PICKUP' ? null : pick(input[name], fields);
   }
   const store = sections.storeSnapshot, appointment = sections.appointmentSnapshot;
+  isBoundSlotPolicy({appointmentSnapshot:appointment});
   if (!text(store.storeId) || !text(store.name) || !text(store.address) || !text(store.phone) ||
       !text(store.timeZone) || !integer(store.configVersion) || appointment.storeId !== store.storeId ||
       appointment.timeZone !== store.timeZone || !text(appointment.slotId) || !text(appointment.policyVersion) ||

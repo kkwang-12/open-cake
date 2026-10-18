@@ -49,13 +49,56 @@ test('A06 zero-refund approval cancels without inventing a money action; full re
   for(const full of [false,true]){const s=await setup();await s.request();const amount=full?order(s).paidCents:0,result=await s.execute('cancellation.review',{refundCents:amount});
     assert.equal(order(s).refundReservedCents,amount);assert.equal(Object.keys(s.db.refunds).length,full?1:0);assert.equal(s.db.cancellations[result.reviewId].approvedRefundCents,amount);}
 });
-test('A06 after-making cancellation cannot invent slot return policy; an injected test retention policy keeps consumed stock and slot',async()=>{
+test('A06 bound after-making cancellation retains consumed stock and slot without an injected policy',async()=>{
   const s=await setup();await s.merchantService.execute(s.merchantEvent('ACCEPT'),s.primary);
   await s.merchantService.execute(s.merchantEvent('START_MAKING'),s.primary);
-  await s.request();const before=state(s);await rejects(()=>s.execute('cancellation.review'),'CONFIGURATION_REQUIRED');assert.equal(state(s),before);
-  const service=createMerchantResolutionService({...s.options,afterMakingSlotPolicy:'RETAIN'}),result=await service.execute(s.event('cancellation.review'),s.primary);
+  await s.request();const event=s.event('cancellation.review'),result=await s.resolutionService.execute(event,s.primary);
   assert.equal(result.disposition,'CANCELLED_REFUND_RESERVED');assert.equal(Object.values(s.db.reservations).find(row=>row.resourceKind==='STOCK').status,'CONSUMED');
-  assert.equal(Object.values(s.db.reservations).find(row=>row.resourceKind==='SLOT').status,'CONFIRMED');
+  assert.equal(Object.values(s.db.reservations).find(row=>row.resourceKind==='SLOT').status,'CONSUMED');
+  const before=state(s);assert.equal((await s.resolutionService.execute(event,s.primary)).disposition,'REPLAY');assert.equal(state(s),before);
+});
+test('A06 bound slot policy releases before making and retains after making/ready/delivery for both modes',async()=>{
+  for(const mode of ['PICKUP','DELIVERY'])for(const stage of ['PAID','ACCEPTED','MAKING','READY',...(mode==='DELIVERY'?['DELIVERING']:[])]){
+    const s=await setup({mode});
+    for(const [command,target] of [['ACCEPT','ACCEPTED'],['START_MAKING','MAKING'],['MARK_READY','READY'],['START_DELIVERY','DELIVERING']]){
+      if(order(s).orderStatus===stage)break;
+      await s.merchantService.execute(s.merchantEvent(command),s.primary);assert.equal(order(s).orderStatus,target);
+    }
+    const before=clone(s.db.slots[order(s).appointmentSnapshot.slotId]);await s.request();
+    const event=s.event('cancellation.review');await s.resolutionService.execute(event,s.primary);
+    const slot=s.db.slots[before._id],started=['MAKING','READY','DELIVERING'].includes(stage);
+    if(started)assert.deepEqual(slot,before);
+    else{assert.equal(slot.confirmedUnits,before.confirmedUnits-1);assert.equal(slot.consumedUnits,before.consumedUnits);}
+    assert.equal(Object.values(s.db.reservations).find(row=>row.resourceKind==='SLOT').status,started?'CONSUMED':'RELEASED');
+    const after=state(s);await s.resolutionService.execute(event,s.primary);assert.equal(state(s),after);
+  }
+});
+test('A06 bound policy rejects injected release and inconsistent making evidence without writes',async()=>{
+  for(const change of [
+    s=>{s.options.afterMakingSlotPolicy='RELEASE_UNCONSUMED';},
+    s=>{Object.values(s.db.reservations).find(r=>r.resourceKind==='SLOT').resolutionLogId='FORGED';},
+    s=>{Object.values(s.db.reservations).find(r=>r.resourceKind==='SLOT').releasePolicyVersion='UNKNOWN';},
+    s=>{delete order(s).appointmentSnapshot.releasePolicyVersion;},
+    s=>{order(s).appointmentSnapshot.releasePolicyVersion='UNKNOWN';}
+  ]){
+    const s=await setup();await s.merchantService.execute(s.merchantEvent('ACCEPT'),s.primary);
+    await s.merchantService.execute(s.merchantEvent('START_MAKING'),s.primary);await s.request();change(s);
+    const before=state(s),service=createMerchantResolutionService(s.options);
+    await assert.rejects(()=>service.execute(s.event('cancellation.review'),s.primary));assert.equal(state(s),before);
+  }
+});
+test('A06 concurrent making versus cancellation has one atomic outcome, never releases a started slot',async()=>{
+  for(const makingFirst of [true,false]){
+    const s=await setup();await s.merchantService.execute(s.merchantEvent('ACCEPT'),s.primary);await s.request();
+    const make=s.merchantEvent('START_MAKING'),review=s.event('cancellation.review');
+    const making=()=>s.merchantService.execute(make,s.primary),cancel=()=>s.resolutionService.execute(review,s.primary);
+    const outcomes=await Promise.allSettled((makingFirst?[making,cancel]:[cancel,making]).map(fn=>fn()));
+    assert.equal(outcomes.filter(r=>r.status==='fulfilled').length,1);
+    assert.equal(outcomes.find(r=>r.status==='rejected').reason.code,'VERSION_CONFLICT');
+    if(makingFirst)await s.resolutionService.execute(s.event('cancellation.review'),s.primary);
+    const slot=s.db.slots[order(s).appointmentSnapshot.slotId];assert.equal(order(s).orderStatus,'CANCELLED');
+    assert.equal(slot.heldUnits,0);assert.equal(slot.confirmedUnits,0);assert.equal(slot.consumedUnits,makingFirst?1:0);
+  }
 });
 test('A06 refund-only approval retains fulfillment and historical items, creates exactly one authorized budget intent',async()=>{
   const s=await setup(),facts=clone(s.db.items),reservations=clone(s.db.reservations),result=await approved(s),refund=s.db.refunds[result.refundIntentId];

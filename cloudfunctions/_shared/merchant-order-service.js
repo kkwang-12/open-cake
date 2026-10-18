@@ -9,6 +9,7 @@ const { createOrderDeliveryService } = require('./order-delivery-service');
 const { createOrderPickupService } = require('./order-pickup-service');
 const { planControlledOrderCommand } = require('./order-command-model');
 const { validateOrderTime, validatePayments, planCancelledResources } = require('./order-cancellation-model');
+const {isBoundSlotPolicy}=require('./slot-release-policy');
 const { validateFulfillmentResources } = require('./order-fulfillment-resources');
 const { validateResource } = require('./resource-model');
 const { validateLedger } = require('./refund-model');
@@ -113,7 +114,8 @@ function createMerchantOrderService(options) {
     const quote = state.quote;
     if (!quote || quote._id !== order.quoteId || quote.schemaVersion !== 1 || !counter(quote.version) ||
       quote.status !== 'CONSUMED' || quote.consumedOrderId !== order._id || quote.ownerId !== order.ownerId || quote.storeId !== order.storeId ||
-      quote.facts?.fulfillment !== order.fulfillment || quote.facts?.appointmentSnapshot?.slotId !== order.appointmentSnapshot?.slotId)
+      quote.facts?.fulfillment !== order.fulfillment || quote.facts?.appointmentSnapshot?.slotId !== order.appointmentSnapshot?.slotId ||
+      quote.facts?.appointmentSnapshot?.releasePolicyVersion !== order.appointmentSnapshot?.releasePolicyVersion)
       fail('INVALID_MERCHANT_ORDER_STATE');
   }
   function projection(order, state, user, principal, roles, at) {
@@ -204,13 +206,13 @@ function createMerchantOrderService(options) {
       if (payload.command === 'REJECT_ORDER' && projected.cancellationSummary?.status === 'PENDING') fail('CANCELLATION_REVIEW_REQUIRED');
       const plan = planControlledOrderCommand('admin', event, { ...order, id: order._id }, principal, access.roles,
         { now: at, requestId, redactReason });
-      const supported = ['APPLY_ORDER_PATCH','CONSUME_STOCK_RESERVATIONS','RECORD_MERCHANT_REJECTION',
+      const supported = ['APPLY_ORDER_PATCH','CONSUME_STOCK_RESERVATIONS','CONSUME_SLOT_RESERVATION','RECORD_MERCHANT_REJECTION',
         'RESOLVE_CANCELLED_RESERVATIONS','ENSURE_FULL_REFUND','APPEND_ORDER_LOG','SAVE_IDEMPOTENCY_RESULT'];
       if (plan.requiredAtomicEffects.some(effect => !supported.includes(effect))) fail('UNSUPPORTED_ORDER_EFFECT');
       let resourceChanges = [], reservationChanges = [];
       if (order.orderStatus === 'MAKING') {
         validateFulfillmentResources(order, state, { ...context, now: at });
-        for (const reservation of state.reservations.filter(value => value.resourceKind === 'STOCK')) {
+        for (const reservation of state.reservations.filter(value => value.resourceKind === 'STOCK' || isBoundSlotPolicy(order))) {
           const consumed = state.logs.find(log => log._id === reservation.resolutionLogId);
           if (!consumed || consumed.command !== 'START_MAKING' || consumed.createdAt !== reservation.resolvedAt) fail('INVALID_FULFILLMENT_RESOURCES');
         }
@@ -219,13 +221,13 @@ function createMerchantOrderService(options) {
           { ...context, now: at, logId });
         if (payload.command === 'REJECT_ORDER') ({ resourceChanges, reservationChanges } = resolution);
         if (payload.command === 'START_MAKING') {
-          for (const reservation of state.reservations.filter(value => value.resourceKind === 'STOCK')) {
-            const resource = state.resources.find(entry => entry.resourceKind === 'STOCK' && entry.resource._id === reservation.resourceId).resource;
-            const change = { resourceKind: 'STOCK', resourceId: resource._id, expectedVersion: resource.version, expectedStatus: resource.status,
+          for (const reservation of state.reservations.filter(value => value.resourceKind === 'STOCK' || isBoundSlotPolicy(order))) {
+            const resource = state.resources.find(entry => entry.resourceKind === reservation.resourceKind && entry.resource._id === reservation.resourceId).resource;
+            const change = { resourceKind: reservation.resourceKind, resourceId: resource._id, expectedVersion: resource.version, expectedStatus: resource.status,
               nextVersion: resource.version + 1, heldUnits: resource.heldUnits,
               confirmedUnits: resource.confirmedUnits - reservation.quantity, consumedUnits: resource.consumedUnits + reservation.quantity };
             if (!counter(change.nextVersion) || !counter(reservation.version + 1)) fail('VERSION_CONFLICT');
-            validateResource('STOCK', { ...resource, version: change.nextVersion, ...change });
+            validateResource(reservation.resourceKind, { ...resource, version: change.nextVersion, ...change });
             resourceChanges.push(change);
             reservationChanges.push({ reservationId: reservation._id, expectedVersion: reservation.version, expectedStatus: 'CONFIRMED',
               patch: { status: 'CONSUMED', version: reservation.version + 1, updatedAt: at, resolvedAt: at, resolutionLogId: logId } });

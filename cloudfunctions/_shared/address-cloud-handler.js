@@ -7,7 +7,7 @@ const {createAddressService}=require('./address-service');
 const {validateAddress,publicAddress}=require('./address-model');
 const {pageRequest,readCursor,issueCursor,seekConditions}=require('./pagination-model');
 const {scopedDocumentId,requestFingerprint,canonicalJSON}=require('./idempotency-model');
-const ACTIONS=['list','get','create','update','remove','setDefault'];
+const ACTIONS=['list','get','create','update','remove','setDefault','location.resolve'];
 const API_VERSION='v1-api-2026-10-03';
 const fail=code=>{throw Object.assign(new Error(code),{code});};
 const clone=value=>JSON.parse(canonicalJSON(value));
@@ -108,7 +108,7 @@ function createCloudAddressRepository(cloud,settings,now=Date.now){
               if(!current||current.version!==expected||current.deletedAt!==null)fail('VERSION_CONFLICT');
               requireOwner(principal,current);
               const patch=Object.fromEntries(['receiverName','phone','province','city','district','regionCodes','detail',
-                'location','version','updatedAt','deletedAt'].map(field=>[field,address[field]]));
+                'location','locationProof','version','updatedAt','deletedAt'].map(field=>[field,field==='locationProof'?address[field]??null:address[field]]));
               await update('addresses',address._id,patch);
             }
           },
@@ -141,7 +141,7 @@ function createCloudAddressRepository(cloud,settings,now=Date.now){
   }
   return {loadCustomer,list,session};
 }
-function createAddressCloudHandler({getContext,settings,repository,logger=console,now=Date.now}){
+function createAddressCloudHandler({getContext,settings,repository,locationVerifier,logger=console,now=Date.now}){
   return async function main(event={},invocation){
     // Native CloudBase calls inject userInfo/tcbContext into the transport event. Neither is
     // business input or trusted identity; authorization uses native context only.
@@ -188,10 +188,24 @@ function createAddressCloudHandler({getContext,settings,repository,logger=consol
         if(settings.enabled!==true||settings.phonePolicy!=='CN_MOBILE_FORMAT_V1'||!repository||
           !settings.cursorKey||!Buffer.isBuffer(settings.cursorKey.secret)||settings.cursorKey.secret.length<32)fail('CONFIGURATION_REQUIRED');
         const principal=await repository.loadCustomer(context);
+        if(action==='location.resolve'){
+          if(settings.locationEnabled!==true||!locationVerifier)fail('CONFIGURATION_REQUIRED');
+          if(payload.address.mapSelectionToken!==undefined)fail('INVALID_REQUEST');
+          const target={addressId:payload.addressId??null,expectedVersion:payload.expectedVersion??null};
+          // Resolve an edit only after the existing address is authorized at its current version.
+          if(target.addressId!==null){
+            if(!counter(target.expectedVersion))fail('INVALID_REQUEST');
+            const service=createAddressService({runTransaction:repository.session(context,{action:'get',payload:{addressId:target.addressId}},principal),now,
+              newAddressId:()=>fail('INVALID_REQUEST')});
+            const current=await service.execute({action:'get',payload:{addressId:target.addressId}},principal);
+            if(current.version!==target.expectedVersion)fail('VERSION_CONFLICT');
+          }else if(target.expectedVersion!==null)fail('INVALID_REQUEST');
+          return {...await locationVerifier.resolve(payload.address,principal,target),apiVersion:API_VERSION,subjectHash};
+        }
         if(action==='list')return {...await repository.list(context,principal,payload),subjectHash};
         const service=createAddressService({runTransaction:repository.session(context,event,principal),now,
           newAddressId:()=>scopedDocumentId('address',[settings.environment,principal.subjectId,payload.idempotencyKey]),
-          validatePhone:phone=>/^1[3-9]\d{9}$/.test(phone)});
+          validatePhone:phone=>/^1[3-9]\d{9}$/.test(phone),locationVerifier:settings.locationEnabled===true?locationVerifier:undefined});
         return {...await service.execute(event,principal),apiVersion:API_VERSION,subjectHash};
       }
     })(event,invocation);

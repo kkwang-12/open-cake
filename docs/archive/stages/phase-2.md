@@ -1807,3 +1807,25 @@ development既有address入口，SDK4.0.2/Nodejs20.19，run `g1-address-20261011
 
 [最终页面检查](../../qa/cart-cloud-20261013/native-pages.json)6项通过：袋CLOUD_SELECTION_DRAFT/空/version4，商品PUBLIC_CATALOG/canConfigure=true，原规格弹层打开；canPurchase=false/未知留言输入关闭。最后复查曾[自动化超时](../../qa/cart-cloud-20261013/native-pages-final-attempt1.json)，刷新一次、最小读取恢复后仅重试一次并通过；未用getApp后台结果验收。初版[联合离线](../../qa/g1-cart-local-20261013/summary.json)1120项及59个关闭action通过；恢复补齐后的[最终本地](../../qa/local-checks/tests-1791860732869-12700.tap)1122/1122（93文件），静态552项/50图标/主包约1414KiB。真实第二用户、逐写提供方回滚、实际丢响应及真机仍待验收，G1整体PARTIAL，购买/订单/支付/商家继续关闭。当前状态唯一见CURRENT-STATUS。
 
+
+## D04 已有文档写保护与锁释放复验（2026-10-18）
+
+本轮在test `dinner-cook-test-d5e320u981ec341` 沿用既有jjl-d04-probe及探针集合，使用[新固定计划](../../../artifacts/d04-live-20261018/plan.json)run `d04-existing-20261018-1933`，预算仅6个新文档、2场景，不复用旧run或写development业务。用户手动部署后，[原生身份预检](../../qa/d04-cloud/existing-write-20261018/native-identify.json)确认actor、run、lifecycle-1、SDK4.0.2；首次自动化超时记录保留，打开隔离工程一次后成功，未重复云实验。打包脚本补齐slot-release-policy依赖，独立包实际加载与相关测试37/37通过，未增加业务抽象或修改SDK。
+
+[原生两场景结果](../../qa/d04-cloud/native-1792324198431.json)：write-existing-early为WRITER_CONFLICT（读者提交、写者自动终止）；write-existing-late为READER_CONFLICT（写者提交、读者自动终止）。精确冲突代码均DATABASE_TRANSACTION_CONFLICT，未把通用终止提示当成功。每个场景在独立新事务中把保护点version由1推进到2；晚写场景还占用原决策ID写入GUARD_RELEASE_CHECK，随后再读持久化状态，确认双方可能残留的锁均释放。
+
+[管理审计](../../qa/d04-cloud/existing-write-20261018/audit.json)逐条核对：[资源2条](../../qa/d04-cloud/existing-write-20261018/resources-after.json)均version2，early heldUnits0/late heldUnits1；[记录4条](../../qa/d04-cloud/existing-write-20261018/records-after.json)为两条GUARD_SETUP与early GUARD_DECISION/late GUARD_RELEASE_CHECK；[回执0条](../../qa/d04-cloud/existing-write-20261018/receipts-after.json)。全部scope/run/owner符合计划，没有正式订单或development业务写入，预算用满，不删除或重启本run。专用窗口固定截止2026-10-18 21:03:07（上海），当前请求人工提前设JJL_PROBE_EXPIRES_AT=0关闭；最终关闭确认后补原生拒绝证据。
+
+实施取舍：已有文档真实变化写保护路线的这两个交错及冲突生命周期可用，可以据此落实正式SDK适配器；本实验改的是隔离探针version，不是正式业务version，不能直接让只读依赖业务版本随下单递增。正式内部保护字段/迁移/DTO白名单/完整预算、确定性编号反查及完整订单资金权限仍须按D04-SDK-INTEGRATION落实。未验证其余缺失/查询谓词场景，不以2/2结果宣布D04整体完成或开放购买。
+
+## 完整订单SDK隔离云验收（2026-10-18）
+
+用户手动部署[固定包](../../../artifacts/order-live-20261018/plan.json) `jjl-order-sdk-lab`，run `order-sdk-order-live-20261018`，仅test既有jjl_d04_probe_records，固定4场景、上限60文档。初次[部署回读](../../qa/d04-cloud/order-sdk-20261018/function-info.json)为Nodejs16.13，与String.isWellFormed不兼容；用户重建后[回读](../../qa/d04-cloud/order-sdk-20261018/function-info-after-recreate.json)为Active/Nodejs20.19/20秒。首次[prepare明确拒绝](../../qa/d04-cloud/order-sdk-20261018/01-poll.json)为LAB_NOT_AUTHORIZED，在数据库前退出；恢复配置与开窗后使用新ticket，[prepare成功](../../qa/d04-cloud/order-sdk-20261018/01-poll-retry2.json)，未重复任何不确定写入。调用持续票据与平台requestId均保留在同一证据目录。
+
+自取创建实际1次SDK尝试、11读18写；配送1次尝试、12读19写，包含依赖内部计数保护与订单、行、资源、reservation、日志、quote消费、回执的整笔提交。相同原key再调用均REPLAY、3读3内部保护写，返回原订单，不重复占用资源。各原生审计均AUDIT_PASSED，文档数自取16/配送17（含各1manifest）。两个场景的逻辑订单ID因合成同用户/同key相同，但物理ID按run/case/逻辑集合/ID命名空间隔离；本轮不以此证明正式集合的全局唯一索引。
+
+首写与末写故障分别在实际SDK第1/18次写完成后抛错，候选结果faultTriggered=true；随后两个原生审计均确认所有种子业务文档与保护字段完全恢复，无订单/行/reservation/日志/消费quote/回执残留，各仅10文档（9种子+manifest）。原生步骤09–14的启动、逐次只读poll与平台requestId保留在同一证据目录，未以抛错本身判定回滚成功。
+
+[独立管理审计](../../qa/d04-cloud/order-sdk-20261018/management-audit.json)从管理端只读查询本run全部文档，total/data均53，无分页遗漏。核对每个物理ID与scope/run/case/逻辑ID，并从seededAt、固定合成配置、实际订单创建时间重建正式planOrderCreation和planResourceHolds；对全部持久化记录逐字段规范化哈希比较，包括用户/商品/配置等业务版本不变、creation/replay保护计数、资源增量、订单快照/明细、reservation、日志与回执。四组精确匹配，claims为2/2/1/1，固定场景额度耗尽，不重启或删除。含原生身份的原始回读及复核脚本仅存Git忽略的artifacts/order-live-20261018，不复制私人标识到公开证据。
+
+本轮直接调用未改动的正式订单SDK组合，云端真实提交/重放/首末写后回滚通过；集合由实验路由映射到探针信封，图片和位置为严格合成绑定，不是正式可信素材或地图验证器。未做正式集合/索引、并发交错、实际丢响应、第二用户、资金或真机验收；没有development/production交易写入或开放购买。实验结束后用新票据发起只读audit，[关窗结果](../../qa/d04-cloud/order-sdk-20261018/closure-poll.json)明确返回LAB_NOT_AUTHORIZED，窗口已关闭；未重跑prepare/execute或新增云文档。

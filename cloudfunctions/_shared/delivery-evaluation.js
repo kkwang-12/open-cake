@@ -23,14 +23,14 @@ function activeRule(configuration,storeLocation,now){
   const active=rules.filter(rule=>rule.status==='ACTIVE');if(active.length!==1)fail('CONFIGURATION_REQUIRED');
   const rule=active[0],area=rule.area,fee=rule.feePolicy;
   if(rule.operator!=='STORE_SELF'||rule.windowNature!=='ESTIMATED'||rule.distanceAlgorithmVersion!==DISTANCE_ALGORITHM_VERSION||
-    !plain(area)||area.kind!=='RADIUS'||area.radiusMeters!==20000||area.boundaryIncluded!==true||area.coordinateSystem!=='WGS84'||
+    !plain(area)||area.kind!=='RADIUS'||area.radiusMeters!==20000||area.boundaryIncluded!==true||area.coordinateSystem!=='GCJ02'||
     area.regionPaths!==null||area.vertices!==null||!plain(fee)||fee.kind!=='FLAT'||fee.baseFeeCents!==0||
     ['includedMeters','stepMeters','stepFeeCents','rounding'].some(field=>fee[field]!==null))fail('CONFIGURATION_REQUIRED');
   const center=locationFacts(area.center,now);
   if(canonicalJSON(center)!==canonicalJSON(storeLocation))fail('CONFIGURATION_REQUIRED');
   return freeze({ruleId:rule.ruleId,ruleVersion:rule.ruleVersion,priority:rule.priority,status:'ACTIVE',
     operator:rule.operator,windowNature:rule.windowNature,distanceAlgorithmVersion:rule.distanceAlgorithmVersion,
-    area:{kind:'RADIUS',regionPaths:null,center,radiusMeters:20000,vertices:null,coordinateSystem:'WGS84',boundaryIncluded:true},
+    area:{kind:'RADIUS',regionPaths:null,center,radiusMeters:20000,vertices:null,coordinateSystem:'GCJ02',boundaryIncluded:true},
     feePolicy:{kind:'FLAT',baseFeeCents:0,includedMeters:null,stepMeters:null,stepFeeCents:null,rounding:null}});
 }
 function verified(location,entityKind,entityId,entityVersion,context){

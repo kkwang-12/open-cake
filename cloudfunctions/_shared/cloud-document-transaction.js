@@ -13,7 +13,7 @@ const text=value=>typeof value==='string' && /^[A-Za-z0-9_-]{1,128}$/.test(value
 const counter=value=>Number.isSafeInteger(value) && value>=0;
 const copy=value=>JSON.parse(canonicalJSON(value));
 const protectedFields=new Set(['_id','_openid','schemaVersion','environment','appId','openId',
-  'ownerId','subjectId','storeId','createdAt','version']);
+  'ownerId','subjectId','storeId','createdAt','version','_transactionFence']);
 // wx-server-sdk can wrap a native Mongo duplicate in DATABASE_REQUEST_FAILED.
 // An exact E11000 duplicate-key signature (or native numeric code) is evidence;
 // the generic wrapper and a message merely mentioning "duplicate" are not.
@@ -36,9 +36,9 @@ function diagnostic(error,operation,attempt) {
   return {providerCode:providerCode(error),numericErrCode:Number.isSafeInteger(error?.errCode)?error.errCode:null,
     operation,attempt};
 }
-function createCloudDocumentTransactionAdapter({cloud,environment,collections}) {
+function createCloudDocumentTransactionAdapter({cloud,environment,collections,maxRetries}) {
   if(!cloud || typeof cloud.database!=='function' || !text(environment) || !plain(collections) ||
-    !Object.keys(collections).length)fail('INVALID_TRANSACTION_CONFIGURATION');
+    !Object.keys(collections).length || (maxRetries!==undefined && (!counter(maxRetries)||maxRetries>2)))fail('INVALID_TRANSACTION_CONFIGURATION');
   const definitions=new Map();
   for(const [name,fields] of Object.entries(collections)) {
     if(!text(name) || !Array.isArray(fields) || new Set(fields).size!==fields.length ||
@@ -87,9 +87,29 @@ function createCloudDocumentTransactionAdapter({cloud,environment,collections}) 
           if(!plain(record) || !text(record._id))fail('INVALID_TRANSACTION_DOCUMENT');
           const data=copy(record);
           if(await read(collection,data._id)!==null)fail('DOCUMENT_ALREADY_EXISTS');
+          return insertNew(collection,data);
+        }
+        // Explicit add enforces create-if-absent itself; a preceding get is not
+        // needed for deterministic child documents and costs a transaction op.
+        async function insertNew(collection,record) {
+          if(!plain(record) || !text(record._id))fail('INVALID_TRANSACTION_DOCUMENT');
+          reference(collection,record._id);
+          const data=copy(record),cacheKey=key(collection,data._id);
+          if(reads.has(cacheKey) && reads.get(cacheKey)!==null)fail('DOCUMENT_ALREADY_EXISTS');
           const result=await provider('add',()=>transaction.collection(collection).add({data}));
           if(!result || result._id!==data._id)fail('INVALID_DATABASE_RESPONSE');
           reads.set(key(collection,data._id),copy(data));
+          return 1;
+        }
+        async function protectExisting(collection,id,expectedFence) {
+          const doc=reference(collection,id),current=await read(collection,id);
+          if(!current)fail('VERSION_CONFLICT');
+          const fence=Object.hasOwn(current,'_transactionFence')?current._transactionFence:0;
+          if(!counter(fence)||!counter(fence+1))fail('INVALID_TRANSACTION_FENCE');
+          if(fence!==expectedFence)fail('VERSION_CONFLICT');
+          const result=await provider('protect',()=>doc.update({data:{_transactionFence:fence+1}}));
+          if(result?.stats?.updated!==1)fail('VERSION_CONFLICT');
+          reads.set(key(collection,id),{...current,_transactionFence:fence+1});
           return 1;
         }
         async function updateVersioned(collection,id,expectedVersion,patch) {
@@ -106,9 +126,9 @@ function createCloudDocumentTransactionAdapter({cloud,environment,collections}) 
           reads.set(key(collection,id),{...current,...data,version:expectedVersion+1});
           return 1;
         }
-        try{return await work(Object.freeze({read,insert,updateVersioned}));}
+        try{return await work(Object.freeze({read,insert,insertNew,protectExisting,updateVersioned}));}
         catch(error){if(error instanceof Error && !conflict(error))callbackErrors.add(error);throw error;}
-      });
+      },maxRetries);
     }catch(error){
       if(error instanceof CloudDocumentTransactionError || (error instanceof Error && callbackErrors.has(error)))throw error;
       if(duplicate(error))fail('CLOUD_UNIQUE_CONFLICT',diagnostic(error,'transaction',attempt));

@@ -40,4 +40,5 @@ function createSelectionClient(settings,platform,source){
   }
   return {prepare,get};
 }
-module.exports={...createSelectionClient(config,null,bag),createSelectionClient,STORAGE_KEY};
+const client=config.mode==='cloud'?require('./cloud-checkout').createCloudCheckoutClient(config,bag):createSelectionClient(config,null,bag);
+module.exports={...client,createSelectionClient,STORAGE_KEY};

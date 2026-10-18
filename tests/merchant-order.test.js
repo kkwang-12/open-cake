@@ -12,19 +12,31 @@ const run = (s, command, patch, principal = s.primary) => s.merchantService.exec
 async function made(options) { const s = await setup(options); await run(s, 'ACCEPT'); await run(s, 'START_MAKING'); return s; }
 async function ready(options) { const s = await made(options); await run(s, 'MARK_READY'); return s; }
 
+test('A02 legacy orders retain their confirmed slot at making; stripped new bindings are refused',async()=>{
+  const s=await setup();delete order(s).appointmentSnapshot.releasePolicyVersion;
+  delete s.db.quotes[order(s).quoteId].facts.appointmentSnapshot.releasePolicyVersion;
+  delete Object.values(s.db.reservations).find(r=>r.resourceKind==='SLOT').releasePolicyVersion;
+  await run(s,'ACCEPT');const before=clone(s.db.slots);await run(s,'START_MAKING');assert.deepEqual(s.db.slots,before);
+  const bad=await setup();delete order(bad).appointmentSnapshot.releasePolicyVersion;const snapshotBefore=snapshot(bad);
+  await rejects(()=>run(bad,'ACCEPT'),'INVALID_MERCHANT_ORDER_STATE');assert.equal(snapshot(bad),snapshotBefore);
+});
+
 test('A02 pickup/delivery paid order accepts, consumes confirmed stock once and becomes ready with immutable facts', async () => {
   for (const mode of ['PICKUP','DELIVERY']) {
     const s = await setup({ mode }), before = clone(order(s)), payments = clone(s.db.payments), slots = clone(s.db.slots);
     const initial = resources(s), accepted = await run(s, 'ACCEPT');
     assert.equal(accepted.disposition, 'ACCEPTED'); assert.equal(resources(s), initial); assert.equal(s.controls.lastWrites, 3);
     const makeEvent = s.event('START_MAKING'), making = await s.merchantService.execute(makeEvent, s.primary);
-    assert.equal(making.disposition, 'MAKING'); assert.equal(s.controls.lastWrites, 5);
+    assert.equal(making.disposition, 'MAKING'); assert.equal(s.controls.lastWrites, 7);
     const stockReservation = Object.values(s.db.reservations).find(r => r.resourceKind === 'STOCK');
     assert.equal(stockReservation.status, 'CONSUMED'); assert.equal(stockReservation.resolvedAt, s.controls.now);
     assert.equal(s.db.logs[stockReservation.resolutionLogId].command, 'START_MAKING');
     const consumed = resources(s); assert.equal((await s.merchantService.execute(makeEvent, s.primary)).disposition, 'REPLAY'); assert.equal(resources(s), consumed);
     assert.equal((await run(s, 'MARK_READY')).disposition, 'READY'); assert.equal(resources(s), consumed);
-    assert.deepEqual(s.db.slots, slots); assert.deepEqual(s.db.payments, payments);
+    const slot=s.db.slots[before.appointmentSnapshot.slotId],oldSlot=slots[slot._id];
+    assert.equal(slot.confirmedUnits,oldSlot.confirmedUnits-1);assert.equal(slot.consumedUnits,oldSlot.consumedUnits+1);
+    assert.equal(Object.values(s.db.reservations).find(r=>r.resourceKind==='SLOT').status,'CONSUMED');
+    assert.deepEqual(s.db.payments, payments);
     for (const field of Object.keys(before).filter(field => !['orderStatus','updatedAt','version'].includes(field))) assert.deepEqual(order(s)[field], before[field], field);
     for (const field of ['cloudVerified','callable','operationsAllowed','externalRefundExecuted']) assert.equal(making[field], false);
   }
@@ -207,7 +219,7 @@ test('A02 incomplete/mismatched quote, resources, order facts or history prevent
 });
 
 test('A02 every ACCEPT/MAKE/READY/rejection write failure or zero-row result rolls back all resource/financial/history changes', async () => {
-  for (const [command, writes] of [['ACCEPT',3],['START_MAKING',5],['MARK_READY',3],['REJECT_ORDER',8]])
+  for (const [command, writes] of [['ACCEPT',3],['START_MAKING',7],['MARK_READY',3],['REJECT_ORDER',8]])
     for (const kind of ['failAt','zeroAt']) for (let position = 1; position <= writes; position++) {
       const s = command === 'MARK_READY' ? await made() : await setup(); if (command === 'START_MAKING') await run(s, 'ACCEPT');
       s.controls[kind] = position; const before = snapshot(s);

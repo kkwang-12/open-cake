@@ -4,6 +4,7 @@
 // and unique-index-backed orderNo lookup. Hook presence is not cloud evidence.
 const { requireOwner } = require('./authorization-model');
 const { canonicalJSON } = require('./idempotency-model');
+const {requirementsForDate}=require('./daily-quota');
 const COLLECTIONS = Object.freeze({ user: 'users', receipt: 'idempotency_records',
   quote: 'checkout_quotes', store: 'stores', configuration: 'store_config', cart: 'carts',
   product: 'products', sku: 'skus', address: 'addresses', stock: 'inventory_resources',
@@ -53,6 +54,7 @@ function createOrderDocumentSession({ documents, principal, protectReads, findOr
     sameStore(cart, store._id);
     if (!Array.isArray(cart.lines)) fail('INVALID_CREATION_STATE');
     const catalogs = new Map(), stockIds = new Set();
+    const slot = sameStore(await read('slot', facts.appointmentSnapshot.slotId), store._id);
     // Read current selected lines, not all SKUs or the whole catalog. Revalidation
     // rejects changed selections/versions; current SKU demand is still checked.
     for (const selected of facts.cartSelectionSnapshot.selectedLines) {
@@ -65,7 +67,7 @@ function createOrderDocumentSession({ documents, principal, protectReads, findOr
       if (!catalogs.has(product._id)) catalogs.set(product._id, { product, skus: [] });
       const entry = catalogs.get(product._id);
       if (!entry.skus.some(value => value._id === sku._id)) entry.skus.push(sku);
-      for (const requirement of sku.stockRequirements) stockIds.add(requirement.resourceId);
+      for (const requirement of requirementsForDate(product,sku,principal.environment,slot.serviceDate)) stockIds.add(requirement.resourceId);
     }
     for (const resource of quote.resourceVersions) {
       if (resource.resourceKind === 'STOCK') stockIds.add(resource.resourceId);
@@ -73,7 +75,6 @@ function createOrderDocumentSession({ documents, principal, protectReads, findOr
     }
     const stocks = [];
     for (const stockId of stockIds) stocks.push(sameStore(await read('stock', stockId), store._id));
-    const slot = sameStore(await read('slot', facts.appointmentSnapshot.slotId), store._id);
     let address = null;
     if (facts.addressSnapshot) {
       address = await read('address', facts.addressSnapshot.addressId);

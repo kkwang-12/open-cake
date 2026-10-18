@@ -8,7 +8,7 @@ const V1_FULFILLMENT_POLICY = Object.freeze({
   capacities:Object.freeze({PICKUP:3,DELIVERY:1}),
   delivery:Object.freeze({operator:'STORE_SELF',radiusMeters:20000,boundaryIncluded:true,feeCents:0,windowNature:'ESTIMATED'})
 });
-const DISTANCE_ALGORITHM_VERSION='haversine-r6371000-v1';
+const DISTANCE_ALGORITHM_VERSION='haversine-gcj02-r6371000-v2';
 const MINUTE=60000, DAY=86400000, OFFSET=8*60*MINUTE;
 class FulfillmentModelError extends Error {
   constructor(code){super(code);this.name='FulfillmentModelError';this.code=code;}
@@ -129,8 +129,8 @@ function validateLocation(location,now){
   if(!plain(location)||!timestamp(now)||typeof location.longitude!=='number'||!Number.isFinite(location.longitude)||
       location.longitude< -180||location.longitude>180||typeof location.latitude!=='number'||!Number.isFinite(location.latitude)||
       location.latitude< -90||location.latitude>90||!text(location.source)||!timestamp(location.verifiedAt)||location.verifiedAt>now)fail('LOCATION_REQUIRED');
-  // Upstream trusted service must normalize/verify the coordinate system; never silently compare GCJ02 and WGS84.
-  if(location.coordinateSystem!=='WGS84')fail('COORDINATE_SYSTEM_UNSUPPORTED');
+  // Trusted loaders must supply GCJ-02; WGS84/other inputs are rejected, never relabelled or silently converted.
+  if(location.coordinateSystem!=='GCJ02')fail('COORDINATE_SYSTEM_UNSUPPORTED');
 }
 function evaluateDeliveryRange(storeLocation,addressLocation,now){
   validateLocation(storeLocation,now);validateLocation(addressLocation,now);
@@ -142,7 +142,7 @@ function evaluateDeliveryRange(storeLocation,addressLocation,now){
   // Only machine-scale numerical tolerance, not a business expansion of the 20 km boundary.
   if(distanceMeters>20000+6371000*Number.EPSILON*64)fail('DELIVERY_OUT_OF_RANGE');
   return Object.freeze({distanceMeters,radiusMeters:20000,boundaryIncluded:true,feeCents:0,
-    coordinateSystem:'WGS84',distanceAlgorithmVersion:DISTANCE_ALGORITHM_VERSION,windowNature:'ESTIMATED',operator:'STORE_SELF'});
+    coordinateSystem:'GCJ02',distanceAlgorithmVersion:DISTANCE_ALGORITHM_VERSION,windowNature:'ESTIMATED',operator:'STORE_SELF'});
 }
 module.exports={V1_FULFILLMENT_POLICY,DISTANCE_ALGORITHM_VERSION,FulfillmentModelError,localServiceDate,
   maximumLeadTimeMinutes,validateTimePolicy,buildSlotDefinitions,resolveAppointment,paymentDeadlineAt,validateLocation,evaluateDeliveryRange};

@@ -25,7 +25,7 @@ function createAddressClient(settings,platform=()=>typeof wx==='undefined'?null:
       Object.values(value.regionCodes).some(v=>v!==null&&!id(v)))throw createError('INVALID_RESPONSE');
     const location=value.location;
     if(location!==null&&(!plain(location)||Object.keys(location).sort().join(',')!=='coordinateSystem,latitude,longitude'||
-      location.coordinateSystem!=='WGS84'||!Number.isFinite(location.longitude)||Math.abs(location.longitude)>180||
+      location.coordinateSystem!=='GCJ02'||!Number.isFinite(location.longitude)||Math.abs(location.longitude)>180||
       !Number.isFinite(location.latitude)||Math.abs(location.latitude)>90))throw createError('INVALID_RESPONSE');
     return {addressId:value.addressId,version:value.version,...draft,regionCodes:clone(value.regionCodes),location:clone(location)};
   }
@@ -64,9 +64,19 @@ function createAddressClient(settings,platform=()=>typeof wx==='undefined'?null:
     catch(_){throw createError('LOCAL_ADDRESS_WRITE_FAILED');}
   }
   function finish(storage,signature,key){const entries=pending(storage);persist(storage,entries.filter(e=>e.signature!==signature||e.key!==key));}
-  async function mutate(action,payload){
+  function commandSignature(action,payload){
+    return JSON.stringify([action,{...payload,...(payload.address?{address:Object.fromEntries(Object.entries(payload.address).filter(([key])=>key!=='mapSelectionToken'))}:{})}]);
+  }
+  async function mutate(action,payload,expectedSubject){
     gate();const before=await list(),storage=storageKey+':'+before.subjectHash;
-    const signature=JSON.stringify([action,payload]),entries=pending(storage);let intent=entries.find(e=>e.signature===signature);
+    if(expectedSubject!==undefined&&before.subjectHash!==expectedSubject)throw createError('AUTH_REQUIRED');
+    let signature=JSON.stringify([action,payload]);const entries=pending(storage),business=commandSignature(action,payload);
+    const matches=entries.filter(entry=>{let saved;try{saved=JSON.parse(entry.signature);}catch(_){throw createError('LOCAL_ADDRESS_WRITE_FAILED');}
+      if(!Array.isArray(saved)||saved.length!==2||typeof saved[0]!=='string'||!plain(saved[1]))throw createError('LOCAL_ADDRESS_WRITE_FAILED');
+      return commandSignature(saved[0],saved[1])===business;});
+    if(matches.length>1)throw createError('BUSY');let intent=matches[0];
+    // A refreshed selection must not turn an unknown result into a second address command.
+    if(intent){signature=intent.signature;payload=clone(JSON.parse(signature)[1]);}
     if(!intent){if(entries.length>=20)throw createError('BUSY');const key=newId();if(!/^[A-Za-z0-9_-]{16,128}$/.test(key||''))throw createError('LOCAL_ADDRESS_WRITE_FAILED');
       intent={signature,key};persist(storage,[...entries,intent]);}
     let response;
@@ -80,11 +90,27 @@ function createAddressClient(settings,platform=()=>typeof wx==='undefined'?null:
     const book=await list();if(book.subjectHash!==before.subjectHash)throw createError('INVALID_RESPONSE');
     finish(storage,signature,intent.key);return book;
   }
-  function fields(input){const value=local.normalizeDraft(input);return {...value,regionCodes:{province:null,city:null,district:null}};}
-  return {FIELDS,selectionAllowed:settings.mode==='shell',list,
-    create:(input,revision)=>settings.mode==='shell'?localClient.create(input,revision):mutate('create',{address:fields(input)}),
-    update:(addressId,expectedVersion,input,revision)=>settings.mode==='shell'?localClient.update(addressId,expectedVersion,input,revision):
-      mutate('update',{addressId,expectedVersion,address:fields(input)}),
+  function fields(input,token){const value=local.normalizeDraft(input);if(token!==undefined&&
+    (typeof token!=='string'||!/^[-\w]+\.[-\w]{43}$/.test(token)||token.length>256))throw createError('LOCATION_REQUIRED');
+    return {...value,regionCodes:{province:null,city:null,district:null},...(token===undefined?{}:{mapSelectionToken:token})};}
+  const locationVerificationAvailable=settings.mode==='cloud'&&settings.addresses&&settings.addresses.enabled===true&&settings.addresses.locationEnabled===true;
+  return {FIELDS,selectionAllowed:settings.mode==='shell',locationVerificationAvailable:!!locationVerificationAvailable,list,
+    async resolveLocation(input,addressId=null,expectedVersion=null){
+      gate();if(!locationVerificationAvailable)throw createError('CLOUD_NOT_CONFIGURED');
+      if(addressId===null?expectedVersion!==null:!id(addressId)||!counter(expectedVersion))throw createError('INVALID_REQUEST');
+      const before=await list(),payload={address:fields(input),...(addressId===null?{}:{addressId,expectedVersion})};
+      const {data}=await transport.call('address','location.resolve',payload);
+      if(!plain(data)||Object.keys(data).sort().join(',')!=='apiVersion,expiresAt,location,mapSelectionToken,subjectHash'||
+        data.apiVersion!==API_VERSION||data.subjectHash!==before.subjectHash||!Number.isSafeInteger(data.expiresAt)||data.expiresAt<=Date.now()||
+        !plain(data.location)||Object.keys(data.location).sort().join(',')!=='coordinateSystem,latitude,longitude'||data.location.coordinateSystem!=='GCJ02'||
+        !Number.isFinite(data.location.longitude)||Math.abs(data.location.longitude)>180||!Number.isFinite(data.location.latitude)||Math.abs(data.location.latitude)>90)throw createError('INVALID_RESPONSE');
+      try{fields(input,data.mapSelectionToken);}catch(_){throw createError('INVALID_RESPONSE');}
+      const after=await list();if(after.subjectHash!==before.subjectHash)throw createError('INVALID_RESPONSE');
+      return clone({mapSelectionToken:data.mapSelectionToken,expiresAt:data.expiresAt,location:data.location,subjectHash:data.subjectHash});
+    },
+    create:(input,revision,token,expectedSubject)=>settings.mode==='shell'?localClient.create(input,revision):mutate('create',{address:fields(input,token)},expectedSubject),
+    update:(addressId,expectedVersion,input,revision,token,expectedSubject)=>settings.mode==='shell'?localClient.update(addressId,expectedVersion,input,revision):
+      mutate('update',{addressId,expectedVersion,address:fields(input,token)},expectedSubject),
     remove:(addressId,expectedVersion,expectedUserVersion)=>settings.mode==='shell'?localClient.remove(addressId,expectedVersion,expectedUserVersion):
       mutate('remove',{addressId,expectedVersion,expectedUserVersion}),
     setDefault:(addressId,expectedVersion,expectedUserVersion)=>settings.mode==='shell'?localClient.setDefault(addressId,expectedVersion,expectedUserVersion):

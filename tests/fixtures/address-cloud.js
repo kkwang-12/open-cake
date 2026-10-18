@@ -4,7 +4,7 @@ const {createCloudAddressRepository,createAddressCloudHandler}=require('../../cl
 const clone=v=>JSON.parse(JSON.stringify(v));
 const settings={appId:'offline-address-app',environment:'offline-address-env',stage:'development',enabled:true,
   phonePolicy:'CN_MOBILE_FORMAT_V1',cursorKey:{id:'offline-key',secret:Buffer.alloc(32,8)}};
-function fixture(){
+function fixture(options={}){
   const contexts=['A','B'].map(OPENID=>({OPENID,APPID:settings.appId,ENV:settings.environment}));
   const users=Object.fromEntries(contexts.map(c=>{const identity=identityFromPlatform(c,settings);return [identity._id,{...identity,
     schemaVersion:1,version:0,status:'ACTIVE',defaultAddressId:null,createdAt:1000,updatedAt:1000}];}));
@@ -33,11 +33,11 @@ function fixture(){
       const staged=clone(state),response=await work({collection:name=>collection(staged,name)});Object.assign(state,staged);return response;
     });queue=job.catch(()=>{});return job;}};
   const cloud={database:()=>database};
-  const now=()=>time++,repository=createCloudAddressRepository(cloud,settings,now);
+  const now=()=>options.now?options.now():time++,repository=createCloudAddressRepository(cloud,settings,now);
   const make=(context=contexts[0],overrides={})=>createAddressCloudHandler({settings,getContext:()=>context,repository,now,
     logger:{info:v=>logs.push(v),warn:v=>logs.push(v),error:v=>logs.push(v)},...overrides});
   const call=(action,payload={},index=0)=>make(contexts[index])({action,payload});
-  return {state,calls,logs,contexts,settings,call,make,setFailure:v=>{failAt=v;}};
+  return {state,calls,logs,contexts,settings,call,make,setFailure:v=>{failAt=v;},setTime:v=>{time=v;}};
 }
 const fields=(detail='仅离线门牌')=>({receiverName:'仅离线联系人',phone:'13800000000',province:'安徽省',city:'合肥市',district:'庐江县',
   regionCodes:{province:null,city:null,district:null},detail});

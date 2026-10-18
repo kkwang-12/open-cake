@@ -4,6 +4,7 @@ const { validateTradeSnapshot, planOrderCommand, assertExpectedVersion, TRADE_PO
 const { validateResource } = require('./resource-model');
 const { scopedDocumentId } = require('./idempotency-model');
 const { planControlledOrderCommand } = require('./order-command-model');
+const {isBoundSlotPolicy,validateSlotPolicyBinding}=require('./slot-release-policy');
 function fail(code) { throw Object.assign(new Error(code), { code }); }
 const counter = value => Number.isSafeInteger(value) && value >= 0;
 const timestamp = value => counter(value) && value > 0 && Number.isFinite(new Date(value).getTime());
@@ -65,6 +66,8 @@ function planUnpaidCancellation(order, payments, actor, context) {
 }
 function planCancelledResources(order, expected, reservations, resources, context) {
   validateOrderTime(order, context.now);
+  const boundPolicy = isBoundSlotPolicy(order);
+  if (boundPolicy && context.afterMakingSlotPolicy != null && context.afterMakingSlotPolicy !== 'RETAIN') fail('POLICY_VERSION_UNSUPPORTED');
   if (!text(context.environment) || !text(context.logId) || !dense(expected) || !expected.length ||
       !dense(reservations) || !dense(resources) || reservations.length !== expected.length ||
       resources.length !== expected.length) fail('INVALID_RESERVATION_PLAN');
@@ -105,6 +108,7 @@ function planCancelledResources(order, expected, reservations, resources, contex
         !timestamp(reservation.resolvedAt) || reservation.resolvedAt > reservation.updatedAt ||
         reservation.resolvedAt < reservation.createdAt || !text(reservation.resolutionLogId))) fail('INVALID_RESERVATION_PLAN');
     if (demand.resourceKind === 'SLOT') {
+      validateSlotPolicyBinding(order,reservation);
       slots++;
       if (demand.requiredUnits !== 1 || !order.appointmentSnapshot ||
           resource._id !== order.appointmentSnapshot.slotId || resource.fulfillment !== order.fulfillment) fail('INVALID_RESERVATION_PLAN');
@@ -112,6 +116,7 @@ function planCancelledResources(order, expected, reservations, resources, contex
     if (order.orderStatus === 'PENDING_PAYMENT' && reservation.status !== 'HELD') fail('INVALID_RESERVATION_PLAN');
     if (['PAID','ACCEPTED'].includes(order.orderStatus) && reservation.status !== 'CONFIRMED') fail('INVALID_RESERVATION_PLAN');
     if (made && demand.resourceKind === 'STOCK' && reservation.status !== 'CONSUMED') fail('INVALID_RESERVATION_PLAN');
+    if (made && boundPolicy && demand.resourceKind === 'SLOT' && reservation.status !== 'CONSUMED') fail('INVALID_RESERVATION_PLAN');
     if (order.orderStatus === 'CANCELLED' && !['RELEASED','CONSUMED'].includes(reservation.status)) fail('INVALID_RESERVATION_PLAN');
     const occupiedColumn = { HELD:'heldUnits',CONFIRMED:'confirmedUnits',CONSUMED:'consumedUnits' }[reservation.status];
     if (occupiedColumn && resource[occupiedColumn] < reservation.quantity) fail('INVALID_RESOURCE');

@@ -12,7 +12,7 @@
     <view class="fulfillment-options" role="tablist" aria-label="配送方式">
       <view class="fulfillment-track">
         <view class="fulfillment-slider" style="width:{{100 / store.fulfillmentModes.length}}%;transform:translateX({{fulfillment === store.fulfillmentModes[0] ? 0 : 100}}%);" />
-        <button wx:for="{{store.fulfillmentModes}}" wx:key="*this" class="fulfillment-option {{fulfillment === item ? 'is-active' : ''}}" data-mode="{{item}}" disabled="{{loading || preferenceBusy || store.status === 'CLOSED'}}" bindtap="switchFulfillment" role="tab" aria-selected="{{fulfillment === item}}" hover-class="none"><view class="fulfillment-icon"><image class="icon-dark" src="{{item === 'PICKUP' ? '/assets/icons/fulfillment/pickup-bag-gray.svg' : '/assets/icons/fulfillment/delivery-truck-gray.svg'}}" mode="aspectFit" /><image class="icon-light" src="{{item === 'PICKUP' ? '/assets/icons/fulfillment/pickup-bag-white.svg' : '/assets/icons/fulfillment/delivery-truck-white.svg'}}" mode="aspectFit" /></view><text>{{item === 'PICKUP' ? '到店自取' : '商家配送'}}</text></button>
+        <button wx:for="{{store.fulfillmentModes}}" wx:key="*this" class="fulfillment-option {{fulfillment === item ? 'is-active' : ''}}" data-mode="{{item}}" disabled="{{loading || preferenceBusy || quoteBusy || store.status === 'CLOSED'}}" bindtap="switchFulfillment" role="tab" aria-selected="{{fulfillment === item}}" hover-class="none"><view class="fulfillment-icon"><image class="icon-dark" src="{{item === 'PICKUP' ? '/assets/icons/fulfillment/pickup-bag-gray.svg' : '/assets/icons/fulfillment/delivery-truck-gray.svg'}}" mode="aspectFit" /><image class="icon-light" src="{{item === 'PICKUP' ? '/assets/icons/fulfillment/pickup-bag-white.svg' : '/assets/icons/fulfillment/delivery-truck-white.svg'}}" mode="aspectFit" /></view><text>{{item === 'PICKUP' ? '到店自取' : '商家配送'}}</text></button>
       </view>
     </view>
     <view wx:if="{{fulfillment === 'PICKUP'}}" class="checkout-store">
@@ -26,16 +26,28 @@
     </view>
     <view wx:elif="{{fulfillment === 'DELIVERY' && fulfillmentAllowed && !configurationChanged}}" class="checkout-address">
       <text class="form-section-title">收货地址</text>
-      <button class="location-card address-card" bindtap="chooseAddress" aria-label="{{address ? '选择或编辑收货地址' : '新增或选择收货地址'}}" hover-class="none">
+      <picker wx:if="{{cloudMode}}" mode="selector" range="{{cloudAddressLabels}}" bindchange="cloudAddressChanged" disabled="{{quoteBusy || !cloudAddresses.length}}">
+        <view class="location-card address-card"><view class="location-card-content"><block wx:if="{{address}}"><text class="delivery-person">{{address.receiverName}} · {{address.phone}}</text><text class="delivery-detail">{{address.province}} {{address.city}} {{address.district}} {{address.detail}}</text></block><text wx:else class="address-empty">请先添加收货地址</text></view><image class="card-arrow" src="/assets/icons/navigation/back.svg" mode="aspectFit" /></view>
+      </picker>
+      <button wx:else class="location-card address-card" bindtap="chooseAddress" aria-label="{{address ? '选择或编辑收货地址' : '新增或选择收货地址'}}" hover-class="none">
         <view class="location-card-content"><block wx:if="{{address}}"><text class="delivery-person">{{address.receiverName}} · {{address.phone}}</text><text class="delivery-detail">{{address.province}} {{address.city}} {{address.district}} {{address.detail}}</text></block><text wx:else class="address-empty">新增或选择收货地址</text></view><image class="card-arrow" src="/assets/icons/navigation/back.svg" mode="aspectFit" />
       </button>
+      <button wx:if="{{cloudMode}}" class="secondary-action" bindtap="chooseAddress" disabled="{{quoteBusy}}">管理收货地址</button>
       <text wx:if="{{addressNotice}}" class="address-warning">{{addressNotice}}</text>
       <view wx:if="{{deliveryStatus}}" class="delivery-range-status"><text class="delivery-range-label">{{deliveryStatus.label}}</text><text class="address-hint">{{deliveryStatus.notice}}</text></view>
       <text class="address-hint">门店自行配送，门店中心半径 20 km（含边界）。配送时间为预计时间段，不承诺具体分钟送达；地址范围及可约时段由云端最终核验。</text>
     </view>
     <view wx:if="{{!fulfillmentAllowed || configurationChanged}}" class="address-warning">履约资料已变化或此方式不可用，请重新选择。<button class="secondary-action" bindtap="load">重新核验</button></view>
     <view wx:if="{{preferenceError}}" class="address-warning">{{preferenceError}}<button class="secondary-action" bindtap="load">重新核验</button></view>
-    <view wx:if="{{appointmentStatus}}" class="appointment-status">
+    <view wx:if="{{cloudMode}}" class="appointment-status">
+      <text class="form-section-title">{{fulfillment === 'PICKUP' ? '自取时间' : '预计配送时间'}}</text>
+      <view class="form-panel appointment-panel">
+        <picker mode="date" value="{{slotDate}}" start="{{minimumDate}}" bindchange="cloudDateChanged" disabled="{{quoteBusy}}"><view class="form-row appointment-row"><image class="form-icon" src="/assets/icons/forms/calendar-gray.svg" mode="aspectFit" /><text class="cloud-appointment-value">{{slotDate}}</text></view></picker>
+        <picker mode="selector" range="{{slotLabels}}" bindchange="cloudSlotChanged" disabled="{{quoteBusy || slotsLoading || !slots.length}}"><view class="form-row appointment-row"><image class="form-icon" src="/assets/icons/forms/clock-gray.svg" mode="aspectFit" /><text class="cloud-appointment-value">{{slotsLoading ? '正在读取时段…' : slotIndex >= 0 ? slotLabels[slotIndex] : slots.length ? '请选择时间段' : '当日暂无可约时段'}}</text></view></picker>
+      </view>
+      <text class="appointment-notice">时段以核验时的可预约情况为准。</text>
+    </view>
+    <view wx:elif="{{appointmentStatus}}" class="appointment-status">
       <text class="form-section-title">{{fulfillment === 'PICKUP' ? '自取时间' : '预计配送时间'}}</text>
       <view class="form-panel appointment-panel">
         <button class="form-row appointment-row" disabled="{{true}}" aria-label="日期暂不可选"><image class="form-icon" src="/assets/icons/forms/calendar-disabled.svg" mode="aspectFit" /><text class="appointment-value">日期暂不可选</text></button>
@@ -46,10 +58,10 @@
     <view wx:if="{{fulfillment === 'PICKUP' && fulfillmentAllowed && !configurationChanged}}" class="pickup-form">
       <view class="form-section-title">联系信息</view>
       <view class="form-panel">
-        <label class="form-row contact-row"><image class="form-icon" src="/assets/icons/forms/contact-person-gray.svg" mode="aspectFit" /><text class="contact-label">姓名</text><input class="pickup-input" data-field="name" value="{{pickupContact.name}}" placeholder="取货联系人姓名" placeholder-class="form-placeholder" maxlength="2048" disabled="{{preferenceBusy}}" bindinput="contactInput" bindfocus="inputFocus" bindblur="inputBlur" bindkeyboardheightchange="inputKeyboardChange" adjust-position="{{true}}" cursor-spacing="24" /></label>
-        <label class="form-row contact-row"><image class="form-icon" src="/assets/icons/forms/phone-gray.svg" mode="aspectFit" /><text class="contact-label">手机号</text><input class="pickup-input" data-field="phone" value="{{pickupContact.phone}}" placeholder="11 位手机号" placeholder-class="form-placeholder" type="number" maxlength="11" disabled="{{preferenceBusy}}" bindinput="contactInput" bindfocus="inputFocus" bindblur="inputBlur" bindkeyboardheightchange="inputKeyboardChange" adjust-position="{{true}}" cursor-spacing="24" /></label>
+        <label class="form-row contact-row"><image class="form-icon" src="/assets/icons/forms/contact-person-gray.svg" mode="aspectFit" /><text class="contact-label">姓名</text><input class="pickup-input" data-field="name" value="{{pickupContact.name}}" placeholder="取货联系人姓名" placeholder-class="form-placeholder" maxlength="2048" disabled="{{preferenceBusy || quoteBusy}}" bindinput="contactInput" bindfocus="inputFocus" bindblur="inputBlur" bindkeyboardheightchange="inputKeyboardChange" adjust-position="{{true}}" cursor-spacing="24" /></label>
+        <label class="form-row contact-row"><image class="form-icon" src="/assets/icons/forms/phone-gray.svg" mode="aspectFit" /><text class="contact-label">手机号</text><input class="pickup-input" data-field="phone" value="{{pickupContact.phone}}" placeholder="11 位手机号" placeholder-class="form-placeholder" type="number" maxlength="11" disabled="{{preferenceBusy || quoteBusy}}" bindinput="contactInput" bindfocus="inputFocus" bindblur="inputBlur" bindkeyboardheightchange="inputKeyboardChange" adjust-position="{{true}}" cursor-spacing="24" /></label>
       </view>
-      <view class="contact-save-row"><text>{{contactSaved ? '联系人已保存在本机' : '保存联系人后可恢复输入'}}</text><button class="save-pickup-contact" disabled="{{preferenceBusy}}" bindtap="saveContact">保存联系人</button></view>
+      <view class="contact-save-row"><text>{{cloudMode ? (contactSaved ? '联系人已确认' : '请填写取货联系信息') : (contactSaved ? '联系人已保存在本机' : '保存联系人后可恢复输入')}}</text><button class="save-pickup-contact" disabled="{{preferenceBusy || quoteBusy}}" bindtap="saveContact">{{cloudMode ? '确认联系人' : '保存联系人'}}</button></view>
     </view>
     <view wx:if="{{fulfillmentAllowed && !configurationChanged}}" class="order-note-section">
       <text class="form-section-title">订单备注（可选）</text>
@@ -61,11 +73,16 @@
       <view class="checkout-detail">{{item.specLabel}} · ¥ {{item.priceLabel}} × {{item.quantity}}</view>
       <text wx:if="{{item.cakeMessage}}" class="checkout-message">留言：{{item.cakeMessage}}</text>
     </view>
-    <view wx:if="{{fulfillment === 'DELIVERY'}}" class="fulfillment-fee"><text>配送费</text><text>待报价核验</text></view>
-    <view class="checkout-notice">{{fulfillment === 'DELIVERY' ? '库存、配送与报价待核验，暂不可下单。' : '库存与预约待核验，暂不可下单。'}}</view>
+    <view wx:if="{{fulfillment === 'DELIVERY'}}" class="fulfillment-fee"><text>配送费</text><text>{{quote ? '¥ ' + quote.deliveryFeeLabel : '待报价核验'}}</text></view>
+    <view wx:if="{{cloudMode}}" class="quote-panel">
+      <button class="secondary-action" bindtap="verifyCloudQuote" disabled="{{quoteBusy || slotsLoading || slotIndex < 0}}">{{quoteBusy ? '正在核验…' : quote ? '重新核验报价' : '核验报价'}}</button>
+      <text wx:if="{{quoteError}}" class="address-warning">{{quoteError}}</text>
+      <view wx:if="{{quote}}"><text class="quote-amount">已核验金额 ¥ {{quote.totalLabel}}</text><text class="quote-detail">有效至 {{quote.expiresLabel}}，修改商品、地址或时段后需重新核验。</text><text wx:if="{{quote.referenceImages}}" class="quote-detail">商品图片为 AI 参考图，实际以门店出品为准。</text></view>
+    </view>
+    <view class="checkout-notice">{{cloudMode ? '报价核验不占用名额，购买暂未开放。' : fulfillment === 'DELIVERY' ? '库存、配送与报价待核验，暂不可下单。' : '库存与预约待核验，暂不可下单。'}}</view>
   </block>
 </view>
 <view wx:if="{{lines.length}}" hidden="{{inputFocused || keyboardHeight > 0}}" class="checkout-footer action-safe-footer">
-  <view class="footer-amount-row"><text class="footer-amount-label">商品金额</text><text class="footer-amount">¥ {{subtotalLabel}}</text></view>
-  <button class="action-capsule" disabled="{{true}}">待核验后下单</button>
+  <view class="footer-amount-row"><text class="footer-amount-label">{{quote ? '报价金额' : '商品金额'}}</text><text class="footer-amount">¥ {{quote ? quote.totalLabel : subtotalLabel}}</text></view>
+  <button class="action-capsule" disabled="{{true}}">{{cloudMode ? '暂未开放下单' : '待核验后下单'}}</button>
 </view>

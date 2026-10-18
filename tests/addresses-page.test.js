@@ -77,3 +77,61 @@ test('X01 delayed cloud list/save responses cannot overwrite a hidden page and r
  cloud.list=()=>new Promise(resolve=>{resolveList=resolve;});const refresh=instance.load();instance.onHide();
  resolveList({addresses:[{addressId:'stale-row'}],revision:2,scope:'CLOUD_OWNER'});await refresh;assert.equal(instance.data.addresses.length,0);
 });
+
+function locationService(){
+ const writes=[],resolves=[],book={addresses:[],revision:0,scope:'CLOUD_OWNER',subjectHash:'a'.repeat(16)};
+ const api={FIELDS,selectionAllowed:false,locationVerificationAvailable:true,list:async()=>clone(book),
+  async resolveLocation(form,id,version){resolves.push({form:clone(form),id,version});return {mapSelectionToken:'candidate.'+'b'.repeat(43),expiresAt:Date.now()+900000,
+   location:{longitude:117.288694,latitude:31.149852,coordinateSystem:'GCJ02'},subjectHash:book.subjectHash};},
+  async create(form,revision,token,subjectHash){writes.push({form:clone(form),revision,token,subjectHash});return clone(book);}};
+ return {api,writes,resolves,book};
+}
+test('location verification is opt-in and a preview never becomes a saved location before explicit confirmation',async()=>{
+ const s=locationService(),{instance}=await page(s.api);instance.add();fill(instance);await instance.resolveLocation();
+ assert.equal(s.resolves.length,1);assert.equal(instance.data.locationConfirmed,false);assert.equal(instance.data.locationCandidate.coordinateSystem,'GCJ02');
+ assert(!JSON.stringify(instance.data).includes('candidate.'));await instance.save();assert.equal(s.writes.length,0);assert.match(instance.data.locationNotice,/确认/);
+ instance.confirmLocation();await instance.save();assert.equal(s.writes[0].token,'candidate.'+'b'.repeat(43));assert.equal(s.writes[0].subjectHash,'a'.repeat(16));
+ assert.equal(instance.data.selectionAllowed,false);assert.equal(instance.data.editing,false);
+ const off=locationService();off.api.locationVerificationAvailable=false;const p=await page(off.api);p.instance.add();fill(p.instance);await p.instance.resolveLocation();
+ assert.equal(off.resolves.length,0);await p.instance.save();assert.equal(off.writes[0].token,undefined);
+});
+test('editing any verified field clears the candidate; expired and unviewable maps never silently attach their tokens',async()=>{
+ const s=locationService(),{instance}=await page(s.api);instance.add();fill(instance);await instance.resolveLocation();instance.confirmLocation();
+ fill(instance,{phone:'13900000000'});assert.equal(instance.data.locationCandidate,null);assert.equal(instance.data.locationConfirmed,false);
+ await instance.resolveLocation();instance._locationSelection.expiresAt=Date.now()-1;instance.confirmLocation();assert.equal(instance.data.locationCandidate,null);
+ await instance.resolveLocation();instance.locationMapError({currentTarget:{dataset:{request:instance.data.locationRequest-1}}});assert(instance.data.locationCandidate);
+ instance.locationMapError({currentTarget:{dataset:{request:instance.data.locationRequest}}});assert.equal(instance.data.locationCandidate,null);assert.match(instance.data.locationNotice,/地图/);
+ await instance.save();assert.equal(s.writes[0].token,undefined);assert.equal(s.writes[0].form.phone,'13900000000');
+});
+test('late resolver results cannot replace modified, cancelled or hidden address forms; repeated taps issue one request',async()=>{
+ for(const invalidate of [p=>fill(p,{detail:'changed'}),p=>p.cancel(),p=>p.onHide()]){
+  const s=locationService();let finish,calls=0;const selection=await s.api.resolveLocation(fields,null,null);
+  s.api.resolveLocation=()=>{calls++;return new Promise(resolve=>{finish=resolve;});};
+  const {instance}=await page(s.api);instance.add();fill(instance);const pending=instance.resolveLocation();await instance.resolveLocation();assert.equal(calls,1);
+  await invalidate(instance);finish(selection);await pending;assert.equal(instance.data.locationCandidate,null);assert.equal(instance._locationSelection,null);
+ }
+});
+test('unknown save results freeze the original form/token, including expired-token retries, without another map request',async()=>{
+ const s=locationService(),original=s.api.create;let attempt=0;const captured=[];
+ s.api.create=async(...args)=>{captured.push(args);if(attempt++===0)throw {code:'CLOUD_CALL_FAILED'};return original(...args);};
+ const {instance}=await page(s.api);instance.add();fill(instance);await instance.resolveLocation();instance.confirmLocation();await instance.save();
+ assert.equal(instance.data.saveUncertain,true);fill(instance,{detail:'must not replace original'});assert.equal(instance.data.form.detail,fields.detail);
+ await instance.resolveLocation();assert.equal(s.resolves.length,1);instance._locationSelection.expiresAt=Date.now()-1;await instance.save();
+ assert.deepEqual(captured[0],captured[1]);assert.equal(instance.data.saveUncertain,false);assert.equal(instance.data.editing,false);
+});
+test('a successful save completed across hide/show cannot be submitted again from the old editor',async()=>{
+ const s=locationService();let finish,calls=0;s.api.create=()=>{calls++;return new Promise(resolve=>{finish=resolve;});};
+ const {instance}=await page(s.api);instance.add();fill(instance);const saving=instance.save();instance.onHide();await instance.onShow();finish(clone(s.book));await saving;
+ await instance.save();assert.equal(calls,1);assert.equal(instance.data.editing,false);assert.equal(instance.data.saveUncertain,false);
+});
+test('changing the native account clears the previous editor and its private location selection',async()=>{
+ const s=locationService(),{instance}=await page(s.api);instance.add();fill(instance);await instance.resolveLocation();instance.confirmLocation();
+ s.book.subjectHash='c'.repeat(16);await instance.load();assert.equal(instance.data.editing,false);assert.equal(instance.data.form.receiverName,'');
+ assert.equal(instance._locationSelection,null);await instance.save();assert.equal(s.writes.length,0);
+});
+test('a failed resolution preserves the entered address and permits an explicit text-only save',async()=>{
+ const s=locationService();s.api.resolveLocation=async()=>{throw {code:'LOCATION_REQUIRED'};};
+ const {instance}=await page(s.api);instance.add();fill(instance);await instance.resolveLocation();
+ assert.equal(instance.data.form.detail,fields.detail);assert.equal(instance.data.locationCandidate,null);assert.match(instance.data.locationNotice,/文字地址/);
+ await instance.save();assert.equal(s.writes.length,1);assert.equal(s.writes[0].token,undefined);
+});

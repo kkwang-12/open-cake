@@ -15,7 +15,7 @@ function slotFor(value,index=0){
   return {_id,storeId,fulfillment,serviceDate,timeZone,startAt,endAt,policyVersion,capacityUnit,capacityTotal,
     schemaVersion:1,version:0,createdAt:value.now,updatedAt:value.now,status:'OPEN',heldUnits:0,confirmedUnits:0,consumedUnits:0};
 }
-function point(longitude=0,latitude=0){return {longitude,latitude,coordinateSystem:'WGS84',source:'OFFLINE_TEST_ONLY',verifiedAt:1000};}
+function point(longitude=0,latitude=0){return {longitude,latitude,coordinateSystem:'GCJ02',source:'OFFLINE_TEST_ONLY',verifiedAt:1000};}
 function atMeters(distance){return point(0,distance/6371000*180/Math.PI);}
 
 test('D05 用户确认政策固定：30 分钟、独立容量 3 / 1、20km 含边界、免费商家配送且预计时段',()=>{
@@ -135,8 +135,21 @@ test('D05 无定位 / 非法坐标 / 未来核验时间 / 未转换坐标体系�
   for(const pointValue of [null,{...point(),latitude:91},{...point(),longitude:Infinity},{...point(),verifiedAt:3000},{...point(),source:''}]) {
     code(()=>evaluateDeliveryRange(point(),pointValue,2000),'LOCATION_REQUIRED');
   }
-  code(()=>evaluateDeliveryRange(point(),{...point(),coordinateSystem:'GCJ02'},2000),'COORDINATE_SYSTEM_UNSUPPORTED');
+  code(()=>evaluateDeliveryRange(point(),{...point(),coordinateSystem:'WGS84'},2000),'COORDINATE_SYSTEM_UNSUPPORTED');
   code(()=>evaluateDeliveryRange(null,point(),2000),'LOCATION_REQUIRED');
+});
+
+test('D05 腾讯原生GCJ02使用独立距离版本，旧WGS84及未知标签不得重标或混算',()=>{
+  const origin=point(117.2886,31.1498);
+  const result=evaluateDeliveryRange(origin,{...origin,latitude:31.150299,longitude:117.288528},2000);
+  assert.equal(result.coordinateSystem,'GCJ02');
+  assert.equal(result.distanceAlgorithmVersion,'haversine-gcj02-r6371000-v2');
+  assert(result.distanceMeters>55&&result.distanceMeters<57);assert(Object.isFrozen(result));
+  for(const coordinateSystem of ['WGS84','GCJ-02','BD09','EPSG:4326']){
+    code(()=>evaluateDeliveryRange({...origin,coordinateSystem},origin,2000),'COORDINATE_SYSTEM_UNSUPPORTED');
+    code(()=>evaluateDeliveryRange(origin,{...origin,coordinateSystem},2000),'COORDINATE_SYSTEM_UNSUPPORTED');
+    code(()=>evaluateDeliveryRange({...origin,coordinateSystem},{...origin,coordinateSystem},2000),'COORDINATE_SYSTEM_UNSUPPORTED');
+  }
 });
 
 test('D05 非测试原点的精确边界不因浮点相减误判，近经度换日线也可正确计算',()=>{

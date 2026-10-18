@@ -1,5 +1,6 @@
 'use strict';
 const { scopedDocumentId } = require('./idempotency-model');
+const {isBoundSlotPolicy}=require('./slot-release-policy');
 // Produces a proposed all-resource hold. Applying it still requires an actual DB transaction.
 class ResourceModelError extends Error {
   constructor(code) { super(code); this.name='ResourceModelError'; this.code=code; }
@@ -52,7 +53,8 @@ function planResourceHolds(order, requests, resources, context) {
     reservations.push(Object.freeze({_id:scopedDocumentId('reservation',[context.environment,order._id,request.resourceKind,resource._id]),
       schemaVersion:1,version:0,createdAt:context.now,updatedAt:context.now,orderId:order._id,storeId:order.storeId,
       resourceKind:request.resourceKind,resourceId:resource._id,quantity:request.quantity,status:'HELD',
-      expiresAt:order.paymentDeadlineAt,resolvedAt:null,resolutionLogId:null}));
+      expiresAt:order.paymentDeadlineAt,resolvedAt:null,resolutionLogId:null,
+      ...(request.resourceKind === 'SLOT' && isBoundSlotPolicy(order) ? {releasePolicyVersion:order.appointmentSnapshot.releasePolicyVersion}: {})}));
   }
   if (slots !== 1 || stocks < 1 || seen.size !== byKey.size) fail('INVALID_RESERVATION_PLAN');
   return Object.freeze({resourceChanges:Object.freeze(resourceChanges),reservations:Object.freeze(reservations)});

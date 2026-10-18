@@ -33,6 +33,18 @@ test('cloud address CRUD refreshes authoritative versions/defaults and does not 
  assert.equal(client.selectionAllowed,false);assert.throws(()=>client.choose(address.addressId,1,3),e=>e.code==='CONFIGURATION_REQUIRED');
  assert(![...c.storage.keys()].some(key=>key.startsWith('jiajiale.local-addresses')));
 });
+
+test('cloud address DTO keeps GCJ02, rejects old WGS84 and cannot turn server coordinates into checkout permission',async()=>{
+ const c=setup(),client=c.make(),created=await client.create(c.draft(),0);
+ const record=c.s.state.addresses[created.addresses[0].addressId];
+ record.location={longitude:117.2886,latitude:31.1498,coordinateSystem:'GCJ02',source:'OFFLINE_TEST_ONLY',verifiedAt:record.updatedAt};
+ const result=await client.list();assert.deepEqual(result.addresses[0].location,{longitude:117.2886,latitude:31.1498,coordinateSystem:'GCJ02'});
+ assert.equal(client.selectionAllowed,false);
+ const transport={async call(domain,action,payload){const response=clone(await c.transport.call(domain,action,payload));
+   if(action==='list')for(const row of response.data.items)row.location.coordinateSystem='WGS84';return response;}};
+ const forged=createAddressClient(c.settings,c.platform,transport);
+ await assert.rejects(forged.list(),e=>e.code==='INVALID_RESPONSE');
+});
 test('account switches isolate unfinished command keys and returning to the original account recovers its lost response',async()=>{
  const c=setup();c.lose();await assert.rejects(c.make().create(c.draft(),0),e=>e.code==='CLOUD_CALL_FAILED');
  c.switchActor(1);const other=await c.make().create(c.draft(),0);assert.equal(other.addresses.length,1);
@@ -49,6 +61,10 @@ test('disabled address action and failed command-draft persistence never call th
   await assert.rejects(raw.call('address',action),e=>e.code==='CLOUD_NOT_CONFIGURED');assert.equal(calls,0);
  const c=setup(),client=createAddressClient(c.settings,()=>({getStorageSync:()=>'',setStorageSync:()=>{throw new Error('FULL');}}),c.transport);
  await assert.rejects(client.create(c.draft(),0),e=>e.code==='LOCAL_ADDRESS_WRITE_FAILED');assert(c.calls.every(c=>c.action==='list'));
+});
+test('address location verification stays hidden and makes no requests until its independent client switch is enabled',async()=>{
+ const c=setup(),client=c.make();assert.equal(client.locationVerificationAvailable,false);
+ await assert.rejects(client.resolveLocation(c.draft()),e=>e.code==='CLOUD_NOT_CONFIGURED');assert.equal(c.calls.length,0);
 });
 test('cloud address pages reject duplicate rows, cursor loops and private fields rather than show incomplete addresses',async()=>{
  const c=setup(),book=await c.make().create(c.draft(),0),address=book.addresses[0];const {isDefault,...row}=address;
